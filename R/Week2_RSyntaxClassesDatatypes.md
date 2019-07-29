@@ -191,4 +191,4 @@ In Class Exercise
 
 Hint: You may have to use 'install.packages' in your console first
 
-<img src="/Users/James/Documents/Github/geog473-673/R/Week2_RSyntaxClassesDatatypes_files/figure-markdown_github/Week2_dqf_plot.png" width="2000" />
+![Aim for this](https://github.com/jsimkins2/geog473-673/tree/master/R/Week2_RSyntaxClassesDatatypes_files/figure-markdown_github/Week2_dqf_plot.png)
