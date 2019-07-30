@@ -181,8 +181,76 @@ Now we plot this up using the 'image.plot()' function from the 'fields' library.
 2) Download 'OR_ABI-L2-SSTF-M3_G16_s20192081300453_e20192081400161_c20192081406297.nc'
 3) Make simple plot of the 'DQF' (Data Quality Flag) variable
 
-Hint: You may have to use 'install.packages' in your console first 
+-Hint: You may have to use 'install.packages' in your console first 
 
+Aim for something like this:
 ```{r, echo=FALSE}
-knitr::include_graphics("https://github.com/jsimkins2/geog473-673/tree/master/R/Week2_RSyntaxClassesDatatypes_files/figure-markdown_github/Week2_dqf_plot.png")
+library(ncdf4)
+library(fields)
+ncFile <- ncdf4::nc_open("~/Documents/Github/geog473-673/datasets/OR_ABI-L2-SSTF-M3_G16_s20192081300453_e20192081400161_c20192081406297.nc")
+sstK <- ncdf4::ncvar_get(ncFile, "DQF")
+lat <- ncdf4::ncvar_get(ncFile, "latitude")
+lon <- ncdf4::ncvar_get(ncFile, "longitude")
+
+#png("~/Documents/Github/geog473-673/R-Section1/Week2_RSyntaxClassesDatatypes_files/figure-markdown_github/Week2_dqf_plot.png", width = 10, height = 6, units = "in",res = 200)
+fields::image.plot(x=lon, y=lat, z=sstK, legend.lab = "Level")
+title("GOES-R DQF 7/25/2019 19:00 UTC")
+#dev.off()
+```
+
+
+## DataTypes
+
+If you look into your environment from the in class exercise, you'll notice under the 'Data' tab you have a large matrix of the DQF values. R stores these matrices without the column/row identifier (aka lat & lon). We provide the image.plot() function with the lon & lat arrays becuase it doesn't know what the x & y coordinates are of the matrix. Notice that the environment tells you the dimensions - the matrix is 2778 x 1989. R is indexed from 1 to the length of the dimension. Here is what I mean:
+
+- ```dim(sstC)``` is ```2778 1989```
+- ```dim(lat)``` is ```1989```
+- ```lat[0]``` is ```numeric(0)```
+- ```lat[1]``` is ```16.00283```
+- ```lat[1989]``` is ```51.98563```
+- ```lat[1990]``` is ```NA```
+
+The above tests are referred to as indexing. The 1st point of the lat array is 16.00283. In R, we index using brackets []. If you want to find more values other than just a single point, the procedure is referred to as slicing.
+
+```lat[1:10]```
+is
+``` 16.00283 16.02093 16.03903 16.05713 16.07523 16.09333 16.11143 16.12953 16.14763 16.16573```
+
+The lat object we've been exploring here is an 'array'. 
+
+An array is a vector with one or more dimensions. So, an array with one dimension is (almost) the same as a vector. An array with two dimensions is (almost) the same as a matrix. An array with three or more dimensions is an n-dimensional array.
+
+A vector is what is called an array in all other programming languages except R — a collection of cells with a fixed size where all cells hold the same type (integers or characters or reals or whatever).
+
+A list can hold items of different types and the list size can be increased on the fly. List contents can be accessed either by index (like mylist[[1]]) or by name (like mylist$age).
+
+```{r, message=FALSE, warning=FALSE}
+mylist = list("delaware", "pennsylvania", "maryland")
+mylist[[1]]
+```
+
+A matrix is a two-dimensional vector (fixed size, all cell types the same).
+
+A data frame is called a table in most languages. Each column holds the same type, and the columns can have header names.
+
+```{r, message=FALSE, warning=FALSE}
+# load in base dataset
+data(mtcars)
+mtcars
+```
+
+Notice that it's organized just like an excel spreadsheet. In essence, a dataframe in R is just an advanced Excel Spreadsheet. 
+
+```{r, message=FALSE, warning=FALSE}
+class(mtcars)
+```
+
+Let's explore a column of this data:
+```{r, message=FALSE, warning=FALSE}
+mtcars$mpg
+```
+
+Now let's sort the entire dataset by this column from least to greatest
+```{r, message=FALSE, warning=FALSE}
+mtcars[order(mtcars$mpg),]
 ```
