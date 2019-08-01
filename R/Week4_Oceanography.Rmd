@@ -1,0 +1,14 @@
+---
+title: "Matt Oliver Oceanography"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Oceanography
+
+Plot up chlorophyll vs temperature
+pull in anomaly data
+buoy validation experiment 
