@@ -1,5 +1,5 @@
 ---
-  title: 'Week3: Time Series fun with DEOS'
+title: 'Week3: Time Series fun with DEOS'
 output: rmarkdown::github_document
 ---
   
@@ -7,7 +7,7 @@ output: rmarkdown::github_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## General Skills: The For Loop
+## Essential Skills: The For Loop
 
 For loops & conditional statements are a key skill in programming. They allow you to process through large datasets or multiple datasets thus minimizing the amount of manual work you need to do. The basic for loop looks like this...
 
@@ -122,13 +122,60 @@ for (num in numbersList){
 && means "and" ... || means "or"...these are useful in multi conditional statements. The 'else' statement is an appendage of the 'if' statement. It basically means if num == 3 and let == B is false, print "not what we want". Notice that the 'else' statement is outside of the 'if' statement but immediately after it. 
 
 
+In Class Exercise: debug this for loop
+
+```{r, eval=FALSE,error=FALSE, warning=FALSE}
+soiltype <- list("sand", "silt", "saline", "clay", "peat")
+permeability <- c(0.09, 0.05, 0.03, 0.01, 0.005)
+
+for (s in seq(length(soiltype)){
+  print(a)
+  for (p in permeability)
+    if (p == 0.05 | p == 0.005){
+      print(permeability[s])
+    }
+  }
+}
+```
+
 ## DEOS Data
 
-In Class Exercise: debug a for loop 
+Delaware has the highest concentration of environmental monitoring stations in the country thanks to DEOS (Delaware Environmental Observing System) which is controlled by University of Delaware's CEMA (Center for Environmental Monitoring and Analysis). The data collected using this dense network is useful for a variety of purposes. Let's dive into some data - find the file (https://github.com/jsimkins2/geog473-673/tree/master/datasets) - download it, unzip it, and open it up in R! 
 
-In Class Exercise: write DEOS exploration code together, show basic plot
+``` {r, warning = FALSE}
+deos_data <- read.csv("~/Downloads/DEOS.csv", header = TRUE, skip=0, stringsAsFactors = FALSE)
 
-Wednesday Class: Dr. Leathers Prompt. Using DEOS data, go quality control it, do a basic plot 
+head(deos_data)
 
-Why do we do quizzes? Because harnessing these names will make google searching easier
+summary(deos_data)
 
+#the variable names look wonky because they have spaces in them - spaces in variable names is a big no-no
+#change the names to something more readable
+names(deos_data) = c("datetime", "air_temperature", "dewpoint", "windspeed", "winddirection", "pressure", "solar_radiation",
+                     "wind_gust", "precipitation")
+deos_data$datetime[1]
+class(deos_data$datetime)
+# give it a datetime class, notice the format
+deos_data$datetime = as.POSIXct(deos_data$datetime, format = '%Y-%m-%d %H:%M')
+
+plot(deos_data$datetime[1:365*24*12], deos_data$air_temperature[1:365*24*12], type = "l", col = 'red', xlab = paste0(deos_data$datetime[1], " to ", deos_data$datetime[365*24*12]), ylab = "Celsius")
+title("1 Year Air Temperature at Station")
+
+# Now add dewpoint to that plot
+plot(deos_data$datetime[1:7*24*12], deos_data$air_temperature[1:7*24*12], type = "l", col = 'red', xlab = paste0(deos_data$datetime[1], " to ", deos_data$datetime[7*24*12]), ylab = "Celsius", ylim = c(-5,10))
+lines(deos_data$datetime[1:7*24*12], deos_data$dewpoint[1:7*24*12], col = 'yellow')
+legend('bottomright', legend=c('Air Temp', 'Dew Pt'), col = c('red', 'yellow'), lty = c(1, 1))
+title("Air Temperature & Dew Point Temperature")
+
+```
+
+
+Assignment:
+
+1. Subset dataset to 2015 only
+2. Convert Wind Speed & Wind Gust data from m/s to mph
+3. Plot wind speed and wind gust on same plot - wind speed as lines and wind gust as points (using points() function)
+4. Add legend
+5. Compute correlation coefficient between wind gust and wind speed using cor() function - add to title of plot
+
+Deliver Resulting Plot to simkins at udel dot edu

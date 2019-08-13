@@ -7,8 +7,76 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+## Essential Skills: Mapping
+
+Believe it or not, R can do just about everything that arcGIS can do (at a faster speed & more efficiently too I might add - oh, and it doesn't require a license - although I am biased.) Let's show some examples on how we would plot some maps. 
+
+Here's a simple world map:
+
+```{r}
+library(maps)
+map("world", fill=TRUE, col="white", bg="lightblue", ylim=c(-60, 90), mar=c(0,0,0,0))
+```
+
+Here's a simple USA map with statelines and a point for newark. 
+
+```{r}
+library(maps)
+map(database = 'state', fill=TRUE, col="white", bg="lightblue", ylim=c(25, 50), mar=c(0,0,0,0))
+
+newark <- c(39.67724, -75.762858)
+
+points(newark[2],newark[1], col="blue", pch=16)
+```
+
+Here's a more specific example with appropriate shapefile - download oregon here 
+```{r setup, message=FALSE}
+library(gpclib)       # loads polygon clipping library
+library(maptools)     # loads sp library too
+library(RColorBrewer) # creates nice color schemes
+library(classInt)     # finds class intervals for continuous variables
+
+
+# outlines of Oregon counties (lines)
+# browse to orotl.shp
+orotl.shp <- readShapeLines(file.choose(), 
+     proj4string=CRS("+proj=longlat"))
+
+# Oregon climate station data (points)
+# browse to orstations.shp
+orstations.shp <- readShapePoints(file.choose(), 
+     proj4string=CRS("+proj=longlat"))
+
+# Oregon county census data (polygons)
+# browse to orcounty.shp
+orcounty.shp <- readShapePoly(file.choose(), 
+     proj4string=CRS("+proj=longlat"))
+
+
+orstationc <- read.csv("orstationc.csv")
+orcountyp <- read.csv("orcountyp.csv")
+cities <- read.csv("cities.csv")
+
+# equal-frequency class intervals
+# symbol plot -- equal-interval class intervals
+plotvar <- orstationc$tann
+nclr <- 8
+plotclr <- brewer.pal(nclr,"PuOr")
+plotclr <- plotclr[nclr:1] # reorder colors
+class <- classIntervals(plotvar, nclr, style="equal")
+colcode <- findColours(class, plotclr)
+
+plot(orotl.shp, xlim=c(-124.5, -115), ylim=c(42,47))
+points(orstationc$lon, orstationc$lat, pch=16, col=colcode, cex=2)
+points(orstationc$lon, orstationc$lat, cex=2)
+title("Oregon Climate Station Data -- Annual Temperature",
+    sub="Equal-Interval Class Intervals")
+legend(-117, 44, legend=names(attr(colcode, "table")), 
+    fill=attr(colcode, "palette"), cex=0.6, bty="n")
+```
+
 ## Oceanography
 
 Plot up chlorophyll vs temperature
 pull in anomaly data
-buoy validation experiment 
+buoy validation experiment https://www.ndbc.noaa.gov/station_page.php?station=44009&uom=E&tz=STN
