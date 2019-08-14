@@ -1,81 +1,156 @@
 ---
-title: "Matt Oliver Oceanography"
-output: html_document
+title: "Matt Oliver Oceanography with Rasters"
+output: rmarkdown::github_document
 ---
-
+  
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## Essential Skills: Mapping
+# Essential Skills: The For Loop with Paste0
 
-Believe it or not, R can do just about everything that arcGIS can do (at a faster speed & more efficiently too I might add - oh, and it doesn't require a license - although I am biased.) Let's show some examples on how we would plot some maps. 
+Last week we covered the for loop which is an essential programming skill. We also touched on the paste0 function, but this is incredibly useful and should be expanded upon. paste0() is the sister function of paste(), who's cousin is sprintf() . It depends on preference, but most coders I know gravitate towards paste0(). Let's check out all 3. 
 
-Here's a simple world map:
+``` {r}
+# Paste Example 1 - default sep (aka separation) is space
+paste("file", "number", "32")
 
-```{r}
-library(maps)
-map("world", fill=TRUE, col="white", bg="lightblue", ylim=c(-60, 90), mar=c(0,0,0,0))
+# Paste Example 2 - set sep to "_"
+paste("file", "number", "32", sep = "_")
+
+# Paste0 Example 1 - 0 for 0 separating characters
+paste0("file", "number", "32")
+
+# sprintf example 1
+sprintf("%s %s %s", "file", "number", "32")
+
+# sprintf example 2
+person <-"Grover"
+action <-"flying"
+message(sprintf("On %s I realized %s was...\n%s by the street", Sys.Date(), person, action))
+
+# Notice that paste is limiting because the separating character is not always present between
+# each string you're concatenating
+
+# Let's use paste0 here
+fileList <- c('filename1', 'filename2', 'filename3', 'filename4')
+dateFolder <- c('0813', '0814', '0815', '0816')
+homeDir <- "~/Documents/"
+pathList <- list()
+
+for (i in 1:length(fileList)){
+  print(i)
+  tempString <- paste0(homeDir, dateFolder[i], '/', fileList[i])
+  pathList[i] <- tempString
+}
+
+pathList
+
+pathList[[1]]
+
+
+# Now let's rewrite using sprintf
+fileList <- c('filename1', 'filename2', 'filename3', 'filename4')
+dateFolder <- c('0813', '0814', '0815', '0816')
+homeDir <- "~/Documents/"
+pathList <- list()
+
+pathList <- sprintf("%s%s/%s", homeDir, dateFolder, fileList)
+
+pathList
+
+pathList[[1]]
+
+#sprintf is a very useful and quick function for combining various strings into longer strings
+#but paste0 allows you a little more freedom and is slightly more intuitive
+
 ```
 
-Here's a simple USA map with statelines and a point for newark. 
+Debug and fix the following code:
 
-```{r}
-library(maps)
-map(database = 'state', fill=TRUE, col="white", bg="lightblue", ylim=c(25, 50), mar=c(0,0,0,0))
+``` {r, echo=FALSE}
+# Let's use paste0 here
+fileList <- c('sstData20190912', 'sstData20190913', 'sstData20190914', 'sstData20190915')
+dateFolder <- seq(0912, 0915, 1)
+homeDir <- "~/Documents/"
+pathList <- list()
 
-newark <- c(39.67724, -75.762858)
+for (i in fileList){
+  print(i)
+  tempString <- paste0(homeDir, dateFolder[i], '/', i)
+  pathList[i] <- tempString
+}
 
-points(newark[2],newark[1], col="blue", pch=16)
+pathList
+
+pathList[[1]]
 ```
 
-Here's a more specific example with appropriate shapefile - download oregon here 
-```{r setup, message=FALSE}
-library(gpclib)       # loads polygon clipping library
-library(maptools)     # loads sp library too
-library(RColorBrewer) # creates nice color schemes
-library(classInt)     # finds class intervals for continuous variables
+The final `pathList[[1]]` should look like this...
+
+`"~/Documents/0912/sstData20190912"`
 
 
-# outlines of Oregon counties (lines)
-# browse to orotl.shp
-orotl.shp <- readShapeLines(file.choose(), 
-     proj4string=CRS("+proj=longlat"))
+## Rasters with Oceanography
 
-# Oregon climate station data (points)
-# browse to orstations.shp
-orstations.shp <- readShapePoints(file.choose(), 
-     proj4string=CRS("+proj=longlat"))
+# Plot GOES-R Rolling 1 day data
 
-# Oregon county census data (polygons)
-# browse to orcounty.shp
-orcounty.shp <- readShapePoly(file.choose(), 
-     proj4string=CRS("+proj=longlat"))
+``` {r, message=FALSE}
+library(maptools) # also loads sp package
+library(ncdf4)
+library(raster)
+library(rasterVis)
+library(RColorBrewer)
+ncFile <- nc_open("~/Downloads/GOES_R_ROLLING_1DAY_20190814.nc")
+sstGoes <- ncvar_get(ncFile, varid = "sst")
+sstRast <- raster(sstGoes)
+
+image(sstRast)
+
+# netcdf stores data backwards, so to convert it to raster we need to transpose it
+sstRast <- t(sstRast)
+
+image(sstRast)
+
+# now we see that the data is just upside down, so we use the flip() function
+sstRast <- flip(sstRast, 2)
+
+image(sstRast)
+
+sstRast
+
+# notice that the extent and crs information are wrong/not included so let's fix this
+
+lat = ncvar_get(ncFile, "latitude")
+lon = ncvar_get(ncFile, "longitude")
+
+extent(sstRast) = c(min(lon), max(lon), min(lat), max(lat))
+crs(sstRast) = "+proj=longlat +datum=WGS84 +no_defs "
+sstRast
+image(sstRast)
 
 
-orstationc <- read.csv("orstationc.csv")
-orcountyp <- read.csv("orcountyp.csv")
-cities <- read.csv("cities.csv")
+library(rasterVis)
+levelplot(sstRast)
 
-# equal-frequency class intervals
-# symbol plot -- equal-interval class intervals
-plotvar <- orstationc$tann
-nclr <- 8
-plotclr <- brewer.pal(nclr,"PuOr")
-plotclr <- plotclr[nclr:1] # reorder colors
-class <- classIntervals(plotvar, nclr, style="equal")
-colcode <- findColours(class, plotclr)
+usa <- getData('GADM', country = 'USA', level = 1)
 
-plot(orotl.shp, xlim=c(-124.5, -115), ylim=c(42,47))
-points(orstationc$lon, orstationc$lat, pch=16, col=colcode, cex=2)
-points(orstationc$lon, orstationc$lat, cex=2)
-title("Oregon Climate Station Data -- Annual Temperature",
-    sub="Equal-Interval Class Intervals")
-legend(-117, 44, legend=names(attr(colcode, "table")), 
-    fill=attr(colcode, "palette"), cex=0.6, bty="n")
+plt <- levelplot(sstRast, margin=F, par.settings=BuRdTheme,
+       main="GOES-R Rolling SST 08/14")
+plt + layer(sp.polygons(usa, col='black',fill='grey', lwd=0.4))
+
+# Now let's do the same with geotiff
+tifFile = "~/Downloads/GOES_R_ROLLING_1DAY_20190814.tif"
+sstRast = raster(tifFile)
+
+image(sstRast)
+
+data(wrld_simpl)
+plt <- levelplot(sstRast, margin=F, par.settings=BuRdTheme,
+       main="GOES-R Rolling SST 08/14")
+plt + layer(sp.polygons(wrld_simpl, col='black',fill='grey', lwd=0.4))
 ```
 
-## Oceanography
 
 Plot up chlorophyll vs temperature
 pull in anomaly data
