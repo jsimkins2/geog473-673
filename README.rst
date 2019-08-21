@@ -13,7 +13,7 @@ https://github.com/jsimkins2/geog473-673/tree/master/datasets
 
 R Phase of GEOG 473/673: Course Notebooks
 ----------------
-1) Week 1 - An Introduction to R - Powerpoint
+Week 1 - An Introduction to R - Powerpoint
 
 https://github.com/jsimkins2/geog473-673/blob/master/documents/intro_powerpoint.pptx
 
