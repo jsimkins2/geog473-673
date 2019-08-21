@@ -17,19 +17,19 @@ Week 1 - An Introduction to R - Powerpoint
 
 https://github.com/jsimkins2/geog473-673/blob/master/documents/intro_powerpoint.pptx
 
-2) Week 2 - R Syntax, Classes & Datatypes
+Week 2 - R Syntax, Classes & Datatypes
 
 https://github.com/jsimkins2/geog473-673/blob/master/R/Week2_RSyntaxClassesDatatypes.md
 
-3) Week 3 - Time Series Analysis with DEOS data
+Week 3 - Time Series Analysis with DEOS data
 
 https://github.com/jsimkins2/geog473-673/blob/master/R/Week3_TimeSeriesDEOS.md
 
-4) Week 4 - Raster Analysis with Oceanography data
+Week 4 - Raster Analysis with Oceanography data
 
 https://github.com/jsimkins2/geog473-673/blob/master/R/Week4_Oceanography.md
 
-5) Week 5 - Resampling and Reprojecting Rasters with climatological temperature data
+Week 5 - Resampling and Reprojecting Rasters with climatological temperature data
 
 https://github.com/jsimkins2/geog473-673/blob/master/R/Week5_Reprojecting.md
 
