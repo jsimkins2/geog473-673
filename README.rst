@@ -6,25 +6,30 @@ Phase 2: Spatial Computing with Python – 9/30/2019 to 12/5/2019 – 2cr
 
 Welcome to what is going to be a very novel workshop like course. This course will be a series of brief lectures followed by a real-world geospatial data problem or task that will be solved using R & Python. It is designed to be very hands-on and involved as coding in this manner is a skill that needs to be practiced, rather than a theory that needs to be learned. Collaborative coding and team-based problem solving will be a large feature of this course as this is how R & Python scientific programmers perform at a high level.
 
+All datasets can be found in the datasets repository
+
+https://github.com/jsimkins2/geog473-673/tree/master/datasets
+
+
 R Phase of GEOG 473/673: Course Notebooks
 ----------------
 1) Week 1 - An Introduction to R - Powerpoint
 
-https://github.com/openradar/AMS_radar_in_the_cloud/blob/master/notebooks/Introduction_to_Python.ipynb
+https://github.com/jsimkins2/geog473-673/blob/master/documents/intro_powerpoint.pptx
 
 2) Week 2 - R Syntax, Classes & Datatypes
 
-https://github.com/openradar/AMS_radar_in_the_cloud/blob/master/notebooks/Introduction_to_NumPy.ipynb
+https://github.com/jsimkins2/geog473-673/blob/master/R/Week2_RSyntaxClassesDatatypes.md
 
 3) Week 3 - Time Series Analysis with DEOS data
 
-https://github.com/openradar/AMS_radar_in_the_cloud/blob/master/notebooks/Introduction_to_Matplotlib.ipynb
+https://github.com/jsimkins2/geog473-673/blob/master/R/Week3_TimeSeriesDEOS.md
 
 4) Week 4 - Raster Analysis with Oceanography data
 
-https://github.com/openradar/AMS_radar_in_the_cloud/blob/master/notebooks/Introduction_to_SciPy.ipynb
+https://github.com/jsimkins2/geog473-673/blob/master/R/Week4_Oceanography.md
 
 5) Week 5 - Resampling and Reprojecting Rasters with climatological temperature data
 
-https://github.com/openradar/AMS_radar_in_the_cloud/blob/master/notebooks/Basic%20PyART.ipynb
+https://github.com/jsimkins2/geog473-673/blob/master/R/Week5_Reprojecting.md
 
