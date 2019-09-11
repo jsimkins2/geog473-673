@@ -178,4 +178,4 @@ Assignment:
 4. Add legend
 5. Compute correlation coefficient between wind gust and wind speed using cor() function - add to title of plot
 
-Deliver Resulting Plot to simkins at udel dot edu
+Deliver Resulting Plot to Canvas assignment week3
