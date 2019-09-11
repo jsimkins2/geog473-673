@@ -174,7 +174,7 @@ Assignment:
 
 1. Subset dataset to January 2015 only
 2. Convert Wind Speed & Wind Gust data from m/s to mph
-3. Plot wind speed and wind gust on same plot - wind speed as lines and wind gust as points (using points() function)
+3. Plot wind speed and wind gust on same plot - wind speed as lines and wind gust as points
 4. Add legend
 5. Compute correlation coefficient between wind gust and wind speed using cor() function - add to title of plot
 
