@@ -41,7 +41,7 @@ action <-"flying"
 message(sprintf("On %s I realized %s was...\n%s by the street", Sys.Date(), person, action))
 ```
 
-    ## On 2019-08-19 I realized Grover was...
+    ## On 2019-09-16 I realized Grover was...
     ## flying by the street
 
 ``` r
@@ -292,4 +292,4 @@ Assignment:
 
 3.  Plot tree cover variable using the GrTheme (green theme). Be sure to add coastlines via your choice of underlying dataset. Ensure correct latitude/longitudes are displayed. Add title.
 
-4.  Email resulting png to simkins at udel dot edu.
+4.  Submit resulting image to Canvas assignment 4

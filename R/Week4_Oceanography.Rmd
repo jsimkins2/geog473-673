@@ -177,4 +177,4 @@ Assignment:
 
 3. Plot tree cover variable using the GrTheme (green theme). Be sure to add coastlines via your choice of underlying dataset. Ensure correct latitude/longitudes are displayed. Add title.
 
-4. Email resulting png to simkins at udel dot edu. 
+4. Submit resulting image to Canvas assignment 4
