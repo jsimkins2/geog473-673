@@ -10,17 +10,29 @@ knitr::opts_chunk$set(echo = TRUE)
 ## Recapping Skills: Indexing Data
 
 ```{r}
-A=matrix(1:16,4,4)
-A
-A[2,3]
-A[c(1,3),c(2,4)]
-A[1:3,2:4]
-A[1:2,]
-A[,1:2]
-A[1,]
-dim(A)
+matA=matrix(1:16,4,4)
+matA
+matA[2,3]
+matA[c(1,3),c(2,4)]
+matA[1:3,2:4]
+matA[1:2,]
+matA[,1:2]
+matA[1,]
+dim(matA)
 ```
-
+## In Class Exercise: Make this Matrix
+```{r, echo=FALSE}
+matA=matrix(1:16,4,4)
+matA = matA * 2
+matA[3,4] = 39
+matA[2,] = 47
+matA[1,1] = 1
+matA
+```
+## Starting with this code....
+```{r}
+matA=matrix(1:16,4,4)
+```
 ## Resampling and Reprojecting data in R
 ```{r, warning=FALSE, message=FALSE}
 # load in the packages
@@ -86,4 +98,4 @@ writeRaster(x=projTemClim, filename="~/Downloads/projectedTemClim1961-1990.tif",
 5. Enhance resolution 2x using nearest neighbor method
 6. Plot in mollwide projection - add your name to title 
 7. Write raster to NetCDF
-8. Email PNG and NetCDF file to simkins at udel dot edu
+8. Upload PNG and netCDF file to Canvas under week 5 assignment

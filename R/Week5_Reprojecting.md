@@ -5,8 +5,8 @@ Recapping Skills: Indexing Data
 -------------------------------
 
 ``` r
-A=matrix(1:16,4,4)
-A
+matA=matrix(1:16,4,4)
+matA
 ```
 
     ##      [,1] [,2] [,3] [,4]
@@ -16,13 +16,13 @@ A
     ## [4,]    4    8   12   16
 
 ``` r
-A[2,3]
+matA[2,3]
 ```
 
     ## [1] 10
 
 ``` r
-A[c(1,3),c(2,4)]
+matA[c(1,3),c(2,4)]
 ```
 
     ##      [,1] [,2]
@@ -30,7 +30,7 @@ A[c(1,3),c(2,4)]
     ## [2,]    7   15
 
 ``` r
-A[1:3,2:4]
+matA[1:3,2:4]
 ```
 
     ##      [,1] [,2] [,3]
@@ -39,7 +39,7 @@ A[1:3,2:4]
     ## [3,]    7   11   15
 
 ``` r
-A[1:2,]
+matA[1:2,]
 ```
 
     ##      [,1] [,2] [,3] [,4]
@@ -47,7 +47,7 @@ A[1:2,]
     ## [2,]    2    6   10   14
 
 ``` r
-A[,1:2]
+matA[,1:2]
 ```
 
     ##      [,1] [,2]
@@ -57,16 +57,32 @@ A[,1:2]
     ## [4,]    4    8
 
 ``` r
-A[1,]
+matA[1,]
 ```
 
     ## [1]  1  5  9 13
 
 ``` r
-dim(A)
+dim(matA)
 ```
 
     ## [1] 4 4
+
+In Class Exercise: Make this Matrix
+-----------------------------------
+
+    ##      [,1] [,2] [,3] [,4]
+    ## [1,]    1   10   18   26
+    ## [2,]   47   47   47   47
+    ## [3,]    6   14   22   39
+    ## [4,]    8   16   24   32
+
+Starting with this code....
+---------------------------
+
+``` r
+matA=matrix(1:16,4,4)
+```
 
 Resampling and Reprojecting data in R
 -------------------------------------
@@ -153,7 +169,7 @@ plt <- levelplot(resTemClim, margin=F, par.settings=BuRdTheme,
 plt + layer(sp.lines(wrld_simpl, col='black', lwd=0.4))
 ```
 
-![](Week5_Reprojecting_files/figure-markdown_github/unnamed-chunk-2-1.png)
+![](Week5_Reprojecting_files/figure-markdown_github/unnamed-chunk-4-1.png)
 
 ``` r
 # convert the wrld_simpl land polygons to the robinson projection
@@ -164,7 +180,7 @@ plt <- levelplot(projTemClim, margin=F, par.settings=BuRdTheme,
 plt + layer(sp.lines(wrld_simpl, col='black', lwd=0.4))
 ```
 
-![](Week5_Reprojecting_files/figure-markdown_github/unnamed-chunk-2-2.png)
+![](Week5_Reprojecting_files/figure-markdown_github/unnamed-chunk-4-2.png)
 
 Example of how to save directly to PNG
 --------------------------------------
@@ -195,4 +211,4 @@ In Class Assignment
 4.  Enhance resolution 2x using nearest neighbor method
 5.  Plot in mollwide projection - add your name to title
 6.  Write raster to NetCDF
-7.  Email PNG and NetCDF file to simkins at udel dot edu
+7.  Upload PNG and netCDF file to Canvas under week 5 assignment

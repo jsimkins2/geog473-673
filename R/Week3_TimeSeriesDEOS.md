@@ -183,6 +183,24 @@ for (s in seq(length(soiltype)){
 }
 ```
 
+And get this output...
+
+    ## [1] 1
+    ## [1] 0.09
+    ## [1] 0.09
+    ## [1] 2
+    ## [1] 0.05
+    ## [1] 0.05
+    ## [1] 3
+    ## [1] 0.03
+    ## [1] 0.03
+    ## [1] 4
+    ## [1] 0.01
+    ## [1] 0.01
+    ## [1] 5
+    ## [1] 0.005
+    ## [1] 0.005
+
 DEOS Data
 ---------
 
@@ -286,7 +304,7 @@ plot(deos_data$datetime[low_ind:upper_ind], deos_data$air_temperature[low_ind:up
 title("1 Year Air Temperature at Station")
 ```
 
-![](Week3_TimeSeriesDEOS_files/figure-markdown_github/unnamed-chunk-9-1.png)
+![](Week3_TimeSeriesDEOS_files/figure-markdown_github/unnamed-chunk-10-1.png)
 
 ``` r
 #subset the data using the subset function 
@@ -299,7 +317,7 @@ legend('bottomright', legend=c('Air Temp', 'Dew Pt'), col = c('red', 'yellow'), 
 title("Air Temperature & Dew Point Temperature")
 ```
 
-![](Week3_TimeSeriesDEOS_files/figure-markdown_github/unnamed-chunk-9-2.png)
+![](Week3_TimeSeriesDEOS_files/figure-markdown_github/unnamed-chunk-10-2.png)
 
 Assignment:
 
