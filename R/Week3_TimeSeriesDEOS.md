@@ -276,16 +276,25 @@ class(deos_data$datetime)
 # give it a datetime class, notice the format
 deos_data$datetime = as.POSIXct(deos_data$datetime, format = '%Y-%m-%d %H:%M')
 
-plot(deos_data$datetime[1:365*24*12], deos_data$air_temperature[1:365*24*12], type = "l", col = 'red', xlab = paste0(deos_data$datetime[1], " to ", deos_data$datetime[365*24*12]), ylab = "Celsius")
+
+# subset the data using the which.min() and which.max() functions to find our indices
+low_ind = which.min(deos_data$datetime < "2014-04-04 00:00:00")
+upper_ind = which.max(deos_data$datetime > "2015-04-04 23:59")
+
+plot(deos_data$datetime[low_ind:upper_ind], deos_data$air_temperature[low_ind:upper_ind], type = "l", col = 'red', 
+     xlab = paste0(deos_data$datetime[low_ind], " to ", deos_data$datetime[upper_ind]), ylab = "Celsius")
 title("1 Year Air Temperature at Station")
 ```
 
 ![](Week3_TimeSeriesDEOS_files/figure-markdown_github/unnamed-chunk-9-1.png)
 
 ``` r
+#subset the data using the subset function 
+subDeos = subset(deos_data, deos_data$datetime >= "2014-07-04 00:00:00" & deos_data$datetime <= "2014-07-11 23:59:00")
+
 # Now add dewpoint to that plot
-plot(deos_data$datetime[1:7*24*12], deos_data$air_temperature[1:7*24*12], type = "l", col = 'red', xlab = paste0(deos_data$datetime[1], " to ", deos_data$datetime[7*24*12]), ylab = "Celsius", ylim = c(-5,10))
-lines(deos_data$datetime[1:7*24*12], deos_data$dewpoint[1:7*24*12], col = 'yellow')
+plot(subDeos$datetime, subDeos$air_temperature, type = "l", col = 'red', xlab = paste0(subDeos$datetime[1], " to ", subDeos$datetime[length(subDeos$datetime)]), ylab = "Celsius", ylim = c(5,40))
+lines(subDeos$datetime, subDeos$dewpoint, col = 'yellow')
 legend('bottomright', legend=c('Air Temp', 'Dew Pt'), col = c('red', 'yellow'), lty = c(1, 1))
 title("Air Temperature & Dew Point Temperature")
 ```
