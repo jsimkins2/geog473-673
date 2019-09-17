@@ -68,21 +68,22 @@ dim(matA)
 
     ## [1] 4 4
 
-In Class Exercise: Make this Matrix
------------------------------------
+In Class Exercise:
+------------------
+
+Starting with this code...
+
+``` r
+matA=matrix(1:16,4,4)
+```
+
+Make this matrix....
 
     ##      [,1] [,2] [,3] [,4]
     ## [1,]    1   10   18   26
     ## [2,]   47   47   47   47
     ## [3,]    6   14   22   39
     ## [4,]    8   16   24   32
-
-Starting with this code....
----------------------------
-
-``` r
-matA=matrix(1:16,4,4)
-```
 
 Resampling and Reprojecting data in R
 -------------------------------------

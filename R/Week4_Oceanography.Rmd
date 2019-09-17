@@ -86,6 +86,23 @@ pathList
 pathList[[1]]
 ```
 
+```{r, echo=FALSE, eval=FALSE}
+#Answer
+fileList <- c('sstData20190912', 'sstData20190913', 'sstData20190914', 'sstData20190915')
+dateFolder <- seq(0912, 0915, 1)
+homeDir <- "~/Documents/"
+pathList <- list()
+
+for (i in seq_along(fileList)){
+  print(i)
+  tempString <- paste0(homeDir, '0', dateFolder[i], '/', fileList[i])
+  pathList[i] <- tempString
+}
+
+pathList
+
+pathList[[1]]
+```
 The final `pathList[[1]]` should look like this...
 
 `"~/Documents/0912/sstData20190912"`

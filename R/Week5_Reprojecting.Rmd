@@ -20,7 +20,14 @@ matA[,1:2]
 matA[1,]
 dim(matA)
 ```
-## In Class Exercise: Make this Matrix
+##In Class Exercise: 
+
+Starting with this code...
+```{r}
+matA=matrix(1:16,4,4)
+```
+
+Make this matrix....
 ```{r, echo=FALSE}
 matA=matrix(1:16,4,4)
 matA = matA * 2
@@ -29,10 +36,8 @@ matA[2,] = 47
 matA[1,1] = 1
 matA
 ```
-## Starting with this code....
-```{r}
-matA=matrix(1:16,4,4)
-```
+
+
 ## Resampling and Reprojecting data in R
 ```{r, warning=FALSE, message=FALSE}
 # load in the packages

@@ -41,7 +41,7 @@ action <-"flying"
 message(sprintf("On %s I realized %s was...\n%s by the street", Sys.Date(), person, action))
 ```
 
-    ## On 2019-09-16 I realized Grover was...
+    ## On 2019-09-17 I realized Grover was...
     ## flying by the street
 
 ``` r
@@ -162,7 +162,7 @@ sstRast <- raster(sstGoes)
 image(sstRast)
 ```
 
-![](Week4_Oceanography_files/figure-markdown_github/unnamed-chunk-3-1.png)
+![](Week4_Oceanography_files/figure-markdown_github/unnamed-chunk-4-1.png)
 
 ``` r
 # netcdf stores data backwards, so to convert it to raster we need to transpose it
@@ -172,7 +172,7 @@ sstRast <- t(sstRast)
 image(sstRast)
 ```
 
-![](Week4_Oceanography_files/figure-markdown_github/unnamed-chunk-3-2.png)
+![](Week4_Oceanography_files/figure-markdown_github/unnamed-chunk-4-2.png)
 
 ``` r
 # now we see that the data is just upside down, so we use the flip() function
@@ -182,7 +182,7 @@ sstRast <- flip(sstRast, 2)
 image(sstRast)
 ```
 
-![](Week4_Oceanography_files/figure-markdown_github/unnamed-chunk-3-3.png)
+![](Week4_Oceanography_files/figure-markdown_github/unnamed-chunk-4-3.png)
 
 ``` r
 sstRast
@@ -223,7 +223,7 @@ sstRast
 image(sstRast)
 ```
 
-![](Week4_Oceanography_files/figure-markdown_github/unnamed-chunk-3-4.png)
+![](Week4_Oceanography_files/figure-markdown_github/unnamed-chunk-4-4.png)
 
 ``` r
 # load raster Visualization package
@@ -233,7 +233,7 @@ library(rasterVis)
 levelplot(sstRast)
 ```
 
-![](Week4_Oceanography_files/figure-markdown_github/unnamed-chunk-3-5.png)
+![](Week4_Oceanography_files/figure-markdown_github/unnamed-chunk-4-5.png)
 
 ``` r
 # USA shapefiles via the getData function
@@ -245,7 +245,7 @@ plt <- levelplot(sstRast, margin=F, par.settings=BuRdTheme,
 plt + layer(sp.polygons(usa, col='black',fill='grey', lwd=0.4))
 ```
 
-![](Week4_Oceanography_files/figure-markdown_github/unnamed-chunk-3-6.png)
+![](Week4_Oceanography_files/figure-markdown_github/unnamed-chunk-4-6.png)
 
 ``` r
 # Now let's do the same with geotiff
@@ -256,7 +256,7 @@ sstRast = raster(tifFile)
 image(sstRast)
 ```
 
-![](Week4_Oceanography_files/figure-markdown_github/unnamed-chunk-3-7.png)
+![](Week4_Oceanography_files/figure-markdown_github/unnamed-chunk-4-7.png)
 
 ``` r
 # Now let's load a base dataset of world maps that R already has stored
@@ -266,7 +266,7 @@ plt <- levelplot(sstRast, margin=F, par.settings=BuRdTheme,
 plt + layer(sp.lines(wrld_simpl, col='black', lwd=0.4))
 ```
 
-![](Week4_Oceanography_files/figure-markdown_github/unnamed-chunk-3-8.png)
+![](Week4_Oceanography_files/figure-markdown_github/unnamed-chunk-4-8.png)
 
 ``` r
 # Let's do the same plot but with a custom shapefile
@@ -282,7 +282,7 @@ plt <- levelplot(sstRast, margin=F, par.settings=BuRdTheme,
 plt + layer(sp.lines(world.shp, col='gray', lwd=0.4))
 ```
 
-![](Week4_Oceanography_files/figure-markdown_github/unnamed-chunk-3-9.png)
+![](Week4_Oceanography_files/figure-markdown_github/unnamed-chunk-4-9.png)
 
 Assignment:
 
