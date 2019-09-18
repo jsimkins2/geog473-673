@@ -41,7 +41,7 @@ action <-"flying"
 message(sprintf("On %s I realized %s was...\n%s by the street", Sys.Date(), person, action))
 ```
 
-    ## On 2019-09-17 I realized Grover was...
+    ## On 2019-09-18 I realized Grover was...
     ## flying by the street
 
 ``` r
@@ -277,7 +277,10 @@ world.shp <- readShapeLines("~/Downloads/world.shp",proj4string=CRS("+proj=longl
     ## Warning: use rgdal::readOGR or sf::st_read
 
 ``` r
-plt <- levelplot(sstRast, margin=F, par.settings=BuRdTheme,
+# add custom color theme using brewer.pal from the package RColorBrewer and setting the rasterTheme
+mapTheme <- rasterTheme(region=brewer.pal(8,"Reds"))
+
+plt <- levelplot(sstRast, margin=F, par.settings=mapTheme,
        main="GOES-R Rolling SST 08/14")
 plt + layer(sp.lines(world.shp, col='gray', lwd=0.4))
 ```
@@ -290,6 +293,6 @@ Assignment:
 
 2.  Open tree cover % as a variable, remove bad values.
 
-3.  Plot tree cover variable using the GrTheme (green theme). Be sure to add coastlines via your choice of underlying dataset. Ensure correct latitude/longitudes are displayed. Add title.
+3.  Plot tree cover variable using a green theme. Be sure to add coastlines via your choice of underlying dataset. Ensure correct latitude/longitudes are displayed. Add title.
 
 4.  Submit resulting image to Canvas assignment 4

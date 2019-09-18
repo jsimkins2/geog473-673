@@ -181,9 +181,15 @@ plt + layer(sp.lines(wrld_simpl, col='black', lwd=0.4))
 # Let's do the same plot but with a custom shapefile
 # note that even though we only point the function to the '.shp' file, the '.shx' and '.dbf' need to be in the same folder for this to work. 
 world.shp <- readShapeLines("~/Downloads/world.shp",proj4string=CRS("+proj=longlat"))
-plt <- levelplot(sstRast, margin=F, par.settings=BuRdTheme,
+
+# add custom color theme using brewer.pal from the package RColorBrewer and setting the rasterTheme
+mapTheme <- rasterTheme(region=brewer.pal(8,"Reds"))
+
+plt <- levelplot(sstRast, margin=F, par.settings=mapTheme,
        main="GOES-R Rolling SST 08/14")
 plt + layer(sp.lines(world.shp, col='gray', lwd=0.4))
+
+
 ```
 
 Assignment:
@@ -192,6 +198,6 @@ Assignment:
 
 2. Open tree cover % as a variable, remove bad values.
 
-3. Plot tree cover variable using the GrTheme (green theme). Be sure to add coastlines via your choice of underlying dataset. Ensure correct latitude/longitudes are displayed. Add title.
+3. Plot tree cover variable using a green theme. Be sure to add coastlines via your choice of underlying dataset. Ensure correct latitude/longitudes are displayed. Add title.
 
 4. Submit resulting image to Canvas assignment 4
