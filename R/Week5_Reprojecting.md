@@ -186,8 +186,10 @@ plt + layer(sp.lines(wrld_simpl, col='black', lwd=0.4))
 Example of how to save directly to PNG
 --------------------------------------
 
+The png() function is a function that saves a plot to png. After we invoke the function and fill out the arguments, we need to execute the plot code between the png() function and dev.off(). dev.off() tells R that you're done adding things to the plot and that it can be done plotting.
+
 ``` r
-png(filename = "~/Downloads/myPNG.png", width = 10, height = 6, units = 'in')
+png(filename = "~/Downloads/myPNG.png", width = 10, height = 6, units = 'in',res=100)
 plt <- levelplot(projTemClim, margin=F, par.settings=BuRdTheme,
                  main="January Global Average Temp 1961-1990")
 plt + layer(sp.lines(wrld_simpl, col='black', lwd=0.4))
