@@ -102,6 +102,6 @@ writeRaster(x=projTemClim, filename="~/Downloads/projectedTemClim1961-1990.tif",
 2. Extract data for January and July
 3. Find difference between two months globally
 5. Enhance resolution 2x using nearest neighbor method
-6. Plot in mollwide projection - add your name to title 
+6. Plot in mollwide projection
 7. Write raster to NetCDF
 8. Upload PNG and netCDF file to Canvas under week 5 assignment

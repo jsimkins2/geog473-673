@@ -212,6 +212,6 @@ In Class Assignment
 2.  Extract data for January and July
 3.  Find difference between two months globally
 4.  Enhance resolution 2x using nearest neighbor method
-5.  Plot in mollwide projection - add your name to title
+5.  Plot in mollwide projection
 6.  Write raster to NetCDF
 7.  Upload PNG and netCDF file to Canvas under week 5 assignment
