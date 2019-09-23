@@ -46,7 +46,7 @@ library(rasterVis)
 library(maptools) # also loads sp package
 
 # load in dataset directly via raster package, specify varname which is 'tem' for 'temperature' 
-temClim = raster("~/Downloads/globalTemClim1961-1990.nc", varname = 'tem')
+temClim = raster("~/Downloads/globalTemClim1961-1990.nc", varname = 'tem', band=1)
 temClim
 
 # Create a new, blank raster that has a totally different sizing
