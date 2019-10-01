@@ -19,6 +19,7 @@ Python Phase of GEOG 473/673: Course Notebooks
  Week 1 - Introduction to Python
 
 https://github.com/jsimkins2/geog473-673/blob/master/Python/Introduction_to_Python.ipynb
+https://github.com/jsimkins2/geog473-673/blob/master/Python/Introduction_to_Numpy.ipynb
 
 
 
