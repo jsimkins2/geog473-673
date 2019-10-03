@@ -23,6 +23,7 @@ https://github.com/jsimkins2/geog473-673/blob/master/Python/Introduction_to_Pyth
  Week 2 - Important Python Modules
 
 https://github.com/jsimkins2/geog473-673/blob/master/Python/Introduction_to_Numpy.ipynb
+https://github.com/jsimkins2/geog473-673/blob/master/Python/Introduction_to_Matplotlib.ipynb
 
 
 
