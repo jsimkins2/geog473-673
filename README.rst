@@ -25,6 +25,9 @@ https://github.com/jsimkins2/geog473-673/blob/master/Python/Introduction_to_Pyth
 https://github.com/jsimkins2/geog473-673/blob/master/Python/Introduction_to_Numpy.ipynb
 https://github.com/jsimkins2/geog473-673/blob/master/Python/Introduction_to_Matplotlib.ipynb
 
+ Week 3 - Xarray
+
+https://github.com/jsimkins2/geog473-673/blob/master/Python/Xarray_tutorial.ipynb
 
 
 
