@@ -29,5 +29,8 @@ https://github.com/jsimkins2/geog473-673/blob/master/Python/Introduction_to_Matp
 
 https://github.com/jsimkins2/geog473-673/blob/master/Python/Xarray_tutorial.ipynb
 
+ Week 4 - Pandas
+
+https://github.com/jsimkins2/geog473-673/blob/master/Python/Pandas_tutorial.ipynb
 
 
