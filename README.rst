@@ -33,4 +33,6 @@ https://github.com/jsimkins2/geog473-673/blob/master/Python/Xarray_tutorial.ipyn
 
 https://github.com/jsimkins2/geog473-673/blob/master/Python/Pandas_tutorial.ipynb
 
+ Week 5 - Cartopy
 
+https://github.com/jsimkins2/geog473-673/blob/master/Python/Cartopy_tutorial.ipynb
