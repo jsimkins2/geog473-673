@@ -16,6 +16,10 @@ https://github.com/jsimkins2/geog473-673/tree/master/datasets
 
 Python Phase of GEOG 473/673: Course Notebooks
 ----------------
+ Installing Packages via Anaconda
+
+https://github.com/jsimkins2/geog473-673/blob/master/Python/installing_packages.ipynb
+
  Week 1 - Introduction to Python
 
 https://github.com/jsimkins2/geog473-673/blob/master/Python/Introduction_to_Python.ipynb
@@ -36,3 +40,9 @@ https://github.com/jsimkins2/geog473-673/blob/master/Python/Pandas_tutorial.ipyn
  Week 5 - Cartopy
 
 https://github.com/jsimkins2/geog473-673/blob/master/Python/Cartopy_tutorial.ipynb
+
+ Week 6 - MetPy
+
+https://github.com/jsimkins2/geog473-673/blob/master/Python/Metpy_tutorial.ipynb
+
+
