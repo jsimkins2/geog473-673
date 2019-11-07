@@ -45,4 +45,12 @@ https://github.com/jsimkins2/geog473-673/blob/master/Python/Cartopy_tutorial.ipy
 
 https://github.com/jsimkins2/geog473-673/blob/master/Python/Metpy_tutorial.ipynb
 
+ Week 7 - SciPy & Oceanography
+
+https://github.com/jsimkins2/geog473-673/blob/master/Python/SciPy_Oceanography.ipynb
+
+ Final Project
+
+https://github.com/jsimkins2/geog473-673/blob/master/documents/Python_Final_Project.docx
+
 
