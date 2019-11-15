@@ -53,4 +53,3 @@ https://github.com/jsimkins2/geog473-673/blob/master/Python/SciPy_Oceanography.i
 
 https://github.com/jsimkins2/geog473-673/blob/master/documents/Python_Final_Project.docx
 
-
