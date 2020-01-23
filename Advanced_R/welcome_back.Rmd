@@ -188,4 +188,4 @@ boxplot(SapDepth ~ spp, data= treedat, ylab= "SapDepth", col= "darkslateblue", m
 Using the TreeData.csv above, complete the following:
 
 1. Rename 'spp' variable to 'species'
-2. 
+2. barplot(summary(treedat$season))
