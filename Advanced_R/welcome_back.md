@@ -303,8 +303,127 @@ In Class Exercise:
 
 Create a plot above using a sequence of X values where Y is the log of the X values. Use both lines and points, pch of 21, cex of 1.5, and colors of your choosing.
 
-Loading in Data
----------------
+More Plotting
+-------------
+
+Let's take a look at the different kind of points and arguments that go into a plotting function call
+
+``` r
+plot(1:25, 1:25, xlab="",ylab="",pch=1:25,col=1:25,cex=2)
+grid(lty=1, col="gray90")
+points(1:25, 1:25, xlab="",ylab="",pch=1:25,col=1:25,cex=2)
+title("Plotting symbol, line type, & color codes")
+legend("topleft", legend=1:6, lty=1:6, lwd=1.5, ncol=2, bg="gray95")
+legend("bottomright", legend=1:8, col=1:8, ncol=3, pch=19, bg="gray95")
+```
+
+![](welcome_back_files/figure-markdown_github/unnamed-chunk-4-1.png)
+
+Basic types of plots with dummy data
+------------------------------------
+
+We're going to create a fake dataset of those who are infected by the coronavirus. Let's do so using the `sample()` function.
+
+``` r
+# Create a random sample of the 3 types - Susceptible, Infected and Recovered
+InfStatus <- factor(sample(c("Susceptible", "Infected", "Recovered"),size = 50, replace = TRUE))
+I <- table(InfStatus)
+I
+```
+
+    ## InfStatus
+    ##    Infected   Recovered Susceptible 
+    ##          17          20          13
+
+``` r
+# Now let's make a random sample of 3 genotypes (RR, Rr, and rr)
+Genotype <- factor(sample(c("RR", "Rr", "rr"), size = 50, replace = TRUE))
+G <- table(Genotype)
+G
+```
+
+    ## Genotype
+    ## rr Rr RR 
+    ## 14 14 22
+
+``` r
+#show genotype and infected status as a table 
+table(Genotype, InfStatus)
+```
+
+    ##         InfStatus
+    ## Genotype Infected Recovered Susceptible
+    ##       rr        2        10           2
+    ##       Rr        7         2           5
+    ##       RR        8         8           6
+
+Note - We turned the sample data info a `factor` to make sure the factors aren't double indexed...here is what I mean...
+
+``` r
+# WITHOUT the factor
+test <- sample(c("Susceptible", "Infected", "Recovered"),size = 50, replace = TRUE)
+test
+```
+
+    ##  [1] "Susceptible" "Infected"    "Infected"    "Infected"    "Recovered"  
+    ##  [6] "Infected"    "Infected"    "Infected"    "Infected"    "Susceptible"
+    ## [11] "Susceptible" "Recovered"   "Susceptible" "Infected"    "Susceptible"
+    ## [16] "Susceptible" "Recovered"   "Infected"    "Susceptible" "Recovered"  
+    ## [21] "Recovered"   "Susceptible" "Recovered"   "Susceptible" "Susceptible"
+    ## [26] "Infected"    "Infected"    "Susceptible" "Infected"    "Susceptible"
+    ## [31] "Susceptible" "Infected"    "Recovered"   "Susceptible" "Infected"   
+    ## [36] "Recovered"   "Infected"    "Infected"    "Infected"    "Infected"   
+    ## [41] "Infected"    "Recovered"   "Susceptible" "Infected"    "Susceptible"
+    ## [46] "Susceptible" "Recovered"   "Susceptible" "Recovered"   "Recovered"
+
+``` r
+class(test)
+```
+
+    ## [1] "character"
+
+``` r
+# Now as a factor
+test2 <- factor(sample(c("Susceptible", "Infected", "Recovered"),size = 50, replace = TRUE))
+test2
+```
+
+    ##  [1] Susceptible Susceptible Susceptible Recovered   Recovered   Susceptible
+    ##  [7] Susceptible Susceptible Recovered   Recovered   Recovered   Infected   
+    ## [13] Recovered   Recovered   Susceptible Recovered   Recovered   Infected   
+    ## [19] Recovered   Infected    Susceptible Susceptible Recovered   Recovered  
+    ## [25] Recovered   Recovered   Recovered   Recovered   Susceptible Infected   
+    ## [31] Infected    Infected    Infected    Susceptible Susceptible Susceptible
+    ## [37] Infected    Infected    Infected    Infected    Susceptible Susceptible
+    ## [43] Susceptible Susceptible Recovered   Susceptible Recovered   Recovered  
+    ## [49] Recovered   Recovered  
+    ## Levels: Infected Recovered Susceptible
+
+``` r
+class(test2)
+```
+
+    ## [1] "factor"
+
+Now let's plot this fake data
+-----------------------------
+
+``` r
+par(mfrow=c(2, 2), mar=c(3, 2, 2, 1), oma=c(0, 0, 3, 0), bg = "white") ## create plot array of 2 row x 2 columns
+plot(InfStatus, ylim = c(0, 27)) # basic plot with y limit set as a range
+box() # just adds a box around the plot above
+barplot(table(Genotype, InfStatus), ylim = c(0, 13), beside = TRUE) # barplot
+box() # adds a box around the plot above
+legend("topright", c("RR", "Rr", "rr"), fill = c("gray40", "gray70", "gray90"), ncol = 1, cex = 0.75) # legend
+boxplot(rnorm(50, mean = 15, sd = 3) ~ Genotype, col = "gray75") # boxplot
+pie(G, col = c("gray50", "gray70", "gray90")) # pie plot
+mtext("Basic R Plots", outer = TRUE, cex = 1.5, font = 2) # main title
+```
+
+![](welcome_back_files/figure-markdown_github/unnamed-chunk-7-1.png)
+
+Playing with Tree Data
+======================
 
 Let's say you're an ecologist who collected some tree data samples out in the field. Let's load this into R and explore the data. In order to proceed, you'll need to download **TreeData.csv** which is located here - (<https://github.com/jsimkins2/geog473-673/tree/master/datasets/TreeData.csv>)
 
@@ -357,7 +476,11 @@ treedat
     ## 19    70.5
     ## 20   128.6
 
-`treedat` is a data frame. As a reminder, a data frame is essentially a 2-dimensional array that contains a *combination* of vectors (columns of data) that are of the class; integer, numeric, character. This is *different* from a matrix which can only contain *1 type* of data.
+`treedat` is a data frame. As a reminder, a data frame is essentially a 2-dimensional array that contains a *combination* of vectors (columns of data) that are of the class; integer, numeric, character. This is *different* from a matrix which can only contain *1 type* of data. In this case, we have some tree data that includes species of tree, season the data was collected, diameter of the tree, bark thickness, area of no bark, heartwood diameter, and sapwood diameter.
+
+![Heartwood vs. Sapwood](/Users/james/Documents/Github/geog473-673/documents/heartwoodvssapwood.jpeg)
+
+Now, let's edit htis dataframe to the format we want it in. Then, let's plot a histogram of bark thickness and a boxplot of sapdepth by species.
 
 ``` r
 # let's set the rownames equal to the tree column
@@ -470,7 +593,15 @@ hist(treedat$BarkThick, xlab= "Bark Thickness (cm)", main= "Histogram: Bark Thic
 boxplot(SapDepth ~ spp, data= treedat, ylab= "SapDepth", col= "darkslateblue", main= "Boxplot: Sapwood Depth by Species")
 ```
 
-![](welcome_back_files/figure-markdown_github/unnamed-chunk-5-1.png)
+![](welcome_back_files/figure-markdown_github/unnamed-chunk-9-1.png)
+
+Note: hist() is the histogram function and boxplot() is the boxplot function. For the boxplot, notice how the x ~ y, data=dataframe syntax is. It's slightly different than the plotting instances above and for the histogram. For a histogram, the hist() function can only intake numerical values. Thus, if we wanted to take a species histogram, we would have to take a workaround like so -
+
+``` r
+barplot(summary(treedat$spp))
+```
+
+![](welcome_back_files/figure-markdown_github/unnamed-chunk-10-1.png)
 
 Assignment:
 -----------
@@ -478,4 +609,9 @@ Assignment:
 Using the TreeData.csv above, complete the following:
 
 1.  Rename 'spp' variable to 'species'
-2.
+2.  Make a 3 row plot consisting of Sapwood Depth histogram, boxplot of Bark Thickness by species, and a histogram showing the seasonal counts.
+3.  Submit plot to Assignment 1 on Canvas
+
+Your final plot should look like this
+
+![](welcome_back_files/figure-markdown_github/unnamed-chunk-11-1.png)

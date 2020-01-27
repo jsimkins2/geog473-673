@@ -1,0 +1,241 @@
+---
+title: "Week2 - BasicStatistics "
+output: html_document
+---
+---
+title: 'Week2: R Syntax, Classes, & Datatypes'
+output: rmarkdown::github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Basic Statistics
+This week we'll be diving into some basic statistical procedures. R started out as THE statistical programming language. It spread like wildfire for it's performance and efficiency at crunching numbers. It's early success as a statistical programming langugae attracted the early developers who really made R into the do-it-all language we're using today. First, I'll throw in the useful definitions list at the top of this tutorial just for ease of access. Second, we'll dive into a recap of for loops and how they're structured. Then we'll show off some of R's great statistics functions and how to add them to a plot. Finally, we'll have an assignment where we cover some of 
+
+## Some Useful Definitions
+
+| Function                 |             Description        |
+| -----------| -------------------------------------------- |
+| ls | lists contents of R workspace/global environment | 
+| rm | removes objects from R workspace | 
+| save|  save selected objects |
+| +,-,*,/,^ | arithmetic operators | 
+| %*% |  matrix multiplication |
+| t | matrix transpose | 
+| solve | matrix inverse (and solving linear equations) | 
+| c | combines (concatenates) objects, simplest way to make vectors | 
+| seq | creates vectors that are regular sequences | 
+| rep | replicates vectors | 
+| length| returns length of a vector | 
+| sum | returns the sum |
+| mean | returns the mean | 
+| median | returns the median | 
+| sd | returns the standard deviation (n − 1 in denominator) | 
+| min | returns minimum | 
+| max | returns maximum |
+| sort | sort a vector (rearranges the vector in order) |
+| order | returns indices of vectors that will order them |
+| rank | returns rank of each element in vector | 
+| ==, <, > | comparison operators |
+| <=, >=, != | |
+| |, & | OR, AND |
+| is.na | tests for missing value NA | 
+|which |does logical comparison and indicates which elements are TRUE that is, gives the TRUE indices of a logical object|
+| any |does logical comparison returns 1 (TRUE) if any of the comparisons are TRUE, i.e. is at least one of the values true? |
+|exp |returns e to that power|
+|log |returns natural logarithm (to the base e)|
+|log10| returns logarithm (to the base 10)|
+|sqrt| returns square root|
+|table |does frequencies and cross-tabs|
+|help |help page on specified function|
+|cbind |combine by columns|
+|rbind |combine by rows|
+|matrix| create a matrix|
+|vector |create a vector|
+|nrow| number of rows in an array or data frame|
+|ncol |number of columns in an array or data frame|
+|dim| dimensions of an array or data frame|
+|array| create an array|
+
+| Function                 |             Description        |
+| -----------| -------------------------------------------- |
+|is.vector |answers the question, is this a vector TRUE or FALSE|
+|as.vector |attempts to coerce object into a vector|
+|read.table |reads data from a text file|
+|read.csv |reads data from a text file with comma separated data|
+|write.table| writes a data frame to a text file|
+|is.data.frame| tests object to see if it is data frame|
+|as.data.frame |coerces object into data frame|
+|is.factor |tests object to see if it is a factor|
+|as.factor |coerces object into a factor|
+|head, tail |list the first, last six rows|
+|names |returns names of elements of object|
+|colnames| returns or sets column names of object|
+|rownames |returns or sets row names of object|
+|subset| select part of a vector, matrix, or data frame|
+|merge |merge two data frames|
+|lm |multiple linear regression|
+|glm |generalized linear regression|
+|anova |analysis of variance|
+|chisq.test |Pearson’s Chi-squared test for count data|
+|summary| shows results of various model fitting functions|
+|predict |predicted results from model|
+|hist| histogram|
+|boxplot| box plot|
+|plot |scatterplot|
+|lines |connects points sequentially with lines (added to a plot)|
+|segments| add lines to a plot (between pairs of points)|
+|text |add text to a plot|
+|legend |add a legend to a plot|
+|abline |add a line to a plot by specifying its slope and intercept|
+|passing |an lm object will result in adding the predicted line to the plot|
+|x11 |open another graphics window (PC)|
+|pdf |open a pdf file for recording graphics|
+|dev.off| close graphics device|
+|par(mfrow) |arranges multiple plots on same page (by row)|
+|sample |produces a random sample of the specified values|
+|set.seed |sets seed for next random sample (repeat random sample)|
+|rnorm |produces a random sample from a normal distribution|
+|qnorm |quantiles (percentiles) of normal distribution|
+|pnorm |CDF of normal distribution|
+|dnorm |PDF of normal distribution|
+|rbinom |produces a random sample from a binomial distribution|
+
+## Recap of the for loop & coniditional statements
+
+For loops & conditional statements are a key skill in programming. They allow you to process through large datasets or multiple datasets thus minimizing the amount of manual work you need to do. The basic for loop looks like this...
+
+```{r}
+# Generate sequence of numbers from 1 to 10 using the seq() function (seq for sequence)
+numbersList = seq(from=1,to=10,by=1)
+# Multiply each number in the numbersList by 8 and print the result
+for (i in numbersList){
+  temNumber = i * 8
+  print(temNumber)
+}
+```
+
+Notice the general structure of R for loops. 'for' signals to R you're beginning a for loop, which requires the general structure to look like:
+
+for (something in something inside these parentheses){
+  do something within these curly brackets
+}
+
+Yes, you must have these parentheses and curly brackets present and surrounding the appropriate code. If you forget a parentheses or curly bracket you'll have errors pop up...this happens to me all the time still. 
+
+While these must be present, R doesn't care where they are in your code (****which is very unique amongst programming languages). For example, notice how this ugly code is different but still runs...
+
+```{r}
+# Generate sequence of numbers from 1 to 10 using the seq() function (seq for sequence)
+numbersList = seq(from=1,to=10,by=1)
+# Multiply each number in the numbersList by 8 and print the result
+for (        i in numbersList       
+      ){
+  temNumber = i * 8
+  print(temNumber)
+        }
+```
+
+
+The general structure is still: for(condition){do something}. If statements are set up the same way
+
+```{r}
+# Generate sequence of numbers from 1 to 10 using the seq() function (seq for sequence)
+numbersList = seq(from=1,to=10,by=1)
+# Multiply each number in the numbersList by 8 and print the result
+for (i in numbersList){
+  if (i==4){
+    temNumber = i * 8
+    print(temNumber)
+  }
+}
+```
+
+This is referred to as a 'nested loop', because there is a conditional statement within another one. Key takeaway here: in programming languages, '=' is an assignment (i.e. x = 4), whereas '==' is an equality test (i == 4). To put this loop in layman's terms: for i in numbersList, if i is equal to 4, multiply i by 8 and then print temNumber. 
+
+We can also have nested for loops. 
+
+```{r}
+# Generate sequence of numbers from 1 to 3 this time using the seq() function (seq for sequence)
+numbersList = seq(from=1,to=3,by=1)
+lettersList = list("A", "B", "C")
+
+for (num in numbersList){
+  for (let in lettersList){
+    print(c(num,let))
+  }
+}
+```
+
+You can name the object within the list whatever you want (i, j, num, let, etc.). Also, c() is the concatenate functin that combines values into a vector or list. The order doesn't matter in this for loop...
+
+```{r}
+# Generate sequence of numbers from 1 to 3 this time using the seq() function (seq for sequence)
+numbersList = seq(from=1,to=3,by=1)
+lettersList = list("A", "B", "C")
+
+for (let in lettersList){
+  for (num in numbersList){
+    print(c(num,let))
+  }
+}
+```
+
+But it does in this one...
+
+```{r}
+# Generate sequence of numbers from 1 to 10 using the seq() function (seq for sequence)
+numbersList = seq(from=1,to=10,by=1)
+# Multiply each number in the numbersList by 8 and print the result
+if (i==4){
+  for (i in numbersList){
+    temNumber = i * 8
+    print(temNumber)
+  }
+}
+```
+
+Here's one more example for multi conditional statement with an else...
+
+```{r}
+# Generate sequence of numbers from 1 to 3 this time using the seq() function (seq for sequence)
+numbersList = seq(from=1,to=3,by=1)
+lettersList = list("A", "B", "C")
+
+for (num in numbersList){
+  for (let in lettersList){
+    if (num == 3 && let == "B"){
+      print(c(num,let))
+    } else{
+      print("Not what we want")
+    }
+  }
+}
+```
+
+&& means "and" ... || means "or"...these are useful in multi conditional statements. The 'else' statement is an appendage of the 'if' statement. It basically means if num == 3 and let == B is false, print "not what we want". Notice that the 'else' statement is outside of the 'if' statement but immediately after it. 
+
+
+In Class Exercise: debug this for loop
+
+```{r, eval=FALSE,error=FALSE, warning=FALSE}
+soiltype <- list("sand", "silt", "saline", "clay", "peat")
+permeability <- c(0.09, 0.05, 0.03, 0.01, 0.005)
+
+for (s in seq(length(soiltype)){
+  print(a)
+  for (p in permeability)
+    if (p == 0.05 | p == 0.005){
+      print(permeability[s])
+    }
+  }
+}
+```
+
+# Basic Statistics in R
+
+R is famous for it's easy-to-use statistics features and once you get the hang of it you'll never want to touch Microsoft Excel again. Despite the fact that these stats functions seem pretty fancy to me, I call them basic functions because R has so much to offer to statisticians. We'll be using multiple meteorological / climate model datasets for this tutorial. Let's get started with some of these functions...
+
+
