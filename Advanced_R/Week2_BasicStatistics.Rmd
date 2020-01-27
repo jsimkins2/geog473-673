@@ -238,4 +238,8 @@ for (s in seq(length(soiltype)){
 
 R is famous for it's easy-to-use statistics features and once you get the hang of it you'll never want to touch Microsoft Excel again. Despite the fact that these stats functions seem pretty fancy to me, I call them basic functions because R has so much to offer to statisticians. We'll be using multiple meteorological / climate model datasets for this tutorial. Let's get started with some of these functions...
 
+### Load the data
+```{r}
+library(ncdf4)
+data = nc_open("Users/james/Do")
 
