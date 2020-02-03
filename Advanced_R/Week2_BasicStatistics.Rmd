@@ -1,9 +1,5 @@
 ---
 title: "Week2 - BasicStatistics "
-output: html_document
----
----
-title: 'Week2: R Syntax, Classes, & Datatypes'
 output: rmarkdown::github_document
 ---
 
