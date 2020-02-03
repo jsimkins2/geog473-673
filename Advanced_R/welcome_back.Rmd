@@ -212,8 +212,8 @@ treedat
 ```
 
 `treedat` is a data frame. As a reminder, a data frame is essentially a 2-dimensional array that contains a *combination* of vectors (columns of data) that are of the class; integer, numeric, character. This is *different* from a matrix which can only contain *1 type* of data. In this case, we have some tree data that includes species of tree, season the data was collected, diameter of the tree, bark thickness, area of no bark, heartwood diameter, and sapwood diameter.
-```{r, cache=FALSE,echo=FALSE}
-knitr::include_graphics("/Users/james/Documents/Github/geog473-673/documents/heartwoodvssapwood.jpeg")
+```{r, echo=FALSE}
+knitr::include_url("https://github.com/jsimkins2/geog473-673/tree/master/documents/heartwoodvssapwood.jpeg")
 ```
 
 Now, let's edit htis dataframe to the format we want it in. Then, let's plot a histogram of bark thickness and a boxplot of sapdepth by species. 
