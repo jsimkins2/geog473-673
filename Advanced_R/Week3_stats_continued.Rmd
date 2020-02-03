@@ -1,0 +1,57 @@
+---
+title: "week3"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+Correlation coefficients are one way we can learn about the relationship amongst variables. Let's check out the correlation coefficients for our `wcreek_df` dataframe 
+```{r, error=TRUE}
+library(corrplot) # will need to install this package
+cor_wcreek = cor(wcreek_df)
+```
+
+Alright so there's an issue with the fact that our datetime variable isn't numeric. In order to calculate the correlation coefficients for the dataset against day of year we'll need to remove datetime and plug in a day of year variable. 
+
+```{r}
+wcreek_df$datetime = NULL # removes this variable
+
+library(lubridate) # might need to install lubridate
+date.seq = seq(as.POSIXct("2010-01-01 00:00:00"), as.POSIXct("2010-12-31 23:00:00"), by="hour")
+days = yday(date.seq) # use lubridates yday function, returns a NUMERIC
+wcreek_df['day_of_year'] = days
+summary(wcreek_df)
+
+# awesome, now let's calculate the correlation coefficients
+cor_wcreek = cor(wcreek_df)
+# now let's calculate the residuals of the correlations with a 95% confidence interval
+residuals_1 <- cor.mtest(wcreek_df, conf.level = .95)
+# now let's plot this up. 
+corrplot(cor_wcreek, p.mat = residuals_1$p, method = 'color', number.cex = .7, type = 'lower',
+         addCoef.col = "black", # Add coefficient of correlation
+         tl.col = "black", tl.srt = 90, # Text label color and rotation
+         # Combine with significance
+         sig.level = 0.05, insig = "blank")
+```

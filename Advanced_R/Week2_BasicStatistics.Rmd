@@ -241,5 +241,148 @@ R is famous for it's easy-to-use statistics features and once you get the hang o
 ### Load the data
 ```{r}
 library(ncdf4)
-data = nc_open("Users/james/Do")
+# open the netcdf file of Willow Creek, Wisconsin meteorology data
+nc_file = nc_open("/Users/james/Documents/Github/geog473-673/datasets/WCr_1hr.2010.nc")
+# what does the nc file look like 
+nc_file
+# ok, still a lot of info...let's list the names of the variables
+names(nc_file$var)
+# alright, now we have some names, so let's put the variables into a new dataframe separate from the nc_file
+var_names = names(nc_file$var)
+willow_creek_2010 = list()
+dim <- nc_file$dim
+for (v in seq_along(var_names)){
+  willow_creek_2010[[v]] = ncvar_get(nc_file, varid = var_names[v])
+}
+# convert the list into a dataframe
+wcreek_df = data.frame(willow_creek_2010)
+# tell the dataframe what the column names are
+colnames(wcreek_df) = var_names
+# print some summary stats of wcreek_df
+summary(wcreek_df)
+# ok, so we see the units and values
+dim$time$units
+dim$time$vals[1:10]
+# so without any extra metadata, we can back out that this data is hourly data just from the units being seconds and time between
+# each recorded value (3600 seconds == 1 hour)
+#### Add a datetime column ####
+date.seq = seq(as.POSIXct("2010-01-01 00:00:00"), as.POSIXct("2010-12-31 23:00:00"), by="hour")
+wcreek_df['datetime'] = date.seq
+summary(wcreek_df)
+```
 
+Alright so our data is loaded up, organized, and ready for stats. Let's take a look at air temperature in relation to season. We're going to look at temperatures during the first half of the year by indexing air temperature and date from the 1st index to half the length of the dataset `[1:length(wcreek_df$datetime) / 2]` . So instead of having 8760 temperature values (there's 8760 hours in a non leap-year), we only have 4380. 
+
+```{r}
+plot(wcreek_df$air_temperature[1:length(wcreek_df$air_temperature) / 2] ~ wcreek_df$datetime[1:length(wcreek_df$datetime) / 2], pch = 20, col="blue")
+
+# alright, so yeah we know in the northern hemisphere that temperature increases between winter and summer months...but what is the trend like?
+fit <- lm(air_temperature[1:length(wcreek_df$air_temperature) / 2] ~ wcreek_df$datetime[1:length(wcreek_df$datetime) / 2], data = wcreek_df)
+summary(fit)
+coef(fit)
+
+plot(air_temperature[1:length(wcreek_df$air_temperature) / 2] ~ wcreek_df$datetime[1:length(wcreek_df$datetime) / 2], data = wcreek_df,
+  main= "air_temperature vs. datetime",
+  ylab= "Air Temperature ( Kelvin )",
+  xlab= "Datetime",
+  pch= 19, col= 'blue')
+grid(NA,NULL, lty= 4) # NA first for no y axis grid lines, null second to ignore the default x axis linetype
+abline(fit, col= 'black', lty= 4, lwd= 2)
+legend("topleft", legend=c("lm(fit)"), col= 2, lty= 4, bg= "gray85", box.lty=0)
+```
+
+So that's how you would go about investigating trendlines. Histograms are a good way to check out the distribution of data. Let's do that and add in a basic trendline for the probability distribution.
+
+Let's add this to a histogram of the data
+```{r}
+hist(wcreek_df$air_temperature[1:length(wcreek_df$air_temperature) / 2], freq = FALSE)
+x <- seq(250, 310, length.out=100)
+y <- with(wcreek_df, dnorm(x, mean(air_temperature[1:length(wcreek_df$air_temperature) / 2]), sd(air_temperature[1:length(wcreek_df$air_temperature) / 2])))
+lines(x, y, col = "red")
+```
+
+Density plots can be thought of as plots of smoothed histograms. The smoothness is controlled by a bandwidth parameter that is analogous to the histogram binwidth.  Let's plot up the density of all the temperature values within this half of the data.
+```{r}
+d = density(wcreek_df$air_temperature[1:length(wcreek_df$air_temperature) / 2], bw = 0.5)
+plot(d, xlab = "Air Temperature (Kelvin)", ylab = "Density", main="Air Temperature Density", col="black")
+```
+
+For a moderate number of observations a useful addition is a jittered rug plot:
+
+```{r}
+plot(density(wcreek_df$air_temperature[1:length(wcreek_df$air_temperature) / 2], bw = 0.5))
+rug(jitter(wcreek_df$air_temperature[1:length(wcreek_df$air_temperature) / 2]))
+```
+
+
+## Assignment:
+Using the WCr_1hr.2010.nc, WCr_1hr.2011.nc and WCr_1hr.2012.nc found in the datasets folder, complete the following:
+
+1. Make a **3 column plot** (each year gets 1 plot) of `surface_downwelling_shortwave_flux_in_air` (radiation from the sun) showing the data and trendlines for each year for the **second half** of the year (~ July 1 to Dec 31)
+- Note that it's alright if the abline goes outside of the plot, I'll show you how to fix this later
+2. Using the data and same time range above, make a **3 row plot** showing the jittered rug plot with 0.75 bandwidth for each year of `surface_downwelling_shortwave_flux_in_air`
+3. Submit plots to assignment 2 on canvas
+
+
+Your final plots should look something like this **but with different colors**
+
+```{r, echo=FALSE,fig.width=8, fig.height=6}
+library(plotrix)
+par(mfrow=c(1,3)) ## create plot array of 1 row x 3columns
+year.seq = seq(2010,2012,1)
+for (y in year.seq){
+  nc_file = nc_open(paste0("/Users/james/Documents/Github/geog473-673/datasets/WCr_1hr.", y,".nc"))
+  # what does the nc file look like 
+  var_names = names(nc_file$var)
+  wcr_data = list()
+  dim <- nc_file$dim
+  for (v in seq_along(var_names)){
+    wcr_data[[v]] = ncvar_get(nc_file, varid = var_names[v])
+  }
+  wcreek_df = data.frame(wcr_data)
+  colnames(wcreek_df) = var_names
+
+  date.seq = seq(as.POSIXct(paste0(y,"-01-01 00:00:00")), as.POSIXct(paste0(y,"-12-31 23:00:00")), by="hour")
+  wcreek_df['datetime'] = date.seq
+  
+  fit <- lm(wcreek_df$surface_downwelling_shortwave_flux_in_air[4380:length(wcreek_df$surface_downwelling_shortwave_flux_in_air)] ~ wcreek_df$datetime[4380:length(wcreek_df$datetime)], data = wcreek_df)
+  summary(fit)
+  coef(fit)
+  
+  plot(surface_downwelling_shortwave_flux_in_air[4380:length(wcreek_df$surface_downwelling_shortwave_flux_in_air)] ~ datetime[4380:length(wcreek_df$datetime)], data = wcreek_df,
+    main= paste0("shortwave radiation vs. datetime ", y),
+    ylab= "Radiation ( W m-2 )",
+    xlab= "Datetime",
+    pch= 19, col= 'blue')
+  grid(NA,NULL, lty= 4) # NA first for no y axis grid lines, null second to ignore the default x axis linetype
+  ablineclip(fit,y1=0, col= 'coral', lty= 4, lwd= 6)
+  legend("topleft", legend=c("lm(fit)"), col= "dodgerblue", lty= 4, bg= "gray85", box.lty=0)
+}
+```
+```{r, echo=FALSE,fig.width=6, fig.height=10}
+par(mfrow=c(3,1)) ## create plot array of 1 row x 3columns
+year.seq = seq(2010,2012,1)
+for (y in year.seq){
+  nc_file = nc_open(paste0("/Users/james/Documents/Github/geog473-673/datasets/WCr_1hr.", y,".nc"))
+  # what does the nc file look like 
+  var_names = names(nc_file$var)
+  wcr_data = list()
+  dim <- nc_file$dim
+  for (v in seq_along(var_names)){
+    wcr_data[[v]] = ncvar_get(nc_file, varid = var_names[v])
+  }
+  wcreek_df = data.frame(wcr_data)
+  colnames(wcreek_df) = var_names
+
+  date.seq = seq(as.POSIXct(paste0(y,"-01-01 00:00:00")), as.POSIXct(paste0(y,"-12-31 23:00:00")), by="hour")
+  wcreek_df['datetime'] = date.seq
+  
+  fit <- lm(wcreek_df$surface_downwelling_shortwave_flux_in_air[4380:length(wcreek_df$surface_downwelling_shortwave_flux_in_air)] ~ wcreek_df$datetime[4380:length(wcreek_df$datetime)], data = wcreek_df)
+  summary(fit)
+  coef(fit)
+  
+  plot(density(wcreek_df$surface_downwelling_shortwave_flux_in_air[4380:length(wcreek_df$surface_downwelling_shortwave_flux_in_air)], bw = 0.5),
+       main = paste0("shortwave radiation density jittered rugplot ", y), lwd=2, col="red")
+  rug(jitter(wcreek_df$surface_downwelling_shortwave_flux_in_air[4380:length(wcreek_df$surface_downwelling_shortwave_flux_in_air)]))
+}
+```
