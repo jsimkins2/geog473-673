@@ -333,7 +333,7 @@ I
 
     ## InfStatus
     ##    Infected   Recovered Susceptible 
-    ##          19          17          14
+    ##          19          15          16
 
 ``` r
 # Now let's make a random sample of 3 genotypes (RR, Rr, and rr)
@@ -344,7 +344,7 @@ G
 
     ## Genotype
     ## rr Rr RR 
-    ## 11 18 21
+    ## 19 13 18
 
 ``` r
 #show genotype and infected status as a table 
@@ -353,9 +353,9 @@ table(Genotype, InfStatus)
 
     ##         InfStatus
     ## Genotype Infected Recovered Susceptible
-    ##       rr        3         6           2
-    ##       Rr        7         7           4
-    ##       RR        9         4           8
+    ##       rr        8         7           4
+    ##       Rr        5         2           6
+    ##       RR        6         6           6
 
 Note - We turned the sample data info a `factor` to make sure the factors aren't double indexed...here is what I mean...
 
@@ -365,16 +365,16 @@ test <- sample(c("Susceptible", "Infected", "Recovered"),size = 50, replace = TR
 test
 ```
 
-    ##  [1] "Recovered"   "Recovered"   "Recovered"   "Infected"    "Susceptible"
-    ##  [6] "Susceptible" "Infected"    "Susceptible" "Recovered"   "Infected"   
-    ## [11] "Recovered"   "Infected"    "Infected"    "Infected"    "Recovered"  
-    ## [16] "Infected"    "Recovered"   "Recovered"   "Susceptible" "Susceptible"
-    ## [21] "Recovered"   "Infected"    "Recovered"   "Susceptible" "Infected"   
-    ## [26] "Infected"    "Susceptible" "Recovered"   "Recovered"   "Susceptible"
-    ## [31] "Infected"    "Infected"    "Susceptible" "Susceptible" "Recovered"  
-    ## [36] "Susceptible" "Infected"    "Susceptible" "Infected"    "Infected"   
-    ## [41] "Susceptible" "Susceptible" "Infected"    "Susceptible" "Susceptible"
-    ## [46] "Recovered"   "Infected"    "Recovered"   "Infected"    "Susceptible"
+    ##  [1] "Infected"    "Infected"    "Susceptible" "Recovered"   "Susceptible"
+    ##  [6] "Infected"    "Infected"    "Susceptible" "Infected"    "Recovered"  
+    ## [11] "Susceptible" "Infected"    "Susceptible" "Susceptible" "Recovered"  
+    ## [16] "Infected"    "Recovered"   "Infected"    "Susceptible" "Infected"   
+    ## [21] "Infected"    "Susceptible" "Susceptible" "Susceptible" "Susceptible"
+    ## [26] "Susceptible" "Infected"    "Recovered"   "Infected"    "Recovered"  
+    ## [31] "Infected"    "Susceptible" "Recovered"   "Susceptible" "Recovered"  
+    ## [36] "Infected"    "Infected"    "Recovered"   "Infected"    "Recovered"  
+    ## [41] "Susceptible" "Recovered"   "Recovered"   "Susceptible" "Recovered"  
+    ## [46] "Susceptible" "Susceptible" "Infected"    "Susceptible" "Infected"
 
 ``` r
 class(test)
@@ -388,15 +388,15 @@ test2 <- factor(sample(c("Susceptible", "Infected", "Recovered"),size = 50, repl
 test2
 ```
 
-    ##  [1] Susceptible Infected    Recovered   Recovered   Recovered   Recovered  
-    ##  [7] Susceptible Susceptible Infected    Infected    Susceptible Susceptible
-    ## [13] Susceptible Infected    Recovered   Recovered   Recovered   Infected   
-    ## [19] Susceptible Susceptible Susceptible Recovered   Susceptible Infected   
-    ## [25] Recovered   Recovered   Susceptible Infected    Infected    Infected   
-    ## [31] Susceptible Recovered   Recovered   Susceptible Recovered   Infected   
-    ## [37] Susceptible Susceptible Infected    Recovered   Susceptible Susceptible
-    ## [43] Recovered   Infected    Recovered   Susceptible Infected    Recovered  
-    ## [49] Infected    Infected   
+    ##  [1] Susceptible Recovered   Susceptible Infected    Susceptible Infected   
+    ##  [7] Recovered   Susceptible Infected    Infected    Recovered   Susceptible
+    ## [13] Recovered   Susceptible Susceptible Recovered   Susceptible Susceptible
+    ## [19] Infected    Infected    Recovered   Infected    Recovered   Susceptible
+    ## [25] Recovered   Infected    Recovered   Recovered   Recovered   Susceptible
+    ## [31] Recovered   Recovered   Recovered   Recovered   Susceptible Susceptible
+    ## [37] Susceptible Infected    Susceptible Susceptible Infected    Susceptible
+    ## [43] Recovered   Recovered   Susceptible Susceptible Infected    Recovered  
+    ## [49] Susceptible Recovered  
     ## Levels: Infected Recovered Susceptible
 
 ``` r
@@ -593,7 +593,7 @@ hist(treedat$BarkThick, xlab= "Bark Thickness (cm)", main= "Histogram: Bark Thic
 boxplot(SapDepth ~ spp, data= treedat, ylab= "SapDepth", col= "darkslateblue", main= "Boxplot: Sapwood Depth by Species")
 ```
 
-![](welcome_back_files/figure-markdown_github/unnamed-chunk-9-1.png)
+![](welcome_back_files/figure-markdown_github/unnamed-chunk-10-1.png)
 
 Note: hist() is the histogram function and boxplot() is the boxplot function. For the boxplot, notice how the x ~ y, data=dataframe syntax is. It's slightly different than the plotting instances above and for the histogram. For a histogram, the hist() function can only intake numerical values. Thus, if we wanted to take a species histogram, we would have to take a workaround like so -
 
@@ -601,7 +601,7 @@ Note: hist() is the histogram function and boxplot() is the boxplot function. Fo
 barplot(summary(treedat$spp))
 ```
 
-![](welcome_back_files/figure-markdown_github/unnamed-chunk-10-1.png)
+![](welcome_back_files/figure-markdown_github/unnamed-chunk-11-1.png)
 
 Assignment:
 -----------
@@ -609,9 +609,9 @@ Assignment:
 Using the TreeData.csv above, complete the following:
 
 1.  Rename 'spp' variable to 'species'
-2.  Make a 3 row plot consisting of Sapwood Depth histogram, boxplot of Bark Thickness by species, and a histogram showing the seasonal counts.
+2.  Make a 3 column plot consisting of Sapwood Depth histogram, boxplot of Bark Thickness by species, and a histogram showing the seasonal counts.
 3.  Submit plot to Assignment 1 on Canvas
 
 Your final plot should look like this
 
-![](welcome_back_files/figure-markdown_github/unnamed-chunk-11-1.png)
+![](welcome_back_files/figure-markdown_github/unnamed-chunk-12-1.png)
