@@ -1,0 +1,64 @@
+---
+title: "Week3 - ggplot2"
+output: rmarkdown::github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+### Quick tutorial - Correlation Plots
+
+Correlation plots show correlation coefficients across variables. For example, we expect shortwave radiation and temperature to have high a high correlation coefficient because generally speaking when the a lot of sunlight is received at the surface, temperature increases. There's a handy package called `corrplot` that caluclates correlation coefficients quickly and intuitively. We'll need to install this package and run our dataframe through it. One last thing...we'll need to calculate the residual values - that is the distance between actual data and the trendline. It's another way to express error. For this quick tutorial, let's use the Willow Creek meteorology data we were just using. 
+
+```{r, fig.width=10, fig.height=10}
+library(corrplot)
+library(lubridate) # might need to install lubridate
+library(ncdf4)
+y = 2010
+nc_file = nc_open(paste0("/Users/james/Documents/Github/geog473-673/datasets/WCr_1hr.", y,".nc"))
+# what does the nc file look like 
+var_names = names(nc_file$var)
+wcr_data = list()
+dim <- nc_file$dim
+for (v in seq_along(var_names)){
+  wcr_data[[v]] = ncvar_get(nc_file, varid = var_names[v])
+}
+wcreek_df = data.frame(wcr_data)
+colnames(wcreek_df) = var_names
+
+date.seq = seq(as.POSIXct(paste0(y,"-01-01 00:00:00")), as.POSIXct(paste0(y,"-12-31 23:00:00")), by="hour")
+# everything is the same as before, but HERE is where things change a little...
+# instead of plugging in the datetimes into the data frame, we need to plug in a numeric. Since a datetime
+# is a "POSIXct" class, the correlation matrix function won't know how to handle it. We need a NUMERIC value for this.
+# for now, let's just choose our "date" label to be in the form of day-of-year
+days = yday(date.seq) # use lubridates yday function, returns a NUMERIC value
+wcreek_df['day_of_year'] = days
+summary(wcreek_df)
+
+# awesome, now let's calculate the correlation coefficients
+cor_wcreek = cor(wcreek_df)
+# now let's calculate the residuals of the correlations with a 95% confidence interval
+residuals_1 <- cor.mtest(wcreek_df, conf.level = .95)
+# now let's plot this up. 
+corrplot(cor_wcreek, p.mat = residuals_1$p, method = 'color', number.cex = .7, type = 'lower',
+         addCoef.col = "black", # Add coefficient of correlation
+         tl.col = "black", tl.srt = 90, # Text label color and rotation
+         # Combine with significance
+         sig.level = 0.05, insig = "blank")
+```
+
+
+# ggplot2
+
+So far, we've only used `base graphics` plotting routines. While there are endless customizations and schemes that can be used to generate publiation quality material, many advanced R programmers use `ggplot2` to create plots. `ggplot2` is a go-to plotting package and can do all that `base graphics` can do. So what's so different about it? Well, `ggplot2` is designed to work with `dataframes`, rather than individual `vectors`. `ggplot2` also has more aesthetic options that allow for more visually unique & pleasing plots. The first thing you'll notice about `ggplot2` is that the syntax is different. Instead of coding all customizations through arguments or additional functions with the `add=TRUE` option keyed in, `ggplot2` uses `+` to add in extra layers to a plot. This may seem weird at first, but the longer you spend with it the more regular it will seem.
+
+
+
+
+
+
+
+
+
+
