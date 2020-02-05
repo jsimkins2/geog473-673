@@ -25,7 +25,15 @@ https://github.com/jsimkins2/geog473-673/blob/master/Advanced_R/welcome_back.md
 
 https://github.com/jsimkins2/geog473-673/blob/master/Advanced_R/Week2_BasicStatistics.md
 
+ Week 3 - ggplot2 Tutorial
 
+https://github.com/jsimkins2/geog473-673/blob/master/Advanced_R/Week3_ggplot2.md
+
+ Week 4 - Spatial ggplot2
+
+https://github.com/jsimkins2/geog473-673/blob/master/Advanced_R/Week4_spatial_ggplot2.md
+
+ Week 5
 
 
 
