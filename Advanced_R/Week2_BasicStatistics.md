@@ -673,14 +673,14 @@ plot(d, xlab = "Air Temperature (Kelvin)", ylab = "Density", main="Air Temperatu
 For a moderate number of observations a useful addition is a jittered rug plot:
 
 ``` r
-plot(density(wcreek_df$air_temperature[1:length(wcreek_df$air_temperature) / 2], bw = 0.5))
+plot(density(wcreek_df$air_temperature[1:length(wcreek_df$air_temperature) / 2], bw = 0.5), main = "jittered rug plot")
 rug(jitter(wcreek_df$air_temperature[1:length(wcreek_df$air_temperature) / 2]))
 ```
 
 ![](Week2_BasicStatistics_files/figure-markdown_github/unnamed-chunk-13-1.png)
 
 Assignment:
------------
+===========
 
 Using the WCr\_1hr.2010.nc, WCr\_1hr.2011.nc and WCr\_1hr.2012.nc found in the datasets folder, complete the following:
 

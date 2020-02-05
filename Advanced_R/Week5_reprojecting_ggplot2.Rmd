@@ -22,7 +22,7 @@ ggplot(acadia, aes(x=year, y=visitors)) +
     geom_line(col="yellow", size=5) + 
     geom_point(col="steelblue", size=3) + 
     geom_smooth(method="lm", col="firebrick") +
-    labs(title="Acadia National Park Attendance", subtitle="Total Visitors per year", y="Visitors",     x="Year", caption="National Park Database") +
+    labs(title="Acadia National Park Attendance", subtitle="Total Visitors per year", y="Visitors", x="Year", caption="National Park Database") +
     theme_bw()
   
 ```
@@ -38,7 +38,7 @@ ggplot(acadia, aes(x=year, y=visitors)) +
     geom_line(col="yellow", size=5) + 
     geom_point(col="steelblue", size=3) + 
     geom_smooth(method="lm", col="firebrick") +
-    labs(title="Acadia National Park Attendance", subtitle="Total Visitors per year", y="Visitors",     x="Year", caption="National Park Database") +
+    labs(title="Acadia National Park Attendance", subtitle="Total Visitors per year", y="Visitors", x="Year", caption="National Park Database") +
     theme_dark()
   
 ```
@@ -54,7 +54,7 @@ ggplot(acadia, aes(x=year, y=visitors)) +
     geom_line(col="yellow", size=5) + 
     geom_point(col="steelblue", size=3) + 
     geom_smooth(method="lm", col="firebrick") +
-    labs(title="Acadia National Park Attendance", subtitle="Total Visitors per year", y="Visitors",     x="Year", caption="National Park Database") +
+    labs(title="Acadia National Park Attendance", subtitle="Total Visitors per year", y="Visitors", x="Year", caption="National Park Database") +
     theme_light()
   
 ```
@@ -70,10 +70,111 @@ ggplot(acadia, aes(x=year, y=visitors)) +
     geom_line(col="yellow", size=5) + 
     geom_point(col="steelblue", size=3) + 
     geom_smooth(method="lm", col="firebrick") +
-    labs(title="Acadia National Park Attendance", subtitle="Total Visitors per year", y="Visitors",     x="Year", caption="National Park Database") +
+    labs(title="Acadia National Park Attendance", subtitle="Total Visitors per year", y="Visitors",x="Year", caption="National Park Database") +
     theme_classic()
   
 ```
 
 
 # Reprojecting Raster data and plotting it with ggplot2
+
+Often times, the spatial data that we want aren't in a nice, gridded lat/lon. The oblate spheroid that we call home presents some challenges when it comes to displaying spatial datasets. Fortunately, we can use ggplot2 to visualize this data.
+
+```{r}
+#Load packages
+library(raster)
+library(ggplot2)
+library(rasterVis)
+library(maptools) # also loads sp package
+
+# load in dataset directly via raster package, specify varname which is 'tem' for 'temperature' 
+temClim = raster("/Users/james/Documents/Github/geog473-673/datasets/globalTemClim1961-1990.nc", varname = 'tem', band=1)
+temClim
+
+# Create a new, blank raster that has a totally different sizing
+newRaster = raster()
+newRaster
+
+#resample the temClim raster to the resizedRaster
+resTemClim = resample(x=temClim, y=newRaster, method='bilinear')
+resTemClim
+
+#define new projection as robinson via a proj4 string. Note that this can also be achieved
+# let's use the robinson projection
+newproj <- CRS("+proj=ortho" )
+newproj
+
+projTemClim = projectRaster(resTemClim,crs=newproj)
+projTemClim
+
+my_theme <- theme_void() + theme(panel.ontop=TRUE, panel.background=element_blank())
+my_cols <- scale_color_distiller(palette='Spectral')
+my_fill <- scale_fill_distiller(palette='Spectral')
+
+library(maps)
+library(mapdata)
+df = as.data.frame(projTemClim, xy=TRUE)
+ggplot(data=df, aes(x=x, y=y, fill = CRU_Global_1961.1990_Mean_Monthly_Surface_Temperature_Climatology)) + geom_polygon() +
+  labs(title="World map (robin)") +
+  coord_equal()
+  coord_map("orthographic")
+```
+
+
+load(url("https://github.com/valentinitnelav/RandomScripts/blob/master/NaturalEarth.RData?raw=true"))
+
+
+
+ggplot() +
+    # add Natural Earth countries projected to Robinson, give black border and fill with gray
+    geom_polygon(data=NE_countries_rob, aes(long,lat, group=group), colour="black", fill="gray80", size = 0.25)
+
+ggplot() + geom_polygon(data=NE_box_rob, aes(x=long, y=lat), colour="black", fill="transparent", size = 0.25)
+
+ggplot() + geom_path(data=NE_graticules_rob, aes(long, lat, group=group), linetype="dotted", color="grey50", size = 0.25)
+
+ggplot() + geom_text(data = lbl.Y.prj, aes(x = X.prj, y = Y.prj, label = lbl), color="grey50", size=2)
+
+ggplot() + geom_text(data = lbl.X.prj, aes(x = X.prj, y = Y.prj, label = lbl), color="grey50", size=2)
+
+df = as.data.frame(projTemClim, xy=TRUE)
+ggplot() + geom_raster(data=df, aes(x=x, y=y, fill = CRU_Global_1961.1990_Mean_Monthly_Surface_Temperature_Climatology))
+
+ggplot() +    geom_raster(data=df, aes(x=x, y=y, fill = CRU_Global_1961.1990_Mean_Monthly_Surface_Temperature_Climatology)) +
+    # add Natural Earth countries projected to Robinson, give black border and fill with gray
+    geom_polygon(data=NE_countries_rob, aes(long,lat, group=group), colour="black", fill="transparent", size = 0.25) +
+    # Note: "Regions defined for each Polygons" warning has to do with fortify transformation. Might get deprecated in future!
+    # alternatively, use use map_data(NE_countries) to transform to data frame and then use project() to change to desired projection.
+    # add Natural Earth box projected to Robinson
+    geom_polygon(data=NE_box_rob, aes(x=long, y=lat), colour="black", fill="transparent", size = 0.25) +
+    # add graticules projected to Robinson
+    geom_path(data=NE_graticules_rob, aes(long, lat, group=group), linetype="dotted", color="grey50", size = 0.25) +
+    # add graticule labels - latitude and longitude
+    geom_text(data = lbl.Y.prj, aes(x = X.prj, y = Y.prj, label = lbl), color="grey50", size=2) +
+    geom_text(data = lbl.X.prj, aes(x = X.prj, y = Y.prj, label = lbl), color="grey50", size=2) +
+    # the default, ratio = 1 in coord_fixed ensures that one unit on the x-axis is the same length as one unit on the y-axis
+    coord_quickmap(xlim=range(df$x), ylim=range(df$y)) +
+    my_theme + my_fill +
+    # remove the background and default gridlines
+    
+
+my_theme <- theme_void() + theme(panel.ontop=TRUE, panel.background=element_blank())
+my_cols <- scale_color_distiller(palette='Spectral')
+my_fill <- scale_fill_distiller(palette='Spectral')
+ggplot(df, aes(y=y, x=x, fill=CRU_Global_1961.1990_Mean_Monthly_Surface_Temperature_Climatology)) +
+    borders('world', xlim=range(df$x), ylim=range(df$y), colour='black') + my_theme + my_fill +
+    coord_quickmap(xlim=range(df$x), ylim=range(df$y))
+    
+ggplot(df, aes(y=y, x=x, fill=CRU_Global_1961.1990_Mean_Monthly_Surface_Temperature_Climatology)) + geom_polygon() +
+    borders('world', xlim=range(df$x), ylim=range(df$y), colour='black') + my_theme + my_fill +
+    coord_map('lambert', lat0=30, lat1=65, xlim=c(-20, 39), ylim=c(19, 75))
+    
+    
+library(rasterVis)
+r=projTemClim
+ggplot(r) + geom_tile(aes(fill = value)) + 
+  scale_fill_distiller(palette="Spectral", na.value = "transparent") +
+  my_theme  
+
+library(mapview)
+mapview(r, legend = TRUE)  
