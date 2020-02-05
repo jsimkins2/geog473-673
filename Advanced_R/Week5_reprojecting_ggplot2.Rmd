@@ -1,0 +1,79 @@
+---
+title: "Week5 - Reprojecting and plotting ggplot2"
+output: rmarkdown::github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Reprojecting Raster data and plotting it with ggplot2
+
+### Quick tutorial - ggplot2 themes
+Ever notice the gray background on ggplot2? Well that's referred to as the default theme. There are other themes that can be called every time you createa a ggplot. Let's take a look:
+
+The black & white theme
+```{r}
+library(ggplot2)
+
+acadia = read.csv("/Users/james/Documents/Github/geog473-673/datasets/acadia.csv")
+
+ggplot(acadia, aes(x=year, y=visitors)) +
+    geom_line(col="yellow", size=5) + 
+    geom_point(col="steelblue", size=3) + 
+    geom_smooth(method="lm", col="firebrick") +
+    labs(title="Acadia National Park Attendance", subtitle="Total Visitors per year", y="Visitors",     x="Year", caption="National Park Database") +
+    theme_bw()
+  
+```
+
+The dark theme
+
+```{r}
+library(ggplot2)
+
+acadia = read.csv("/Users/james/Documents/Github/geog473-673/datasets/acadia.csv")
+
+ggplot(acadia, aes(x=year, y=visitors)) +
+    geom_line(col="yellow", size=5) + 
+    geom_point(col="steelblue", size=3) + 
+    geom_smooth(method="lm", col="firebrick") +
+    labs(title="Acadia National Park Attendance", subtitle="Total Visitors per year", y="Visitors",     x="Year", caption="National Park Database") +
+    theme_dark()
+  
+```
+
+The light theme
+
+```{r}
+library(ggplot2)
+
+acadia = read.csv("/Users/james/Documents/Github/geog473-673/datasets/acadia.csv")
+
+ggplot(acadia, aes(x=year, y=visitors)) +
+    geom_line(col="yellow", size=5) + 
+    geom_point(col="steelblue", size=3) + 
+    geom_smooth(method="lm", col="firebrick") +
+    labs(title="Acadia National Park Attendance", subtitle="Total Visitors per year", y="Visitors",     x="Year", caption="National Park Database") +
+    theme_light()
+  
+```
+
+The classic theme
+
+```{r}
+library(ggplot2)
+
+acadia = read.csv("/Users/james/Documents/Github/geog473-673/datasets/acadia.csv")
+
+ggplot(acadia, aes(x=year, y=visitors)) +
+    geom_line(col="yellow", size=5) + 
+    geom_point(col="steelblue", size=3) + 
+    geom_smooth(method="lm", col="firebrick") +
+    labs(title="Acadia National Park Attendance", subtitle="Total Visitors per year", y="Visitors",     x="Year", caption="National Park Database") +
+    theme_classic()
+  
+```
+
+
+# Reprojecting Raster data and plotting it with ggplot2
