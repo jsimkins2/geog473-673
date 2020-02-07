@@ -49,6 +49,13 @@ library("rnaturalearth")
 library("rnaturalearthdata")
 
 world <- readOGR("Documents/Github/geog473-673/datasets/world_shpfiles/world.shp")
+
+download.file("https://github.com/jsimkins2/geog473-673/tree/master/datasets/world_shpfiles/world.shp", 
+              destfile = "Downloads/world.shp" , mode='wb')
+unzip("Income_schooling.zip", exdir = ".")
+file.remove("Income_schooling.zip")
+
+
 world = st_as_sf(world)
 class(world)
 asdf = st_as_sf(m)
@@ -60,5 +67,14 @@ ggplot(data = world) + geom_sf() + theme_void() +
   coord_sf(xlim = c(-76.5, -74.5), ylim = c(38,40), expand = FALSE)
   
   
-  
+
+
+
+
+
+
+utah = readOGR(dsn="Downloads/ecoregion_design/", layer="eco_l3_ut")
+utah@data$id = rownames(utah@data)
+utah.points = fortify(utah, region="id")
+utah.df = join(utah.points, utah@data, by="id")
   
