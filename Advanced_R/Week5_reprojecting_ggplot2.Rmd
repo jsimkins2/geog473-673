@@ -1,5 +1,5 @@
 ---
-title: "Week5 - Reprojecting and plotting ggplot2"
+title: "Week5 - Spatial Points"
 output: rmarkdown::github_document
 ---
 
@@ -101,10 +101,12 @@ resTemClim
 
 #define new projection as robinson via a proj4 string. Note that this can also be achieved
 # let's use the robinson projection
-newproj <- CRS("+proj=ortho" )
+newproj <- CRS("+proj=ortho")
 newproj
 
 projTemClim = projectRaster(resTemClim,crs=newproj)
+
+
 projTemClim
 
 my_theme <- theme_void() + theme(panel.ontop=TRUE, panel.background=element_blank())
@@ -116,8 +118,13 @@ library(mapdata)
 df = as.data.frame(projTemClim, xy=TRUE)
 ggplot(data=df, aes(x=x, y=y, fill = CRU_Global_1961.1990_Mean_Monthly_Surface_Temperature_Climatology)) + geom_polygon() +
   labs(title="World map (robin)") +
-  coord_equal()
   coord_map("orthographic")
+
+ggplot(data=df, aes(x=x, y=y, fill = CRU_Global_1961.1990_Mean_Monthly_Surface_Temperature_Climatology)) +
+  geom_point(size=2, shape=15) +
+  borders('world', xlim=range(df$x), ylim=range(df$y), colour='black') +
+  scale_color_distiller(palette='Spectral') +
+  coord_map('ortho', orientation = c(40, 20, 0))
 ```
 
 
@@ -178,3 +185,8 @@ ggplot(r) + geom_tile(aes(fill = value)) +
 
 library(mapview)
 mapview(r, legend = TRUE)  
+
+
+nam = brick("Downloads/NAM_CONUS_80km_20200107_0000.grib1")
+
+# Band 34 is temperature at 450hpa
