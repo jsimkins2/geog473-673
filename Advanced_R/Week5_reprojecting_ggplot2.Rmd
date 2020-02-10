@@ -111,12 +111,16 @@ head(coast.data)
 coast.shp$station
 coast.data$station
 
-# notice the difference above - the station order is not matching and we need to vectorize the coast.shp$station
+# notice the difference above - let's reorder the data from the shapefile and the csv data by the station, otherwise
+# merging will NOT work. 
 coast.shp  = coast.shp[order(as.vector(coast.shp$station)),]
 coast.data  = coast.data[order(as.vector(coast.data$station)),]
 
-# merge on common variable, here called 'station' - we MUST use the duplicateGeoms argument because there are multiple values for the same station name
+# merge together the shapefile data and the csv data based on common variable, here called 'station' - we MUST use the duplicateGeoms argument because there are multiple values for the same station name
 merged.coast = sp::merge(coast.shp,coast.data,by='station', duplicateGeoms = TRUE)
+class(merged.coast)
+# remember that package::function is another way to call a specific function. I did this becuase other packages have 'merge' functions
+# and I didn't want them to be confused. 
 
 # Now let's use brewer.pal from RColorBrewer to create a blues color pallette
 mycolours <- brewer.pal(8, "Blues")
@@ -143,24 +147,49 @@ tm_shape(merged.coast) +
 
 Ok, so those are cool, but what about using `ggplot2`? It can be done, but we not out of the box...
 
+Type the following and then hit tab - `merged.coast@` . Everything after the `@` are referred to as **slots**. `merged.coast` is just a `sp::SpatialPolygonsDataFrame` which holds polygons with attributes stored here as `slots`. The `merged.coast` slots are
+
+- data
+- polygons
+- plotOrder
+- bbox
+- proj4string
+
+The slots of primary interest are merged.coast@data (the geometry attributes) and merged.coast@polygons (the geometry features).  The attributes and features are related to each other by order, so the relationship is implicit.  Relationship attributes need to be explicit so that the geometry attributes can be joined with the geometry features.
+
 ```{r}
-library(ggplot2)
-library(scales)
-library(ggmap)
-library(viridis)
-m@data$id <- rownames(m@data)
-newUS <- fortify(m, region = "id")
-newdf <- merge(newUS, m@data, by = "id")
-Myplot <- ggplot() +
+merged.coast@data$id <- rownames(merged.coast@data)
+```
+The above code explicitly identifies attribute rows by the .dbf offset
+
+```{r}
+newMerged <- fortify(merged.coast, region = "id")
+```
+The above code melts the polygons into points, tags each point with the id value of the corresponding attribute row, and tags each point with values from the polygon from which the point was derived. `fortify` is a `ggplot2` function that fortifies a model with data. 
+
+`region = "id`" selects the feature attribute name to tag each row in the new data frame.  Each geometry feature offset gets the value from the feature attribute at the same offset.  In this case, it is merged.coast@data$id .  The attribute `newMerged$id` contains the mapped value.  If a different attribute were used (region="LEVEL3"), newMerged$id would contain the corresponding value of merged.coast@data$LEVEL3.
+
+newMerged attributes include spatial coordinates (long and lat), group (coordinates having the same group belongs to the same polygon), and id (each id identifies a feature attribute tuple).
+
+One of the remaining attributes is hole.  Each polygon in merged.coast@polygons is defined by one or more polygons. When defined by multiple polygons, the sub-polygons may be disjunct islands or holes. A hole part should remove geometry from its merged.coast@polgons instance.  When newMerged is created and individual polygons are melted, the hole state is retained, but this information is not used by ggplot2. Depending on the rendering sequence of the polygons, holes may overlay and obscure other polygons, or, more likely and more problematic, polygons are rendered without their fill removed from the hole, which obscures what should be seen through the hole.
+
+```{r}
+newdf <- merge(newMerged, merged.coast@data, by = "id")
+```
+
+The above code joins the points to their corresponding attributes and finalizes the data preparation.
+
+```{r}
+ggplot() +
   geom_polygon(data = newdf, aes(fill = maxpred, 
                                  x = long, 
                                  y = lat.x, 
-                                 group = group)) + ggtitle("Vote Percentage for Bush, 2004") + theme(plot.title = element_text(hjust =0.5))
+                                 group = group)) + ggtitle("Projected Water Levels (Feet)") + theme(plot.title = element_text(hjust =0.5))
 
 
 ```
 
-
+Alright so this gets us almost there. 
 
 
 
