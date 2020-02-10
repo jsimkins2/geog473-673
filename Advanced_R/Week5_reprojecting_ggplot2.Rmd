@@ -76,56 +76,99 @@ ggplot(acadia, aes(x=year, y=visitors)) +
 ```
 
 
-# Reprojecting Raster data and plotting it with ggplot2
+# Advanced Plotting - Synthesizing Shapefiles 
 
-Often times, the spatial data that we want aren't in a nice, gridded lat/lon. The oblate spheroid that we call home presents some challenges when it comes to displaying spatial datasets. Fortunately, we can use ggplot2 to visualize this data.
+Often times, the spatial data that we want aren't in a nice, gridded lat/lon. The oblate spheroid that we call home presents some challenges when it comes to displaying spatial datasets. Often times, datasets like these are stored as separate entities - shapefiles & data tables. Fortunately, we have multiple avenues for working with this data. Let's check out a coastal flooding product that projects potential water levels above normal for each day. [coast-flood.udel.edu]
 
 ```{r}
 #Load packages
-library(raster)
+library(RColorBrewer)
+library(rgdal)
+library(sp)
 library(ggplot2)
-library(rasterVis)
-library(maptools) # also loads sp package
+library(ggmap)
+library(scales)
+library(viridis)
 
-# load in dataset directly via raster package, specify varname which is 'tem' for 'temperature' 
-temClim = raster("/Users/james/Documents/Github/geog473-673/datasets/globalTemClim1961-1990.nc", varname = 'tem', band=1)
-temClim
-
-# Create a new, blank raster that has a totally different sizing
-newRaster = raster()
-newRaster
-
-#resample the temClim raster to the resizedRaster
-resTemClim = resample(x=temClim, y=newRaster, method='bilinear')
-resTemClim
-
-#define new projection as robinson via a proj4 string. Note that this can also be achieved
-# let's use the robinson projection
-newproj <- CRS("+proj=ortho")
-newproj
-
-projTemClim = projectRaster(resTemClim,crs=newproj)
-
-
-projTemClim
-
-my_theme <- theme_void() + theme(panel.ontop=TRUE, panel.background=element_blank())
-my_cols <- scale_color_distiller(palette='Spectral')
-my_fill <- scale_fill_distiller(palette='Spectral')
-
-library(maps)
-library(mapdata)
-df = as.data.frame(projTemClim, xy=TRUE)
-ggplot(data=df, aes(x=x, y=y, fill = CRU_Global_1961.1990_Mean_Monthly_Surface_Temperature_Climatology)) + geom_polygon() +
-  labs(title="World map (robin)") +
-  coord_map("orthographic")
-
-ggplot(data=df, aes(x=x, y=y, fill = CRU_Global_1961.1990_Mean_Monthly_Surface_Temperature_Climatology)) +
-  geom_point(size=2, shape=15) +
-  borders('world', xlim=range(df$x), ylim=range(df$y), colour='black') +
-  scale_color_distiller(palette='Spectral') +
-  coord_map('ortho', orientation = c(40, 20, 0))
+# Use the readOGR function to open a shapefile & constituents
+coast.shp <- readOGR("/Users/james/Documents/Github/geog473-673/datasets/cfms_shapefiles/cfms_watersheds.shp")
+class(coast.shp)
+coast.shp@proj4string
 ```
+This projection is **unique**. It's a transverse mercator with some specific lat_0 and lon_0 starting points. Notice the class of the shapefile - the underlying package controlling it's translation to R is the `sp` package -  A package providing classes and methods for spatial data: points, lines, polygons and grids. 
+
+NOTE: Everytime you read in a shapefile like `cfms_watersheds.shp`, you MUST have the `.shx`, `.prj`, `.dbf`, etc. all within the SAME folder. Even though we are only keying an "opening" of the `.shp` file, `readOGR` is opening them all. 
+
+ANOTHER NOTE: Notice the *@* symbol in `coast.shp@proj4string`. This is you query metadata associated with shapefiles. 
+
+Back to plotting...
+```{r}
+plot(coast.shp)
+# Open the dataset that corresponds to the water levels within the shapefile boxes 
+coast.data <- read.csv("/Users/james/Documents/Github/geog473-673/datasets/cfms_shapefiles/water_levels.csv")
+head(coast.data)
+# now let's find the matching key - in this case, the matching key is the "station".
+coast.shp$station
+coast.data$station
+
+# notice the difference above - the station order is not matching and we need to vectorize the coast.shp$station
+coast.shp  = coast.shp[order(as.vector(coast.shp$station)),]
+coast.data  = coast.data[order(as.vector(coast.data$station)),]
+
+# merge on common variable, here called 'station' - we MUST use the duplicateGeoms argument because there are multiple values for the same station name
+merged.coast = sp::merge(coast.shp,coast.data,by='station', duplicateGeoms = TRUE)
+
+# Now let's use brewer.pal from RColorBrewer to create a blues color pallette
+mycolours <- brewer.pal(8, "Blues")
+mybreaks <- seq(0,6,0.5) 
+# the data we're concerned with here is shortnamed maxpred - maximum predicted water level for the next 24 hours
+cut(merged.coast$maxpred, mybreaks)
+mycolourscheme <- mycolours[findInterval(merged.coast$maxpred, vec = mybreaks)]
+
+```
+
+The data is prepared, now we just need to plug in everything to plotting functions. First up is `spplot` from the `sp` package:
+
+```{r}
+spplot(merged.coast, "maxpred", par.settings = list(axis.line = list(col ="transparent")), main = "Projected Water Levels (Feet)", cuts = 5, col ="transparent", col.regions = mycolours)
+
+```
+
+Now we use the `tmap` function - very similar to `ggplot2`. `tmap` == Thematic Map Visualization. Thematic maps are geographical maps in which spatial data distributions are visualized. This package offers a flexible, layer-based, and easy to use approach to create thematic maps, such as choropleths and bubble maps. It is based on the grammar of graphics, and resembles the syntax of ggplot2.
+```{r}
+library(tmap)
+tm_shape(merged.coast) + 
+  tm_polygons(col='maxpred', title = "Projected Water Levels", palette = "Spectral") + tm_style("classic") + tm_scale_bar(position = c("left", "bottom")) 
+```
+
+Ok, so those are cool, but what about using `ggplot2`? It can be done, but we not out of the box...
+
+```{r}
+library(ggplot2)
+library(scales)
+library(ggmap)
+library(viridis)
+m@data$id <- rownames(m@data)
+newUS <- fortify(m, region = "id")
+newdf <- merge(newUS, m@data, by = "id")
+Myplot <- ggplot() +
+  geom_polygon(data = newdf, aes(fill = maxpred, 
+                                 x = long, 
+                                 y = lat.x, 
+                                 group = group)) + ggtitle("Vote Percentage for Bush, 2004") + theme(plot.title = element_text(hjust =0.5))
+
+
+```
+
+
+
+
+
+
+
+
+
+
 
 
 load(url("https://github.com/valentinitnelav/RandomScripts/blob/master/NaturalEarth.RData?raw=true"))
