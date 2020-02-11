@@ -35,5 +35,9 @@ https://github.com/jsimkins2/geog473-673/blob/master/Advanced_R/Week4_spatial_gg
 
  Week 5
 
+https://jsimkins2.github.io/geog473-673/Week5_shapefiles.html
+
+ Week 6
+
 
 
