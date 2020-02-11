@@ -65,16 +65,42 @@ ggplot(data = world) + geom_sf() + theme_void() +
   geom_sf(data = asdf, aes(fill = mhhw)) +
   scale_fill_viridis_c(trans = "sqrt", alpha = .4) +
   coord_sf(xlim = c(-76.5, -74.5), ylim = c(38,40), expand = FALSE)
-  
-  
 
 
 
 
 
 
-utah = readOGR(dsn="Downloads/ecoregion_design/", layer="eco_l3_ut")
-utah@data$id = rownames(utah@data)
-utah.points = fortify(utah, region="id")
-utah.df = join(utah.points, utah@data, by="id")
-  
+
+
+
+library(maptools)
+m <- readOGR("Downloads/ne_10m_parks_and_protected_lands/ne_10m_parks_and_protected_lands_area.shp")
+
+spplot(m,"name", par.settings = list(axis.line = list(col ="transparent")), main = "Protected Lands", cuts = 5, col ="transparent",
+       xlim = c(-127, -110), ylim = c(40,50), fill="darkgreen", colorkey=FALSE)
+
+
+library(tmap)
+tm_shape(m,bbox=tmaptools::bb(matrix(c(-127,40,-110,50),2,2))) + 
+  tm_polygons(col='name', title = "Protected Lands", palette = "Spectral") + tm_style("classic") + tm_scale_bar(position = c("right", "bottom")) +
+  tm_layout(legend.title.size = 1,legend.text.size = 0.6, legend.position = c("left","center")) +
+  tm_layout(title="Protected Areas in Pacific NW")
+
+
+states <- readOGR("/Users/james/Documents/Github/geog473-673/datasets/ne_10m_admin_1_states_provinces/ne_10m_admin_1_states_provinces.shp")
+class(states)
+states = st_as_sf(states)
+class(states)
+
+
+ggplot(data = states) + geom_sf() + theme_void() +
+  geom_sf(data = st_as_sf(m), aes(fill=name), fill="darkgreen", colour = "aquamarine3", alpha=0.8) +
+  coord_sf(xlim = c(-127, -110), ylim = c(40,50), expand = FALSE) + 
+  theme(legend.position = "none") + ggtitle("Protected Lands in Pacific NW")
+
+library(mapview)
+mapview(m['name'], col.regions = mycolours)
+
+
+
