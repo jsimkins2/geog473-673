@@ -75,6 +75,21 @@ ggplot(acadia, aes(x=year, y=visitors)) +
   
 ```
 
+The void theme
+
+```{r}
+library(ggplot2)
+
+acadia = read.csv("/Users/james/Documents/Github/geog473-673/datasets/acadia.csv")
+
+ggplot(acadia, aes(x=year, y=visitors)) +
+    geom_line(col="yellow", size=5) + 
+    geom_point(col="steelblue", size=3) + 
+    geom_smooth(method="lm", col="firebrick") +
+    labs(title="Acadia National Park Attendance", subtitle="Total Visitors per year", y="Visitors",x="Year", caption="National Park Database") +
+    theme_void()
+  
+```
 
 # Advanced Plotting - Synthesizing Shapefiles 
 
@@ -189,76 +204,24 @@ ggplot() +
 
 ```
 
-Alright so this gets us almost there. 
+Alright so this gets us almost there. Clearly this is a weird projection with the lat/lon values in meters rather than degrees. Let's try and normalize it and then add in our **world** shapefiles from the **datasets** folder. In order to do this, we'll need to use `geom_sf` from `ggplot2`. This enables us to plot `sf` objects. `sf` is a package for Simple Features. It's one of the other big players for spatial data wrangling in R that a lot of other, fancier packages that we use in this class are built on. We'll need to load in `sf` before we can convert our shapefile into an `sf` object. 
+
+```{r}
+library(sf)
+states <- readOGR("/Users/james/Documents/Github/geog473-673/datasets/ne_10m_admin_1_states_provinces/ne_10m_admin_1_states_provinces.shp")
+class(states)
+states = st_as_sf(states)
+class(states)
+gg_merged = st_as_sf(merged.coast)
+pal = brewer.blues(9)
+# note theme_void is NECESSARY
+ggplot(data = states) + geom_sf() + theme_void() +
+  geom_sf(data = gg_merged, aes(fill = maxpred)) +
+  coord_sf(xlim = c(-76.1, -74.7), ylim = c(38.3,40), expand = FALSE) +
+  scale_fill_distiller(palette = "Blues", direction= 1)
+
+```
+Looks pretty good even though the shapefile isn't quite as sharp as we'd like. Besides the shapefile which we added to the plot via `geom_sf()`, take notice of the `theme_void()`...this plot will NOT WORK without `theme_void()`. There is ongoing github discussions with some of the developers at `ggplot2` to figure out why, but for now just make sure you use `theme_void` to add shapefiles to the same plot in R and have them work properly. Also take note of the `scale_fill_distiller` function. This is an easy way to throw in a `RColorbrewer` color pallette. In this case we used the Blues colorpallete since we're dealing with water but you can make it any `RColorbrewer` pallette you want. Also notice the `direction=1`. This reverses the order of the blues color pallette. I can't explain why it's not `-1`...Sidenote - you can also use `scale_fill_viridis()` which has some different default pallettes such as - “magma”, “plasma”, and “inferno”. 
 
 
 
-
-
-
-
-
-
-
-load(url("https://github.com/valentinitnelav/RandomScripts/blob/master/NaturalEarth.RData?raw=true"))
-
-
-
-ggplot() +
-    # add Natural Earth countries projected to Robinson, give black border and fill with gray
-    geom_polygon(data=NE_countries_rob, aes(long,lat, group=group), colour="black", fill="gray80", size = 0.25)
-
-ggplot() + geom_polygon(data=NE_box_rob, aes(x=long, y=lat), colour="black", fill="transparent", size = 0.25)
-
-ggplot() + geom_path(data=NE_graticules_rob, aes(long, lat, group=group), linetype="dotted", color="grey50", size = 0.25)
-
-ggplot() + geom_text(data = lbl.Y.prj, aes(x = X.prj, y = Y.prj, label = lbl), color="grey50", size=2)
-
-ggplot() + geom_text(data = lbl.X.prj, aes(x = X.prj, y = Y.prj, label = lbl), color="grey50", size=2)
-
-df = as.data.frame(projTemClim, xy=TRUE)
-ggplot() + geom_raster(data=df, aes(x=x, y=y, fill = CRU_Global_1961.1990_Mean_Monthly_Surface_Temperature_Climatology))
-
-ggplot() +    geom_raster(data=df, aes(x=x, y=y, fill = CRU_Global_1961.1990_Mean_Monthly_Surface_Temperature_Climatology)) +
-    # add Natural Earth countries projected to Robinson, give black border and fill with gray
-    geom_polygon(data=NE_countries_rob, aes(long,lat, group=group), colour="black", fill="transparent", size = 0.25) +
-    # Note: "Regions defined for each Polygons" warning has to do with fortify transformation. Might get deprecated in future!
-    # alternatively, use use map_data(NE_countries) to transform to data frame and then use project() to change to desired projection.
-    # add Natural Earth box projected to Robinson
-    geom_polygon(data=NE_box_rob, aes(x=long, y=lat), colour="black", fill="transparent", size = 0.25) +
-    # add graticules projected to Robinson
-    geom_path(data=NE_graticules_rob, aes(long, lat, group=group), linetype="dotted", color="grey50", size = 0.25) +
-    # add graticule labels - latitude and longitude
-    geom_text(data = lbl.Y.prj, aes(x = X.prj, y = Y.prj, label = lbl), color="grey50", size=2) +
-    geom_text(data = lbl.X.prj, aes(x = X.prj, y = Y.prj, label = lbl), color="grey50", size=2) +
-    # the default, ratio = 1 in coord_fixed ensures that one unit on the x-axis is the same length as one unit on the y-axis
-    coord_quickmap(xlim=range(df$x), ylim=range(df$y)) +
-    my_theme + my_fill +
-    # remove the background and default gridlines
-    
-
-my_theme <- theme_void() + theme(panel.ontop=TRUE, panel.background=element_blank())
-my_cols <- scale_color_distiller(palette='Spectral')
-my_fill <- scale_fill_distiller(palette='Spectral')
-ggplot(df, aes(y=y, x=x, fill=CRU_Global_1961.1990_Mean_Monthly_Surface_Temperature_Climatology)) +
-    borders('world', xlim=range(df$x), ylim=range(df$y), colour='black') + my_theme + my_fill +
-    coord_quickmap(xlim=range(df$x), ylim=range(df$y))
-    
-ggplot(df, aes(y=y, x=x, fill=CRU_Global_1961.1990_Mean_Monthly_Surface_Temperature_Climatology)) + geom_polygon() +
-    borders('world', xlim=range(df$x), ylim=range(df$y), colour='black') + my_theme + my_fill +
-    coord_map('lambert', lat0=30, lat1=65, xlim=c(-20, 39), ylim=c(19, 75))
-    
-    
-library(rasterVis)
-r=projTemClim
-ggplot(r) + geom_tile(aes(fill = value)) + 
-  scale_fill_distiller(palette="Spectral", na.value = "transparent") +
-  my_theme  
-
-library(mapview)
-mapview(r, legend = TRUE)  
-
-
-nam = brick("Downloads/NAM_CONUS_80km_20200107_0000.grib1")
-
-# Band 34 is temperature at 450hpa
