@@ -33,7 +33,7 @@ https://github.com/jsimkins2/geog473-673/blob/master/Advanced_R/Week3_ggplot2.md
 
 https://github.com/jsimkins2/geog473-673/blob/master/Advanced_R/Week4_spatial_ggplot2.md
 
- Week 5
+ Week 5 - Plotting Shapefiles
 
 https://jsimkins2.github.io/geog473-673/Week5_shapefiles.html
 
