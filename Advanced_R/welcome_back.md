@@ -6,6 +6,19 @@ Welcome Back!
 
 Welcome to the Advanced phase of R. In this class, we'll be covering new topics at an accelerated pace. But first, let's shake off the rust and get back into the swing of things. As always, if you need revisit older tutorials, they can be found here - <https://github.com/jsimkins2/geog473-673/tree/master/R>
 
+Downloading Data from the datasets folder
+=========================================
+
+All datasets used for this class will be found here - <https://github.com/jsimkins2/geog473-673/tree/master/datasets/>
+
+In order to download these files easily, you can use the following code:
+
+`download.file("https://github.com/jsimkins2/geog473-673/tree/master/datasets/world_shpfiles/world.shp", destfile = "/Users/james/Downloads/world.shp" , mode='wb')`
+
+Follow this format for any of the datasets. Here is another example for the `TreeData.csv`
+
+`download.file("https://github.com/jsimkins2/geog473-673/tree/master/datasets/TreeData.csv", destfile = "/Users/james/Downloads/TreeData.csv" , mode='wb')`
+
 Some Useful Definitions
 -----------------------
 
@@ -267,9 +280,9 @@ X
 Y
 ```
 
-    ##  [1] 4.000000 3.500000 3.333333 3.250000 3.200000 3.166667 3.142857 3.125000
-    ##  [9] 3.111111 3.100000 3.090909 3.083333 3.076923 3.071429 3.066667 3.062500
-    ## [17] 3.058824 3.055556 3.052632 3.050000
+    ##  [1] 4.000000 3.500000 3.333333 3.250000 3.200000 3.166667 3.142857
+    ##  [8] 3.125000 3.111111 3.100000 3.090909 3.083333 3.076923 3.071429
+    ## [15] 3.066667 3.062500 3.058824 3.055556 3.052632 3.050000
 
 ``` r
 plot(X,Y)
@@ -333,7 +346,7 @@ I
 
     ## InfStatus
     ##    Infected   Recovered Susceptible 
-    ##          16          20          14
+    ##          15          25          10
 
 ``` r
 # Now let's make a random sample of 3 genotypes (RR, Rr, and rr)
@@ -344,7 +357,7 @@ G
 
     ## Genotype
     ## rr Rr RR 
-    ## 22 11 17
+    ## 19 18 13
 
 ``` r
 #show genotype and infected status as a table 
@@ -353,9 +366,9 @@ table(Genotype, InfStatus)
 
     ##         InfStatus
     ## Genotype Infected Recovered Susceptible
-    ##       rr        4        11           7
-    ##       Rr        4         3           4
-    ##       RR        8         6           3
+    ##       rr        5        10           4
+    ##       Rr        6         9           3
+    ##       RR        4         6           3
 
 Note - We turned the sample data info a `factor` to make sure the factors aren't double indexed...here is what I mean...
 
@@ -365,16 +378,16 @@ test <- sample(c("Susceptible", "Infected", "Recovered"),size = 50, replace = TR
 test
 ```
 
-    ##  [1] "Susceptible" "Infected"    "Infected"    "Infected"    "Recovered"  
-    ##  [6] "Susceptible" "Recovered"   "Infected"    "Susceptible" "Susceptible"
-    ## [11] "Infected"    "Recovered"   "Infected"    "Infected"    "Susceptible"
-    ## [16] "Recovered"   "Infected"    "Susceptible" "Susceptible" "Susceptible"
-    ## [21] "Infected"    "Infected"    "Infected"    "Susceptible" "Susceptible"
-    ## [26] "Recovered"   "Recovered"   "Infected"    "Recovered"   "Susceptible"
-    ## [31] "Susceptible" "Recovered"   "Infected"    "Susceptible" "Susceptible"
-    ## [36] "Susceptible" "Infected"    "Recovered"   "Susceptible" "Recovered"  
-    ## [41] "Susceptible" "Susceptible" "Recovered"   "Susceptible" "Infected"   
-    ## [46] "Recovered"   "Recovered"   "Recovered"   "Infected"    "Susceptible"
+    ##  [1] "Susceptible" "Susceptible" "Recovered"   "Recovered"   "Susceptible"
+    ##  [6] "Infected"    "Susceptible" "Infected"    "Recovered"   "Recovered"  
+    ## [11] "Susceptible" "Infected"    "Recovered"   "Recovered"   "Infected"   
+    ## [16] "Recovered"   "Susceptible" "Infected"    "Recovered"   "Infected"   
+    ## [21] "Susceptible" "Infected"    "Infected"    "Recovered"   "Susceptible"
+    ## [26] "Infected"    "Recovered"   "Recovered"   "Susceptible" "Infected"   
+    ## [31] "Infected"    "Susceptible" "Susceptible" "Susceptible" "Recovered"  
+    ## [36] "Susceptible" "Infected"    "Recovered"   "Recovered"   "Infected"   
+    ## [41] "Susceptible" "Recovered"   "Infected"    "Infected"    "Recovered"  
+    ## [46] "Recovered"   "Susceptible" "Infected"    "Susceptible" "Susceptible"
 
 ``` r
 class(test)
@@ -388,15 +401,16 @@ test2 <- factor(sample(c("Susceptible", "Infected", "Recovered"),size = 50, repl
 test2
 ```
 
-    ##  [1] Infected    Susceptible Recovered   Infected    Susceptible Recovered  
-    ##  [7] Susceptible Susceptible Recovered   Recovered   Susceptible Recovered  
-    ## [13] Infected    Recovered   Infected    Recovered   Recovered   Infected   
-    ## [19] Infected    Recovered   Susceptible Infected    Recovered   Infected   
-    ## [25] Infected    Infected    Infected    Susceptible Infected    Susceptible
-    ## [31] Recovered   Susceptible Infected    Recovered   Infected    Susceptible
-    ## [37] Recovered   Infected    Recovered   Recovered   Infected    Infected   
-    ## [43] Recovered   Recovered   Infected    Infected    Susceptible Recovered  
-    ## [49] Infected    Infected   
+    ##  [1] Infected    Infected    Infected    Infected    Recovered  
+    ##  [6] Recovered   Infected    Recovered   Susceptible Infected   
+    ## [11] Recovered   Recovered   Infected    Recovered   Susceptible
+    ## [16] Recovered   Infected    Infected    Susceptible Susceptible
+    ## [21] Recovered   Susceptible Susceptible Recovered   Susceptible
+    ## [26] Susceptible Susceptible Infected    Infected    Susceptible
+    ## [31] Recovered   Susceptible Recovered   Infected    Susceptible
+    ## [36] Susceptible Infected    Recovered   Susceptible Infected   
+    ## [41] Recovered   Infected    Susceptible Recovered   Recovered  
+    ## [46] Recovered   Infected    Susceptible Infected    Recovered  
     ## Levels: Infected Recovered Susceptible
 
 ``` r
@@ -429,7 +443,7 @@ Let's say you're an ecologist who collected some tree data samples out in the fi
 
 ``` r
 # Navigate to the location where your file is stored locally. Use read.csv() function to load the data
-treedat <- read.csv("~/Downloads/TreeData.csv")
+treedat <- read.csv("/Users/james/Documents/Github/geog473-673/datasets/TreeData.csv")
 treedat
 ```
 
@@ -476,89 +490,42 @@ treedat
     ## 19    70.5
     ## 20   128.6
 
-`treedat` is a data frame. As a reminder, a data frame is essentially a 2-dimensional array that contains a *combination* of vectors (columns of data) that are of the class; integer, numeric, character. This is *different* from a matrix which can only contain *1 type* of data. In this case, we have some tree data that includes species of tree, season the data was collected, diameter of the tree, bark thickness, area of no bark, heartwood diameter, and sapwood diameter. [![](welcome_back_files/figure-markdown_github/unnamed-chunk-9-1.png)](https://github.com/jsimkins2/geog473-673/tree/master/documents/heartwoodvssapwood.jpeg)
+`treedat` is a data frame. As a reminder, a data frame is essentially a 2-dimensional array that contains a *combination* of vectors (columns of data) that are of the class; integer, numeric, character. This is *different* from a matrix which can only contain *1 type* of data. In this case, we have some tree data that includes species of tree, season the data was collected, diameter of the tree, bark thickness, area of no bark, heartwood diameter, and sapwood diameter.
 
+    ## PhantomJS not found. You can install it with webshot::install_phantomjs(). If it is installed, please make sure the phantomjs executable can be found via the PATH variable.
+
+<iframe src="https://github.com/jsimkins2/geog473-673/tree/master/documents/heartwoodvssapwood.jpeg" width="100%" height="400px">
+</iframe>
 Now, let's edit htis dataframe to the format we want it in. Then, let's plot a histogram of bark thickness and a boxplot of sapdepth by species.
 
 ``` r
 # let's set the rownames equal to the tree column
-treedat <- read.csv("~/Downloads/TreeData.csv", row.names='tree')
+treedat <- read.csv("/Users/james/Documents/Github/geog473-673/datasets/TreeData.csv",row.names='tree')
 # print treedat
 treedat
 ```
 
-    ##     spp season Infected  dbh SapDepth BarkThick NobarkArea Heartwood SapArea
-    ## 1  PICO Summer      Yes 42.2      8.4       0.3     1359.2     483.1   876.1
-    ## 2  ABLA   Fall      Yes 13.4      2.0       0.4      124.7      58.1    66.6
-    ## 3  ABLA Summer       No 13.1      1.5       0.3      122.7      70.9    51.8
-    ## 4  PICO Spring       No 15.0      4.1       0.2      167.4      32.2   135.2
-    ## 5  POTR Winter      Yes 14.2      3.6       0.0      158.4      38.5   119.9
-    ## 6  POTR Winter      Yes 20.0      5.9       0.0      314.2      52.8   261.3
-    ## 7  ABLA Summer      Yes  9.1      2.1       0.3       56.7      14.5    42.2
-    ## 8  ABLA Spring       No  9.2      2.5       0.5       52.8       8.0    44.8
-    ## 9  ABLA   Fall      Yes 27.3      3.0       0.6      535.0     317.3   217.7
-    ## 10 PICO   Fall       No 11.2      3.4       0.3       88.2      11.3    76.9
-    ## 11 PICO Spring      Yes 18.0      5.9       0.3      237.8      24.6   213.2
-    ## 12 POTR Summer       No  9.0      3.0       0.0       63.6       7.1    56.5
-    ## 13 POTR Spring       No 15.4      4.1       0.0      186.3      40.7   145.5
-    ## 14 POTR Winter       No 24.1      6.2       0.0      456.2     107.5   348.7
-    ## 15 PICO Winter      Yes 24.2      7.0       0.5      422.7      66.5   356.3
-    ## 16 PIFL   Fall       No 14.4      4.2       0.5      141.0      19.6   121.4
-    ## 17 PIFL Winter       No 13.1      2.2       0.6      111.2      44.2    67.0
-    ## 18 PIFL Summer      Yes 21.5      5.1       0.6      323.7      80.1   243.5
-    ## 19 PIFL Spring       No 13.4      2.2       0.5      120.8      50.3    70.5
-    ## 20 PIFL   Fall      Yes 16.2      3.5       0.5      181.5      52.8   128.6
-
-``` r
-# look at the data frame variable names 
-names(treedat)
-```
-
-    ## [1] "spp"        "season"     "Infected"   "dbh"        "SapDepth"  
-    ## [6] "BarkThick"  "NobarkArea" "Heartwood"  "SapArea"
-
-``` r
-# print the dbh variable
-treedat$dbh
-```
-
-    ##  [1] 42.2 13.4 13.1 15.0 14.2 20.0  9.1  9.2 27.3 11.2 18.0  9.0 15.4 24.1 24.2
-    ## [16] 14.4 13.1 21.5 13.4 16.2
-
-``` r
-# rename the dbh variable, but first let's be sure our index of the dbh variable is correct
-colnames(treedat)[4]
-```
-
-    ## [1] "dbh"
-
-``` r
-# yep, dbh is the index number 4 
-colnames(treedat)[4] = "tree.diameter"
-treedat
-```
-
-    ##     spp season Infected tree.diameter SapDepth BarkThick NobarkArea Heartwood
-    ## 1  PICO Summer      Yes          42.2      8.4       0.3     1359.2     483.1
-    ## 2  ABLA   Fall      Yes          13.4      2.0       0.4      124.7      58.1
-    ## 3  ABLA Summer       No          13.1      1.5       0.3      122.7      70.9
-    ## 4  PICO Spring       No          15.0      4.1       0.2      167.4      32.2
-    ## 5  POTR Winter      Yes          14.2      3.6       0.0      158.4      38.5
-    ## 6  POTR Winter      Yes          20.0      5.9       0.0      314.2      52.8
-    ## 7  ABLA Summer      Yes           9.1      2.1       0.3       56.7      14.5
-    ## 8  ABLA Spring       No           9.2      2.5       0.5       52.8       8.0
-    ## 9  ABLA   Fall      Yes          27.3      3.0       0.6      535.0     317.3
-    ## 10 PICO   Fall       No          11.2      3.4       0.3       88.2      11.3
-    ## 11 PICO Spring      Yes          18.0      5.9       0.3      237.8      24.6
-    ## 12 POTR Summer       No           9.0      3.0       0.0       63.6       7.1
-    ## 13 POTR Spring       No          15.4      4.1       0.0      186.3      40.7
-    ## 14 POTR Winter       No          24.1      6.2       0.0      456.2     107.5
-    ## 15 PICO Winter      Yes          24.2      7.0       0.5      422.7      66.5
-    ## 16 PIFL   Fall       No          14.4      4.2       0.5      141.0      19.6
-    ## 17 PIFL Winter       No          13.1      2.2       0.6      111.2      44.2
-    ## 18 PIFL Summer      Yes          21.5      5.1       0.6      323.7      80.1
-    ## 19 PIFL Spring       No          13.4      2.2       0.5      120.8      50.3
-    ## 20 PIFL   Fall      Yes          16.2      3.5       0.5      181.5      52.8
+    ##     spp season Infected  dbh SapDepth BarkThick NobarkArea Heartwood
+    ## 1  PICO Summer      Yes 42.2      8.4       0.3     1359.2     483.1
+    ## 2  ABLA   Fall      Yes 13.4      2.0       0.4      124.7      58.1
+    ## 3  ABLA Summer       No 13.1      1.5       0.3      122.7      70.9
+    ## 4  PICO Spring       No 15.0      4.1       0.2      167.4      32.2
+    ## 5  POTR Winter      Yes 14.2      3.6       0.0      158.4      38.5
+    ## 6  POTR Winter      Yes 20.0      5.9       0.0      314.2      52.8
+    ## 7  ABLA Summer      Yes  9.1      2.1       0.3       56.7      14.5
+    ## 8  ABLA Spring       No  9.2      2.5       0.5       52.8       8.0
+    ## 9  ABLA   Fall      Yes 27.3      3.0       0.6      535.0     317.3
+    ## 10 PICO   Fall       No 11.2      3.4       0.3       88.2      11.3
+    ## 11 PICO Spring      Yes 18.0      5.9       0.3      237.8      24.6
+    ## 12 POTR Summer       No  9.0      3.0       0.0       63.6       7.1
+    ## 13 POTR Spring       No 15.4      4.1       0.0      186.3      40.7
+    ## 14 POTR Winter       No 24.1      6.2       0.0      456.2     107.5
+    ## 15 PICO Winter      Yes 24.2      7.0       0.5      422.7      66.5
+    ## 16 PIFL   Fall       No 14.4      4.2       0.5      141.0      19.6
+    ## 17 PIFL Winter       No 13.1      2.2       0.6      111.2      44.2
+    ## 18 PIFL Summer      Yes 21.5      5.1       0.6      323.7      80.1
+    ## 19 PIFL Spring       No 13.4      2.2       0.5      120.8      50.3
+    ## 20 PIFL   Fall      Yes 16.2      3.5       0.5      181.5      52.8
     ##    SapArea
     ## 1    876.1
     ## 2     66.6
@@ -580,6 +547,78 @@ treedat
     ## 18   243.5
     ## 19    70.5
     ## 20   128.6
+
+``` r
+# look at the data frame variable names 
+names(treedat)
+```
+
+    ## [1] "spp"        "season"     "Infected"   "dbh"        "SapDepth"  
+    ## [6] "BarkThick"  "NobarkArea" "Heartwood"  "SapArea"
+
+``` r
+# print the dbh variable
+treedat$dbh
+```
+
+    ##  [1] 42.2 13.4 13.1 15.0 14.2 20.0  9.1  9.2 27.3 11.2 18.0  9.0 15.4 24.1
+    ## [15] 24.2 14.4 13.1 21.5 13.4 16.2
+
+``` r
+# rename the dbh variable, but first let's be sure our index of the dbh variable is correct
+colnames(treedat)[4]
+```
+
+    ## [1] "dbh"
+
+``` r
+# yep, dbh is the index number 4 
+colnames(treedat)[4] = "tree.diameter"
+treedat
+```
+
+    ##     spp season Infected tree.diameter SapDepth BarkThick NobarkArea
+    ## 1  PICO Summer      Yes          42.2      8.4       0.3     1359.2
+    ## 2  ABLA   Fall      Yes          13.4      2.0       0.4      124.7
+    ## 3  ABLA Summer       No          13.1      1.5       0.3      122.7
+    ## 4  PICO Spring       No          15.0      4.1       0.2      167.4
+    ## 5  POTR Winter      Yes          14.2      3.6       0.0      158.4
+    ## 6  POTR Winter      Yes          20.0      5.9       0.0      314.2
+    ## 7  ABLA Summer      Yes           9.1      2.1       0.3       56.7
+    ## 8  ABLA Spring       No           9.2      2.5       0.5       52.8
+    ## 9  ABLA   Fall      Yes          27.3      3.0       0.6      535.0
+    ## 10 PICO   Fall       No          11.2      3.4       0.3       88.2
+    ## 11 PICO Spring      Yes          18.0      5.9       0.3      237.8
+    ## 12 POTR Summer       No           9.0      3.0       0.0       63.6
+    ## 13 POTR Spring       No          15.4      4.1       0.0      186.3
+    ## 14 POTR Winter       No          24.1      6.2       0.0      456.2
+    ## 15 PICO Winter      Yes          24.2      7.0       0.5      422.7
+    ## 16 PIFL   Fall       No          14.4      4.2       0.5      141.0
+    ## 17 PIFL Winter       No          13.1      2.2       0.6      111.2
+    ## 18 PIFL Summer      Yes          21.5      5.1       0.6      323.7
+    ## 19 PIFL Spring       No          13.4      2.2       0.5      120.8
+    ## 20 PIFL   Fall      Yes          16.2      3.5       0.5      181.5
+    ##    Heartwood SapArea
+    ## 1      483.1   876.1
+    ## 2       58.1    66.6
+    ## 3       70.9    51.8
+    ## 4       32.2   135.2
+    ## 5       38.5   119.9
+    ## 6       52.8   261.3
+    ## 7       14.5    42.2
+    ## 8        8.0    44.8
+    ## 9      317.3   217.7
+    ## 10      11.3    76.9
+    ## 11      24.6   213.2
+    ## 12       7.1    56.5
+    ## 13      40.7   145.5
+    ## 14     107.5   348.7
+    ## 15      66.5   356.3
+    ## 16      19.6   121.4
+    ## 17      44.2    67.0
+    ## 18      80.1   243.5
+    ## 19      50.3    70.5
+    ## 20      52.8   128.6
 
 ``` r
 # Now let's do some plotting 

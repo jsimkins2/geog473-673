@@ -90,9 +90,14 @@ ggplot(acadia, aes(x=year, y=visitors)) +
   
 ```
 
+
+
 # Advanced Plotting - Synthesizing Shapefiles 
 
 Often times, the spatial data that we want aren't in a nice, gridded lat/lon. The oblate spheroid that we call home presents some challenges when it comes to displaying spatial datasets. Often times, datasets like these are stored as separate entities - shapefiles & data tables. Fortunately, we have multiple avenues for working with this data. Let's check out a coastal flooding product that projects potential water levels above normal for each day. [coast-flood.udel.edu]
+
+
+
 
 ```{r}
 #Load packages
@@ -116,6 +121,9 @@ NOTE: Everytime you read in a shapefile like `cfms_watersheds.shp`, you MUST hav
 ANOTHER NOTE: Notice the *@* symbol in `coast.shp@proj4string`. This is you query metadata associated with shapefiles. 
 
 Back to plotting...
+
+
+
 ```{r}
 plot(coast.shp)
 # Open the dataset that corresponds to the water levels within the shapefile boxes 
@@ -145,21 +153,35 @@ mycolourscheme <- mycolours[findInterval(merged.coast$maxpred, vec = mybreaks)]
 
 ```
 
+
+
 The data is prepared, now we just need to plug in everything to plotting functions. First up is `spplot` from the `sp` package:
+
+
 
 ```{r}
 spplot(merged.coast, "maxpred", par.settings = list(axis.line = list(col ="transparent")), main = "Projected Water Levels (Feet)", cuts = 5, col ="transparent", col.regions = mycolours)
 
 ```
 
+
+
 Now we use the `tmap` function - very similar to `ggplot2`. `tmap` == Thematic Map Visualization. Thematic maps are geographical maps in which spatial data distributions are visualized. This package offers a flexible, layer-based, and easy to use approach to create thematic maps, such as choropleths and bubble maps. It is based on the grammar of graphics, and resembles the syntax of ggplot2.
+
+
+
+
 ```{r}
 library(tmap)
 tm_shape(merged.coast) + 
   tm_polygons(col='maxpred', title = "Projected Water Levels", palette = "Spectral") + tm_style("classic") + tm_scale_bar(position = c("left", "bottom")) 
 ```
 
+
+
 Ok, so those are cool, but what about using `ggplot2`? In order to do this, we'll need to use `geom_sf` from `ggplot2`. This enables us to plot `sf` objects. `sf` is a package for Simple Features. It's one of the other big players for spatial data wrangling in R that a lot of other, fancier packages that we use in this class are built on. We'll need to load in `sf` before we can convert our shapefile into an `sf` object. 
+
+
 
 ```{r}
 library(sf)
@@ -168,7 +190,7 @@ class(states)
 states = st_as_sf(states)
 class(states)
 
-# Since they don't play nicely, we'll need to convert our original merged.coast to a Simple Feature
+# convert it to an sf object
 gg_merged = st_as_sf(merged.coast)
 class(gg_merged)
 # now we use geom_sf since our merged.coast is now a simple feature
@@ -178,14 +200,24 @@ ggplot(data = states) + geom_sf() + theme_void() +
   scale_fill_distiller(palette = "Blues", direction= 1)
 
 ```
+
+
 Looks pretty good even though the shapefile isn't quite as sharp as we'd like. Besides the shapefile which we added to the plot via `geom_sf()`, take notice of the `theme_void()`...this plot will NOT WORK without `theme_void()`. There is ongoing github discussions with some of the developers at `ggplot2` to figure out why, but for now just make sure you use `theme_void` to add shapefiles to the same plot in R and have them work properly. Also take note of the `scale_fill_distiller` function. This is an easy way to throw in a `RColorbrewer` color pallette. In this case we used the Blues colorpallete since we're dealing with water but you can make it any `RColorbrewer` pallette you want. Also notice the `direction=1`. This reverses the order of the blues color pallette. I can't explain why it's not `-1`...Sidenote - you can also use `scale_fill_viridis()` which has some different default pallettes such as - “magma”, “plasma”, and “inferno”. 
+
+
 
 #### Mapview
 Saving the easiest for last...`mapview` is an awesome package that I didn't find until recently. As always though, a house with a foundation is more sound than one without. It's good to know about the other packages above!
+
+
+
 ```{r}
 library(mapview)
 mapview(merged.coast['maxpred'], col.regions = mycolours)
 ```
+
+
+
 
 #### Saving a new shapefile
 So we combined a csv with a shapefile to make that plot. We don't need to duplicate that hard work again because we can actually save our merged shapefile/csv as an ENVI shapefile.
@@ -204,16 +236,19 @@ writeOGR(obj = merged.coast, dsn = "/Users/james/Downloads/coast_files/merged.co
 
 # Week 5 Assignment - Replicate these Plots
 
-Using the **ne_10m_parks_and_protected_lands** dataset, map the names of the protected lands in the Pacific Northwest using the following methods. 
+Using the **ne_10m_parks_and_protected_lands** shapefile dataset, map the names of the protected lands in the **Pacific Northwest** using the methods listed below. You will need to download all of the contents of the **ne_10m_parks_and_protected_lands** shapefile folder. *Note that you have to fuse a csv and to this shapefile*
 
 1) spplot
 2) tmap
 3) ggplot2
 4) mapview
  
-    - Note that you don't have to fuse a csv and this shapefile together. 
 
-```{r, echo=FALSE}
+Create the 4 plots above and make them look as close as possible to the ones below. 
+
+
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.width=10, fig.height=10}
 library(maptools)
 m <- readOGR("/Users/james/Documents/Github/geog473-673/datasets//ne_10m_parks_and_protected_lands/ne_10m_parks_and_protected_lands_area.shp")
 
@@ -224,7 +259,7 @@ spplot(m,"name", par.settings = list(axis.line = list(col ="transparent")), main
 library(tmap)
 tm_shape(m,bbox=tmaptools::bb(matrix(c(-127,40,-110,50),2,2))) + 
   tm_polygons(col='name', title = "Protected Lands", palette = "Spectral") + tm_style("classic") + tm_scale_bar(position = c("right", "bottom")) +
-  tm_layout(legend.title.size = 1,legend.text.size = 0.6, legend.position = c("left","center")) +
+  tm_layout(legend.title.size = 0.7,legend.text.size = 0.5, legend.position = c("left","center")) +
   tm_layout(title="Protected Areas in Pacific NW")
 
 
@@ -234,10 +269,22 @@ states = st_as_sf(states)
 class(states)
 
 
+
+
+
+
+
+
 ggplot(data = states) + geom_sf() + theme_void() +
   geom_sf(data = st_as_sf(m), aes(fill=name), fill="darkgreen", colour = "aquamarine3", alpha=0.8) +
   coord_sf(xlim = c(-127, -110), ylim = c(40,50), expand = FALSE) + 
   theme(legend.position = "none") + ggtitle("Protected Lands in Pacific NW")
+
+
+
+
+
+
 
 library(mapview)
 mapview(m['name'], col.regions = mycolours)

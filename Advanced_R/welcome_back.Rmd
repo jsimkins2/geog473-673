@@ -12,6 +12,20 @@ knitr::opts_chunk$set(echo = TRUE)
 Welcome to the Advanced phase of R. In this class, we'll be covering new topics at an accelerated pace. But first, let's shake off the rust
 and get back into the swing of things. As always, if you need revisit older tutorials, they can be found here - https://github.com/jsimkins2/geog473-673/tree/master/R
 
+
+# Downloading Data from the datasets folder
+
+All datasets used for this class will be found here - https://github.com/jsimkins2/geog473-673/tree/master/datasets/ 
+
+In order to download these files easily, you can use the following code:
+
+`download.file("https://github.com/jsimkins2/geog473-673/tree/master/datasets/world_shpfiles/world.shp", destfile = "/Users/james/Downloads/world.shp" , mode='wb')`
+
+Follow this format for any of the datasets. Here is another example for the `TreeData.csv`
+
+`download.file("https://github.com/jsimkins2/geog473-673/tree/master/datasets/TreeData.csv", destfile = "/Users/james/Downloads/TreeData.csv" , mode='wb')`
+
+
 ## Some Useful Definitions
 
 | Function                 |             Description        |
@@ -207,7 +221,7 @@ Let's say you're an ecologist who collected some tree data samples out in the fi
 
 ```{r}
 # Navigate to the location where your file is stored locally. Use read.csv() function to load the data
-treedat <- read.csv("~/Downloads/TreeData.csv")
+treedat <- read.csv("/Users/james/Documents/Github/geog473-673/datasets/TreeData.csv")
 treedat
 ```
 
@@ -219,7 +233,7 @@ knitr::include_url("https://github.com/jsimkins2/geog473-673/tree/master/documen
 Now, let's edit htis dataframe to the format we want it in. Then, let's plot a histogram of bark thickness and a boxplot of sapdepth by species. 
 ```{r}
 # let's set the rownames equal to the tree column
-treedat <- read.csv("~/Downloads/TreeData.csv", row.names='tree')
+treedat <- read.csv("/Users/james/Documents/Github/geog473-673/datasets/TreeData.csv",row.names='tree')
 # print treedat
 treedat
 # look at the data frame variable names 
@@ -259,7 +273,7 @@ Your final plot should look like this
 
 ```{r, echo=FALSE, fig.width=8, fig.height=6}
 # let's set the rownames equal to the tree column
-treedat <- read.csv("~/Downloads/TreeData.csv", row.names='tree')
+treedat <- read.csv("/Users/james/Documents/Github/geog473-673/datasets/TreeData.csv",row.names='tree')
 # rename the dbh variable, but first let's be sure our index of the species variable is correct
 #colnames(treedat)[1]
 colnames(treedat)[1] = "species"
