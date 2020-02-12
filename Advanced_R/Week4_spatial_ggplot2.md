@@ -235,3 +235,12 @@ Assignment:
 Your final product should look something like...
 
 ![](Week4_spatial_ggplot2_files/figure-markdown_github/unnamed-chunk-9-1.png)
+
+Extra Credit - 5 Points !!!
+---------------------------
+
+Using the data above, pproximate the average tree cover for South America and Africa (extents don't have to be exact, just generally)
+
+1.  Plot the same domains above but this time color each continent (yes, the whole thing) based on the average tree cover. For example, if one of the continent has an average tree cover of 30%, the entire continent would be red based on the colorscale you choose where 30% is red.
+
+2.  Submit plot to canvas

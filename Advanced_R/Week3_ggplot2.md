@@ -327,7 +327,7 @@ Assignment:
 
 Using the WCr\_1hr.2012.nc found in the datasets folder, complete the following:
 
-1.  Using `ggplot2`, create an `geom_line` plot of `air_temperature`. **Zoom in** to the first half of the year (hint: one way to do this is to index date.seq in your xlim). Be Sure to include trendline and includes appropriate titles, axes, etc.
+1.  Using `ggplot2`, create an `geom_line` plot of `air_temperature`. **Zoom in** to the first half of the year. Be Sure to include trendline and includes appropriate titles, axes, labels, etc.
 
 2.  Using `ggplot2`, create a density plot of `air temperature` with appropriate titles, axes, legend etc.
 
@@ -336,3 +336,16 @@ Using the WCr\_1hr.2012.nc found in the datasets folder, complete the following:
 Your final plots should look something like these...
 
 ![](Week3_ggplot2_files/figure-markdown_github/unnamed-chunk-9-1.png)![](Week3_ggplot2_files/figure-markdown_github/unnamed-chunk-9-2.png)
+
+Extra Credit - 5 Points !!!
+---------------------------
+
+Using the WCr\_1hr.2010.nc, WCr\_1hr.2011.nc and WCr\_1hr.2012.nc found in the datasets folder, complete the following
+
+1.  Create a density plot using ggplot2 of "Air temperature" with each year being a component of the density plot (adding each year to the density plot as you loop through the data). Adjust alpha settings, colors, linetypes, etc. to make each line extinct.
+2.  Submit to assignment above labeled 'extra\_credit.png'
+
+EXTRA, EXTRA CREDIT - 10 Points !!!
+-----------------------------------
+
+Make the same plot as the extra credit plot above but include 2 smaller, zoomed in plots on the same image that highlight the tails of the distributions.
