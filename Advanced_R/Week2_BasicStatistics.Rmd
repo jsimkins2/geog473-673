@@ -312,7 +312,7 @@ rug(jitter(wcreek_df$air_temperature[1:length(wcreek_df$air_temperature) / 2]))
 
 
 
-# Assignment:
+# Week 2 Assignment:
 
 
 Using the WCr_1hr.2010.nc, WCr_1hr.2011.nc and WCr_1hr.2012.nc found in the datasets folder, complete the following:
@@ -385,3 +385,14 @@ for (y in year.seq){
   rug(jitter(wcreek_df$surface_downwelling_shortwave_flux_in_air[4380:length(wcreek_df$surface_downwelling_shortwave_flux_in_air)]))
 }
 ```
+
+
+## Extra Credit - 5 points !!!
+
+Using the WCr_1hr.2010.nc, WCr_1hr.2011.nc and WCr_1hr.2012.nc found in the datasets folder, complete the following
+
+1) Fuse together the 3 datasets into one continuous dataframe.
+2) Resample the data from an hourly to a daily resolution
+3) Plot Air temperature for your new combined data frame and add a trendline to it.
+4) Submit to assignment above labeled 'extra_credit.png'
+

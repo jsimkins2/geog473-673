@@ -1,17 +1,15 @@
 ---
-title: "Week5 - Spatial Points"
+title: "Week5 - Shapefiles"
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# Reprojecting Raster data and plotting it with ggplot2
-
 ### Quick tutorial - ggplot2 themes
 Ever notice the gray background on ggplot2? Well that's referred to as the default theme. There are other themes that can be called every time you createa a ggplot. Let's take a look:
 
-The black & white theme
+#### The black & white theme
 ```{r}
 library(ggplot2)
 
@@ -26,7 +24,7 @@ ggplot(acadia, aes(x=year, y=visitors)) +
   
 ```
 
-The dark theme
+#### The dark theme
 
 ```{r}
 library(ggplot2)
@@ -42,7 +40,7 @@ ggplot(acadia, aes(x=year, y=visitors)) +
   
 ```
 
-The light theme
+#### The light theme
 
 ```{r}
 library(ggplot2)
@@ -58,7 +56,7 @@ ggplot(acadia, aes(x=year, y=visitors)) +
   
 ```
 
-The classic theme
+#### The classic theme
 
 ```{r}
 library(ggplot2)
@@ -74,7 +72,7 @@ ggplot(acadia, aes(x=year, y=visitors)) +
   
 ```
 
-The void theme
+#### The void theme
 
 ```{r}
 library(ggplot2)
