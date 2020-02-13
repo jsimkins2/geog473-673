@@ -1,0 +1,5 @@
+---
+title: "Categorical Spatial Data"
+output: html_document
+---
+https://geocompr.robinlovelace.net/spatial-operations.html

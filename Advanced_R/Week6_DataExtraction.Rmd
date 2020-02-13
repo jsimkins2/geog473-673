@@ -1,0 +1,114 @@
+---
+title: "Week 6 - Data Extraction"
+output: rmarkdown::github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# THREDDS and ERDDAP
+
+So far this semester, we've only been playing with datasets that I have stored for you in the datasets folder. I showed you a quick way to download datasets from the folder using R - 
+
+`download.file("https://github.com/jsimkins2/geog473-673/tree/master/datasets/TreeData.csv", destfile = "/Users/james/Downloads/TreeData.csv" , mode='wb')`
+
+This is a really useful thing to have to download complete files from a datasets folder on Github. However, while Github is excellent for code, it's not a cloud service for datasets. THREDDS and ERDDAP are the future of environmental data repositories. 
+
+### THREDDS
+
+THREDDS (Thematic Realtime Environmental Distributed Data Services) is an efficient way to extract specific areas or time periods of a dataset. For example, if you're studying 2000-2020 water temperatures of the Delaware Bay, you don't necessarily want a water temperature dataset covering the Atlantic Ocean from 1960-2020. It's a waste of time to have to download, store, and process all of that data just to sub-select the Delaware Bay from 2000-2020. THREDDS makes it possible to download your desired subset from the get-go, saving you time and hard-drive space. I mentioned previously that I help manage a THREDDS server that stores UD's Satellite Receiving Station data. It's located at this URL - http://basin.ceoe.udel.edu/thredds/catalog.html .Here's what that looks like:
+
+```{r, echo=FALSE}
+knitr::include_url("https://github.com/jsimkins2/geog473-673/tree/master/documents/images/basin_thredds.png")
+```
+
+If we click on `GOES-R SST`, we see we have some different avenues for data extraction. 
+```{r, echo=FALSE}
+knitr::include_url("https://github.com/jsimkins2/geog473-673/tree/master/documents/images/basin_goesSST.png")
+```
+
+OPeNDAP (Open-source Project for a Network Data Access Protocol) is a great way to subselect the data. Opendap offers html files of the data (BAD IDEA, THIS WILL CRASH YOUR BROWSER) or netCDF files of the data (great idea)
+
+```{r, echo=FALSE}
+knitr::include_url("https://github.com/jsimkins2/geog473-673/tree/master/documents/images/basin_opendap.png")
+```
+
+Now you can use this page to download subset datasets, or we can make this really easy and use R to accomplish that task. This is a high temporal resolution dataset, so let's say we want Delaware Bay data from January 10th - 12th. All we need to make this happen is the url of the opendap page - http://basin.ceoe.udel.edu/thredds/dodsC/goes_r_sst.nc.html -  and the `ncdf4` package. 
+
+```{r}
+library(ncdf4)
+goes.nc = nc_open("http://basin.ceoe.udel.edu/thredds/dodsC/goes_r_sst.nc")
+goes.nc
+```
+
+Just with that one line of code, we've opened a connection with the GOES-R dataset on the THREDDS server. Printing the netcdf dataset provides some metadata info. Let's use this metadata and extract the time period / spatial extent that we want.
+
+```{r}
+# print out the names of the variables in our dataset
+names(goes.nc$var)
+
+# how is the time stored?
+goes.nc$dim$time$units
+```
+
+Seconds since 1970-01-01 is referred to as **EPOCH time**. Basically, this datetime is considered the inception of the internet. Computers are very good at storing information in this format and this is why we use this. Let's take out the last value - 
+
+```{r}
+lastVal = length(goes.nc$dim$time$vals)
+lastVal
+epoch_val = goes.nc$dim$time$vals[lastVal]
+```
+
+There you go, that's an EPOCH time value. Let's convert it to a human timestamp...
+
+```{r}
+human_time = as.POSIXct(epoch_val, origin="1970-01-01")
+human_time
+```
+
+`as.POSIXct` is a datetime package in R. It is a gold standard and you'll see it as you gain more experience in playing with datetime conversions. You can also use `anytime` package. 
+
+```{r}
+library(anytime)
+anytime(epoch_val)
+```
+
+At this point, all we have to do is convert our human dates to EPOCH so we can extract the data. In order to do this all we need to do is convert a datetime object to a numeric. R handles it for us...
+
+```{r}
+start_time = "2020-01-10" # year dash month dash day
+
+epoch_start_time = as.numeric(as.POSIXct(start_time, format="%Y-%m-%d")) # %Y-%m-%d is telling the computer the format of our datestring is year dash month dash day
+```
+
+Alright, we have our start time! Now what about the latitude / longitudes? We'll need to find the index of the lat/lon grid we want. Delaware bay is approximately between -75.8 W, -74.7 W, 38.3 N, and 40 N. 
+
+```{r}
+# print out a few longitude values - notice that the entire dataset is on this grid right here. 
+head(goes.nc$dim$lon$vals)
+
+# notice how we extract those values using indexing - the 100th value 
+goes.nc$dim$lon$vals[100]
+```
+
+The 100th lon value is -98.20815. Aka, a lon index of 100 returns -98.20815. Luckily, R has a handy `which` function to convert between numeric values and index values
+
+```{r}
+start_lon = -75.8
+index_start_lon = base::match(x = as.vector(-75.8), table = as.vector(goes.nc$dim$lon$vals))
+
+
+
+
+```{r}
+# cool, let's grab SST (Sea Surface Temperature) for Delaware Bay from January 10th-12th
+rec_time  <- max(goes.nc$dim$time$vals)
+jdayGoes = format(as.POSIXct(goes.nc$dim$time$vals,origin = "1970-01-01",tz = "GMT"),format="%j")
+rec_len   <- clim.nc$dim$time$len
+sst.c <- ncvar_get(goes.nc, "SST",start = c(1,1,"2020-01-10"), count = c(clim.nc$dim$lon$len,clim.nc$dim$lat$len,1))
+```
+
+
+
+
