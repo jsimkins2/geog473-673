@@ -27,18 +27,16 @@ If you have a dataset or type of data you're interested in, google search it wit
 
 Today we'll use UDEL's Satellite Receiving Station THREDDS (\#5 on the list). It's located at this URL - <http://basin.ceoe.udel.edu/thredds/catalog.html>
 
-.Here's what that looks like:
+.Here's what that looks like: <img src="../documents/images/basin_thredds.png" width="2034" />
 
-    ## PhantomJS not found. You can install it with webshot::install_phantomjs(). If it is installed, please make sure the phantomjs executable can be found via the PATH variable.
+If we click on `GOES-R SST`, we see we have some different avenues for data extraction.
 
-<iframe src="https://github.com/jsimkins2/geog473-673/tree/master/documents/images/basin_thredds.png" width="100%" height="400px">
-</iframe>
-If we click on `GOES-R SST`, we see we have some different avenues for data extraction. <iframe src="https://github.com/jsimkins2/geog473-673/tree/master/documents/images/basin_goesSST.png" width="100%" height="400px"></iframe>
+<img src="../documents/images/basin_goesSST.png" width="818" />
 
 OPeNDAP (Open-source Project for a Network Data Access Protocol) is a great way to subselect the data. Opendap offers html files of the data (BAD IDEA, THIS WILL CRASH YOUR BROWSER) or netCDF files of the data (great idea)
 
-<iframe src="https://github.com/jsimkins2/geog473-673/tree/master/documents/images/basin_opendap.png" width="100%" height="400px">
-</iframe>
+<img src="../documents/images/basin_opendap.png" width="1508" />
+
 Now you can use this page to download subset datasets, or we can make this really easy and use R to accomplish that task. This is a high temporal resolution dataset, so let's say we want Delaware Bay data from July 14 - July 16, 2019. All we need to make this happen is the url of the opendap page - <http://basin.ceoe.udel.edu/thredds/dodsC/goes_r_sst.nc.html> - and the `ncdf4` package.
 
 ``` r
@@ -93,7 +91,7 @@ goes.nc
     ##             standard_name: longitude
     ##             units: degrees_east
     ##             _ChunkSizes: 2778
-    ##         time  Size:10451
+    ##         time  Size:10505
     ##             standard_name: time
     ##             long_name: EPOCH Time
     ##             units: seconds since 1970-01-01T00:00:00Z
@@ -113,7 +111,7 @@ goes.nc
     ##         inputCalibrationFile: 0
     ##         product_list: SST, DQF
     ##         summary: GOES16 SST product, reprojected to EPSG:4326.
-    ##         history: Fri Feb 14 11:19:49 2020: ncks /data/GOES/GOES-R/sst/2020/OR_ABI-L2-SSTF-M3_G16_s20200451500021_e20200451559329_c20200451605577.nc /data/GOES/GOES-R/sst/2020/OR_ABI-L2-SSTF-M3_G16_s20200451500021_e20200451559329_c20200451605577.nc -L 5 -O
+    ##         history: Sun Feb 16 17:20:01 2020: ncks /data/GOES/GOES-R/sst/2020/OR_ABI-L2-SSTF-M3_G16_s20200472100200_e20200472159508_c20200472206131.nc /data/GOES/GOES-R/sst/2020/OR_ABI-L2-SSTF-M3_G16_s20200472100200_e20200472159508_c20200472206131.nc -L 5 -O
     ##         NCO: netCDF Operators version 4.7.5 (Homepage = http://nco.sf.net, Code = http://github.com/nco/nco)
 
 Just with that one line of code, we've opened a connection with the GOES-R dataset on the THREDDS server. Printing the netcdf dataset provides some metadata info. Let's use this metadata and extract the time period / spatial extent that we want.
@@ -139,7 +137,7 @@ lastVal = length(goes.nc$dim$time$vals)
 lastVal
 ```
 
-    ## [1] 10451
+    ## [1] 10505
 
 ``` r
 epoch_val = goes.nc$dim$time$vals[lastVal]
@@ -152,7 +150,7 @@ human_time = as.POSIXct(epoch_val, origin="1970-01-01")
 human_time
 ```
 
-    ## [1] "2020-02-14 11:29:47 EST"
+    ## [1] "2020-02-16 17:30:05 EST"
 
 `as.POSIXct` is a datetime package in R. It is a gold standard and you'll see it as you gain more experience in playing with datetime conversions. You can also use `anytime` package.
 
@@ -161,7 +159,7 @@ library(anytime)
 anytime(epoch_val)
 ```
 
-    ## [1] "2020-02-14 11:29:47 EST"
+    ## [1] "2020-02-16 17:30:05 EST"
 
 At this point, all we have to do is convert our human dates to EPOCH so we can extract the data. In order to do this all we need to do is convert a datetime object to a numeric. R handles it for us...
 
@@ -398,14 +396,14 @@ So THREDDS is super fast but it's not the most human-friendly. ERDDAP, on the ot
 
 Let's check out the UDEL Satellite Receiving Station ERDDAP page - here's what it looks like
 
-<iframe src="https://github.com/jsimkins2/geog473-673/tree/master/documents/images/basin_erddap.png" width="100%" height="400px">
-</iframe>
-If we click on `GOES-R SST`, we see we have some different avenues for data extraction. <iframe src="https://github.com/jsimkins2/geog473-673/tree/master/documents/images/erddap_datasets.png" width="100%" height="400px"></iframe>
+<img src="../documents/images/basin_erddap.png" width="1133" />
+
+If we click on `GOES-R SST`, we see we have some different avenues for data extraction. <img src="../documents/images/erddap_datasets.png" width="1738" />
 
 OPeNDAP (Open-source Project for a Network Data Access Protocol) is a great way to subselect the data. Opendap offers html files of the data (BAD IDEA, THIS WILL CRASH YOUR BROWSER) or netCDF files of the data (great idea)
 
-<iframe src="https://github.com/jsimkins2/geog473-673/tree/master/documents/images/goesSST_erddap.png" width="100%" height="400px">
-</iframe>
+<img src="../documents/images/goesSST_erddap.png" width="1033" />
+
 You can use the Data Access Form at the top of the page to select data and download, or we can streamline this and use R to accomplish this easily. In order to do this, we just need the `rerddap` package.
 
 `install.packages("rerddap")`
@@ -552,7 +550,7 @@ info('cwwcNDBCMet')
     ##          Range: -9.37, 6.13 
     ##          Units: m 
     ##      time: 
-    ##          Range: 4910400.0, 1.5816969E9 
+    ##          Range: 4910400.0, 1.581894E9 
     ##          Units: seconds since 1970-01-01T00:00:00Z 
     ##      vis: 
     ##          Range: 0.0, 58.1 
@@ -621,7 +619,7 @@ info('jplMURSST41')
     ## <ERDDAP info> jplMURSST41 
     ##  Base URL: https://upwell.pfeg.noaa.gov/erddap/ 
     ##  Dimensions (range):  
-    ##      time: (2002-06-01T09:00:00Z, 2020-02-13T09:00:00Z) 
+    ##      time: (2002-06-01T09:00:00Z, 2020-02-15T09:00:00Z) 
     ##      latitude: (-89.99, 89.99) 
     ##      longitude: (-179.99, 180.0) 
     ##  Variables:  

@@ -34,20 +34,20 @@ Today we'll use UDEL's Satellite Receiving Station THREDDS (#5 on the list). It'
 
 
 .Here's what that looks like:
-
 ```{r, echo=FALSE}
-knitr::include_url("https://github.com/jsimkins2/geog473-673/tree/master/documents/images/basin_thredds.png")
+knitr::include_graphics("../documents/images/basin_thredds.png")
 ```
 
-If we click on `GOES-R SST`, we see we have some different avenues for data extraction. 
+If we click on `GOES-R SST`, we see we have some different avenues for data extraction.
+
 ```{r, echo=FALSE}
-knitr::include_url("https://github.com/jsimkins2/geog473-673/tree/master/documents/images/basin_goesSST.png")
+knitr::include_graphics("../documents/images/basin_goesSST.png")
 ```
 
 OPeNDAP (Open-source Project for a Network Data Access Protocol) is a great way to subselect the data. Opendap offers html files of the data (BAD IDEA, THIS WILL CRASH YOUR BROWSER) or netCDF files of the data (great idea)
 
 ```{r, echo=FALSE}
-knitr::include_url("https://github.com/jsimkins2/geog473-673/tree/master/documents/images/basin_opendap.png")
+knitr::include_graphics("../documents/images/basin_opendap.png")
 ```
 
 Now you can use this page to download subset datasets, or we can make this really easy and use R to accomplish that task. This is a high temporal resolution dataset, so let's say we want Delaware Bay data from July 14 - July 16, 2019. All we need to make this happen is the url of the opendap page - http://basin.ceoe.udel.edu/thredds/dodsC/goes_r_sst.nc.html -  and the `ncdf4` package. 
@@ -249,18 +249,18 @@ So THREDDS is super fast but it's not the most human-friendly. ERDDAP, on the ot
 Let's check out the UDEL Satellite Receiving Station ERDDAP page - here's what it looks like
 
 ```{r, echo=FALSE}
-knitr::include_url("https://github.com/jsimkins2/geog473-673/tree/master/documents/images/basin_erddap.png")
+knitr::include_graphics("../documents/images/basin_erddap.png")
 ```
 
 If we click on `GOES-R SST`, we see we have some different avenues for data extraction. 
 ```{r, echo=FALSE}
-knitr::include_url("https://github.com/jsimkins2/geog473-673/tree/master/documents/images/erddap_datasets.png")
+knitr::include_graphics("../documents/images/erddap_datasets.png")
 ```
 
 OPeNDAP (Open-source Project for a Network Data Access Protocol) is a great way to subselect the data. Opendap offers html files of the data (BAD IDEA, THIS WILL CRASH YOUR BROWSER) or netCDF files of the data (great idea)
 
 ```{r, echo=FALSE}
-knitr::include_url("https://github.com/jsimkins2/geog473-673/tree/master/documents/images/goesSST_erddap.png")
+knitr::include_graphics("../documents/images/goesSST_erddap.png")
 ```
 
 You can use the Data Access Form at the top of the page to select data and download, or we can streamline this and use R to accomplish this easily. In order to do this, we just need the `rerddap` package. 
