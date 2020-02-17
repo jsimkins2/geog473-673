@@ -679,8 +679,8 @@ rug(jitter(wcreek_df$air_temperature[1:length(wcreek_df$air_temperature) / 2]))
 
 ![](Week2_BasicStatistics_files/figure-markdown_github/unnamed-chunk-13-1.png)
 
-Assignment:
-===========
+Week 2 Assignment:
+==================
 
 Using the WCr\_1hr.2010.nc, WCr\_1hr.2011.nc and WCr\_1hr.2012.nc found in the datasets folder, complete the following:
 
@@ -694,3 +694,13 @@ Using the WCr\_1hr.2010.nc, WCr\_1hr.2011.nc and WCr\_1hr.2012.nc found in the d
 Your final plots should look something like this **but with different colors**
 
 ![](Week2_BasicStatistics_files/figure-markdown_github/unnamed-chunk-14-1.png) ![](Week2_BasicStatistics_files/figure-markdown_github/unnamed-chunk-15-1.png)
+
+Extra Credit - 5 points !!!
+---------------------------
+
+Using the WCr\_1hr.2010.nc, WCr\_1hr.2011.nc and WCr\_1hr.2012.nc found in the datasets folder, complete the following
+
+1.  Fuse together the 3 datasets into one continuous dataframe.
+2.  Resample the data from an hourly to a daily resolution
+3.  Plot Air temperature for your new combined data frame and add a trendline to it.
+4.  Submit to assignment above labeled 'extra\_credit.png'
