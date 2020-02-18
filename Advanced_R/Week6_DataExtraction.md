@@ -709,3 +709,8 @@ Deliverables: - R Code/Script - Images/Plots
 1.  Select any dataset from the THREDDS server and create a script that loads in the data and plots it. In your script explain why you chose that dataset, detail each step and describe why it's happening, Turn in your R script and the Image/Plot you've made.
 
 2.  Select any dataset from the ERDDAP server and create a script that loads in the data and plots it. In your script explain why you chose that dataset, detail each step and describe why it's happening, Turn in your R script and the Image/Plot you've made.
+
+Extra Credit !!! 2.5 Points !!
+------------------------------
+
+Create a function that downloads and plots a dataset using THREDDS or ERDDAP. Arguments must include date ranges and spatial extents. Submit script to canvas.
