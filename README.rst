@@ -39,5 +39,14 @@ https://jsimkins2.github.io/geog473-673/Week5_shapefiles.html
 
  Week 6
 
+https://github.com/jsimkins2/geog473-673/blob/master/Advanced_R/Week6_DataExtraction.md
+
+ Week 7
+
+
+
+ Final Project
+
+https://github.com/jsimkins2/geog473-673/blob/master/documents/AdvancedR_finalproject.pdf
 
 
