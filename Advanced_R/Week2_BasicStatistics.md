@@ -636,7 +636,11 @@ coef(fit)
     ##                                       2.166050e-06
 
 ``` r
-plot(air_temperature[1:length(wcreek_df$air_temperature) / 2] ~ wcreek_df$datetime[1:length(wcreek_df$datetime) / 2], data = wcreek_df,
+# set our indexes
+start_ind = 1
+end_ind = length(wcreek_df$air_temperature) / 2 # calculate the length of the data and divide it by 2 to get the first half of year
+
+plot(air_temperature[start_ind:end_ind] ~ wcreek_df$datetime[start_ind:end_ind], data = wcreek_df,
   main= "air_temperature vs. datetime",
   ylab= "Air Temperature ( Kelvin )",
   xlab= "Datetime",
@@ -655,7 +659,8 @@ Let's add this to a histogram of the data
 ``` r
 hist(wcreek_df$air_temperature[1:length(wcreek_df$air_temperature) / 2], freq = FALSE)
 x <- seq(250, 310, length.out=100)
-y <- with(wcreek_df, dnorm(x, mean(air_temperature[1:length(wcreek_df$air_temperature) / 2]), sd(air_temperature[1:length(wcreek_df$air_temperature) / 2])))
+y <- with(wcreek_df, dnorm(x, mean(air_temperature[start_ind:end_ind]), 
+          sd(air_temperature[start_ind:end_ind])))
 lines(x, y, col = "red")
 ```
 
@@ -664,7 +669,7 @@ lines(x, y, col = "red")
 Density plots can be thought of as plots of smoothed histograms. The smoothness is controlled by a bandwidth parameter that is analogous to the histogram binwidth. Let's plot up the density of all the temperature values within this half of the data.
 
 ``` r
-d = density(wcreek_df$air_temperature[1:length(wcreek_df$air_temperature) / 2], bw = 0.5)
+d = density(wcreek_df$air_temperature[start_ind:end_ind], bw = 0.5)
 plot(d, xlab = "Air Temperature (Kelvin)", ylab = "Density", main="Air Temperature Density", col="black")
 ```
 
@@ -673,8 +678,8 @@ plot(d, xlab = "Air Temperature (Kelvin)", ylab = "Density", main="Air Temperatu
 For a moderate number of observations a useful addition is a jittered rug plot:
 
 ``` r
-plot(density(wcreek_df$air_temperature[1:length(wcreek_df$air_temperature) / 2], bw = 0.5), main = "jittered rug plot")
-rug(jitter(wcreek_df$air_temperature[1:length(wcreek_df$air_temperature) / 2]))
+plot(density(wcreek_df$air_temperature[start_ind:end_ind], bw = 0.5), main = "jittered rug plot")
+rug(jitter(wcreek_df$air_temperature[start_ind:end_ind]))
 ```
 
 ![](Week2_BasicStatistics_files/figure-markdown_github/unnamed-chunk-13-1.png)
