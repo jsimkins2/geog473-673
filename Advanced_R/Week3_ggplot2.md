@@ -3,7 +3,16 @@ Week3 - ggplot2
 
 ### Quick tutorial - Correlation Plots
 
-Correlation plots show correlation coefficients across variables. For example, we expect shortwave radiation and temperature to have high a high correlation coefficient because generally speaking when the a lot of sunlight is received at the surface, temperature increases. There's a handy package called `corrplot` that caluclates correlation coefficients quickly and intuitively. We'll need to install this package and run our dataframe through it. One last thing...we'll need to calculate the residual values - that is the distance between actual data and the trendline. It's another way to express error. For this quick tutorial, let's use the Willow Creek meteorology data we were just using.
+Correlation plots show correlation coefficients across variables. For
+example, we expect shortwave radiation and temperature to have high a
+high correlation coefficient because generally speaking when the a lot
+of sunlight is received at the surface, temperature increases. There’s a
+handy package called `corrplot` that caluclates correlation coefficients
+quickly and intuitively. We’ll need to install this package and run our
+dataframe through it. One last thing…we’ll need to calculate the
+residual values - that is the distance between actual data and the
+trendline. It’s another way to express error. For this quick tutorial,
+let’s use the Willow Creek meteorology data we were just using.
 
 ``` r
 library(corrplot)
@@ -81,20 +90,13 @@ cor_wcreek = cor(wcreek_df)
 head(cor_wcreek)
 ```
 
-    ##                                           air_temperature
-    ## air_temperature                                 1.0000000
-    ## air_temperature_max                             0.9998053
-    ## air_temperature_min                             0.9998039
-    ## surface_downwelling_longwave_flux_in_air        0.8200776
-    ## air_pressure                                   -0.1622930
-    ## surface_downwelling_shortwave_flux_in_air       0.3566847
-    ##                                           air_temperature_max
-    ## air_temperature                                     0.9998053
-    ## air_temperature_max                                 1.0000000
-    ## air_temperature_min                                 0.9992183
-    ## surface_downwelling_longwave_flux_in_air            0.8177929
-    ## air_pressure                                       -0.1608531
-    ## surface_downwelling_shortwave_flux_in_air           0.3555227
+    ##                                           air_temperature air_temperature_max
+    ## air_temperature                                 1.0000000           0.9998053
+    ## air_temperature_max                             0.9998053           1.0000000
+    ## air_temperature_min                             0.9998039           0.9992183
+    ## surface_downwelling_longwave_flux_in_air        0.8200776           0.8177929
+    ## air_pressure                                   -0.1622930          -0.1608531
+    ## surface_downwelling_shortwave_flux_in_air       0.3566847           0.3555227
     ##                                           air_temperature_min
     ## air_temperature                                     0.9998039
     ## air_temperature_max                                 0.9992183
@@ -130,20 +132,20 @@ head(cor_wcreek)
     ## surface_downwelling_longwave_flux_in_air    -0.29876208     0.09322482
     ## air_pressure                                 0.22972978     0.03904779
     ## surface_downwelling_shortwave_flux_in_air   -0.07181433    -0.11448984
-    ##                                           specific_humidity
-    ## air_temperature                                   0.9064799
-    ## air_temperature_max                               0.9056241
-    ## air_temperature_min                               0.9069838
-    ## surface_downwelling_longwave_flux_in_air          0.8416941
-    ## air_pressure                                     -0.1628097
-    ## surface_downwelling_shortwave_flux_in_air         0.2681873
-    ##                                           precipitation_flux day_of_year
-    ## air_temperature                                   0.08391199  0.13092138
-    ## air_temperature_max                               0.08342905  0.12969058
-    ## air_temperature_min                               0.08436382  0.13210535
-    ## surface_downwelling_longwave_flux_in_air          0.14016558  0.19921975
-    ## air_pressure                                     -0.09972888 -0.05711546
-    ## surface_downwelling_shortwave_flux_in_air        -0.02659980 -0.03776747
+    ##                                           specific_humidity precipitation_flux
+    ## air_temperature                                   0.9064799         0.08391199
+    ## air_temperature_max                               0.9056241         0.08342905
+    ## air_temperature_min                               0.9069838         0.08436382
+    ## surface_downwelling_longwave_flux_in_air          0.8416941         0.14016558
+    ## air_pressure                                     -0.1628097        -0.09972888
+    ## surface_downwelling_shortwave_flux_in_air         0.2681873        -0.02659980
+    ##                                           day_of_year
+    ## air_temperature                            0.13092138
+    ## air_temperature_max                        0.12969058
+    ## air_temperature_min                        0.13210535
+    ## surface_downwelling_longwave_flux_in_air   0.19921975
+    ## air_pressure                              -0.05711546
+    ## surface_downwelling_shortwave_flux_in_air -0.03776747
 
 ``` r
 # now let's calculate the residuals of the correlations with a 95% confidence interval
@@ -156,17 +158,28 @@ corrplot(cor_wcreek, p.mat = residuals_1$p, method = 'color', number.cex = .7, t
          sig.level = 0.05, insig = "blank")
 ```
 
-![](Week3_ggplot2_files/figure-markdown_github/unnamed-chunk-1-1.png)
+![](Week3_ggplot2_files/figure-gfm/unnamed-chunk-1-1.png)<!-- -->
 
-ggplot2
-=======
+# ggplot2
 
-So far, we've only used `base graphics` plotting routines. While there are endless customizations and schemes that can be used to generate publiation quality material, many advanced R programmers use `ggplot2` to create plots. `ggplot2` is a go-to plotting package and can do all that `base graphics` can do. So what's so different about it? Well, `ggplot2` is designed to work with `dataframes`, rather than individual `vectors`. `ggplot2` also has more aesthetic options that allow for more visually unique & pleasing plots. The first thing you'll notice about `ggplot2` is that the syntax is different. Instead of coding all customizations through arguments or additional functions with the `add=TRUE` option keyed in, `ggplot2` uses `+` to add in extra layers to a plot. This may seem weird at first, but the longer you spend with it the more regular it will seem.
+So far, we’ve only used `base graphics` plotting routines. While there
+are endless customizations and schemes that can be used to generate
+publiation quality material, many advanced R programmers use `ggplot2`
+to create plots. `ggplot2` is a go-to plotting package and can do all
+that `base graphics` can do. So what’s so different about it? Well,
+`ggplot2` is designed to work with `dataframes`, rather than individual
+`vectors`. `ggplot2` also has more aesthetic options that allow for more
+visually unique & pleasing plots. The first thing you’ll notice about
+`ggplot2` is that the syntax is different. Instead of coding all
+customizations through arguments or additional functions with the
+`add=TRUE` option keyed in, `ggplot2` uses `+` to add in extra layers to
+a plot. This may seem weird at first, but the longer you spend with it
+the more regular it will seem.
 
 ``` r
 library(ggplot2)
 # load in a dataset - https://github.com/jsimkins2/geog473-673/blob/master/datasets/acadia.csv
-acadia = read.csv("/Users/james/Downloads/acadia.csv")
+acadia = read.csv("/Users/james/Documents/Github/geog473-673/datasets/acadia.csv")
 # list the top rows of acadia
 head(acadia)
 ```
@@ -186,39 +199,47 @@ acadia$X = NULL
 ggplot(acadia, aes(x=year, y=visitors))  # year and visitors are columns in acadia dataframe, aes() stands for aesthetics
 ```
 
-![](Week3_ggplot2_files/figure-markdown_github/unnamed-chunk-2-1.png)
+![](Week3_ggplot2_files/figure-gfm/unnamed-chunk-2-1.png)<!-- -->
 
 ``` r
 # simple scatter plot
 ggplot(acadia, aes(x=year, y=visitors)) + geom_point()
 ```
 
-![](Week3_ggplot2_files/figure-markdown_github/unnamed-chunk-2-2.png)
+![](Week3_ggplot2_files/figure-gfm/unnamed-chunk-2-2.png)<!-- -->
 
 ``` r
 # simple line plot
 ggplot(acadia, aes(x=year, y=visitors)) + geom_line()
 ```
 
-![](Week3_ggplot2_files/figure-markdown_github/unnamed-chunk-2-3.png)
+![](Week3_ggplot2_files/figure-gfm/unnamed-chunk-2-3.png)<!-- -->
 
 ``` r
 # remember the trendline? here is how easy it is to add with ggplot2
 ggplot(acadia, aes(x=year, y=visitors)) + geom_point() + geom_smooth(method="lm")
 ```
 
-![](Week3_ggplot2_files/figure-markdown_github/unnamed-chunk-2-4.png)
+![](Week3_ggplot2_files/figure-gfm/unnamed-chunk-2-4.png)<!-- -->
 
-Notice above how `ggplot()` creates a ggplot plot, but the `geom_point()` or `geom_line()` add the data to the plot. This is a key difference between `base graphics` and `ggplot2`. Also notice how you add what you want to the plot via the `+` symbol. Since the `aes()` (aesthetics) axes are already defined and since the `acadia` dataframe has been set, the functions `geom_point()` and `geom_line()` already know what data to add to the plots based on the dataset, x and y axes.
+Notice above how `ggplot()` creates a ggplot plot, but the
+`geom_point()` or `geom_line()` add the data to the plot. This is a key
+difference between `base graphics` and `ggplot2`. Also notice how you
+add what you want to the plot via the `+` symbol. Since the `aes()`
+(aesthetics) axes are already defined and since the `acadia` dataframe
+has been set, the functions `geom_point()` and `geom_line()` already
+know what data to add to the plots based on the dataset, x and y axes.
 
-Another cool thing about ggplot2() is that we can save a plot as an object and accumuatively add things to it
+Another cool thing about ggplot2() is that we can save a plot as an
+object and accumuatively add things to
+it
 
 ``` r
 g = ggplot(acadia, aes(x=year, y=visitors)) + geom_point() + geom_smooth(method="lm")
 plot(g)
 ```
 
-![](Week3_ggplot2_files/figure-markdown_github/unnamed-chunk-3-1.png)
+![](Week3_ggplot2_files/figure-gfm/unnamed-chunk-3-1.png)<!-- -->
 
 ``` r
 # technically, we don't even have to say plot(g)...we can just print it and it will plot!
@@ -229,9 +250,10 @@ g = g + geom_smooth(method="lm")
 g
 ```
 
-![](Week3_ggplot2_files/figure-markdown_github/unnamed-chunk-3-2.png)
+![](Week3_ggplot2_files/figure-gfm/unnamed-chunk-3-2.png)<!-- -->
 
-We can "crop" out areas of a plot - note this deletes points
+We can “crop” out areas of a plot - note this deletes
+points
 
 ``` r
 g = ggplot(acadia, aes(x=year, y=visitors)) + geom_point() + geom_line() + geom_smooth(method="lm")
@@ -244,20 +266,24 @@ g + xlim(c(2000,2017)) + ylim(c(2000000, 3500000))  # x axis years 2000 to 2017,
 
     ## Warning: Removed 81 rows containing missing values (geom_path).
 
-![](Week3_ggplot2_files/figure-markdown_github/unnamed-chunk-4-1.png)
+![](Week3_ggplot2_files/figure-gfm/unnamed-chunk-4-1.png)<!-- -->
 
-Instead of cropping out, we can also just zoom in - which doesn't delete points
+Instead of cropping out, we can also just zoom in - which doesn’t delete
+points
 
 ``` r
 g = ggplot(acadia, aes(x=year, y=visitors)) + geom_point() + geom_line() + geom_smooth(method="lm")
 g + coord_cartesian(xlim=c(2000,2017), ylim = c(2000000, 3500000))  # x axis years 2000 to 2017, ylimit 2000000 to 3500000
 ```
 
-![](Week3_ggplot2_files/figure-markdown_github/unnamed-chunk-5-1.png)
+![](Week3_ggplot2_files/figure-gfm/unnamed-chunk-5-1.png)<!-- -->
 
-Notice how different the trendline is above!!! When we just zoom in, we preserve all of the data going into the plot which helps us keep the trendline of the entire dataset.
+Notice how different the trendline is above\!\!\! When we just zoom in,
+we preserve all of the data going into the plot which helps us keep the
+trendline of the entire dataset.
 
-Now let's check out adjusting the x/y labels and title. There are 2 ways.
+Now let’s check out adjusting the x/y labels and title. There are 2
+ways.
 
 ``` r
 # Add Title and Labels
@@ -265,7 +291,7 @@ g1 = ggplot(acadia, aes(x=year, y=visitors)) + geom_point() + geom_line() + geom
 g1 + labs(title="Acadia National Park Attendance", subtitle="Total Visitors per year", y="Visitors", x="Year", caption="National Park Database")
 ```
 
-![](Week3_ggplot2_files/figure-markdown_github/unnamed-chunk-6-1.png)
+![](Week3_ggplot2_files/figure-gfm/unnamed-chunk-6-1.png)<!-- -->
 
 ``` r
 # or
@@ -274,7 +300,7 @@ g2 = g2 + ggtitle("Acadia National Park Attendance", subtitle="Total Visitors pe
 g2 + xlab("Year") + ylab("Visitors")
 ```
 
-![](Week3_ggplot2_files/figure-markdown_github/unnamed-chunk-6-2.png)
+![](Week3_ggplot2_files/figure-gfm/unnamed-chunk-6-2.png)<!-- -->
 
 What about changing up the colors, size, etc.?
 
@@ -288,12 +314,11 @@ g = ggplot(acadia, aes(x=year, y=visitors)) +
 g
 ```
 
-![](Week3_ggplot2_files/figure-markdown_github/unnamed-chunk-7-1.png)
+![](Week3_ggplot2_files/figure-gfm/unnamed-chunk-7-1.png)<!-- -->
 
-Density Plots
--------------
+## Density Plots
 
-Remember density plots from last week? They look better in ggplot2...
+Remember density plots from last week? They look better in ggplot2…
 
 ``` r
 library(ncdf4)
@@ -318,34 +343,55 @@ ggplot(wcreek_df) +
   scale_shape_manual(labels = c("Specific Humidity"), values = c(1))
 ```
 
-![](Week3_ggplot2_files/figure-markdown_github/unnamed-chunk-8-1.png)
+![](Week3_ggplot2_files/figure-gfm/unnamed-chunk-8-1.png)<!-- -->
 
-Let's break this down. I created a `ggplot` plot of `wcreek_df`. I called the `geom_density` function and declared my `data` and my `aes` specifications which included my x axis - `specific humidity` - and my y axis - `..density..` - which is necessary for the plot to know that's the axes you want density on. The final piece to the `aes()` argument is the color. I set the color of the line equal to `Specific Humidity` which ggplot recognizes as `firebrick` because of the `scale_color_manual` values I entered below. I set the `size` of the density line, set the `adjust` which is just ggplots name for bandwidth, declared a fill color to `fill` in the density area and gave that fill color an `alpha` of 0.5 to make it semi-transparent. Xlabel and title we've already covered. Finally I set a manual color label and shape of the label for specific humidity.
+Let’s break this down. I created a `ggplot` plot of `wcreek_df`. I
+called the `geom_density` function and declared my `data` and my `aes`
+specifications which included my x axis - `specific humidity` - and my y
+axis - `..density..` - which is necessary for the plot to know that’s
+the axes you want density on. The final piece to the `aes()` argument is
+the color. I set the color of the line equal to `Specific Humidity`
+which ggplot recognizes as `firebrick` because of the
+`scale_color_manual` values I entered below. I set the `size` of the
+density line, set the `adjust` which is just ggplots name for bandwidth,
+declared a fill color to `fill` in the density area and gave that fill
+color an `alpha` of 0.5 to make it semi-transparent. Xlabel and title
+we’ve already covered. Finally I set a manual color label and shape of
+the label for specific humidity.
 
-Assignment:
------------
+## Assignment:
 
-Using the WCr\_1hr.2012.nc found in the datasets folder, complete the following:
+Using the WCr\_1hr.2012.nc found in the datasets folder, complete the
+following:
 
-1.  Using `ggplot2`, create an `geom_line` plot of `air_temperature`. **Zoom in** to the first half of the year. Be Sure to include trendline and includes appropriate titles, axes, labels, etc.
+1.  Using `ggplot2`, create an `geom_line` plot of `air_temperature`.
+    **Zoom in** to the first half of the year. Be Sure to include
+    trendline and includes appropriate titles, axes, labels, etc.
 
-2.  Using `ggplot2`, create a density plot of `air temperature` with appropriate titles, axes, legend etc.
+2.  Using `ggplot2`, create a density plot of `air temperature` with
+    appropriate titles, axes, legend etc.
 
 3.  Submit plots to assignment 3 on canvas
 
-Your final plots should look something like these...
+Your final plots should look something like
+these…
 
-![](Week3_ggplot2_files/figure-markdown_github/unnamed-chunk-9-1.png)![](Week3_ggplot2_files/figure-markdown_github/unnamed-chunk-9-2.png)
+![](Week3_ggplot2_files/figure-gfm/unnamed-chunk-9-1.png)<!-- -->![](Week3_ggplot2_files/figure-gfm/unnamed-chunk-9-2.png)<!-- -->
 
-Extra Credit - 5 Points !!!
----------------------------
+## Extra Credit - 5 Points \!\!\!
 
-Using the WCr\_1hr.2010.nc, WCr\_1hr.2011.nc and WCr\_1hr.2012.nc found in the datasets folder, complete the following
+Using the WCr\_1hr.2010.nc, WCr\_1hr.2011.nc and WCr\_1hr.2012.nc found
+in the datasets folder, complete the following
 
-1.  Create a density plot using ggplot2 of "Air temperature" with each year being a component of the density plot (adding each year to the density plot as you loop through the data). Adjust alpha settings, colors, linetypes, etc. to make each line extinct.
-2.  Submit to assignment above labeled 'extra\_credit.png'
+1)  Create a density plot using ggplot2 of “Air temperature” with each
+    year being a component of the density plot (adding each year to the
+    density plot as you loop through the data). Adjust alpha settings,
+    colors, linetypes, etc. to make each line extinct.
+2)  Submit to assignment above labeled ‘extra\_credit.png’ - **also
+    submit your code**.
 
-EXTRA, EXTRA CREDIT - 10 Points !!!
------------------------------------
+## EXTRA, EXTRA CREDIT - 10 Points \!\!\!
 
-Make the same plot as the extra credit plot above but include 2 smaller, zoomed in plots on the same image that highlight the tails of the distributions.
+Make the same plot as the extra credit plot above but include 2 smaller,
+zoomed in plots on the same image that highlight the tails of the
+distributions. Submit image (large image) AND code.

@@ -16,7 +16,7 @@ library(ggplot2)
 library(grid)
 library(gridExtra)
 
-acadia = read.csv("/Users/james/Downloads/acadia.csv")
+acadia = read.csv("/Users/james/Documents/Github/geog473-673/datasets/acadia.csv")
 
 p1 = ggplot(acadia, aes(x=year, y=visitors)) +
     geom_line(col="yellow", size=5) + 
@@ -40,7 +40,7 @@ library(ggplot2)
 library(grid)
 library(gridExtra)
 
-acadia = read.csv("/Users/james/Downloads/acadia.csv")
+acadia = read.csv("/Users/james/Documents/Github/geog473-673/datasets/acadia.csv")
 
 p1 = ggplot(acadia, aes(x=year, y=visitors)) +
     geom_line(col="yellow", size=5) + 
@@ -65,7 +65,7 @@ Notice how it left the 3rd row empty because we only provided 2 plots (p1 and p2
 
 When it comes to spatial data, the `raster` package is our go-to library. Here's how we imported and plotted rasters using base graphics. 
 
-```{r}
+```{r, warning=FALSE, message=FALSE}
 library(maptools) # also loads sp package
 library(raster)
 library(rasterVis)
@@ -211,4 +211,4 @@ Using the data above, pproximate the average tree cover for South America and Af
 
 1) Plot the same domains above but this time color each continent (yes, the whole thing) based on the average tree cover. For example, if one of the continent has an average tree cover of 30%, the entire continent would be red based on the colorscale you choose where 30% is red. 
 
-2) Submit plot to canvas 
+2) Submit plot and code to canvas 

@@ -1,0 +1,17 @@
+---
+title: "Week 7 - Functions and Presentations"
+output: rmarkdown::github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+This week we are going to focus up on some formal work with R - creating your own functions and displaying R code & results in a fancy style. Functions are important for code speed and documentation. Presenting R code is important if you need to explain how to do something using R (this is how I create a tutorial). We'll start by explaining functions and going through an example. Afterwards, we'll show how RMarkdown works so you can explain how fancy this function of yours really is. 
+
+# Functions
+We create functions to speed up and organize code. So far, we've only been coding things via scripting and occasionally using for loops. While this is fine, it's slower than writing functions would be. Writing or creating functions is considered much cleaner and more *proper*. As a recap, whenever we use the phrase `library(ncdf4)` we are loading the `ncdf4` package. Within that package are a number of `.R` scripts/files that contain functions that someone has been kind enough to write to save us time. By using `library(ncdf4)`, R reads in all of those functions and thus knows what we want when we execute a function like `nc_open()`. Instead of re-writing `nc_open()` over and over again every time we want to open a netcdf file, we are able to just load the function. We're going to write a function today to save us time loading netcdf files.
+
+### Back to Willow Creek, WI
+Loading in all of the weather data from Willow Creek, WI is cumbersome. Let's write a function that reads in the data and converts everything to a dataframe for us. 
+

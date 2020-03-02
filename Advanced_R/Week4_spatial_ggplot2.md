@@ -3,14 +3,17 @@ Week4 - Spatial ggplot2
 
 ### Quick tutorial - Multi Plot with ggplot2
 
-Multiple Plots in one window is possible with ggplot2 but is done with a different method. Remember how we named different ggplot2 instances in the previous tutorial? We must do that again in order to achieve the results we want.
+Multiple Plots in one window is possible with ggplot2 but is done with a
+different method. Remember how we named different ggplot2 instances in
+the previous tutorial? We must do that again in order to achieve the
+results we want.
 
 ``` r
 library(ggplot2)
 library(grid)
 library(gridExtra)
 
-acadia = read.csv("/Users/james/Downloads/acadia.csv")
+acadia = read.csv("/Users/james/Documents/Github/geog473-673/datasets/acadia.csv")
 
 p1 = ggplot(acadia, aes(x=year, y=visitors)) +
     geom_line(col="yellow", size=5) + 
@@ -27,16 +30,18 @@ p2 = ggplot(acadia, aes(x=year, y=visitors)) +
 grid.arrange(p1,p2, ncol=1, nrow=2)
 ```
 
-![](Week4_spatial_ggplot2_files/figure-markdown_github/unnamed-chunk-1-1.png)
+![](Week4_spatial_ggplot2_files/figure-gfm/unnamed-chunk-1-1.png)<!-- -->
 
-We give our 2 plots (or however many plots we have) and tell `grid.arrange()` how many rows and columns we want. Let's say we wanted to show the plots this way...
+We give our 2 plots (or however many plots we have) and tell
+`grid.arrange()` how many rows and columns we want. Let’s say we wanted
+to show the plots this way…
 
 ``` r
 library(ggplot2)
 library(grid)
 library(gridExtra)
 
-acadia = read.csv("/Users/james/Downloads/acadia.csv")
+acadia = read.csv("/Users/james/Documents/Github/geog473-673/datasets/acadia.csv")
 
 p1 = ggplot(acadia, aes(x=year, y=visitors)) +
     geom_line(col="yellow", size=5) + 
@@ -53,49 +58,24 @@ p2 = ggplot(acadia, aes(x=year, y=visitors)) +
 grid.arrange(p1,p2, ncol=1, nrow=3)
 ```
 
-![](Week4_spatial_ggplot2_files/figure-markdown_github/unnamed-chunk-2-1.png)
+![](Week4_spatial_ggplot2_files/figure-gfm/unnamed-chunk-2-1.png)<!-- -->
 
-Notice how it left the 3rd row empty because we only provided 2 plots (p1 and p2).
+Notice how it left the 3rd row empty because we only provided 2 plots
+(p1 and p2).
 
-ggplot2 and Spatial Data
-========================
+# ggplot2 and Spatial Data
 
 #### Recap with base graphics
 
-When it comes to spatial data, the `raster` package is our go-to library. Here's how we imported and plotted rasters using base graphics.
+When it comes to spatial data, the `raster` package is our go-to
+library. Here’s how we imported and plotted rasters using base graphics.
 
 ``` r
 library(maptools) # also loads sp package
-```
-
-    ## Loading required package: sp
-
-    ## Checking rgeos availability: TRUE
-
-``` r
 library(raster)
 library(rasterVis)
-```
-
-    ## Loading required package: lattice
-
-    ## Loading required package: latticeExtra
-
-    ## 
-    ## Attaching package: 'latticeExtra'
-
-    ## The following object is masked from 'package:ggplot2':
-    ## 
-    ##     layer
-
-``` r
 library(RColorBrewer)
 sstRast <- raster("/Users/james/Documents/Github/geog473-673/datasets/GOES_R_ROLLING_1DAY_20190814.nc")
-```
-
-    ## Loading required namespace: ncdf4
-
-``` r
 # crop the raster so this runs faster
 sstRast <- crop(sstRast, extent(-100,-80,16,30))
 sstRast
@@ -105,7 +85,7 @@ sstRast
     ## dimensions : 774, 1111, 859914  (nrow, ncol, ncell)
     ## resolution : 0.018, 0.0181  (x, y)
     ## extent     : -99.99915, -80.00115, 15.99378, 30.00318  (xmin, xmax, ymin, ymax)
-    ## crs        : +proj=longlat +datum=WGS84 +ellps=WGS84 +towgs84=0,0,0 
+    ## crs        : +proj=longlat +datum=WGS84 
     ## source     : memory
     ## names      : Sea.Surface.Temperature 
     ## values     : 25.86023, 34.9397  (min, max)
@@ -115,7 +95,7 @@ sstRast
 image(sstRast)
 ```
 
-![](Week4_spatial_ggplot2_files/figure-markdown_github/unnamed-chunk-3-1.png)
+![](Week4_spatial_ggplot2_files/figure-gfm/unnamed-chunk-3-1.png)<!-- -->
 
 ``` r
 # levelplot the sstRast
@@ -128,9 +108,11 @@ plt <- levelplot(sstRast, margin=F, par.settings=BuRdTheme,
 plt + layer(sp.polygons(usa, col='black',fill='grey', lwd=0.4))
 ```
 
-![](Week4_spatial_ggplot2_files/figure-markdown_github/unnamed-chunk-3-2.png)
+![](Week4_spatial_ggplot2_files/figure-gfm/unnamed-chunk-3-2.png)<!-- -->
 
-Let's do this same thing with ggplot2. We'll need the help of a package called `mapproj` to make sense of some external maps `ggplot2` uses - note that we need to convert sstRast into a dataframe for `ggplot2`
+Let’s do this same thing with ggplot2. We’ll need the help of a package
+called `mapproj` to make sense of some external maps `ggplot2` uses -
+note that we need to convert sstRast into a dataframe for `ggplot2`
 
 ``` r
 library(ggplot2)
@@ -147,19 +129,21 @@ ggplot() +
   coord_quickmap()
 ```
 
-![](Week4_spatial_ggplot2_files/figure-markdown_github/unnamed-chunk-4-1.png)
+![](Week4_spatial_ggplot2_files/figure-gfm/unnamed-chunk-4-1.png)<!-- -->
 
 ``` r
 # look into coord_quickmap
 ```
 
-The main new function here is `coord_quickmap()`. It gives the x/y values a geospatial domain. Here's what it looks like:
+The main new function here is `coord_quickmap()`. It gives the x/y
+values a geospatial domain. Here’s what it looks like:
 
-`coord_quickmap(xlim = NULL, ylim = NULL, expand = TRUE,   clip = "on")`
+`coord_quickmap(xlim = NULL, ylim = NULL, expand = TRUE, clip = "on")`
 
-It's derived from `coord_map` which looks like this:
+It’s derived from `coord_map` which looks like this:
 
-`coord_map(projection = "mercator", ..., parameters = NULL,   orientation = NULL, xlim = NULL, ylim = NULL, clip = "on")`
+`coord_map(projection = "mercator", ..., parameters = NULL, orientation
+= NULL, xlim = NULL, ylim = NULL, clip = "on")`
 
 ``` r
 # now let's use a better colorscheme
@@ -170,7 +154,7 @@ ggplot() +
   coord_quickmap()
 ```
 
-![](Week4_spatial_ggplot2_files/figure-markdown_github/unnamed-chunk-5-1.png)
+![](Week4_spatial_ggplot2_files/figure-gfm/unnamed-chunk-5-1.png)<!-- -->
 
 ``` r
 # now let's add borders
@@ -181,11 +165,15 @@ ggplot() +
   coord_quickmap(xlim = c(-100,-80), ylim=c(16,30))
 ```
 
-![](Week4_spatial_ggplot2_files/figure-markdown_github/unnamed-chunk-5-2.png)
+![](Week4_spatial_ggplot2_files/figure-gfm/unnamed-chunk-5-2.png)<!-- -->
 
-Notice in the final map how I set xlimits and ylimits in the `coord_quickmap` function. This is the same as we did before with `ggplot2` and `coord_cartesian`. Now that we have lat/lon coordinates, we need to specifiy that "zoom in" boundary with `coord_quickmap`.
+Notice in the final map how I set xlimits and ylimits in the
+`coord_quickmap` function. This is the same as we did before with
+`ggplot2` and `coord_cartesian`. Now that we have lat/lon coordinates,
+we need to specifiy that “zoom in” boundary with `coord_quickmap`.
 
-Let's get rid of the expanded area beyond the raster domain using the `expand=FALSE` argument in `coord_quickmap()`
+Let’s get rid of the expanded area beyond the raster domain using the
+`expand=FALSE` argument in `coord_quickmap()`
 
 ``` r
 ggplot() +
@@ -195,7 +183,7 @@ ggplot() +
   coord_quickmap(xlim = c(-100,-80), ylim=c(16,30),expand = FALSE)
 ```
 
-![](Week4_spatial_ggplot2_files/figure-markdown_github/unnamed-chunk-6-1.png)
+![](Week4_spatial_ggplot2_files/figure-gfm/unnamed-chunk-6-1.png)<!-- -->
 
 What are some other colors we could use?
 
@@ -204,9 +192,9 @@ library(RColorBrewer)
 display.brewer.all()
 ```
 
-![](Week4_spatial_ggplot2_files/figure-markdown_github/unnamed-chunk-7-1.png)
+![](Week4_spatial_ggplot2_files/figure-gfm/unnamed-chunk-7-1.png)<!-- -->
 
-Let's plot using new colors and a white NA value
+Let’s plot using new colors and a white NA value
 
 ``` r
 cols <- brewer.pal(9, "YlOrRd")# nmaximum for palette YlOrRd is 9
@@ -219,28 +207,33 @@ ggplot() +
   coord_quickmap(xlim = c(-100,-80), ylim=c(16,30),expand = FALSE)    
 ```
 
-![](Week4_spatial_ggplot2_files/figure-markdown_github/unnamed-chunk-8-1.png)
+![](Week4_spatial_ggplot2_files/figure-gfm/unnamed-chunk-8-1.png)<!-- -->
 
-Assignment:
-===========
+\#Assignment:
 
 1.  Download treecov.nc from the datasets folder
 
-2.  Plot tree cover variable using ggplot2 and with green colortheme for both South America and Africa. Add coastlines.
+2.  Plot tree cover variable using ggplot2 and with green colortheme for
+    both South America and Africa. Add coastlines.
 
 3.  Place each ggplot next to each other in one plot window.
 
 4.  Submit resulting image to Canvas assignment 4
 
-Your final product should look something like...
+Your final product should look something
+like…
 
-![](Week4_spatial_ggplot2_files/figure-markdown_github/unnamed-chunk-9-1.png)
+![](Week4_spatial_ggplot2_files/figure-gfm/unnamed-chunk-9-1.png)<!-- -->
 
-Extra Credit - 5 Points !!!
----------------------------
+## Extra Credit - 5 Points \!\!\!
 
-Using the data above, pproximate the average tree cover for South America and Africa (extents don't have to be exact, just generally)
+Using the data above, pproximate the average tree cover for South
+America and Africa (extents don’t have to be exact, just generally)
 
-1.  Plot the same domains above but this time color each continent (yes, the whole thing) based on the average tree cover. For example, if one of the continent has an average tree cover of 30%, the entire continent would be red based on the colorscale you choose where 30% is red.
+1)  Plot the same domains above but this time color each continent (yes,
+    the whole thing) based on the average tree cover. For example, if
+    one of the continent has an average tree cover of 30%, the entire
+    continent would be red based on the colorscale you choose where 30%
+    is red.
 
-2.  Submit plot to canvas
+2)  Submit plot and code to canvas
