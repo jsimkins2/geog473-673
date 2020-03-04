@@ -15,3 +15,104 @@ We create functions to speed up and organize code. So far, we've only been codin
 ### Back to Willow Creek, WI
 Loading in all of the weather data from Willow Creek, WI is cumbersome. Let's write a function that reads in the data and converts everything to a dataframe for us. 
 
+```{r}
+library(ncdf4)
+read.wcr = function(fname) {
+  fullname = strsplit(fname, "/")
+  dataset_str = fullname[[1]][length(fullname[[1]])]
+  datname = strsplit(dataset_str, "_")[[1]][1]
+  data.year = substr(dataset_str, nchar(dataset_str)-6, nchar(dataset_str)-3)
+  data.date = seq(from=as.POSIXct(paste0(data.year,"-1-1 0:00", tz="UTC")),to=as.POSIXct(paste0(data.year,"-12-31 23:00", tz="UTC")),by="hour")
+  vars.info <- data.frame(CF.name = c("date", "air_temperature", "precipitation_flux", "surface_downwelling_shortwave_flux_in_air",
+                                      "specific_humidity", "surface_downwelling_longwave_flux_in_air", "air_pressure",
+                                      "eastward_wind", "northward_wind", "wind_speed"))
+  df <- list()
+  tem <- ncdf4::nc_open(fname)
+  dim <- tem$dim
+  for (j in seq_along(vars.info$CF.name)) {
+    if (exists(as.character(vars.info$CF.name[j]), tem$var)) {
+      df[[j]] <- ncdf4::ncvar_get(tem, as.character(vars.info$CF.name[j]))
+    } else {
+      df[[j]] = NA
+    }
+  }
+  names(df) <- vars.info$CF.name
+  df <- data.frame(df)
+  nc_close(tem)
+  if(all(is.na(df$date))){
+    df$date = data.date
+  }
+  if(all(is.na(df$wind_speed))){
+    df$wind_speed = sqrt(df$eastward_wind^2 + df$northward_wind^2)
+  }
+  return(df)
+}
+```
+
+Above is our function in all it's glory. All we're doing is reading a netCDF file that we know the structure of (and it's variables). The syntax is very similar to that of a for loop. `read.wcr` is our function name, the `function()` command tells R we're declaring a function. `fname` is one of the arguments that the function takes. For example, the function what we use for opening netCDF files - `nc_open()` has the following arguments...
+
+`nc_open( filename, write=FALSE, readunlim=TRUE, verbose=FALSE, 
+ 	auto_GMT=TRUE, suppress_dimvals=FALSE )`
+ 	
+The function I've coded above only takes the filename, but if our routine was more complex we could add more arguments in. Once the argument is taken in, we **generalize** naming schemes that are unimportant. Notice how I use object names like `tem` for example. This is short for temporary, and is set up to be overwritten if we were to use this function within a for loop to open multiple files. There's also some extra bits down at the bottom where we calculate wind speed from eastward and northward wind components **if** the entire data frame of `wind_speed` is null. AKA, if we tell R to get the `wind_speed` variable but it doesn't exist, then it will just return *NA* for each value for that variable. This is nice to have given the case where some files have a variable and others don't.
+
+Finally, focus in on the `return(df)` line. This is what the function spits back out. We can put whatever we want here. For example, let's write a function like so...
+
+```{r}
+
+xfunc = function(){
+  statement = "I put the fun in functions"
+  return(statement)
+}
+
+xfunc()
+```
+
+`return` is what we get out of a function. Now, let's actually use the `read.wcr()` function we wrote above. 
+
+```{r}
+wcr_df = read.wcr(fname = "Documents/Github/geog473-673/datasets/WCr_1hr.2010.nc")
+
+summary(wcr_df)
+```
+
+It's as simple as that...This is why programming becomes a black box and why we don't always look under the hood. We don't need to. Once we write a function that works as nicely as this, we don't need to go back to said function until it breaks for some reason. Programmers are lazy. The better programmer you are, the lazier you can become. Why make things harder than they have to be?
+
+Let's set up a for loop for this to show how we might read in all 3 years of data. We're going to use the `rbind()` function to latch on extra data here.
+
+```{r}
+
+# create a sequence of years for the years we have data
+yearSeq = seq(2010,2012)
+
+# begin the for loop to open each year of data
+for (y in yearSeq){
+  # use our read.wcr() function and paste in the filename that changes for each year of data
+  tem_df = read.wcr(fname = paste0("Documents/Github/geog473-673/datasets/WCr_1hr.",y,".nc"))
+  # != means DOES NOT EQUAL. This statement reads as - if y DOES NOT EQUAL the first year in yearSeq, proceed to use rbind
+  # otherwise, if y is indeed the first year in yearSeq, we need to initialize wcr_df BEFORE we overwrite tem_df
+  if (y != yearSeq[1]){
+    wcr_df = rbind(wcr_df, tem_df)
+  } else {
+    wcr_df = tem_df
+  }
+}
+
+length(wcr_df$date)
+summary(wcr_df)
+```
+
+`!=` means DOES NOT EQUAL. The `!` means DOES NOT. This statement reads as - if `y` DOES NOT EQUAL the first year in `yearSeq`, proceed to use `rbind()`. Otherwise, if `y` is indeed the first year in `yearSeq`, we need to initialize `wcr_df` BEFORE we overwrite `tem_df`
+
+I have this in the commented sections, but felt it was worth repeating. Anyway, based on the summary we see that we have successfully merged the 3 datasets into one continuous dataset. Since we defined the function above, we don't need to make a messy for loop with all of the function bits in it. Functions speed up our program and also make for more sophisticated coding. 
+
+# RMarkdown
+
+# GIF
+# Assignment
+
+Create a function that extracts and plots multiple spatial datasets over a time series. Turn this time series into a gif.
+
+Extra Credit!!
+
+Turn the above into an RMarkdown instance.

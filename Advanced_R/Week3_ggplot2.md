@@ -378,7 +378,7 @@ these…
 
 ![](Week3_ggplot2_files/figure-gfm/unnamed-chunk-9-1.png)<!-- -->![](Week3_ggplot2_files/figure-gfm/unnamed-chunk-9-2.png)<!-- -->
 
-## Extra Credit - 5 Points \!\!\!
+## Extra Credit - 2.5 Points \!\!\!
 
 Using the WCr\_1hr.2010.nc, WCr\_1hr.2011.nc and WCr\_1hr.2012.nc found
 in the datasets folder, complete the following
@@ -390,7 +390,7 @@ in the datasets folder, complete the following
 2)  Submit to assignment above labeled ‘extra\_credit.png’ - **also
     submit your code**.
 
-## EXTRA, EXTRA CREDIT - 10 Points \!\!\!
+## EXTRA, EXTRA CREDIT - 2.5 Points \!\!\!
 
 Make the same plot as the extra credit plot above but include 2 smaller,
 zoomed in plots on the same image that highlight the tails of the

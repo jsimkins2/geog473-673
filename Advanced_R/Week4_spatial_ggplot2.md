@@ -85,7 +85,7 @@ sstRast
     ## dimensions : 774, 1111, 859914  (nrow, ncol, ncell)
     ## resolution : 0.018, 0.0181  (x, y)
     ## extent     : -99.99915, -80.00115, 15.99378, 30.00318  (xmin, xmax, ymin, ymax)
-    ## crs        : +proj=longlat +datum=WGS84 
+    ## crs        : +proj=longlat +datum=WGS84 +ellps=WGS84 +towgs84=0,0,0 
     ## source     : memory
     ## names      : Sea.Surface.Temperature 
     ## values     : 25.86023, 34.9397  (min, max)
@@ -225,9 +225,9 @@ like…
 
 ![](Week4_spatial_ggplot2_files/figure-gfm/unnamed-chunk-9-1.png)<!-- -->
 
-## Extra Credit - 5 Points \!\!\!
+## Extra Credit - 3 Points \!\!\!
 
-Using the data above, pproximate the average tree cover for South
+Using the data above, approximate the average tree cover for South
 America and Africa (extents don’t have to be exact, just generally)
 
 1)  Plot the same domains above but this time color each continent (yes,

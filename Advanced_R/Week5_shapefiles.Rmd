@@ -290,13 +290,13 @@ mapview(m['name'], col.regions = mycolours)
 
 ```
 
-## Extra Credit - 5 points !!!
+## Extra Credit - 3 points !!!
 
 Using the **ne_10m_parks_and_protected_lands** shapefile dataset, create the following...
 
-1) spplot **with statelines**
-2) tmap **with statelines**
+1) spplot **with statelines and new color scheme**
+2) tmap **with statelines and new color scheme**
 3) ggplot2 **with legend containing only protected lands in the Pacific NW**
 4) mapview **with new color scheme**
 
-Submit resulting plots as "ec_**plottype**.png" with the above assignment
+Submit resulting plots and code as "ec_**plottype**.png" with the above assignment

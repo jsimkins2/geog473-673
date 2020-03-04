@@ -208,13 +208,13 @@ ggplot(wcreek_df) +
 
 ```
 
-## Extra Credit - 5 Points !!!
+## Extra Credit - 2.5 Points !!!
 
 Using the WCr_1hr.2010.nc, WCr_1hr.2011.nc and WCr_1hr.2012.nc found in the datasets folder, complete the following
 
 1) Create a density plot using ggplot2 of "Air temperature" with each year being a component of the density plot (adding each year to the density plot as you loop through the data). Adjust alpha settings, colors, linetypes, etc. to make each line extinct.
 4) Submit to assignment above labeled 'extra_credit.png' - **also submit your code**.
 
-## EXTRA, EXTRA CREDIT - 10 Points !!!
+## EXTRA, EXTRA CREDIT - 2.5 Points !!!
 
 Make the same plot as the extra credit plot above but include 2 smaller, zoomed in plots on the same image that highlight the tails of the distributions. Submit image (large image) AND code.
