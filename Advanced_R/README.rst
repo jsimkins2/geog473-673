@@ -25,7 +25,28 @@ https://github.com/jsimkins2/geog473-673/blob/master/Advanced_R/welcome_back.md
 
 https://github.com/jsimkins2/geog473-673/blob/master/Advanced_R/Week2_BasicStatistics.md
 
+ Week 3 - ggplot2 Tutorial
 
+https://github.com/jsimkins2/geog473-673/blob/master/Advanced_R/Week3_ggplot2.md
 
+ Week 4 - Spatial ggplot2
+
+https://github.com/jsimkins2/geog473-673/blob/master/Advanced_R/Week4_spatial_ggplot2.md
+
+ Week 5 - Plotting Shapefiles
+
+https://jsimkins2.github.io/geog473-673/Week5_shapefiles.html
+
+ Week 6 - Data Extraction
+
+https://github.com/jsimkins2/geog473-673/blob/master/Advanced_R/Week6_DataExtraction.md
+
+ Week 7 - Functions and Presentations
+
+https://github.com/jsimkins2/geog473-673/blob/master/Advanced_R/Week7_Functions_and_Presentations.md
+
+ Final Project
+
+https://github.com/jsimkins2/geog473-673/blob/master/documents/AdvancedR_finalproject.pdf
 
 
