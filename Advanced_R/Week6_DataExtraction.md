@@ -91,7 +91,7 @@ goes.nc
     ##             standard_name: longitude
     ##             units: degrees_east
     ##             _ChunkSizes: 2778
-    ##         time  Size:10545
+    ##         time  Size:10914
     ##             standard_name: time
     ##             long_name: EPOCH Time
     ##             units: seconds since 1970-01-01T00:00:00Z
@@ -111,7 +111,7 @@ goes.nc
     ##         inputCalibrationFile: 0
     ##         product_list: SST, DQF
     ##         summary: GOES16 SST product, reprojected to EPSG:4326.
-    ##         history: Tue Feb 18 09:21:19 2020: ncks /data/GOES/GOES-R/sst/2020/OR_ABI-L2-SSTF-M3_G16_s20200491300199_e20200491359507_c20200491406142.nc /data/GOES/GOES-R/sst/2020/OR_ABI-L2-SSTF-M3_G16_s20200491300199_e20200491359507_c20200491406142.nc -L 5 -O
+    ##         history: Thu Mar  5 11:19:29 2020: ncks /data/GOES/GOES-R/sst/2020/OR_ABI-L2-SSTF-M3_G16_s20200651500177_e20200651559485_c20200651606007.nc /data/GOES/GOES-R/sst/2020/OR_ABI-L2-SSTF-M3_G16_s20200651500177_e20200651559485_c20200651606007.nc -L 5 -O
     ##         NCO: netCDF Operators version 4.7.5 (Homepage = http://nco.sf.net, Code = http://github.com/nco/nco)
 
 Just with that one line of code, we've opened a connection with the GOES-R dataset on the THREDDS server. Printing the netcdf dataset provides some metadata info. Let's use this metadata and extract the time period / spatial extent that we want.
@@ -137,7 +137,7 @@ lastVal = length(goes.nc$dim$time$vals)
 lastVal
 ```
 
-    ## [1] 10545
+    ## [1] 10914
 
 ``` r
 epoch_val = goes.nc$dim$time$vals[lastVal]
@@ -150,7 +150,7 @@ human_time = as.POSIXct(epoch_val, origin="1970-01-01")
 human_time
 ```
 
-    ## [1] "2020-02-18 09:30:05 EST"
+    ## [1] "2020-03-05 11:30:03 EST"
 
 `as.POSIXct` is a datetime package in R. It is a gold standard and you'll see it as you gain more experience in playing with datetime conversions. You can also use `anytime` package.
 
@@ -159,7 +159,7 @@ library(anytime)
 anytime(epoch_val)
 ```
 
-    ## [1] "2020-02-18 09:30:05 EST"
+    ## [1] "2020-03-05 11:30:03 EST"
 
 At this point, all we have to do is convert our human dates to EPOCH so we can extract the data. In order to do this all we need to do is convert a datetime object to a numeric. R handles it for us...
 
@@ -550,10 +550,10 @@ info('cwwcNDBCMet')
     ##          Range: -9.37, 6.13 
     ##          Units: m 
     ##      time: 
-    ##          Range: 4910400.0, 1.582038E9 
+    ##          Range: 4910400.0, 1.5834312E9 
     ##          Units: seconds since 1970-01-01T00:00:00Z 
     ##      vis: 
-    ##          Range: 0.0, 58.1 
+    ##          Range: 0.0, 66.7 
     ##          Units: km 
     ##      wd: 
     ##          Range: 0, 359 
@@ -619,7 +619,7 @@ info('jplMURSST41')
     ## <ERDDAP info> jplMURSST41 
     ##  Base URL: https://upwell.pfeg.noaa.gov/erddap/ 
     ##  Dimensions (range):  
-    ##      time: (2002-06-01T09:00:00Z, 2020-02-17T09:00:00Z) 
+    ##      time: (2002-06-01T09:00:00Z, 2020-03-04T09:00:00Z) 
     ##      latitude: (-89.99, 89.99) 
     ##      longitude: (-179.99, 180.0) 
     ##  Variables:  
@@ -710,7 +710,7 @@ Deliverables: - R Code/Script - Images/Plots
 
 2.  Select any dataset from the ERDDAP server and create a script that loads in the data and plots it. In your script explain why you chose that dataset, detail each step and describe why it's happening, Turn in your R script and the Image/Plot you've made.
 
-Extra Credit !!! 2.5 Points !!
-------------------------------
+Extra Credit !!! 3 Points !!
+----------------------------
 
-Create a function that downloads and plots a dataset using THREDDS or ERDDAP. Arguments must include date ranges and spatial extents. Submit script to canvas.
+Find a dataset that uses TableDap's instance of ERDDAP. This is a method for storing point data instead of spatial data. Create a routine that downloads and extracts data using the `tabledap()` function from rerddap

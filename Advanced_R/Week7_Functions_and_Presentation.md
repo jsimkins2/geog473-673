@@ -208,7 +208,7 @@ Create a function that extracts and plots a spatial dataset given a time range. 
 
 1.  Choose an online dataset like we did last week.
 2.  Create a function that extracts the data given a time range, creates a data frame and plots the dataset.
-3.  Include arguments within the function such as time range,etc.
+3.  Include arguments within the function such as time range, spatial extents, etc.
 4.  Create an RMarkdown PDF that details how the function works.
 5.  Include an example of the function working to plot the given dataset
 6.  Submit resulting PDF to Canvas week 7 assignment
