@@ -43,7 +43,7 @@ https://github.com/jsimkins2/geog473-673/blob/master/Advanced_R/Week6_DataExtrac
 
  Week 7 - Functions and Presentations
 
-https://github.com/jsimkins2/geog473-673/blob/master/Advanced_R/Week7_Functions_and_Presentations.md
+https://github.com/jsimkins2/geog473-673/blob/master/Advanced_R/Week7_Functions_and_Presentation.md
 
  Final Project
 
