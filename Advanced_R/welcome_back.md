@@ -1,204 +1,80 @@
 Welcome to Advanced R
 ================
 
-Welcome Back!
--------------
+## Welcome Back\!
 
-Welcome to the Advanced phase of R. In this class, we'll be covering new topics at an accelerated pace. But first, let's shake off the rust and get back into the swing of things. As always, if you need revisit older tutorials, they can be found here - <https://github.com/jsimkins2/geog473-673/tree/master/R>
+Welcome to the Advanced phase of R. In this class, we’ll be covering new
+topics at an accelerated pace. But first, let’s shake off the rust and
+get back into the swing of things. As always, if you need revisit older
+tutorials, they can be found here -
+<https://github.com/jsimkins2/geog473-673/tree/master/R>
 
-Downloading Data from the datasets folder
-=========================================
+# Downloading Data from the datasets folder
 
-All datasets used for this class will be found here - <https://github.com/jsimkins2/geog473-673/tree/master/datasets/>
+All datasets used for this class will be found here -
+<https://github.com/jsimkins2/geog473-673/tree/master/datasets/>
 
-In order to download these files easily, you can use the following code:
+In order to download these files easily, you can use the following
+code:
 
-`download.file("https://github.com/jsimkins2/geog473-673/tree/master/datasets/world_shpfiles/world.shp", destfile = "/Users/james/Downloads/world.shp" , mode='wb')`
+`download.file("https://github.com/jsimkins2/geog473-673/tree/master/datasets/world_shpfiles/world.shp",
+destfile = "/Users/james/Downloads/world.shp" , mode='wb')`
 
-Follow this format for any of the datasets. Here is another example for the `TreeData.csv`
+Follow this format for any of the datasets. Here is another example for
+the
+`TreeData.csv`
 
-`download.file("https://github.com/jsimkins2/geog473-673/tree/master/datasets/TreeData.csv", destfile = "/Users/james/Downloads/TreeData.csv" , mode='wb')`
+`download.file("https://github.com/jsimkins2/geog473-673/tree/master/datasets/TreeData.csv",
+destfile = "/Users/james/Downloads/TreeData.csv" ,
+mode='wb')`
 
-Some Useful Definitions
------------------------
+## Some Useful Definitions
 
-<table style="width:79%;">
-<colgroup>
-<col width="16%" />
-<col width="62%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Function</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>ls</td>
-<td>lists contents of R workspace/global environment</td>
-</tr>
-<tr class="even">
-<td>rm</td>
-<td>removes objects from R workspace</td>
-</tr>
-<tr class="odd">
-<td>save</td>
-<td>save selected objects</td>
-</tr>
-<tr class="even">
-<td>+,-,*,/,^</td>
-<td>arithmetic operators</td>
-</tr>
-<tr class="odd">
-<td>%*%</td>
-<td>matrix multiplication</td>
-</tr>
-<tr class="even">
-<td>t</td>
-<td>matrix transpose</td>
-</tr>
-<tr class="odd">
-<td>solve</td>
-<td>matrix inverse (and solving linear equations)</td>
-</tr>
-<tr class="even">
-<td>c</td>
-<td>combines (concatenates) objects, simplest way to make vectors</td>
-</tr>
-<tr class="odd">
-<td>seq</td>
-<td>creates vectors that are regular sequences</td>
-</tr>
-<tr class="even">
-<td>rep</td>
-<td>replicates vectors</td>
-</tr>
-<tr class="odd">
-<td>length</td>
-<td>returns length of a vector</td>
-</tr>
-<tr class="even">
-<td>sum</td>
-<td>returns the sum</td>
-</tr>
-<tr class="odd">
-<td>mean</td>
-<td>returns the mean</td>
-</tr>
-<tr class="even">
-<td>median</td>
-<td>returns the median</td>
-</tr>
-<tr class="odd">
-<td>sd</td>
-<td>returns the standard deviation (n − 1 in denominator)</td>
-</tr>
-<tr class="even">
-<td>min</td>
-<td>returns minimum</td>
-</tr>
-<tr class="odd">
-<td>max</td>
-<td>returns maximum</td>
-</tr>
-<tr class="even">
-<td>sort</td>
-<td>sort a vector (rearranges the vector in order)</td>
-</tr>
-<tr class="odd">
-<td>order</td>
-<td>returns indices of vectors that will order them</td>
-</tr>
-<tr class="even">
-<td>rank</td>
-<td>returns rank of each element in vector</td>
-</tr>
-<tr class="odd">
-<td>==, &lt;, &gt;</td>
-<td>comparison operators</td>
-</tr>
-<tr class="even">
-<td>&lt;=, &gt;=, !=</td>
-<td></td>
-</tr>
-<tr class="odd">
-<td></td>
-<td>, &amp;</td>
-</tr>
-<tr class="even">
-<td>is.na</td>
-<td>tests for missing value NA</td>
-</tr>
-<tr class="odd">
-<td>which</td>
-<td>does logical comparison and indicates which elements are TRUE that is, gives the TRUE indices of a logical object</td>
-</tr>
-<tr class="even">
-<td>any</td>
-<td>does logical comparison returns 1 (TRUE) if any of the comparisons are TRUE, i.e. is at least one of the values true?</td>
-</tr>
-<tr class="odd">
-<td>exp</td>
-<td>returns e to that power</td>
-</tr>
-<tr class="even">
-<td>log</td>
-<td>returns natural logarithm (to the base e)</td>
-</tr>
-<tr class="odd">
-<td>log10</td>
-<td>returns logarithm (to the base 10)</td>
-</tr>
-<tr class="even">
-<td>sqrt</td>
-<td>returns square root</td>
-</tr>
-<tr class="odd">
-<td>table</td>
-<td>does frequencies and cross-tabs</td>
-</tr>
-<tr class="even">
-<td>help</td>
-<td>help page on specified function</td>
-</tr>
-<tr class="odd">
-<td>cbind</td>
-<td>combine by columns</td>
-</tr>
-<tr class="even">
-<td>rbind</td>
-<td>combine by rows</td>
-</tr>
-<tr class="odd">
-<td>matrix</td>
-<td>create a matrix</td>
-</tr>
-<tr class="even">
-<td>vector</td>
-<td>create a vector</td>
-</tr>
-<tr class="odd">
-<td>nrow</td>
-<td>number of rows in an array or data frame</td>
-</tr>
-<tr class="even">
-<td>ncol</td>
-<td>number of columns in an array or data frame</td>
-</tr>
-<tr class="odd">
-<td>dim</td>
-<td>dimensions of an array or data frame</td>
-</tr>
-<tr class="even">
-<td>array</td>
-<td>create an array</td>
-</tr>
-</tbody>
-</table>
+| Function      | Description                                                                                                           |
+| ------------- | --------------------------------------------------------------------------------------------------------------------- |
+| ls            | lists contents of R workspace/global environment                                                                      |
+| rm            | removes objects from R workspace                                                                                      |
+| save          | save selected objects                                                                                                 |
+| \+,-,\*,/,^   | arithmetic operators                                                                                                  |
+| %\*%          | matrix multiplication                                                                                                 |
+| t             | matrix transpose                                                                                                      |
+| solve         | matrix inverse (and solving linear equations)                                                                         |
+| c             | combines (concatenates) objects, simplest way to make vectors                                                         |
+| seq           | creates vectors that are regular sequences                                                                            |
+| rep           | replicates vectors                                                                                                    |
+| length        | returns length of a vector                                                                                            |
+| sum           | returns the sum                                                                                                       |
+| mean          | returns the mean                                                                                                      |
+| median        | returns the median                                                                                                    |
+| sd            | returns the standard deviation (n − 1 in denominator)                                                                 |
+| min           | returns minimum                                                                                                       |
+| max           | returns maximum                                                                                                       |
+| sort          | sort a vector (rearranges the vector in order)                                                                        |
+| order         | returns indices of vectors that will order them                                                                       |
+| rank          | returns rank of each element in vector                                                                                |
+| \==, \<, \>   | comparison operators                                                                                                  |
+| \<=, \>=, \!= |                                                                                                                       |
+|               | , &                                                                                                                   |
+| is.na         | tests for missing value NA                                                                                            |
+| which         | does logical comparison and indicates which elements are TRUE that is, gives the TRUE indices of a logical object     |
+| any           | does logical comparison returns 1 (TRUE) if any of the comparisons are TRUE, i.e. is at least one of the values true? |
+| exp           | returns e to that power                                                                                               |
+| log           | returns natural logarithm (to the base e)                                                                             |
+| log10         | returns logarithm (to the base 10)                                                                                    |
+| sqrt          | returns square root                                                                                                   |
+| table         | does frequencies and cross-tabs                                                                                       |
+| help          | help page on specified function                                                                                       |
+| cbind         | combine by columns                                                                                                    |
+| rbind         | combine by rows                                                                                                       |
+| matrix        | create a matrix                                                                                                       |
+| vector        | create a vector                                                                                                       |
+| nrow          | number of rows in an array or data frame                                                                              |
+| ncol          | number of columns in an array or data frame                                                                           |
+| dim           | dimensions of an array or data frame                                                                                  |
+| array         | create an array                                                                                                       |
 
 | Function      | Description                                                       |
-|---------------|-------------------------------------------------------------------|
+| ------------- | ----------------------------------------------------------------- |
 | is.vector     | answers the question, is this a vector TRUE or FALSE              |
 | as.vector     | attempts to coerce object into a vector                           |
 | read.table    | reads data from a text file                                       |
@@ -241,8 +117,7 @@ Some Useful Definitions
 | dnorm         | PDF of normal distribution                                        |
 | rbinom        | produces a random sample from a binomial distribution             |
 
-Let's do some basic recap
--------------------------
+## Let’s do some basic recap
 
 Variable Assignment & Operations
 
@@ -288,38 +163,41 @@ Y
 plot(X,Y)
 ```
 
-![](welcome_back_files/figure-markdown_github/unnamed-chunk-1-1.png)
+![](welcome_back_files/figure-gfm/unnamed-chunk-1-1.png)<!-- -->
 
-Now let's add in some extra arguments to the plot function to make it prettier
+Now let’s add in some extra arguments to the plot function to make it
+prettier
 
 ``` r
 plot(x=X,y=Y, type = "p", pch=c(24), col = 'yellow', bg='blue', cex = 1.6, xlab = "X", ylab = "Y")
 title("X vs Y")
 ```
 
-![](welcome_back_files/figure-markdown_github/unnamed-chunk-2-1.png)
+![](welcome_back_files/figure-gfm/unnamed-chunk-2-1.png)<!-- -->
 
-Having trouble remembering the arguments that the function `plot()` accepts? Same...so just run `?plot` for RStudio's built in helper.
+Having trouble remembering the arguments that the function `plot()`
+accepts? Same…so just run `?plot` for RStudio’s built in helper.
 
 Recap:
 
--   type == type of plot - p stands for points
--   pch == plotting ‘character’, i.e., symbol to use
--   col == color
--   bg == background color (only applicable for pch's between 21:25)
--   cex == size of the points
--   xlab == x label
--   ylab == y label
+  - type == type of plot - p stands for points
+  - pch == plotting ‘character’, i.e., symbol to use
+  - col == color
+  - bg == background color (only applicable for pch’s between 21:25)
+  - cex == size of the points
+  - xlab == x label
+  - ylab == y label
 
-In Class Exercise:
-------------------
+## In Class Exercise:
 
-Create a plot above using a sequence of X values where Y is the log of the X values. Use both lines and points, pch of 21, cex of 1.5, and colors of your choosing.
+Create a plot above using a sequence of X values where Y is the log of
+the X values. Use both lines and points, pch of 21, cex of 1.5, and
+colors of your choosing.
 
-More Plotting
--------------
+## More Plotting
 
-Let's take a look at the different kind of points and arguments that go into a plotting function call
+Let’s take a look at the different kind of points and arguments that go
+into a plotting function call
 
 ``` r
 plot(1:25, 1:25, xlab="",ylab="",pch=1:25,col=1:25,cex=2)
@@ -330,12 +208,13 @@ legend("topleft", legend=1:6, lty=1:6, lwd=1.5, ncol=2, bg="gray95")
 legend("bottomright", legend=1:8, col=1:8, ncol=3, pch=19, bg="gray95")
 ```
 
-![](welcome_back_files/figure-markdown_github/unnamed-chunk-4-1.png)
+![](welcome_back_files/figure-gfm/unnamed-chunk-4-1.png)<!-- -->
 
-Basic types of plots with dummy data
-------------------------------------
+## Basic types of plots with dummy data
 
-We're going to create a fake dataset of those who are infected by the coronavirus. Let's do so using the `sample()` function.
+We’re going to create a fake dataset of those who are infected by the
+coronavirus. Let’s do so using the `sample()`
+function.
 
 ``` r
 # Create a random sample of the 3 types - Susceptible, Infected and Recovered
@@ -346,7 +225,7 @@ I
 
     ## InfStatus
     ##    Infected   Recovered Susceptible 
-    ##          23          16          11
+    ##          18          21          11
 
 ``` r
 # Now let's make a random sample of 3 genotypes (RR, Rr, and rr)
@@ -357,7 +236,7 @@ G
 
     ## Genotype
     ## rr Rr RR 
-    ## 15 18 17
+    ## 18 18 14
 
 ``` r
 #show genotype and infected status as a table 
@@ -366,11 +245,12 @@ table(Genotype, InfStatus)
 
     ##         InfStatus
     ## Genotype Infected Recovered Susceptible
-    ##       rr        6         4           5
-    ##       Rr       10         6           2
-    ##       RR        7         6           4
+    ##       rr        6         7           5
+    ##       Rr        8         7           3
+    ##       RR        4         7           3
 
-Note - We turned the sample data info a `factor` to make sure the factors aren't double indexed...here is what I mean...
+Note - We turned the sample data info a `factor` to make sure the
+factors aren’t double indexed…here is what I mean…
 
 ``` r
 # WITHOUT the factor
@@ -378,16 +258,16 @@ test <- sample(c("Susceptible", "Infected", "Recovered"),size = 50, replace = TR
 test
 ```
 
-    ##  [1] "Recovered"   "Recovered"   "Infected"    "Susceptible" "Infected"   
-    ##  [6] "Infected"    "Susceptible" "Recovered"   "Recovered"   "Infected"   
-    ## [11] "Susceptible" "Recovered"   "Infected"    "Infected"    "Recovered"  
-    ## [16] "Susceptible" "Recovered"   "Infected"    "Susceptible" "Recovered"  
-    ## [21] "Infected"    "Susceptible" "Recovered"   "Infected"    "Infected"   
-    ## [26] "Recovered"   "Recovered"   "Susceptible" "Recovered"   "Infected"   
-    ## [31] "Recovered"   "Infected"    "Infected"    "Susceptible" "Infected"   
-    ## [36] "Recovered"   "Recovered"   "Susceptible" "Infected"    "Recovered"  
-    ## [41] "Susceptible" "Infected"    "Infected"    "Susceptible" "Infected"   
-    ## [46] "Infected"    "Infected"    "Infected"    "Recovered"   "Infected"
+    ##  [1] "Recovered"   "Susceptible" "Infected"    "Infected"    "Recovered"  
+    ##  [6] "Infected"    "Infected"    "Susceptible" "Recovered"   "Infected"   
+    ## [11] "Susceptible" "Recovered"   "Susceptible" "Infected"    "Infected"   
+    ## [16] "Infected"    "Infected"    "Susceptible" "Susceptible" "Recovered"  
+    ## [21] "Infected"    "Infected"    "Infected"    "Recovered"   "Recovered"  
+    ## [26] "Infected"    "Susceptible" "Infected"    "Infected"    "Infected"   
+    ## [31] "Susceptible" "Infected"    "Susceptible" "Susceptible" "Infected"   
+    ## [36] "Recovered"   "Susceptible" "Susceptible" "Recovered"   "Infected"   
+    ## [41] "Infected"    "Infected"    "Susceptible" "Recovered"   "Susceptible"
+    ## [46] "Recovered"   "Infected"    "Susceptible" "Infected"    "Infected"
 
 ``` r
 class(test)
@@ -401,15 +281,15 @@ test2 <- factor(sample(c("Susceptible", "Infected", "Recovered"),size = 50, repl
 test2
 ```
 
-    ##  [1] Infected    Susceptible Infected    Susceptible Susceptible Infected   
-    ##  [7] Susceptible Infected    Recovered   Infected    Recovered   Recovered  
-    ## [13] Infected    Recovered   Susceptible Susceptible Infected    Susceptible
-    ## [19] Susceptible Recovered   Susceptible Infected    Susceptible Recovered  
-    ## [25] Susceptible Infected    Susceptible Recovered   Infected    Recovered  
-    ## [31] Susceptible Recovered   Infected    Susceptible Susceptible Recovered  
-    ## [37] Infected    Infected    Susceptible Recovered   Recovered   Recovered  
-    ## [43] Recovered   Infected    Recovered   Infected    Susceptible Recovered  
-    ## [49] Recovered   Recovered  
+    ##  [1] Infected    Recovered   Recovered   Susceptible Recovered   Recovered  
+    ##  [7] Recovered   Susceptible Recovered   Infected    Susceptible Infected   
+    ## [13] Susceptible Susceptible Susceptible Susceptible Susceptible Susceptible
+    ## [19] Infected    Susceptible Recovered   Susceptible Susceptible Infected   
+    ## [25] Infected    Susceptible Recovered   Recovered   Recovered   Recovered  
+    ## [31] Infected    Infected    Susceptible Infected    Susceptible Infected   
+    ## [37] Recovered   Susceptible Recovered   Recovered   Infected    Susceptible
+    ## [43] Infected    Infected    Recovered   Susceptible Infected    Recovered  
+    ## [49] Susceptible Infected   
     ## Levels: Infected Recovered Susceptible
 
 ``` r
@@ -418,8 +298,7 @@ class(test2)
 
     ## [1] "factor"
 
-Now let's plot this fake data
------------------------------
+## Now let’s plot this fake data
 
 ``` r
 par(mfrow=c(2, 2), mar=c(3, 2, 2, 1), oma=c(0, 0, 3, 0), bg = "white") ## create plot array of 2 row x 2 columns
@@ -433,12 +312,15 @@ pie(G, col = c("gray50", "gray70", "gray90")) # pie plot
 mtext("Basic R Plots", outer = TRUE, cex = 1.5, font = 2) # main title
 ```
 
-![](welcome_back_files/figure-markdown_github/unnamed-chunk-7-1.png)
+![](welcome_back_files/figure-gfm/unnamed-chunk-7-1.png)<!-- -->
 
-Playing with Tree Data
-======================
+# Playing with Tree Data
 
-Let's say you're an ecologist who collected some tree data samples out in the field. Let's load this into R and explore the data. In order to proceed, you'll need to download **TreeData.csv** which is located here - (<https://github.com/jsimkins2/geog473-673/tree/master/datasets/TreeData.csv>)
+Let’s say you’re an ecologist who collected some tree data samples out
+in the field. Let’s load this into R and explore the data. In order to
+proceed, you’ll need to download **TreeData.csv** which is located here
+-
+(<https://github.com/jsimkins2/geog473-673/tree/master/datasets/TreeData.csv>)
 
 ``` r
 # Navigate to the location where your file is stored locally. Use read.csv() function to load the data
@@ -489,9 +371,18 @@ treedat
     ## 19    70.5
     ## 20   128.6
 
-`treedat` is a data frame. As a reminder, a data frame is essentially a 2-dimensional array that contains a *combination* of vectors (columns of data) that are of the class; integer, numeric, character. This is *different* from a matrix which can only contain *1 type* of data. In this case, we have some tree data that includes species of tree, season the data was collected, diameter of the tree, bark thickness, area of no bark, heartwood diameter, and sapwood diameter. [![](welcome_back_files/figure-markdown_github/unnamed-chunk-9-1.png)](https://github.com/jsimkins2/geog473-673/tree/master/documents/images/heartwoodvssapwood.jpeg)
+`treedat` is a data frame. As a reminder, a data frame is essentially a
+2-dimensional array that contains a *combination* of vectors (columns of
+data) that are of the class; integer, numeric, character. This is
+*different* from a matrix which can only contain *1 type* of data. In
+this case, we have some tree data that includes species of tree, season
+the data was collected, diameter of the tree, bark thickness, area of no
+bark, heartwood diameter, and sapwood diameter.
 
-Now, let's edit htis dataframe to the format we want it in. Then, let's plot a histogram of bark thickness and a boxplot of sapdepth by species.
+<img src="../documents/images/heartwoodvssapwood.jpeg" width="480" />
+
+Now, let’s edit htis dataframe to the format we want it in. Then, let’s
+plot a histogram of bark thickness and a boxplot of sapdepth by species.
 
 ``` r
 # let's set the rownames equal to the tree column
@@ -604,25 +495,31 @@ hist(treedat$BarkThick, xlab= "Bark Thickness (cm)", main= "Histogram: Bark Thic
 boxplot(SapDepth ~ spp, data= treedat, ylab= "SapDepth", col= "darkslateblue", main= "Boxplot: Sapwood Depth by Species")
 ```
 
-![](welcome_back_files/figure-markdown_github/unnamed-chunk-10-1.png)
+![](welcome_back_files/figure-gfm/unnamed-chunk-10-1.png)<!-- -->
 
-Note: hist() is the histogram function and boxplot() is the boxplot function. For the boxplot, notice how the x ~ y, data=dataframe syntax is. It's slightly different than the plotting instances above and for the histogram. For a histogram, the hist() function can only intake numerical values. Thus, if we wanted to take a species histogram, we would have to take a workaround like so -
+Note: hist() is the histogram function and boxplot() is the boxplot
+function. For the boxplot, notice how the x ~ y, data=dataframe syntax
+is. It’s slightly different than the plotting instances above and for
+the histogram. For a histogram, the hist() function can only intake
+numerical values. Thus, if we wanted to take a species histogram, we
+would have to take a workaround like so -
 
 ``` r
 barplot(summary(treedat$spp))
 ```
 
-![](welcome_back_files/figure-markdown_github/unnamed-chunk-11-1.png)
+![](welcome_back_files/figure-gfm/unnamed-chunk-11-1.png)<!-- -->
 
-Assignment:
------------
+## Assignment:
 
 Using the TreeData.csv above, complete the following:
 
-1.  Rename 'spp' variable to 'species'
-2.  Make a 3 column plot consisting of Sapwood Depth histogram, boxplot of Bark Thickness by species, and a histogram showing the seasonal counts.
+1.  Rename ‘spp’ variable to ‘species’
+2.  Make a 3 column plot consisting of Sapwood Depth histogram, boxplot
+    of Bark Thickness by species, and a histogram showing the seasonal
+    counts.
 3.  Submit plot to Assignment 1 on Canvas
 
 Your final plot should look like this
 
-![](welcome_back_files/figure-markdown_github/unnamed-chunk-12-1.png)
+![](welcome_back_files/figure-gfm/unnamed-chunk-12-1.png)<!-- -->
