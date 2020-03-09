@@ -470,8 +470,8 @@ Deliverables:
 
 2) Select any dataset from the ERDDAP server and create a script that loads in the data and plots it. In your script explain why you chose that dataset, detail each step and describe why it's happening, Turn in your R script and the Image/Plot you've made. 
 
-## Extra Credit !!! 2.5 Points !!
+## Extra Credit !!! 3 Points !!
 
-Create a function that downloads and plots a dataset using THREDDS or ERDDAP. Arguments must include date ranges and spatial extents. Submit script to canvas. 
+Find a dataset that uses TableDap's instance of ERDDAP. This is a method for storing point data instead of spatial data. Create a routine that downloads and extracts data using the `tabledap()` function from rerddap 
 
 
