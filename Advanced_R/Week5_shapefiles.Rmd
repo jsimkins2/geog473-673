@@ -234,7 +234,7 @@ writeOGR(obj = merged.coast, dsn = "/Users/james/Downloads/coast_files/merged.co
 
 # Week 5 Assignment - Replicate these Plots
 
-Using the **ne_10m_parks_and_protected_lands** shapefile dataset, map the names of the protected lands in the **Pacific Northwest** using the methods listed below. You will need to download all of the contents of the **ne_10m_parks_and_protected_lands** shapefile folder. *Note that you have to fuse a csv and to this shapefile*
+Using the **ne_10m_parks_and_protected_lands** shapefile dataset, map the names of the protected lands in the **Pacific Northwest** using the methods listed below. You will need to download all of the contents of the **ne_10m_parks_and_protected_lands** shapefile folder.
 
 1) spplot
 2) tmap
