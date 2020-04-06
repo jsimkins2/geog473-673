@@ -196,7 +196,7 @@ We already have our `count` values in place..let's plug them in and run - note t
 
 ```{r}
 # cool, let's grab SST (Sea Surface Temperature) for Delaware Bay from January 10th-12th
-sst.c <- ncvar_get(goes.nc, "SST",start = c(index_east_lon,index_south_lat,index_start_time), 
+sst.c <- ncvar_get(goes.nc, "SST",start = c(index_west_lon,index_south_lat,index_start_time), 
                    count = c(lon_count,lat_count,time_count))
 dim(sst.c)
 ```
@@ -218,10 +218,15 @@ test.sst
 What's missing? Well we just gave it the raw data, we still need to plug in the extents! Also, we will need to plug in the CRS - luckily we know this data is in lat/lon because of how awesome this metadata is!
 
 ```{r}
+# we need to transpose and flip this dataset just like we did in week 4 of the R intro course
+# for some reason when we put the netcdf data into R raster the data is upside down and inside out so this is our way of fixing it 
+test.sst = t(test.sst)
+test.sst = flip(test.sst, 2)
+# define the projection
 sst.crs = ncatt_get(goes.nc, "projection")
 extent(test.sst) = c(west_lon, east_lon, south_lat, north_lat)
 crs(test.sst) = sst.crs$proj4_string
-test.sst
+
 
 # let's use levelplot to get this done
 usa <- getData('GADM', country = 'USA', level = 1)
@@ -229,7 +234,7 @@ usa <- getData('GADM', country = 'USA', level = 1)
 # Throw together the usa spatial polygons data frame
 plt <- levelplot(test.sst, margin=F, par.settings=BuRdTheme,
        main="GOES-R SST 07/14")
-plt + layer(sp.polygons(usa, col='black',fill='grey', lwd=0.4))
+plt + layer(sp.polygons(usa, col='black', lwd=0.4))
 ```
 
 Boom...There's the data we wanted and you didn't have to leave R to get it. You also saved a ton of time and hard drive space. 

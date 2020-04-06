@@ -91,7 +91,7 @@ goes.nc
     ##             standard_name: longitude
     ##             units: degrees_east
     ##             _ChunkSizes: 2778
-    ##         time  Size:10914
+    ##         time  Size:11650
     ##             standard_name: time
     ##             long_name: EPOCH Time
     ##             units: seconds since 1970-01-01T00:00:00Z
@@ -111,7 +111,7 @@ goes.nc
     ##         inputCalibrationFile: 0
     ##         product_list: SST, DQF
     ##         summary: GOES16 SST product, reprojected to EPSG:4326.
-    ##         history: Thu Mar  5 11:19:29 2020: ncks /data/GOES/GOES-R/sst/2020/OR_ABI-L2-SSTF-M3_G16_s20200651500177_e20200651559485_c20200651606007.nc /data/GOES/GOES-R/sst/2020/OR_ABI-L2-SSTF-M3_G16_s20200651500177_e20200651559485_c20200651606007.nc -L 5 -O
+    ##         history: Mon Apr  6 10:32:52 2020: ncks /data/GOES/GOES-R/sst/2020/OR_ABI-L2-SSTF-M3_G16_s20200971300206_e20200971359514_c20200971405319.nc /data/GOES/GOES-R/sst/2020/OR_ABI-L2-SSTF-M3_G16_s20200971300206_e20200971359514_c20200971405319.nc -L 5 -O
     ##         NCO: netCDF Operators version 4.7.5 (Homepage = http://nco.sf.net, Code = http://github.com/nco/nco)
 
 Just with that one line of code, we've opened a connection with the GOES-R dataset on the THREDDS server. Printing the netcdf dataset provides some metadata info. Let's use this metadata and extract the time period / spatial extent that we want.
@@ -137,7 +137,7 @@ lastVal = length(goes.nc$dim$time$vals)
 lastVal
 ```
 
-    ## [1] 10914
+    ## [1] 11650
 
 ``` r
 epoch_val = goes.nc$dim$time$vals[lastVal]
@@ -150,7 +150,7 @@ human_time = as.POSIXct(epoch_val, origin="1970-01-01")
 human_time
 ```
 
-    ## [1] "2020-03-05 11:30:03 EST"
+    ## [1] "2020-04-06 10:30:06 EDT"
 
 `as.POSIXct` is a datetime package in R. It is a gold standard and you'll see it as you gain more experience in playing with datetime conversions. You can also use `anytime` package.
 
@@ -159,7 +159,7 @@ library(anytime)
 anytime(epoch_val)
 ```
 
-    ## [1] "2020-03-05 11:30:03 EST"
+    ## [1] "2020-04-06 10:30:06 EDT"
 
 At this point, all we have to do is convert our human dates to EPOCH so we can extract the data. In order to do this all we need to do is convert a datetime object to a numeric. R handles it for us...
 
@@ -306,7 +306,7 @@ We already have our `count` values in place..let's plug them in and run - note t
 
 ``` r
 # cool, let's grab SST (Sea Surface Temperature) for Delaware Bay from January 10th-12th
-sst.c <- ncvar_get(goes.nc, "SST",start = c(index_east_lon,index_south_lat,index_start_time), 
+sst.c <- ncvar_get(goes.nc, "SST",start = c(index_west_lon,index_south_lat,index_start_time), 
                    count = c(lon_count,lat_count,time_count))
 dim(sst.c)
 ```
@@ -347,34 +347,28 @@ test.sst
     ## crs        : NA 
     ## source     : memory
     ## names      : layer 
-    ## values     : 273.5828, 302.611  (min, max)
+    ## values     : 273.744, 302.1935  (min, max)
 
 What's missing? Well we just gave it the raw data, we still need to plug in the extents! Also, we will need to plug in the CRS - luckily we know this data is in lat/lon because of how awesome this metadata is!
 
 ``` r
+# we need to transpose and flip this dataset just like we did in week 4 of the R intro course
+# for some reason when we put the netcdf data into R raster the data is upside down and inside out so this is our way of fixing it 
+test.sst = t(test.sst)
+test.sst = flip(test.sst, 2)
+# define the projection
 sst.crs = ncatt_get(goes.nc, "projection")
 extent(test.sst) = c(west_lon, east_lon, south_lat, north_lat)
 crs(test.sst) = sst.crs$proj4_string
-test.sst
-```
 
-    ## class      : RasterLayer 
-    ## dimensions : 173, 204, 35292  (nrow, ncol, ncell)
-    ## resolution : 0.01519608, 0.02138728  (x, y)
-    ## extent     : -76.8, -73.7, 37.3, 41  (xmin, xmax, ymin, ymax)
-    ## crs        : +proj=longlat +datum=WGS84 +ellps=WGS84 +towgs84=0,0,0 
-    ## source     : memory
-    ## names      : layer 
-    ## values     : 273.5828, 302.611  (min, max)
 
-``` r
 # let's use levelplot to get this done
 usa <- getData('GADM', country = 'USA', level = 1)
 
 # Throw together the usa spatial polygons data frame
 plt <- levelplot(test.sst, margin=F, par.settings=BuRdTheme,
        main="GOES-R SST 07/14")
-plt + layer(sp.polygons(usa, col='black',fill='grey', lwd=0.4))
+plt + layer(sp.polygons(usa, col='black', lwd=0.4))
 ```
 
 ![](Week6_DataExtraction_files/figure-markdown_github/unnamed-chunk-20-1.png)
@@ -543,14 +537,14 @@ info('cwwcNDBCMet')
     ##          Range: 0, 359 
     ##          Units: degrees_true 
     ##      ptdy: 
-    ##          Range: -15.0, 14.9 
+    ##          Range: -14.0, 14.7 
     ##          Units: hPa 
     ##      station: 
     ##      tide: 
     ##          Range: -9.37, 6.13 
     ##          Units: m 
     ##      time: 
-    ##          Range: 4910400.0, 1.5834312E9 
+    ##          Range: 4910400.0, 1.58618658E9 
     ##          Units: seconds since 1970-01-01T00:00:00Z 
     ##      vis: 
     ##          Range: 0.0, 66.7 
@@ -619,7 +613,7 @@ info('jplMURSST41')
     ## <ERDDAP info> jplMURSST41 
     ##  Base URL: https://upwell.pfeg.noaa.gov/erddap/ 
     ##  Dimensions (range):  
-    ##      time: (2002-06-01T09:00:00Z, 2020-03-04T09:00:00Z) 
+    ##      time: (2002-06-01T09:00:00Z, 2020-04-05T09:00:00Z) 
     ##      latitude: (-89.99, 89.99) 
     ##      longitude: (-179.99, 180.0) 
     ##  Variables:  
