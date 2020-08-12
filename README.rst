@@ -1,12 +1,12 @@
 GEOG 473/673: Open-sourced Environmental Computing
 ============================================================
   Online Meeting – MW 9am – 10am
-  Online Meeting – MW 9am – 10am
+
 Phase 1: Environmental Computing with R -  9/1/2020 to 10/1/2019 – 1cr
 Phase 2: Spatial Computing with Python – 10/2/2020 to 12/10/2020 – 2cr
 
 All datasets can be found in the datasets repository
-https://github.com/jsimkins2/geog473-673/tree/master/datasets
+ https://github.com/jsimkins2/geog473-673/tree/master/datasets
 
 
 R Phase of GEOG 473/673: Course Notebooks
