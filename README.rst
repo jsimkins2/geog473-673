@@ -1,52 +1,32 @@
-GEOG 473/673: Advanced Programming for Spatial Analysis and Visualization
+GEOG 473/673: Open-sourced Environmental Computing
 ============================================================
- Pearson 203 – MW 8:40 – 9:55
-
-Phase 1: Spatial Analysis & Visualization in R -  2/10/2020 to 4/17/2020 – 2cr
-
-Phase 2: Investigative Spatial Programming – 4/20/2020 to 5/18/2020 – 1cr
-
-
-The objective of the spring installment of GEOG 473/673 is to expand on the topics covered in the fall version of GEOG 473/673 – open source environmental computing. The course will be split into 2 phases. The first phase is a 2-credit course focused on using advanced tools within the R programming language. The goal of this phase is for students to gain practical experience with challenging R topics that can be used for generating publication quality material. The second phase is a 1-credit course focused on investigating scientific publications and attempting to replicate research data methods using either R or Python. Through examining and duplicating data-analysis procedures found in research, students will apply R or Python knowledge and gain confidence in using these programming languages via meaningful research applications. 
+  Online Meeting – MW 9am – 10am
+  Online Meeting – MW 9am – 10am
+Phase 1: Environmental Computing with R -  9/1/2020 to 10/1/2019 – 1cr
+Phase 2: Spatial Computing with Python – 10/2/2020 to 12/10/2020 – 2cr
 
 All datasets can be found in the datasets repository
-
 https://github.com/jsimkins2/geog473-673/tree/master/datasets
 
 
-GEOG 473/673: Course Notebooks
+R Phase of GEOG 473/673: Course Notebooks
 ----------------
+ Week 1 - An Introduction to R - Powerpoint
 
- Week 1 - Welcome to Advanced R!
+https://github.com/jsimkins2/geog473-673/blob/master/documents/intro_powerpoint.pptx
 
-https://github.com/jsimkins2/geog473-673/blob/master/Advanced_R/welcome_back.md
+ Week 2 - R Syntax, Classes & Datatypes
 
- Week 2 - Basic Statistics Plotting
+https://github.com/jsimkins2/geog473-673/blob/master/R/Week2_RSyntaxClassesDatatypes.md
 
-https://github.com/jsimkins2/geog473-673/blob/master/Advanced_R/Week2_BasicStatistics.md
+ Week 3 - Time Series Analysis with DEOS data
 
- Week 3 - ggplot2 Tutorial
+https://github.com/jsimkins2/geog473-673/blob/master/R/Week3_TimeSeriesDEOS.md
 
-https://github.com/jsimkins2/geog473-673/blob/master/Advanced_R/Week3_ggplot2.md
+ Week 4 - Raster Analysis with Oceanography data
 
- Week 4 - Spatial ggplot2
+https://github.com/jsimkins2/geog473-673/blob/master/R/Week4_Oceanography.md
 
-https://github.com/jsimkins2/geog473-673/blob/master/Advanced_R/Week4_spatial_ggplot2.md
+ Week 5 - Resampling and Reprojecting Rasters with climatological temperature data
 
- Week 5 - Plotting Shapefiles
-
-https://jsimkins2.github.io/geog473-673/Week5_shapefiles.html
-
- Week 6 - Data Extraction
-
-https://github.com/jsimkins2/geog473-673/blob/master/Advanced_R/Week6_DataExtraction.md
-
- Week 7 - Functions and Presentations
-
-https://github.com/jsimkins2/geog473-673/blob/master/Advanced_R/Week7_Functions_and_Presentation.md
-
- Final Project
-
-https://github.com/jsimkins2/geog473-673/blob/master/documents/AdvancedR_finalproject.pdf
-
-
+https://github.com/jsimkins2/geog473-673/blob/master/R/Week5_Reprojecting.md
