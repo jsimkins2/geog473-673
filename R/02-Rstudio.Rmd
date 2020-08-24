@@ -1,124 +1,88 @@
-# R & RStudio
+# Definitions & Rules
 
-By now you've downloaded R and RStudio and you're probably wondering, why do I need to download both? R is that programming language that is running on your computer. RStudio is what we call an Indegrated Development Environment (IDE) - this is a technical term for a pretty application that's all dressed up on the surface but underneath is really crunching some numbers (using R) at serious speeds. RStudio is the application we'll be using. It is our Microsoft Excel. RStudio runs R in the background for us and gives us information and a nice, user-friendly layout. Let's open RStudio and get familiar with it.
+This is a reference guide to look back on when you're stuck. These definitions and rules are not expected to be understood right now but it's important you know you can look back on this as a quick-reference. 
 
+## Important R Programming Definitions
 
-## Open RStudio
-Navigate to your applications folder on your computer. Launch RStudio. When you open it for the first time, you should see this.
+Read through these now to get familiar and refer back to these whenever you need a refresher. You're not expected to have these memorized or even understood at this moment. These will make more sense as we progress through the course.
 
+| Coding Name | Example | Definition |
+|--------|------------------|--------------------------|
+| syntax | R code | the nomenclature and structure of a programming language| 
+| debugging | Failed R run | debugging involves fixing R code that is written incorrectly and doesn't run |
+| variable | `names` | Variables are used to store data, whose value can be changed according to our need. Variables can be declared using `<-` (tradiational way) **or** by `=` (conventional way) |
+| package | `library(ggplot2)` | A collection of functions prewritten in R| 
+| function | `print()` | A function is a set of statements organized together to perform a specific task. R has a set of preloaded functions that are part of the `base` package. If a function cannot be found as part of the `base` package, the function has likely already been built under another package that needs to be loaded in. **Functions can be identified due to their enclosing parantheses ()**|
+| arguments | `read.csv(file = "datasets/tv_shows.csv", header = FALSE)`| Components of a function that are separated by commas and declared using the `=` sign. Arguments in this example are `file = ` and `header = `|
+| index | `tv_data[3,55]` | The position of data within a data frame, matrix, list, vector, etc. In R, data is **indexed as [row,column] and indexing is done via brackets []** | 
+| loop | `for (n in names){print(n)}`| Repeats a task for a specified number of times. Saves a programmer from repeating codelines with different parameters. |
+| logical | `TRUE, FALSE` | TRUE and FALSE logical operators are declared using all caps  | 
+| arithmetic operators | `+,-,*,/,^` | Math operators used for addition, subtraction, multiplication, division, exponent, respectively. |
+| comparison operators | `==, <, >, <=, >=, !=`| Is equal to, less than, greater than, less than or equal to, greater than or equal to, is NOT equal to, respectively | 
+| and/or operators  | `&, |` | AND, OR | 
+| string | `a_string = "anythign within quotes, single or double"` | Any value written within a pair of single quote or double quotes in R is treated as a string. |
+| numeric | `1` | Any number - integer, float, etc. |
+| vector | `as.vector(x = c(1,2,3,4))` | Vectors are the most basic R data objects and there are six types of atomic vectors. They are logical, integer, double, complex, character and raw.|
+| lists | `list('Peter', 'Sarah', 'Tom', 'Helen')` | Lists are the R objects which contain elements of different types like − numbers, strings, vectors and another list inside it|
+| matrix | `matrix(c(1:5), nrow = 3, byrow = TRUE)` | Matrices are the R objects in which the elements are arranged in a two-dimensional rectangular layout.| 
+| array | `array(data = c(1,2,3))`| Arrays are the R data objects which can store data in more than two dimensions. For example − If we create an array of dimension (1, 2, 3) then it creates 3 rectangular matrices each with 1 rows and 2 columns. Arrays can store only one data type.| 
+| data frame | `data.frame(tv_data)` | R version of Excel Spreadsheet. A data frame is a table or a two-dimensional array-like structure in which each column contains values of one variable and each row contains one set of values from each column. | 
+| factor | `factor()` | Factors are the data objects which are used to categorize the data and store it as levels. They can store both strings and integers. They are useful in the columns which have a limited number of unique values. Like "Male, "Female" and True, False etc. They are useful in data analysis for statistical modeling.| 
+| help | `help(read.csv)` | Default helper function in R. Opens up documentation on a particular function in the lower right quadrant of R. | 
+| class | `class(tv_data)` | Tells us what R is recognizing something as |
+| concatenate (`c`) | c("a", "b", "c") |  A quick utility for concatenating strings together |
+| filepath | "/Users/james/Downloads/" |  The location on your computer where a file is stored. A filepath with a leading slash (akak "/" ) is also referred to as root. Root is the furthest back you can go on your computer. Think of a filepath like this - "/Earth/UnitedStates/Delaware/Newark/" |
 
-```{r, echo=FALSE, out.width="100%", fig.align="center"}
-knitr::include_graphics("images/openR_1.png")  
-```
+[Additional examples can be found here](https://www.tutorialspoint.com/r/index.htm)
 
+## Rules
 
-This is RStudio. When you open it for the first time, we'll need to open a new RScript to begin coding. 
+1. Parantheses (), Brackets [], Curly brackets {}, Quotations "" must be used in pairs
 
+  A **very important** aspect to pay attention to are the parantheses, brackets, and curly brackets. Each time we use one of these, the brackets **must be opened, then must be closed**. What I mean by this is the following: Notice how when we use the `head()` function, we do so like this `head(sorted_tv_data)`. `sorted_tv_data` goes **inside** the enclosed parantheses and thus is an *argument* of the `head()` function. 
+  
+  Now let's look at a more complicated example. Similar to the rules of PEMDAS that we learned in algebra, the start and ending of parantheses work in the same way. For example:
+  
+  `ggplot(data = sorted_tv_data[1:16,], mapping = aes(x=Title, y=IMDb))`
+  
+  The `ggplot` function encloses *another* function by the name of `aes` (stands for aesthetics). Before we *close* the `ggplot` function, we *open* the `aes` function. This is because the `aes` function is declared **within** the `ggplot` function. We must **close** the `aes` function *before* we close the `ggplot` function. In other words, follow along with this example:
+  
+    `function(inside_function(inside_inside_function()))`
+  
+  The inside_inside_function is here:
+  
+    function(inside_function(**inside_inside_function()**))
+  
+  The inside_function is here:
+  
+    function(**inside_function(inside_inside_function())**)
+  
+  The first functions parantheses are enclosing the bolded above. Placing functions within one another is referred to as **nested functions**. This is handy, but can be difficult to read if too many functions are nested as things are evaluated from the inside out. If you're ever confused about where a functions parentheses begins and ends, simply place your cursor *to the right* of a parenthesis.
+  
+  ```{r, echo=FALSE, out.width="100%", fig.align="center"}
+  knitr::include_graphics("images/hover_parantheses.png")  
+  ```
 
-**Open new R Script**
+  Always close your parantheses in the right place. The same applies to quotes ( both `""` and `''` )
+  
+2. If you don't have a package, you must install that package.
 
+3. Packages MUST be loaded for each R session.
 
-To open a new R Script, we select the blankpage with green plus icon and select R Script from the menu. 
-
-
-```{r, echo=FALSE, out.width="100%", fig.align="center"}
-knitr::include_graphics("images/new_script2.png")  
-```
-
-
-This opens up the new R script and we can begin coding in R. Now that we have the R Script open, you'll notice 4 quadrants. Let's run through what those quadrants are.
-
-
-## R Studio Layout
-
-
-```{r, echo=FALSE, out.width="100%", fig.align="center"}
-knitr::include_graphics("images/Full_image_3.png")  
-```
-
-
-Now let's describe what's going on here in a little more detail.
-
-
-**R Script** - This is your canvas. This is where we write and edit our code. A lot of trial and error goes on here. 
-
-
-```{r, echo=FALSE, out.width="100%", fig.align="center"}
-knitr::include_graphics("images/script4.png")  
-```
-
-
-**R Console** - This is where you run your code. When we talk about running code, we mean we're telling R to execute the code we've written in the R Script. R Console is the place inside RStudio where we are using the R programming language. 
-
-
-```{r, echo=FALSE, out.width="100%", fig.align="center"}
-knitr::include_graphics("images/console5.png")  
-```
-
-
-**Variable Environment** - This area keeps track of your variables, data tables, filenames, etc. Anything that you run in R that has a name will be stored here. Imagine the Variable Environment to be your closet - every time you make/buy a new sweater, the sweater goes in the closet. We can select data tables to view from this list here.
-
-
-```{r, echo=FALSE, out.width="100%", fig.align="center"}
-knitr::include_graphics("images/environment6.png")  
-```
-
-
-**Files/Plots/Help** - In this quadrant, we can toggle through files on our computer (we can view where your files are stored), view plots/visualizations that we're creating in R (whenever you create a plot in R it is output here first), search for help and descriptions of R functions (there's descriptions on every function you'll use in R - they can all be loaded here in the help tab), and more.
-
-
-```{r, echo=FALSE, out.width="100%", fig.align="center"}
-knitr::include_graphics("images/files7.png")  
-```
-
-## Installing and Using Packages
-
-To use a function in R that performs a task (such as plotting, statistical analysis, etc.), we must first load the package into our R session. When we use Microsoft Excel, nearly all the functions you can use with it are available in the toolbar at the top of the page. In R, however, you'll need to load in the packages you'd like to use. Once the package is loaded, R will recognize any functions you call that are part of that package. 
-
-In R, the package is the toolbox; the function is the tool. We need to load the woodworking toolbox in order to use the hammer.
-
-Most of the packages you'll want to use are not previously installed on R. You'll need to install them onto your local machine. Once they are installed once, you shouldn't have to worry about installing them again. Here's how you install the `ggplot2` package.
-
-```{r, eval=FALSE}
-install.packages("ggplot2")
-```
-
-Paste this code into your **console**. Then hit enter and watch R run your code to install the packages!
-
-If R console returns with a question like, "Would you like to install from source? Yes / No" - answer with **Yes**. These packages we're downloading contain pre-written code that other developers have created so we don't have to recreate the wheel. Source is a location where the package is stored - it's the initial location it was created, in fact. Think of the package download location as a Car Dealership - all car dealerships sell the same thing, but they all have different cars in different colors from different years. When we select source, we select a car directly from the manufacturer. 
-
-## Loading the installed packages into R
-
-Here's the code we use to load a package:
-
-```{r, eval=FALSE}
-library(ggplot2)
-```
-
-You may be wondering, why do I need to load in the packages I want to use? R is designed to be *fast*. If you were to pre-load every single package available in R, you'd be loading thousands and thousands of packages. We can keep R light and fast by only loading the specific "toolboxes" we need. 
-
-Now that the `ggplot2` package is installed, we can use any function that is within that package. If you're curious about what functions are in a particular package, [most packages have thorough documentation and examples online](https://ggplot2.tidyverse.org/reference/). 
-
-## Running Code
-
-In R, there are multiple ways to run code. Remember that we write code in an R Script and run that code in the console. We can execute code in the following ways:
-
-1) Click 'Run' at the top of the R script. Note that yours may not look the exact same, but just find a `Run` button to click!
+4. Variable names cannot replicate function/package names.
 
 
-```{r, echo=FALSE, out.width="100%", fig.align="center"}
-knitr::include_graphics("images/runRcode.png")  
-```
+## General Recommendations 
 
-  - This option allows you to run sections of your code, line by line, or the whole script.
+1. Comment, comment, comment. A comment is a brief note on what you were doing when you wrote a line of code. For example, if you write some R code that edits part of a dataframe (R's version of an Excel Spreadsheet), comment what you were thinking here and why you did it this way. Once you become comfortable coding in R, you'll be able to churn out new R scripts at a faster rate. It's very important that you comment on what you're doing at each step in the script so if you need to look back on something you wrote you can reference what you were doing there. A comment in R is declared using the pound symbol (#). 
 
-2) While the cursor is on a line of code you want to run in the R script, Hit `Ctrl + Enter` on Windows, `Cmd + Enter` on Mac. This will run that line of code.
+2. Keep raw data raw. An advantage of R is being able to read in an original spreadsheet and output a new spreadsheet as a separate file. In other words, when you read in a dataset (for example, `tv_shows.csv`) and make changes to this file, do not save it was `tv_shows.csv` - thus overwriting the file. Instead, name it something like `tv_shows_edited.csv`. Also, notice how we use underscores (`_`) in between words of a filename - this is good practice that should be replicated (spaces are bad, see 4)
 
-3) Select and highlight the section of code you want to run in the R script, Hit `Ctrl + Enter` on Windows, `Cmd + Enter` on Mac.This will run that selected section of code.
+3. When in doubt, Google your R question - [look for StackOverflow links](https://stackoverflow.com/). StackOverflow is a web-forum where programmers can post questions for help. This is an incredible tool that even advanced programmers and developers use daily. There are other helpful forums out there - StackOverflow is the most popular. 
 
-4) As you become more advanced, you'll be able to write a script in RStudio and then run the entire script on your computer without opening it again. We won't touch this in this workshop, but it's straight-forward once you get the hang of it.
+4. Spaces in variable/file names are BAD. A variable is an object or column that you create in R. For example, if you have a list of student names (`student_names = list("John", "Peter", "Sebastian")`, the variable here would be `student_names`. Let's get into the habit of using underscores '_' or dashes '-' or periods '.' to separate words instead of spaces. From the computers side of variable name storage, it's much safe to declare a variable name such as **data_file** as opposed to **data file**
 
-
+Keep in mind, these will make more sense after we get more familiar with R - it's alright if they're confusing right now!
 
 
 ## Checkpoint - Writing your first R code

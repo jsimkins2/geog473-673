@@ -1,4 +1,4 @@
-# Overview
+# Overview 
 
 ```{r, echo=FALSE, out.width="50%", fig.align="center"}
 knitr::include_graphics("images/Rlogo.png")  
@@ -6,27 +6,55 @@ knitr::include_graphics("images/Rlogo.png")
 
 ## What is R?
 
-R is an open-source (aka free) programming language. It was initially created for statistical operations in the 1990s but has since expanded greatly and can now be used to accomplish almost any data related task. Using R involves writing a script. A script is just an R document that performs some sort of analysis / operation / image creation. Writing code and generating an R script is done completely via typing as opposed to pointing and clicking. In this workshop we'll learn how to write an R script and use it to perform data analysis. 
-
-## Reasons to love R
-| Attribute | Reason |
-|----|----------|
-| Speed | Spreadsheets that take 1 hour of computer calculation time in Excel take less than a second in R |
-| Capacity | Excel can handle thousands of records, R can handle millions |
-| Risk Reduction | Excel requires process notes, manual steps, copy/paste values, fill down, etc. After writing a single R script, R is auditable and reproducible within milliseconds - without any alterations to your original data. For example, if you are working with a dataset that multiple people are using, you can load this dataset in R and perform the tasks that you need *without* making any changes to the original dataset. |
-| Visualizations | R is capable to create high quality visualizations and also has the capacity to create interactive visualizations that can easiliy be shared. Plots or images can easily be exported to PNG, JPEG, or even web-based interactive dashboards that can be hosted on a webpage |
-| Collaboration | R script sharing is much safer than in Excel. As mentioned above, a team using the same data input file but performing different tasks on it can do so without editing the data input file for everyone else. Data output can also be shared without the concern of a colleague editing the file output. RStudio connect or Github are also popular free track all changes that take place between R script files.|
-| Price | R is completely free! Yes...every bit of it!  |
 
 
-## Guiding Principles
 
-1. Comment, comment, comment. A comment is a brief note on what you were doing when you wrote a line of code. For example, if you write some R code that edits part of a dataframe (R's version of an Excel Spreadsheet), comment what you were thinking here and why you did it this way. Once you become comfortable coding in R, you'll be able to churn out new R scripts at a faster rate. It's very important that you comment on what you're doing at each step in the script so if you need to look back on something you wrote you can reference what you were doing there. A comment in R is declared using the pound symbol (#). 
 
-2. Keep raw data raw. An advantage of R is being able to read in an original spreadsheet and output a new spreadsheet as a separate file. In other words, when you read in a dataset (for example, `tv_shows.csv`) and make changes to this file, do not save it was `tv_shows.csv` - thus overwriting the file. Instead, name it something like `tv_shows_edited.csv`. Also, notice how we use underscores (`_`) in between words of a filename - this is good practice that should be replicated (spaces are bad, see 4)
 
-3. When in doubt, Google your R question - [look for StackOverflow links](https://stackoverflow.com/). StackOverflow is a web-forum where programmers can post questions for help. This is an incredible tool that even advanced programmers and developers use daily. There are other helpful forums out there - StackOverflow is the most popular. 
+## Installing and Using Packages
 
-4. Spaces in variable/file names are BAD. A variable is an object or column that you create in R. For example, if you have a list of student names (`student_names = list("John", "Peter", "Sebastian")`, the variable here would be `student_names`. Let's get into the habit of using underscores '_' or dashes '-' or periods '.' to separate words instead of spaces. From the computers side of variable name storage, it's much safe to declare a variable name such as **data_file** as opposed to **data file**
+To use a function in R that performs a task (such as plotting, statistical analysis, etc.), we must first load the package into our R session. When we use Microsoft Excel, nearly all the functions you can use with it are available in the toolbar at the top of the page. In R, however, you'll need to load in the packages you'd like to use. Once the package is loaded, R will recognize any functions you call that are part of that package. 
 
-Keep in mind, these will make more sense after we get more familiar with R - it's alright if they're confusing right now!
+In R, the package is the toolbox; the function is the tool. We need to load the woodworking toolbox in order to use the hammer.
+
+Most of the packages you'll want to use are not previously installed on R. You'll need to install them onto your local machine. Once they are installed once, you shouldn't have to worry about installing them again. Here's how you install the `ggplot2` package.
+
+```{r, eval=FALSE}
+install.packages("ggplot2")
+```
+
+Paste this code into your **console**. Then hit enter and watch R run your code to install the packages!
+
+If R console returns with a question like, "Would you like to install from source? Yes / No" - answer with **Yes**. These packages we're downloading contain pre-written code that other developers have created so we don't have to recreate the wheel. Source is a location where the package is stored - it's the initial location it was created, in fact. Think of the package download location as a Car Dealership - all car dealerships sell the same thing, but they all have different cars in different colors from different years. When we select source, we select a car directly from the manufacturer. 
+
+## Loading the installed packages into R
+
+Here's the code we use to load a package:
+
+```{r, eval=FALSE}
+library(ggplot2)
+```
+
+You may be wondering, why do I need to load in the packages I want to use? R is designed to be *fast*. If you were to pre-load every single package available in R, you'd be loading thousands and thousands of packages. We can keep R light and fast by only loading the specific "toolboxes" we need. 
+
+Now that the `ggplot2` package is installed, we can use any function that is within that package. If you're curious about what functions are in a particular package, [most packages have thorough documentation and examples online](https://ggplot2.tidyverse.org/reference/). 
+
+## Running Code
+
+In R, there are multiple ways to run code. Remember that we write code in an R Script and run that code in the console. We can execute code in the following ways:
+
+1) Click 'Run' at the top of the R script. Note that yours may not look the exact same, but just find a `Run` button to click!
+
+
+```{r, echo=FALSE, out.width="100%", fig.align="center"}
+knitr::include_graphics("images/runRcode.png")  
+```
+
+  - This option allows you to run sections of your code, line by line, or the whole script.
+
+2) While the cursor is on a line of code you want to run in the R script, Hit `Ctrl + Enter` on Windows, `Cmd + Enter` on Mac. This will run that line of code.
+
+3) Select and highlight the section of code you want to run in the R script, Hit `Ctrl + Enter` on Windows, `Cmd + Enter` on Mac.This will run that selected section of code.
+
+4) As you become more advanced, you'll be able to write a script in RStudio and then run the entire script on your computer without opening it again. We won't touch this in this workshop, but it's straight-forward once you get the hang of it.
+

@@ -5,7 +5,7 @@ bookdown::gitbook:
     toc:
       collapse: subsection
       before: |
-        <li><a href="./">Introduction to R</a></li>
+        <li><a href="./">GEOG473-673 Open-sourced Environmental Computing</a></li>
       after: |
         <li><a href="https://github.com/rstudio/bookdown" target="blank">James Simkins</a></li>
 bookdown::pdf_book:
