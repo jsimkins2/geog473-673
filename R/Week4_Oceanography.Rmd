@@ -1,11 +1,11 @@
 ---
-title: "Matt Oliver Oceanography with Rasters"
-output: rmarkdown::github_document
+title: "Week 4 - Matt Oliver Oceanography with Rasters"
+output:
+  html_document:
+    fig_height: 8
+    fig_width: 12
+    theme: cosmo
 ---
-  
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
 
 # Essential Skills: The For Loop with Paste0
 
@@ -114,11 +114,12 @@ The final `pathList[[1]]` should look like this...
 
 ``` {r, message=FALSE, warnings=FALSE}
 library(maptools) # also loads sp package
+library(sp)
 library(ncdf4)
 library(raster)
 library(rasterVis)
 library(RColorBrewer)
-ncFile <- nc_open("~/Downloads/GOES_R_ROLLING_1DAY_20190814.nc")
+ncFile <- nc_open("/Users/james/Documents/Github/geog473-673/datasets/GOES_R_ROLLING_1DAY_20190814.nc")
 sstGoes <- ncvar_get(ncFile, varid = "sst")
 sstRast <- raster(sstGoes)
 
@@ -166,7 +167,7 @@ plt <- levelplot(sstRast, margin=F, par.settings=BuRdTheme,
 plt + layer(sp.polygons(usa, col='black',fill='grey', lwd=0.4))
 
 # Now let's do the same with geotiff
-tifFile = "~/Downloads/goesSST.tif"
+tifFile = "/Users/james/Documents/Github/geog473-673/datasets/goesSST.tif"
 sstRast = raster(tifFile)
 
 # Quick image using raster's image plot generator function
@@ -180,7 +181,7 @@ plt + layer(sp.lines(wrld_simpl, col='black', lwd=0.4))
 
 # Let's do the same plot but with a custom shapefile
 # note that even though we only point the function to the '.shp' file, the '.shx' and '.dbf' need to be in the same folder for this to work. 
-world.shp <- readShapeLines("~/Downloads/world.shp",proj4string=CRS("+proj=longlat"))
+world.shp <- rgdal::readOGR("/Users/james/Documents/Github/geog473-673/datasets/world_shpfiles/world.shp")
 
 # add custom color theme using brewer.pal from the package RColorBrewer and setting the rasterTheme
 mapTheme <- rasterTheme(region=brewer.pal(8,"Reds"))

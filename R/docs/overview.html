@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>2 Overview | Test</title>
+  <meta name="description" content="Phase 1 - Introduction to R" />
+  <meta name="generator" content="bookdown 0.19 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="2 Overview | Test" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Phase 1 - Introduction to R" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="2 Overview | Test" />
+  
+  <meta name="twitter:description" content="Phase 1 - Introduction to R" />
+  
+
+<meta name="author" content="James Simkins" />
+
+
+<meta name="date" content="2020-08-24" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="welcome.html"/>
+<link rel="next" href="r-rstudio.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Introduction to R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="welcome.html"><a href="welcome.html"><i class="fa fa-check"></i><b>1</b> Welcome</a><ul>
+<li class="chapter" data-level="1.1" data-path="welcome.html"><a href="welcome.html#syllabus"><i class="fa fa-check"></i><b>1.1</b> Syllabus</a></li>
+<li class="chapter" data-level="1.2" data-path="welcome.html"><a href="welcome.html#agenda"><i class="fa fa-check"></i><b>1.2</b> Agenda</a></li>
+<li class="chapter" data-level="1.3" data-path="welcome.html"><a href="welcome.html#download-and-install-r"><i class="fa fa-check"></i><b>1.3</b> Download and Install R</a></li>
+<li class="chapter" data-level="1.4" data-path="welcome.html"><a href="welcome.html#download-and-install-rstudio"><i class="fa fa-check"></i><b>1.4</b> Download and Install RStudio</a></li>
+<li class="chapter" data-level="1.5" data-path="welcome.html"><a href="welcome.html#download-workshop-data"><i class="fa fa-check"></i><b>1.5</b> Download workshop data</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="overview.html"><a href="overview.html"><i class="fa fa-check"></i><b>2</b> Overview</a><ul>
+<li class="chapter" data-level="2.1" data-path="overview.html"><a href="overview.html#what-is-r"><i class="fa fa-check"></i><b>2.1</b> What is R?</a></li>
+<li class="chapter" data-level="2.2" data-path="overview.html"><a href="overview.html#reasons-to-love-r"><i class="fa fa-check"></i><b>2.2</b> Reasons to love R</a></li>
+<li class="chapter" data-level="2.3" data-path="overview.html"><a href="overview.html#guiding-principles"><i class="fa fa-check"></i><b>2.3</b> Guiding Principles</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="r-rstudio.html"><a href="r-rstudio.html"><i class="fa fa-check"></i><b>3</b> R &amp; RStudio</a><ul>
+<li class="chapter" data-level="3.1" data-path="r-rstudio.html"><a href="r-rstudio.html#open-rstudio"><i class="fa fa-check"></i><b>3.1</b> Open RStudio</a></li>
+<li class="chapter" data-level="3.2" data-path="r-rstudio.html"><a href="r-rstudio.html#r-studio-layout"><i class="fa fa-check"></i><b>3.2</b> R Studio Layout</a></li>
+<li class="chapter" data-level="3.3" data-path="r-rstudio.html"><a href="r-rstudio.html#installing-and-using-packages"><i class="fa fa-check"></i><b>3.3</b> Installing and Using Packages</a></li>
+<li class="chapter" data-level="3.4" data-path="r-rstudio.html"><a href="r-rstudio.html#loading-the-installed-packages-into-r"><i class="fa fa-check"></i><b>3.4</b> Loading the installed packages into R</a></li>
+<li class="chapter" data-level="3.5" data-path="r-rstudio.html"><a href="r-rstudio.html#running-code"><i class="fa fa-check"></i><b>3.5</b> Running Code</a></li>
+<li class="chapter" data-level="3.6" data-path="r-rstudio.html"><a href="r-rstudio.html#checkpoint---writing-your-first-r-code"><i class="fa fa-check"></i><b>3.6</b> Checkpoint - Writing your first R code</a></li>
+<li class="chapter" data-level="3.7" data-path="r-rstudio.html"><a href="r-rstudio.html#explanation---writing-your-first-r-code"><i class="fa fa-check"></i><b>3.7</b> Explanation - Writing your first R code</a></li>
+<li class="chapter" data-level="3.8" data-path="r-rstudio.html"><a href="r-rstudio.html#how-does-an-r-script-generally-flow"><i class="fa fa-check"></i><b>3.8</b> How does an R script generally flow?</a></li>
+<li class="chapter" data-level="3.9" data-path="r-rstudio.html"><a href="r-rstudio.html#now-lets-break-down-this-script"><i class="fa fa-check"></i><b>3.9</b> Now Let’s Break Down This Script</a></li>
+<li class="chapter" data-level="3.10" data-path="r-rstudio.html"><a href="r-rstudio.html#in-class-exercise"><i class="fa fa-check"></i><b>3.10</b> In Class Exercise</a></li>
+<li class="chapter" data-level="3.11" data-path="r-rstudio.html"><a href="r-rstudio.html#datatypes"><i class="fa fa-check"></i><b>3.11</b> DataTypes</a></li>
+<li class="chapter" data-level="3.12" data-path="r-rstudio.html"><a href="r-rstudio.html#essential-skills-the-for-loop"><i class="fa fa-check"></i><b>3.12</b> Essential Skills: The For Loop</a></li>
+<li class="chapter" data-level="3.13" data-path="r-rstudio.html"><a href="r-rstudio.html#deos-data"><i class="fa fa-check"></i><b>3.13</b> DEOS Data</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="essential-skills-the-for-loop-with-paste0.html"><a href="essential-skills-the-for-loop-with-paste0.html"><i class="fa fa-check"></i><b>4</b> Essential Skills: The For Loop with Paste0</a></li>
+<li class="chapter" data-level="5" data-path="rasters-with-oceanography.html"><a href="rasters-with-oceanography.html"><i class="fa fa-check"></i><b>5</b> Rasters with Oceanography</a><ul>
+<li class="chapter" data-level="5.1" data-path="rasters-with-oceanography.html"><a href="rasters-with-oceanography.html#plot-goes-r-rolling-1-day-data"><i class="fa fa-check"></i><b>5.1</b> Plot GOES-R Rolling 1 day data</a></li>
+<li class="chapter" data-level="5.2" data-path="rasters-with-oceanography.html"><a href="rasters-with-oceanography.html#recapping-skills-indexing-data"><i class="fa fa-check"></i><b>5.2</b> Recapping Skills: Indexing Data</a></li>
+<li class="chapter" data-level="5.3" data-path="rasters-with-oceanography.html"><a href="rasters-with-oceanography.html#resampling-and-reprojecting-data-in-r"><i class="fa fa-check"></i><b>5.3</b> Resampling and Reprojecting data in R</a></li>
+<li class="chapter" data-level="5.4" data-path="rasters-with-oceanography.html"><a href="rasters-with-oceanography.html#example-of-how-to-save-directly-to-png"><i class="fa fa-check"></i><b>5.4</b> Example of how to save directly to PNG</a></li>
+<li class="chapter" data-level="5.5" data-path="rasters-with-oceanography.html"><a href="rasters-with-oceanography.html#example-of-how-to-write-a-raster-out-to-geotiff-or-netcdf"><i class="fa fa-check"></i><b>5.5</b> Example of how to write a raster out to geotiff or netcdf</a></li>
+<li class="chapter" data-level="5.6" data-path="rasters-with-oceanography.html"><a href="rasters-with-oceanography.html#in-class-assignment"><i class="fa fa-check"></i><b>5.6</b> In Class Assignment</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">James Simkins</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Test</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="overview" class="section level1">
+<h1><span class="header-section-number">2</span> Overview</h1>
+<p><img src="images/Rlogo.png" width="50%" style="display: block; margin: auto;" /></p>
+<div id="what-is-r" class="section level2">
+<h2><span class="header-section-number">2.1</span> What is R?</h2>
+<p>R is an open-source (aka free) programming language. It was initially created for statistical operations in the 1990s but has since expanded greatly and can now be used to accomplish almost any data related task. Using R involves writing a script. A script is just an R document that performs some sort of analysis / operation / image creation. Writing code and generating an R script is done completely via typing as opposed to pointing and clicking. In this workshop we’ll learn how to write an R script and use it to perform data analysis.</p>
+</div>
+<div id="reasons-to-love-r" class="section level2">
+<h2><span class="header-section-number">2.2</span> Reasons to love R</h2>
+<table>
+<colgroup>
+<col width="28%" />
+<col width="71%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Attribute</th>
+<th>Reason</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Speed</td>
+<td>Spreadsheets that take 1 hour of computer calculation time in Excel take less than a second in R</td>
+</tr>
+<tr class="even">
+<td>Capacity</td>
+<td>Excel can handle thousands of records, R can handle millions</td>
+</tr>
+<tr class="odd">
+<td>Risk Reduction</td>
+<td>Excel requires process notes, manual steps, copy/paste values, fill down, etc. After writing a single R script, R is auditable and reproducible within milliseconds - without any alterations to your original data. For example, if you are working with a dataset that multiple people are using, you can load this dataset in R and perform the tasks that you need <em>without</em> making any changes to the original dataset.</td>
+</tr>
+<tr class="even">
+<td>Visualizations</td>
+<td>R is capable to create high quality visualizations and also has the capacity to create interactive visualizations that can easiliy be shared. Plots or images can easily be exported to PNG, JPEG, or even web-based interactive dashboards that can be hosted on a webpage</td>
+</tr>
+<tr class="odd">
+<td>Collaboration</td>
+<td>R script sharing is much safer than in Excel. As mentioned above, a team using the same data input file but performing different tasks on it can do so without editing the data input file for everyone else. Data output can also be shared without the concern of a colleague editing the file output. RStudio connect or Github are also popular free track all changes that take place between R script files.</td>
+</tr>
+<tr class="even">
+<td>Price</td>
+<td>R is completely free! Yes…every bit of it!</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="guiding-principles" class="section level2">
+<h2><span class="header-section-number">2.3</span> Guiding Principles</h2>
+<ol style="list-style-type: decimal">
+<li><p>Comment, comment, comment. A comment is a brief note on what you were doing when you wrote a line of code. For example, if you write some R code that edits part of a dataframe (R’s version of an Excel Spreadsheet), comment what you were thinking here and why you did it this way. Once you become comfortable coding in R, you’ll be able to churn out new R scripts at a faster rate. It’s very important that you comment on what you’re doing at each step in the script so if you need to look back on something you wrote you can reference what you were doing there. A comment in R is declared using the pound symbol (#).</p></li>
+<li><p>Keep raw data raw. An advantage of R is being able to read in an original spreadsheet and output a new spreadsheet as a separate file. In other words, when you read in a dataset (for example, <code>tv_shows.csv</code>) and make changes to this file, do not save it was <code>tv_shows.csv</code> - thus overwriting the file. Instead, name it something like <code>tv_shows_edited.csv</code>. Also, notice how we use underscores (<code>_</code>) in between words of a filename - this is good practice that should be replicated (spaces are bad, see 4)</p></li>
+<li><p>When in doubt, Google your R question - <a href="https://stackoverflow.com/">look for StackOverflow links</a>. StackOverflow is a web-forum where programmers can post questions for help. This is an incredible tool that even advanced programmers and developers use daily. There are other helpful forums out there - StackOverflow is the most popular.</p></li>
+<li><p>Spaces in variable/file names are BAD. A variable is an object or column that you create in R. For example, if you have a list of student names (<code>student_names = list(&quot;John&quot;, &quot;Peter&quot;, &quot;Sebastian&quot;)</code>, the variable here would be <code>student_names</code>. Let’s get into the habit of using underscores ’_’ or dashes ‘-’ or periods ‘.’ to separate words instead of spaces. From the computers side of variable name storage, it’s much safe to declare a variable name such as <strong>data_file</strong> as opposed to <strong>data file</strong></p></li>
+</ol>
+<p>Keep in mind, these will make more sense after we get more familiar with R - it’s alright if they’re confusing right now!</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="welcome.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="r-rstudio.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

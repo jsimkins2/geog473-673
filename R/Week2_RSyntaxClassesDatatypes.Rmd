@@ -1,11 +1,11 @@
 ---
-title: 'Week2: R Syntax, Classes, & Datatypes'
-output: rmarkdown::github_document
+title: "Week2: R Syntax, Classes, & Datatypes"
+output:
+  html_document:
+    fig_height: 8
+    fig_width: 12
+    theme: cosmo
 ---
-
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
 
 ## How does an R script generally flow?
 
@@ -66,8 +66,6 @@ library(fields)
 ncFile <- ncdf4::nc_open(filename="~/Documents/Github/geog473-673/datasets/OR_ABI-L2-SSTF-M3_G16_s20192081300453_e20192081400161_c20192081406297.nc")
 sstK <- ncdf4::ncvar_get(nc=ncFile, varid="SST")
 #######################################
-
-help(ncvar_get)
 ```
 
 This is a really attractive feature within R and exists for every function within an official R library. Now, back to the script...

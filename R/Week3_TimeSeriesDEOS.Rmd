@@ -1,11 +1,11 @@
 ---
-title: 'Week3: Time Series fun with DEOS'
-output: rmarkdown::github_document
+title: "Week3: Time Series fun with DEOS"
+output:
+  html_document:
+    fig_height: 8
+    fig_width: 12
+    theme: cosmo
 ---
-  
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
 
 ## Essential Skills: The For Loop
 
@@ -157,7 +157,7 @@ for (s in seq(length(soiltype))){
 Delaware has the highest concentration of environmental monitoring stations in the country thanks to DEOS (Delaware Environmental Observing System) which is controlled by University of Delaware's CEMA (Center for Environmental Monitoring and Analysis). The data collected using this dense network is useful for a variety of purposes. Let's dive into some data - find the file (https://github.com/jsimkins2/geog473-673/tree/master/datasets) - download it, unzip it, and open it up in R! 
 
 ``` {r, warning = FALSE}
-deos_data <- read.csv("~/Downloads/DEOS.csv", header = TRUE, skip=0, stringsAsFactors = FALSE)
+deos_data <- read.csv("/Users/james/Documents/Github/geog473-673/datasets/DEOS.csv", header = TRUE, skip=0, stringsAsFactors = FALSE)
 
 head(deos_data)
 

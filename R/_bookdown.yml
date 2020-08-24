@@ -1,0 +1,19 @@
+
+book_filename: "Introduction to R"
+language:
+  ui:
+    chapter_name: ""
+rmd_files: [
+  "/Users/james/Documents/Github/geog473-673/R/Index.Rmd",
+  "/Users/james/Documents/Github/geog473-673/R/01-Overview.Rmd", 
+  "/Users/james/Documents/Github/geog473-673/R/02-Rstudio.Rmd", 
+  "/Users/james/Documents/Github/geog473-673/R/Week2_RSyntaxClassesDatatypes.Rmd",
+  "/Users/james/Documents/Github/geog473-673/R/Week3_TimeSeriesDEOS.Rmd",
+  "/Users/james/Documents/Github/geog473-673/R/Week4_Oceanography.Rmd",
+  "/Users/james/Documents/Github/geog473-673/R/Week5_Reprojecting.Rmd"
+  
+ ]
+delete_merged_file: true
+output_dir: "docs"
+# always_allow_html: true # added after build error suggested this for kable() ---but unsuccessful
+

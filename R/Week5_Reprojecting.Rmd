@@ -1,11 +1,12 @@
 ---
-title: "Reprojecting & Writing Rasters"
-output: rmarkdown::github_document
+title: "Week 5 - Reprojecting & Writing Rasters"
+output:
+  html_document:
+    fig_height: 8
+    fig_width: 12
+    theme: cosmo
 ---
-  
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
+
 
 ## Recapping Skills: Indexing Data
 
@@ -46,7 +47,7 @@ library(rasterVis)
 library(maptools) # also loads sp package
 
 # load in dataset directly via raster package, specify varname which is 'tem' for 'temperature' 
-temClim = raster("~/Downloads/globalTemClim1961-1990.nc", varname = 'tem', band=1)
+temClim = raster("/Users/james/Documents/Github/geog473-673/datasets/globalTemClim1961-1990.nc", varname = 'tem', band=1)
 temClim
 
 # Create a new, blank raster that has a totally different sizing
