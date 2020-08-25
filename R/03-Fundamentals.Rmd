@@ -17,7 +17,7 @@ msg <- "hello"
 
 We use the `#` character to write comments inside our code. Commented code is NOT executed by R. 
 
-```{r}
+```{r, eval=FALSE}
 x <-  ## Incomplete expression
 ```
 
@@ -55,8 +55,8 @@ old <- options(width = 40)
 ```
 
 ```{r}
-x <- 10:20
-x
+my_seq <- 10:20
+my_seq
 ```
 
 ```{r,echo=FALSE}
@@ -133,25 +133,18 @@ which case the `attributes()` function returns `NULL`.
 The `c()` function is referred to as the concatenate function. Using this, we can create vectors of objects by concatenating them together.
 
 ```{r}
-x <- c(0.5, 0.6)       ## numeric
+x <- c(1.25, 2.50)       ## numeric
 x <- c(TRUE, FALSE)    ## logical
 x <- c(T, F)           ## logical
-x <- c("a", "b", "c")  ## character
-x <- 9:29              ## integer
-x <- c(1+0i, 2+4i)     ## complex
+x <- c("yes", "no", "maybe")  ## character
+x <- 25:44              ## integer
+x <- c(1+2i, 3+8i)     ## complex
 ```
 
 Note that in the above example, `T` and `F` are short-hand ways to
 specify `TRUE` and `FALSE`. However, in general one should try to use
 the explicit `TRUE` and `FALSE` values when indicating logical
 values.
-
-You can also use the `vector()` function to initialize vectors.
-
-```{r}
-x <- vector("numeric", length = 10) 
-x
-```
 
 ## Mixing Objects
 
@@ -447,7 +440,7 @@ row names in a data frame, or simply names in a vector or
 list. Attributes like dimensions are also important as they can modify
 the behavior of objects, like turning a vector into a matrix.
 
-
+The content in this section was adapted from [Dr. Roger Peng](https://github.com/rdpeng)
 
 
 

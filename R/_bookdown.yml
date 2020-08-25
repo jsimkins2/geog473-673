@@ -5,13 +5,14 @@ language:
     chapter_name: ""
 rmd_files: [
   "/Users/james/Documents/Github/geog473-673/R/Index.Rmd",
-  "/Users/james/Documents/Github/geog473-673/R/01-Overview.Rmd", 
-  "/Users/james/Documents/Github/geog473-673/R/02-Rstudio.Rmd", 
+  "/Users/james/Documents/Github/geog473-673/R/01-Getting-Started.Rmd", 
+  "/Users/james/Documents/Github/geog473-673/R/02-Definitions.Rmd",
+  "/Users/james/Documents/Github/geog473-673/R/03-Fundamentals.Rmd",
+  "/Users/james/Documents/Github/geog473-673/R/04-Basic-R-Scripts.Rmd",
   "/Users/james/Documents/Github/geog473-673/R/Week2_RSyntaxClassesDatatypes.Rmd",
   "/Users/james/Documents/Github/geog473-673/R/Week3_TimeSeriesDEOS.Rmd",
   "/Users/james/Documents/Github/geog473-673/R/Week4_Oceanography.Rmd",
   "/Users/james/Documents/Github/geog473-673/R/Week5_Reprojecting.Rmd"
-  
  ]
 delete_merged_file: true
 output_dir: "docs"

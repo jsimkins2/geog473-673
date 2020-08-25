@@ -76,6 +76,8 @@ plot(x = co2, ylab = "Atmospheric concentration of CO2 (ppm)", main = "CO2 Datas
 
 Above is our script. We run this script in the console. We can save this script and re-run this at any time. An example of this would be saving this file as `co2_script.R`. Once this is saved, you can close R, re-open it, and re-run your `co2_script.R` without re-writing any code. 
 
+
+
 ## Cars - Motor Trends Magazine Data
 
 The data was extracted from the 1974 Motor Trend US magazine, and comprises fuel consumption and 10 aspects of automobile design and performance for 32 automobiles (1973–74 models).
@@ -153,7 +155,7 @@ mtcars[1:5,1]
 That's the `mpg` column of the first 5 cars. Which car has the best miles per gallon (mpg)?
 
 ```{r}
-barplot(height = mtcars$mpg[1:5], names.arg = rownames(mtcars[1:5]))
+barplot(height = mtcars$mpg[1:5], names.arg = rownames(mtcars)[1:5])
 ```
 
 The Datsun 710 has the highest MPG rating of the first 5 cars (rows) in the dataset. 
@@ -201,6 +203,6 @@ mtcars[1:5,]
 mtcars[1:5,1]
 
 # creating a barplot of mpg for the first 5 cars
-barplot(height = mtcars$mpg[1:5], names.arg = rownames(mtcars[1:5]))
+barplot(height = mtcars$mpg[1:5], names.arg = rownames(mtcars)[1:5])
 ```
 

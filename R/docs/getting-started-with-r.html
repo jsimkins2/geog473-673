@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>5 Essential Skills: The For Loop with Paste0 | GEOG 473/673 Open-sourced Environmental Computing</title>
+  <title>2 Getting Started with R | GEOG 473/673 Open-sourced Environmental Computing</title>
   <meta name="description" content="Phase 1 - Introduction to R" />
   <meta name="generator" content="bookdown 0.19 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="5 Essential Skills: The For Loop with Paste0 | GEOG 473/673 Open-sourced Environmental Computing" />
+  <meta property="og:title" content="2 Getting Started with R | GEOG 473/673 Open-sourced Environmental Computing" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="5 Essential Skills: The For Loop with Paste0 | GEOG 473/673 Open-sourced Environmental Computing" />
+  <meta name="twitter:title" content="2 Getting Started with R | GEOG 473/673 Open-sourced Environmental Computing" />
   
   <meta name="twitter:description" content="Phase 1 - Introduction to R" />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="example-scripts.html"/>
-<link rel="next" href="rasters-with-oceanography.html"/>
+<link rel="prev" href="welcome.html"/>
+<link rel="next" href="definitions-rules.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -207,99 +207,140 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="essential-skills-the-for-loop-with-paste0" class="section level1">
-<h1><span class="header-section-number">5</span> Essential Skills: The For Loop with Paste0</h1>
-<p>Last week we covered the for loop which is an essential programming skill. We also touched on the paste0 function, but this is incredibly useful and should be expanded upon. paste0() is the sister function of paste(), who’s cousin is sprintf() . It depends on preference, but most coders I know gravitate towards paste0(). Let’s check out all 3.</p>
-<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb180-1" data-line-number="1"><span class="co"># Paste Example 1 - default sep (aka separation) is space</span></a>
-<a class="sourceLine" id="cb180-2" data-line-number="2"><span class="kw">paste</span>(<span class="st">&quot;file&quot;</span>, <span class="st">&quot;number&quot;</span>, <span class="st">&quot;32&quot;</span>)</a></code></pre></div>
-<pre><code>## [1] &quot;file number 32&quot;</code></pre>
-<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb182-1" data-line-number="1"><span class="co"># Paste Example 2 - set sep to &quot;_&quot;</span></a>
-<a class="sourceLine" id="cb182-2" data-line-number="2"><span class="kw">paste</span>(<span class="st">&quot;file&quot;</span>, <span class="st">&quot;number&quot;</span>, <span class="st">&quot;32&quot;</span>, <span class="dt">sep =</span> <span class="st">&quot;_&quot;</span>)</a></code></pre></div>
-<pre><code>## [1] &quot;file_number_32&quot;</code></pre>
-<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb184-1" data-line-number="1"><span class="co"># Paste0 Example 1 - 0 for 0 separating characters</span></a>
-<a class="sourceLine" id="cb184-2" data-line-number="2"><span class="kw">paste0</span>(<span class="st">&quot;file&quot;</span>, <span class="st">&quot;number&quot;</span>, <span class="st">&quot;32&quot;</span>)</a></code></pre></div>
-<pre><code>## [1] &quot;filenumber32&quot;</code></pre>
-<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb186-1" data-line-number="1"><span class="co"># sprintf example 1</span></a>
-<a class="sourceLine" id="cb186-2" data-line-number="2"><span class="kw">sprintf</span>(<span class="st">&quot;%s %s %s&quot;</span>, <span class="st">&quot;file&quot;</span>, <span class="st">&quot;number&quot;</span>, <span class="st">&quot;32&quot;</span>)</a></code></pre></div>
-<pre><code>## [1] &quot;file number 32&quot;</code></pre>
-<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb188-1" data-line-number="1"><span class="co"># sprintf example 2</span></a>
-<a class="sourceLine" id="cb188-2" data-line-number="2">person &lt;-<span class="st">&quot;Grover&quot;</span></a>
-<a class="sourceLine" id="cb188-3" data-line-number="3">action &lt;-<span class="st">&quot;flying&quot;</span></a>
-<a class="sourceLine" id="cb188-4" data-line-number="4"><span class="kw">message</span>(<span class="kw">sprintf</span>(<span class="st">&quot;On %s I realized %s was...</span><span class="ch">\n</span><span class="st">%s by the street&quot;</span>, <span class="kw">Sys.Date</span>(), person, action))</a></code></pre></div>
-<pre><code>## On 2020-08-24 I realized Grover was...
-## flying by the street</code></pre>
-<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb190-1" data-line-number="1"><span class="co"># Notice that paste() is limiting because the separating character is not always present between</span></a>
-<a class="sourceLine" id="cb190-2" data-line-number="2"><span class="co"># each string you&#39;re concatenating</span></a>
-<a class="sourceLine" id="cb190-3" data-line-number="3"><span class="co"># Let&#39;s use paste0 here</span></a>
-<a class="sourceLine" id="cb190-4" data-line-number="4">fileList &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;filename1&#39;</span>, <span class="st">&#39;filename2&#39;</span>, <span class="st">&#39;filename3&#39;</span>, <span class="st">&#39;filename4&#39;</span>)</a>
-<a class="sourceLine" id="cb190-5" data-line-number="5">dateFolder &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;0813&#39;</span>, <span class="st">&#39;0814&#39;</span>, <span class="st">&#39;0815&#39;</span>, <span class="st">&#39;0816&#39;</span>)</a>
-<a class="sourceLine" id="cb190-6" data-line-number="6">homeDir &lt;-<span class="st"> &quot;~/Documents/&quot;</span></a>
-<a class="sourceLine" id="cb190-7" data-line-number="7">pathList &lt;-<span class="st"> </span><span class="kw">list</span>()</a>
-<a class="sourceLine" id="cb190-8" data-line-number="8"></a>
-<a class="sourceLine" id="cb190-9" data-line-number="9"><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">length</span>(fileList)){</a>
-<a class="sourceLine" id="cb190-10" data-line-number="10">  <span class="kw">print</span>(i)</a>
-<a class="sourceLine" id="cb190-11" data-line-number="11">  tempString &lt;-<span class="st"> </span><span class="kw">paste0</span>(homeDir, dateFolder[i], <span class="st">&#39;/&#39;</span>, fileList[i])</a>
-<a class="sourceLine" id="cb190-12" data-line-number="12">  pathList[i] &lt;-<span class="st"> </span>tempString</a>
-<a class="sourceLine" id="cb190-13" data-line-number="13">}</a></code></pre></div>
-<pre><code>## [1] 1
-## [1] 2
-## [1] 3
-## [1] 4</code></pre>
-<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb192-1" data-line-number="1">pathList</a></code></pre></div>
-<pre><code>## [[1]]
-## [1] &quot;~/Documents/0813/filename1&quot;
-## 
-## [[2]]
-## [1] &quot;~/Documents/0814/filename2&quot;
-## 
-## [[3]]
-## [1] &quot;~/Documents/0815/filename3&quot;
-## 
-## [[4]]
-## [1] &quot;~/Documents/0816/filename4&quot;</code></pre>
-<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb194-1" data-line-number="1">pathList[[<span class="dv">1</span>]]</a></code></pre></div>
-<pre><code>## [1] &quot;~/Documents/0813/filename1&quot;</code></pre>
-<div class="sourceCode" id="cb196"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb196-1" data-line-number="1"><span class="co"># Now let&#39;s rewrite using sprintf</span></a>
-<a class="sourceLine" id="cb196-2" data-line-number="2">fileList &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;filename1&#39;</span>, <span class="st">&#39;filename2&#39;</span>, <span class="st">&#39;filename3&#39;</span>, <span class="st">&#39;filename4&#39;</span>)</a>
-<a class="sourceLine" id="cb196-3" data-line-number="3">dateFolder &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;0813&#39;</span>, <span class="st">&#39;0814&#39;</span>, <span class="st">&#39;0815&#39;</span>, <span class="st">&#39;0816&#39;</span>)</a>
-<a class="sourceLine" id="cb196-4" data-line-number="4">homeDir &lt;-<span class="st"> &quot;~/Documents/&quot;</span></a>
-<a class="sourceLine" id="cb196-5" data-line-number="5">pathList &lt;-<span class="st"> </span><span class="kw">list</span>()</a>
-<a class="sourceLine" id="cb196-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb196-7" data-line-number="7">pathList &lt;-<span class="st"> </span><span class="kw">sprintf</span>(<span class="st">&quot;%s%s/%s&quot;</span>, homeDir, dateFolder, fileList)</a>
-<a class="sourceLine" id="cb196-8" data-line-number="8"></a>
-<a class="sourceLine" id="cb196-9" data-line-number="9">pathList</a></code></pre></div>
-<pre><code>## [1] &quot;~/Documents/0813/filename1&quot; &quot;~/Documents/0814/filename2&quot;
-## [3] &quot;~/Documents/0815/filename3&quot; &quot;~/Documents/0816/filename4&quot;</code></pre>
-<div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb198-1" data-line-number="1">pathList[[<span class="dv">1</span>]]</a></code></pre></div>
-<pre><code>## [1] &quot;~/Documents/0813/filename1&quot;</code></pre>
-<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb200-1" data-line-number="1"><span class="co">#sprintf is a very useful and quick function for combining various strings into longer strings</span></a>
-<a class="sourceLine" id="cb200-2" data-line-number="2"><span class="co">#but paste0 allows you a little more freedom and is slightly more intuitive</span></a></code></pre></div>
-<p>Debug and fix the following code:</p>
-<div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb201-1" data-line-number="1"><span class="co"># Let&#39;s use paste0 here</span></a>
-<a class="sourceLine" id="cb201-2" data-line-number="2">fileList &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;sstData20190912&#39;</span>, <span class="st">&#39;sstData20190913&#39;</span>, <span class="st">&#39;sstData20190914&#39;</span>, <span class="st">&#39;sstData20190915&#39;</span>)</a>
-<a class="sourceLine" id="cb201-3" data-line-number="3">dateFolder &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dv">0912</span>, <span class="dv">0915</span>, <span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb201-4" data-line-number="4">homeDir &lt;-<span class="st"> &quot;~/Documents/&quot;</span></a>
-<a class="sourceLine" id="cb201-5" data-line-number="5">pathList &lt;-<span class="st"> </span><span class="kw">list</span>()</a>
-<a class="sourceLine" id="cb201-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb201-7" data-line-number="7"><span class="cf">for</span> (i <span class="cf">in</span> fileList){</a>
-<a class="sourceLine" id="cb201-8" data-line-number="8">  <span class="kw">print</span>(i)</a>
-<a class="sourceLine" id="cb201-9" data-line-number="9">  tempString &lt;-<span class="st"> </span><span class="kw">paste0</span>(homeDir, dateFolder[i], <span class="st">&#39;/&#39;</span>, i)</a>
-<a class="sourceLine" id="cb201-10" data-line-number="10">  pathList[i] &lt;-<span class="st"> </span>tempString</a>
-<a class="sourceLine" id="cb201-11" data-line-number="11">}</a>
-<a class="sourceLine" id="cb201-12" data-line-number="12"></a>
-<a class="sourceLine" id="cb201-13" data-line-number="13">pathList</a>
-<a class="sourceLine" id="cb201-14" data-line-number="14"></a>
-<a class="sourceLine" id="cb201-15" data-line-number="15">pathList[[<span class="dv">1</span>]]</a></code></pre></div>
-<p>The final <code>pathList[[1]]</code> should look like this…</p>
-<p><code>&quot;~/Documents/0912/sstData20190912&quot;</code></p>
+<div id="getting-started-with-r" class="section level1">
+<h1><span class="header-section-number">2</span> Getting Started with R</h1>
+<div id="why-is-there-such-a-buzz-around-r" class="section level2">
+<h2><span class="header-section-number">2.1</span> Why is there such a buzz around R?</h2>
+<p>R is an open-source programming language used for data science, statistics, and data visualization. R is currently ranked as the <a href="http://pypl.github.io/PYPL.html">7th most popular language in the world</a>. Since R is open-source, anyone can contribute to or use R packages that contain pre-built functions/operations. This greatly accelerates our ability to share and collaborate.</p>
+<p>The first thing you need to do to get started with R is to install it
+on your computer. R works on pretty much every platform available,
+including the widely available Windows, Mac OS X, and Linux
+systems. R takes up very little space on your machine, despite it’s pleathora of data-science capabilities. All of these downloads are 100% free and trusted sources.</p>
+</div>
+<div id="reasons-to-love-r" class="section level2">
+<h2><span class="header-section-number">2.2</span> Reasons to love R</h2>
+<table>
+<colgroup>
+<col width="28%" />
+<col width="71%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Attribute</th>
+<th>Reason</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Speed</td>
+<td>R is FAST. It can number crunch magnitudes faster than Microsoft Excel, for example.</td>
+</tr>
+<tr class="even">
+<td>Capacity</td>
+<td>R can handle millions of data records. Large datasets that crash in Microsoft Excel or ArcGIS won’t crash in R.</td>
+</tr>
+<tr class="odd">
+<td>Risk Reduction</td>
+<td>After writing a single R Script, the process of your data science routine is auditable and reproducible within milliseconds. We can write 1 script and make alterations as we see fit. We don’t have to replicate a process of pointing and clicking in Microsoft Excel or ArcGIS. For example, if you are working with a dataset that multiple people are using, you can load this dataset in R and perform the tasks that you need <em>without</em> making any changes to the original dataset.</td>
+</tr>
+<tr class="even">
+<td>Visualizations</td>
+<td>R is capable to create high quality visualizations and also has the capacity to create interactive visualizations that can easiliy be shared. Plots or images can easily be exported to PNG, JPEG, or even web-based interactive dashboards that can be hosted on a webpage</td>
+</tr>
+<tr class="odd">
+<td>Collaboration</td>
+<td>R script sharing is safe and easy. As mentioned above, a team using the same data input file but performing different tasks on it can do so without editing the data input file for everyone else. Data output can also be shared without the concern of a colleague editing the file output. RStudio connect or Github are also popular free track all changes that take place between R script files.</td>
+</tr>
+<tr class="even">
+<td>Price</td>
+<td>R is completely free! Yes…every bit of it!</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="downloading-guide" class="section level2">
+<h2><span class="header-section-number">2.3</span> Downloading Guide</h2>
+<ol style="list-style-type: decimal">
+<li><p>Navigate to the R website: <a href="https://cloud.r-project.org/" class="uri">https://cloud.r-project.org/</a></p></li>
+<li><p>Click Download for your Operating System (Windows, Mac OSx, or Linux - if you don’t have a MacBook, then you’re using Windows most likely)</p></li>
+</ol>
+<p><img src="images/os_image.png" width="70%" style="display: block; margin: auto;" /></p>
+<ol start="3" style="list-style-type: decimal">
+<li>Click the most recent R version to download. Install the downloaded application as you would with any other application on your computer.</li>
+</ol>
+<p><img src="images/download_r.png" width="70%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="rstudio" class="section level2">
+<h2><span class="header-section-number">2.4</span> Rstudio</h2>
+<p>While R is the language, RStudio is the application we use to run R. Technically speaking, RStudio is an integrated development environment for R. RStudio makes coding in R easier by highlighting syntax, autocompleting symbols and names, and visualizing our R environment. These aspects are explained in further detail in the <a href="definitions-rules.html#r-coding-fundamentals">R Coding Fundamentals</a> section. For now, let’s download RStudio.</p>
+<ol style="list-style-type: decimal">
+<li><p>Navigate to the RStudio Website: <a href="http://www.rstudio.com/download" class="uri">http://www.rstudio.com/download</a></p></li>
+<li><p>Click Download under RStudio Desktop Free</p></li>
+</ol>
+<p><img src="images/rstudio_download1.png" width="70%" style="display: block; margin: auto;" /></p>
+<ol start="3" style="list-style-type: decimal">
+<li>This website detects your operating system, allowing you to just click download again. <em>Note that if it doesn’t automatically detect just select the download next to your operating system below this</em></li>
+</ol>
+<p><em>Note that you may be asked to install command line developer tools if you’re using a Mac - select Yes.</em></p>
+<p><img src="images/Rstudio_download2.png" width="70%" style="display: block; margin: auto;" /></p>
+<ol start="4" style="list-style-type: decimal">
+<li>Install the downloaded application as you normally would on your computer.</li>
+</ol>
+</div>
+<div id="download-course-datasets" class="section level2">
+<h2><span class="header-section-number">2.5</span> Download Course Datasets</h2>
+<ol style="list-style-type: decimal">
+<li><p>Navigate to the database - <a href="https://github.com/jsimkins2/geog473-673/tree/master/datasets" class="uri">https://github.com/jsimkins2/geog473-673/tree/master/datasets</a></p></li>
+<li><p>Click on <strong>Code</strong> - then click <strong>download as zip</strong></p></li>
+</ol>
+<p><img src="images/download_as_zip.png" width="70%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="video-examples" class="section level2">
+<h2><span class="header-section-number">2.6</span> Video Examples</h2>
+<p>If you want to watch a step-by-step tutorial on how to install
+R for Mac or Windows, you can watch these videos courtest of Dr. Roger Peng</p>
+<ul>
+<li><p><a href="http://youtu.be/Ohnk9hcxf9M">Installing R on Windows</a></p></li>
+<li><p><a href="https://youtu.be/uxuuWXU-7UQ">Installing R on the Mac</a></p></li>
+<li><p><a href="https://youtu.be/bM7Sfz-LADM">Installing RStudio</a></p></li>
+</ul>
+</div>
+<div id="getting-familiar-with-rstudio" class="section level2">
+<h2><span class="header-section-number">2.7</span> Getting familiar with RStudio</h2>
+<p>By now you’ve downloaded R and RStudio and you’re probably wondering, why do I need to download both? R is that programming language that is running on your computer. RStudio is what we call an Indegrated Development Environment (IDE) - this is a technical term for a pretty application that’s all dressed up on the surface but underneath is really crunching some numbers (using R) at serious speeds. RStudio is the application we’ll be using. Let’s open RStudio and get familiar with it.</p>
+</div>
+<div id="open-rstudio" class="section level2">
+<h2><span class="header-section-number">2.8</span> Open RStudio</h2>
+<p>Navigate to your applications folder on your computer. Launch RStudio. When you open it for the first time, you should see this.</p>
+<p><img src="images/openR_1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>This is RStudio. When you open it for the first time, we’ll need to open a new RScript to begin coding.</p>
+<p><strong>Open new R Script</strong></p>
+<p>To open a new R Script, we select the blankpage with green plus icon and select R Script from the menu.</p>
+<p><img src="images/new_script2.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>This opens up the new R script and we can begin coding in R. Now that we have the R Script open, you’ll notice 4 quadrants. Let’s run through what those quadrants are.</p>
+</div>
+<div id="r-studio-layout" class="section level2">
+<h2><span class="header-section-number">2.9</span> R Studio Layout</h2>
+<p><img src="images/Full_image_3.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>Now let’s describe what’s going on here in a little more detail.</p>
+<p><strong>R Script</strong> - This is your canvas. This is where we write and edit our code. A lot of trial and error goes on here.</p>
+<p><img src="images/script4.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><strong>R Console</strong> - This is where you run your code. When we talk about running code, we mean we’re telling R to execute the code we’ve written in the R Script. R Console is the place inside RStudio where we are using the R programming language.</p>
+<p><img src="images/console5.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><strong>Variable Environment</strong> - This area keeps track of your variables, data tables, filenames, etc. Anything that you run in R that has a name will be stored here. Imagine the Variable Environment to be your closet - every time you make/buy a new sweater, the sweater goes in the closet. We can select data tables to view from this list here.</p>
+<p><img src="images/environment6.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><strong>Files/Plots/Help</strong> - In this quadrant, we can toggle through files on our computer (we can view where your files are stored), view plots/visualizations that we’re creating in R (whenever you create a plot in R it is output here first), search for help and descriptions of R functions (there’s descriptions on every function you’ll use in R - they can all be loaded here in the help tab), and more.</p>
+<p><img src="images/files7.png" width="100%" style="display: block; margin: auto;" /></p>
+
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="example-scripts.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="rasters-with-oceanography.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="welcome.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="definitions-rules.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

@@ -1,0 +1,1139 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>4 Example Scripts | GEOG 473/673 Open-sourced Environmental Computing</title>
+  <meta name="description" content="Phase 1 - Introduction to R" />
+  <meta name="generator" content="bookdown 0.19 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="4 Example Scripts | GEOG 473/673 Open-sourced Environmental Computing" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Phase 1 - Introduction to R" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="4 Example Scripts | GEOG 473/673 Open-sourced Environmental Computing" />
+  
+  <meta name="twitter:description" content="Phase 1 - Introduction to R" />
+  
+
+<meta name="author" content="James Simkins" />
+
+
+<meta name="date" content="2020-08-24" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="definitions-rules.html"/>
+<link rel="next" href="essential-skills-the-for-loop-with-paste0.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">GEOG473-673 Open-sourced Environmental Computing</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="welcome.html"><a href="welcome.html"><i class="fa fa-check"></i><b>1</b> Welcome</a><ul>
+<li class="chapter" data-level="1.1" data-path="welcome.html"><a href="welcome.html#syllabus"><i class="fa fa-check"></i><b>1.1</b> Syllabus</a></li>
+<li class="chapter" data-level="1.2" data-path="welcome.html"><a href="welcome.html#agenda"><i class="fa fa-check"></i><b>1.2</b> Agenda</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html"><i class="fa fa-check"></i><b>2</b> Getting Started with R</a><ul>
+<li class="chapter" data-level="2.1" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#why-is-there-such-a-buzz-around-r"><i class="fa fa-check"></i><b>2.1</b> Why is there such a buzz around R?</a></li>
+<li class="chapter" data-level="2.2" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#reasons-to-love-r"><i class="fa fa-check"></i><b>2.2</b> Reasons to love R</a></li>
+<li class="chapter" data-level="2.3" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#downloading-guide"><i class="fa fa-check"></i><b>2.3</b> Downloading Guide</a></li>
+<li class="chapter" data-level="2.4" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#rstudio"><i class="fa fa-check"></i><b>2.4</b> Rstudio</a></li>
+<li class="chapter" data-level="2.5" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#download-course-datasets"><i class="fa fa-check"></i><b>2.5</b> Download Course Datasets</a></li>
+<li class="chapter" data-level="2.6" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#video-examples"><i class="fa fa-check"></i><b>2.6</b> Video Examples</a></li>
+<li class="chapter" data-level="2.7" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#getting-familiar-with-rstudio"><i class="fa fa-check"></i><b>2.7</b> Getting familiar with RStudio</a></li>
+<li class="chapter" data-level="2.8" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#open-rstudio"><i class="fa fa-check"></i><b>2.8</b> Open RStudio</a></li>
+<li class="chapter" data-level="2.9" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#r-studio-layout"><i class="fa fa-check"></i><b>2.9</b> R Studio Layout</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="definitions-rules.html"><a href="definitions-rules.html"><i class="fa fa-check"></i><b>3</b> Definitions &amp; Rules</a><ul>
+<li class="chapter" data-level="3.1" data-path="definitions-rules.html"><a href="definitions-rules.html#important-r-programming-definitions"><i class="fa fa-check"></i><b>3.1</b> Important R Programming Definitions</a></li>
+<li class="chapter" data-level="3.2" data-path="definitions-rules.html"><a href="definitions-rules.html#rules"><i class="fa fa-check"></i><b>3.2</b> Rules</a></li>
+<li class="chapter" data-level="3.3" data-path="definitions-rules.html"><a href="definitions-rules.html#general-recommendations"><i class="fa fa-check"></i><b>3.3</b> General Recommendations</a></li>
+<li class="chapter" data-level="3.4" data-path="definitions-rules.html"><a href="definitions-rules.html#r-coding-fundamentals"><i class="fa fa-check"></i><b>3.4</b> R Coding Fundamentals</a></li>
+<li class="chapter" data-level="3.5" data-path="definitions-rules.html"><a href="definitions-rules.html#entering-input"><i class="fa fa-check"></i><b>3.5</b> Entering Input</a></li>
+<li class="chapter" data-level="3.6" data-path="definitions-rules.html"><a href="definitions-rules.html#running-code"><i class="fa fa-check"></i><b>3.6</b> Running Code</a></li>
+<li class="chapter" data-level="3.7" data-path="definitions-rules.html"><a href="definitions-rules.html#evaluation"><i class="fa fa-check"></i><b>3.7</b> Evaluation</a></li>
+<li class="chapter" data-level="3.8" data-path="definitions-rules.html"><a href="definitions-rules.html#r-objects"><i class="fa fa-check"></i><b>3.8</b> R Objects</a></li>
+<li class="chapter" data-level="3.9" data-path="definitions-rules.html"><a href="definitions-rules.html#numbers"><i class="fa fa-check"></i><b>3.9</b> Numbers</a></li>
+<li class="chapter" data-level="3.10" data-path="definitions-rules.html"><a href="definitions-rules.html#attributes"><i class="fa fa-check"></i><b>3.10</b> Attributes</a></li>
+<li class="chapter" data-level="3.11" data-path="definitions-rules.html"><a href="definitions-rules.html#creating-vectors"><i class="fa fa-check"></i><b>3.11</b> Creating Vectors</a></li>
+<li class="chapter" data-level="3.12" data-path="definitions-rules.html"><a href="definitions-rules.html#mixing-objects"><i class="fa fa-check"></i><b>3.12</b> Mixing Objects</a></li>
+<li class="chapter" data-level="3.13" data-path="definitions-rules.html"><a href="definitions-rules.html#explicit-coercion"><i class="fa fa-check"></i><b>3.13</b> Explicit Coercion</a></li>
+<li class="chapter" data-level="3.14" data-path="definitions-rules.html"><a href="definitions-rules.html#matrices"><i class="fa fa-check"></i><b>3.14</b> Matrices</a></li>
+<li class="chapter" data-level="3.15" data-path="definitions-rules.html"><a href="definitions-rules.html#lists"><i class="fa fa-check"></i><b>3.15</b> Lists</a></li>
+<li class="chapter" data-level="3.16" data-path="definitions-rules.html"><a href="definitions-rules.html#factors"><i class="fa fa-check"></i><b>3.16</b> Factors</a></li>
+<li class="chapter" data-level="3.17" data-path="definitions-rules.html"><a href="definitions-rules.html#missing-values"><i class="fa fa-check"></i><b>3.17</b> Missing Values</a></li>
+<li class="chapter" data-level="3.18" data-path="definitions-rules.html"><a href="definitions-rules.html#data-frames"><i class="fa fa-check"></i><b>3.18</b> Data Frames</a></li>
+<li class="chapter" data-level="3.19" data-path="definitions-rules.html"><a href="definitions-rules.html#names"><i class="fa fa-check"></i><b>3.19</b> Names</a></li>
+<li class="chapter" data-level="3.20" data-path="definitions-rules.html"><a href="definitions-rules.html#summary"><i class="fa fa-check"></i><b>3.20</b> Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="example-scripts.html"><a href="example-scripts.html"><i class="fa fa-check"></i><b>4</b> Example Scripts</a><ul>
+<li class="chapter" data-level="4.1" data-path="example-scripts.html"><a href="example-scripts.html#global-carbon-dioxide-concentrations"><i class="fa fa-check"></i><b>4.1</b> Global Carbon-Dioxide Concentrations</a></li>
+<li class="chapter" data-level="4.2" data-path="example-scripts.html"><a href="example-scripts.html#cars---motor-trends-magazine-data"><i class="fa fa-check"></i><b>4.2</b> Cars - Motor Trends Magazine Data</a></li>
+<li class="chapter" data-level="4.3" data-path="example-scripts.html"><a href="example-scripts.html#how-does-an-r-script-generally-flow"><i class="fa fa-check"></i><b>4.3</b> How does an R script generally flow?</a></li>
+<li class="chapter" data-level="4.4" data-path="example-scripts.html"><a href="example-scripts.html#now-lets-break-down-this-script"><i class="fa fa-check"></i><b>4.4</b> Now Let’s Break Down This Script</a></li>
+<li class="chapter" data-level="4.5" data-path="example-scripts.html"><a href="example-scripts.html#in-class-exercise"><i class="fa fa-check"></i><b>4.5</b> In Class Exercise</a></li>
+<li class="chapter" data-level="4.6" data-path="example-scripts.html"><a href="example-scripts.html#datatypes"><i class="fa fa-check"></i><b>4.6</b> DataTypes</a></li>
+<li class="chapter" data-level="4.7" data-path="example-scripts.html"><a href="example-scripts.html#essential-skills-the-for-loop"><i class="fa fa-check"></i><b>4.7</b> Essential Skills: The For Loop</a></li>
+<li class="chapter" data-level="4.8" data-path="example-scripts.html"><a href="example-scripts.html#deos-data"><i class="fa fa-check"></i><b>4.8</b> DEOS Data</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="essential-skills-the-for-loop-with-paste0.html"><a href="essential-skills-the-for-loop-with-paste0.html"><i class="fa fa-check"></i><b>5</b> Essential Skills: The For Loop with Paste0</a></li>
+<li class="chapter" data-level="6" data-path="rasters-with-oceanography.html"><a href="rasters-with-oceanography.html"><i class="fa fa-check"></i><b>6</b> Rasters with Oceanography</a><ul>
+<li class="chapter" data-level="6.1" data-path="rasters-with-oceanography.html"><a href="rasters-with-oceanography.html#plot-goes-r-rolling-1-day-data"><i class="fa fa-check"></i><b>6.1</b> Plot GOES-R Rolling 1 day data</a></li>
+<li class="chapter" data-level="6.2" data-path="rasters-with-oceanography.html"><a href="rasters-with-oceanography.html#recapping-skills-indexing-data"><i class="fa fa-check"></i><b>6.2</b> Recapping Skills: Indexing Data</a></li>
+<li class="chapter" data-level="6.3" data-path="rasters-with-oceanography.html"><a href="rasters-with-oceanography.html#resampling-and-reprojecting-data-in-r"><i class="fa fa-check"></i><b>6.3</b> Resampling and Reprojecting data in R</a></li>
+<li class="chapter" data-level="6.4" data-path="rasters-with-oceanography.html"><a href="rasters-with-oceanography.html#example-of-how-to-save-directly-to-png"><i class="fa fa-check"></i><b>6.4</b> Example of how to save directly to PNG</a></li>
+<li class="chapter" data-level="6.5" data-path="rasters-with-oceanography.html"><a href="rasters-with-oceanography.html#example-of-how-to-write-a-raster-out-to-geotiff-or-netcdf"><i class="fa fa-check"></i><b>6.5</b> Example of how to write a raster out to geotiff or netcdf</a></li>
+<li class="chapter" data-level="6.6" data-path="rasters-with-oceanography.html"><a href="rasters-with-oceanography.html#in-class-assignment"><i class="fa fa-check"></i><b>6.6</b> In Class Assignment</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">James Simkins</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">GEOG 473/673 Open-sourced Environmental Computing</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="example-scripts" class="section level1">
+<h1><span class="header-section-number">4</span> Example Scripts</h1>
+<p>In this example, we’ll begin with data science question and answer it in R. We’ll go through these scripts line by line to show how we can use R. To follow along, copy each of these lines and paste them in your R Script (top left quadrant). Once it’s pasted there, we can run each line and view the output in the R Console (bottom left quadrant).</p>
+<div id="global-carbon-dioxide-concentrations" class="section level2">
+<h2><span class="header-section-number">4.1</span> Global Carbon-Dioxide Concentrations</h2>
+<p>CO2 is a greenhouse gas responsible for trapping heat. Human’s have released more CO2 into the atmosphere through industrialism. How have global carbon-dioxide (CO2) concentrations changed over time?</p>
+<p>First, we load the dataset. In our case, the dataset we’ll be using is pre-built into R as <code>co2</code>, meaning we don’t need to download this dataset, we just need to call it. The <code>co2</code> dataset contains atmospheric concentrations of CO2 are expressed in parts per million (ppm). This data is a time-series of monthly CO2 concentrations recorded between 1959 and 1997. First, let’s make sure the pre-built data is installed correcly.</p>
+<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb94-1" data-line-number="1">co2</a></code></pre></div>
+<pre><code>##         Jan    Feb    Mar    Apr    May    Jun    Jul    Aug    Sep    Oct
+## 1959 315.42 316.31 316.50 317.56 318.13 318.00 316.39 314.65 313.68 313.18
+## 1960 316.27 316.81 317.42 318.87 319.87 319.43 318.01 315.74 314.00 313.68
+## 1961 316.73 317.54 318.38 319.31 320.42 319.61 318.42 316.63 314.83 315.16
+## 1962 317.78 318.40 319.53 320.42 320.85 320.45 319.45 317.25 316.11 315.27
+## 1963 318.58 318.92 319.70 321.22 322.08 321.31 319.58 317.61 316.05 315.83
+## 1964 319.41 320.07 320.74 321.40 322.06 321.73 320.27 318.54 316.54 316.71
+## 1965 319.27 320.28 320.73 321.97 322.00 321.71 321.05 318.71 317.66 317.14
+## 1966 320.46 321.43 322.23 323.54 323.91 323.59 322.24 320.20 318.48 317.94
+## 1967 322.17 322.34 322.88 324.25 324.83 323.93 322.38 320.76 319.10 319.24
+## 1968 322.40 322.99 323.73 324.86 325.40 325.20 323.98 321.95 320.18 320.09
+## 1969 323.83 324.26 325.47 326.50 327.21 326.54 325.72 323.50 322.22 321.62
+## 1970 324.89 325.82 326.77 327.97 327.91 327.50 326.18 324.53 322.93 322.90
+## 1971 326.01 326.51 327.01 327.62 328.76 328.40 327.20 325.27 323.20 323.40
+## 1972 326.60 327.47 327.58 329.56 329.90 328.92 327.88 326.16 324.68 325.04
+## 1973 328.37 329.40 330.14 331.33 332.31 331.90 330.70 329.15 327.35 327.02
+## 1974 329.18 330.55 331.32 332.48 332.92 332.08 331.01 329.23 327.27 327.21
+## 1975 330.23 331.25 331.87 333.14 333.80 333.43 331.73 329.90 328.40 328.17
+## 1976 331.58 332.39 333.33 334.41 334.71 334.17 332.89 330.77 329.14 328.78
+## 1977 332.75 333.24 334.53 335.90 336.57 336.10 334.76 332.59 331.42 330.98
+## 1978 334.80 335.22 336.47 337.59 337.84 337.72 336.37 334.51 332.60 332.38
+## 1979 336.05 336.59 337.79 338.71 339.30 339.12 337.56 335.92 333.75 333.70
+## 1980 337.84 338.19 339.91 340.60 341.29 341.00 339.39 337.43 335.72 335.84
+## 1981 339.06 340.30 341.21 342.33 342.74 342.08 340.32 338.26 336.52 336.68
+## 1982 340.57 341.44 342.53 343.39 343.96 343.18 341.88 339.65 337.81 337.69
+## 1983 341.20 342.35 342.93 344.77 345.58 345.14 343.81 342.21 339.69 339.82
+## 1984 343.52 344.33 345.11 346.88 347.25 346.62 345.22 343.11 340.90 341.18
+## 1985 344.79 345.82 347.25 348.17 348.74 348.07 346.38 344.51 342.92 342.62
+## 1986 346.11 346.78 347.68 349.37 350.03 349.37 347.76 345.73 344.68 343.99
+## 1987 347.84 348.29 349.23 350.80 351.66 351.07 349.33 347.92 346.27 346.18
+## 1988 350.25 351.54 352.05 353.41 354.04 353.62 352.22 350.27 348.55 348.72
+## 1989 352.60 352.92 353.53 355.26 355.52 354.97 353.75 351.52 349.64 349.83
+## 1990 353.50 354.55 355.23 356.04 357.00 356.07 354.67 352.76 350.82 351.04
+## 1991 354.59 355.63 357.03 358.48 359.22 358.12 356.06 353.92 352.05 352.11
+## 1992 355.88 356.63 357.72 359.07 359.58 359.17 356.94 354.92 352.94 353.23
+## 1993 356.63 357.10 358.32 359.41 360.23 359.55 357.53 355.48 353.67 353.95
+## 1994 358.34 358.89 359.95 361.25 361.67 360.94 359.55 357.49 355.84 356.00
+## 1995 359.98 361.03 361.66 363.48 363.82 363.30 361.94 359.50 358.11 357.80
+## 1996 362.09 363.29 364.06 364.76 365.45 365.01 363.70 361.54 359.51 359.65
+## 1997 363.23 364.06 364.61 366.40 366.84 365.68 364.52 362.57 360.24 360.83
+##         Nov    Dec
+## 1959 314.66 315.43
+## 1960 314.84 316.03
+## 1961 315.94 316.85
+## 1962 316.53 317.53
+## 1963 316.91 318.20
+## 1964 317.53 318.55
+## 1965 318.70 319.25
+## 1966 319.63 320.87
+## 1967 320.56 321.80
+## 1968 321.16 322.74
+## 1969 322.69 323.95
+## 1970 323.85 324.96
+## 1971 324.63 325.85
+## 1972 326.34 327.39
+## 1973 327.99 328.48
+## 1974 328.29 329.41
+## 1975 329.32 330.59
+## 1976 330.14 331.52
+## 1977 332.24 333.68
+## 1978 333.75 334.78
+## 1979 335.12 336.56
+## 1980 336.93 338.04
+## 1981 338.19 339.44
+## 1982 339.09 340.32
+## 1983 340.98 342.82
+## 1984 342.80 344.04
+## 1985 344.06 345.38
+## 1986 345.48 346.72
+## 1987 347.64 348.78
+## 1988 349.91 351.18
+## 1989 351.14 352.37
+## 1990 352.69 354.07
+## 1991 353.64 354.89
+## 1992 354.09 355.33
+## 1993 355.30 356.78
+## 1994 357.59 359.05
+## 1995 359.61 360.74
+## 1996 360.80 362.38
+## 1997 362.49 364.34</code></pre>
+<p>This dataset is stored in R as <code>co2</code>. We can create a new variable called co2_data that replicates this <code>co2</code> dataset.</p>
+<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb96-1" data-line-number="1">co2_data &lt;-<span class="st"> </span>co2</a>
+<a class="sourceLine" id="cb96-2" data-line-number="2">co2_data</a></code></pre></div>
+<pre><code>##         Jan    Feb    Mar    Apr    May    Jun    Jul    Aug    Sep    Oct
+## 1959 315.42 316.31 316.50 317.56 318.13 318.00 316.39 314.65 313.68 313.18
+## 1960 316.27 316.81 317.42 318.87 319.87 319.43 318.01 315.74 314.00 313.68
+## 1961 316.73 317.54 318.38 319.31 320.42 319.61 318.42 316.63 314.83 315.16
+## 1962 317.78 318.40 319.53 320.42 320.85 320.45 319.45 317.25 316.11 315.27
+## 1963 318.58 318.92 319.70 321.22 322.08 321.31 319.58 317.61 316.05 315.83
+## 1964 319.41 320.07 320.74 321.40 322.06 321.73 320.27 318.54 316.54 316.71
+## 1965 319.27 320.28 320.73 321.97 322.00 321.71 321.05 318.71 317.66 317.14
+## 1966 320.46 321.43 322.23 323.54 323.91 323.59 322.24 320.20 318.48 317.94
+## 1967 322.17 322.34 322.88 324.25 324.83 323.93 322.38 320.76 319.10 319.24
+## 1968 322.40 322.99 323.73 324.86 325.40 325.20 323.98 321.95 320.18 320.09
+## 1969 323.83 324.26 325.47 326.50 327.21 326.54 325.72 323.50 322.22 321.62
+## 1970 324.89 325.82 326.77 327.97 327.91 327.50 326.18 324.53 322.93 322.90
+## 1971 326.01 326.51 327.01 327.62 328.76 328.40 327.20 325.27 323.20 323.40
+## 1972 326.60 327.47 327.58 329.56 329.90 328.92 327.88 326.16 324.68 325.04
+## 1973 328.37 329.40 330.14 331.33 332.31 331.90 330.70 329.15 327.35 327.02
+## 1974 329.18 330.55 331.32 332.48 332.92 332.08 331.01 329.23 327.27 327.21
+## 1975 330.23 331.25 331.87 333.14 333.80 333.43 331.73 329.90 328.40 328.17
+## 1976 331.58 332.39 333.33 334.41 334.71 334.17 332.89 330.77 329.14 328.78
+## 1977 332.75 333.24 334.53 335.90 336.57 336.10 334.76 332.59 331.42 330.98
+## 1978 334.80 335.22 336.47 337.59 337.84 337.72 336.37 334.51 332.60 332.38
+## 1979 336.05 336.59 337.79 338.71 339.30 339.12 337.56 335.92 333.75 333.70
+## 1980 337.84 338.19 339.91 340.60 341.29 341.00 339.39 337.43 335.72 335.84
+## 1981 339.06 340.30 341.21 342.33 342.74 342.08 340.32 338.26 336.52 336.68
+## 1982 340.57 341.44 342.53 343.39 343.96 343.18 341.88 339.65 337.81 337.69
+## 1983 341.20 342.35 342.93 344.77 345.58 345.14 343.81 342.21 339.69 339.82
+## 1984 343.52 344.33 345.11 346.88 347.25 346.62 345.22 343.11 340.90 341.18
+## 1985 344.79 345.82 347.25 348.17 348.74 348.07 346.38 344.51 342.92 342.62
+## 1986 346.11 346.78 347.68 349.37 350.03 349.37 347.76 345.73 344.68 343.99
+## 1987 347.84 348.29 349.23 350.80 351.66 351.07 349.33 347.92 346.27 346.18
+## 1988 350.25 351.54 352.05 353.41 354.04 353.62 352.22 350.27 348.55 348.72
+## 1989 352.60 352.92 353.53 355.26 355.52 354.97 353.75 351.52 349.64 349.83
+## 1990 353.50 354.55 355.23 356.04 357.00 356.07 354.67 352.76 350.82 351.04
+## 1991 354.59 355.63 357.03 358.48 359.22 358.12 356.06 353.92 352.05 352.11
+## 1992 355.88 356.63 357.72 359.07 359.58 359.17 356.94 354.92 352.94 353.23
+## 1993 356.63 357.10 358.32 359.41 360.23 359.55 357.53 355.48 353.67 353.95
+## 1994 358.34 358.89 359.95 361.25 361.67 360.94 359.55 357.49 355.84 356.00
+## 1995 359.98 361.03 361.66 363.48 363.82 363.30 361.94 359.50 358.11 357.80
+## 1996 362.09 363.29 364.06 364.76 365.45 365.01 363.70 361.54 359.51 359.65
+## 1997 363.23 364.06 364.61 366.40 366.84 365.68 364.52 362.57 360.24 360.83
+##         Nov    Dec
+## 1959 314.66 315.43
+## 1960 314.84 316.03
+## 1961 315.94 316.85
+## 1962 316.53 317.53
+## 1963 316.91 318.20
+## 1964 317.53 318.55
+## 1965 318.70 319.25
+## 1966 319.63 320.87
+## 1967 320.56 321.80
+## 1968 321.16 322.74
+## 1969 322.69 323.95
+## 1970 323.85 324.96
+## 1971 324.63 325.85
+## 1972 326.34 327.39
+## 1973 327.99 328.48
+## 1974 328.29 329.41
+## 1975 329.32 330.59
+## 1976 330.14 331.52
+## 1977 332.24 333.68
+## 1978 333.75 334.78
+## 1979 335.12 336.56
+## 1980 336.93 338.04
+## 1981 338.19 339.44
+## 1982 339.09 340.32
+## 1983 340.98 342.82
+## 1984 342.80 344.04
+## 1985 344.06 345.38
+## 1986 345.48 346.72
+## 1987 347.64 348.78
+## 1988 349.91 351.18
+## 1989 351.14 352.37
+## 1990 352.69 354.07
+## 1991 353.64 354.89
+## 1992 354.09 355.33
+## 1993 355.30 356.78
+## 1994 357.59 359.05
+## 1995 359.61 360.74
+## 1996 360.80 362.38
+## 1997 362.49 364.34</code></pre>
+<p>We replicate this dataset and rename it as <code>co2_data</code> so that it’s a variable that is shown in our global environment (top right quadrant).</p>
+<p>What class is this data?</p>
+<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb98-1" data-line-number="1"><span class="kw">class</span>(co2_data)</a></code></pre></div>
+<pre><code>## [1] &quot;ts&quot;</code></pre>
+<p>A <code>ts</code> class is a time-series class. We can print out a summary of the co2 dataset like so.</p>
+<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb100-1" data-line-number="1"><span class="kw">summary</span>(co2_data)</a></code></pre></div>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##   313.2   323.5   335.2   337.1   350.3   366.8</code></pre>
+<p>The <code>summary()</code> function is a base function R offers for quick statistics.</p>
+<p>How long is this dataset?</p>
+<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb102-1" data-line-number="1"><span class="kw">length</span>(co2_data)</a></code></pre></div>
+<pre><code>## [1] 468</code></pre>
+<p>468 months worth of CO2 observations.</p>
+<p>Can we plot this dataset?</p>
+<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb104-1" data-line-number="1"><span class="kw">plot</span>(<span class="dt">x =</span> co2, <span class="dt">ylab =</span> <span class="st">&quot;Atmospheric concentration of CO2 (ppm)&quot;</span>, <span class="dt">main =</span> <span class="st">&quot;CO2 Dataset&quot;</span>)</a></code></pre></div>
+<p><img src="Introduction-to-R_files/figure-html/unnamed-chunk-50-1.png" width="672" /></p>
+<p>Altogether, this script looks like this…</p>
+<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb105-1" data-line-number="1"><span class="co"># make sure the dataset is loaded - it&#39;s a prebuilt dataset automatically loaded into R</span></a>
+<a class="sourceLine" id="cb105-2" data-line-number="2">co2</a>
+<a class="sourceLine" id="cb105-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb105-4" data-line-number="4"><span class="co"># rename the dataset as co2_data so it is visible in our global environment</span></a>
+<a class="sourceLine" id="cb105-5" data-line-number="5">co2_data &lt;-<span class="st"> </span>co2</a>
+<a class="sourceLine" id="cb105-6" data-line-number="6">co2_data</a>
+<a class="sourceLine" id="cb105-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb105-8" data-line-number="8"><span class="co"># identify the class of the co2_data object</span></a>
+<a class="sourceLine" id="cb105-9" data-line-number="9"><span class="kw">class</span>(co2_data)</a>
+<a class="sourceLine" id="cb105-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb105-11" data-line-number="11"><span class="co"># print the summary of the co2_data dataset</span></a>
+<a class="sourceLine" id="cb105-12" data-line-number="12"><span class="kw">summary</span>(co2_data)</a>
+<a class="sourceLine" id="cb105-13" data-line-number="13"></a>
+<a class="sourceLine" id="cb105-14" data-line-number="14"><span class="co"># find the length of the co2_data dataset using the length() function</span></a>
+<a class="sourceLine" id="cb105-15" data-line-number="15"><span class="kw">length</span>(co2_data)</a>
+<a class="sourceLine" id="cb105-16" data-line-number="16"></a>
+<a class="sourceLine" id="cb105-17" data-line-number="17"><span class="co"># plot the dataset using the default plot function</span></a>
+<a class="sourceLine" id="cb105-18" data-line-number="18"><span class="kw">plot</span>(<span class="dt">x =</span> co2, <span class="dt">ylab =</span> <span class="st">&quot;Atmospheric concentration of CO2 (ppm)&quot;</span>, <span class="dt">main =</span> <span class="st">&quot;CO2 Dataset&quot;</span>)</a></code></pre></div>
+<p>Above is our script. We run this script in the console. We can save this script and re-run this at any time. An example of this would be saving this file as <code>co2_script.R</code>. Once this is saved, you can close R, re-open it, and re-run your <code>co2_script.R</code> without re-writing any code.</p>
+</div>
+<div id="cars---motor-trends-magazine-data" class="section level2">
+<h2><span class="header-section-number">4.2</span> Cars - Motor Trends Magazine Data</h2>
+<p>The data was extracted from the 1974 Motor Trend US magazine, and comprises fuel consumption and 10 aspects of automobile design and performance for 32 automobiles (1973–74 models).</p>
+<p>Load the dataset - again this is a pre-loaded dataset, but let’s call on it so we can bring it into our global environment.</p>
+<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb106-1" data-line-number="1"><span class="kw">data</span>(<span class="st">&#39;mtcars&#39;</span>)</a>
+<a class="sourceLine" id="cb106-2" data-line-number="2"><span class="kw">head</span>(mtcars)</a></code></pre></div>
+<pre><code>##                    mpg cyl disp  hp drat    wt  qsec vs am gear carb
+## Mazda RX4         21.0   6  160 110 3.90 2.620 16.46  0  1    4    4
+## Mazda RX4 Wag     21.0   6  160 110 3.90 2.875 17.02  0  1    4    4
+## Datsun 710        22.8   4  108  93 3.85 2.320 18.61  1  1    4    1
+## Hornet 4 Drive    21.4   6  258 110 3.08 3.215 19.44  1  0    3    1
+## Hornet Sportabout 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2
+## Valiant           18.1   6  225 105 2.76 3.460 20.22  1  0    3    1</code></pre>
+<p>The <code>head()</code> function is a quick function that prints out the first few rows of a dataset.</p>
+<p>What’s exactly is <code>mtcars</code>?</p>
+<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb108-1" data-line-number="1"><span class="kw">class</span>(mtcars)</a></code></pre></div>
+<pre><code>## [1] &quot;data.frame&quot;</code></pre>
+<p>It’s a data.frame. Data Frames have a different storage than time series. You can also view this dataframe by clicking on the <code>mtcars</code> dataframe in your global environment. What are the dimensions of this dataframe? How many rows and columns does it have?</p>
+<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb110-1" data-line-number="1"><span class="kw">dim</span>(mtcars)</a></code></pre></div>
+<pre><code>## [1] 32 11</code></pre>
+<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb112-1" data-line-number="1"><span class="kw">nrow</span>(mtcars)</a></code></pre></div>
+<pre><code>## [1] 32</code></pre>
+<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb114-1" data-line-number="1"><span class="kw">ncol</span>(mtcars)</a></code></pre></div>
+<pre><code>## [1] 11</code></pre>
+<p>We have 32 rows and 11 columns within this dataframe.</p>
+<p>What are our column names?</p>
+<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb116-1" data-line-number="1"><span class="kw">colnames</span>(mtcars)</a></code></pre></div>
+<pre><code>##  [1] &quot;mpg&quot;  &quot;cyl&quot;  &quot;disp&quot; &quot;hp&quot;   &quot;drat&quot; &quot;wt&quot;   &quot;qsec&quot; &quot;vs&quot;   &quot;am&quot;   &quot;gear&quot;
+## [11] &quot;carb&quot;</code></pre>
+<p>What are our row names (aka the make of the car)?</p>
+<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb118-1" data-line-number="1"><span class="kw">rownames</span>(mtcars)</a></code></pre></div>
+<pre><code>##  [1] &quot;Mazda RX4&quot;           &quot;Mazda RX4 Wag&quot;       &quot;Datsun 710&quot;         
+##  [4] &quot;Hornet 4 Drive&quot;      &quot;Hornet Sportabout&quot;   &quot;Valiant&quot;            
+##  [7] &quot;Duster 360&quot;          &quot;Merc 240D&quot;           &quot;Merc 230&quot;           
+## [10] &quot;Merc 280&quot;            &quot;Merc 280C&quot;           &quot;Merc 450SE&quot;         
+## [13] &quot;Merc 450SL&quot;          &quot;Merc 450SLC&quot;         &quot;Cadillac Fleetwood&quot; 
+## [16] &quot;Lincoln Continental&quot; &quot;Chrysler Imperial&quot;   &quot;Fiat 128&quot;           
+## [19] &quot;Honda Civic&quot;         &quot;Toyota Corolla&quot;      &quot;Toyota Corona&quot;      
+## [22] &quot;Dodge Challenger&quot;    &quot;AMC Javelin&quot;         &quot;Camaro Z28&quot;         
+## [25] &quot;Pontiac Firebird&quot;    &quot;Fiat X1-9&quot;           &quot;Porsche 914-2&quot;      
+## [28] &quot;Lotus Europa&quot;        &quot;Ford Pantera L&quot;      &quot;Ferrari Dino&quot;       
+## [31] &quot;Maserati Bora&quot;       &quot;Volvo 142E&quot;</code></pre>
+<p>How do we extract individual columns/variables from this dataframe?</p>
+<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb120-1" data-line-number="1">mtcars[<span class="st">&quot;mpg&quot;</span>]</a></code></pre></div>
+<pre><code>##                      mpg
+## Mazda RX4           21.0
+## Mazda RX4 Wag       21.0
+## Datsun 710          22.8
+## Hornet 4 Drive      21.4
+## Hornet Sportabout   18.7
+## Valiant             18.1
+## Duster 360          14.3
+## Merc 240D           24.4
+## Merc 230            22.8
+## Merc 280            19.2
+## Merc 280C           17.8
+## Merc 450SE          16.4
+## Merc 450SL          17.3
+## Merc 450SLC         15.2
+## Cadillac Fleetwood  10.4
+## Lincoln Continental 10.4
+## Chrysler Imperial   14.7
+## Fiat 128            32.4
+## Honda Civic         30.4
+## Toyota Corolla      33.9
+## Toyota Corona       21.5
+## Dodge Challenger    15.5
+## AMC Javelin         15.2
+## Camaro Z28          13.3
+## Pontiac Firebird    19.2
+## Fiat X1-9           27.3
+## Porsche 914-2       26.0
+## Lotus Europa        30.4
+## Ford Pantera L      15.8
+## Ferrari Dino        19.7
+## Maserati Bora       15.0
+## Volvo 142E          21.4</code></pre>
+<p>We can also extract the vector of data using the <code>$</code> operator.</p>
+<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb122-1" data-line-number="1">mtcars<span class="op">$</span>mpg</a></code></pre></div>
+<pre><code>##  [1] 21.0 21.0 22.8 21.4 18.7 18.1 14.3 24.4 22.8 19.2 17.8 16.4 17.3 15.2 10.4
+## [16] 10.4 14.7 32.4 30.4 33.9 21.5 15.5 15.2 13.3 19.2 27.3 26.0 30.4 15.8 19.7
+## [31] 15.0 21.4</code></pre>
+<p>What are the statistics like for each variable?</p>
+<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb124-1" data-line-number="1"><span class="kw">summary</span>(mtcars)</a></code></pre></div>
+<pre><code>##       mpg             cyl             disp             hp       
+##  Min.   :10.40   Min.   :4.000   Min.   : 71.1   Min.   : 52.0  
+##  1st Qu.:15.43   1st Qu.:4.000   1st Qu.:120.8   1st Qu.: 96.5  
+##  Median :19.20   Median :6.000   Median :196.3   Median :123.0  
+##  Mean   :20.09   Mean   :6.188   Mean   :230.7   Mean   :146.7  
+##  3rd Qu.:22.80   3rd Qu.:8.000   3rd Qu.:326.0   3rd Qu.:180.0  
+##  Max.   :33.90   Max.   :8.000   Max.   :472.0   Max.   :335.0  
+##       drat             wt             qsec             vs        
+##  Min.   :2.760   Min.   :1.513   Min.   :14.50   Min.   :0.0000  
+##  1st Qu.:3.080   1st Qu.:2.581   1st Qu.:16.89   1st Qu.:0.0000  
+##  Median :3.695   Median :3.325   Median :17.71   Median :0.0000  
+##  Mean   :3.597   Mean   :3.217   Mean   :17.85   Mean   :0.4375  
+##  3rd Qu.:3.920   3rd Qu.:3.610   3rd Qu.:18.90   3rd Qu.:1.0000  
+##  Max.   :4.930   Max.   :5.424   Max.   :22.90   Max.   :1.0000  
+##        am              gear            carb      
+##  Min.   :0.0000   Min.   :3.000   Min.   :1.000  
+##  1st Qu.:0.0000   1st Qu.:3.000   1st Qu.:2.000  
+##  Median :0.0000   Median :4.000   Median :2.000  
+##  Mean   :0.4062   Mean   :3.688   Mean   :2.812  
+##  3rd Qu.:1.0000   3rd Qu.:4.000   3rd Qu.:4.000  
+##  Max.   :1.0000   Max.   :5.000   Max.   :8.000</code></pre>
+<p>Notice that now the <code>summary()</code> function is printing out the summary statistics for each column (aka variable) within our dataframe (<code>mtcars</code>)</p>
+<p>What if we just wanted to focus on the first 5 cars in the dataset? We need to index.</p>
+<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb126-1" data-line-number="1">mtcars[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>,]</a></code></pre></div>
+<pre><code>##                    mpg cyl disp  hp drat    wt  qsec vs am gear carb
+## Mazda RX4         21.0   6  160 110 3.90 2.620 16.46  0  1    4    4
+## Mazda RX4 Wag     21.0   6  160 110 3.90 2.875 17.02  0  1    4    4
+## Datsun 710        22.8   4  108  93 3.85 2.320 18.61  1  1    4    1
+## Hornet 4 Drive    21.4   6  258 110 3.08 3.215 19.44  1  0    3    1
+## Hornet Sportabout 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2</code></pre>
+<p>Remember, data is stored as <code>Row, Column</code>. Above, we’re <code>indexing</code> the first 5 rows and then including all columns. What if we just wanted to focus on the first column?</p>
+<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb128-1" data-line-number="1">mtcars[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>,<span class="dv">1</span>]</a></code></pre></div>
+<pre><code>## [1] 21.0 21.0 22.8 21.4 18.7</code></pre>
+<p>That’s the <code>mpg</code> column of the first 5 cars. Which car has the best miles per gallon (mpg)?</p>
+<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb130-1" data-line-number="1"><span class="kw">barplot</span>(<span class="dt">height =</span> mtcars<span class="op">$</span>mpg[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>], <span class="dt">names.arg =</span> <span class="kw">rownames</span>(mtcars)[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>])</a></code></pre></div>
+<p><img src="Introduction-to-R_files/figure-html/unnamed-chunk-62-1.png" width="672" /></p>
+<p>The Datsun 710 has the highest MPG rating of the first 5 cars (rows) in the dataset.</p>
+<p>The entire script looks like this:</p>
+<div class="sourceCode" id="cb131"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb131-1" data-line-number="1"><span class="co"># load the data - the mtcars dataset is pre-built </span></a>
+<a class="sourceLine" id="cb131-2" data-line-number="2"><span class="kw">data</span>(<span class="st">&#39;mtcars&#39;</span>)</a>
+<a class="sourceLine" id="cb131-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb131-4" data-line-number="4"><span class="co"># print out the first few rows of the dataset using the head() function</span></a>
+<a class="sourceLine" id="cb131-5" data-line-number="5"><span class="kw">head</span>(mtcars)</a>
+<a class="sourceLine" id="cb131-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb131-7" data-line-number="7"><span class="co"># print the class of the mtcars dataset</span></a>
+<a class="sourceLine" id="cb131-8" data-line-number="8"><span class="kw">class</span>(mtcars)</a>
+<a class="sourceLine" id="cb131-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb131-10" data-line-number="10"><span class="co"># dimensions of the mtcars dataframe</span></a>
+<a class="sourceLine" id="cb131-11" data-line-number="11"><span class="kw">dim</span>(mtcars)</a>
+<a class="sourceLine" id="cb131-12" data-line-number="12"></a>
+<a class="sourceLine" id="cb131-13" data-line-number="13"><span class="co"># number of rows</span></a>
+<a class="sourceLine" id="cb131-14" data-line-number="14"><span class="kw">nrow</span>(mtcars)</a>
+<a class="sourceLine" id="cb131-15" data-line-number="15"></a>
+<a class="sourceLine" id="cb131-16" data-line-number="16"><span class="co"># number of columns</span></a>
+<a class="sourceLine" id="cb131-17" data-line-number="17"><span class="kw">ncol</span>(mtcars)</a>
+<a class="sourceLine" id="cb131-18" data-line-number="18"></a>
+<a class="sourceLine" id="cb131-19" data-line-number="19"><span class="co"># column names</span></a>
+<a class="sourceLine" id="cb131-20" data-line-number="20"><span class="kw">colnames</span>(mtcars)</a>
+<a class="sourceLine" id="cb131-21" data-line-number="21"></a>
+<a class="sourceLine" id="cb131-22" data-line-number="22"><span class="co"># row names</span></a>
+<a class="sourceLine" id="cb131-23" data-line-number="23"><span class="kw">rownames</span>(mtcars)</a>
+<a class="sourceLine" id="cb131-24" data-line-number="24"></a>
+<a class="sourceLine" id="cb131-25" data-line-number="25"><span class="co"># selecting the miles per gallon column</span></a>
+<a class="sourceLine" id="cb131-26" data-line-number="26">mtcars[<span class="st">&quot;mpg&quot;</span>]</a>
+<a class="sourceLine" id="cb131-27" data-line-number="27"></a>
+<a class="sourceLine" id="cb131-28" data-line-number="28"><span class="co"># selecting the vector of the mpg column</span></a>
+<a class="sourceLine" id="cb131-29" data-line-number="29">mtcars<span class="op">$</span>mpg</a>
+<a class="sourceLine" id="cb131-30" data-line-number="30"></a>
+<a class="sourceLine" id="cb131-31" data-line-number="31"><span class="co"># printing a summary of the dataframe</span></a>
+<a class="sourceLine" id="cb131-32" data-line-number="32"><span class="kw">summary</span>(mtcars)</a>
+<a class="sourceLine" id="cb131-33" data-line-number="33"></a>
+<a class="sourceLine" id="cb131-34" data-line-number="34"><span class="co"># indexing the first 5 rows, including all of the columns</span></a>
+<a class="sourceLine" id="cb131-35" data-line-number="35">mtcars[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>,]</a>
+<a class="sourceLine" id="cb131-36" data-line-number="36"></a>
+<a class="sourceLine" id="cb131-37" data-line-number="37"><span class="co"># indexing the first 5 rows and the 1st column</span></a>
+<a class="sourceLine" id="cb131-38" data-line-number="38">mtcars[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>,<span class="dv">1</span>]</a>
+<a class="sourceLine" id="cb131-39" data-line-number="39"></a>
+<a class="sourceLine" id="cb131-40" data-line-number="40"><span class="co"># creating a barplot of mpg for the first 5 cars</span></a>
+<a class="sourceLine" id="cb131-41" data-line-number="41"><span class="kw">barplot</span>(<span class="dt">height =</span> mtcars<span class="op">$</span>mpg[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>], <span class="dt">names.arg =</span> <span class="kw">rownames</span>(mtcars)[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>])</a></code></pre></div>
+
+</div>
+<div id="how-does-an-r-script-generally-flow" class="section level2">
+<h2><span class="header-section-number">4.3</span> How does an R script generally flow?</h2>
+<p>Now it’s time to get your hands dirty. We can sit and chat about all these things R can do and how to do them, but you won’t retain that information until you use R yourself. This will be confusing at first if you’re new to this type of programming, but the longer you spend with it, the more sense it will make.</p>
+<p>A typical R script will generally look like this:</p>
+<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb132-1" data-line-number="1"><span class="co"># James Simkins</span></a>
+<a class="sourceLine" id="cb132-2" data-line-number="2"><span class="co"># Load libraries</span></a>
+<a class="sourceLine" id="cb132-3" data-line-number="3"><span class="kw">library</span>(ncdf4)</a>
+<a class="sourceLine" id="cb132-4" data-line-number="4"><span class="kw">library</span>(fields)</a>
+<a class="sourceLine" id="cb132-5" data-line-number="5">ncFile &lt;-<span class="st"> </span>ncdf4<span class="op">::</span><span class="kw">nc_open</span>(<span class="st">&quot;~/Documents/Github/geog473-673/datasets/OR_ABI-L2-SSTF-M3_G16_s20192081300453_e20192081400161_c20192081406297.nc&quot;</span>)</a>
+<a class="sourceLine" id="cb132-6" data-line-number="6">sstK &lt;-<span class="st"> </span>ncdf4<span class="op">::</span><span class="kw">ncvar_get</span>(<span class="dt">nc=</span>ncFile, <span class="dt">varid=</span><span class="st">&quot;SST&quot;</span>)</a>
+<a class="sourceLine" id="cb132-7" data-line-number="7">lat &lt;-<span class="st"> </span>ncdf4<span class="op">::</span><span class="kw">ncvar_get</span>(<span class="dt">nc=</span>ncFile, <span class="dt">varid=</span><span class="st">&quot;latitude&quot;</span>)</a>
+<a class="sourceLine" id="cb132-8" data-line-number="8">lon &lt;-<span class="st"> </span>ncdf4<span class="op">::</span><span class="kw">ncvar_get</span>(<span class="dt">nc=</span>ncFile, <span class="dt">varid=</span><span class="st">&quot;longitude&quot;</span>)</a>
+<a class="sourceLine" id="cb132-9" data-line-number="9"><span class="co"># convert sst from Kelvin to Celsius</span></a>
+<a class="sourceLine" id="cb132-10" data-line-number="10">sstC &lt;-<span class="st"> </span>sstK <span class="op">-</span><span class="st"> </span><span class="fl">273.15</span></a>
+<a class="sourceLine" id="cb132-11" data-line-number="11"><span class="co"># remove values below 0C</span></a>
+<a class="sourceLine" id="cb132-12" data-line-number="12">sstC[sstC <span class="op">&lt;</span><span class="st"> </span><span class="dv">0</span>] =<span class="st"> </span><span class="ot">NA</span></a>
+<a class="sourceLine" id="cb132-13" data-line-number="13"><span class="co"># Plot the matrix</span></a>
+<a class="sourceLine" id="cb132-14" data-line-number="14">fields<span class="op">::</span><span class="kw">image.plot</span>(<span class="dt">x=</span>lon, <span class="dt">y=</span>lat, <span class="dt">z=</span>sstC, <span class="dt">legend.lab=</span><span class="st">&quot;Celsius&quot;</span>)</a>
+<a class="sourceLine" id="cb132-15" data-line-number="15"><span class="kw">title</span>(<span class="st">&quot;GOES-R SST Product 7/25/2019 19:00 UTC&quot;</span>)</a></code></pre></div>
+<p><img src="Introduction-to-R_files/figure-html/unnamed-chunk-64-1.png" width="672" /></p>
+</div>
+<div id="now-lets-break-down-this-script" class="section level2">
+<h2><span class="header-section-number">4.4</span> Now Let’s Break Down This Script</h2>
+<div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb133-1" data-line-number="1"><span class="co"># Load libraries</span></a>
+<a class="sourceLine" id="cb133-2" data-line-number="2"><span class="kw">library</span>(ncdf4)</a>
+<a class="sourceLine" id="cb133-3" data-line-number="3"><span class="kw">library</span>(fields)</a></code></pre></div>
+<p>In R, we need to call on packages/libraries that we want to load in. We do this via the “library()” function or the “require()” function - both do the same thing. Notice that we do this at the beginning of the script because R reads line by line and we need these loaded before we can use the functions within the packages.</p>
+<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb134-1" data-line-number="1"><span class="co"># Load libraries</span></a>
+<a class="sourceLine" id="cb134-2" data-line-number="2"><span class="kw">library</span>(ncdf4)</a>
+<a class="sourceLine" id="cb134-3" data-line-number="3"><span class="kw">library</span>(fields)</a>
+<a class="sourceLine" id="cb134-4" data-line-number="4"><span class="co">#######################################</span></a>
+<a class="sourceLine" id="cb134-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb134-6" data-line-number="6">ncFile &lt;-<span class="st"> </span>ncdf4<span class="op">::</span><span class="kw">nc_open</span>(<span class="dt">filename=</span><span class="st">&quot;~/Documents/Github/geog473-673/datasets/OR_ABI-L2-SSTF-M3_G16_s20192081300453_e20192081400161_c20192081406297.nc&quot;</span>)</a>
+<a class="sourceLine" id="cb134-7" data-line-number="7">sstK &lt;-<span class="st"> </span>ncdf4<span class="op">::</span><span class="kw">ncvar_get</span>(<span class="dt">nc=</span>ncFile, <span class="dt">varid=</span><span class="st">&quot;SST&quot;</span>)</a>
+<a class="sourceLine" id="cb134-8" data-line-number="8">lat &lt;-<span class="st"> </span>ncdf4<span class="op">::</span><span class="kw">ncvar_get</span>(<span class="dt">nc=</span>ncFile, <span class="dt">varid=</span><span class="st">&quot;latitude&quot;</span>)</a>
+<a class="sourceLine" id="cb134-9" data-line-number="9">lon &lt;-<span class="st"> </span>ncdf4<span class="op">::</span><span class="kw">ncvar_get</span>(<span class="dt">nc=</span>ncFile, <span class="dt">varid=</span><span class="st">&quot;longitude&quot;</span>)</a></code></pre></div>
+<p>Object = something. In this case, object name is ncFile and it holds an opened NetCDF file. We open this file via the “nc_open” function that’s within the “ncdf4” library. Note the “ncdf4::” syntax. This is NOT necessary for coding in R. Once you load in the library, R knows what you mean when you type in a function such as “nc_open”. I added it here so you know where these functions are coming from.</p>
+<p>Notice that I use “&lt;-” for objects and “=” for arguments within the function. This is key, as I can use either “&lt;-” or “=” for objects (like ncFile or sstK) but I MUST use “=” within the function ‘walls’ (the parantheses).</p>
+<p>For those of you not used to NetCDF files, they’re an efficient filetype heavily used in physical sciences. Within each file, metadata (time, latitude info, longitude info, projection, etc.), and variables (sea surface temperature, latitude points, longitude points, chlorophyll, etc.) are stored in these. We open the netcdf file and then extract what we want out of it using “ncvar_get”, which is short for “netcdf variable get”. Confused about how to use ncvar_get? Try:</p>
+<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb135-1" data-line-number="1"><span class="co"># Load libraries</span></a>
+<a class="sourceLine" id="cb135-2" data-line-number="2"><span class="kw">library</span>(ncdf4)</a>
+<a class="sourceLine" id="cb135-3" data-line-number="3"><span class="kw">library</span>(fields)</a>
+<a class="sourceLine" id="cb135-4" data-line-number="4">ncFile &lt;-<span class="st"> </span>ncdf4<span class="op">::</span><span class="kw">nc_open</span>(<span class="dt">filename=</span><span class="st">&quot;~/Documents/Github/geog473-673/datasets/OR_ABI-L2-SSTF-M3_G16_s20192081300453_e20192081400161_c20192081406297.nc&quot;</span>)</a>
+<a class="sourceLine" id="cb135-5" data-line-number="5">sstK &lt;-<span class="st"> </span>ncdf4<span class="op">::</span><span class="kw">ncvar_get</span>(<span class="dt">nc=</span>ncFile, <span class="dt">varid=</span><span class="st">&quot;SST&quot;</span>)</a>
+<a class="sourceLine" id="cb135-6" data-line-number="6"><span class="co">#######################################</span></a></code></pre></div>
+<p>This is a really attractive feature within R and exists for every function within an official R library. Now, back to the script…</p>
+<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb136-1" data-line-number="1"><span class="co"># Load libraries</span></a>
+<a class="sourceLine" id="cb136-2" data-line-number="2"><span class="kw">library</span>(ncdf4)</a>
+<a class="sourceLine" id="cb136-3" data-line-number="3"><span class="kw">library</span>(fields)</a>
+<a class="sourceLine" id="cb136-4" data-line-number="4">ncFile &lt;-<span class="st"> </span>ncdf4<span class="op">::</span><span class="kw">nc_open</span>(<span class="dt">filename=</span><span class="st">&quot;~/Documents/Github/geog473-673/datasets/OR_ABI-L2-SSTF-M3_G16_s20192081300453_e20192081400161_c20192081406297.nc&quot;</span>)</a>
+<a class="sourceLine" id="cb136-5" data-line-number="5">sstK &lt;-<span class="st"> </span>ncdf4<span class="op">::</span><span class="kw">ncvar_get</span>(<span class="dt">nc=</span>ncFile, <span class="dt">varid=</span><span class="st">&quot;SST&quot;</span>)</a>
+<a class="sourceLine" id="cb136-6" data-line-number="6"><span class="co">#######################################</span></a>
+<a class="sourceLine" id="cb136-7" data-line-number="7"><span class="co"># convert sst from Kelvin to Celsius</span></a>
+<a class="sourceLine" id="cb136-8" data-line-number="8">sstC &lt;-<span class="st"> </span>sstK <span class="op">-</span><span class="st"> </span><span class="fl">273.15</span></a></code></pre></div>
+<p>The SST variable from the netCDF file was in Kelvin and we want to convert it to Celsius. Right now, sstK is a matrix. How do I know this? Look at your environment, or simply type into your console:</p>
+<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb137-1" data-line-number="1"><span class="co"># Load libraries</span></a>
+<a class="sourceLine" id="cb137-2" data-line-number="2"><span class="kw">library</span>(ncdf4)</a>
+<a class="sourceLine" id="cb137-3" data-line-number="3"><span class="kw">library</span>(fields)</a>
+<a class="sourceLine" id="cb137-4" data-line-number="4">ncFile &lt;-<span class="st"> </span>ncdf4<span class="op">::</span><span class="kw">nc_open</span>(<span class="dt">filename=</span><span class="st">&quot;~/Documents/Github/geog473-673/datasets/OR_ABI-L2-SSTF-M3_G16_s20192081300453_e20192081400161_c20192081406297.nc&quot;</span>)</a>
+<a class="sourceLine" id="cb137-5" data-line-number="5">sstK &lt;-<span class="st"> </span>ncdf4<span class="op">::</span><span class="kw">ncvar_get</span>(<span class="dt">nc=</span>ncFile, <span class="dt">varid=</span><span class="st">&quot;SST&quot;</span>)</a>
+<a class="sourceLine" id="cb137-6" data-line-number="6"><span class="co">#######################################</span></a>
+<a class="sourceLine" id="cb137-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb137-8" data-line-number="8"><span class="kw">class</span>(sstK)</a></code></pre></div>
+<pre><code>## [1] &quot;matrix&quot;</code></pre>
+<p>Class is a useful function that is loaded with the base library everytime you fire up R. It tells us what type of object we have. Now that we know this is a matrix, we can subtract 0 Celsius, or 273.15 Kelvin. When we have a matrix in R and perform any math on it, it does that math on each and every matrix value.</p>
+<p>#Quick and Dirty Quality Control</p>
+<p>There are bad values that crept into the dataset and we need to convert all of them to NaN (aka Not A Number…also known as NA (Not Available) in R). How do we know there are bad values in this dataset?</p>
+<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb139-1" data-line-number="1"><span class="co"># Load libraries</span></a>
+<a class="sourceLine" id="cb139-2" data-line-number="2"><span class="kw">library</span>(ncdf4)</a>
+<a class="sourceLine" id="cb139-3" data-line-number="3"><span class="kw">library</span>(fields)</a>
+<a class="sourceLine" id="cb139-4" data-line-number="4">ncFile &lt;-<span class="st"> </span>ncdf4<span class="op">::</span><span class="kw">nc_open</span>(<span class="dt">filename=</span><span class="st">&quot;~/Documents/Github/geog473-673/datasets/OR_ABI-L2-SSTF-M3_G16_s20192081300453_e20192081400161_c20192081406297.nc&quot;</span>)</a>
+<a class="sourceLine" id="cb139-5" data-line-number="5">sstK &lt;-<span class="st"> </span>ncdf4<span class="op">::</span><span class="kw">ncvar_get</span>(<span class="dt">nc=</span>ncFile, <span class="dt">varid=</span><span class="st">&quot;SST&quot;</span>)</a>
+<a class="sourceLine" id="cb139-6" data-line-number="6"><span class="co">#######################################</span></a>
+<a class="sourceLine" id="cb139-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb139-8" data-line-number="8"><span class="kw">summary</span>(<span class="kw">as.vector</span>(sstK))</a></code></pre></div>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA&#39;s 
+##  -999.0   286.9   300.0   278.2   302.0   310.0 2175822</code></pre>
+<p>summary() is another great base function. In order to use it on a matrix, we need to convert it to a vector - summary can’t do 2 dimensional objects like matrices, it needs a one dimensional vector of numbers. The “as.vector” function just says hey R read in sstK as a vector for me would ya? Notice the ‘Min’ in the summary output. -999? No way is that a valid Kelvin value, especially since we subtract another 273.15 to this number to make the the Celsius matrix. So clearly we have some bad data that we need to convert to NA’s. We do this by…</p>
+<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb141-1" data-line-number="1"><span class="kw">library</span>(ncdf4)</a>
+<a class="sourceLine" id="cb141-2" data-line-number="2"><span class="kw">library</span>(fields)</a>
+<a class="sourceLine" id="cb141-3" data-line-number="3">ncFile &lt;-<span class="st"> </span>ncdf4<span class="op">::</span><span class="kw">nc_open</span>(<span class="st">&quot;~/Documents/Github/geog473-673/datasets/OR_ABI-L2-SSTF-M3_G16_s20192081300453_e20192081400161_c20192081406297.nc&quot;</span>)</a>
+<a class="sourceLine" id="cb141-4" data-line-number="4">sstK &lt;-<span class="st"> </span>ncdf4<span class="op">::</span><span class="kw">ncvar_get</span>(<span class="dt">nc=</span>ncFile, <span class="dt">varid=</span><span class="st">&quot;SST&quot;</span>)</a>
+<a class="sourceLine" id="cb141-5" data-line-number="5">lat &lt;-<span class="st"> </span>ncdf4<span class="op">::</span><span class="kw">ncvar_get</span>(<span class="dt">nc=</span>ncFile, <span class="dt">varid=</span><span class="st">&quot;latitude&quot;</span>)</a>
+<a class="sourceLine" id="cb141-6" data-line-number="6">lon &lt;-<span class="st"> </span>ncdf4<span class="op">::</span><span class="kw">ncvar_get</span>(<span class="dt">nc=</span>ncFile, <span class="dt">varid=</span><span class="st">&quot;longitude&quot;</span>)</a>
+<a class="sourceLine" id="cb141-7" data-line-number="7"><span class="co"># convert sst from Kelvin to Celsius</span></a>
+<a class="sourceLine" id="cb141-8" data-line-number="8">sstC &lt;-<span class="st"> </span>sstK <span class="op">-</span><span class="st"> </span><span class="fl">273.15</span></a>
+<a class="sourceLine" id="cb141-9" data-line-number="9"><span class="co"># remove values below 0C</span></a>
+<a class="sourceLine" id="cb141-10" data-line-number="10"><span class="co">#######################################</span></a>
+<a class="sourceLine" id="cb141-11" data-line-number="11"></a>
+<a class="sourceLine" id="cb141-12" data-line-number="12">sstC[sstC <span class="op">&lt;</span><span class="st"> </span><span class="dv">0</span>] =<span class="st"> </span><span class="ot">NA</span></a></code></pre></div>
+<p>This line reads as: sstC where sstC is less than 0 equals NA. The brackets here can be thought of as the ‘condition’, that is what you’re looking to change. This is called a vector operation, which we will get more into later but these are important becuase it’s far faster to do this than a for loop.</p>
+<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb142-1" data-line-number="1"><span class="kw">library</span>(ncdf4)</a>
+<a class="sourceLine" id="cb142-2" data-line-number="2"><span class="kw">library</span>(fields)</a>
+<a class="sourceLine" id="cb142-3" data-line-number="3">ncFile &lt;-<span class="st"> </span>ncdf4<span class="op">::</span><span class="kw">nc_open</span>(<span class="st">&quot;~/Documents/Github/geog473-673/datasets/OR_ABI-L2-SSTF-M3_G16_s20192081300453_e20192081400161_c20192081406297.nc&quot;</span>)</a>
+<a class="sourceLine" id="cb142-4" data-line-number="4">sstK &lt;-<span class="st"> </span>ncdf4<span class="op">::</span><span class="kw">ncvar_get</span>(<span class="dt">nc=</span>ncFile, <span class="dt">varid=</span><span class="st">&quot;SST&quot;</span>)</a>
+<a class="sourceLine" id="cb142-5" data-line-number="5">lat &lt;-<span class="st"> </span>ncdf4<span class="op">::</span><span class="kw">ncvar_get</span>(<span class="dt">nc=</span>ncFile, <span class="dt">varid=</span><span class="st">&quot;latitude&quot;</span>)</a>
+<a class="sourceLine" id="cb142-6" data-line-number="6">lon &lt;-<span class="st"> </span>ncdf4<span class="op">::</span><span class="kw">ncvar_get</span>(<span class="dt">nc=</span>ncFile, <span class="dt">varid=</span><span class="st">&quot;longitude&quot;</span>)</a>
+<a class="sourceLine" id="cb142-7" data-line-number="7"><span class="co"># convert sst from Kelvin to Celsius</span></a>
+<a class="sourceLine" id="cb142-8" data-line-number="8">sstC &lt;-<span class="st"> </span>sstK <span class="op">-</span><span class="st"> </span><span class="fl">273.15</span></a>
+<a class="sourceLine" id="cb142-9" data-line-number="9"><span class="co"># remove values below 0C</span></a>
+<a class="sourceLine" id="cb142-10" data-line-number="10"><span class="co">#######################################</span></a>
+<a class="sourceLine" id="cb142-11" data-line-number="11"></a>
+<a class="sourceLine" id="cb142-12" data-line-number="12">sstC[sstC <span class="op">&lt;</span><span class="st"> </span><span class="dv">0</span>] =<span class="st"> </span><span class="ot">NA</span></a>
+<a class="sourceLine" id="cb142-13" data-line-number="13"><span class="kw">summary</span>(<span class="kw">as.vector</span>(sstC))</a></code></pre></div>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA&#39;s 
+##     0.0    19.8    27.6    24.1    29.0    36.8 2679819</code></pre>
+<p>Now we see that our summary looks good (even though we’re looking at a matrix in celsius now). So all that’s left to do is plot this up…</p>
+<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb144-1" data-line-number="1"><span class="co"># James Simkins</span></a>
+<a class="sourceLine" id="cb144-2" data-line-number="2"><span class="co"># Load libraries</span></a>
+<a class="sourceLine" id="cb144-3" data-line-number="3"><span class="kw">library</span>(ncdf4)</a>
+<a class="sourceLine" id="cb144-4" data-line-number="4"><span class="kw">library</span>(fields)</a>
+<a class="sourceLine" id="cb144-5" data-line-number="5">ncFile &lt;-<span class="st"> </span>ncdf4<span class="op">::</span><span class="kw">nc_open</span>(<span class="st">&quot;~/Documents/Github/geog473-673/datasets/OR_ABI-L2-SSTF-M3_G16_s20192081300453_e20192081400161_c20192081406297.nc&quot;</span>)</a>
+<a class="sourceLine" id="cb144-6" data-line-number="6">sstK &lt;-<span class="st"> </span>ncdf4<span class="op">::</span><span class="kw">ncvar_get</span>(<span class="dt">nc=</span>ncFile, <span class="dt">varid=</span><span class="st">&quot;SST&quot;</span>)</a>
+<a class="sourceLine" id="cb144-7" data-line-number="7">lat &lt;-<span class="st"> </span>ncdf4<span class="op">::</span><span class="kw">ncvar_get</span>(<span class="dt">nc=</span>ncFile, <span class="dt">varid=</span><span class="st">&quot;latitude&quot;</span>)</a>
+<a class="sourceLine" id="cb144-8" data-line-number="8">lon &lt;-<span class="st"> </span>ncdf4<span class="op">::</span><span class="kw">ncvar_get</span>(<span class="dt">nc=</span>ncFile, <span class="dt">varid=</span><span class="st">&quot;longitude&quot;</span>)</a>
+<a class="sourceLine" id="cb144-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb144-10" data-line-number="10"><span class="co"># convert sst from Kelvin to Celsius</span></a>
+<a class="sourceLine" id="cb144-11" data-line-number="11">sstC &lt;-<span class="st"> </span>sstK <span class="op">-</span><span class="st"> </span><span class="fl">273.15</span></a>
+<a class="sourceLine" id="cb144-12" data-line-number="12"><span class="co"># remove values below 0C</span></a>
+<a class="sourceLine" id="cb144-13" data-line-number="13">sstC[sstC <span class="op">&lt;</span><span class="st"> </span><span class="dv">0</span>] =<span class="st"> </span><span class="ot">NA</span></a>
+<a class="sourceLine" id="cb144-14" data-line-number="14"></a>
+<a class="sourceLine" id="cb144-15" data-line-number="15"><span class="co">#######################################</span></a>
+<a class="sourceLine" id="cb144-16" data-line-number="16"><span class="co"># Plot the matrix</span></a>
+<a class="sourceLine" id="cb144-17" data-line-number="17">fields<span class="op">::</span><span class="kw">image.plot</span>(<span class="dt">x=</span>lon, <span class="dt">y=</span>lat, <span class="dt">z=</span>sstC, <span class="dt">legend.lab=</span><span class="st">&quot;Celsius&quot;</span>)</a>
+<a class="sourceLine" id="cb144-18" data-line-number="18"><span class="kw">title</span>(<span class="st">&quot;GOES-R SST Product 7/25/2019 19:00 UTC&quot;</span>)</a></code></pre></div>
+<p><img src="Introduction-to-R_files/figure-html/unnamed-chunk-73-1.png" width="672" /></p>
+<p>Now we plot this up using the ‘image.plot()’ function from the ‘fields’ library. We just tell it to plot the sstC but notice that I didn’t place an argument in here. If you don’t tell image.plot() what an argument actually is, it assumes you’re following the order that the function was written in. If you declare arguments, such as ‘z=sstC’ or like ‘varid=“SST”’ from above, you can place the arguments in whatever order you want in that function. Notice that for this kind of plot, the ‘title()’ function is a separate function rather than an argument of ‘image.plot()’. This goes for a lot of plot aesthetics that we’ll get into later. Remember, if you’re ever confused about something like this just tell R you need ‘help()’.</p>
+</div>
+<div id="in-class-exercise" class="section level2">
+<h2><span class="header-section-number">4.5</span> In Class Exercise</h2>
+<ol style="list-style-type: decimal">
+<li>Go to <a href="https://github.com/jsimkins2/geog473-673/tree/master/datasets" class="uri">https://github.com/jsimkins2/geog473-673/tree/master/datasets</a></li>
+<li>Download ‘OR_ABI-L2-SSTF-M3_G16_s20192081300453_e20192081400161_c20192081406297.nc’</li>
+<li>Make simple plot of the ‘DQF’ (Data Quality Flag) variable</li>
+</ol>
+<p>-Hint: You may have to use ‘install.packages’ in your console first</p>
+<p>Aim for something like this:
+<img src="Introduction-to-R_files/figure-html/unnamed-chunk-74-1.png" width="672" /></p>
+</div>
+<div id="datatypes" class="section level2">
+<h2><span class="header-section-number">4.6</span> DataTypes</h2>
+<p>If you look into your environment from the in class exercise, you’ll notice under the ‘Data’ tab you have a large matrix of the DQF values. R stores these matrices without the column/row identifier (aka lat &amp; lon). We provide the image.plot() function with the lon &amp; lat arrays becuase it doesn’t know what the x &amp; y coordinates are of the matrix. Notice that the environment tells you the dimensions - the matrix is 2778 x 1989. R is indexed from 1 to the length of the dimension. Here is what I mean:</p>
+<ul>
+<li><code>dim(sstC)</code> is <code>2778 1989</code></li>
+<li><code>dim(lat)</code> is <code>1989</code></li>
+<li><code>lat[0]</code> is <code>numeric(0)</code></li>
+<li><code>lat[1]</code> is <code>16.00283</code></li>
+<li><code>lat[1989]</code> is <code>51.98563</code></li>
+<li><code>lat[1990]</code> is <code>NA</code></li>
+</ul>
+<p>The above tests are referred to as indexing. The 1st point of the lat array is 16.00283. In R, we index using brackets []. If you want to find more values other than just a single point, the procedure is referred to as slicing.</p>
+<p><code>lat[1:10]</code>
+is
+<code>16.00283 16.02093 16.03903 16.05713 16.07523 16.09333 16.11143 16.12953 16.14763 16.16573</code></p>
+<p>The lat object we’ve been exploring here is an ‘array’.</p>
+<p>An array is a vector with one or more dimensions. So, an array with one dimension is (almost) the same as a vector. An array with two dimensions is (almost) the same as a matrix. An array with three or more dimensions is an n-dimensional array.</p>
+<p>A vector is what is called an array in all other programming languages except R — a collection of cells with a fixed size where all cells hold the same type (integers or characters or reals or whatever).</p>
+<p>A list can hold items of different types and the list size can be increased on the fly. List contents can be accessed either by index (like mylist[[1]]) or by name (like mylist$age).</p>
+<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb145-1" data-line-number="1">mylist =<span class="st"> </span><span class="kw">list</span>(<span class="st">&quot;delaware&quot;</span>, <span class="st">&quot;pennsylvania&quot;</span>, <span class="st">&quot;maryland&quot;</span>)</a>
+<a class="sourceLine" id="cb145-2" data-line-number="2">mylist[[<span class="dv">1</span>]]</a></code></pre></div>
+<pre><code>## [1] &quot;delaware&quot;</code></pre>
+<p>A matrix is a two-dimensional vector (fixed size, all cell types the same).</p>
+<p>A data frame is called a table in most languages. Each column holds the same type, and the columns can have header names.</p>
+<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb147-1" data-line-number="1"><span class="co"># load in base dataset</span></a>
+<a class="sourceLine" id="cb147-2" data-line-number="2"><span class="kw">data</span>(mtcars)</a>
+<a class="sourceLine" id="cb147-3" data-line-number="3">mtcars</a></code></pre></div>
+<pre><code>##                      mpg cyl  disp  hp drat    wt  qsec vs am gear carb
+## Mazda RX4           21.0   6 160.0 110 3.90 2.620 16.46  0  1    4    4
+## Mazda RX4 Wag       21.0   6 160.0 110 3.90 2.875 17.02  0  1    4    4
+## Datsun 710          22.8   4 108.0  93 3.85 2.320 18.61  1  1    4    1
+## Hornet 4 Drive      21.4   6 258.0 110 3.08 3.215 19.44  1  0    3    1
+## Hornet Sportabout   18.7   8 360.0 175 3.15 3.440 17.02  0  0    3    2
+## Valiant             18.1   6 225.0 105 2.76 3.460 20.22  1  0    3    1
+## Duster 360          14.3   8 360.0 245 3.21 3.570 15.84  0  0    3    4
+## Merc 240D           24.4   4 146.7  62 3.69 3.190 20.00  1  0    4    2
+## Merc 230            22.8   4 140.8  95 3.92 3.150 22.90  1  0    4    2
+## Merc 280            19.2   6 167.6 123 3.92 3.440 18.30  1  0    4    4
+## Merc 280C           17.8   6 167.6 123 3.92 3.440 18.90  1  0    4    4
+## Merc 450SE          16.4   8 275.8 180 3.07 4.070 17.40  0  0    3    3
+## Merc 450SL          17.3   8 275.8 180 3.07 3.730 17.60  0  0    3    3
+## Merc 450SLC         15.2   8 275.8 180 3.07 3.780 18.00  0  0    3    3
+## Cadillac Fleetwood  10.4   8 472.0 205 2.93 5.250 17.98  0  0    3    4
+## Lincoln Continental 10.4   8 460.0 215 3.00 5.424 17.82  0  0    3    4
+## Chrysler Imperial   14.7   8 440.0 230 3.23 5.345 17.42  0  0    3    4
+## Fiat 128            32.4   4  78.7  66 4.08 2.200 19.47  1  1    4    1
+## Honda Civic         30.4   4  75.7  52 4.93 1.615 18.52  1  1    4    2
+## Toyota Corolla      33.9   4  71.1  65 4.22 1.835 19.90  1  1    4    1
+## Toyota Corona       21.5   4 120.1  97 3.70 2.465 20.01  1  0    3    1
+## Dodge Challenger    15.5   8 318.0 150 2.76 3.520 16.87  0  0    3    2
+## AMC Javelin         15.2   8 304.0 150 3.15 3.435 17.30  0  0    3    2
+## Camaro Z28          13.3   8 350.0 245 3.73 3.840 15.41  0  0    3    4
+## Pontiac Firebird    19.2   8 400.0 175 3.08 3.845 17.05  0  0    3    2
+## Fiat X1-9           27.3   4  79.0  66 4.08 1.935 18.90  1  1    4    1
+## Porsche 914-2       26.0   4 120.3  91 4.43 2.140 16.70  0  1    5    2
+## Lotus Europa        30.4   4  95.1 113 3.77 1.513 16.90  1  1    5    2
+## Ford Pantera L      15.8   8 351.0 264 4.22 3.170 14.50  0  1    5    4
+## Ferrari Dino        19.7   6 145.0 175 3.62 2.770 15.50  0  1    5    6
+## Maserati Bora       15.0   8 301.0 335 3.54 3.570 14.60  0  1    5    8
+## Volvo 142E          21.4   4 121.0 109 4.11 2.780 18.60  1  1    4    2</code></pre>
+<p>Notice that it’s organized just like an excel spreadsheet. In essence, a dataframe in R is just an advanced Excel Spreadsheet.</p>
+<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb149-1" data-line-number="1"><span class="kw">class</span>(mtcars)</a></code></pre></div>
+<pre><code>## [1] &quot;data.frame&quot;</code></pre>
+<p>Let’s explore a column of this data:</p>
+<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb151-1" data-line-number="1">mtcars<span class="op">$</span>mpg</a></code></pre></div>
+<pre><code>##  [1] 21.0 21.0 22.8 21.4 18.7 18.1 14.3 24.4 22.8 19.2 17.8 16.4 17.3 15.2 10.4
+## [16] 10.4 14.7 32.4 30.4 33.9 21.5 15.5 15.2 13.3 19.2 27.3 26.0 30.4 15.8 19.7
+## [31] 15.0 21.4</code></pre>
+<p>Now let’s sort the entire dataset by this column from least to greatest</p>
+<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb153-1" data-line-number="1">mtcars[<span class="kw">order</span>(mtcars<span class="op">$</span>mpg),]</a></code></pre></div>
+<pre><code>##                      mpg cyl  disp  hp drat    wt  qsec vs am gear carb
+## Cadillac Fleetwood  10.4   8 472.0 205 2.93 5.250 17.98  0  0    3    4
+## Lincoln Continental 10.4   8 460.0 215 3.00 5.424 17.82  0  0    3    4
+## Camaro Z28          13.3   8 350.0 245 3.73 3.840 15.41  0  0    3    4
+## Duster 360          14.3   8 360.0 245 3.21 3.570 15.84  0  0    3    4
+## Chrysler Imperial   14.7   8 440.0 230 3.23 5.345 17.42  0  0    3    4
+## Maserati Bora       15.0   8 301.0 335 3.54 3.570 14.60  0  1    5    8
+## Merc 450SLC         15.2   8 275.8 180 3.07 3.780 18.00  0  0    3    3
+## AMC Javelin         15.2   8 304.0 150 3.15 3.435 17.30  0  0    3    2
+## Dodge Challenger    15.5   8 318.0 150 2.76 3.520 16.87  0  0    3    2
+## Ford Pantera L      15.8   8 351.0 264 4.22 3.170 14.50  0  1    5    4
+## Merc 450SE          16.4   8 275.8 180 3.07 4.070 17.40  0  0    3    3
+## Merc 450SL          17.3   8 275.8 180 3.07 3.730 17.60  0  0    3    3
+## Merc 280C           17.8   6 167.6 123 3.92 3.440 18.90  1  0    4    4
+## Valiant             18.1   6 225.0 105 2.76 3.460 20.22  1  0    3    1
+## Hornet Sportabout   18.7   8 360.0 175 3.15 3.440 17.02  0  0    3    2
+## Merc 280            19.2   6 167.6 123 3.92 3.440 18.30  1  0    4    4
+## Pontiac Firebird    19.2   8 400.0 175 3.08 3.845 17.05  0  0    3    2
+## Ferrari Dino        19.7   6 145.0 175 3.62 2.770 15.50  0  1    5    6
+## Mazda RX4           21.0   6 160.0 110 3.90 2.620 16.46  0  1    4    4
+## Mazda RX4 Wag       21.0   6 160.0 110 3.90 2.875 17.02  0  1    4    4
+## Hornet 4 Drive      21.4   6 258.0 110 3.08 3.215 19.44  1  0    3    1
+## Volvo 142E          21.4   4 121.0 109 4.11 2.780 18.60  1  1    4    2
+## Toyota Corona       21.5   4 120.1  97 3.70 2.465 20.01  1  0    3    1
+## Datsun 710          22.8   4 108.0  93 3.85 2.320 18.61  1  1    4    1
+## Merc 230            22.8   4 140.8  95 3.92 3.150 22.90  1  0    4    2
+## Merc 240D           24.4   4 146.7  62 3.69 3.190 20.00  1  0    4    2
+## Porsche 914-2       26.0   4 120.3  91 4.43 2.140 16.70  0  1    5    2
+## Fiat X1-9           27.3   4  79.0  66 4.08 1.935 18.90  1  1    4    1
+## Honda Civic         30.4   4  75.7  52 4.93 1.615 18.52  1  1    4    2
+## Lotus Europa        30.4   4  95.1 113 3.77 1.513 16.90  1  1    5    2
+## Fiat 128            32.4   4  78.7  66 4.08 2.200 19.47  1  1    4    1
+## Toyota Corolla      33.9   4  71.1  65 4.22 1.835 19.90  1  1    4    1</code></pre>
+
+</div>
+<div id="essential-skills-the-for-loop" class="section level2">
+<h2><span class="header-section-number">4.7</span> Essential Skills: The For Loop</h2>
+<p>For loops &amp; conditional statements are a key skill in programming. They allow you to process through large datasets or multiple datasets thus minimizing the amount of manual work you need to do. The basic for loop looks like this…</p>
+<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb155-1" data-line-number="1"><span class="co"># Generate sequence of numbers from 1 to 10 using the seq() function (seq for sequence)</span></a>
+<a class="sourceLine" id="cb155-2" data-line-number="2">numbersList =<span class="st"> </span><span class="kw">seq</span>(<span class="dt">from=</span><span class="dv">1</span>,<span class="dt">to=</span><span class="dv">10</span>,<span class="dt">by=</span><span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb155-3" data-line-number="3"><span class="co"># Multiply each number in the numbersList by 8 and print the result</span></a>
+<a class="sourceLine" id="cb155-4" data-line-number="4"><span class="cf">for</span> (i <span class="cf">in</span> numbersList){</a>
+<a class="sourceLine" id="cb155-5" data-line-number="5">  temNumber =<span class="st"> </span>i <span class="op">*</span><span class="st"> </span><span class="dv">8</span></a>
+<a class="sourceLine" id="cb155-6" data-line-number="6">  <span class="kw">print</span>(temNumber)</a>
+<a class="sourceLine" id="cb155-7" data-line-number="7">}</a></code></pre></div>
+<pre><code>## [1] 8
+## [1] 16
+## [1] 24
+## [1] 32
+## [1] 40
+## [1] 48
+## [1] 56
+## [1] 64
+## [1] 72
+## [1] 80</code></pre>
+<p>Notice the general structure of R for loops. ‘for’ signals to R you’re beginning a for loop, which requires the general structure to look like:</p>
+<p>for (something in something inside these parentheses){
+do something within these curly brackets
+}</p>
+<p>Yes, you must have these parentheses and curly brackets present and surrounding the appropriate code. If you forget a parentheses or curly bracket you’ll have errors pop up…this happens to me all the time still.</p>
+<p>While these must be present, R doesn’t care where they are in your code (****which is very unique amongst programming languages). For example, notice how this ugly code is different but still runs…</p>
+<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb157-1" data-line-number="1"><span class="co"># Generate sequence of numbers from 1 to 10 using the seq() function (seq for sequence)</span></a>
+<a class="sourceLine" id="cb157-2" data-line-number="2">numbersList =<span class="st"> </span><span class="kw">seq</span>(<span class="dt">from=</span><span class="dv">1</span>,<span class="dt">to=</span><span class="dv">10</span>,<span class="dt">by=</span><span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb157-3" data-line-number="3"><span class="co"># Multiply each number in the numbersList by 8 and print the result</span></a>
+<a class="sourceLine" id="cb157-4" data-line-number="4"><span class="cf">for</span> (        i <span class="cf">in</span> numbersList       </a>
+<a class="sourceLine" id="cb157-5" data-line-number="5">      ){</a>
+<a class="sourceLine" id="cb157-6" data-line-number="6">  temNumber =<span class="st"> </span>i <span class="op">*</span><span class="st"> </span><span class="dv">8</span></a>
+<a class="sourceLine" id="cb157-7" data-line-number="7">  <span class="kw">print</span>(temNumber)</a>
+<a class="sourceLine" id="cb157-8" data-line-number="8">        }</a></code></pre></div>
+<pre><code>## [1] 8
+## [1] 16
+## [1] 24
+## [1] 32
+## [1] 40
+## [1] 48
+## [1] 56
+## [1] 64
+## [1] 72
+## [1] 80</code></pre>
+<p>The general structure is still: for(condition){do something}. If statements are set up the same way</p>
+<div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb159-1" data-line-number="1"><span class="co"># Generate sequence of numbers from 1 to 10 using the seq() function (seq for sequence)</span></a>
+<a class="sourceLine" id="cb159-2" data-line-number="2">numbersList =<span class="st"> </span><span class="kw">seq</span>(<span class="dt">from=</span><span class="dv">1</span>,<span class="dt">to=</span><span class="dv">10</span>,<span class="dt">by=</span><span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb159-3" data-line-number="3"><span class="co"># Multiply each number in the numbersList by 8 and print the result</span></a>
+<a class="sourceLine" id="cb159-4" data-line-number="4"><span class="cf">for</span> (i <span class="cf">in</span> numbersList){</a>
+<a class="sourceLine" id="cb159-5" data-line-number="5">  <span class="cf">if</span> (i<span class="op">==</span><span class="dv">4</span>){</a>
+<a class="sourceLine" id="cb159-6" data-line-number="6">    temNumber =<span class="st"> </span>i <span class="op">*</span><span class="st"> </span><span class="dv">8</span></a>
+<a class="sourceLine" id="cb159-7" data-line-number="7">    <span class="kw">print</span>(temNumber)</a>
+<a class="sourceLine" id="cb159-8" data-line-number="8">  }</a>
+<a class="sourceLine" id="cb159-9" data-line-number="9">}</a></code></pre></div>
+<pre><code>## [1] 32</code></pre>
+<p>This is referred to as a ‘nested loop’, because there is a conditional statement within another one. Key takeaway here: in programming languages, ‘=’ is an assignment (i.e. x = 4), whereas ‘==’ is an equality test (i == 4). To put this loop in layman’s terms: for i in numbersList, if i is equal to 4, multiply i by 8 and then print temNumber.</p>
+<p>We can also have nested for loops.</p>
+<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb161-1" data-line-number="1"><span class="co"># Generate sequence of numbers from 1 to 3 this time using the seq() function (seq for sequence)</span></a>
+<a class="sourceLine" id="cb161-2" data-line-number="2">numbersList =<span class="st"> </span><span class="kw">seq</span>(<span class="dt">from=</span><span class="dv">1</span>,<span class="dt">to=</span><span class="dv">3</span>,<span class="dt">by=</span><span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb161-3" data-line-number="3">lettersList =<span class="st"> </span><span class="kw">list</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>, <span class="st">&quot;C&quot;</span>)</a>
+<a class="sourceLine" id="cb161-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb161-5" data-line-number="5"><span class="cf">for</span> (num <span class="cf">in</span> numbersList){</a>
+<a class="sourceLine" id="cb161-6" data-line-number="6">  <span class="cf">for</span> (let <span class="cf">in</span> lettersList){</a>
+<a class="sourceLine" id="cb161-7" data-line-number="7">    <span class="kw">print</span>(<span class="kw">c</span>(num,let))</a>
+<a class="sourceLine" id="cb161-8" data-line-number="8">  }</a>
+<a class="sourceLine" id="cb161-9" data-line-number="9">}</a></code></pre></div>
+<pre><code>## [1] &quot;1&quot; &quot;A&quot;
+## [1] &quot;1&quot; &quot;B&quot;
+## [1] &quot;1&quot; &quot;C&quot;
+## [1] &quot;2&quot; &quot;A&quot;
+## [1] &quot;2&quot; &quot;B&quot;
+## [1] &quot;2&quot; &quot;C&quot;
+## [1] &quot;3&quot; &quot;A&quot;
+## [1] &quot;3&quot; &quot;B&quot;
+## [1] &quot;3&quot; &quot;C&quot;</code></pre>
+<p>You can name the object within the list whatever you want (i, j, num, let, etc.). Also, c() is the concatenate functin that combines values into a vector or list. The order doesn’t matter in this for loop…</p>
+<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb163-1" data-line-number="1"><span class="co"># Generate sequence of numbers from 1 to 3 this time using the seq() function (seq for sequence)</span></a>
+<a class="sourceLine" id="cb163-2" data-line-number="2">numbersList =<span class="st"> </span><span class="kw">seq</span>(<span class="dt">from=</span><span class="dv">1</span>,<span class="dt">to=</span><span class="dv">3</span>,<span class="dt">by=</span><span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb163-3" data-line-number="3">lettersList =<span class="st"> </span><span class="kw">list</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>, <span class="st">&quot;C&quot;</span>)</a>
+<a class="sourceLine" id="cb163-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb163-5" data-line-number="5"><span class="cf">for</span> (let <span class="cf">in</span> lettersList){</a>
+<a class="sourceLine" id="cb163-6" data-line-number="6">  <span class="cf">for</span> (num <span class="cf">in</span> numbersList){</a>
+<a class="sourceLine" id="cb163-7" data-line-number="7">    <span class="kw">print</span>(<span class="kw">c</span>(num,let))</a>
+<a class="sourceLine" id="cb163-8" data-line-number="8">  }</a>
+<a class="sourceLine" id="cb163-9" data-line-number="9">}</a></code></pre></div>
+<pre><code>## [1] &quot;1&quot; &quot;A&quot;
+## [1] &quot;2&quot; &quot;A&quot;
+## [1] &quot;3&quot; &quot;A&quot;
+## [1] &quot;1&quot; &quot;B&quot;
+## [1] &quot;2&quot; &quot;B&quot;
+## [1] &quot;3&quot; &quot;B&quot;
+## [1] &quot;1&quot; &quot;C&quot;
+## [1] &quot;2&quot; &quot;C&quot;
+## [1] &quot;3&quot; &quot;C&quot;</code></pre>
+<p>But it does in this one…</p>
+<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb165-1" data-line-number="1"><span class="co"># Generate sequence of numbers from 1 to 10 using the seq() function (seq for sequence)</span></a>
+<a class="sourceLine" id="cb165-2" data-line-number="2">numbersList =<span class="st"> </span><span class="kw">seq</span>(<span class="dt">from=</span><span class="dv">1</span>,<span class="dt">to=</span><span class="dv">10</span>,<span class="dt">by=</span><span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb165-3" data-line-number="3"><span class="co"># Multiply each number in the numbersList by 8 and print the result</span></a>
+<a class="sourceLine" id="cb165-4" data-line-number="4"><span class="cf">if</span> (i<span class="op">==</span><span class="dv">4</span>){</a>
+<a class="sourceLine" id="cb165-5" data-line-number="5">  <span class="cf">for</span> (i <span class="cf">in</span> numbersList){</a>
+<a class="sourceLine" id="cb165-6" data-line-number="6">    temNumber =<span class="st"> </span>i <span class="op">*</span><span class="st"> </span><span class="dv">8</span></a>
+<a class="sourceLine" id="cb165-7" data-line-number="7">    <span class="kw">print</span>(temNumber)</a>
+<a class="sourceLine" id="cb165-8" data-line-number="8">  }</a>
+<a class="sourceLine" id="cb165-9" data-line-number="9">}</a></code></pre></div>
+<p>Here’s one more example for multi conditional statement with an else…</p>
+<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb166-1" data-line-number="1"><span class="co"># Generate sequence of numbers from 1 to 3 this time using the seq() function (seq for sequence)</span></a>
+<a class="sourceLine" id="cb166-2" data-line-number="2">numbersList =<span class="st"> </span><span class="kw">seq</span>(<span class="dt">from=</span><span class="dv">1</span>,<span class="dt">to=</span><span class="dv">3</span>,<span class="dt">by=</span><span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb166-3" data-line-number="3">lettersList =<span class="st"> </span><span class="kw">list</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>, <span class="st">&quot;C&quot;</span>)</a>
+<a class="sourceLine" id="cb166-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb166-5" data-line-number="5"><span class="cf">for</span> (num <span class="cf">in</span> numbersList){</a>
+<a class="sourceLine" id="cb166-6" data-line-number="6">  <span class="cf">for</span> (let <span class="cf">in</span> lettersList){</a>
+<a class="sourceLine" id="cb166-7" data-line-number="7">    <span class="cf">if</span> (num <span class="op">==</span><span class="st"> </span><span class="dv">3</span> <span class="op">&amp;&amp;</span><span class="st"> </span>let <span class="op">==</span><span class="st"> &quot;B&quot;</span>){</a>
+<a class="sourceLine" id="cb166-8" data-line-number="8">      <span class="kw">print</span>(<span class="kw">c</span>(num,let))</a>
+<a class="sourceLine" id="cb166-9" data-line-number="9">    } <span class="cf">else</span>{</a>
+<a class="sourceLine" id="cb166-10" data-line-number="10">      <span class="kw">print</span>(<span class="st">&quot;Not what we want&quot;</span>)</a>
+<a class="sourceLine" id="cb166-11" data-line-number="11">    }</a>
+<a class="sourceLine" id="cb166-12" data-line-number="12">  }</a>
+<a class="sourceLine" id="cb166-13" data-line-number="13">}</a></code></pre></div>
+<pre><code>## [1] &quot;Not what we want&quot;
+## [1] &quot;Not what we want&quot;
+## [1] &quot;Not what we want&quot;
+## [1] &quot;Not what we want&quot;
+## [1] &quot;Not what we want&quot;
+## [1] &quot;Not what we want&quot;
+## [1] &quot;Not what we want&quot;
+## [1] &quot;3&quot; &quot;B&quot;
+## [1] &quot;Not what we want&quot;</code></pre>
+<p>&amp;&amp; means “and” … || means “or”…these are useful in multi conditional statements. The ‘else’ statement is an appendage of the ‘if’ statement. It basically means if num == 3 and let == B is false, print “not what we want”. Notice that the ‘else’ statement is outside of the ‘if’ statement but immediately after it.</p>
+<p>In Class Exercise: debug this for loop</p>
+<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb168-1" data-line-number="1">soiltype &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="st">&quot;sand&quot;</span>, <span class="st">&quot;silt&quot;</span>, <span class="st">&quot;saline&quot;</span>, <span class="st">&quot;clay&quot;</span>, <span class="st">&quot;peat&quot;</span>)</a>
+<a class="sourceLine" id="cb168-2" data-line-number="2">permeability &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">0.09</span>, <span class="fl">0.05</span>, <span class="fl">0.03</span>, <span class="fl">0.01</span>, <span class="fl">0.005</span>)</a>
+<a class="sourceLine" id="cb168-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb168-4" data-line-number="4"><span class="cf">for</span> (s <span class="cf">in</span> <span class="kw">seq</span>(<span class="kw">length</span>(soiltype)){</a>
+<a class="sourceLine" id="cb168-5" data-line-number="5">  <span class="kw">print</span>(a)</a>
+<a class="sourceLine" id="cb168-6" data-line-number="6">  <span class="cf">for</span> (p <span class="cf">in</span> permeability)</a>
+<a class="sourceLine" id="cb168-7" data-line-number="7">    <span class="cf">if</span> (p <span class="op">==</span><span class="st"> </span><span class="fl">0.05</span> <span class="op">|</span><span class="st"> </span>p <span class="op">==</span><span class="st"> </span><span class="fl">0.005</span>){</a>
+<a class="sourceLine" id="cb168-8" data-line-number="8">      <span class="kw">print</span>(permeability[s])</a>
+<a class="sourceLine" id="cb168-9" data-line-number="9">    }</a>
+<a class="sourceLine" id="cb168-10" data-line-number="10">  }</a>
+<a class="sourceLine" id="cb168-11" data-line-number="11"><span class="er">}</span></a></code></pre></div>
+<p>And get this output…</p>
+<pre><code>## [1] 1
+## [1] 0.09
+## [1] 0.09
+## [1] 2
+## [1] 0.05
+## [1] 0.05
+## [1] 3
+## [1] 0.03
+## [1] 0.03
+## [1] 4
+## [1] 0.01
+## [1] 0.01
+## [1] 5
+## [1] 0.005
+## [1] 0.005</code></pre>
+</div>
+<div id="deos-data" class="section level2">
+<h2><span class="header-section-number">4.8</span> DEOS Data</h2>
+<p>Delaware has the highest concentration of environmental monitoring stations in the country thanks to DEOS (Delaware Environmental Observing System) which is controlled by University of Delaware’s CEMA (Center for Environmental Monitoring and Analysis). The data collected using this dense network is useful for a variety of purposes. Let’s dive into some data - find the file (<a href="https://github.com/jsimkins2/geog473-673/tree/master/datasets" class="uri">https://github.com/jsimkins2/geog473-673/tree/master/datasets</a>) - download it, unzip it, and open it up in R!</p>
+<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb170-1" data-line-number="1">deos_data &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;/Users/james/Documents/Github/geog473-673/datasets/DEOS.csv&quot;</span>, <span class="dt">header =</span> <span class="ot">TRUE</span>, <span class="dt">skip=</span><span class="dv">0</span>, <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb170-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb170-3" data-line-number="3"><span class="kw">head</span>(deos_data)</a></code></pre></div>
+<pre><code>##    Timestamp..UTC. Air.Temperature.deg..C. Dew.Point.Temperature.deg..C.
+## 1 2014-04-04 04:05                     7.1                           4.3
+## 2 2014-04-04 04:10                     6.9                           4.3
+## 3 2014-04-04 04:15                     6.8                           4.3
+## 4 2014-04-04 04:20                     6.7                           4.4
+## 5 2014-04-04 04:25                     6.6                           4.4
+## 6 2014-04-04 04:30                     6.6                           4.4
+##   Wind.Speed.m.sec. Wind.Direction.deg.. Barometric.Pressure..
+## 1               3.7                351.7                    NA
+## 2               3.5                352.9                    NA
+## 3               3.9                357.5                    NA
+## 4               3.9                356.8                    NA
+## 5               3.3                  5.5                    NA
+## 6               2.7                 18.4                    NA
+##   Solar.Radiation.UNKNOWN. Wind.Gust.Speed..5..m.sec.
+## 1                        0                        5.1
+## 2                        0                        5.8
+## 3                        0                        6.2
+## 4                        0                        5.9
+## 5                        0                        4.9
+## 6                        0                        3.5
+##   Gage.Precipitation..5..mm.
+## 1                       0.00
+## 2                       0.00
+## 3                       0.25
+## 4                       0.00
+## 5                       0.00
+## 6                       0.00</code></pre>
+<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb172-1" data-line-number="1"><span class="kw">summary</span>(deos_data)</a></code></pre></div>
+<pre><code>##  Timestamp..UTC.    Air.Temperature.deg..C. Dew.Point.Temperature.deg..C.
+##  Length:182645      Min.   :-51.0           Min.   :-53.300              
+##  Class :character   1st Qu.:  7.6           1st Qu.:  2.200              
+##  Mode  :character   Median : 15.2           Median : 10.200              
+##                     Mean   : 14.1           Mean   :  8.505              
+##                     3rd Qu.: 21.2           3rd Qu.: 16.200              
+##                     Max.   : 37.0           Max.   : 25.500              
+##  Wind.Speed.m.sec. Wind.Direction.deg.. Barometric.Pressure..
+##  Min.   : 0.100    Min.   :  0.0        Mode:logical         
+##  1st Qu.: 1.800    1st Qu.: 99.3        NA&#39;s:182645          
+##  Median : 2.600    Median :202.2                             
+##  Mean   : 2.997    Mean   :187.0                             
+##  3rd Qu.: 3.700    3rd Qu.:258.9                             
+##  Max.   :16.700    Max.   :360.0                             
+##  Solar.Radiation.UNKNOWN. Wind.Gust.Speed..5..m.sec. Gage.Precipitation..5..mm.
+##  Min.   :   0.0           Min.   : 0.100             Min.   :0.00000           
+##  1st Qu.:   0.0           1st Qu.: 2.900             1st Qu.:0.00000           
+##  Median :   4.0           Median : 4.400             Median :0.00000           
+##  Mean   : 192.7           Mean   : 4.907             Mean   :0.01354           
+##  3rd Qu.: 313.0           3rd Qu.: 6.400             3rd Qu.:0.00000           
+##  Max.   :1335.0           Max.   :24.400             Max.   :9.65000</code></pre>
+<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb174-1" data-line-number="1"><span class="co">#the variable names look wonky because they have spaces in them - spaces in variable names is a big no-no</span></a>
+<a class="sourceLine" id="cb174-2" data-line-number="2"><span class="co">#change the names to something more readable</span></a>
+<a class="sourceLine" id="cb174-3" data-line-number="3"><span class="kw">names</span>(deos_data) =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;datetime&quot;</span>, <span class="st">&quot;air_temperature&quot;</span>, <span class="st">&quot;dewpoint&quot;</span>, <span class="st">&quot;windspeed&quot;</span>, <span class="st">&quot;winddirection&quot;</span>, <span class="st">&quot;pressure&quot;</span>, <span class="st">&quot;solar_radiation&quot;</span>,</a>
+<a class="sourceLine" id="cb174-4" data-line-number="4">                     <span class="st">&quot;wind_gust&quot;</span>, <span class="st">&quot;precipitation&quot;</span>)</a>
+<a class="sourceLine" id="cb174-5" data-line-number="5">deos_data<span class="op">$</span>datetime[<span class="dv">1</span>]</a></code></pre></div>
+<pre><code>## [1] &quot;2014-04-04 04:05&quot;</code></pre>
+<div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb176-1" data-line-number="1"><span class="kw">class</span>(deos_data<span class="op">$</span>datetime)</a></code></pre></div>
+<pre><code>## [1] &quot;character&quot;</code></pre>
+<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb178-1" data-line-number="1"><span class="co"># give it a datetime class, notice the format</span></a>
+<a class="sourceLine" id="cb178-2" data-line-number="2">deos_data<span class="op">$</span>datetime =<span class="st"> </span><span class="kw">as.POSIXct</span>(deos_data<span class="op">$</span>datetime, <span class="dt">format =</span> <span class="st">&#39;%Y-%m-%d %H:%M&#39;</span>)</a>
+<a class="sourceLine" id="cb178-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb178-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb178-5" data-line-number="5"><span class="co"># subset the data using the which.min() and which.max() functions to find our indices</span></a>
+<a class="sourceLine" id="cb178-6" data-line-number="6">low_ind =<span class="st"> </span><span class="kw">which.min</span>(deos_data<span class="op">$</span>datetime <span class="op">&lt;</span><span class="st"> &quot;2014-04-04 00:00:00&quot;</span>)</a>
+<a class="sourceLine" id="cb178-7" data-line-number="7">upper_ind =<span class="st"> </span><span class="kw">which.max</span>(deos_data<span class="op">$</span>datetime <span class="op">&gt;</span><span class="st"> &quot;2015-04-04 23:59&quot;</span>)</a>
+<a class="sourceLine" id="cb178-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb178-9" data-line-number="9"><span class="kw">plot</span>(deos_data<span class="op">$</span>datetime[low_ind<span class="op">:</span>upper_ind], deos_data<span class="op">$</span>air_temperature[low_ind<span class="op">:</span>upper_ind], <span class="dt">type =</span> <span class="st">&quot;l&quot;</span>, <span class="dt">col =</span> <span class="st">&#39;red&#39;</span>, </a>
+<a class="sourceLine" id="cb178-10" data-line-number="10">     <span class="dt">xlab =</span> <span class="kw">paste0</span>(deos_data<span class="op">$</span>datetime[low_ind], <span class="st">&quot; to &quot;</span>, deos_data<span class="op">$</span>datetime[upper_ind]), <span class="dt">ylab =</span> <span class="st">&quot;Celsius&quot;</span>)</a>
+<a class="sourceLine" id="cb178-11" data-line-number="11"><span class="kw">title</span>(<span class="st">&quot;1 Year Air Temperature at Station&quot;</span>)</a></code></pre></div>
+<p><img src="Introduction-to-R_files/figure-html/unnamed-chunk-89-1.png" width="672" /></p>
+<div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb179-1" data-line-number="1"><span class="co">#subset the data using the subset function </span></a>
+<a class="sourceLine" id="cb179-2" data-line-number="2">subDeos =<span class="st"> </span><span class="kw">subset</span>(deos_data, deos_data<span class="op">$</span>datetime <span class="op">&gt;=</span><span class="st"> &quot;2014-07-04 00:00:00&quot;</span> <span class="op">&amp;</span><span class="st"> </span>deos_data<span class="op">$</span>datetime <span class="op">&lt;=</span><span class="st"> &quot;2014-07-11 23:59:00&quot;</span>)</a>
+<a class="sourceLine" id="cb179-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb179-4" data-line-number="4"><span class="co"># Now add dewpoint to that plot</span></a>
+<a class="sourceLine" id="cb179-5" data-line-number="5"><span class="kw">plot</span>(subDeos<span class="op">$</span>datetime, subDeos<span class="op">$</span>air_temperature, <span class="dt">type =</span> <span class="st">&quot;l&quot;</span>, <span class="dt">col =</span> <span class="st">&#39;red&#39;</span>, <span class="dt">xlab =</span> <span class="kw">paste0</span>(subDeos<span class="op">$</span>datetime[<span class="dv">1</span>], <span class="st">&quot; to &quot;</span>, subDeos<span class="op">$</span>datetime[<span class="kw">length</span>(subDeos<span class="op">$</span>datetime)]), <span class="dt">ylab =</span> <span class="st">&quot;Celsius&quot;</span>, <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">5</span>,<span class="dv">40</span>))</a>
+<a class="sourceLine" id="cb179-6" data-line-number="6"><span class="kw">lines</span>(subDeos<span class="op">$</span>datetime, subDeos<span class="op">$</span>dewpoint, <span class="dt">col =</span> <span class="st">&#39;yellow&#39;</span>)</a>
+<a class="sourceLine" id="cb179-7" data-line-number="7"><span class="kw">legend</span>(<span class="st">&#39;bottomright&#39;</span>, <span class="dt">legend=</span><span class="kw">c</span>(<span class="st">&#39;Air Temp&#39;</span>, <span class="st">&#39;Dew Pt&#39;</span>), <span class="dt">col =</span> <span class="kw">c</span>(<span class="st">&#39;red&#39;</span>, <span class="st">&#39;yellow&#39;</span>), <span class="dt">lty =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>))</a>
+<a class="sourceLine" id="cb179-8" data-line-number="8"><span class="kw">title</span>(<span class="st">&quot;Air Temperature &amp; Dew Point Temperature&quot;</span>)</a></code></pre></div>
+<p><img src="Introduction-to-R_files/figure-html/unnamed-chunk-89-2.png" width="672" /></p>
+<p>Assignment:</p>
+<ol style="list-style-type: decimal">
+<li>Subset dataset to January 2015 only</li>
+<li>Convert Wind Speed &amp; Wind Gust data from m/s to mph</li>
+<li>Plot wind speed and wind gust on same plot - wind speed as lines and wind gust as points</li>
+<li>Add legend</li>
+<li>Compute correlation coefficient between wind gust and wind speed using cor() function - add to title of plot</li>
+</ol>
+<p>Deliver Resulting Plot to Canvas assignment week3</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="definitions-rules.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="essential-skills-the-for-loop-with-paste0.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

@@ -54,7 +54,7 @@ names_list <- list('Peter', 'Sarah', 'Tom', 'Helen') # comments can be outside
 
 3. Parantheses (), Brackets [], Curly brackets {}, Quotations "" must be used in pairs
 
-```{r}
+```{r, eval=FALSE}
 names_list = list('Peter', 'Sarah', 'Tom', 'Helen')
 
 for (n in names_list){
@@ -64,13 +64,13 @@ for (n in names_list){
   
 4. If you don't have a package, you must install that package. (After you install once, you don't need to install again.)
 
-```{r}
+```{r, eval=FALSE}
 install.packages('ggplot2')
 ```
 
 5. Packages MUST be loaded for each R session.
 
-```{r}
+```{r, eval=FALSE}
 library(ggplot2)
 ```
 
