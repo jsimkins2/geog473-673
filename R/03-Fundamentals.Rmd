@@ -1,4 +1,4 @@
-## R Coding Fundamentals
+# R Coding Fundamentals
 
 Now that we're comfortable with R Studio and have some definitions under our belt, let's dive in a little into some R code and discuss it. These fundamentals can always be referred back to when we might be stuck coding later on. 
 

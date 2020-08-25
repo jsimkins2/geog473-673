@@ -1,15 +1,10 @@
----
-title: "Week 4 - Matt Oliver Oceanography with Rasters"
-output:
-  html_document:
-    fig_height: 8
-    fig_width: 12
-    theme: cosmo
----
+# Week 4 - Oceanography & Global Tree Cover
 
-# Essential Skills: The For Loop with Paste0
+This week we'll use a different dataset from the GOES-16 satellite to explore new coding practices. We'll take what we have learned from the example and apply it to a global tree cover dataset. First, let's cover an important skill - understanding the `paste0()` function. 
 
-Last week we covered the for loop which is an essential programming skill. We also touched on the paste0 function, but this is incredibly useful and should be expanded upon. paste0() is the sister function of paste(), who's cousin is sprintf() . It depends on preference, but most coders I know gravitate towards paste0(). Let's check out all 3. 
+## `Paste0()`
+
+Last week we covered the for loop which is an essential programming skill. We also touched on the `paste0()` function, but this is incredibly useful and should be expanded upon. `paste0()` is the sister function of `paste()`, who's cousin is `sprintf()` . It depends on preference, but most coders I know gravitate towards `paste0()`. Let's check out all 3. 
 
 ``` {r, warning=FALSE}
 # Paste Example 1 - default sep (aka separation) is space
@@ -108,9 +103,9 @@ The final `pathList[[1]]` should look like this...
 `"~/Documents/0912/sstData20190912"`
 
 
-# Rasters with Oceanography
+## Rasters
 
-## Plot GOES-R Rolling 1 day data
+Rasters offer us a 2 dimensional dataset (matrix) of data with geospatial coordinates. Rasters can come in a variety of filetypes including netCDF, GeoTIFF, CSV (if they come in CSV, they'll be massive - this is an inefficient datatype), etc. We'll be looking at the GOES-16 Rolling 1 Day average datafile - **GOES_R_ROLLING_1DAY_20190814.nc**. The GOES-16 Satellite records sea surface temperatures every hour. A rolling 1 day is an average of the previous 24 hours of record of sea surface temperature (and this dataset is created by CEMA here at UD). 
 
 ``` {r, message=FALSE, warnings=FALSE}
 library(maptools) # also loads sp package
@@ -193,7 +188,7 @@ plt + layer(sp.lines(world.shp, col='gray', lwd=0.4))
 
 ```
 
-Assignment:
+## Assignment
 
 1. Download treecov.nc from the datasets folder
 

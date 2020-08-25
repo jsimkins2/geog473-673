@@ -1,14 +1,8 @@
----
-title: "Week 5 - Reprojecting & Writing Rasters"
-output:
-  html_document:
-    fig_height: 8
-    fig_width: 12
-    theme: cosmo
----
+# Week 5 - Reprojecting & Writing Rasters
 
+This week work on handling raster datasets that have undesirable projections. We'll reproject these datasets and then write them to a new datafile that we can use in the future. 
 
-## Recapping Skills: Indexing Data
+## Indexing Data
 
 ```{r}
 matA=matrix(1:16,4,4)
@@ -39,7 +33,10 @@ matA
 ```
 
 
-## Resampling and Reprojecting data in R
+## Resampling and Reprojecting
+
+This week we'll be working an example with **globalTemClim1961-1990.nc**. This is Global Temperature climatology from 1961 to 1990. We'll look at resampling this raster to a different size (resolution). Next, we'll reproject this dataset. Reprojection and resampling are a frequent task for spatial datasets because the Earth isn't flat (despite what your distant relative on Facebook might think). Earth's shape (oblate spheroid) presents challenging projection issues. 
+
 ```{r, warning=FALSE, message=FALSE}
 # load in the packages
 library(raster)
@@ -80,8 +77,10 @@ plt <- levelplot(projTemClim, margin=F, par.settings=BuRdTheme,
 plt + layer(sp.lines(wrld_simpl, col='black', lwd=0.4))
 ```
 
-## Example of how to save directly to PNG
-The png() function is a function that saves a plot to png. After we invoke the function and fill out the arguments, we need to execute the plot code between the png() function and dev.off(). dev.off() tells R that you're done adding things to the plot and that it can be done plotting.
+## PNGs
+The `png()` function is a function that saves a plot to png. After we invoke the function and fill out the arguments, we need to execute the plot code between the `png()` function and `dev.off()`. `dev.off()` tells R that you're done adding things to the plot and that it can be done plotting.
+
+
 ```{r, eval=FALSE}
 png(filename = "~/Downloads/myPNG.png", width = 10, height = 6, units = 'in',res=100)
 plt <- levelplot(projTemClim, margin=F, par.settings=BuRdTheme,
@@ -90,14 +89,18 @@ plt + layer(sp.lines(wrld_simpl, col='black', lwd=0.4))
 dev.off()
 ```
 
-## Example of how to write a raster out to geotiff or netcdf
+## Writing Rasters
+
 ```{r, eval=FALSE}
 writeRaster(x=projTemClim, filename="~/Downloads/projectedTemClim1961-1990.tif", format='GTiff',
             varname="Temperature", longname="Global Average Temperature January 1960-1990",
             xname="lon", yname="lat")
 
 ```
-## In Class Assignment
+
+You can save these rasters in a variety of formats. If you're interested in looking them up, run `help(writeRaster)` and read about the `format` argument. 
+
+## Assignment
 
 1. Load in globalTemClim1961-1990.nc 
 2. Extract data for January and July
@@ -105,4 +108,4 @@ writeRaster(x=projTemClim, filename="~/Downloads/projectedTemClim1961-1990.tif",
 5. Enhance resolution 2x using nearest neighbor method
 6. Plot in mollwide projection
 7. Write raster to NetCDF
-8. Upload PNG and netCDF file to Canvas under week 5 assignment
+8. Upload PNG **and** netCDF file to Canvas under week 5 assignment

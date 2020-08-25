@@ -1,13 +1,8 @@
----
-title: "Week3: Time Series fun with DEOS"
-output:
-  html_document:
-    fig_height: 8
-    fig_width: 12
-    theme: cosmo
----
+# Week3: Time Series fun with DEOS
 
-## Essential Skills: The For Loop
+This week we'll look at some Time-Series data from DEOS. Delaware has the highest concentration of environmental monitoring stations in the country thanks to DEOS (Delaware Environmental Observing System) which is controlled by University of Delaware's CEMA (Center for Environmental Monitoring and Analysis). The data collected using this dense network is useful for a variety of purposes. Before we dive into the data, let's cover an important skill - the for loop.
+
+## For Loops
 
 For loops & conditional statements are a key skill in programming. They allow you to process through large datasets or multiple datasets thus minimizing the amount of manual work you need to do. The basic for loop looks like this...
 
@@ -21,29 +16,15 @@ for (i in numbersList){
 }
 ```
 
-Notice the general structure of R for loops. 'for' signals to R you're beginning a for loop, which requires the general structure to look like:
+Notice the general structure of R for loops. `for` signals to R you're beginning a for loop, which requires the general structure to look like:
 
 for (something in something inside these parentheses){
   do something within these curly brackets
 }
 
-Yes, you must have these parentheses and curly brackets present and surrounding the appropriate code. If you forget a parentheses or curly bracket you'll have errors pop up...this happens to me all the time still. 
+Yes, you must have these parentheses and curly brackets present and surrounding the appropriate code. If you forget a parentheses or curly bracket you'll have **errors** pop up...this happens to advanced programmers all the time, so don't be discouraged if it takes time getting used to this. 
 
-While these must be present, R doesn't care where they are in your code (****which is very unique amongst programming languages). For example, notice how this ugly code is different but still runs...
-
-```{r}
-# Generate sequence of numbers from 1 to 10 using the seq() function (seq for sequence)
-numbersList = seq(from=1,to=10,by=1)
-# Multiply each number in the numbersList by 8 and print the result
-for (        i in numbersList       
-      ){
-  temNumber = i * 8
-  print(temNumber)
-        }
-```
-
-
-The general structure is still: for(condition){do something}. If statements are set up the same way
+The general structure is always: for(condition){do something}. If statements are set up the same way
 
 ```{r}
 # Generate sequence of numbers from 1 to 10 using the seq() function (seq for sequence)
@@ -57,7 +38,7 @@ for (i in numbersList){
 }
 ```
 
-This is referred to as a 'nested loop', because there is a conditional statement within another one. Key takeaway here: in programming languages, '=' is an assignment (i.e. x = 4), whereas '==' is an equality test (i == 4). To put this loop in layman's terms: for i in numbersList, if i is equal to 4, multiply i by 8 and then print temNumber. 
+This is referred to as a *nested loop*, because there is a conditional statement within another one. Key takeaway here: in programming languages, `=` is an assignment (i.e. `x = 4`), whereas `==` is an equality test (`i == 4`). To put this loop in layman's terms: `for i in numbersList, if i is equal to 4, multiply i by 8 and then print temNumber`. 
 
 We can also have nested for loops. 
 
@@ -73,7 +54,7 @@ for (num in numbersList){
 }
 ```
 
-You can name the object within the list whatever you want (i, j, num, let, etc.). Also, c() is the concatenate functin that combines values into a vector or list. The order doesn't matter in this for loop...
+You can name the object within the list whatever you want (i, j, num, let, etc.). Also, `c()` is the concatenate function that combines values into a vector or list. The order doesn't matter in this for loop...
 
 ```{r}
 # Generate sequence of numbers from 1 to 3 this time using the seq() function (seq for sequence)
@@ -119,7 +100,7 @@ for (num in numbersList){
 }
 ```
 
-&& means "and" ... || means "or"...these are useful in multi conditional statements. The 'else' statement is an appendage of the 'if' statement. It basically means if num == 3 and let == B is false, print "not what we want". Notice that the 'else' statement is outside of the 'if' statement but immediately after it. 
+`&&` means "and" ... `||` means "or"...these are useful in multi conditional statements. The `else` statement is an appendage of the `if` statement. It basically means if `num == 3` and `let == B` is `false`, `print "not what we want"`. Notice that the 'else' statement is outside of the `if` statement but immediately after it. 
 
 
 In Class Exercise: debug this for loop
@@ -154,51 +135,63 @@ for (s in seq(length(soiltype))){
 ```
 ## DEOS Data
 
-Delaware has the highest concentration of environmental monitoring stations in the country thanks to DEOS (Delaware Environmental Observing System) which is controlled by University of Delaware's CEMA (Center for Environmental Monitoring and Analysis). The data collected using this dense network is useful for a variety of purposes. Let's dive into some data - find the file (https://github.com/jsimkins2/geog473-673/tree/master/datasets) - download it, unzip it, and open it up in R! 
+The dataset we'll be using is called - **DEOS.csv** . It contains a variety of meteorological variables collected at 5 minute intervals. Let's dive into the coded example.
 
 ``` {r, warning = FALSE}
+# load the data using read.csv()
 deos_data <- read.csv("/Users/james/Documents/Github/geog473-673/datasets/DEOS.csv", header = TRUE, skip=0, stringsAsFactors = FALSE)
 
+# view the top few rows of data using the head() function
 head(deos_data)
 
+# view summary of the data
 summary(deos_data)
+
+# view variable names
+colnames(deos_data)
 
 #the variable names look wonky because they have spaces in them - spaces in variable names is a big no-no
 #change the names to something more readable
-names(deos_data) = c("datetime", "air_temperature", "dewpoint", "windspeed", "winddirection", "pressure", "solar_radiation",
-                     "wind_gust", "precipitation")
+names(deos_data) = c("datetime", "air_temperature", "dewpoint", "windspeed", "winddirection", "pressure", "solar_radiation", "wind_gust", "precipitation")
+
+# print the first datetime value 
 deos_data$datetime[1]
+
+# view the class of the first date index
 class(deos_data$datetime)
+
 # give it a datetime class, notice the format
 deos_data$datetime = as.POSIXct(deos_data$datetime, format = '%Y-%m-%d %H:%M')
-
 
 # subset the data using the which.min() and which.max() functions to find our indices
 low_ind = which.min(deos_data$datetime < "2014-04-04 00:00:00")
 upper_ind = which.max(deos_data$datetime > "2015-04-04 23:59")
 
+# plot the dataset by indexing it between teh low_ind and upper_ind
 plot(deos_data$datetime[low_ind:upper_ind], deos_data$air_temperature[low_ind:upper_ind], type = "l", col = 'red', 
      xlab = paste0(deos_data$datetime[low_ind], " to ", deos_data$datetime[upper_ind]), ylab = "Celsius")
+# add a title to the plot
 title("1 Year Air Temperature at Station")
 
-#subset the data using the subset function 
+#subset the data using the subset function  this time
 subDeos = subset(deos_data, deos_data$datetime >= "2014-07-04 00:00:00" & deos_data$datetime <= "2014-07-11 23:59:00")
 
 # Now add dewpoint to that plot
-plot(subDeos$datetime, subDeos$air_temperature, type = "l", col = 'red', xlab = paste0(subDeos$datetime[1], " to ", subDeos$datetime[length(subDeos$datetime)]), ylab = "Celsius", ylim = c(5,40))
-lines(subDeos$datetime, subDeos$dewpoint, col = 'yellow')
+plot(x = subDeos$datetime, y = subDeos$air_temperature, type = "l", col = 'red', xlab = paste0(subDeos$datetime[1], " to ",   subDeos$datetime[length(subDeos$datetime)]), ylab = "Celsius", ylim = c(5,40))
+# add "lines" to the plot, in this case we want our line to be the dewpoint
+lines(x = subDeos$datetime, y = subDeos$dewpoint, col = 'yellow')
 legend('bottomright', legend=c('Air Temp', 'Dew Pt'), col = c('red', 'yellow'), lty = c(1, 1))
 title("Air Temperature & Dew Point Temperature")
 
 ```
 
 
-Assignment:
+## Assignment
 
 1. Subset dataset to January 2015 only
 2. Convert Wind Speed & Wind Gust data from m/s to mph
 3. Plot wind speed and wind gust on same plot - wind speed as lines and wind gust as points
 4. Add legend
-5. Compute correlation coefficient between wind gust and wind speed using cor() function - add to title of plot
+5. Compute correlation coefficient between wind gust and wind speed using `cor()` function - add to title of plot
 
 Deliver Resulting Plot to Canvas assignment week3

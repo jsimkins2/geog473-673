@@ -14,9 +14,12 @@ description: "Phase 1 - Introduction to R"
 ```{r, echo=FALSE, out.width="100%", fig.align="center"}
 knitr::include_graphics("images/goes_band13.png")  
 ```
-Phase 1: Environmental Computing with R - 9/1/2020 to 10/1/2019 – 1cr
 
-Phase 2: Spatial Computing with Python – 10/2/2020 to 12/10/2020 – 2cr
+
+  Phase 1: Environmental Computing with R - 9/1/2020 to 10/1/2019 – 1cr
+
+  Phase 2: Spatial Computing with Python – 10/2/2020 to 12/10/2020 – 2cr
+
 
 The objective of GEOG 473/673 Open-sourced Environmental Computing is for advanced undergraduate and graduate students to gain practical experience with R & Python, two industry-leading open-sourced programming languages. Both of these languages are used to assemble, read, and manage large geospatial and environmental datasets by academics, government scientists, and private industry. Each of these programming languages offer a plethora of free packages that allow a user to work with big spatial data in an analytical manner without paying a dime. The demand for students knowledgeable in R & Python is continuing to grow. It’s important to note that this is an Introduction to R (or Python), NOT an introduction to programming. This challenging, fast-paced course is intended for students that already have at least basic programming experience. 
 
@@ -28,11 +31,12 @@ https://github.com/jsimkins2/geog473-673/blob/master/documents/fall_geog473_673_
 This course is split into 2 phases - R and Python. For the R phase, this will be our scheudle.
 
 |Week     |      Focus|
-+
-|1 | [An Introduction to R](#01-Overview)|
-|2 | [R Syntax, Classes & Datatypes](#Week2: R Syntax, Classes, & Datatypes)| 
-|3 | [Time Series Analysis with DEOS data](#05-Avacados2)| 
-|4 | [Raster Analysis with Oceanography data](#06-visa)| |
-|5 | [Resampling and Reprojecting Rasters with climatological temperature data](#07-visa)| |
+|----------|----------|
+|1 | [An Introduction to R](#Getting Started with R)|
+|2 | [R Syntax, Classes & Datatypes](#Week 2 - Scientific R Script)| 
+|3 | [Time Series Analysis with DEOS data](#Week3: Time Series fun with DEOS)| 
+|4 | [Raster Analysis with Oceanography & Global Tree Cover data](#Week 4 - Oceanography & Global Tree Cover)| |
+|5 | [Resampling and Reprojecting Rasters with climatological temperature data](#Week 5 - Reprojecting & Writing Rasters)| |
 
 
+Before the training, please do the following (10 minutes). All software is free and trusted. 

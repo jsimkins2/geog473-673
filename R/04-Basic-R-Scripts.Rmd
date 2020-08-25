@@ -1,4 +1,4 @@
-# Example Scripts
+# Basic R Scripts
 
 In this example, we'll begin with data science question and answer it in R. We'll go through these scripts line by line to show how we can use R. To follow along, copy each of these lines and paste them in your R Script (top left quadrant). Once it's pasted there, we can run each line and view the output in the R Console (bottom left quadrant).
 
