@@ -1,4 +1,4 @@
-# Week 2 - Scientific R Script
+# Scientific R Scripts
 
 So far, the examples of R scripts we've shown have been general purpose scripts. For this week, we're going to cover an example where we want to plot sea surface temperature from a given netCDF file. A netCDF file (network Common Data Format) is an advanced filetype that is incredibly efficient at storing data and heavily used in physical sciences. Within each file, metadata (time, latitude info, longitude info, projection, etc.), and variables (sea surface temperature, latitude points, longitude points, chlorophyll, etc.) can be found. The netCDF file we'll be looking at in this example is **OR_ABI-L2-SSTF-M3_G16_s20192081300453_e20192081400161_c20192081406297.nc**. This is a data file from the GOES-16 (Geostationary Operational Environmental Satellite) satellite that shows a snapshot of the Northwest Atlantic Ocean and Eastern Seaboard. So we have the data, but what does it look like?
 

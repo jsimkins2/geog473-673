@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>3 Definitions &amp; Rules | GEOG 473/673 Open-sourced Environmental Computing</title>
+  <title>GEOG 473/673 Open-sourced Environmental Computing</title>
   <meta name="description" content="Phase 1 - Introduction to R" />
   <meta name="generator" content="bookdown 0.19 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="3 Definitions &amp; Rules | GEOG 473/673 Open-sourced Environmental Computing" />
+  <meta property="og:title" content="GEOG 473/673 Open-sourced Environmental Computing" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="3 Definitions &amp; Rules | GEOG 473/673 Open-sourced Environmental Computing" />
+  <meta name="twitter:title" content="GEOG 473/673 Open-sourced Environmental Computing" />
   
   <meta name="twitter:description" content="Phase 1 - Introduction to R" />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="getting-started-with-r.html"/>
-<link rel="next" href="r-coding-fundamentals.html"/>
+
+<link rel="next" href="getting-started-with-r.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -216,192 +216,58 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="definitions-rules" class="section level1">
-<h1><span class="header-section-number">3</span> Definitions &amp; Rules</h1>
-<p>This is a reference guide to look back on when you’re stuck. These definitions and rules are not expected to be understood right now but it’s important you know you can look back on this as a quick-reference.</p>
-<div id="important-r-programming-definitions" class="section level2">
-<h2><span class="header-section-number">3.1</span> Important R Programming Definitions</h2>
-<p>Read through these now to get familiar and refer back to these whenever you need a refresher. You’re not expected to have these memorized or even understood at this moment. These will make more sense as we progress through the course.</p>
+<div id="header">
+<h1 class="title">GEOG 473/673 Open-sourced Environmental Computing</h1>
+<p class="author"><em>James Simkins</em></p>
+<p class="date"><em>2020-08-25</em></p>
+</div>
+<div id="preface" class="section level1">
+<h1><span class="header-section-number">1</span> Preface</h1>
+<p><img src="images/goes_band13.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>Phase 1: Environmental Computing with R - 9/1/2020 to 10/1/2019 – 1cr</p>
+<p>Phase 2: Spatial Computing with Python – 10/2/2020 to 12/10/2020 – 2cr</p>
+<p>The objective of GEOG 473/673 Open-sourced Environmental Computing is for advanced undergraduate and graduate students to gain practical experience with R &amp; Python, two industry-leading open-sourced programming languages. Both of these languages are used to assemble, read, and manage large geospatial and environmental datasets by academics, government scientists, and private industry. Each of these programming languages offer a plethora of free packages that allow a user to work with big spatial data in an analytical manner without paying a dime. The demand for students knowledgeable in R &amp; Python is continuing to grow. It’s important to note that this is an Introduction to R (or Python), NOT an introduction to programming. This challenging, fast-paced course is intended for students that already have at least basic programming experience.</p>
+<div id="syllabus" class="section level2">
+<h2><span class="header-section-number">1.1</span> Syllabus</h2>
+<p><a href="https://github.com/jsimkins2/geog473-673/blob/master/documents/fall_geog473_673_syllabus.pdf" class="uri">https://github.com/jsimkins2/geog473-673/blob/master/documents/fall_geog473_673_syllabus.pdf</a></p>
+</div>
+<div id="agenda" class="section level2">
+<h2><span class="header-section-number">1.2</span> Agenda</h2>
+<p>This course is split into 2 phases - R and Python. For the R phase, this will be our schedule.</p>
 <table>
 <colgroup>
-<col width="15%" />
-<col width="34%" />
+<col width="50%" />
 <col width="50%" />
 </colgroup>
 <thead>
 <tr class="header">
-<th>Coding Name</th>
-<th>Example</th>
-<th>Definition</th>
+<th>Week</th>
+<th>Focus</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>syntax</td>
-<td>R code</td>
-<td>the nomenclature and structure of a programming language</td>
+<td>1</td>
+<td><a href="#Getting%20Started%20with%20R">An Introduction to R</a></td>
 </tr>
 <tr class="even">
-<td>debugging</td>
-<td>Failed R run</td>
-<td>debugging involves fixing R code that is written incorrectly and doesn’t run</td>
+<td>2</td>
+<td><a href="#Scientific%20R%20Script">R Syntax, Classes &amp; Datatypes</a></td>
 </tr>
 <tr class="odd">
-<td>variable</td>
-<td><code>names</code></td>
-<td>Variables are used to store data, whose value can be changed according to our need. Variables can be declared using <code>&lt;-</code> (tradiational way) <strong>or</strong> by <code>=</code> (conventional way)</td>
+<td>3</td>
+<td><a href="#Time%20Series%20fun%20with%20DEOS">Time Series Analysis with DEOS data</a></td>
 </tr>
 <tr class="even">
-<td>package</td>
-<td><code>library(ggplot2)</code></td>
-<td>A collection of functions prewritten in R</td>
+<td>4</td>
+<td><a href="#Oceanography%20&amp;%20Global%20Tree%20Cover">Raster Analysis with Oceanography &amp; Global Tree Cover data</a></td>
 </tr>
 <tr class="odd">
-<td>function</td>
-<td><code>print()</code></td>
-<td>A function is a set of statements organized together to perform a specific task. R has a set of preloaded functions that are part of the <code>base</code> package. If a function cannot be found as part of the <code>base</code> package, the function has likely already been built under another package that needs to be loaded in. <strong>Functions can be identified due to their enclosing parantheses ()</strong></td>
-</tr>
-<tr class="even">
-<td>arguments</td>
-<td><code>read.csv(file = &quot;datasets/tv_shows.csv&quot;, header = FALSE)</code></td>
-<td>Components of a function that are separated by commas and declared using the <code>=</code> sign. Arguments in this example are <code>file =</code> and <code>header =</code></td>
-</tr>
-<tr class="odd">
-<td>index</td>
-<td><code>tv_data[3,55]</code></td>
-<td>The position of data within a data frame, matrix, list, vector, etc. In R, data is <strong>indexed as [row,column] and indexing is done via brackets []</strong></td>
-</tr>
-<tr class="even">
-<td>loop</td>
-<td><code>for (n in names){print(n)}</code></td>
-<td>Repeats a task for a specified number of times. Saves a programmer from repeating codelines with different parameters.</td>
-</tr>
-<tr class="odd">
-<td>logical</td>
-<td><code>TRUE, FALSE</code></td>
-<td>TRUE and FALSE logical operators are declared using all caps</td>
-</tr>
-<tr class="even">
-<td>arithmetic operators</td>
-<td><code>+,-,*,/,^</code></td>
-<td>Math operators used for addition, subtraction, multiplication, division, exponent, respectively.</td>
-</tr>
-<tr class="odd">
-<td>comparison operators</td>
-<td><code>==, &lt;, &gt;, &lt;=, &gt;=, !=</code></td>
-<td>Is equal to, less than, greater than, less than or equal to, greater than or equal to, is NOT equal to, respectively</td>
-</tr>
-<tr class="even">
-<td>and/or operators</td>
-<td><code>&amp;, |</code></td>
-<td>AND, OR</td>
-</tr>
-<tr class="odd">
-<td>string</td>
-<td><code>a_string = &quot;anythign within quotes, single or double&quot;</code></td>
-<td>Any value written within a pair of single quote or double quotes in R is treated as a string.</td>
-</tr>
-<tr class="even">
-<td>numeric</td>
-<td><code>1</code></td>
-<td>Any number - integer, float, etc.</td>
-</tr>
-<tr class="odd">
-<td>vector</td>
-<td><code>as.vector(x = c(1,2,3,4))</code></td>
-<td>Vectors are the most basic R data objects and there are six types of atomic vectors. They are logical, integer, double, complex, character and raw.</td>
-</tr>
-<tr class="even">
-<td>lists</td>
-<td><code>list('Peter', 'Sarah', 'Tom', 'Helen')</code></td>
-<td>Lists are the R objects which contain elements of different types like − numbers, strings, vectors and another list inside it</td>
-</tr>
-<tr class="odd">
-<td>matrix</td>
-<td><code>matrix(c(1:5), nrow = 3, byrow = TRUE)</code></td>
-<td>Matrices are the R objects in which the elements are arranged in a two-dimensional rectangular layout.</td>
-</tr>
-<tr class="even">
-<td>array</td>
-<td><code>array(data = c(1,2,3))</code></td>
-<td>Arrays are the R data objects which can store data in more than two dimensions. For example − If we create an array of dimension (1, 2, 3) then it creates 3 rectangular matrices each with 1 rows and 2 columns. Arrays can store only one data type.</td>
-</tr>
-<tr class="odd">
-<td>data frame</td>
-<td><code>data.frame(tv_data)</code></td>
-<td>R version of Excel Spreadsheet. A data frame is a table or a two-dimensional array-like structure in which each column contains values of one variable and each row contains one set of values from each column.</td>
-</tr>
-<tr class="even">
-<td>factor</td>
-<td><code>factor()</code></td>
-<td>Factors are the data objects which are used to categorize the data and store it as levels. They can store both strings and integers. They are useful in the columns which have a limited number of unique values. Like “Male,”Female&quot; and True, False etc. They are useful in data analysis for statistical modeling.</td>
-</tr>
-<tr class="odd">
-<td>help</td>
-<td><code>help(read.csv)</code></td>
-<td>Default helper function in R. Opens up documentation on a particular function in the lower right quadrant of R.</td>
-</tr>
-<tr class="even">
-<td>class</td>
-<td><code>class(tv_data)</code></td>
-<td>Tells us what R is recognizing something as</td>
-</tr>
-<tr class="odd">
-<td>concatenate (<code>c</code>)</td>
-<td>c(“a”, “b”, “c”)</td>
-<td>A quick utility for concatenating strings together</td>
-</tr>
-<tr class="even">
-<td>filepath</td>
-<td>“/Users/james/Downloads/”</td>
-<td>The location on your computer where a file is stored. A filepath with a leading slash (akak “/” ) is also referred to as root. Root is the furthest back you can go on your computer. Think of a filepath like this - “/Earth/UnitedStates/Delaware/Newark/”</td>
+<td>5</td>
+<td><a href="#Reprojecting%20&amp;%20Writing%20Rasters">Resampling and Reprojecting Rasters with climatological temperature data</a></td>
 </tr>
 </tbody>
 </table>
-<p><a href="https://www.tutorialspoint.com/r/index.htm">Additional examples can be found here</a></p>
-</div>
-<div id="rules" class="section level2">
-<h2><span class="header-section-number">3.2</span> Rules</h2>
-<ol style="list-style-type: decimal">
-<li>Variable names must be assigned.</li>
-</ol>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1">names_list &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="st">&#39;Peter&#39;</span>, <span class="st">&#39;Sarah&#39;</span>, <span class="st">&#39;Tom&#39;</span>, <span class="st">&#39;Helen&#39;</span>)</a></code></pre></div>
-<ol start="2" style="list-style-type: decimal">
-<li><h1 id="is-the-comment-operator---anything-on-the-same-line-of-the-comment-operator-will-not-be-run-by-r."><span class="header-section-number">3.2</span> is the Comment Operator - anything on the same line of the # comment operator will not be run by R.</h1></li>
-</ol>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="co"># comments can be above</span></a>
-<a class="sourceLine" id="cb2-2" data-line-number="2">names_list &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="st">&#39;Peter&#39;</span>, <span class="st">&#39;Sarah&#39;</span>, <span class="st">&#39;Tom&#39;</span>, <span class="st">&#39;Helen&#39;</span>) <span class="co"># comments can be outside</span></a>
-<a class="sourceLine" id="cb2-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb2-4" data-line-number="4"><span class="co">## comments can be anywhere.</span></a></code></pre></div>
-<ol start="3" style="list-style-type: decimal">
-<li>Parantheses (), Brackets [], Curly brackets {}, Quotations &quot;&quot; must be used in pairs</li>
-</ol>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">names_list =<span class="st"> </span><span class="kw">list</span>(<span class="st">&#39;Peter&#39;</span>, <span class="st">&#39;Sarah&#39;</span>, <span class="st">&#39;Tom&#39;</span>, <span class="st">&#39;Helen&#39;</span>)</a>
-<a class="sourceLine" id="cb3-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb3-3" data-line-number="3"><span class="cf">for</span> (n <span class="cf">in</span> names_list){</a>
-<a class="sourceLine" id="cb3-4" data-line-number="4">  <span class="kw">print</span>(n)</a>
-<a class="sourceLine" id="cb3-5" data-line-number="5">}</a></code></pre></div>
-<ol start="4" style="list-style-type: decimal">
-<li>If you don’t have a package, you must install that package. (After you install once, you don’t need to install again.)</li>
-</ol>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw">install.packages</span>(<span class="st">&#39;ggplot2&#39;</span>)</a></code></pre></div>
-<ol start="5" style="list-style-type: decimal">
-<li>Packages MUST be loaded for each R session.</li>
-</ol>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw">library</span>(ggplot2)</a></code></pre></div>
-<ol start="6" style="list-style-type: decimal">
-<li>Variable names cannot replicate function/package names.</li>
-</ol>
-</div>
-<div id="general-recommendations" class="section level2">
-<h2><span class="header-section-number">3.3</span> General Recommendations</h2>
-<ol style="list-style-type: decimal">
-<li><p>Comment, comment, comment. A comment is a brief note on what you were doing when you wrote a line of code. For example, if you write some R code that edits part of a dataframe (R’s version of an Excel Spreadsheet), comment what you were thinking here and why you did it this way. Once you become comfortable coding in R, you’ll be able to churn out new R scripts at a faster rate. It’s very important that you comment on what you’re doing at each step in the script so if you need to look back on something you wrote you can reference what you were doing there. A comment in R is declared using the pound symbol (#).</p></li>
-<li><p>Keep raw data raw. An advantage of R is being able to read in an original spreadsheet and output a new spreadsheet as a separate file. In other words, when you read in a dataset (for example, <code>tv_shows.csv</code>) and make changes to this file, do not save it was <code>tv_shows.csv</code> - thus overwriting the file. Instead, name it something like <code>tv_shows_edited.csv</code>. Also, notice how we use underscores (<code>_</code>) in between words of a filename - this is good practice that should be replicated (spaces are bad, see 4)</p></li>
-<li><p>When in doubt, Google your R question - <a href="https://stackoverflow.com/">look for StackOverflow links</a>. StackOverflow is a web-forum where programmers can post questions for help. This is an incredible tool that even advanced programmers and developers use daily. There are other helpful forums out there - StackOverflow is the most popular.</p></li>
-<li><p>Spaces in variable/file names are BAD. A variable is an object or column that you create in R. For example, if you have a list of student names (<code>student_names = list(&quot;John&quot;, &quot;Peter&quot;, &quot;Sebastian&quot;)</code>, the variable here would be <code>student_names</code>. Let’s get into the habit of using underscores ’_’ or dashes ‘-’ or periods ‘.’ to separate words instead of spaces. From the computers side of variable name storage, it’s much safe to declare a variable name such as <strong>data_file</strong> as opposed to <strong>data file</strong></p></li>
-</ol>
-<p>Keep in mind, these will make more sense after we get more familiar with R - it’s alright if they’re confusing right now!</p>
 
 </div>
 </div>
@@ -410,8 +276,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="getting-started-with-r.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="r-coding-fundamentals.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+
+<a href="getting-started-with-r.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

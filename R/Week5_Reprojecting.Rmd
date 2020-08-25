@@ -1,4 +1,4 @@
-# Week 5 - Reprojecting & Writing Rasters
+# Reprojecting & Writing Rasters
 
 This week work on handling raster datasets that have undesirable projections. We'll reproject these datasets and then write them to a new datafile that we can use in the future. 
 

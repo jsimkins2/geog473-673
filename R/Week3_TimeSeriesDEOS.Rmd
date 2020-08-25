@@ -1,4 +1,4 @@
-# Week3: Time Series fun with DEOS
+# Time Series fun with DEOS
 
 This week we'll look at some Time-Series data from DEOS. Delaware has the highest concentration of environmental monitoring stations in the country thanks to DEOS (Delaware Environmental Observing System) which is controlled by University of Delaware's CEMA (Center for Environmental Monitoring and Analysis). The data collected using this dense network is useful for a variety of purposes. Before we dive into the data, let's cover an important skill - the for loop.
 
