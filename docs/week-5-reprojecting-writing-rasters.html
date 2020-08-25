@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>9 Week 5 - Reprojecting &amp; Writing Rasters | GEOG 473/673 Open-sourced Environmental Computing</title>
+  <meta name="description" content="Phase 1 - Introduction to R" />
+  <meta name="generator" content="bookdown 0.19 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="9 Week 5 - Reprojecting &amp; Writing Rasters | GEOG 473/673 Open-sourced Environmental Computing" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Phase 1 - Introduction to R" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="9 Week 5 - Reprojecting &amp; Writing Rasters | GEOG 473/673 Open-sourced Environmental Computing" />
+  
+  <meta name="twitter:description" content="Phase 1 - Introduction to R" />
+  
+
+<meta name="author" content="James Simkins" />
+
+
+<meta name="date" content="2020-08-25" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="week-4-oceanography-global-tree-cover.html"/>
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">GEOG473-673 Open-sourced Environmental Computing</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="welcome.html"><a href="welcome.html"><i class="fa fa-check"></i><b>1</b> Welcome</a><ul>
+<li class="chapter" data-level="1.1" data-path="welcome.html"><a href="welcome.html#syllabus"><i class="fa fa-check"></i><b>1.1</b> Syllabus</a></li>
+<li class="chapter" data-level="1.2" data-path="welcome.html"><a href="welcome.html#agenda"><i class="fa fa-check"></i><b>1.2</b> Agenda</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html"><i class="fa fa-check"></i><b>2</b> Getting Started with R</a><ul>
+<li class="chapter" data-level="2.1" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#why-is-there-such-a-buzz-around-r"><i class="fa fa-check"></i><b>2.1</b> Why is there such a buzz around R?</a></li>
+<li class="chapter" data-level="2.2" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#reasons-to-love-r"><i class="fa fa-check"></i><b>2.2</b> Reasons to love R</a></li>
+<li class="chapter" data-level="2.3" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#downloading-guide"><i class="fa fa-check"></i><b>2.3</b> Downloading Guide</a></li>
+<li class="chapter" data-level="2.4" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#rstudio"><i class="fa fa-check"></i><b>2.4</b> Rstudio</a></li>
+<li class="chapter" data-level="2.5" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#download-course-datasets"><i class="fa fa-check"></i><b>2.5</b> Download Course Datasets</a></li>
+<li class="chapter" data-level="2.6" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#video-examples"><i class="fa fa-check"></i><b>2.6</b> Video Examples</a></li>
+<li class="chapter" data-level="2.7" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#getting-familiar-with-rstudio"><i class="fa fa-check"></i><b>2.7</b> Getting familiar with RStudio</a></li>
+<li class="chapter" data-level="2.8" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#open-rstudio"><i class="fa fa-check"></i><b>2.8</b> Open RStudio</a></li>
+<li class="chapter" data-level="2.9" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#r-studio-layout"><i class="fa fa-check"></i><b>2.9</b> R Studio Layout</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="definitions-rules.html"><a href="definitions-rules.html"><i class="fa fa-check"></i><b>3</b> Definitions &amp; Rules</a><ul>
+<li class="chapter" data-level="3.1" data-path="definitions-rules.html"><a href="definitions-rules.html#important-r-programming-definitions"><i class="fa fa-check"></i><b>3.1</b> Important R Programming Definitions</a></li>
+<li class="chapter" data-level="3.2" data-path="definitions-rules.html"><a href="definitions-rules.html#rules"><i class="fa fa-check"></i><b>3.2</b> Rules</a></li>
+<li class="chapter" data-level="3.3" data-path="definitions-rules.html"><a href="definitions-rules.html#general-recommendations"><i class="fa fa-check"></i><b>3.3</b> General Recommendations</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="r-coding-fundamentals.html"><a href="r-coding-fundamentals.html"><i class="fa fa-check"></i><b>4</b> R Coding Fundamentals</a><ul>
+<li class="chapter" data-level="4.1" data-path="r-coding-fundamentals.html"><a href="r-coding-fundamentals.html#entering-input"><i class="fa fa-check"></i><b>4.1</b> Entering Input</a></li>
+<li class="chapter" data-level="4.2" data-path="r-coding-fundamentals.html"><a href="r-coding-fundamentals.html#running-code"><i class="fa fa-check"></i><b>4.2</b> Running Code</a></li>
+<li class="chapter" data-level="4.3" data-path="r-coding-fundamentals.html"><a href="r-coding-fundamentals.html#evaluation"><i class="fa fa-check"></i><b>4.3</b> Evaluation</a></li>
+<li class="chapter" data-level="4.4" data-path="r-coding-fundamentals.html"><a href="r-coding-fundamentals.html#r-objects"><i class="fa fa-check"></i><b>4.4</b> R Objects</a></li>
+<li class="chapter" data-level="4.5" data-path="r-coding-fundamentals.html"><a href="r-coding-fundamentals.html#numbers"><i class="fa fa-check"></i><b>4.5</b> Numbers</a></li>
+<li class="chapter" data-level="4.6" data-path="r-coding-fundamentals.html"><a href="r-coding-fundamentals.html#attributes"><i class="fa fa-check"></i><b>4.6</b> Attributes</a></li>
+<li class="chapter" data-level="4.7" data-path="r-coding-fundamentals.html"><a href="r-coding-fundamentals.html#creating-vectors"><i class="fa fa-check"></i><b>4.7</b> Creating Vectors</a></li>
+<li class="chapter" data-level="4.8" data-path="r-coding-fundamentals.html"><a href="r-coding-fundamentals.html#mixing-objects"><i class="fa fa-check"></i><b>4.8</b> Mixing Objects</a></li>
+<li class="chapter" data-level="4.9" data-path="r-coding-fundamentals.html"><a href="r-coding-fundamentals.html#explicit-coercion"><i class="fa fa-check"></i><b>4.9</b> Explicit Coercion</a></li>
+<li class="chapter" data-level="4.10" data-path="r-coding-fundamentals.html"><a href="r-coding-fundamentals.html#matrices"><i class="fa fa-check"></i><b>4.10</b> Matrices</a></li>
+<li class="chapter" data-level="4.11" data-path="r-coding-fundamentals.html"><a href="r-coding-fundamentals.html#lists"><i class="fa fa-check"></i><b>4.11</b> Lists</a></li>
+<li class="chapter" data-level="4.12" data-path="r-coding-fundamentals.html"><a href="r-coding-fundamentals.html#factors"><i class="fa fa-check"></i><b>4.12</b> Factors</a></li>
+<li class="chapter" data-level="4.13" data-path="r-coding-fundamentals.html"><a href="r-coding-fundamentals.html#missing-values"><i class="fa fa-check"></i><b>4.13</b> Missing Values</a></li>
+<li class="chapter" data-level="4.14" data-path="r-coding-fundamentals.html"><a href="r-coding-fundamentals.html#data-frames"><i class="fa fa-check"></i><b>4.14</b> Data Frames</a></li>
+<li class="chapter" data-level="4.15" data-path="r-coding-fundamentals.html"><a href="r-coding-fundamentals.html#names"><i class="fa fa-check"></i><b>4.15</b> Names</a></li>
+<li class="chapter" data-level="4.16" data-path="r-coding-fundamentals.html"><a href="r-coding-fundamentals.html#summary"><i class="fa fa-check"></i><b>4.16</b> Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="basic-r-scripts.html"><a href="basic-r-scripts.html"><i class="fa fa-check"></i><b>5</b> Basic R Scripts</a><ul>
+<li class="chapter" data-level="5.1" data-path="basic-r-scripts.html"><a href="basic-r-scripts.html#global-carbon-dioxide-concentrations"><i class="fa fa-check"></i><b>5.1</b> Global Carbon-Dioxide Concentrations</a></li>
+<li class="chapter" data-level="5.2" data-path="basic-r-scripts.html"><a href="basic-r-scripts.html#cars---motor-trends-magazine-data"><i class="fa fa-check"></i><b>5.2</b> Cars - Motor Trends Magazine Data</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="week-2-scientific-r-script.html"><a href="week-2-scientific-r-script.html"><i class="fa fa-check"></i><b>6</b> Week 2 - Scientific R Script</a><ul>
+<li class="chapter" data-level="6.1" data-path="week-2-scientific-r-script.html"><a href="week-2-scientific-r-script.html#script-breakdown"><i class="fa fa-check"></i><b>6.1</b> Script Breakdown</a></li>
+<li class="chapter" data-level="6.2" data-path="week-2-scientific-r-script.html"><a href="week-2-scientific-r-script.html#in-class-exercise"><i class="fa fa-check"></i><b>6.2</b> In Class Exercise</a><ul>
+<li class="chapter" data-level="6.2.1" data-path="week-2-scientific-r-script.html"><a href="week-2-scientific-r-script.html#further-explanation-of-datatypes"><i class="fa fa-check"></i><b>6.2.1</b> Further Explanation of DataTypes</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="week3-time-series-fun-with-deos.html"><a href="week3-time-series-fun-with-deos.html"><i class="fa fa-check"></i><b>7</b> Week3: Time Series fun with DEOS</a><ul>
+<li class="chapter" data-level="7.1" data-path="week3-time-series-fun-with-deos.html"><a href="week3-time-series-fun-with-deos.html#for-loops"><i class="fa fa-check"></i><b>7.1</b> For Loops</a></li>
+<li class="chapter" data-level="7.2" data-path="week3-time-series-fun-with-deos.html"><a href="week3-time-series-fun-with-deos.html#deos-data"><i class="fa fa-check"></i><b>7.2</b> DEOS Data</a></li>
+<li class="chapter" data-level="7.3" data-path="week3-time-series-fun-with-deos.html"><a href="week3-time-series-fun-with-deos.html#assignment"><i class="fa fa-check"></i><b>7.3</b> Assignment</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="week-4-oceanography-global-tree-cover.html"><a href="week-4-oceanography-global-tree-cover.html"><i class="fa fa-check"></i><b>8</b> Week 4 - Oceanography &amp; Global Tree Cover</a><ul>
+<li class="chapter" data-level="8.1" data-path="week-4-oceanography-global-tree-cover.html"><a href="week-4-oceanography-global-tree-cover.html#paste0"><i class="fa fa-check"></i><b>8.1</b> <code>Paste0()</code></a></li>
+<li class="chapter" data-level="8.2" data-path="week-4-oceanography-global-tree-cover.html"><a href="week-4-oceanography-global-tree-cover.html#rasters"><i class="fa fa-check"></i><b>8.2</b> Rasters</a></li>
+<li class="chapter" data-level="8.3" data-path="week-4-oceanography-global-tree-cover.html"><a href="week-4-oceanography-global-tree-cover.html#assignment-1"><i class="fa fa-check"></i><b>8.3</b> Assignment</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="week-5-reprojecting-writing-rasters.html"><a href="week-5-reprojecting-writing-rasters.html"><i class="fa fa-check"></i><b>9</b> Week 5 - Reprojecting &amp; Writing Rasters</a><ul>
+<li class="chapter" data-level="9.1" data-path="week-5-reprojecting-writing-rasters.html"><a href="week-5-reprojecting-writing-rasters.html#indexing-data"><i class="fa fa-check"></i><b>9.1</b> Indexing Data</a></li>
+<li class="chapter" data-level="9.2" data-path="week-5-reprojecting-writing-rasters.html"><a href="week-5-reprojecting-writing-rasters.html#resampling-and-reprojecting"><i class="fa fa-check"></i><b>9.2</b> Resampling and Reprojecting</a></li>
+<li class="chapter" data-level="9.3" data-path="week-5-reprojecting-writing-rasters.html"><a href="week-5-reprojecting-writing-rasters.html#pngs"><i class="fa fa-check"></i><b>9.3</b> PNGs</a></li>
+<li class="chapter" data-level="9.4" data-path="week-5-reprojecting-writing-rasters.html"><a href="week-5-reprojecting-writing-rasters.html#writing-rasters"><i class="fa fa-check"></i><b>9.4</b> Writing Rasters</a></li>
+<li class="chapter" data-level="9.5" data-path="week-5-reprojecting-writing-rasters.html"><a href="week-5-reprojecting-writing-rasters.html#assignment-2"><i class="fa fa-check"></i><b>9.5</b> Assignment</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">James Simkins</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">GEOG 473/673 Open-sourced Environmental Computing</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="week-5---reprojecting-writing-rasters" class="section level1">
+<h1><span class="header-section-number">9</span> Week 5 - Reprojecting &amp; Writing Rasters</h1>
+<p>This week work on handling raster datasets that have undesirable projections. We’ll reproject these datasets and then write them to a new datafile that we can use in the future.</p>
+<div id="indexing-data" class="section level2">
+<h2><span class="header-section-number">9.1</span> Indexing Data</h2>
+<div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb208-1" data-line-number="1">matA=<span class="kw">matrix</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">16</span>,<span class="dv">4</span>,<span class="dv">4</span>)</a>
+<a class="sourceLine" id="cb208-2" data-line-number="2">matA</a></code></pre></div>
+<pre><code>##      [,1] [,2] [,3] [,4]
+## [1,]    1    5    9   13
+## [2,]    2    6   10   14
+## [3,]    3    7   11   15
+## [4,]    4    8   12   16</code></pre>
+<div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb210-1" data-line-number="1">matA[<span class="dv">2</span>,<span class="dv">3</span>]</a></code></pre></div>
+<pre><code>## [1] 10</code></pre>
+<div class="sourceCode" id="cb212"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb212-1" data-line-number="1">matA[<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">3</span>),<span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">4</span>)]</a></code></pre></div>
+<pre><code>##      [,1] [,2]
+## [1,]    5   13
+## [2,]    7   15</code></pre>
+<div class="sourceCode" id="cb214"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb214-1" data-line-number="1">matA[<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>,<span class="dv">2</span><span class="op">:</span><span class="dv">4</span>]</a></code></pre></div>
+<pre><code>##      [,1] [,2] [,3]
+## [1,]    5    9   13
+## [2,]    6   10   14
+## [3,]    7   11   15</code></pre>
+<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb216-1" data-line-number="1">matA[<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>,]</a></code></pre></div>
+<pre><code>##      [,1] [,2] [,3] [,4]
+## [1,]    1    5    9   13
+## [2,]    2    6   10   14</code></pre>
+<div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb218-1" data-line-number="1">matA[,<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>]</a></code></pre></div>
+<pre><code>##      [,1] [,2]
+## [1,]    1    5
+## [2,]    2    6
+## [3,]    3    7
+## [4,]    4    8</code></pre>
+<div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb220-1" data-line-number="1">matA[<span class="dv">1</span>,]</a></code></pre></div>
+<pre><code>## [1]  1  5  9 13</code></pre>
+<div class="sourceCode" id="cb222"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb222-1" data-line-number="1"><span class="kw">dim</span>(matA)</a></code></pre></div>
+<pre><code>## [1] 4 4</code></pre>
+<p>##In Class Exercise:</p>
+<p>Starting with this code…</p>
+<div class="sourceCode" id="cb224"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb224-1" data-line-number="1">matA=<span class="kw">matrix</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">16</span>,<span class="dv">4</span>,<span class="dv">4</span>)</a></code></pre></div>
+<p>Make this matrix….</p>
+<pre><code>##      [,1] [,2] [,3] [,4]
+## [1,]    1   10   18   26
+## [2,]   47   47   47   47
+## [3,]    6   14   22   39
+## [4,]    8   16   24   32</code></pre>
+</div>
+<div id="resampling-and-reprojecting" class="section level2">
+<h2><span class="header-section-number">9.2</span> Resampling and Reprojecting</h2>
+<p>This week we’ll be working an example with <strong>globalTemClim1961-1990.nc</strong>. This is Global Temperature climatology from 1961 to 1990. We’ll look at resampling this raster to a different size (resolution). Next, we’ll reproject this dataset. Reprojection and resampling are a frequent task for spatial datasets because the Earth isn’t flat (despite what your distant relative on Facebook might think). Earth’s shape (oblate spheroid) presents challenging projection issues.</p>
+<div class="sourceCode" id="cb226"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb226-1" data-line-number="1"><span class="co"># load in the packages</span></a>
+<a class="sourceLine" id="cb226-2" data-line-number="2"><span class="kw">library</span>(raster)</a>
+<a class="sourceLine" id="cb226-3" data-line-number="3"><span class="kw">library</span>(rasterVis)</a>
+<a class="sourceLine" id="cb226-4" data-line-number="4"><span class="kw">library</span>(maptools) <span class="co"># also loads sp package</span></a>
+<a class="sourceLine" id="cb226-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb226-6" data-line-number="6"><span class="co"># load in dataset directly via raster package, specify varname which is &#39;tem&#39; for &#39;temperature&#39; </span></a>
+<a class="sourceLine" id="cb226-7" data-line-number="7">temClim =<span class="st"> </span><span class="kw">raster</span>(<span class="st">&quot;/Users/james/Documents/Github/geog473-673/datasets/globalTemClim1961-1990.nc&quot;</span>, <span class="dt">varname =</span> <span class="st">&#39;tem&#39;</span>, <span class="dt">band=</span><span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb226-8" data-line-number="8">temClim</a></code></pre></div>
+<pre><code>## class      : RasterLayer 
+## band       : 1  (of  12  bands)
+## dimensions : 36, 72, 2592  (nrow, ncol, ncell)
+## resolution : 5, 5  (x, y)
+## extent     : -180, 180, -90, 90  (xmin, xmax, ymin, ymax)
+## crs        : +proj=longlat +datum=WGS84 +ellps=WGS84 +towgs84=0,0,0 
+## source     : /Users/james/Documents/Github/geog473-673/datasets/globalTemClim1961-1990.nc 
+## names      : CRU_Global_1961.1990_Mean_Monthly_Surface_Temperature_Climatology 
+## z-value    : 1 
+## zvar       : tem</code></pre>
+<div class="sourceCode" id="cb228"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb228-1" data-line-number="1"><span class="co"># Create a new, blank raster that has a totally different sizing</span></a>
+<a class="sourceLine" id="cb228-2" data-line-number="2">newRaster =<span class="st"> </span><span class="kw">raster</span>()</a>
+<a class="sourceLine" id="cb228-3" data-line-number="3">newRaster</a></code></pre></div>
+<pre><code>## class      : RasterLayer 
+## dimensions : 180, 360, 64800  (nrow, ncol, ncell)
+## resolution : 1, 1  (x, y)
+## extent     : -180, 180, -90, 90  (xmin, xmax, ymin, ymax)
+## crs        : +proj=longlat +datum=WGS84 +ellps=WGS84 +towgs84=0,0,0</code></pre>
+<div class="sourceCode" id="cb230"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb230-1" data-line-number="1"><span class="co">#resample the temClim raster to the resizedRaster</span></a>
+<a class="sourceLine" id="cb230-2" data-line-number="2">resTemClim =<span class="st"> </span><span class="kw">resample</span>(<span class="dt">x=</span>temClim, <span class="dt">y=</span>newRaster, <span class="dt">method=</span><span class="st">&#39;bilinear&#39;</span>)</a>
+<a class="sourceLine" id="cb230-3" data-line-number="3">resTemClim</a></code></pre></div>
+<pre><code>## class      : RasterLayer 
+## dimensions : 180, 360, 64800  (nrow, ncol, ncell)
+## resolution : 1, 1  (x, y)
+## extent     : -180, 180, -90, 90  (xmin, xmax, ymin, ymax)
+## crs        : +proj=longlat +datum=WGS84 +ellps=WGS84 +towgs84=0,0,0 
+## source     : memory
+## names      : CRU_Global_1961.1990_Mean_Monthly_Surface_Temperature_Climatology 
+## values     : -48.8, 32  (min, max)</code></pre>
+<div class="sourceCode" id="cb232"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb232-1" data-line-number="1"><span class="co">#define new projection as robinson via a proj4 string. Note that this can also be achieved</span></a>
+<a class="sourceLine" id="cb232-2" data-line-number="2"><span class="co"># using EPSG codes with the following - &quot;+init=epsg:4326&quot; for longlat</span></a>
+<a class="sourceLine" id="cb232-3" data-line-number="3">newproj &lt;-<span class="st"> </span><span class="kw">CRS</span>(<span class="st">&quot;+proj=robin +lon_0=0 +x_0=0 +y_0=0 +ellps=WGS84 +datum=WGS84 +units=m +no_defs&quot;</span> )</a>
+<a class="sourceLine" id="cb232-4" data-line-number="4">newproj</a></code></pre></div>
+<pre><code>## CRS arguments:
+##  +proj=robin +lon_0=0 +x_0=0 +y_0=0 +ellps=WGS84 +datum=WGS84 +units=m
+## +no_defs +towgs84=0,0,0</code></pre>
+<div class="sourceCode" id="cb234"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb234-1" data-line-number="1"><span class="co"># reproject the raster to the new projection</span></a>
+<a class="sourceLine" id="cb234-2" data-line-number="2">projTemClim =<span class="st"> </span><span class="kw">projectRaster</span>(resTemClim,<span class="dt">crs=</span>newproj)</a>
+<a class="sourceLine" id="cb234-3" data-line-number="3">projTemClim</a></code></pre></div>
+<pre><code>## class      : RasterLayer 
+## dimensions : 171, 372, 63612  (nrow, ncol, ncell)
+## resolution : 94500, 107000  (x, y)
+## extent     : -17570274, 17583726, -9136845, 9160155  (xmin, xmax, ymin, ymax)
+## crs        : +proj=robin +lon_0=0 +x_0=0 +y_0=0 +ellps=WGS84 +datum=WGS84 +units=m +no_defs +towgs84=0,0,0 
+## source     : memory
+## names      : CRU_Global_1961.1990_Mean_Monthly_Surface_Temperature_Climatology 
+## values     : -48.15073, 31.77627  (min, max)</code></pre>
+<div class="sourceCode" id="cb236"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb236-1" data-line-number="1"><span class="kw">data</span>(wrld_simpl)</a>
+<a class="sourceLine" id="cb236-2" data-line-number="2">plt &lt;-<span class="st"> </span><span class="kw">levelplot</span>(resTemClim, <span class="dt">margin=</span>F, <span class="dt">par.settings=</span>BuRdTheme,</a>
+<a class="sourceLine" id="cb236-3" data-line-number="3">                 <span class="dt">main=</span><span class="st">&quot;January Global Average Temp 1961-1990&quot;</span>)</a>
+<a class="sourceLine" id="cb236-4" data-line-number="4">plt <span class="op">+</span><span class="st"> </span><span class="kw">layer</span>(<span class="kw">sp.lines</span>(wrld_simpl, <span class="dt">col=</span><span class="st">&#39;black&#39;</span>, <span class="dt">lwd=</span><span class="fl">0.4</span>))</a></code></pre></div>
+<p><img src="Introduction-to-R_files/figure-html/unnamed-chunk-90-1.png" width="672" /></p>
+<div class="sourceCode" id="cb237"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb237-1" data-line-number="1"><span class="co"># convert the wrld_simpl land polygons to the robinson projection</span></a>
+<a class="sourceLine" id="cb237-2" data-line-number="2">wrld_simpl =<span class="st"> </span><span class="kw">spTransform</span>(wrld_simpl, <span class="kw">CRS</span>(<span class="st">&quot;+proj=robin +lon_0=0 +x_0=0 +y_0=0 +ellps=WGS84 +datum=WGS84 +units=m +no_defs&quot;</span> ))</a>
+<a class="sourceLine" id="cb237-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb237-4" data-line-number="4">plt &lt;-<span class="st"> </span><span class="kw">levelplot</span>(projTemClim, <span class="dt">margin=</span>F, <span class="dt">par.settings=</span>BuRdTheme,</a>
+<a class="sourceLine" id="cb237-5" data-line-number="5">                 <span class="dt">main=</span><span class="st">&quot;January Global Average Temp 1961-1990&quot;</span>)</a>
+<a class="sourceLine" id="cb237-6" data-line-number="6">plt <span class="op">+</span><span class="st"> </span><span class="kw">layer</span>(<span class="kw">sp.lines</span>(wrld_simpl, <span class="dt">col=</span><span class="st">&#39;black&#39;</span>, <span class="dt">lwd=</span><span class="fl">0.4</span>))</a></code></pre></div>
+<p><img src="Introduction-to-R_files/figure-html/unnamed-chunk-90-2.png" width="672" /></p>
+</div>
+<div id="pngs" class="section level2">
+<h2><span class="header-section-number">9.3</span> PNGs</h2>
+<p>The <code>png()</code> function is a function that saves a plot to png. After we invoke the function and fill out the arguments, we need to execute the plot code between the <code>png()</code> function and <code>dev.off()</code>. <code>dev.off()</code> tells R that you’re done adding things to the plot and that it can be done plotting.</p>
+<div class="sourceCode" id="cb238"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb238-1" data-line-number="1"><span class="kw">png</span>(<span class="dt">filename =</span> <span class="st">&quot;~/Downloads/myPNG.png&quot;</span>, <span class="dt">width =</span> <span class="dv">10</span>, <span class="dt">height =</span> <span class="dv">6</span>, <span class="dt">units =</span> <span class="st">&#39;in&#39;</span>,<span class="dt">res=</span><span class="dv">100</span>)</a>
+<a class="sourceLine" id="cb238-2" data-line-number="2">plt &lt;-<span class="st"> </span><span class="kw">levelplot</span>(projTemClim, <span class="dt">margin=</span>F, <span class="dt">par.settings=</span>BuRdTheme,</a>
+<a class="sourceLine" id="cb238-3" data-line-number="3">                 <span class="dt">main=</span><span class="st">&quot;January Global Average Temp 1961-1990&quot;</span>)</a>
+<a class="sourceLine" id="cb238-4" data-line-number="4">plt <span class="op">+</span><span class="st"> </span><span class="kw">layer</span>(<span class="kw">sp.lines</span>(wrld_simpl, <span class="dt">col=</span><span class="st">&#39;black&#39;</span>, <span class="dt">lwd=</span><span class="fl">0.4</span>))</a>
+<a class="sourceLine" id="cb238-5" data-line-number="5"><span class="kw">dev.off</span>()</a></code></pre></div>
+</div>
+<div id="writing-rasters" class="section level2">
+<h2><span class="header-section-number">9.4</span> Writing Rasters</h2>
+<div class="sourceCode" id="cb239"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb239-1" data-line-number="1"><span class="kw">writeRaster</span>(<span class="dt">x=</span>projTemClim, <span class="dt">filename=</span><span class="st">&quot;~/Downloads/projectedTemClim1961-1990.tif&quot;</span>, <span class="dt">format=</span><span class="st">&#39;GTiff&#39;</span>,</a>
+<a class="sourceLine" id="cb239-2" data-line-number="2">            <span class="dt">varname=</span><span class="st">&quot;Temperature&quot;</span>, <span class="dt">longname=</span><span class="st">&quot;Global Average Temperature January 1960-1990&quot;</span>,</a>
+<a class="sourceLine" id="cb239-3" data-line-number="3">            <span class="dt">xname=</span><span class="st">&quot;lon&quot;</span>, <span class="dt">yname=</span><span class="st">&quot;lat&quot;</span>)</a></code></pre></div>
+<p>You can save these rasters in a variety of formats. If you’re interested in looking them up, run <code>help(writeRaster)</code> and read about the <code>format</code> argument.</p>
+</div>
+<div id="assignment-2" class="section level2">
+<h2><span class="header-section-number">9.5</span> Assignment</h2>
+<ol style="list-style-type: decimal">
+<li>Load in globalTemClim1961-1990.nc</li>
+<li>Extract data for January and July</li>
+<li>Find difference between two months globally</li>
+<li>Enhance resolution 2x using nearest neighbor method</li>
+<li>Plot in mollwide projection</li>
+<li>Write raster to NetCDF</li>
+<li>Upload PNG <strong>and</strong> netCDF file to Canvas under week 5 assignment</li>
+</ol>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="week-4-oceanography-global-tree-cover.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
