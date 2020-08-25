@@ -16,9 +16,9 @@ knitr::include_graphics("images/goes_band13.png")
 ```
 
 
-  Phase 1: Environmental Computing with R - 9/1/2020 to 10/1/2019 – 1cr
+- Phase 1: Environmental Computing with R - 9/1/2020 to 10/1/2019 – 1cr
 
-  Phase 2: Spatial Computing with Python – 10/2/2020 to 12/10/2020 – 2cr
+- Phase 2: Spatial Computing with Python – 10/2/2020 to 12/10/2020 – 2cr
 
 
 The objective of GEOG 473/673 Open-sourced Environmental Computing is for advanced undergraduate and graduate students to gain practical experience with R & Python, two industry-leading open-sourced programming languages. Both of these languages are used to assemble, read, and manage large geospatial and environmental datasets by academics, government scientists, and private industry. Each of these programming languages offer a plethora of free packages that allow a user to work with big spatial data in an analytical manner without paying a dime. The demand for students knowledgeable in R & Python is continuing to grow. It’s important to note that this is an Introduction to R (or Python), NOT an introduction to programming. This challenging, fast-paced course is intended for students that already have at least basic programming experience. 
@@ -32,8 +32,8 @@ This course is split into 2 phases - R and Python. For the R phase, this will be
 
 |Week     |      Focus|
 |----------|----------|
-|1 | [An Introduction to R](#Getting Started with R)|
-|2 | [R Syntax, Classes & Datatypes](#Scientific R Script)| 
-|3 | [Time Series Analysis with DEOS data](#Time Series fun with DEOS)| 
-|4 | [Raster Analysis with Oceanography & Global Tree Cover data](#Oceanography & Global Tree Cover)| |
-|5 | [Resampling and Reprojecting Rasters with climatological temperature data](#Reprojecting & Writing Rasters)| 
+|1 | [An Introduction to R](https://jsimkins2.github.io/geog473-673/getting-started-with-r.html)|
+|2 | [Scientific R Scripts](https://jsimkins2.github.io/geog473-673/scientific-r-scripts.html)| 
+|3 | [Time Series Analysis with DEOS data](https://jsimkins2.github.io/geog473-673/time-series-fun-with-deos.html)| 
+|4 | [Raster Analysis with Oceanography & Global Tree Cover data](https://jsimkins2.github.io/geog473-673/oceanography-global-tree-cover.html)| |
+|5 | [Resampling and Reprojecting Rasters with climatological temperature data](https://jsimkins2.github.io/geog473-673/reprojecting-writing-rasters.html)| 
