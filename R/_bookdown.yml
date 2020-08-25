@@ -15,6 +15,6 @@ rmd_files: [
   "/Users/james/Documents/Github/geog473-673/R/Week5_Reprojecting.Rmd"
  ]
 delete_merged_file: true
-output_dir: "docs"
+output_dir: "/Users/james/Documents/Github/geog473-673/docs"
 # always_allow_html: true # added after build error suggested this for kable() ---but unsuccessful
 
