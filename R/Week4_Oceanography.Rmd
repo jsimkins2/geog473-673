@@ -147,10 +147,7 @@ crs(sstRast) = "+proj=longlat +datum=WGS84 +no_defs "
 sstRast
 image(sstRast)
 
-# load raster Visualization package
-library(rasterVis)
-
-# levelplot the sstRast
+# levelplot the sstRast - levelplot is from rasterVis package
 levelplot(sstRast)
 
 # USA shapefiles via the getData function
@@ -192,8 +189,42 @@ plt + layer(sp.lines(world.shp, col='gray', lwd=0.4))
 
 1. Download treecov.nc from the datasets folder
 
-2. Open tree cover % as a variable, remove bad values.
+2. Open tree cover % as a variable, remove bad values (*i.e. percentages outside of 0 and 100*).
 
 3. Plot tree cover variable using a green theme. Be sure to add coastlines via your choice of underlying dataset. Ensure correct latitude/longitudes are displayed. Add title.
 
 4. Submit resulting image to Canvas assignment 4
+
+``` {r, echo = FALSE, message = FALSE, error = FALSE, warning = FALSE, fig.height=10, fig.width=16}
+library(basicPlotteR)
+library(ncdf4)
+library(raster)
+library(rgdal)
+# load the data using read.csv()
+trees = nc_open("/Users/james/Documents/Github/geog473-673/datasets/treecov.nc")
+treecov = ncvar_get(trees, "treecov")
+treecov[treecov < 0] = NA
+treecov = raster(treecov)
+
+# netcdf stores data backwards, so to convert it to raster we need to transpose it
+treecov <- t(treecov)
+
+# now we see that the data is just upside down, so we use the flip() function
+treecov <- flip(treecov, 2)
+lat = ncvar_get(trees, "lat")
+lon = ncvar_get(trees, "lon")
+
+# define new extents for the raster
+extent(treecov) = c(min(lon), max(lon), min(lat), max(lat))
+# define the proj4 projection string
+crs(treecov) = "+proj=longlat +datum=WGS84 +no_defs "
+
+world.shp <- readOGR("/Users/james/Documents/Github/geog473-673/datasets/world_shpfiles/world.shp")
+
+# add custom color theme using brewer.pal from the package RColorBrewer and setting the rasterTheme
+mapTheme <- rasterTheme(region=brewer.pal(8,"Greens"))
+
+plt <- levelplot(treecov, margin=F, par.settings=mapTheme,
+       main="Tree Cover Percentage")
+plt + layer(sp.lines(world.shp, col='gray', lwd=0.4)) + layer(panel.text(0,0,"Prof Simkins", alpha=0.3, col = "blue"))
+```

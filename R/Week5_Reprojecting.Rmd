@@ -48,11 +48,11 @@ temClim = raster("/Users/james/Documents/Github/geog473-673/datasets/globalTemCl
 temClim
 
 # Create a new, blank raster that has a totally different sizing
-newRaster = raster()
+newRaster = raster(nrow = 180, ncol = 360)
 newRaster
 
 #resample the temClim raster to the resizedRaster
-resTemClim = resample(x=temClim, y=newRaster, method='bilinear')
+resTemClim = resample(x=temClim, y=newRaster, method='bilinear') # can be set to nearest neighbor using 'ngb' method
 resTemClim
 
 #define new projection as robinson via a proj4 string. Note that this can also be achieved
@@ -105,7 +105,46 @@ You can save these rasters in a variety of formats. If you're interested in look
 1. Load in globalTemClim1961-1990.nc 
 2. Extract data for January and July
 3. Find difference between two months globally
-5. Enhance resolution 2x using nearest neighbor method
+5. Enhance resolution 2x using nearest neighbor method 
+  - (*hint: run help(resample) if you get stuck*)
 6. Plot in mollwide projection
+  - (*"+proj=moll +lon_0=0 +x_0=0 +y_0=0 +datum=WGS84 +units=m +no_defs"*)
 7. Write raster to NetCDF
 8. Upload PNG **and** netCDF file to Canvas under week 5 assignment
+
+``` {r, echo = FALSE, message = FALSE, error = FALSE, warning = FALSE, fig.height=10, fig.width=16}
+library(raster)
+library(rasterVis)
+library(maptools) # also loads sp package
+
+# load in dataset directly via raster package, specify varname which is 'tem' for 'temperature' 
+jan = raster("/Users/james/Documents/Github/geog473-673/datasets/globalTemClim1961-1990.nc", varname = 'tem', band=1)
+july = raster("/Users/james/Documents/Github/geog473-673/datasets/globalTemClim1961-1990.nc", varname = 'tem', band=7)
+
+temClim = july - jan
+# Create a new, blank raster that has a totally different sizing
+newRaster = raster(nrow = 2*nrow(temClim), ncol = 2*ncol(temClim))
+
+
+#resample the temClim raster to the resizedRaster
+resTemClim = resample(x=temClim, y=newRaster, method='ngb')
+
+
+#define new projection as robinson via a proj4 string. Note that this can also be achieved
+# using EPSG codes with the following - "+init=epsg:4326" for longlat
+newproj <- CRS("+proj=moll +lon_0=0 +x_0=0 +y_0=0 +datum=WGS84 +units=m +no_defs" )
+
+
+# reproject the raster to the new projection
+projTemClim = projectRaster(resTemClim,crs=newproj)
+
+
+data(wrld_simpl)
+
+# convert the wrld_simpl land polygons to the robinson projection
+wrld_simpl = spTransform(wrld_simpl, CRS("+proj=moll +lon_0=0 +x_0=0 +y_0=0 +datum=WGS84 +units=m +no_defs"))
+
+plt <- levelplot(projTemClim, margin=F, par.settings=BuRdTheme,
+                 main="January Global Average Temp 1961-1990")
+plt + layer(sp.lines(wrld_simpl, col='black', lwd=0.4)) + layer(panel.text(0,0,"Prof Simkins", alpha=1, col = "black"))
+```

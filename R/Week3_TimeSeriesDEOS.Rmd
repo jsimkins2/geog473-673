@@ -190,8 +190,37 @@ title("Air Temperature & Dew Point Temperature")
 
 1. Subset dataset to January 2015 only
 2. Convert Wind Speed & Wind Gust data from m/s to mph
-3. Plot wind speed and wind gust on same plot - wind speed as lines and wind gust as points
+3. Plot wind speed and wind gust on same plot - wind gust as points first, then wind speed as a line second
+- *Hint: you'll have to use an argument of `type = "p"` for wind gust.*
 4. Add legend
 5. Compute correlation coefficient between wind gust and wind speed using `cor()` function - add to title of plot
+6. Deliver Resulting Plot to Canvas assignment week3
 
-Deliver Resulting Plot to Canvas assignment week3
+
+Aim for something like this (does not have to be exact)...
+
+``` {r, echo = FALSE, message = FALSE, warning = FALSE}
+library(basicPlotteR)
+# load the data using read.csv()
+deos_data <- read.csv("/Users/james/Documents/Github/geog473-673/datasets/DEOS.csv", header = TRUE, skip=0, stringsAsFactors = FALSE)
+
+#the variable names look wonky because they have spaces in them - spaces in variable names is a big no-no
+#change the names to something more readable
+names(deos_data) = c("datetime", "air_temperature", "dewpoint", "windspeed", "winddirection", "pressure", "solar_radiation", "wind_gust", "precipitation")
+
+deos_data$windspeed = deos_data$windspeed * 2.23694
+deos_data$wind_gust = deos_data$wind_gust * 2.23694
+# give it a datetime class, notice the format
+deos_data$datetime = as.POSIXct(deos_data$datetime, format = '%Y-%m-%d %H:%M')
+
+# subset the data using the which.min() and which.max() functions to find our indices
+subDeos = subset(deos_data, deos_data$datetime >= "2015-01-01 00:00:00" & deos_data$datetime <= "2015-01-31 23:59:00")
+
+# Now add dewpoint to that plot
+plot(x = subDeos$datetime, y = subDeos$wind_gust, type = "p", col = 'dodgerblue2', xlab = paste0(subDeos$datetime[1], " to ",   subDeos$datetime[length(subDeos$datetime)]), ylab = "mph", ylim = c(5,40), pch=c(18))
+# add "lines" to the plot, in this case we want our line to be the dewpoint
+lines(x = subDeos$datetime, y = subDeos$windspeed, col = 'dodgerblue4', pch=c(18))
+legend('topleft', legend=c('Wind Gust', 'Wind Speed'), col = c('dodgerblue2', 'dodgerblue4'), lty = c(1, 1))
+title(paste0('Correlation Coefficient = ', round(cor(subDeos$windspeed, subDeos$wind_gust), 4)))
+watermark("Prof Simkins", col="red", cex=0.8, alpha = 0.3)
+```

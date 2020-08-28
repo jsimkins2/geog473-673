@@ -24,7 +24,7 @@
 <meta name="author" content="James Simkins" />
 
 
-<meta name="date" content="2020-08-25" />
+<meta name="date" content="2020-08-28" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -115,7 +115,6 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
-<link rel="stylesheet" href="style.css" type="text/css" />
 </head>
 
 <body>
@@ -128,9 +127,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li><a href="./">GEOG473-673 Open-sourced Environmental Computing</a></li>
-
-<li class="divider"></li>
 <li class="chapter" data-level="1" data-path="preface.html"><a href="preface.html"><i class="fa fa-check"></i><b>1</b> Preface</a><ul>
 <li class="chapter" data-level="1.1" data-path="preface.html"><a href="preface.html#syllabus"><i class="fa fa-check"></i><b>1.1</b> Syllabus</a></li>
 <li class="chapter" data-level="1.2" data-path="preface.html"><a href="preface.html#agenda"><i class="fa fa-check"></i><b>1.2</b> Agenda</a></li>
@@ -196,9 +192,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.4" data-path="reprojecting-writing-rasters.html"><a href="reprojecting-writing-rasters.html#writing-rasters"><i class="fa fa-check"></i><b>9.4</b> Writing Rasters</a></li>
 <li class="chapter" data-level="9.5" data-path="reprojecting-writing-rasters.html"><a href="reprojecting-writing-rasters.html#assignment-2"><i class="fa fa-check"></i><b>9.5</b> Assignment</a></li>
 </ul></li>
-<li class="divider"></li>
-<li><a href="https://github.com/rstudio/bookdown" target="blank">James Simkins</a></li>
-
 </ul>
 
       </nav>
@@ -462,11 +455,18 @@ do something within these curly brackets
 <ol style="list-style-type: decimal">
 <li>Subset dataset to January 2015 only</li>
 <li>Convert Wind Speed &amp; Wind Gust data from m/s to mph</li>
-<li>Plot wind speed and wind gust on same plot - wind speed as lines and wind gust as points</li>
+<li>Plot wind speed and wind gust on same plot - wind gust as points first, then wind speed as a line second</li>
+</ol>
+<ul>
+<li><em>Hint: you’ll have to use an argument of <code>type = &quot;p&quot;</code> for wind gust.</em></li>
+</ul>
+<ol start="4" style="list-style-type: decimal">
 <li>Add legend</li>
 <li>Compute correlation coefficient between wind gust and wind speed using <code>cor()</code> function - add to title of plot</li>
+<li>Deliver Resulting Plot to Canvas assignment week3</li>
 </ol>
-<p>Deliver Resulting Plot to Canvas assignment week3</p>
+<p>Aim for something like this (does not have to be exact)…</p>
+<p><img src="Introduction-to-R_files/figure-html/unnamed-chunk-83-1.png" width="672" /></p>
 
 </div>
 </div>

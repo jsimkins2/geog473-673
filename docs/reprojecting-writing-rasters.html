@@ -24,7 +24,7 @@
 <meta name="author" content="James Simkins" />
 
 
-<meta name="date" content="2020-08-25" />
+<meta name="date" content="2020-08-28" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -115,7 +115,6 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
-<link rel="stylesheet" href="style.css" type="text/css" />
 </head>
 
 <body>
@@ -128,9 +127,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li><a href="./">GEOG473-673 Open-sourced Environmental Computing</a></li>
-
-<li class="divider"></li>
 <li class="chapter" data-level="1" data-path="preface.html"><a href="preface.html"><i class="fa fa-check"></i><b>1</b> Preface</a><ul>
 <li class="chapter" data-level="1.1" data-path="preface.html"><a href="preface.html#syllabus"><i class="fa fa-check"></i><b>1.1</b> Syllabus</a></li>
 <li class="chapter" data-level="1.2" data-path="preface.html"><a href="preface.html#agenda"><i class="fa fa-check"></i><b>1.2</b> Agenda</a></li>
@@ -196,9 +192,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.4" data-path="reprojecting-writing-rasters.html"><a href="reprojecting-writing-rasters.html#writing-rasters"><i class="fa fa-check"></i><b>9.4</b> Writing Rasters</a></li>
 <li class="chapter" data-level="9.5" data-path="reprojecting-writing-rasters.html"><a href="reprojecting-writing-rasters.html#assignment-2"><i class="fa fa-check"></i><b>9.5</b> Assignment</a></li>
 </ul></li>
-<li class="divider"></li>
-<li><a href="https://github.com/rstudio/bookdown" target="blank">James Simkins</a></li>
-
 </ul>
 
       </nav>
@@ -221,41 +214,41 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>This week work on handling raster datasets that have undesirable projections. We’ll reproject these datasets and then write them to a new datafile that we can use in the future.</p>
 <div id="indexing-data" class="section level2">
 <h2><span class="header-section-number">9.1</span> Indexing Data</h2>
-<div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb208-1" data-line-number="1">matA=<span class="kw">matrix</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">16</span>,<span class="dv">4</span>,<span class="dv">4</span>)</a>
-<a class="sourceLine" id="cb208-2" data-line-number="2">matA</a></code></pre></div>
+<div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb209-1" data-line-number="1">matA=<span class="kw">matrix</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">16</span>,<span class="dv">4</span>,<span class="dv">4</span>)</a>
+<a class="sourceLine" id="cb209-2" data-line-number="2">matA</a></code></pre></div>
 <pre><code>##      [,1] [,2] [,3] [,4]
 ## [1,]    1    5    9   13
 ## [2,]    2    6   10   14
 ## [3,]    3    7   11   15
 ## [4,]    4    8   12   16</code></pre>
-<div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb210-1" data-line-number="1">matA[<span class="dv">2</span>,<span class="dv">3</span>]</a></code></pre></div>
+<div class="sourceCode" id="cb211"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb211-1" data-line-number="1">matA[<span class="dv">2</span>,<span class="dv">3</span>]</a></code></pre></div>
 <pre><code>## [1] 10</code></pre>
-<div class="sourceCode" id="cb212"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb212-1" data-line-number="1">matA[<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">3</span>),<span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">4</span>)]</a></code></pre></div>
+<div class="sourceCode" id="cb213"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb213-1" data-line-number="1">matA[<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">3</span>),<span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">4</span>)]</a></code></pre></div>
 <pre><code>##      [,1] [,2]
 ## [1,]    5   13
 ## [2,]    7   15</code></pre>
-<div class="sourceCode" id="cb214"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb214-1" data-line-number="1">matA[<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>,<span class="dv">2</span><span class="op">:</span><span class="dv">4</span>]</a></code></pre></div>
+<div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb215-1" data-line-number="1">matA[<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>,<span class="dv">2</span><span class="op">:</span><span class="dv">4</span>]</a></code></pre></div>
 <pre><code>##      [,1] [,2] [,3]
 ## [1,]    5    9   13
 ## [2,]    6   10   14
 ## [3,]    7   11   15</code></pre>
-<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb216-1" data-line-number="1">matA[<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>,]</a></code></pre></div>
+<div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb217-1" data-line-number="1">matA[<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>,]</a></code></pre></div>
 <pre><code>##      [,1] [,2] [,3] [,4]
 ## [1,]    1    5    9   13
 ## [2,]    2    6   10   14</code></pre>
-<div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb218-1" data-line-number="1">matA[,<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>]</a></code></pre></div>
+<div class="sourceCode" id="cb219"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb219-1" data-line-number="1">matA[,<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>]</a></code></pre></div>
 <pre><code>##      [,1] [,2]
 ## [1,]    1    5
 ## [2,]    2    6
 ## [3,]    3    7
 ## [4,]    4    8</code></pre>
-<div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb220-1" data-line-number="1">matA[<span class="dv">1</span>,]</a></code></pre></div>
+<div class="sourceCode" id="cb221"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb221-1" data-line-number="1">matA[<span class="dv">1</span>,]</a></code></pre></div>
 <pre><code>## [1]  1  5  9 13</code></pre>
-<div class="sourceCode" id="cb222"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb222-1" data-line-number="1"><span class="kw">dim</span>(matA)</a></code></pre></div>
+<div class="sourceCode" id="cb223"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb223-1" data-line-number="1"><span class="kw">dim</span>(matA)</a></code></pre></div>
 <pre><code>## [1] 4 4</code></pre>
 <p>##In Class Exercise:</p>
 <p>Starting with this code…</p>
-<div class="sourceCode" id="cb224"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb224-1" data-line-number="1">matA=<span class="kw">matrix</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">16</span>,<span class="dv">4</span>,<span class="dv">4</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb225"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb225-1" data-line-number="1">matA=<span class="kw">matrix</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">16</span>,<span class="dv">4</span>,<span class="dv">4</span>)</a></code></pre></div>
 <p>Make this matrix….</p>
 <pre><code>##      [,1] [,2] [,3] [,4]
 ## [1,]    1   10   18   26
@@ -266,14 +259,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="resampling-and-reprojecting" class="section level2">
 <h2><span class="header-section-number">9.2</span> Resampling and Reprojecting</h2>
 <p>This week we’ll be working an example with <strong>globalTemClim1961-1990.nc</strong>. This is Global Temperature climatology from 1961 to 1990. We’ll look at resampling this raster to a different size (resolution). Next, we’ll reproject this dataset. Reprojection and resampling are a frequent task for spatial datasets because the Earth isn’t flat (despite what your distant relative on Facebook might think). Earth’s shape (oblate spheroid) presents challenging projection issues.</p>
-<div class="sourceCode" id="cb226"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb226-1" data-line-number="1"><span class="co"># load in the packages</span></a>
-<a class="sourceLine" id="cb226-2" data-line-number="2"><span class="kw">library</span>(raster)</a>
-<a class="sourceLine" id="cb226-3" data-line-number="3"><span class="kw">library</span>(rasterVis)</a>
-<a class="sourceLine" id="cb226-4" data-line-number="4"><span class="kw">library</span>(maptools) <span class="co"># also loads sp package</span></a>
-<a class="sourceLine" id="cb226-5" data-line-number="5"></a>
-<a class="sourceLine" id="cb226-6" data-line-number="6"><span class="co"># load in dataset directly via raster package, specify varname which is &#39;tem&#39; for &#39;temperature&#39; </span></a>
-<a class="sourceLine" id="cb226-7" data-line-number="7">temClim =<span class="st"> </span><span class="kw">raster</span>(<span class="st">&quot;/Users/james/Documents/Github/geog473-673/datasets/globalTemClim1961-1990.nc&quot;</span>, <span class="dt">varname =</span> <span class="st">&#39;tem&#39;</span>, <span class="dt">band=</span><span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb226-8" data-line-number="8">temClim</a></code></pre></div>
+<div class="sourceCode" id="cb227"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb227-1" data-line-number="1"><span class="co"># load in the packages</span></a>
+<a class="sourceLine" id="cb227-2" data-line-number="2"><span class="kw">library</span>(raster)</a>
+<a class="sourceLine" id="cb227-3" data-line-number="3"><span class="kw">library</span>(rasterVis)</a>
+<a class="sourceLine" id="cb227-4" data-line-number="4"><span class="kw">library</span>(maptools) <span class="co"># also loads sp package</span></a>
+<a class="sourceLine" id="cb227-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb227-6" data-line-number="6"><span class="co"># load in dataset directly via raster package, specify varname which is &#39;tem&#39; for &#39;temperature&#39; </span></a>
+<a class="sourceLine" id="cb227-7" data-line-number="7">temClim =<span class="st"> </span><span class="kw">raster</span>(<span class="st">&quot;/Users/james/Documents/Github/geog473-673/datasets/globalTemClim1961-1990.nc&quot;</span>, <span class="dt">varname =</span> <span class="st">&#39;tem&#39;</span>, <span class="dt">band=</span><span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb227-8" data-line-number="8">temClim</a></code></pre></div>
 <pre><code>## class      : RasterLayer 
 ## band       : 1  (of  12  bands)
 ## dimensions : 36, 72, 2592  (nrow, ncol, ncell)
@@ -284,17 +277,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## names      : CRU_Global_1961.1990_Mean_Monthly_Surface_Temperature_Climatology 
 ## z-value    : 1 
 ## zvar       : tem</code></pre>
-<div class="sourceCode" id="cb228"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb228-1" data-line-number="1"><span class="co"># Create a new, blank raster that has a totally different sizing</span></a>
-<a class="sourceLine" id="cb228-2" data-line-number="2">newRaster =<span class="st"> </span><span class="kw">raster</span>()</a>
-<a class="sourceLine" id="cb228-3" data-line-number="3">newRaster</a></code></pre></div>
+<div class="sourceCode" id="cb229"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb229-1" data-line-number="1"><span class="co"># Create a new, blank raster that has a totally different sizing</span></a>
+<a class="sourceLine" id="cb229-2" data-line-number="2">newRaster =<span class="st"> </span><span class="kw">raster</span>(<span class="dt">nrow =</span> <span class="dv">180</span>, <span class="dt">ncol =</span> <span class="dv">360</span>)</a>
+<a class="sourceLine" id="cb229-3" data-line-number="3">newRaster</a></code></pre></div>
 <pre><code>## class      : RasterLayer 
 ## dimensions : 180, 360, 64800  (nrow, ncol, ncell)
 ## resolution : 1, 1  (x, y)
 ## extent     : -180, 180, -90, 90  (xmin, xmax, ymin, ymax)
 ## crs        : +proj=longlat +datum=WGS84 +ellps=WGS84 +towgs84=0,0,0</code></pre>
-<div class="sourceCode" id="cb230"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb230-1" data-line-number="1"><span class="co">#resample the temClim raster to the resizedRaster</span></a>
-<a class="sourceLine" id="cb230-2" data-line-number="2">resTemClim =<span class="st"> </span><span class="kw">resample</span>(<span class="dt">x=</span>temClim, <span class="dt">y=</span>newRaster, <span class="dt">method=</span><span class="st">&#39;bilinear&#39;</span>)</a>
-<a class="sourceLine" id="cb230-3" data-line-number="3">resTemClim</a></code></pre></div>
+<div class="sourceCode" id="cb231"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb231-1" data-line-number="1"><span class="co">#resample the temClim raster to the resizedRaster</span></a>
+<a class="sourceLine" id="cb231-2" data-line-number="2">resTemClim =<span class="st"> </span><span class="kw">resample</span>(<span class="dt">x=</span>temClim, <span class="dt">y=</span>newRaster, <span class="dt">method=</span><span class="st">&#39;bilinear&#39;</span>) <span class="co"># can be set to nearest neighbor using &#39;ngb&#39; method</span></a>
+<a class="sourceLine" id="cb231-3" data-line-number="3">resTemClim</a></code></pre></div>
 <pre><code>## class      : RasterLayer 
 ## dimensions : 180, 360, 64800  (nrow, ncol, ncell)
 ## resolution : 1, 1  (x, y)
@@ -303,16 +296,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## source     : memory
 ## names      : CRU_Global_1961.1990_Mean_Monthly_Surface_Temperature_Climatology 
 ## values     : -48.8, 32  (min, max)</code></pre>
-<div class="sourceCode" id="cb232"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb232-1" data-line-number="1"><span class="co">#define new projection as robinson via a proj4 string. Note that this can also be achieved</span></a>
-<a class="sourceLine" id="cb232-2" data-line-number="2"><span class="co"># using EPSG codes with the following - &quot;+init=epsg:4326&quot; for longlat</span></a>
-<a class="sourceLine" id="cb232-3" data-line-number="3">newproj &lt;-<span class="st"> </span><span class="kw">CRS</span>(<span class="st">&quot;+proj=robin +lon_0=0 +x_0=0 +y_0=0 +ellps=WGS84 +datum=WGS84 +units=m +no_defs&quot;</span> )</a>
-<a class="sourceLine" id="cb232-4" data-line-number="4">newproj</a></code></pre></div>
+<div class="sourceCode" id="cb233"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb233-1" data-line-number="1"><span class="co">#define new projection as robinson via a proj4 string. Note that this can also be achieved</span></a>
+<a class="sourceLine" id="cb233-2" data-line-number="2"><span class="co"># using EPSG codes with the following - &quot;+init=epsg:4326&quot; for longlat</span></a>
+<a class="sourceLine" id="cb233-3" data-line-number="3">newproj &lt;-<span class="st"> </span><span class="kw">CRS</span>(<span class="st">&quot;+proj=robin +lon_0=0 +x_0=0 +y_0=0 +ellps=WGS84 +datum=WGS84 +units=m +no_defs&quot;</span> )</a>
+<a class="sourceLine" id="cb233-4" data-line-number="4">newproj</a></code></pre></div>
 <pre><code>## CRS arguments:
 ##  +proj=robin +lon_0=0 +x_0=0 +y_0=0 +ellps=WGS84 +datum=WGS84 +units=m
 ## +no_defs +towgs84=0,0,0</code></pre>
-<div class="sourceCode" id="cb234"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb234-1" data-line-number="1"><span class="co"># reproject the raster to the new projection</span></a>
-<a class="sourceLine" id="cb234-2" data-line-number="2">projTemClim =<span class="st"> </span><span class="kw">projectRaster</span>(resTemClim,<span class="dt">crs=</span>newproj)</a>
-<a class="sourceLine" id="cb234-3" data-line-number="3">projTemClim</a></code></pre></div>
+<div class="sourceCode" id="cb235"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb235-1" data-line-number="1"><span class="co"># reproject the raster to the new projection</span></a>
+<a class="sourceLine" id="cb235-2" data-line-number="2">projTemClim =<span class="st"> </span><span class="kw">projectRaster</span>(resTemClim,<span class="dt">crs=</span>newproj)</a>
+<a class="sourceLine" id="cb235-3" data-line-number="3">projTemClim</a></code></pre></div>
 <pre><code>## class      : RasterLayer 
 ## dimensions : 171, 372, 63612  (nrow, ncol, ncell)
 ## resolution : 94500, 107000  (x, y)
@@ -321,33 +314,33 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## source     : memory
 ## names      : CRU_Global_1961.1990_Mean_Monthly_Surface_Temperature_Climatology 
 ## values     : -48.15073, 31.77627  (min, max)</code></pre>
-<div class="sourceCode" id="cb236"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb236-1" data-line-number="1"><span class="kw">data</span>(wrld_simpl)</a>
-<a class="sourceLine" id="cb236-2" data-line-number="2">plt &lt;-<span class="st"> </span><span class="kw">levelplot</span>(resTemClim, <span class="dt">margin=</span>F, <span class="dt">par.settings=</span>BuRdTheme,</a>
-<a class="sourceLine" id="cb236-3" data-line-number="3">                 <span class="dt">main=</span><span class="st">&quot;January Global Average Temp 1961-1990&quot;</span>)</a>
-<a class="sourceLine" id="cb236-4" data-line-number="4">plt <span class="op">+</span><span class="st"> </span><span class="kw">layer</span>(<span class="kw">sp.lines</span>(wrld_simpl, <span class="dt">col=</span><span class="st">&#39;black&#39;</span>, <span class="dt">lwd=</span><span class="fl">0.4</span>))</a></code></pre></div>
-<p><img src="Introduction-to-R_files/figure-html/unnamed-chunk-90-1.png" width="672" /></p>
-<div class="sourceCode" id="cb237"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb237-1" data-line-number="1"><span class="co"># convert the wrld_simpl land polygons to the robinson projection</span></a>
-<a class="sourceLine" id="cb237-2" data-line-number="2">wrld_simpl =<span class="st"> </span><span class="kw">spTransform</span>(wrld_simpl, <span class="kw">CRS</span>(<span class="st">&quot;+proj=robin +lon_0=0 +x_0=0 +y_0=0 +ellps=WGS84 +datum=WGS84 +units=m +no_defs&quot;</span> ))</a>
-<a class="sourceLine" id="cb237-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb237-4" data-line-number="4">plt &lt;-<span class="st"> </span><span class="kw">levelplot</span>(projTemClim, <span class="dt">margin=</span>F, <span class="dt">par.settings=</span>BuRdTheme,</a>
-<a class="sourceLine" id="cb237-5" data-line-number="5">                 <span class="dt">main=</span><span class="st">&quot;January Global Average Temp 1961-1990&quot;</span>)</a>
-<a class="sourceLine" id="cb237-6" data-line-number="6">plt <span class="op">+</span><span class="st"> </span><span class="kw">layer</span>(<span class="kw">sp.lines</span>(wrld_simpl, <span class="dt">col=</span><span class="st">&#39;black&#39;</span>, <span class="dt">lwd=</span><span class="fl">0.4</span>))</a></code></pre></div>
-<p><img src="Introduction-to-R_files/figure-html/unnamed-chunk-90-2.png" width="672" /></p>
+<div class="sourceCode" id="cb237"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb237-1" data-line-number="1"><span class="kw">data</span>(wrld_simpl)</a>
+<a class="sourceLine" id="cb237-2" data-line-number="2">plt &lt;-<span class="st"> </span><span class="kw">levelplot</span>(resTemClim, <span class="dt">margin=</span>F, <span class="dt">par.settings=</span>BuRdTheme,</a>
+<a class="sourceLine" id="cb237-3" data-line-number="3">                 <span class="dt">main=</span><span class="st">&quot;January Global Average Temp 1961-1990&quot;</span>)</a>
+<a class="sourceLine" id="cb237-4" data-line-number="4">plt <span class="op">+</span><span class="st"> </span><span class="kw">layer</span>(<span class="kw">sp.lines</span>(wrld_simpl, <span class="dt">col=</span><span class="st">&#39;black&#39;</span>, <span class="dt">lwd=</span><span class="fl">0.4</span>))</a></code></pre></div>
+<p><img src="Introduction-to-R_files/figure-html/unnamed-chunk-92-1.png" width="672" /></p>
+<div class="sourceCode" id="cb238"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb238-1" data-line-number="1"><span class="co"># convert the wrld_simpl land polygons to the robinson projection</span></a>
+<a class="sourceLine" id="cb238-2" data-line-number="2">wrld_simpl =<span class="st"> </span><span class="kw">spTransform</span>(wrld_simpl, <span class="kw">CRS</span>(<span class="st">&quot;+proj=robin +lon_0=0 +x_0=0 +y_0=0 +ellps=WGS84 +datum=WGS84 +units=m +no_defs&quot;</span> ))</a>
+<a class="sourceLine" id="cb238-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb238-4" data-line-number="4">plt &lt;-<span class="st"> </span><span class="kw">levelplot</span>(projTemClim, <span class="dt">margin=</span>F, <span class="dt">par.settings=</span>BuRdTheme,</a>
+<a class="sourceLine" id="cb238-5" data-line-number="5">                 <span class="dt">main=</span><span class="st">&quot;January Global Average Temp 1961-1990&quot;</span>)</a>
+<a class="sourceLine" id="cb238-6" data-line-number="6">plt <span class="op">+</span><span class="st"> </span><span class="kw">layer</span>(<span class="kw">sp.lines</span>(wrld_simpl, <span class="dt">col=</span><span class="st">&#39;black&#39;</span>, <span class="dt">lwd=</span><span class="fl">0.4</span>))</a></code></pre></div>
+<p><img src="Introduction-to-R_files/figure-html/unnamed-chunk-92-2.png" width="672" /></p>
 </div>
 <div id="pngs" class="section level2">
 <h2><span class="header-section-number">9.3</span> PNGs</h2>
 <p>The <code>png()</code> function is a function that saves a plot to png. After we invoke the function and fill out the arguments, we need to execute the plot code between the <code>png()</code> function and <code>dev.off()</code>. <code>dev.off()</code> tells R that you’re done adding things to the plot and that it can be done plotting.</p>
-<div class="sourceCode" id="cb238"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb238-1" data-line-number="1"><span class="kw">png</span>(<span class="dt">filename =</span> <span class="st">&quot;~/Downloads/myPNG.png&quot;</span>, <span class="dt">width =</span> <span class="dv">10</span>, <span class="dt">height =</span> <span class="dv">6</span>, <span class="dt">units =</span> <span class="st">&#39;in&#39;</span>,<span class="dt">res=</span><span class="dv">100</span>)</a>
-<a class="sourceLine" id="cb238-2" data-line-number="2">plt &lt;-<span class="st"> </span><span class="kw">levelplot</span>(projTemClim, <span class="dt">margin=</span>F, <span class="dt">par.settings=</span>BuRdTheme,</a>
-<a class="sourceLine" id="cb238-3" data-line-number="3">                 <span class="dt">main=</span><span class="st">&quot;January Global Average Temp 1961-1990&quot;</span>)</a>
-<a class="sourceLine" id="cb238-4" data-line-number="4">plt <span class="op">+</span><span class="st"> </span><span class="kw">layer</span>(<span class="kw">sp.lines</span>(wrld_simpl, <span class="dt">col=</span><span class="st">&#39;black&#39;</span>, <span class="dt">lwd=</span><span class="fl">0.4</span>))</a>
-<a class="sourceLine" id="cb238-5" data-line-number="5"><span class="kw">dev.off</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb239"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb239-1" data-line-number="1"><span class="kw">png</span>(<span class="dt">filename =</span> <span class="st">&quot;~/Downloads/myPNG.png&quot;</span>, <span class="dt">width =</span> <span class="dv">10</span>, <span class="dt">height =</span> <span class="dv">6</span>, <span class="dt">units =</span> <span class="st">&#39;in&#39;</span>,<span class="dt">res=</span><span class="dv">100</span>)</a>
+<a class="sourceLine" id="cb239-2" data-line-number="2">plt &lt;-<span class="st"> </span><span class="kw">levelplot</span>(projTemClim, <span class="dt">margin=</span>F, <span class="dt">par.settings=</span>BuRdTheme,</a>
+<a class="sourceLine" id="cb239-3" data-line-number="3">                 <span class="dt">main=</span><span class="st">&quot;January Global Average Temp 1961-1990&quot;</span>)</a>
+<a class="sourceLine" id="cb239-4" data-line-number="4">plt <span class="op">+</span><span class="st"> </span><span class="kw">layer</span>(<span class="kw">sp.lines</span>(wrld_simpl, <span class="dt">col=</span><span class="st">&#39;black&#39;</span>, <span class="dt">lwd=</span><span class="fl">0.4</span>))</a>
+<a class="sourceLine" id="cb239-5" data-line-number="5"><span class="kw">dev.off</span>()</a></code></pre></div>
 </div>
 <div id="writing-rasters" class="section level2">
 <h2><span class="header-section-number">9.4</span> Writing Rasters</h2>
-<div class="sourceCode" id="cb239"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb239-1" data-line-number="1"><span class="kw">writeRaster</span>(<span class="dt">x=</span>projTemClim, <span class="dt">filename=</span><span class="st">&quot;~/Downloads/projectedTemClim1961-1990.tif&quot;</span>, <span class="dt">format=</span><span class="st">&#39;GTiff&#39;</span>,</a>
-<a class="sourceLine" id="cb239-2" data-line-number="2">            <span class="dt">varname=</span><span class="st">&quot;Temperature&quot;</span>, <span class="dt">longname=</span><span class="st">&quot;Global Average Temperature January 1960-1990&quot;</span>,</a>
-<a class="sourceLine" id="cb239-3" data-line-number="3">            <span class="dt">xname=</span><span class="st">&quot;lon&quot;</span>, <span class="dt">yname=</span><span class="st">&quot;lat&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb240"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb240-1" data-line-number="1"><span class="kw">writeRaster</span>(<span class="dt">x=</span>projTemClim, <span class="dt">filename=</span><span class="st">&quot;~/Downloads/projectedTemClim1961-1990.tif&quot;</span>, <span class="dt">format=</span><span class="st">&#39;GTiff&#39;</span>,</a>
+<a class="sourceLine" id="cb240-2" data-line-number="2">            <span class="dt">varname=</span><span class="st">&quot;Temperature&quot;</span>, <span class="dt">longname=</span><span class="st">&quot;Global Average Temperature January 1960-1990&quot;</span>,</a>
+<a class="sourceLine" id="cb240-3" data-line-number="3">            <span class="dt">xname=</span><span class="st">&quot;lon&quot;</span>, <span class="dt">yname=</span><span class="st">&quot;lat&quot;</span>)</a></code></pre></div>
 <p>You can save these rasters in a variety of formats. If you’re interested in looking them up, run <code>help(writeRaster)</code> and read about the <code>format</code> argument.</p>
 </div>
 <div id="assignment-2" class="section level2">
@@ -357,10 +350,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Extract data for January and July</li>
 <li>Find difference between two months globally</li>
 <li>Enhance resolution 2x using nearest neighbor method</li>
+</ol>
+<ul>
+<li>(<em>hint: run help(resample) if you get stuck</em>)</li>
+</ul>
+<ol start="6" style="list-style-type: decimal">
 <li>Plot in mollwide projection</li>
+</ol>
+<ul>
+<li>(<em>“+proj=moll +lon_0=0 +x_0=0 +y_0=0 +datum=WGS84 +units=m +no_defs”</em>)</li>
+</ul>
+<ol start="7" style="list-style-type: decimal">
 <li>Write raster to NetCDF</li>
 <li>Upload PNG <strong>and</strong> netCDF file to Canvas under week 5 assignment</li>
 </ol>
+<p><img src="Introduction-to-R_files/figure-html/unnamed-chunk-95-1.png" width="1536" /></p>
 
 </div>
 </div>
