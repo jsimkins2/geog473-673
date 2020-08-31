@@ -360,7 +360,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ol>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1">names_list &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="st">&#39;Peter&#39;</span>, <span class="st">&#39;Sarah&#39;</span>, <span class="st">&#39;Tom&#39;</span>, <span class="st">&#39;Helen&#39;</span>)</a></code></pre></div>
 <ol start="2" style="list-style-type: decimal">
-<li><h1 id="is-the-comment-operator---anything-on-the-same-line-of-the-comment-operator-will-not-be-run-by-r."><span class="header-section-number">3.2</span> is the Comment Operator - anything on the same line of the # comment operator will not be run by R.</h1></li>
+<li><code>#</code> is the Comment Operator - anything on the same line of the # comment operator will not be run by R.</li>
 </ol>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="co"># comments can be above</span></a>
 <a class="sourceLine" id="cb2-2" data-line-number="2">names_list &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="st">&#39;Peter&#39;</span>, <span class="st">&#39;Sarah&#39;</span>, <span class="st">&#39;Tom&#39;</span>, <span class="st">&#39;Helen&#39;</span>) <span class="co"># comments can be outside</span></a>
@@ -383,7 +383,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ol>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw">library</span>(ggplot2)</a></code></pre></div>
 <ol start="6" style="list-style-type: decimal">
-<li>Variable names cannot replicate function/package names.</li>
+<li>Variable names should not replicate function/package names.</li>
 </ol>
 </div>
 <div id="general-recommendations" class="section level2">
@@ -392,7 +392,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>Comment, comment, comment. A comment is a brief note on what you were doing when you wrote a line of code. For example, if you write some R code that edits part of a dataframe (R’s version of an Excel Spreadsheet), comment what you were thinking here and why you did it this way. Once you become comfortable coding in R, you’ll be able to churn out new R scripts at a faster rate. It’s very important that you comment on what you’re doing at each step in the script so if you need to look back on something you wrote you can reference what you were doing there. A comment in R is declared using the pound symbol (#).</p></li>
 <li><p>Keep raw data raw. An advantage of R is being able to read in an original spreadsheet and output a new spreadsheet as a separate file. In other words, when you read in a dataset (for example, <code>tv_shows.csv</code>) and make changes to this file, do not save it was <code>tv_shows.csv</code> - thus overwriting the file. Instead, name it something like <code>tv_shows_edited.csv</code>. Also, notice how we use underscores (<code>_</code>) in between words of a filename - this is good practice that should be replicated (spaces are bad, see 4)</p></li>
 <li><p>When in doubt, Google your R question - <a href="https://stackoverflow.com/">look for StackOverflow links</a>. StackOverflow is a web-forum where programmers can post questions for help. This is an incredible tool that even advanced programmers and developers use daily. There are other helpful forums out there - StackOverflow is the most popular.</p></li>
-<li><p>Spaces in variable/file names are BAD. A variable is an object or column that you create in R. For example, if you have a list of student names (<code>student_names = list(&quot;John&quot;, &quot;Peter&quot;, &quot;Sebastian&quot;)</code>, the variable here would be <code>student_names</code>. Let’s get into the habit of using underscores ’_’ or dashes ‘-’ or periods ‘.’ to separate words instead of spaces. From the computers side of variable name storage, it’s much safe to declare a variable name such as <strong>data_file</strong> as opposed to <strong>data file</strong></p></li>
+<li><p>Spaces in variable/file names are BAD. A variable is an object or column that you create in R. For example, if you have a list of student names (<code>student_names = list(&quot;John&quot;, &quot;Peter&quot;, &quot;Sebastian&quot;)</code>, the variable here would be <code>student_names</code>. Let’s get into the habit of using underscores ’_’ or dashes ‘-’ or periods ‘.’ to separate words instead of spaces. From the computers side of variable name storage, it’s much safer to declare a variable name such as <strong>data_file</strong> as opposed to <strong>data file</strong></p></li>
 </ol>
 <p>Keep in mind, these will make more sense after we get more familiar with R - it’s alright if they’re confusing right now!</p>
 

@@ -43,7 +43,7 @@ Read through these now to get familiar and refer back to these whenever you need
 names_list <- list('Peter', 'Sarah', 'Tom', 'Helen')
 ```
 
-2. # is the Comment Operator - anything on the same line of the # comment operator will not be run by R.
+2. `#` is the Comment Operator - anything on the same line of the # comment operator will not be run by R.
 
 ```{r}
 # comments can be above
@@ -74,7 +74,7 @@ install.packages('ggplot2')
 library(ggplot2)
 ```
 
-6. Variable names cannot replicate function/package names.
+6. Variable names should not replicate function/package names.
 
 
 ## General Recommendations 
@@ -85,7 +85,7 @@ library(ggplot2)
 
 3. When in doubt, Google your R question - [look for StackOverflow links](https://stackoverflow.com/). StackOverflow is a web-forum where programmers can post questions for help. This is an incredible tool that even advanced programmers and developers use daily. There are other helpful forums out there - StackOverflow is the most popular. 
 
-4. Spaces in variable/file names are BAD. A variable is an object or column that you create in R. For example, if you have a list of student names (`student_names = list("John", "Peter", "Sebastian")`, the variable here would be `student_names`. Let's get into the habit of using underscores '_' or dashes '-' or periods '.' to separate words instead of spaces. From the computers side of variable name storage, it's much safe to declare a variable name such as **data_file** as opposed to **data file**
+4. Spaces in variable/file names are BAD. A variable is an object or column that you create in R. For example, if you have a list of student names (`student_names = list("John", "Peter", "Sebastian")`, the variable here would be `student_names`. Let's get into the habit of using underscores '_' or dashes '-' or periods '.' to separate words instead of spaces. From the computers side of variable name storage, it's much safer to declare a variable name such as **data_file** as opposed to **data file**
 
 Keep in mind, these will make more sense after we get more familiar with R - it's alright if they're confusing right now!
 
