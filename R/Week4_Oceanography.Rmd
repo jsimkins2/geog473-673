@@ -107,8 +107,8 @@ The final `pathList[[1]]` should look like this...
 
 Rasters offer us a 2 dimensional dataset (matrix) of data with geospatial coordinates. Rasters can come in a variety of filetypes including netCDF, GeoTIFF, CSV (if they come in CSV, they'll be massive - this is an inefficient datatype), etc. We'll be looking at the GOES-16 Rolling 1 Day average datafile - **GOES_R_ROLLING_1DAY_20190814.nc**. The GOES-16 Satellite records sea surface temperatures every hour. A rolling 1 day is an average of the previous 24 hours of record of sea surface temperature (and this dataset is created by CEMA here at UD). 
 
-``` {r, message=FALSE, warnings=FALSE}
-library(maptools) # also loads sp package
+``` {r, message=FALSE, warning=FALSE, error = FALSE}
+library(maptools)
 library(sp)
 library(ncdf4)
 library(raster)

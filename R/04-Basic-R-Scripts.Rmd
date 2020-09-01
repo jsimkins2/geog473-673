@@ -76,6 +76,13 @@ plot(x = co2, ylab = "Atmospheric concentration of CO2 (ppm)", main = "CO2 Datas
 
 Above is our script. We run this script in the console. We can save this script and re-run this at any time. An example of this would be saving this file as `co2_script.R`. Once this is saved, you can close R, re-open it, and re-run your `co2_script.R` without re-writing any code. 
 
+### Saving your plot
+
+We can save any plot from the R plot window. Simply navigate to the **Plots** tab and select **Export** then **Save As Image**. 
+
+```{r, echo=FALSE, out.width="60%", fig.align="center"}
+knitr::include_graphics("../documents/images/save_image.png")  
+```
 
 
 ## Cars - Motor Trends Magazine Data

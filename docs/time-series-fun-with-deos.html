@@ -24,7 +24,7 @@
 <meta name="author" content="James Simkins" />
 
 
-<meta name="date" content="2020-08-28" />
+<meta name="date" content="2020-09-01" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -166,7 +166,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.16" data-path="r-coding-fundamentals.html"><a href="r-coding-fundamentals.html#summary"><i class="fa fa-check"></i><b>4.16</b> Summary</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="basic-r-scripts.html"><a href="basic-r-scripts.html"><i class="fa fa-check"></i><b>5</b> Basic R Scripts</a><ul>
-<li class="chapter" data-level="5.1" data-path="basic-r-scripts.html"><a href="basic-r-scripts.html#global-carbon-dioxide-concentrations"><i class="fa fa-check"></i><b>5.1</b> Global Carbon-Dioxide Concentrations</a></li>
+<li class="chapter" data-level="5.1" data-path="basic-r-scripts.html"><a href="basic-r-scripts.html#global-carbon-dioxide-concentrations"><i class="fa fa-check"></i><b>5.1</b> Global Carbon-Dioxide Concentrations</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="basic-r-scripts.html"><a href="basic-r-scripts.html#saving-your-plot"><i class="fa fa-check"></i><b>5.1.1</b> Saving your plot</a></li>
+</ul></li>
 <li class="chapter" data-level="5.2" data-path="basic-r-scripts.html"><a href="basic-r-scripts.html#cars---motor-trends-magazine-data"><i class="fa fa-check"></i><b>5.2</b> Cars - Motor Trends Magazine Data</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="scientific-r-scripts.html"><a href="scientific-r-scripts.html"><i class="fa fa-check"></i><b>6</b> Scientific R Scripts</a><ul>
@@ -438,7 +440,7 @@ do something within these curly brackets
 <a class="sourceLine" id="cb167-10" data-line-number="10">     <span class="dt">xlab =</span> <span class="kw">paste0</span>(deos_data<span class="op">$</span>datetime[low_ind], <span class="st">&quot; to &quot;</span>, deos_data<span class="op">$</span>datetime[upper_ind]), <span class="dt">ylab =</span> <span class="st">&quot;Celsius&quot;</span>)</a>
 <a class="sourceLine" id="cb167-11" data-line-number="11"><span class="co"># add a title to the plot</span></a>
 <a class="sourceLine" id="cb167-12" data-line-number="12"><span class="kw">title</span>(<span class="st">&quot;1 Year Air Temperature at Station&quot;</span>)</a></code></pre></div>
-<p><img src="Introduction-to-R_files/figure-html/unnamed-chunk-82-1.png" width="672" /></p>
+<p><img src="Introduction-to-R_files/figure-html/unnamed-chunk-83-1.png" width="672" /></p>
 <div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb168-1" data-line-number="1"><span class="co">#subset the data using the subset function  this time</span></a>
 <a class="sourceLine" id="cb168-2" data-line-number="2">subDeos =<span class="st"> </span><span class="kw">subset</span>(deos_data, deos_data<span class="op">$</span>datetime <span class="op">&gt;=</span><span class="st"> &quot;2014-07-04 00:00:00&quot;</span> <span class="op">&amp;</span><span class="st"> </span>deos_data<span class="op">$</span>datetime <span class="op">&lt;=</span><span class="st"> &quot;2014-07-11 23:59:00&quot;</span>)</a>
 <a class="sourceLine" id="cb168-3" data-line-number="3"></a>
@@ -448,7 +450,7 @@ do something within these curly brackets
 <a class="sourceLine" id="cb168-7" data-line-number="7"><span class="kw">lines</span>(<span class="dt">x =</span> subDeos<span class="op">$</span>datetime, <span class="dt">y =</span> subDeos<span class="op">$</span>dewpoint, <span class="dt">col =</span> <span class="st">&#39;yellow&#39;</span>)</a>
 <a class="sourceLine" id="cb168-8" data-line-number="8"><span class="kw">legend</span>(<span class="st">&#39;bottomright&#39;</span>, <span class="dt">legend=</span><span class="kw">c</span>(<span class="st">&#39;Air Temp&#39;</span>, <span class="st">&#39;Dew Pt&#39;</span>), <span class="dt">col =</span> <span class="kw">c</span>(<span class="st">&#39;red&#39;</span>, <span class="st">&#39;yellow&#39;</span>), <span class="dt">lty =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>))</a>
 <a class="sourceLine" id="cb168-9" data-line-number="9"><span class="kw">title</span>(<span class="st">&quot;Air Temperature &amp; Dew Point Temperature&quot;</span>)</a></code></pre></div>
-<p><img src="Introduction-to-R_files/figure-html/unnamed-chunk-82-2.png" width="672" /></p>
+<p><img src="Introduction-to-R_files/figure-html/unnamed-chunk-83-2.png" width="672" /></p>
 </div>
 <div id="assignment" class="section level2">
 <h2><span class="header-section-number">7.3</span> Assignment</h2>
@@ -466,7 +468,7 @@ do something within these curly brackets
 <li>Deliver Resulting Plot to Canvas assignment week3</li>
 </ol>
 <p>Aim for something like this (does not have to be exact)…</p>
-<p><img src="Introduction-to-R_files/figure-html/unnamed-chunk-83-1.png" width="672" /></p>
+<p><img src="Introduction-to-R_files/figure-html/unnamed-chunk-84-1.png" width="672" /></p>
 
 </div>
 </div>

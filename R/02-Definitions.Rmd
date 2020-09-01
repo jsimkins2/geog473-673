@@ -10,7 +10,7 @@ Read through these now to get familiar and refer back to these whenever you need
 |--------|------------------|--------------------------|
 | syntax | R code | the nomenclature and structure of a programming language| 
 | debugging | Failed R run | debugging involves fixing R code that is written incorrectly and doesn't run |
-| variable | `names` | Variables are used to store data, whose value can be changed according to our need. Variables can be declared using `<-` (tradiational way) **or** by `=` (conventional way) |
+| variable | `my_var` | Variables are used to store data, whose value can be changed according to our need. Variables can be declared using `<-` (tradiational way) **or** by `=` (conventional way) |
 | package | `library(ggplot2)` | A collection of functions prewritten in R| 
 | function | `print()` | A function is a set of statements organized together to perform a specific task. R has a set of preloaded functions that are part of the `base` package. If a function cannot be found as part of the `base` package, the function has likely already been built under another package that needs to be loaded in. **Functions can be identified due to their enclosing parantheses ()**|
 | arguments | `read.csv(file = "datasets/tv_shows.csv", header = FALSE)`| Components of a function that are separated by commas and declared using the `=` sign. Arguments in this example are `file = ` and `header = `|

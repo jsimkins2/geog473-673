@@ -24,7 +24,7 @@
 <meta name="author" content="James Simkins" />
 
 
-<meta name="date" content="2020-08-28" />
+<meta name="date" content="2020-09-01" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -166,7 +166,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.16" data-path="r-coding-fundamentals.html"><a href="r-coding-fundamentals.html#summary"><i class="fa fa-check"></i><b>4.16</b> Summary</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="basic-r-scripts.html"><a href="basic-r-scripts.html"><i class="fa fa-check"></i><b>5</b> Basic R Scripts</a><ul>
-<li class="chapter" data-level="5.1" data-path="basic-r-scripts.html"><a href="basic-r-scripts.html#global-carbon-dioxide-concentrations"><i class="fa fa-check"></i><b>5.1</b> Global Carbon-Dioxide Concentrations</a></li>
+<li class="chapter" data-level="5.1" data-path="basic-r-scripts.html"><a href="basic-r-scripts.html#global-carbon-dioxide-concentrations"><i class="fa fa-check"></i><b>5.1</b> Global Carbon-Dioxide Concentrations</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="basic-r-scripts.html"><a href="basic-r-scripts.html#saving-your-plot"><i class="fa fa-check"></i><b>5.1.1</b> Saving your plot</a></li>
+</ul></li>
 <li class="chapter" data-level="5.2" data-path="basic-r-scripts.html"><a href="basic-r-scripts.html#cars---motor-trends-magazine-data"><i class="fa fa-check"></i><b>5.2</b> Cars - Motor Trends Magazine Data</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="scientific-r-scripts.html"><a href="scientific-r-scripts.html"><i class="fa fa-check"></i><b>6</b> Scientific R Scripts</a><ul>
@@ -416,6 +418,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb105-17" data-line-number="17"><span class="co"># plot the dataset using the default plot function</span></a>
 <a class="sourceLine" id="cb105-18" data-line-number="18"><span class="kw">plot</span>(<span class="dt">x =</span> co2, <span class="dt">ylab =</span> <span class="st">&quot;Atmospheric concentration of CO2 (ppm)&quot;</span>, <span class="dt">main =</span> <span class="st">&quot;CO2 Dataset&quot;</span>)</a></code></pre></div>
 <p>Above is our script. We run this script in the console. We can save this script and re-run this at any time. An example of this would be saving this file as <code>co2_script.R</code>. Once this is saved, you can close R, re-open it, and re-run your <code>co2_script.R</code> without re-writing any code.</p>
+<div id="saving-your-plot" class="section level3">
+<h3><span class="header-section-number">5.1.1</span> Saving your plot</h3>
+<p>We can save any plot from the R plot window. Simply navigate to the <strong>Plots</strong> tab and select <strong>Export</strong> then <strong>Save As Image</strong>.</p>
+<p><img src="../documents/images/save_image.png" width="60%" style="display: block; margin: auto;" /></p>
+</div>
 </div>
 <div id="cars---motor-trends-magazine-data" class="section level2">
 <h2><span class="header-section-number">5.2</span> Cars - Motor Trends Magazine Data</h2>
@@ -536,7 +543,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>## [1] 21.0 21.0 22.8 21.4 18.7</code></pre>
 <p>That’s the <code>mpg</code> column of the first 5 cars. Which car has the best miles per gallon (mpg)?</p>
 <div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb130-1" data-line-number="1"><span class="kw">barplot</span>(<span class="dt">height =</span> mtcars<span class="op">$</span>mpg[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>], <span class="dt">names.arg =</span> <span class="kw">rownames</span>(mtcars)[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>])</a></code></pre></div>
-<p><img src="Introduction-to-R_files/figure-html/unnamed-chunk-62-1.png" width="672" /></p>
+<p><img src="Introduction-to-R_files/figure-html/unnamed-chunk-63-1.png" width="672" /></p>
 <p>The Datsun 710 has the highest MPG rating of the first 5 cars (rows) in the dataset.</p>
 <p>The entire script looks like this:</p>
 <div class="sourceCode" id="cb131"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb131-1" data-line-number="1"><span class="co"># load the data - the mtcars dataset is pre-built </span></a>
