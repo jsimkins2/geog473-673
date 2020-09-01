@@ -80,10 +80,9 @@ Above is our script. We run this script in the console. We can save this script 
 
 We can save any plot from the R plot window. Simply navigate to the **Plots** tab and select **Export** then **Save As Image**. 
 
-```{r, echo=FALSE, out.width="60%", fig.align="center"}
-knitr::include_graphics("../documents/images/save_image.png")  
+```{r, echo=FALSE, fig.cap="Save As Image", out.width = '80%'}
+knitr::include_graphics("images/save_image.png")  
 ```
-
 
 ## Cars - Motor Trends Magazine Data
 
