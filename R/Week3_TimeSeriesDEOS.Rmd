@@ -135,11 +135,17 @@ for (s in seq(length(soiltype))){
 ```
 ## DEOS Data
 
-The dataset we'll be using is called - **DEOS.csv** . It contains a variety of meteorological variables collected at 5 minute intervals. Let's dive into the coded example.
+The dataset we'll be using is named - **DEOS.csv** . It contains a variety of meteorological variables collected at 5 minute intervals. Let's dive into the coded example.
+
+**Note: When we load the file, your path might look something like this:**
+
+  `Downloads/geog473-673/datasets/DEOS.csv`
+  
+Remember, we need to tell R *where* we stored the file we want to open. We can use `getwd()` to see where R is looking right now. From there, we can tell it to look in `Downloads`, or `Documents`, or `Desktop`, etc. 
 
 ``` {r, warning = FALSE}
 # load the data using read.csv()
-deos_data <- read.csv("/Users/james/Documents/Github/geog473-673/datasets/DEOS.csv", header = TRUE, skip=0, stringsAsFactors = FALSE)
+deos_data <- read.csv("../datasets/DEOS.csv", header = TRUE, skip=0, stringsAsFactors = FALSE)
 
 # view the top few rows of data using the head() function
 head(deos_data)
@@ -202,7 +208,7 @@ Aim for something like this (does not have to be exact)...
 ``` {r, echo = FALSE, message = FALSE, warning = FALSE}
 library(basicPlotteR)
 # load the data using read.csv()
-deos_data <- read.csv("/Users/james/Documents/Github/geog473-673/datasets/DEOS.csv", header = TRUE, skip=0, stringsAsFactors = FALSE)
+deos_data <- read.csv("../datasets/DEOS.csv", header = TRUE, skip=0, stringsAsFactors = FALSE)
 
 #the variable names look wonky because they have spaces in them - spaces in variable names is a big no-no
 #change the names to something more readable

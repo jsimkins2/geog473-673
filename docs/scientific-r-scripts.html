@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>6 Scientific R Scripts | GEOG 473/673 Open-sourced Environmental Computing</title>
   <meta name="description" content="Phase 1 - Introduction to R" />
-  <meta name="generator" content="bookdown 0.19 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.20.6 and GitBook 2.6.7" />
 
   <meta property="og:title" content="6 Scientific R Scripts | GEOG 473/673 Open-sourced Environmental Computing" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="James Simkins" />
 
 
-<meta name="date" content="2020-09-01" />
+<meta name="date" content="2020-09-23" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -50,12 +50,13 @@
 
 
 
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
 pre.sourceCode { margin: 0; }
@@ -64,14 +65,16 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -80,9 +83,9 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {  }
+  {   }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -186,14 +189,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8" data-path="oceanography-global-tree-cover.html"><a href="oceanography-global-tree-cover.html"><i class="fa fa-check"></i><b>8</b> Oceanography &amp; Global Tree Cover</a><ul>
 <li class="chapter" data-level="8.1" data-path="oceanography-global-tree-cover.html"><a href="oceanography-global-tree-cover.html#paste0"><i class="fa fa-check"></i><b>8.1</b> <code>Paste0()</code></a></li>
 <li class="chapter" data-level="8.2" data-path="oceanography-global-tree-cover.html"><a href="oceanography-global-tree-cover.html#rasters"><i class="fa fa-check"></i><b>8.2</b> Rasters</a></li>
-<li class="chapter" data-level="8.3" data-path="oceanography-global-tree-cover.html"><a href="oceanography-global-tree-cover.html#assignment-1"><i class="fa fa-check"></i><b>8.3</b> Assignment</a></li>
+<li class="chapter" data-level="8.3" data-path="time-series-fun-with-deos.html"><a href="time-series-fun-with-deos.html#assignment"><i class="fa fa-check"></i><b>8.3</b> Assignment</a></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="reprojecting-writing-rasters.html"><a href="reprojecting-writing-rasters.html"><i class="fa fa-check"></i><b>9</b> Reprojecting &amp; Writing Rasters</a><ul>
 <li class="chapter" data-level="9.1" data-path="reprojecting-writing-rasters.html"><a href="reprojecting-writing-rasters.html#indexing-data"><i class="fa fa-check"></i><b>9.1</b> Indexing Data</a></li>
 <li class="chapter" data-level="9.2" data-path="reprojecting-writing-rasters.html"><a href="reprojecting-writing-rasters.html#resampling-and-reprojecting"><i class="fa fa-check"></i><b>9.2</b> Resampling and Reprojecting</a></li>
 <li class="chapter" data-level="9.3" data-path="reprojecting-writing-rasters.html"><a href="reprojecting-writing-rasters.html#pngs"><i class="fa fa-check"></i><b>9.3</b> PNGs</a></li>
 <li class="chapter" data-level="9.4" data-path="reprojecting-writing-rasters.html"><a href="reprojecting-writing-rasters.html#writing-rasters"><i class="fa fa-check"></i><b>9.4</b> Writing Rasters</a></li>
-<li class="chapter" data-level="9.5" data-path="reprojecting-writing-rasters.html"><a href="reprojecting-writing-rasters.html#assignment-2"><i class="fa fa-check"></i><b>9.5</b> Assignment</a></li>
+<li class="chapter" data-level="9.5" data-path="time-series-fun-with-deos.html"><a href="time-series-fun-with-deos.html#assignment"><i class="fa fa-check"></i><b>9.5</b> Assignment</a></li>
 </ul></li>
 </ul>
 
@@ -216,119 +219,119 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1><span class="header-section-number">6</span> Scientific R Scripts</h1>
 <p>So far, the examples of R scripts we’ve shown have been general purpose scripts. For this week, we’re going to cover an example where we want to plot sea surface temperature from a given netCDF file. A netCDF file (network Common Data Format) is an advanced filetype that is incredibly efficient at storing data and heavily used in physical sciences. Within each file, metadata (time, latitude info, longitude info, projection, etc.), and variables (sea surface temperature, latitude points, longitude points, chlorophyll, etc.) can be found. The netCDF file we’ll be looking at in this example is <strong>OR_ABI-L2-SSTF-M3_G16_s20192081300453_e20192081400161_c20192081406297.nc</strong>. This is a data file from the GOES-16 (Geostationary Operational Environmental Satellite) satellite that shows a snapshot of the Northwest Atlantic Ocean and Eastern Seaboard. So we have the data, but what does it look like?</p>
 <p>A scientific R Script might look like this:</p>
-<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb132-1" data-line-number="1"><span class="co"># James Simkins</span></a>
-<a class="sourceLine" id="cb132-2" data-line-number="2"><span class="co"># Load libraries</span></a>
-<a class="sourceLine" id="cb132-3" data-line-number="3"><span class="kw">library</span>(ncdf4)</a>
-<a class="sourceLine" id="cb132-4" data-line-number="4"><span class="kw">library</span>(fields)</a>
-<a class="sourceLine" id="cb132-5" data-line-number="5">ncFile &lt;-<span class="st"> </span>ncdf4<span class="op">::</span><span class="kw">nc_open</span>(<span class="st">&quot;~/Documents/Github/geog473-673/datasets/OR_ABI-L2-SSTF-M3_G16_s20192081300453_e20192081400161_c20192081406297.nc&quot;</span>)</a>
-<a class="sourceLine" id="cb132-6" data-line-number="6">sstK &lt;-<span class="st"> </span>ncdf4<span class="op">::</span><span class="kw">ncvar_get</span>(<span class="dt">nc=</span>ncFile, <span class="dt">varid=</span><span class="st">&quot;SST&quot;</span>)</a>
-<a class="sourceLine" id="cb132-7" data-line-number="7">lat &lt;-<span class="st"> </span>ncdf4<span class="op">::</span><span class="kw">ncvar_get</span>(<span class="dt">nc=</span>ncFile, <span class="dt">varid=</span><span class="st">&quot;latitude&quot;</span>)</a>
-<a class="sourceLine" id="cb132-8" data-line-number="8">lon &lt;-<span class="st"> </span>ncdf4<span class="op">::</span><span class="kw">ncvar_get</span>(<span class="dt">nc=</span>ncFile, <span class="dt">varid=</span><span class="st">&quot;longitude&quot;</span>)</a>
-<a class="sourceLine" id="cb132-9" data-line-number="9"><span class="co"># convert sst from Kelvin to Celsius</span></a>
-<a class="sourceLine" id="cb132-10" data-line-number="10">sstC &lt;-<span class="st"> </span>sstK <span class="op">-</span><span class="st"> </span><span class="fl">273.15</span></a>
-<a class="sourceLine" id="cb132-11" data-line-number="11"><span class="co"># remove values below 0C</span></a>
-<a class="sourceLine" id="cb132-12" data-line-number="12">sstC[sstC <span class="op">&lt;</span><span class="st"> </span><span class="dv">0</span>] =<span class="st"> </span><span class="ot">NA</span></a>
-<a class="sourceLine" id="cb132-13" data-line-number="13"><span class="co"># Plot the matrix</span></a>
-<a class="sourceLine" id="cb132-14" data-line-number="14">fields<span class="op">::</span><span class="kw">image.plot</span>(<span class="dt">x=</span>lon, <span class="dt">y=</span>lat, <span class="dt">z=</span>sstC, <span class="dt">legend.lab=</span><span class="st">&quot;Celsius&quot;</span>)</a>
-<a class="sourceLine" id="cb132-15" data-line-number="15"><span class="kw">title</span>(<span class="st">&quot;GOES-R SST Product 7/25/2019 19:00 UTC&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb132-1"><a href="scientific-r-scripts.html#cb132-1"></a><span class="co"># James Simkins</span></span>
+<span id="cb132-2"><a href="scientific-r-scripts.html#cb132-2"></a><span class="co"># Load libraries</span></span>
+<span id="cb132-3"><a href="scientific-r-scripts.html#cb132-3"></a><span class="kw">library</span>(ncdf4)</span>
+<span id="cb132-4"><a href="scientific-r-scripts.html#cb132-4"></a><span class="kw">library</span>(fields)</span>
+<span id="cb132-5"><a href="scientific-r-scripts.html#cb132-5"></a>ncFile &lt;-<span class="st"> </span>ncdf4<span class="op">::</span><span class="kw">nc_open</span>(<span class="st">&quot;~/Documents/Github/geog473-673/datasets/OR_ABI-L2-SSTF-M3_G16_s20192081300453_e20192081400161_c20192081406297.nc&quot;</span>)</span>
+<span id="cb132-6"><a href="scientific-r-scripts.html#cb132-6"></a>sstK &lt;-<span class="st"> </span>ncdf4<span class="op">::</span><span class="kw">ncvar_get</span>(<span class="dt">nc=</span>ncFile, <span class="dt">varid=</span><span class="st">&quot;SST&quot;</span>)</span>
+<span id="cb132-7"><a href="scientific-r-scripts.html#cb132-7"></a>lat &lt;-<span class="st"> </span>ncdf4<span class="op">::</span><span class="kw">ncvar_get</span>(<span class="dt">nc=</span>ncFile, <span class="dt">varid=</span><span class="st">&quot;latitude&quot;</span>)</span>
+<span id="cb132-8"><a href="scientific-r-scripts.html#cb132-8"></a>lon &lt;-<span class="st"> </span>ncdf4<span class="op">::</span><span class="kw">ncvar_get</span>(<span class="dt">nc=</span>ncFile, <span class="dt">varid=</span><span class="st">&quot;longitude&quot;</span>)</span>
+<span id="cb132-9"><a href="scientific-r-scripts.html#cb132-9"></a><span class="co"># convert sst from Kelvin to Celsius</span></span>
+<span id="cb132-10"><a href="scientific-r-scripts.html#cb132-10"></a>sstC &lt;-<span class="st"> </span>sstK <span class="op">-</span><span class="st"> </span><span class="fl">273.15</span></span>
+<span id="cb132-11"><a href="scientific-r-scripts.html#cb132-11"></a><span class="co"># remove values below 0C</span></span>
+<span id="cb132-12"><a href="scientific-r-scripts.html#cb132-12"></a>sstC[sstC <span class="op">&lt;</span><span class="st"> </span><span class="dv">0</span>] =<span class="st"> </span><span class="ot">NA</span></span>
+<span id="cb132-13"><a href="scientific-r-scripts.html#cb132-13"></a><span class="co"># Plot the matrix</span></span>
+<span id="cb132-14"><a href="scientific-r-scripts.html#cb132-14"></a>fields<span class="op">::</span><span class="kw">image.plot</span>(<span class="dt">x=</span>lon, <span class="dt">y=</span>lat, <span class="dt">z=</span>sstC, <span class="dt">legend.lab=</span><span class="st">&quot;Celsius&quot;</span>)</span>
+<span id="cb132-15"><a href="scientific-r-scripts.html#cb132-15"></a><span class="kw">title</span>(<span class="st">&quot;GOES-R SST Product 7/25/2019 19:00 UTC&quot;</span>)</span></code></pre></div>
 <p><img src="Introduction-to-R_files/figure-html/unnamed-chunk-65-1.png" width="672" /></p>
 <div id="script-breakdown" class="section level2">
 <h2><span class="header-section-number">6.1</span> Script Breakdown</h2>
-<div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb133-1" data-line-number="1"><span class="co"># Load libraries</span></a>
-<a class="sourceLine" id="cb133-2" data-line-number="2"><span class="kw">library</span>(ncdf4)</a>
-<a class="sourceLine" id="cb133-3" data-line-number="3"><span class="kw">library</span>(fields)</a></code></pre></div>
+<div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb133-1"><a href="scientific-r-scripts.html#cb133-1"></a><span class="co"># Load libraries</span></span>
+<span id="cb133-2"><a href="scientific-r-scripts.html#cb133-2"></a><span class="kw">library</span>(ncdf4)</span>
+<span id="cb133-3"><a href="scientific-r-scripts.html#cb133-3"></a><span class="kw">library</span>(fields)</span></code></pre></div>
 <p>In R, we need to call on packages/libraries that we want to load in. As a reminder, packages are the toolbox we want to bring into R and the functions inside each package are the tools within that specific toolbox. The <code>library()</code> base function loads packages. After we load a package, R will know what we mean when we call on a function from that package.</p>
-<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb134-1" data-line-number="1"><span class="co"># Load libraries</span></a>
-<a class="sourceLine" id="cb134-2" data-line-number="2"><span class="kw">library</span>(ncdf4)</a>
-<a class="sourceLine" id="cb134-3" data-line-number="3"><span class="kw">library</span>(fields)</a>
-<a class="sourceLine" id="cb134-4" data-line-number="4"><span class="co">#######################################</span></a>
-<a class="sourceLine" id="cb134-5" data-line-number="5"></a>
-<a class="sourceLine" id="cb134-6" data-line-number="6">ncFile &lt;-<span class="st"> </span>ncdf4<span class="op">::</span><span class="kw">nc_open</span>(<span class="dt">filename=</span><span class="st">&quot;~/Documents/Github/geog473-673/datasets/OR_ABI-L2-SSTF-M3_G16_s20192081300453_e20192081400161_c20192081406297.nc&quot;</span>)</a>
-<a class="sourceLine" id="cb134-7" data-line-number="7">sstK &lt;-<span class="st"> </span>ncdf4<span class="op">::</span><span class="kw">ncvar_get</span>(<span class="dt">nc=</span>ncFile, <span class="dt">varid=</span><span class="st">&quot;SST&quot;</span>)</a>
-<a class="sourceLine" id="cb134-8" data-line-number="8">lat &lt;-<span class="st"> </span>ncdf4<span class="op">::</span><span class="kw">ncvar_get</span>(<span class="dt">nc=</span>ncFile, <span class="dt">varid=</span><span class="st">&quot;latitude&quot;</span>)</a>
-<a class="sourceLine" id="cb134-9" data-line-number="9">lon &lt;-<span class="st"> </span>ncdf4<span class="op">::</span><span class="kw">ncvar_get</span>(<span class="dt">nc=</span>ncFile, <span class="dt">varid=</span><span class="st">&quot;longitude&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb134-1"><a href="scientific-r-scripts.html#cb134-1"></a><span class="co"># Load libraries</span></span>
+<span id="cb134-2"><a href="scientific-r-scripts.html#cb134-2"></a><span class="kw">library</span>(ncdf4)</span>
+<span id="cb134-3"><a href="scientific-r-scripts.html#cb134-3"></a><span class="kw">library</span>(fields)</span>
+<span id="cb134-4"><a href="scientific-r-scripts.html#cb134-4"></a><span class="co">#######################################</span></span>
+<span id="cb134-5"><a href="scientific-r-scripts.html#cb134-5"></a></span>
+<span id="cb134-6"><a href="scientific-r-scripts.html#cb134-6"></a>ncFile &lt;-<span class="st"> </span>ncdf4<span class="op">::</span><span class="kw">nc_open</span>(<span class="dt">filename=</span><span class="st">&quot;~/Documents/Github/geog473-673/datasets/OR_ABI-L2-SSTF-M3_G16_s20192081300453_e20192081400161_c20192081406297.nc&quot;</span>)</span>
+<span id="cb134-7"><a href="scientific-r-scripts.html#cb134-7"></a>sstK &lt;-<span class="st"> </span>ncdf4<span class="op">::</span><span class="kw">ncvar_get</span>(<span class="dt">nc=</span>ncFile, <span class="dt">varid=</span><span class="st">&quot;SST&quot;</span>)</span>
+<span id="cb134-8"><a href="scientific-r-scripts.html#cb134-8"></a>lat &lt;-<span class="st"> </span>ncdf4<span class="op">::</span><span class="kw">ncvar_get</span>(<span class="dt">nc=</span>ncFile, <span class="dt">varid=</span><span class="st">&quot;latitude&quot;</span>)</span>
+<span id="cb134-9"><a href="scientific-r-scripts.html#cb134-9"></a>lon &lt;-<span class="st"> </span>ncdf4<span class="op">::</span><span class="kw">ncvar_get</span>(<span class="dt">nc=</span>ncFile, <span class="dt">varid=</span><span class="st">&quot;longitude&quot;</span>)</span></code></pre></div>
 <p>Our object name is <code>ncFile</code> and it holds an opened NetCDF file. We open this file via the <code>nc_open()</code> function that’s within the <code>ncdf4</code> library. Note the <code>ncdf4::nc_open()</code> syntax. Using this syntax, we explicitly tell R we wish to use the <code>nc_open()</code> function within (<code>::</code>) the <code>ncdf4</code> package. This is not necessary after loading the <code>ncdf4</code> package above but is still important ot know.</p>
 <p>Notice we can use either <code>&lt;-</code> or <code>=</code> for objects (like <code>ncFile</code> or <code>sstK</code>) but I MUST use <code>=</code> within the <em>function</em> ‘walls’ (the parantheses).</p>
 <p>We open the netcdf file and then extract what we want out of it using <code>ncvar_get()</code>, which is short for “netcdf variable get”. Confused about how to use <code>ncvar_get()</code>? Try running <code>help(ncvar_get)</code> in your console.</p>
-<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb135-1" data-line-number="1"><span class="co"># Load libraries</span></a>
-<a class="sourceLine" id="cb135-2" data-line-number="2"><span class="kw">library</span>(ncdf4)</a>
-<a class="sourceLine" id="cb135-3" data-line-number="3"><span class="kw">library</span>(fields)</a>
-<a class="sourceLine" id="cb135-4" data-line-number="4">ncFile &lt;-<span class="st"> </span>ncdf4<span class="op">::</span><span class="kw">nc_open</span>(<span class="dt">filename=</span><span class="st">&quot;~/Documents/Github/geog473-673/datasets/OR_ABI-L2-SSTF-M3_G16_s20192081300453_e20192081400161_c20192081406297.nc&quot;</span>)</a>
-<a class="sourceLine" id="cb135-5" data-line-number="5">sstK &lt;-<span class="st"> </span>ncdf4<span class="op">::</span><span class="kw">ncvar_get</span>(<span class="dt">nc=</span>ncFile, <span class="dt">varid=</span><span class="st">&quot;SST&quot;</span>)</a>
-<a class="sourceLine" id="cb135-6" data-line-number="6"><span class="co">#######################################</span></a>
-<a class="sourceLine" id="cb135-7" data-line-number="7"><span class="co"># convert sst from Kelvin to Celsius</span></a>
-<a class="sourceLine" id="cb135-8" data-line-number="8">sstC &lt;-<span class="st"> </span>sstK <span class="op">-</span><span class="st"> </span><span class="fl">273.15</span></a></code></pre></div>
+<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb135-1"><a href="scientific-r-scripts.html#cb135-1"></a><span class="co"># Load libraries</span></span>
+<span id="cb135-2"><a href="scientific-r-scripts.html#cb135-2"></a><span class="kw">library</span>(ncdf4)</span>
+<span id="cb135-3"><a href="scientific-r-scripts.html#cb135-3"></a><span class="kw">library</span>(fields)</span>
+<span id="cb135-4"><a href="scientific-r-scripts.html#cb135-4"></a>ncFile &lt;-<span class="st"> </span>ncdf4<span class="op">::</span><span class="kw">nc_open</span>(<span class="dt">filename=</span><span class="st">&quot;~/Documents/Github/geog473-673/datasets/OR_ABI-L2-SSTF-M3_G16_s20192081300453_e20192081400161_c20192081406297.nc&quot;</span>)</span>
+<span id="cb135-5"><a href="scientific-r-scripts.html#cb135-5"></a>sstK &lt;-<span class="st"> </span>ncdf4<span class="op">::</span><span class="kw">ncvar_get</span>(<span class="dt">nc=</span>ncFile, <span class="dt">varid=</span><span class="st">&quot;SST&quot;</span>)</span>
+<span id="cb135-6"><a href="scientific-r-scripts.html#cb135-6"></a><span class="co">#######################################</span></span>
+<span id="cb135-7"><a href="scientific-r-scripts.html#cb135-7"></a><span class="co"># convert sst from Kelvin to Celsius</span></span>
+<span id="cb135-8"><a href="scientific-r-scripts.html#cb135-8"></a>sstC &lt;-<span class="st"> </span>sstK <span class="op">-</span><span class="st"> </span><span class="fl">273.15</span></span></code></pre></div>
 <p>The SST variable from the netCDF file was in Kelvin and we want to convert it to Celsius. Right now, sstK is a matrix. How do I know this? Look at your environment, or simply type into your console:</p>
-<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb136-1" data-line-number="1"><span class="co"># Load libraries</span></a>
-<a class="sourceLine" id="cb136-2" data-line-number="2"><span class="kw">library</span>(ncdf4)</a>
-<a class="sourceLine" id="cb136-3" data-line-number="3"><span class="kw">library</span>(fields)</a>
-<a class="sourceLine" id="cb136-4" data-line-number="4">ncFile &lt;-<span class="st"> </span>ncdf4<span class="op">::</span><span class="kw">nc_open</span>(<span class="dt">filename=</span><span class="st">&quot;~/Documents/Github/geog473-673/datasets/OR_ABI-L2-SSTF-M3_G16_s20192081300453_e20192081400161_c20192081406297.nc&quot;</span>)</a>
-<a class="sourceLine" id="cb136-5" data-line-number="5">sstK &lt;-<span class="st"> </span>ncdf4<span class="op">::</span><span class="kw">ncvar_get</span>(<span class="dt">nc=</span>ncFile, <span class="dt">varid=</span><span class="st">&quot;SST&quot;</span>)</a>
-<a class="sourceLine" id="cb136-6" data-line-number="6"><span class="co">#######################################</span></a>
-<a class="sourceLine" id="cb136-7" data-line-number="7"></a>
-<a class="sourceLine" id="cb136-8" data-line-number="8"><span class="kw">class</span>(sstK)</a></code></pre></div>
-<pre><code>## [1] &quot;matrix&quot;</code></pre>
+<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb136-1"><a href="scientific-r-scripts.html#cb136-1"></a><span class="co"># Load libraries</span></span>
+<span id="cb136-2"><a href="scientific-r-scripts.html#cb136-2"></a><span class="kw">library</span>(ncdf4)</span>
+<span id="cb136-3"><a href="scientific-r-scripts.html#cb136-3"></a><span class="kw">library</span>(fields)</span>
+<span id="cb136-4"><a href="scientific-r-scripts.html#cb136-4"></a>ncFile &lt;-<span class="st"> </span>ncdf4<span class="op">::</span><span class="kw">nc_open</span>(<span class="dt">filename=</span><span class="st">&quot;~/Documents/Github/geog473-673/datasets/OR_ABI-L2-SSTF-M3_G16_s20192081300453_e20192081400161_c20192081406297.nc&quot;</span>)</span>
+<span id="cb136-5"><a href="scientific-r-scripts.html#cb136-5"></a>sstK &lt;-<span class="st"> </span>ncdf4<span class="op">::</span><span class="kw">ncvar_get</span>(<span class="dt">nc=</span>ncFile, <span class="dt">varid=</span><span class="st">&quot;SST&quot;</span>)</span>
+<span id="cb136-6"><a href="scientific-r-scripts.html#cb136-6"></a><span class="co">#######################################</span></span>
+<span id="cb136-7"><a href="scientific-r-scripts.html#cb136-7"></a></span>
+<span id="cb136-8"><a href="scientific-r-scripts.html#cb136-8"></a><span class="kw">class</span>(sstK)</span></code></pre></div>
+<pre><code>## [1] &quot;matrix&quot; &quot;array&quot;</code></pre>
 <p>Class is a useful function that is loaded with the base library everytime you fire up R. It tells us what type of object we have. Now that we know this is a matrix, we can subtract 0 Celsius, or 273.15 Kelvin. When we have a matrix in R and perform any math on it, it does that math on each and every matrix value.</p>
 <p>#Quick and Dirty Quality Control</p>
 <p>There are bad values that crept into the dataset and we need to convert all of them to <code>NaN</code> (aka Not A Number…also known as <code>NA</code> (Not Available) in R). How do we know there are bad values in this dataset?</p>
-<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb138-1" data-line-number="1"><span class="co"># Load libraries</span></a>
-<a class="sourceLine" id="cb138-2" data-line-number="2"><span class="kw">library</span>(ncdf4)</a>
-<a class="sourceLine" id="cb138-3" data-line-number="3"><span class="kw">library</span>(fields)</a>
-<a class="sourceLine" id="cb138-4" data-line-number="4">ncFile &lt;-<span class="st"> </span>ncdf4<span class="op">::</span><span class="kw">nc_open</span>(<span class="dt">filename=</span><span class="st">&quot;~/Documents/Github/geog473-673/datasets/OR_ABI-L2-SSTF-M3_G16_s20192081300453_e20192081400161_c20192081406297.nc&quot;</span>)</a>
-<a class="sourceLine" id="cb138-5" data-line-number="5">sstK &lt;-<span class="st"> </span>ncdf4<span class="op">::</span><span class="kw">ncvar_get</span>(<span class="dt">nc=</span>ncFile, <span class="dt">varid=</span><span class="st">&quot;SST&quot;</span>)</a>
-<a class="sourceLine" id="cb138-6" data-line-number="6"><span class="co">#######################################</span></a>
-<a class="sourceLine" id="cb138-7" data-line-number="7"></a>
-<a class="sourceLine" id="cb138-8" data-line-number="8"><span class="kw">summary</span>(<span class="kw">as.vector</span>(sstK))</a></code></pre></div>
+<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb138-1"><a href="scientific-r-scripts.html#cb138-1"></a><span class="co"># Load libraries</span></span>
+<span id="cb138-2"><a href="scientific-r-scripts.html#cb138-2"></a><span class="kw">library</span>(ncdf4)</span>
+<span id="cb138-3"><a href="scientific-r-scripts.html#cb138-3"></a><span class="kw">library</span>(fields)</span>
+<span id="cb138-4"><a href="scientific-r-scripts.html#cb138-4"></a>ncFile &lt;-<span class="st"> </span>ncdf4<span class="op">::</span><span class="kw">nc_open</span>(<span class="dt">filename=</span><span class="st">&quot;~/Documents/Github/geog473-673/datasets/OR_ABI-L2-SSTF-M3_G16_s20192081300453_e20192081400161_c20192081406297.nc&quot;</span>)</span>
+<span id="cb138-5"><a href="scientific-r-scripts.html#cb138-5"></a>sstK &lt;-<span class="st"> </span>ncdf4<span class="op">::</span><span class="kw">ncvar_get</span>(<span class="dt">nc=</span>ncFile, <span class="dt">varid=</span><span class="st">&quot;SST&quot;</span>)</span>
+<span id="cb138-6"><a href="scientific-r-scripts.html#cb138-6"></a><span class="co">#######################################</span></span>
+<span id="cb138-7"><a href="scientific-r-scripts.html#cb138-7"></a></span>
+<span id="cb138-8"><a href="scientific-r-scripts.html#cb138-8"></a><span class="kw">summary</span>(<span class="kw">as.vector</span>(sstK))</span></code></pre></div>
 <pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA&#39;s 
 ##  -999.0   286.9   300.0   278.2   302.0   310.0 2175822</code></pre>
 <p><code>summary()</code> is another great base function. In order to use it on a matrix, we need to convert it to a vector - summary can’t do 2 dimensional objects like matrices, it needs a one dimensional vector of numbers. Notice the <code>Min</code> in the summary output. -999? No way is that a valid Kelvin value, especially since we subtract another 273.15 to this number to make the the Celsius matrix. So clearly we have some bad data that we need to convert to <code>NA</code>’s. We do this by…</p>
-<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb140-1" data-line-number="1"><span class="kw">library</span>(ncdf4)</a>
-<a class="sourceLine" id="cb140-2" data-line-number="2"><span class="kw">library</span>(fields)</a>
-<a class="sourceLine" id="cb140-3" data-line-number="3">ncFile &lt;-<span class="st"> </span>ncdf4<span class="op">::</span><span class="kw">nc_open</span>(<span class="st">&quot;~/Documents/Github/geog473-673/datasets/OR_ABI-L2-SSTF-M3_G16_s20192081300453_e20192081400161_c20192081406297.nc&quot;</span>)</a>
-<a class="sourceLine" id="cb140-4" data-line-number="4">sstK &lt;-<span class="st"> </span>ncdf4<span class="op">::</span><span class="kw">ncvar_get</span>(<span class="dt">nc=</span>ncFile, <span class="dt">varid=</span><span class="st">&quot;SST&quot;</span>)</a>
-<a class="sourceLine" id="cb140-5" data-line-number="5">lat &lt;-<span class="st"> </span>ncdf4<span class="op">::</span><span class="kw">ncvar_get</span>(<span class="dt">nc=</span>ncFile, <span class="dt">varid=</span><span class="st">&quot;latitude&quot;</span>)</a>
-<a class="sourceLine" id="cb140-6" data-line-number="6">lon &lt;-<span class="st"> </span>ncdf4<span class="op">::</span><span class="kw">ncvar_get</span>(<span class="dt">nc=</span>ncFile, <span class="dt">varid=</span><span class="st">&quot;longitude&quot;</span>)</a>
-<a class="sourceLine" id="cb140-7" data-line-number="7"><span class="co"># convert sst from Kelvin to Celsius</span></a>
-<a class="sourceLine" id="cb140-8" data-line-number="8">sstC &lt;-<span class="st"> </span>sstK <span class="op">-</span><span class="st"> </span><span class="fl">273.15</span></a>
-<a class="sourceLine" id="cb140-9" data-line-number="9"><span class="co">#######################################</span></a>
-<a class="sourceLine" id="cb140-10" data-line-number="10"></a>
-<a class="sourceLine" id="cb140-11" data-line-number="11"><span class="co"># remove values below 0C</span></a>
-<a class="sourceLine" id="cb140-12" data-line-number="12">sstC[sstC <span class="op">&lt;</span><span class="st"> </span><span class="dv">0</span>] =<span class="st"> </span><span class="ot">NA</span></a></code></pre></div>
+<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="scientific-r-scripts.html#cb140-1"></a><span class="kw">library</span>(ncdf4)</span>
+<span id="cb140-2"><a href="scientific-r-scripts.html#cb140-2"></a><span class="kw">library</span>(fields)</span>
+<span id="cb140-3"><a href="scientific-r-scripts.html#cb140-3"></a>ncFile &lt;-<span class="st"> </span>ncdf4<span class="op">::</span><span class="kw">nc_open</span>(<span class="st">&quot;~/Documents/Github/geog473-673/datasets/OR_ABI-L2-SSTF-M3_G16_s20192081300453_e20192081400161_c20192081406297.nc&quot;</span>)</span>
+<span id="cb140-4"><a href="scientific-r-scripts.html#cb140-4"></a>sstK &lt;-<span class="st"> </span>ncdf4<span class="op">::</span><span class="kw">ncvar_get</span>(<span class="dt">nc=</span>ncFile, <span class="dt">varid=</span><span class="st">&quot;SST&quot;</span>)</span>
+<span id="cb140-5"><a href="scientific-r-scripts.html#cb140-5"></a>lat &lt;-<span class="st"> </span>ncdf4<span class="op">::</span><span class="kw">ncvar_get</span>(<span class="dt">nc=</span>ncFile, <span class="dt">varid=</span><span class="st">&quot;latitude&quot;</span>)</span>
+<span id="cb140-6"><a href="scientific-r-scripts.html#cb140-6"></a>lon &lt;-<span class="st"> </span>ncdf4<span class="op">::</span><span class="kw">ncvar_get</span>(<span class="dt">nc=</span>ncFile, <span class="dt">varid=</span><span class="st">&quot;longitude&quot;</span>)</span>
+<span id="cb140-7"><a href="scientific-r-scripts.html#cb140-7"></a><span class="co"># convert sst from Kelvin to Celsius</span></span>
+<span id="cb140-8"><a href="scientific-r-scripts.html#cb140-8"></a>sstC &lt;-<span class="st"> </span>sstK <span class="op">-</span><span class="st"> </span><span class="fl">273.15</span></span>
+<span id="cb140-9"><a href="scientific-r-scripts.html#cb140-9"></a><span class="co">#######################################</span></span>
+<span id="cb140-10"><a href="scientific-r-scripts.html#cb140-10"></a></span>
+<span id="cb140-11"><a href="scientific-r-scripts.html#cb140-11"></a><span class="co"># remove values below 0C</span></span>
+<span id="cb140-12"><a href="scientific-r-scripts.html#cb140-12"></a>sstC[sstC <span class="op">&lt;</span><span class="st"> </span><span class="dv">0</span>] =<span class="st"> </span><span class="ot">NA</span></span></code></pre></div>
 <p>This line reads as: <code>sstC</code> where <code>sstC</code> is less than <code>0</code> equals <code>NA</code>. The brackets here can be thought of as the ‘condition’, that is what you’re looking to change. This is called a vector operation, which we will get more into later but these are important becuase it’s far faster to do this than a for loop.</p>
-<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb141-1" data-line-number="1"><span class="kw">library</span>(ncdf4)</a>
-<a class="sourceLine" id="cb141-2" data-line-number="2"><span class="kw">library</span>(fields)</a>
-<a class="sourceLine" id="cb141-3" data-line-number="3">ncFile &lt;-<span class="st"> </span>ncdf4<span class="op">::</span><span class="kw">nc_open</span>(<span class="st">&quot;~/Documents/Github/geog473-673/datasets/OR_ABI-L2-SSTF-M3_G16_s20192081300453_e20192081400161_c20192081406297.nc&quot;</span>)</a>
-<a class="sourceLine" id="cb141-4" data-line-number="4">sstK &lt;-<span class="st"> </span>ncdf4<span class="op">::</span><span class="kw">ncvar_get</span>(<span class="dt">nc=</span>ncFile, <span class="dt">varid=</span><span class="st">&quot;SST&quot;</span>)</a>
-<a class="sourceLine" id="cb141-5" data-line-number="5">lat &lt;-<span class="st"> </span>ncdf4<span class="op">::</span><span class="kw">ncvar_get</span>(<span class="dt">nc=</span>ncFile, <span class="dt">varid=</span><span class="st">&quot;latitude&quot;</span>)</a>
-<a class="sourceLine" id="cb141-6" data-line-number="6">lon &lt;-<span class="st"> </span>ncdf4<span class="op">::</span><span class="kw">ncvar_get</span>(<span class="dt">nc=</span>ncFile, <span class="dt">varid=</span><span class="st">&quot;longitude&quot;</span>)</a>
-<a class="sourceLine" id="cb141-7" data-line-number="7"><span class="co"># convert sst from Kelvin to Celsius</span></a>
-<a class="sourceLine" id="cb141-8" data-line-number="8">sstC &lt;-<span class="st"> </span>sstK <span class="op">-</span><span class="st"> </span><span class="fl">273.15</span></a>
-<a class="sourceLine" id="cb141-9" data-line-number="9"><span class="co"># remove values below 0C</span></a>
-<a class="sourceLine" id="cb141-10" data-line-number="10"><span class="co">#######################################</span></a>
-<a class="sourceLine" id="cb141-11" data-line-number="11"></a>
-<a class="sourceLine" id="cb141-12" data-line-number="12">sstC[sstC <span class="op">&lt;</span><span class="st"> </span><span class="dv">0</span>] =<span class="st"> </span><span class="ot">NA</span></a>
-<a class="sourceLine" id="cb141-13" data-line-number="13"><span class="kw">summary</span>(<span class="kw">as.vector</span>(sstC))</a></code></pre></div>
+<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb141-1"><a href="scientific-r-scripts.html#cb141-1"></a><span class="kw">library</span>(ncdf4)</span>
+<span id="cb141-2"><a href="scientific-r-scripts.html#cb141-2"></a><span class="kw">library</span>(fields)</span>
+<span id="cb141-3"><a href="scientific-r-scripts.html#cb141-3"></a>ncFile &lt;-<span class="st"> </span>ncdf4<span class="op">::</span><span class="kw">nc_open</span>(<span class="st">&quot;~/Documents/Github/geog473-673/datasets/OR_ABI-L2-SSTF-M3_G16_s20192081300453_e20192081400161_c20192081406297.nc&quot;</span>)</span>
+<span id="cb141-4"><a href="scientific-r-scripts.html#cb141-4"></a>sstK &lt;-<span class="st"> </span>ncdf4<span class="op">::</span><span class="kw">ncvar_get</span>(<span class="dt">nc=</span>ncFile, <span class="dt">varid=</span><span class="st">&quot;SST&quot;</span>)</span>
+<span id="cb141-5"><a href="scientific-r-scripts.html#cb141-5"></a>lat &lt;-<span class="st"> </span>ncdf4<span class="op">::</span><span class="kw">ncvar_get</span>(<span class="dt">nc=</span>ncFile, <span class="dt">varid=</span><span class="st">&quot;latitude&quot;</span>)</span>
+<span id="cb141-6"><a href="scientific-r-scripts.html#cb141-6"></a>lon &lt;-<span class="st"> </span>ncdf4<span class="op">::</span><span class="kw">ncvar_get</span>(<span class="dt">nc=</span>ncFile, <span class="dt">varid=</span><span class="st">&quot;longitude&quot;</span>)</span>
+<span id="cb141-7"><a href="scientific-r-scripts.html#cb141-7"></a><span class="co"># convert sst from Kelvin to Celsius</span></span>
+<span id="cb141-8"><a href="scientific-r-scripts.html#cb141-8"></a>sstC &lt;-<span class="st"> </span>sstK <span class="op">-</span><span class="st"> </span><span class="fl">273.15</span></span>
+<span id="cb141-9"><a href="scientific-r-scripts.html#cb141-9"></a><span class="co"># remove values below 0C</span></span>
+<span id="cb141-10"><a href="scientific-r-scripts.html#cb141-10"></a><span class="co">#######################################</span></span>
+<span id="cb141-11"><a href="scientific-r-scripts.html#cb141-11"></a></span>
+<span id="cb141-12"><a href="scientific-r-scripts.html#cb141-12"></a>sstC[sstC <span class="op">&lt;</span><span class="st"> </span><span class="dv">0</span>] =<span class="st"> </span><span class="ot">NA</span></span>
+<span id="cb141-13"><a href="scientific-r-scripts.html#cb141-13"></a><span class="kw">summary</span>(<span class="kw">as.vector</span>(sstC))</span></code></pre></div>
 <pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA&#39;s 
 ##     0.0    19.8    27.6    24.1    29.0    36.8 2679819</code></pre>
 <p>Now we see that our summary looks good (even though we’re looking at a matrix in celsius now). So all that’s left to do is plot this up…</p>
-<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb143-1" data-line-number="1"><span class="co"># James Simkins</span></a>
-<a class="sourceLine" id="cb143-2" data-line-number="2"><span class="co"># Load libraries</span></a>
-<a class="sourceLine" id="cb143-3" data-line-number="3"><span class="kw">library</span>(ncdf4)</a>
-<a class="sourceLine" id="cb143-4" data-line-number="4"><span class="kw">library</span>(fields)</a>
-<a class="sourceLine" id="cb143-5" data-line-number="5">ncFile &lt;-<span class="st"> </span>ncdf4<span class="op">::</span><span class="kw">nc_open</span>(<span class="st">&quot;~/Documents/Github/geog473-673/datasets/OR_ABI-L2-SSTF-M3_G16_s20192081300453_e20192081400161_c20192081406297.nc&quot;</span>)</a>
-<a class="sourceLine" id="cb143-6" data-line-number="6">sstK &lt;-<span class="st"> </span>ncdf4<span class="op">::</span><span class="kw">ncvar_get</span>(<span class="dt">nc=</span>ncFile, <span class="dt">varid=</span><span class="st">&quot;SST&quot;</span>)</a>
-<a class="sourceLine" id="cb143-7" data-line-number="7">lat &lt;-<span class="st"> </span>ncdf4<span class="op">::</span><span class="kw">ncvar_get</span>(<span class="dt">nc=</span>ncFile, <span class="dt">varid=</span><span class="st">&quot;latitude&quot;</span>)</a>
-<a class="sourceLine" id="cb143-8" data-line-number="8">lon &lt;-<span class="st"> </span>ncdf4<span class="op">::</span><span class="kw">ncvar_get</span>(<span class="dt">nc=</span>ncFile, <span class="dt">varid=</span><span class="st">&quot;longitude&quot;</span>)</a>
-<a class="sourceLine" id="cb143-9" data-line-number="9"></a>
-<a class="sourceLine" id="cb143-10" data-line-number="10"><span class="co"># convert sst from Kelvin to Celsius</span></a>
-<a class="sourceLine" id="cb143-11" data-line-number="11">sstC &lt;-<span class="st"> </span>sstK <span class="op">-</span><span class="st"> </span><span class="fl">273.15</span></a>
-<a class="sourceLine" id="cb143-12" data-line-number="12"><span class="co"># remove values below 0C</span></a>
-<a class="sourceLine" id="cb143-13" data-line-number="13">sstC[sstC <span class="op">&lt;</span><span class="st"> </span><span class="dv">0</span>] =<span class="st"> </span><span class="ot">NA</span></a>
-<a class="sourceLine" id="cb143-14" data-line-number="14"></a>
-<a class="sourceLine" id="cb143-15" data-line-number="15"><span class="co">#######################################</span></a>
-<a class="sourceLine" id="cb143-16" data-line-number="16"><span class="co"># Plot the matrix</span></a>
-<a class="sourceLine" id="cb143-17" data-line-number="17">fields<span class="op">::</span><span class="kw">image.plot</span>(<span class="dt">x=</span>lon, <span class="dt">y=</span>lat, <span class="dt">z=</span>sstC, <span class="dt">legend.lab=</span><span class="st">&quot;Celsius&quot;</span>)</a>
-<a class="sourceLine" id="cb143-18" data-line-number="18"><span class="kw">title</span>(<span class="st">&quot;GOES-R SST Product 7/25/2019 19:00 UTC&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb143-1"><a href="scientific-r-scripts.html#cb143-1"></a><span class="co"># James Simkins</span></span>
+<span id="cb143-2"><a href="scientific-r-scripts.html#cb143-2"></a><span class="co"># Load libraries</span></span>
+<span id="cb143-3"><a href="scientific-r-scripts.html#cb143-3"></a><span class="kw">library</span>(ncdf4)</span>
+<span id="cb143-4"><a href="scientific-r-scripts.html#cb143-4"></a><span class="kw">library</span>(fields)</span>
+<span id="cb143-5"><a href="scientific-r-scripts.html#cb143-5"></a>ncFile &lt;-<span class="st"> </span>ncdf4<span class="op">::</span><span class="kw">nc_open</span>(<span class="st">&quot;~/Documents/Github/geog473-673/datasets/OR_ABI-L2-SSTF-M3_G16_s20192081300453_e20192081400161_c20192081406297.nc&quot;</span>)</span>
+<span id="cb143-6"><a href="scientific-r-scripts.html#cb143-6"></a>sstK &lt;-<span class="st"> </span>ncdf4<span class="op">::</span><span class="kw">ncvar_get</span>(<span class="dt">nc=</span>ncFile, <span class="dt">varid=</span><span class="st">&quot;SST&quot;</span>)</span>
+<span id="cb143-7"><a href="scientific-r-scripts.html#cb143-7"></a>lat &lt;-<span class="st"> </span>ncdf4<span class="op">::</span><span class="kw">ncvar_get</span>(<span class="dt">nc=</span>ncFile, <span class="dt">varid=</span><span class="st">&quot;latitude&quot;</span>)</span>
+<span id="cb143-8"><a href="scientific-r-scripts.html#cb143-8"></a>lon &lt;-<span class="st"> </span>ncdf4<span class="op">::</span><span class="kw">ncvar_get</span>(<span class="dt">nc=</span>ncFile, <span class="dt">varid=</span><span class="st">&quot;longitude&quot;</span>)</span>
+<span id="cb143-9"><a href="scientific-r-scripts.html#cb143-9"></a></span>
+<span id="cb143-10"><a href="scientific-r-scripts.html#cb143-10"></a><span class="co"># convert sst from Kelvin to Celsius</span></span>
+<span id="cb143-11"><a href="scientific-r-scripts.html#cb143-11"></a>sstC &lt;-<span class="st"> </span>sstK <span class="op">-</span><span class="st"> </span><span class="fl">273.15</span></span>
+<span id="cb143-12"><a href="scientific-r-scripts.html#cb143-12"></a><span class="co"># remove values below 0C</span></span>
+<span id="cb143-13"><a href="scientific-r-scripts.html#cb143-13"></a>sstC[sstC <span class="op">&lt;</span><span class="st"> </span><span class="dv">0</span>] =<span class="st"> </span><span class="ot">NA</span></span>
+<span id="cb143-14"><a href="scientific-r-scripts.html#cb143-14"></a></span>
+<span id="cb143-15"><a href="scientific-r-scripts.html#cb143-15"></a><span class="co">#######################################</span></span>
+<span id="cb143-16"><a href="scientific-r-scripts.html#cb143-16"></a><span class="co"># Plot the matrix</span></span>
+<span id="cb143-17"><a href="scientific-r-scripts.html#cb143-17"></a>fields<span class="op">::</span><span class="kw">image.plot</span>(<span class="dt">x=</span>lon, <span class="dt">y=</span>lat, <span class="dt">z=</span>sstC, <span class="dt">legend.lab=</span><span class="st">&quot;Celsius&quot;</span>)</span>
+<span id="cb143-18"><a href="scientific-r-scripts.html#cb143-18"></a><span class="kw">title</span>(<span class="st">&quot;GOES-R SST Product 7/25/2019 19:00 UTC&quot;</span>)</span></code></pre></div>
 <p><img src="Introduction-to-R_files/figure-html/unnamed-chunk-73-1.png" width="672" /></p>
 <p>Now we plot this up using the <code>image.plot()</code> function from the <code>fields</code> library. <code>image.plot()</code> takes the arguments <code>x</code>, <code>y</code>, and <code>z</code>. This is a 2 dimensional dataset of Sea Surface Temperature where the <code>x</code> is <code>longitude</code>, the <code>y</code> is <code>latitude</code>, and what we plot within the box (<code>z</code>) is <code>sstC</code>. Notice that for this kind of plot, the ‘title()’ function is a separate function rather than an argument that goes inside of <code>image.plot()</code>. Remember, if you’re ever confused about something like this just tell R you need ‘help()’.</p>
 </div>

@@ -4,17 +4,17 @@ language:
   ui:
     chapter_name: ""
 rmd_files: [
-  "/Users/james/Documents/Github/geog473-673/R/Index.Rmd",
-  "/Users/james/Documents/Github/geog473-673/R/01-Getting-Started.Rmd", 
-  "/Users/james/Documents/Github/geog473-673/R/02-Definitions.Rmd",
-  "/Users/james/Documents/Github/geog473-673/R/03-Fundamentals.Rmd",
-  "/Users/james/Documents/Github/geog473-673/R/04-Basic-R-Scripts.Rmd",
-  "/Users/james/Documents/Github/geog473-673/R/Week2_RSyntaxClassesDatatypes.Rmd",
-  "/Users/james/Documents/Github/geog473-673/R/Week3_TimeSeriesDEOS.Rmd",
-  "/Users/james/Documents/Github/geog473-673/R/Week4_Oceanography.Rmd",
-  "/Users/james/Documents/Github/geog473-673/R/Week5_Reprojecting.Rmd"
+  "Index.Rmd",
+  "01-Getting-Started.Rmd", 
+  "02-Definitions.Rmd",
+  "03-Fundamentals.Rmd",
+  "04-Basic-R-Scripts.Rmd",
+  "Week2_RSyntaxClassesDatatypes.Rmd",
+  "Week3_TimeSeriesDEOS.Rmd",
+  "Week4_Oceanography.Rmd",
+  "Week5_Reprojecting.Rmd"
  ]
 delete_merged_file: true
-output_dir: "/Users/james/Documents/Github/geog473-673/docs"
+output_dir: "../docs"
 # always_allow_html: true # added after build error suggested this for kable() ---but unsuccessful
 

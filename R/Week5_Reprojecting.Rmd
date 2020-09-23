@@ -44,7 +44,7 @@ library(rasterVis)
 library(maptools) # also loads sp package
 
 # load in dataset directly via raster package, specify varname which is 'tem' for 'temperature' 
-temClim = raster("/Users/james/Documents/Github/geog473-673/datasets/globalTemClim1961-1990.nc", varname = 'tem', band=1)
+temClim = raster("../datasets/globalTemClim1961-1990.nc", varname = 'tem', band=1)
 temClim
 
 # Create a new, blank raster that has a totally different sizing
@@ -118,8 +118,8 @@ library(rasterVis)
 library(maptools) # also loads sp package
 
 # load in dataset directly via raster package, specify varname which is 'tem' for 'temperature' 
-jan = raster("/Users/james/Documents/Github/geog473-673/datasets/globalTemClim1961-1990.nc", varname = 'tem', band=1)
-july = raster("/Users/james/Documents/Github/geog473-673/datasets/globalTemClim1961-1990.nc", varname = 'tem', band=7)
+jan = raster("../datasets/globalTemClim1961-1990.nc", varname = 'tem', band=1)
+july = raster("../datasets/globalTemClim1961-1990.nc", varname = 'tem', band=7)
 
 temClim = july - jan
 # Create a new, blank raster that has a totally different sizing
@@ -145,6 +145,6 @@ data(wrld_simpl)
 wrld_simpl = spTransform(wrld_simpl, CRS("+proj=moll +lon_0=0 +x_0=0 +y_0=0 +datum=WGS84 +units=m +no_defs"))
 
 plt <- levelplot(projTemClim, margin=F, par.settings=BuRdTheme,
-                 main="January Global Average Temp 1961-1990")
+                 main="January - July: Global Average Temp 1961-1990")
 plt + layer(sp.lines(wrld_simpl, col='black', lwd=0.4)) + layer(panel.text(0,0,"Prof Simkins", alpha=1, col = "black"))
 ```

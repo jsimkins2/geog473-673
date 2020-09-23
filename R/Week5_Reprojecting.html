@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Week5_Reprojecting.utf8</title>
+  <meta name="description" content="" />
+  <meta name="generator" content="bookdown #bookdown:version# and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Week5_Reprojecting.utf8" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Week5_Reprojecting.utf8" />
+  
+  
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<!--bookdown:link_prev-->
+<!--bookdown:link_next-->
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+
+
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+<!--bookdown:title:start-->
+<!--bookdown:title:end-->
+
+<!--bookdown:toc:start-->
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+<!--bookdown:toc2:start-->
+<ul>
+<li><a href="#reprojecting-writing-rasters"><span class="toc-section-number">1</span> Reprojecting &amp; Writing Rasters</a><ul>
+<li><a href="#indexing-data"><span class="toc-section-number">1.1</span> Indexing Data</a></li>
+<li><a href="#resampling-and-reprojecting"><span class="toc-section-number">1.2</span> Resampling and Reprojecting</a></li>
+<li><a href="#pngs"><span class="toc-section-number">1.3</span> PNGs</a></li>
+<li><a href="#writing-rasters"><span class="toc-section-number">1.4</span> Writing Rasters</a></li>
+<li><a href="#assignment"><span class="toc-section-number">1.5</span> Assignment</a></li>
+</ul></li>
+</ul>
+<!--bookdown:toc2:end-->
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./"></a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<!--bookdown:toc:end-->
+<!--bookdown:body:start-->
+<div id="reprojecting-writing-rasters" class="section level1">
+<h1><span class="header-section-number">1</span> Reprojecting &amp; Writing Rasters</h1>
+<p>This week work on handling raster datasets that have undesirable projections. We’ll reproject these datasets and then write them to a new datafile that we can use in the future.</p>
+<div id="indexing-data" class="section level2">
+<h2><span class="header-section-number">1.1</span> Indexing Data</h2>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a>matA=<span class="kw">matrix</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">16</span>,<span class="dv">4</span>,<span class="dv">4</span>)</span>
+<span id="cb1-2"><a href="#cb1-2"></a>matA</span></code></pre></div>
+<pre><code>##      [,1] [,2] [,3] [,4]
+## [1,]    1    5    9   13
+## [2,]    2    6   10   14
+## [3,]    3    7   11   15
+## [4,]    4    8   12   16</code></pre>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>matA[<span class="dv">2</span>,<span class="dv">3</span>]</span></code></pre></div>
+<pre><code>## [1] 10</code></pre>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>matA[<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">3</span>),<span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">4</span>)]</span></code></pre></div>
+<pre><code>##      [,1] [,2]
+## [1,]    5   13
+## [2,]    7   15</code></pre>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>matA[<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>,<span class="dv">2</span><span class="op">:</span><span class="dv">4</span>]</span></code></pre></div>
+<pre><code>##      [,1] [,2] [,3]
+## [1,]    5    9   13
+## [2,]    6   10   14
+## [3,]    7   11   15</code></pre>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>matA[<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>,]</span></code></pre></div>
+<pre><code>##      [,1] [,2] [,3] [,4]
+## [1,]    1    5    9   13
+## [2,]    2    6   10   14</code></pre>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>matA[,<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>]</span></code></pre></div>
+<pre><code>##      [,1] [,2]
+## [1,]    1    5
+## [2,]    2    6
+## [3,]    3    7
+## [4,]    4    8</code></pre>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a>matA[<span class="dv">1</span>,]</span></code></pre></div>
+<pre><code>## [1]  1  5  9 13</code></pre>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="kw">dim</span>(matA)</span></code></pre></div>
+<pre><code>## [1] 4 4</code></pre>
+<p>##In Class Exercise:</p>
+<p>Starting with this code…</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a>matA=<span class="kw">matrix</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">16</span>,<span class="dv">4</span>,<span class="dv">4</span>)</span></code></pre></div>
+<p>Make this matrix….</p>
+<pre><code>##      [,1] [,2] [,3] [,4]
+## [1,]    1   10   18   26
+## [2,]   47   47   47   47
+## [3,]    6   14   22   39
+## [4,]    8   16   24   32</code></pre>
+</div>
+<div id="resampling-and-reprojecting" class="section level2">
+<h2><span class="header-section-number">1.2</span> Resampling and Reprojecting</h2>
+<p>This week we’ll be working an example with <strong>globalTemClim1961-1990.nc</strong>. This is Global Temperature climatology from 1961 to 1990. We’ll look at resampling this raster to a different size (resolution). Next, we’ll reproject this dataset. Reprojection and resampling are a frequent task for spatial datasets because the Earth isn’t flat (despite what your distant relative on Facebook might think). Earth’s shape (oblate spheroid) presents challenging projection issues.</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a><span class="co"># load in the packages</span></span>
+<span id="cb19-2"><a href="#cb19-2"></a><span class="kw">library</span>(raster)</span>
+<span id="cb19-3"><a href="#cb19-3"></a><span class="kw">library</span>(rasterVis)</span>
+<span id="cb19-4"><a href="#cb19-4"></a><span class="kw">library</span>(maptools) <span class="co"># also loads sp package</span></span>
+<span id="cb19-5"><a href="#cb19-5"></a></span>
+<span id="cb19-6"><a href="#cb19-6"></a><span class="co"># load in dataset directly via raster package, specify varname which is &#39;tem&#39; for &#39;temperature&#39; </span></span>
+<span id="cb19-7"><a href="#cb19-7"></a>temClim =<span class="st"> </span><span class="kw">raster</span>(<span class="st">&quot;../datasets/globalTemClim1961-1990.nc&quot;</span>, <span class="dt">varname =</span> <span class="st">&#39;tem&#39;</span>, <span class="dt">band=</span><span class="dv">1</span>)</span>
+<span id="cb19-8"><a href="#cb19-8"></a>temClim</span></code></pre></div>
+<pre><code>## class      : RasterLayer 
+## band       : 1  (of  12  bands)
+## dimensions : 36, 72, 2592  (nrow, ncol, ncell)
+## resolution : 5, 5  (x, y)
+## extent     : -180, 180, -90, 90  (xmin, xmax, ymin, ymax)
+## crs        : +proj=longlat +datum=WGS84 +no_defs 
+## source     : /Users/james/Documents/Github/geog473-673/datasets/globalTemClim1961-1990.nc 
+## names      : CRU_Global_1961.1990_Mean_Monthly_Surface_Temperature_Climatology 
+## z-value    : 1 
+## zvar       : tem</code></pre>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a><span class="co"># Create a new, blank raster that has a totally different sizing</span></span>
+<span id="cb21-2"><a href="#cb21-2"></a>newRaster =<span class="st"> </span><span class="kw">raster</span>(<span class="dt">nrow =</span> <span class="dv">180</span>, <span class="dt">ncol =</span> <span class="dv">360</span>)</span>
+<span id="cb21-3"><a href="#cb21-3"></a>newRaster</span></code></pre></div>
+<pre><code>## class      : RasterLayer 
+## dimensions : 180, 360, 64800  (nrow, ncol, ncell)
+## resolution : 1, 1  (x, y)
+## extent     : -180, 180, -90, 90  (xmin, xmax, ymin, ymax)
+## crs        : +proj=longlat +datum=WGS84 +no_defs</code></pre>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a><span class="co">#resample the temClim raster to the resizedRaster</span></span>
+<span id="cb23-2"><a href="#cb23-2"></a>resTemClim =<span class="st"> </span><span class="kw">resample</span>(<span class="dt">x=</span>temClim, <span class="dt">y=</span>newRaster, <span class="dt">method=</span><span class="st">&#39;bilinear&#39;</span>) <span class="co"># can be set to nearest neighbor using &#39;ngb&#39; method</span></span>
+<span id="cb23-3"><a href="#cb23-3"></a>resTemClim</span></code></pre></div>
+<pre><code>## class      : RasterLayer 
+## dimensions : 180, 360, 64800  (nrow, ncol, ncell)
+## resolution : 1, 1  (x, y)
+## extent     : -180, 180, -90, 90  (xmin, xmax, ymin, ymax)
+## crs        : +proj=longlat +datum=WGS84 +no_defs 
+## source     : memory
+## names      : CRU_Global_1961.1990_Mean_Monthly_Surface_Temperature_Climatology 
+## values     : -48.8, 32  (min, max)</code></pre>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a><span class="co">#define new projection as robinson via a proj4 string. Note that this can also be achieved</span></span>
+<span id="cb25-2"><a href="#cb25-2"></a><span class="co"># using EPSG codes with the following - &quot;+init=epsg:4326&quot; for longlat</span></span>
+<span id="cb25-3"><a href="#cb25-3"></a>newproj &lt;-<span class="st"> </span><span class="kw">CRS</span>(<span class="st">&quot;+proj=robin +lon_0=0 +x_0=0 +y_0=0 +ellps=WGS84 +datum=WGS84 +units=m +no_defs&quot;</span> )</span>
+<span id="cb25-4"><a href="#cb25-4"></a>newproj</span></code></pre></div>
+<pre><code>## CRS arguments:
+##  +proj=robin +lon_0=0 +x_0=0 +y_0=0 +datum=WGS84 +units=m +no_defs</code></pre>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a><span class="co"># reproject the raster to the new projection</span></span>
+<span id="cb27-2"><a href="#cb27-2"></a>projTemClim =<span class="st"> </span><span class="kw">projectRaster</span>(resTemClim,<span class="dt">crs=</span>newproj)</span>
+<span id="cb27-3"><a href="#cb27-3"></a>projTemClim</span></code></pre></div>
+<pre><code>## class      : RasterLayer 
+## dimensions : 171, 372, 63612  (nrow, ncol, ncell)
+## resolution : 94500, 107000  (x, y)
+## extent     : -17570274, 17583726, -9136845, 9160155  (xmin, xmax, ymin, ymax)
+## crs        : +proj=robin +lon_0=0 +x_0=0 +y_0=0 +datum=WGS84 +units=m +no_defs 
+## source     : memory
+## names      : CRU_Global_1961.1990_Mean_Monthly_Surface_Temperature_Climatology 
+## values     : -48.15074, 31.77626  (min, max)</code></pre>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1"></a><span class="kw">data</span>(wrld_simpl)</span>
+<span id="cb29-2"><a href="#cb29-2"></a>plt &lt;-<span class="st"> </span><span class="kw">levelplot</span>(resTemClim, <span class="dt">margin=</span>F, <span class="dt">par.settings=</span>BuRdTheme,</span>
+<span id="cb29-3"><a href="#cb29-3"></a>                 <span class="dt">main=</span><span class="st">&quot;January Global Average Temp 1961-1990&quot;</span>)</span>
+<span id="cb29-4"><a href="#cb29-4"></a>plt <span class="op">+</span><span class="st"> </span><span class="kw">layer</span>(<span class="kw">sp.lines</span>(wrld_simpl, <span class="dt">col=</span><span class="st">&#39;black&#39;</span>, <span class="dt">lwd=</span><span class="fl">0.4</span>))</span></code></pre></div>
+<p><img src="Week5_Reprojecting_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1"></a><span class="co"># convert the wrld_simpl land polygons to the robinson projection</span></span>
+<span id="cb30-2"><a href="#cb30-2"></a>wrld_simpl =<span class="st"> </span><span class="kw">spTransform</span>(wrld_simpl, <span class="kw">CRS</span>(<span class="st">&quot;+proj=robin +lon_0=0 +x_0=0 +y_0=0 +ellps=WGS84 +datum=WGS84 +units=m +no_defs&quot;</span> ))</span>
+<span id="cb30-3"><a href="#cb30-3"></a></span>
+<span id="cb30-4"><a href="#cb30-4"></a>plt &lt;-<span class="st"> </span><span class="kw">levelplot</span>(projTemClim, <span class="dt">margin=</span>F, <span class="dt">par.settings=</span>BuRdTheme,</span>
+<span id="cb30-5"><a href="#cb30-5"></a>                 <span class="dt">main=</span><span class="st">&quot;January Global Average Temp 1961-1990&quot;</span>)</span>
+<span id="cb30-6"><a href="#cb30-6"></a>plt <span class="op">+</span><span class="st"> </span><span class="kw">layer</span>(<span class="kw">sp.lines</span>(wrld_simpl, <span class="dt">col=</span><span class="st">&#39;black&#39;</span>, <span class="dt">lwd=</span><span class="fl">0.4</span>))</span></code></pre></div>
+<p><img src="Week5_Reprojecting_files/figure-html/unnamed-chunk-4-2.png" width="672" /></p>
+</div>
+<div id="pngs" class="section level2">
+<h2><span class="header-section-number">1.3</span> PNGs</h2>
+<p>The <code>png()</code> function is a function that saves a plot to png. After we invoke the function and fill out the arguments, we need to execute the plot code between the <code>png()</code> function and <code>dev.off()</code>. <code>dev.off()</code> tells R that you’re done adding things to the plot and that it can be done plotting.</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1"></a><span class="kw">png</span>(<span class="dt">filename =</span> <span class="st">&quot;~/Downloads/myPNG.png&quot;</span>, <span class="dt">width =</span> <span class="dv">10</span>, <span class="dt">height =</span> <span class="dv">6</span>, <span class="dt">units =</span> <span class="st">&#39;in&#39;</span>,<span class="dt">res=</span><span class="dv">100</span>)</span>
+<span id="cb31-2"><a href="#cb31-2"></a>plt &lt;-<span class="st"> </span><span class="kw">levelplot</span>(projTemClim, <span class="dt">margin=</span>F, <span class="dt">par.settings=</span>BuRdTheme,</span>
+<span id="cb31-3"><a href="#cb31-3"></a>                 <span class="dt">main=</span><span class="st">&quot;January Global Average Temp 1961-1990&quot;</span>)</span>
+<span id="cb31-4"><a href="#cb31-4"></a>plt <span class="op">+</span><span class="st"> </span><span class="kw">layer</span>(<span class="kw">sp.lines</span>(wrld_simpl, <span class="dt">col=</span><span class="st">&#39;black&#39;</span>, <span class="dt">lwd=</span><span class="fl">0.4</span>))</span>
+<span id="cb31-5"><a href="#cb31-5"></a><span class="kw">dev.off</span>()</span></code></pre></div>
+</div>
+<div id="writing-rasters" class="section level2">
+<h2><span class="header-section-number">1.4</span> Writing Rasters</h2>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1"></a><span class="kw">writeRaster</span>(<span class="dt">x=</span>projTemClim, <span class="dt">filename=</span><span class="st">&quot;~/Downloads/projectedTemClim1961-1990.tif&quot;</span>, <span class="dt">format=</span><span class="st">&#39;GTiff&#39;</span>,</span>
+<span id="cb32-2"><a href="#cb32-2"></a>            <span class="dt">varname=</span><span class="st">&quot;Temperature&quot;</span>, <span class="dt">longname=</span><span class="st">&quot;Global Average Temperature January 1960-1990&quot;</span>,</span>
+<span id="cb32-3"><a href="#cb32-3"></a>            <span class="dt">xname=</span><span class="st">&quot;lon&quot;</span>, <span class="dt">yname=</span><span class="st">&quot;lat&quot;</span>)</span></code></pre></div>
+<p>You can save these rasters in a variety of formats. If you’re interested in looking them up, run <code>help(writeRaster)</code> and read about the <code>format</code> argument.</p>
+</div>
+<div id="assignment" class="section level2">
+<h2><span class="header-section-number">1.5</span> Assignment</h2>
+<ol style="list-style-type: decimal">
+<li>Load in globalTemClim1961-1990.nc</li>
+<li>Extract data for January and July</li>
+<li>Find difference between two months globally</li>
+<li>Enhance resolution 2x using nearest neighbor method</li>
+</ol>
+<ul>
+<li>(<em>hint: run help(resample) if you get stuck</em>)</li>
+</ul>
+<ol start="6" style="list-style-type: decimal">
+<li>Plot in mollwide projection</li>
+</ol>
+<ul>
+<li>(<em>“+proj=moll +lon_0=0 +x_0=0 +y_0=0 +datum=WGS84 +units=m +no_defs”</em>)</li>
+</ul>
+<ol start="7" style="list-style-type: decimal">
+<li>Write raster to NetCDF</li>
+<li>Upload PNG <strong>and</strong> netCDF file to Canvas under week 5 assignment</li>
+</ol>
+<p><img src="Week5_Reprojecting_files/figure-html/unnamed-chunk-7-1.png" width="1536" /></p>
+</div>
+</div>
+<!--bookdown:body:end-->
+            </section>
+
+          </div>
+        </div>
+      </div>
+<!--bookdown:link_prev-->
+<!--bookdown:link_next-->
+    </div>
+  </div>
+<!--bookdown:config-->
+
+</body>
+
+</html>

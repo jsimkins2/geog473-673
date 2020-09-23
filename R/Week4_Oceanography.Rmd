@@ -114,7 +114,7 @@ library(ncdf4)
 library(raster)
 library(rasterVis)
 library(RColorBrewer)
-ncFile <- nc_open("/Users/james/Documents/Github/geog473-673/datasets/GOES_R_ROLLING_1DAY_20190814.nc")
+ncFile <- nc_open("../datasets/GOES_R_ROLLING_1DAY_20190814.nc")
 sstGoes <- ncvar_get(ncFile, varid = "sst")
 sstRast <- raster(sstGoes)
 
@@ -159,7 +159,7 @@ plt <- levelplot(sstRast, margin=F, par.settings=BuRdTheme,
 plt + layer(sp.polygons(usa, col='black',fill='grey', lwd=0.4))
 
 # Now let's do the same with geotiff
-tifFile = "/Users/james/Documents/Github/geog473-673/datasets/goesSST.tif"
+tifFile = "../datasets/goesSST.tif"
 sstRast = raster(tifFile)
 
 # Quick image using raster's image plot generator function
@@ -173,7 +173,7 @@ plt + layer(sp.lines(wrld_simpl, col='black', lwd=0.4))
 
 # Let's do the same plot but with a custom shapefile
 # note that even though we only point the function to the '.shp' file, the '.shx' and '.dbf' need to be in the same folder for this to work. 
-world.shp <- rgdal::readOGR("/Users/james/Documents/Github/geog473-673/datasets/world_shpfiles/world.shp")
+world.shp <- rgdal::readOGR("../datasets/world_shpfiles/world.shp")
 
 # add custom color theme using brewer.pal from the package RColorBrewer and setting the rasterTheme
 mapTheme <- rasterTheme(region=brewer.pal(8,"Reds"))
@@ -201,7 +201,7 @@ library(ncdf4)
 library(raster)
 library(rgdal)
 # load the data using read.csv()
-trees = nc_open("/Users/james/Documents/Github/geog473-673/datasets/treecov.nc")
+trees = nc_open("../datasets/treecov.nc")
 treecov = ncvar_get(trees, "treecov")
 treecov[treecov < 0] = NA
 treecov = raster(treecov)
@@ -219,7 +219,7 @@ extent(treecov) = c(min(lon), max(lon), min(lat), max(lat))
 # define the proj4 projection string
 crs(treecov) = "+proj=longlat +datum=WGS84 +no_defs "
 
-world.shp <- readOGR("/Users/james/Documents/Github/geog473-673/datasets/world_shpfiles/world.shp")
+world.shp <- readOGR("../datasets/world_shpfiles/world.shp")
 
 # add custom color theme using brewer.pal from the package RColorBrewer and setting the rasterTheme
 mapTheme <- rasterTheme(region=brewer.pal(8,"Greens"))
