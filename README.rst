@@ -14,7 +14,7 @@ Course Website:
 Syllabus:
   https://github.com/jsimkins2/geog473-673/blob/master/documents/fall_geog473_673_syllabus.pdf
 
-All datasets can be found in the datasets repository
+Datasets:  
   https://github.com/jsimkins2/geog473-673/tree/master/datasets
 
 
@@ -23,12 +23,14 @@ Python Phase of GEOG 473/673: Course Notebooks
 ----------------
 
 Installing Packages via Anaconda
-  https://github.com/jsimkins2/geog473-673/blob/master/Python/installing_packages.ipynb
-  https://www.youtube.com/watch?v=OFc8zEB5Y0E
+ 
+ https://github.com/jsimkins2/geog473-673/blob/master/Python/installing_packages.ipynb
+ https://www.youtube.com/watch?v=OFc8zEB5Y0E
 
 Week 1 - Introduction to Python
-  https://github.com/jsimkins2/geog473-673/blob/master/Python/Introduction_to_Python.ipynb
-  https://www.youtube.com/watch?v=OFc8zEB5Y0E
+  
+ https://github.com/jsimkins2/geog473-673/blob/master/Python/Introduction_to_Python.ipynb
+ https://www.youtube.com/watch?v=OFc8zEB5Y0E
 
 Week 2 - Important Python Modules
 
