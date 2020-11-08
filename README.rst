@@ -48,18 +48,22 @@ Week 3 - Xarray
 Week 4 - Pandas
 
  https://github.com/jsimkins2/geog473-673/blob/master/Python/Pandas_tutorial.ipynb
+ https://youtu.be/ypWrslOahSg
 
 Week 5 - Cartopy
 
  https://github.com/jsimkins2/geog473-673/blob/master/Python/Cartopy_tutorial.ipynb
+ https://youtu.be/WwdmGw4Lca0
 
 Week 6 - MetPy
 
  https://github.com/jsimkins2/geog473-673/blob/master/Python/Metpy_tutorial.ipynb
+ https://youtu.be/kKg3WMxYZaQ
 
 Week 7 - SciPy & Oceanography
 
  https://github.com/jsimkins2/geog473-673/blob/master/Python/SciPy_Oceanography.ipynb
+ https://youtu.be/N4nRTL80fAE
 
 Final Project
 
