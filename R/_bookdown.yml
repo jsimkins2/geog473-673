@@ -12,7 +12,8 @@ rmd_files: [
   "Week2_RSyntaxClassesDatatypes.Rmd",
   "Week3_TimeSeriesDEOS.Rmd",
   "Week4_Oceanography.Rmd",
-  "Week5_Reprojecting.Rmd"
+  "Week5_Reprojecting.Rmd",
+  "base_plotting_customization.Rmd"
  ]
 delete_merged_file: true
 output_dir: "../docs"

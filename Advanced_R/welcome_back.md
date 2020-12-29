@@ -1,123 +1,30 @@
-Welcome to Advanced R
+Expanding on Basic R Plotting
 ================
 
-## Welcome Back\!
+## Basic Plotting
 
-Welcome to the Advanced phase of R. In this class, we’ll be covering new
-topics at an accelerated pace. But first, let’s shake off the rust and
-get back into the swing of things. As always, if you need revisit older
-tutorials, they can be found here -
-<https://github.com/jsimkins2/geog473-673/tree/master/R>
+R has a plethora of plotting packages, tools, and techniques. Although
+more popular visualization methods require the installation of other
+packages, the base plotting package in R can be customized to look
+professional.
 
-# Downloading Data from the datasets folder
+# Downloading Datafiles via R
 
 All datasets used for this class will be found here -
 <https://github.com/jsimkins2/geog473-673/tree/master/datasets/>
 
-In order to download these files easily, you can use the following
-code:
+In order to download these files easily, you can use the following code:
 
 `download.file("https://github.com/jsimkins2/geog473-673/tree/master/datasets/world_shpfiles/world.shp",
 destfile = "/Users/james/Downloads/world.shp" , mode='wb')`
 
 Follow this format for any of the datasets. Here is another example for
-the
-`TreeData.csv`
+the `TreeData.csv`
 
 `download.file("https://github.com/jsimkins2/geog473-673/tree/master/datasets/TreeData.csv",
-destfile = "/Users/james/Downloads/TreeData.csv" ,
-mode='wb')`
+destfile = "/Users/james/Downloads/TreeData.csv" , mode='wb')`
 
-## Some Useful Definitions
-
-| Function      | Description                                                                                                           |
-| ------------- | --------------------------------------------------------------------------------------------------------------------- |
-| ls            | lists contents of R workspace/global environment                                                                      |
-| rm            | removes objects from R workspace                                                                                      |
-| save          | save selected objects                                                                                                 |
-| \+,-,\*,/,^   | arithmetic operators                                                                                                  |
-| %\*%          | matrix multiplication                                                                                                 |
-| t             | matrix transpose                                                                                                      |
-| solve         | matrix inverse (and solving linear equations)                                                                         |
-| c             | combines (concatenates) objects, simplest way to make vectors                                                         |
-| seq           | creates vectors that are regular sequences                                                                            |
-| rep           | replicates vectors                                                                                                    |
-| length        | returns length of a vector                                                                                            |
-| sum           | returns the sum                                                                                                       |
-| mean          | returns the mean                                                                                                      |
-| median        | returns the median                                                                                                    |
-| sd            | returns the standard deviation (n − 1 in denominator)                                                                 |
-| min           | returns minimum                                                                                                       |
-| max           | returns maximum                                                                                                       |
-| sort          | sort a vector (rearranges the vector in order)                                                                        |
-| order         | returns indices of vectors that will order them                                                                       |
-| rank          | returns rank of each element in vector                                                                                |
-| \==, \<, \>   | comparison operators                                                                                                  |
-| \<=, \>=, \!= |                                                                                                                       |
-|               | , &                                                                                                                   |
-| is.na         | tests for missing value NA                                                                                            |
-| which         | does logical comparison and indicates which elements are TRUE that is, gives the TRUE indices of a logical object     |
-| any           | does logical comparison returns 1 (TRUE) if any of the comparisons are TRUE, i.e. is at least one of the values true? |
-| exp           | returns e to that power                                                                                               |
-| log           | returns natural logarithm (to the base e)                                                                             |
-| log10         | returns logarithm (to the base 10)                                                                                    |
-| sqrt          | returns square root                                                                                                   |
-| table         | does frequencies and cross-tabs                                                                                       |
-| help          | help page on specified function                                                                                       |
-| cbind         | combine by columns                                                                                                    |
-| rbind         | combine by rows                                                                                                       |
-| matrix        | create a matrix                                                                                                       |
-| vector        | create a vector                                                                                                       |
-| nrow          | number of rows in an array or data frame                                                                              |
-| ncol          | number of columns in an array or data frame                                                                           |
-| dim           | dimensions of an array or data frame                                                                                  |
-| array         | create an array                                                                                                       |
-
-| Function      | Description                                                       |
-| ------------- | ----------------------------------------------------------------- |
-| is.vector     | answers the question, is this a vector TRUE or FALSE              |
-| as.vector     | attempts to coerce object into a vector                           |
-| read.table    | reads data from a text file                                       |
-| read.csv      | reads data from a text file with comma separated data             |
-| write.table   | writes a data frame to a text file                                |
-| is.data.frame | tests object to see if it is data frame                           |
-| as.data.frame | coerces object into data frame                                    |
-| is.factor     | tests object to see if it is a factor                             |
-| as.factor     | coerces object into a factor                                      |
-| head, tail    | list the first, last six rows                                     |
-| names         | returns names of elements of object                               |
-| colnames      | returns or sets column names of object                            |
-| rownames      | returns or sets row names of object                               |
-| subset        | select part of a vector, matrix, or data frame                    |
-| merge         | merge two data frames                                             |
-| lm            | multiple linear regression                                        |
-| glm           | generalized linear regression                                     |
-| anova         | analysis of variance                                              |
-| chisq.test    | Pearson’s Chi-squared test for count data                         |
-| summary       | shows results of various model fitting functions                  |
-| predict       | predicted results from model                                      |
-| hist          | histogram                                                         |
-| boxplot       | box plot                                                          |
-| plot          | scatterplot                                                       |
-| lines         | connects points sequentially with lines (added to a plot)         |
-| segments      | add lines to a plot (between pairs of points)                     |
-| text          | add text to a plot                                                |
-| legend        | add a legend to a plot                                            |
-| abline        | add a line to a plot by specifying its slope and intercept        |
-| passing       | an lm object will result in adding the predicted line to the plot |
-| x11           | open another graphics window (PC)                                 |
-| pdf           | open a pdf file for recording graphics                            |
-| dev.off       | close graphics device                                             |
-| par(mfrow)    | arranges multiple plots on same page (by row)                     |
-| sample        | produces a random sample of the specified values                  |
-| set.seed      | sets seed for next random sample (repeat random sample)           |
-| rnorm         | produces a random sample from a normal distribution               |
-| qnorm         | quantiles (percentiles) of normal distribution                    |
-| pnorm         | CDF of normal distribution                                        |
-| dnorm         | PDF of normal distribution                                        |
-| rbinom        | produces a random sample from a binomial distribution             |
-
-## Let’s do some basic recap
+## Expanding on Basic Plots in R
 
 Variable Assignment & Operations
 
@@ -213,8 +120,7 @@ legend("bottomright", legend=1:8, col=1:8, ncol=3, pch=19, bg="gray95")
 ## Basic types of plots with dummy data
 
 We’re going to create a fake dataset of those who are infected by the
-coronavirus. Let’s do so using the `sample()`
-function.
+coronavirus. Let’s do so using the `sample()` function.
 
 ``` r
 # Create a random sample of the 3 types - Susceptible, Infected and Recovered
@@ -225,7 +131,7 @@ I
 
     ## InfStatus
     ##    Infected   Recovered Susceptible 
-    ##          18          21          11
+    ##          14          13          23
 
 ``` r
 # Now let's make a random sample of 3 genotypes (RR, Rr, and rr)
@@ -236,7 +142,7 @@ G
 
     ## Genotype
     ## rr Rr RR 
-    ## 18 18 14
+    ## 17 12 21
 
 ``` r
 #show genotype and infected status as a table 
@@ -245,9 +151,9 @@ table(Genotype, InfStatus)
 
     ##         InfStatus
     ## Genotype Infected Recovered Susceptible
-    ##       rr        6         7           5
-    ##       Rr        8         7           3
-    ##       RR        4         7           3
+    ##       rr        6         4           7
+    ##       Rr        2         4           6
+    ##       RR        6         5          10
 
 Note - We turned the sample data info a `factor` to make sure the
 factors aren’t double indexed…here is what I mean…
@@ -258,16 +164,16 @@ test <- sample(c("Susceptible", "Infected", "Recovered"),size = 50, replace = TR
 test
 ```
 
-    ##  [1] "Recovered"   "Susceptible" "Infected"    "Infected"    "Recovered"  
-    ##  [6] "Infected"    "Infected"    "Susceptible" "Recovered"   "Infected"   
-    ## [11] "Susceptible" "Recovered"   "Susceptible" "Infected"    "Infected"   
-    ## [16] "Infected"    "Infected"    "Susceptible" "Susceptible" "Recovered"  
-    ## [21] "Infected"    "Infected"    "Infected"    "Recovered"   "Recovered"  
-    ## [26] "Infected"    "Susceptible" "Infected"    "Infected"    "Infected"   
-    ## [31] "Susceptible" "Infected"    "Susceptible" "Susceptible" "Infected"   
-    ## [36] "Recovered"   "Susceptible" "Susceptible" "Recovered"   "Infected"   
-    ## [41] "Infected"    "Infected"    "Susceptible" "Recovered"   "Susceptible"
-    ## [46] "Recovered"   "Infected"    "Susceptible" "Infected"    "Infected"
+    ##  [1] "Infected"    "Infected"    "Recovered"   "Susceptible" "Susceptible"
+    ##  [6] "Recovered"   "Recovered"   "Susceptible" "Recovered"   "Recovered"  
+    ## [11] "Infected"    "Infected"    "Recovered"   "Susceptible" "Susceptible"
+    ## [16] "Susceptible" "Susceptible" "Recovered"   "Infected"    "Infected"   
+    ## [21] "Susceptible" "Infected"    "Infected"    "Susceptible" "Susceptible"
+    ## [26] "Infected"    "Recovered"   "Susceptible" "Recovered"   "Susceptible"
+    ## [31] "Susceptible" "Infected"    "Recovered"   "Susceptible" "Recovered"  
+    ## [36] "Susceptible" "Susceptible" "Infected"    "Recovered"   "Recovered"  
+    ## [41] "Recovered"   "Susceptible" "Susceptible" "Infected"    "Infected"   
+    ## [46] "Infected"    "Recovered"   "Susceptible" "Susceptible" "Susceptible"
 
 ``` r
 class(test)
@@ -281,15 +187,15 @@ test2 <- factor(sample(c("Susceptible", "Infected", "Recovered"),size = 50, repl
 test2
 ```
 
-    ##  [1] Infected    Recovered   Recovered   Susceptible Recovered   Recovered  
-    ##  [7] Recovered   Susceptible Recovered   Infected    Susceptible Infected   
-    ## [13] Susceptible Susceptible Susceptible Susceptible Susceptible Susceptible
-    ## [19] Infected    Susceptible Recovered   Susceptible Susceptible Infected   
-    ## [25] Infected    Susceptible Recovered   Recovered   Recovered   Recovered  
-    ## [31] Infected    Infected    Susceptible Infected    Susceptible Infected   
-    ## [37] Recovered   Susceptible Recovered   Recovered   Infected    Susceptible
-    ## [43] Infected    Infected    Recovered   Susceptible Infected    Recovered  
-    ## [49] Susceptible Infected   
+    ##  [1] Infected    Susceptible Recovered   Infected    Infected    Susceptible
+    ##  [7] Susceptible Recovered   Infected    Recovered   Recovered   Susceptible
+    ## [13] Recovered   Susceptible Recovered   Infected    Recovered   Susceptible
+    ## [19] Susceptible Infected    Susceptible Susceptible Susceptible Infected   
+    ## [25] Recovered   Infected    Infected    Susceptible Susceptible Infected   
+    ## [31] Infected    Infected    Infected    Susceptible Infected    Susceptible
+    ## [37] Recovered   Recovered   Recovered   Infected    Recovered   Susceptible
+    ## [43] Susceptible Infected    Recovered   Infected    Recovered   Infected   
+    ## [49] Recovered   Recovered  
     ## Levels: Infected Recovered Susceptible
 
 ``` r
@@ -498,17 +404,15 @@ boxplot(SapDepth ~ spp, data= treedat, ylab= "SapDepth", col= "darkslateblue", m
 ![](welcome_back_files/figure-gfm/unnamed-chunk-10-1.png)<!-- -->
 
 Note: hist() is the histogram function and boxplot() is the boxplot
-function. For the boxplot, notice how the x ~ y, data=dataframe syntax
+function. For the boxplot, notice how the x \~ y, data=dataframe syntax
 is. It’s slightly different than the plotting instances above and for
 the histogram. For a histogram, the hist() function can only intake
 numerical values. Thus, if we wanted to take a species histogram, we
 would have to take a workaround like so -
 
 ``` r
-barplot(summary(treedat$spp))
+barplot(vector(summary(treedat$spp)))
 ```
-
-![](welcome_back_files/figure-gfm/unnamed-chunk-11-1.png)<!-- -->
 
 ## Assignment:
 

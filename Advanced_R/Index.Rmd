@@ -1,0 +1,46 @@
+--- 
+title: "Advanced R for Geospatial Sciences"
+author: "James Simkins"
+date: "`r Sys.Date()`"
+site: 'github.com/jsimkins2/geog473-673'
+documentclass: book
+biblio-style: apalike
+link-citations: yes
+description: "Advanced R"
+---
+
+# Preface
+
+```{r, echo=FALSE, out.width="100%", fig.align="center"}
+knitr::include_graphics("images/goes_band13.png")  
+```
+
+
+- Phase 1: Advanced R for Geospatial Sciences - 02/15/2021 - 04/16/2021 – 2cr
+
+- Phase 2: Machine Learning with R – 04/19/2021 to 05/18/2021 – 1cr
+
+
+The objective of the spring installment of GEOG 473/673 is to expand on the topics covered in the fall version of GEOG 473/673 – open source environmental computing. The course will be split into 2 phases. The first phase is a 2-credit course focused on using advanced tools within the R programming language. The goal of this phase is for students to gain practical experience with challenging R topics that can be used for generating publication quality material. The second phase is a 1-credit course focused on introducing machine learning practices and implementing these via R. Machine Learning is a growing practice in data science and can be useful for geospatial sciences. Students will apply R programming knowledge and gain confidence in machine learning techniques and application with R. This challenging, fast-paced course is intended for students that already have programming experience with R or Python.
+
+
+
+
+## Course Github
+
+https://github.com/jsimkins2/geog473-673
+
+## Syllabus
+
+https://github.com/jsimkins2/geog473-673/blob/master/documents/fall_geog473_673_syllabus.pdf
+
+## Agenda
+This course is split into 2 phases but this textbook will be the only material for both courses. YouTube recordings will accompany all tutorials. 
+
+|Week     |      Focus|
+|----------|----------|
+|1 | [An Introduction to R](https://jsimkins2.github.io/geog473-673/getting-started-with-r.html)|
+|2 | [Scientific R Scripts](https://jsimkins2.github.io/geog473-673/scientific-r-scripts.html)| 
+|3 | [Time Series Analysis with DEOS data](https://jsimkins2.github.io/geog473-673/time-series-fun-with-deos.html)| 
+|4 | [Raster Analysis with Oceanography & Global Tree Cover data](https://jsimkins2.github.io/geog473-673/oceanography-global-tree-cover.html)| |
+|5 | [Resampling and Reprojecting Rasters with climatological temperature data](https://jsimkins2.github.io/geog473-673/reprojecting-writing-rasters.html)| 

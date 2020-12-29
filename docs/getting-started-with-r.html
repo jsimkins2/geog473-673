@@ -24,7 +24,7 @@
 <meta name="author" content="James Simkins" />
 
 
-<meta name="date" content="2020-09-23" />
+<meta name="date" content="2020-12-29" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -50,13 +50,12 @@
 
 
 
-<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 
 
 <style type="text/css">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
 pre.sourceCode { margin: 0; }
@@ -65,16 +64,14 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
 }
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
+    border: none; pointer-events: all; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -83,9 +80,9 @@ pre.numberSource code > span > a:first-child::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {   }
+  {  }
 @media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+a.sourceLine::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -118,6 +115,7 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<link rel="stylesheet" href="style.css" type="text/css" />
 </head>
 
 <body>
@@ -130,6 +128,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
+<li><a href="./">GEOG473-673 Open-sourced Environmental Computing</a></li>
+
+<li class="divider"></li>
 <li class="chapter" data-level="1" data-path="preface.html"><a href="preface.html"><i class="fa fa-check"></i><b>1</b> Preface</a><ul>
 <li class="chapter" data-level="1.1" data-path="preface.html"><a href="preface.html#course-github"><i class="fa fa-check"></i><b>1.1</b> Course Github</a></li>
 <li class="chapter" data-level="1.2" data-path="preface.html"><a href="preface.html#syllabus"><i class="fa fa-check"></i><b>1.2</b> Syllabus</a></li>
@@ -189,15 +190,29 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8" data-path="oceanography-global-tree-cover.html"><a href="oceanography-global-tree-cover.html"><i class="fa fa-check"></i><b>8</b> Oceanography &amp; Global Tree Cover</a><ul>
 <li class="chapter" data-level="8.1" data-path="oceanography-global-tree-cover.html"><a href="oceanography-global-tree-cover.html#paste0"><i class="fa fa-check"></i><b>8.1</b> <code>Paste0()</code></a></li>
 <li class="chapter" data-level="8.2" data-path="oceanography-global-tree-cover.html"><a href="oceanography-global-tree-cover.html#rasters"><i class="fa fa-check"></i><b>8.2</b> Rasters</a></li>
-<li class="chapter" data-level="8.3" data-path="time-series-fun-with-deos.html"><a href="time-series-fun-with-deos.html#assignment"><i class="fa fa-check"></i><b>8.3</b> Assignment</a></li>
+<li class="chapter" data-level="8.3" data-path="oceanography-global-tree-cover.html"><a href="oceanography-global-tree-cover.html#assignment-1"><i class="fa fa-check"></i><b>8.3</b> Assignment</a></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="reprojecting-writing-rasters.html"><a href="reprojecting-writing-rasters.html"><i class="fa fa-check"></i><b>9</b> Reprojecting &amp; Writing Rasters</a><ul>
 <li class="chapter" data-level="9.1" data-path="reprojecting-writing-rasters.html"><a href="reprojecting-writing-rasters.html#indexing-data"><i class="fa fa-check"></i><b>9.1</b> Indexing Data</a></li>
 <li class="chapter" data-level="9.2" data-path="reprojecting-writing-rasters.html"><a href="reprojecting-writing-rasters.html#resampling-and-reprojecting"><i class="fa fa-check"></i><b>9.2</b> Resampling and Reprojecting</a></li>
 <li class="chapter" data-level="9.3" data-path="reprojecting-writing-rasters.html"><a href="reprojecting-writing-rasters.html#pngs"><i class="fa fa-check"></i><b>9.3</b> PNGs</a></li>
 <li class="chapter" data-level="9.4" data-path="reprojecting-writing-rasters.html"><a href="reprojecting-writing-rasters.html#writing-rasters"><i class="fa fa-check"></i><b>9.4</b> Writing Rasters</a></li>
-<li class="chapter" data-level="9.5" data-path="time-series-fun-with-deos.html"><a href="time-series-fun-with-deos.html#assignment"><i class="fa fa-check"></i><b>9.5</b> Assignment</a></li>
+<li class="chapter" data-level="9.5" data-path="reprojecting-writing-rasters.html"><a href="reprojecting-writing-rasters.html#assignment-2"><i class="fa fa-check"></i><b>9.5</b> Assignment</a></li>
+<li class="chapter" data-level="9.6" data-path="reprojecting-writing-rasters.html"><a href="reprojecting-writing-rasters.html#basic-plotting"><i class="fa fa-check"></i><b>9.6</b> Basic Plotting</a></li>
 </ul></li>
+<li class="chapter" data-level="10" data-path="downloading-datafiles-via-r.html"><a href="downloading-datafiles-via-r.html"><i class="fa fa-check"></i><b>10</b> Downloading Datafiles via R</a><ul>
+<li class="chapter" data-level="10.1" data-path="downloading-datafiles-via-r.html"><a href="downloading-datafiles-via-r.html#expanding-on-basic-plots-in-r"><i class="fa fa-check"></i><b>10.1</b> Expanding on Basic Plots in R</a></li>
+<li class="chapter" data-level="10.2" data-path="downloading-datafiles-via-r.html"><a href="downloading-datafiles-via-r.html#in-class-exercise-1"><i class="fa fa-check"></i><b>10.2</b> In Class Exercise:</a></li>
+<li class="chapter" data-level="10.3" data-path="downloading-datafiles-via-r.html"><a href="downloading-datafiles-via-r.html#more-plotting"><i class="fa fa-check"></i><b>10.3</b> More Plotting</a></li>
+<li class="chapter" data-level="10.4" data-path="downloading-datafiles-via-r.html"><a href="downloading-datafiles-via-r.html#basic-types-of-plots-with-dummy-data"><i class="fa fa-check"></i><b>10.4</b> Basic types of plots with dummy data</a></li>
+<li class="chapter" data-level="10.5" data-path="downloading-datafiles-via-r.html"><a href="downloading-datafiles-via-r.html#now-lets-plot-this-fake-data"><i class="fa fa-check"></i><b>10.5</b> Now let’s plot this fake data</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="playing-with-tree-data.html"><a href="playing-with-tree-data.html"><i class="fa fa-check"></i><b>11</b> Playing with Tree Data</a><ul>
+<li class="chapter" data-level="11.1" data-path="playing-with-tree-data.html"><a href="playing-with-tree-data.html#assignment-3"><i class="fa fa-check"></i><b>11.1</b> Assignment:</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">James Simkins</a></li>
+
 </ul>
 
       </nav>
@@ -280,7 +295,7 @@ systems. R takes up very little space on your machine, despite it’s pleathora 
 </div>
 <div id="rstudio" class="section level2">
 <h2><span class="header-section-number">2.4</span> Rstudio</h2>
-<p>While R is the language, RStudio is the application we use to run R. Technically speaking, RStudio is an integrated development environment for R. RStudio makes coding in R easier by highlighting syntax, autocompleting symbols and names, and visualizing our R environment. These aspects are explained in further detail in the [R Coding Fundamentals] section. For now, let’s download RStudio.</p>
+<p>While R is the language, RStudio is the application we use to run R. Technically speaking, RStudio is an integrated development environment for R. RStudio makes coding in R easier by highlighting syntax, autocompleting symbols and names, and visualizing our R environment. These aspects are explained in further detail in the <a href="r-coding-fundamentals.html#r-coding-fundamentals">R Coding Fundamentals</a> section. For now, let’s download RStudio.</p>
 <ol style="list-style-type: decimal">
 <li><p>Navigate to the RStudio Website: <a href="http://www.rstudio.com/download" class="uri">http://www.rstudio.com/download</a></p></li>
 <li><p>Click Download under RStudio Desktop Free</p></li>

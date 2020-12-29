@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>3 Playing with Tree Data | base_plotting_customization.utf8</title>
+  <meta name="description" content="" />
+  <meta name="generator" content="bookdown 0.20.6 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="3 Playing with Tree Data | base_plotting_customization.utf8" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="3 Playing with Tree Data | base_plotting_customization.utf8" />
+  
+  
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="downloading-datafiles-via-r.html"/>
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+
+
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">GEOG473-673 Open-sourced Environmental Computing</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="basic-plotting.html"><a href="basic-plotting.html"><i class="fa fa-check"></i><b>1</b> Basic Plotting</a><ul>
+<li class="chapter" data-level="1.1" data-path="basic-plotting.html"><a href="basic-plotting.html#basic-plotting-1"><i class="fa fa-check"></i><b>1.1</b> Basic Plotting</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="downloading-datafiles-via-r.html"><a href="downloading-datafiles-via-r.html"><i class="fa fa-check"></i><b>2</b> Downloading Datafiles via R</a><ul>
+<li class="chapter" data-level="2.1" data-path="downloading-datafiles-via-r.html"><a href="downloading-datafiles-via-r.html#expanding-on-basic-plots-in-r"><i class="fa fa-check"></i><b>2.1</b> Expanding on Basic Plots in R</a></li>
+<li class="chapter" data-level="2.2" data-path="downloading-datafiles-via-r.html"><a href="downloading-datafiles-via-r.html#in-class-exercise"><i class="fa fa-check"></i><b>2.2</b> In Class Exercise:</a></li>
+<li class="chapter" data-level="2.3" data-path="downloading-datafiles-via-r.html"><a href="downloading-datafiles-via-r.html#more-plotting"><i class="fa fa-check"></i><b>2.3</b> More Plotting</a></li>
+<li class="chapter" data-level="2.4" data-path="downloading-datafiles-via-r.html"><a href="downloading-datafiles-via-r.html#basic-types-of-plots-with-dummy-data"><i class="fa fa-check"></i><b>2.4</b> Basic types of plots with dummy data</a></li>
+<li class="chapter" data-level="2.5" data-path="downloading-datafiles-via-r.html"><a href="downloading-datafiles-via-r.html#now-lets-plot-this-fake-data"><i class="fa fa-check"></i><b>2.5</b> Now let’s plot this fake data</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="playing-with-tree-data.html"><a href="playing-with-tree-data.html"><i class="fa fa-check"></i><b>3</b> Playing with Tree Data</a><ul>
+<li class="chapter" data-level="3.1" data-path="playing-with-tree-data.html"><a href="playing-with-tree-data.html#assignment"><i class="fa fa-check"></i><b>3.1</b> Assignment:</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">James Simkins</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./"></a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="playing-with-tree-data" class="section level1">
+<h1><span class="header-section-number">3</span> Playing with Tree Data</h1>
+<p>Let’s say you’re an ecologist who collected some tree data samples out in the field. Let’s load this into R and explore the data. In order to proceed, you’ll need to download <strong>TreeData.csv</strong> which is located here - (<a href="https://github.com/jsimkins2/geog473-673/tree/master/datasets/TreeData.csv" class="uri">https://github.com/jsimkins2/geog473-673/tree/master/datasets/TreeData.csv</a>)</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="playing-with-tree-data.html#cb29-1"></a><span class="co"># Navigate to the location where your file is stored locally. Use read.csv() function to load the data</span></span>
+<span id="cb29-2"><a href="playing-with-tree-data.html#cb29-2"></a>treedat &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;/Users/james/Documents/Github/geog473-673/datasets/TreeData.csv&quot;</span>)</span>
+<span id="cb29-3"><a href="playing-with-tree-data.html#cb29-3"></a>treedat</span></code></pre></div>
+<pre><code>##    tree  spp season Infected  dbh SapDepth BarkThick NobarkArea Heartwood
+## 1     1 PICO Summer      Yes 42.2      8.4       0.3     1359.2     483.1
+## 2     2 ABLA   Fall      Yes 13.4      2.0       0.4      124.7      58.1
+## 3     3 ABLA Summer       No 13.1      1.5       0.3      122.7      70.9
+## 4     4 PICO Spring       No 15.0      4.1       0.2      167.4      32.2
+## 5     5 POTR Winter      Yes 14.2      3.6       0.0      158.4      38.5
+## 6     6 POTR Winter      Yes 20.0      5.9       0.0      314.2      52.8
+## 7     7 ABLA Summer      Yes  9.1      2.1       0.3       56.7      14.5
+## 8     8 ABLA Spring       No  9.2      2.5       0.5       52.8       8.0
+## 9     9 ABLA   Fall      Yes 27.3      3.0       0.6      535.0     317.3
+## 10   10 PICO   Fall       No 11.2      3.4       0.3       88.2      11.3
+## 11   11 PICO Spring      Yes 18.0      5.9       0.3      237.8      24.6
+## 12   12 POTR Summer       No  9.0      3.0       0.0       63.6       7.1
+## 13   13 POTR Spring       No 15.4      4.1       0.0      186.3      40.7
+## 14   14 POTR Winter       No 24.1      6.2       0.0      456.2     107.5
+## 15   15 PICO Winter      Yes 24.2      7.0       0.5      422.7      66.5
+## 16   16 PIFL   Fall       No 14.4      4.2       0.5      141.0      19.6
+## 17   17 PIFL Winter       No 13.1      2.2       0.6      111.2      44.2
+## 18   18 PIFL Summer      Yes 21.5      5.1       0.6      323.7      80.1
+## 19   19 PIFL Spring       No 13.4      2.2       0.5      120.8      50.3
+## 20   20 PIFL   Fall      Yes 16.2      3.5       0.5      181.5      52.8
+##    SapArea
+## 1    876.1
+## 2     66.6
+## 3     51.8
+## 4    135.2
+## 5    119.9
+## 6    261.3
+## 7     42.2
+## 8     44.8
+## 9    217.7
+## 10    76.9
+## 11   213.2
+## 12    56.5
+## 13   145.5
+## 14   348.7
+## 15   356.3
+## 16   121.4
+## 17    67.0
+## 18   243.5
+## 19    70.5
+## 20   128.6</code></pre>
+<p><code>treedat</code> is a data frame. As a reminder, a data frame is essentially a 2-dimensional array that contains a <em>combination</em> of vectors (columns of data) that are of the class; integer, numeric, character. This is <em>different</em> from a matrix which can only contain <em>1 type</em> of data. In this case, we have some tree data that includes species of tree, season the data was collected, diameter of the tree, bark thickness, area of no bark, heartwood diameter, and sapwood diameter.</p>
+<p><img src="../documents/images/heartwoodvssapwood.jpeg" width="60%" style="display: block; margin: auto;" /></p>
+<p>Now, let’s edit htis dataframe to the format we want it in. Then, let’s plot a histogram of bark thickness and a boxplot of sapdepth by species.</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="playing-with-tree-data.html#cb31-1"></a><span class="co"># let&#39;s set the rownames equal to the tree column</span></span>
+<span id="cb31-2"><a href="playing-with-tree-data.html#cb31-2"></a>treedat &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;/Users/james/Documents/Github/geog473-673/datasets/TreeData.csv&quot;</span>,<span class="dt">row.names=</span><span class="st">&#39;tree&#39;</span>)</span>
+<span id="cb31-3"><a href="playing-with-tree-data.html#cb31-3"></a><span class="co"># print treedat</span></span>
+<span id="cb31-4"><a href="playing-with-tree-data.html#cb31-4"></a>treedat</span></code></pre></div>
+<pre><code>##     spp season Infected  dbh SapDepth BarkThick NobarkArea Heartwood SapArea
+## 1  PICO Summer      Yes 42.2      8.4       0.3     1359.2     483.1   876.1
+## 2  ABLA   Fall      Yes 13.4      2.0       0.4      124.7      58.1    66.6
+## 3  ABLA Summer       No 13.1      1.5       0.3      122.7      70.9    51.8
+## 4  PICO Spring       No 15.0      4.1       0.2      167.4      32.2   135.2
+## 5  POTR Winter      Yes 14.2      3.6       0.0      158.4      38.5   119.9
+## 6  POTR Winter      Yes 20.0      5.9       0.0      314.2      52.8   261.3
+## 7  ABLA Summer      Yes  9.1      2.1       0.3       56.7      14.5    42.2
+## 8  ABLA Spring       No  9.2      2.5       0.5       52.8       8.0    44.8
+## 9  ABLA   Fall      Yes 27.3      3.0       0.6      535.0     317.3   217.7
+## 10 PICO   Fall       No 11.2      3.4       0.3       88.2      11.3    76.9
+## 11 PICO Spring      Yes 18.0      5.9       0.3      237.8      24.6   213.2
+## 12 POTR Summer       No  9.0      3.0       0.0       63.6       7.1    56.5
+## 13 POTR Spring       No 15.4      4.1       0.0      186.3      40.7   145.5
+## 14 POTR Winter       No 24.1      6.2       0.0      456.2     107.5   348.7
+## 15 PICO Winter      Yes 24.2      7.0       0.5      422.7      66.5   356.3
+## 16 PIFL   Fall       No 14.4      4.2       0.5      141.0      19.6   121.4
+## 17 PIFL Winter       No 13.1      2.2       0.6      111.2      44.2    67.0
+## 18 PIFL Summer      Yes 21.5      5.1       0.6      323.7      80.1   243.5
+## 19 PIFL Spring       No 13.4      2.2       0.5      120.8      50.3    70.5
+## 20 PIFL   Fall      Yes 16.2      3.5       0.5      181.5      52.8   128.6</code></pre>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="playing-with-tree-data.html#cb33-1"></a><span class="co"># look at the data frame variable names </span></span>
+<span id="cb33-2"><a href="playing-with-tree-data.html#cb33-2"></a><span class="kw">names</span>(treedat)</span></code></pre></div>
+<pre><code>## [1] &quot;spp&quot;        &quot;season&quot;     &quot;Infected&quot;   &quot;dbh&quot;        &quot;SapDepth&quot;  
+## [6] &quot;BarkThick&quot;  &quot;NobarkArea&quot; &quot;Heartwood&quot;  &quot;SapArea&quot;</code></pre>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="playing-with-tree-data.html#cb35-1"></a><span class="co"># print the dbh variable</span></span>
+<span id="cb35-2"><a href="playing-with-tree-data.html#cb35-2"></a>treedat<span class="op">$</span>dbh</span></code></pre></div>
+<pre><code>##  [1] 42.2 13.4 13.1 15.0 14.2 20.0  9.1  9.2 27.3 11.2 18.0  9.0 15.4 24.1 24.2
+## [16] 14.4 13.1 21.5 13.4 16.2</code></pre>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="playing-with-tree-data.html#cb37-1"></a><span class="co"># rename the dbh variable, but first let&#39;s be sure our index of the dbh variable is correct</span></span>
+<span id="cb37-2"><a href="playing-with-tree-data.html#cb37-2"></a><span class="kw">colnames</span>(treedat)[<span class="dv">4</span>]</span></code></pre></div>
+<pre><code>## [1] &quot;dbh&quot;</code></pre>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="playing-with-tree-data.html#cb39-1"></a><span class="co"># yep, dbh is the index number 4 </span></span>
+<span id="cb39-2"><a href="playing-with-tree-data.html#cb39-2"></a><span class="kw">colnames</span>(treedat)[<span class="dv">4</span>] =<span class="st"> &quot;tree.diameter&quot;</span></span>
+<span id="cb39-3"><a href="playing-with-tree-data.html#cb39-3"></a>treedat</span></code></pre></div>
+<pre><code>##     spp season Infected tree.diameter SapDepth BarkThick NobarkArea Heartwood
+## 1  PICO Summer      Yes          42.2      8.4       0.3     1359.2     483.1
+## 2  ABLA   Fall      Yes          13.4      2.0       0.4      124.7      58.1
+## 3  ABLA Summer       No          13.1      1.5       0.3      122.7      70.9
+## 4  PICO Spring       No          15.0      4.1       0.2      167.4      32.2
+## 5  POTR Winter      Yes          14.2      3.6       0.0      158.4      38.5
+## 6  POTR Winter      Yes          20.0      5.9       0.0      314.2      52.8
+## 7  ABLA Summer      Yes           9.1      2.1       0.3       56.7      14.5
+## 8  ABLA Spring       No           9.2      2.5       0.5       52.8       8.0
+## 9  ABLA   Fall      Yes          27.3      3.0       0.6      535.0     317.3
+## 10 PICO   Fall       No          11.2      3.4       0.3       88.2      11.3
+## 11 PICO Spring      Yes          18.0      5.9       0.3      237.8      24.6
+## 12 POTR Summer       No           9.0      3.0       0.0       63.6       7.1
+## 13 POTR Spring       No          15.4      4.1       0.0      186.3      40.7
+## 14 POTR Winter       No          24.1      6.2       0.0      456.2     107.5
+## 15 PICO Winter      Yes          24.2      7.0       0.5      422.7      66.5
+## 16 PIFL   Fall       No          14.4      4.2       0.5      141.0      19.6
+## 17 PIFL Winter       No          13.1      2.2       0.6      111.2      44.2
+## 18 PIFL Summer      Yes          21.5      5.1       0.6      323.7      80.1
+## 19 PIFL Spring       No          13.4      2.2       0.5      120.8      50.3
+## 20 PIFL   Fall      Yes          16.2      3.5       0.5      181.5      52.8
+##    SapArea
+## 1    876.1
+## 2     66.6
+## 3     51.8
+## 4    135.2
+## 5    119.9
+## 6    261.3
+## 7     42.2
+## 8     44.8
+## 9    217.7
+## 10    76.9
+## 11   213.2
+## 12    56.5
+## 13   145.5
+## 14   348.7
+## 15   356.3
+## 16   121.4
+## 17    67.0
+## 18   243.5
+## 19    70.5
+## 20   128.6</code></pre>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="playing-with-tree-data.html#cb41-1"></a><span class="co"># Now let&#39;s do some plotting </span></span>
+<span id="cb41-2"><a href="playing-with-tree-data.html#cb41-2"></a><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>)) <span class="co">## create plot array of 1 row x 2 columns</span></span>
+<span id="cb41-3"><a href="playing-with-tree-data.html#cb41-3"></a><span class="kw">par</span>(<span class="dt">cex.axis=</span><span class="fl">0.8</span>) <span class="co">## shrinks the name size of the x axes. If we don&#39;t do this, not all the names in the boxplot show up</span></span>
+<span id="cb41-4"><a href="playing-with-tree-data.html#cb41-4"></a><span class="kw">par</span>(<span class="dt">cex.main=</span><span class="fl">0.7</span>) <span class="co">## shrinks the name size of the titles. If we don&#39;t do this, the titles don&#39;t fit in the window</span></span>
+<span id="cb41-5"><a href="playing-with-tree-data.html#cb41-5"></a><span class="co"># Use the his() function to plot a histogram </span></span>
+<span id="cb41-6"><a href="playing-with-tree-data.html#cb41-6"></a><span class="kw">hist</span>(treedat<span class="op">$</span>BarkThick, <span class="dt">xlab=</span> <span class="st">&quot;Bark Thickness (cm)&quot;</span>, <span class="dt">main=</span> <span class="st">&quot;Histogram: Bark Thickness&quot;</span>, <span class="dt">col=</span> <span class="st">&quot;darkgreen&quot;</span>)</span>
+<span id="cb41-7"><a href="playing-with-tree-data.html#cb41-7"></a><span class="kw">boxplot</span>(SapDepth <span class="op">~</span><span class="st"> </span>spp, <span class="dt">data=</span> treedat, <span class="dt">ylab=</span> <span class="st">&quot;SapDepth&quot;</span>, <span class="dt">col=</span> <span class="st">&quot;darkslateblue&quot;</span>, <span class="dt">main=</span> <span class="st">&quot;Boxplot: Sapwood Depth by Species&quot;</span>)</span></code></pre></div>
+<p><img src="base_plotting_customization_files/figure-html/unnamed-chunk-10-1.png" width="60%" style="display: block; margin: auto;" /></p>
+<p><code>hist()</code> is the histogram function; <code>boxplot()</code> is the boxplot function. The <code>boxplot()</code> function using a slightly different syntax for plotting in the form of <code>y ~ x</code>, or <strong>y versus x</strong>. <code>hist()</code>, on the other hand, can only plot numerical values. For categorical data, such as our tree species column, must be plotted with <code>barplot()</code> and the <code>table()</code> function.</p>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="playing-with-tree-data.html#cb42-1"></a><span class="co"># print the table function output of treedat$spp - notice the categorical help from the table function</span></span>
+<span id="cb42-2"><a href="playing-with-tree-data.html#cb42-2"></a><span class="kw">table</span>(treedat<span class="op">$</span>spp)</span></code></pre></div>
+<pre><code>## 
+## ABLA PICO PIFL POTR 
+##    5    5    5    5</code></pre>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="playing-with-tree-data.html#cb44-1"></a><span class="co"># plot this categorical data using barplot() function</span></span>
+<span id="cb44-2"><a href="playing-with-tree-data.html#cb44-2"></a><span class="kw">barplot</span>(<span class="kw">table</span>(treedat<span class="op">$</span>spp))</span></code></pre></div>
+<p><img src="base_plotting_customization_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="playing-with-tree-data.html#cb45-1"></a><span class="co"># customize the barplot function</span></span>
+<span id="cb45-2"><a href="playing-with-tree-data.html#cb45-2"></a><span class="kw">barplot</span>(<span class="kw">table</span>(treedat<span class="op">$</span>spp), <span class="dt">main=</span><span class="st">&quot;SPP Count Barplot&quot;</span>,</span>
+<span id="cb45-3"><a href="playing-with-tree-data.html#cb45-3"></a><span class="dt">xlab=</span><span class="st">&quot;SPP&quot;</span>,</span>
+<span id="cb45-4"><a href="playing-with-tree-data.html#cb45-4"></a><span class="dt">ylab=</span><span class="st">&quot;Count&quot;</span>,</span>
+<span id="cb45-5"><a href="playing-with-tree-data.html#cb45-5"></a><span class="dt">border=</span><span class="st">&quot;red&quot;</span>,</span>
+<span id="cb45-6"><a href="playing-with-tree-data.html#cb45-6"></a><span class="dt">col=</span><span class="st">&quot;blue&quot;</span>,</span>
+<span id="cb45-7"><a href="playing-with-tree-data.html#cb45-7"></a><span class="dt">density=</span><span class="dv">10</span>)</span></code></pre></div>
+<p><img src="base_plotting_customization_files/figure-html/unnamed-chunk-11-2.png" width="672" /></p>
+<div id="assignment" class="section level2">
+<h2><span class="header-section-number">3.1</span> Assignment:</h2>
+<p>Using the TreeData.csv above, complete the following:</p>
+<ol style="list-style-type: decimal">
+<li>Rename ‘spp’ variable to ‘species’</li>
+<li>Make a 3 column plot consisting of Sapwood Depth histogram, boxplot of Bark Thickness by species, and a histogram showing the seasonal counts.</li>
+<li>Submit plot to Assignment 1 on Canvas</li>
+</ol>
+<p>Your final plot should look like this</p>
+<p><img src="base_plotting_customization_files/figure-html/unnamed-chunk-12-1.png" width="60%" style="display: block; margin: auto;" /></p>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="downloading-datafiles-via-r.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+},
+"search": false
+});
+});
+</script>
+
+</body>
+
+</html>

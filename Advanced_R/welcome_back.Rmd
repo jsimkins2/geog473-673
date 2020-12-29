@@ -1,5 +1,5 @@
 ---
-title: 'Welcome to Advanced R'
+title: 'Expanding on Basic R Plotting'
 output: rmarkdown::github_document
 ---
 
@@ -7,13 +7,12 @@ output: rmarkdown::github_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## Welcome Back!
+## Basic Plotting
 
-Welcome to the Advanced phase of R. In this class, we'll be covering new topics at an accelerated pace. But first, let's shake off the rust
-and get back into the swing of things. As always, if you need revisit older tutorials, they can be found here - https://github.com/jsimkins2/geog473-673/tree/master/R
+R has a plethora of plotting packages, tools, and techniques. Although more popular visualization methods require the installation of other packages, the base plotting package in R can be customized to look professional. 
 
 
-# Downloading Data from the datasets folder
+# Downloading Datafiles via R
 
 All datasets used for this class will be found here - https://github.com/jsimkins2/geog473-673/tree/master/datasets/ 
 
@@ -26,96 +25,7 @@ Follow this format for any of the datasets. Here is another example for the `Tre
 `download.file("https://github.com/jsimkins2/geog473-673/tree/master/datasets/TreeData.csv", destfile = "/Users/james/Downloads/TreeData.csv" , mode='wb')`
 
 
-## Some Useful Definitions
-
-| Function                 |             Description        |
-| -----------| -------------------------------------------- |
-| ls | lists contents of R workspace/global environment | 
-| rm | removes objects from R workspace | 
-| save|  save selected objects |
-| +,-,*,/,^ | arithmetic operators | 
-| %*% |  matrix multiplication |
-| t | matrix transpose | 
-| solve | matrix inverse (and solving linear equations) | 
-| c | combines (concatenates) objects, simplest way to make vectors | 
-| seq | creates vectors that are regular sequences | 
-| rep | replicates vectors | 
-| length| returns length of a vector | 
-| sum | returns the sum |
-| mean | returns the mean | 
-| median | returns the median | 
-| sd | returns the standard deviation (n − 1 in denominator) | 
-| min | returns minimum | 
-| max | returns maximum |
-| sort | sort a vector (rearranges the vector in order) |
-| order | returns indices of vectors that will order them |
-| rank | returns rank of each element in vector | 
-| ==, <, > | comparison operators |
-| <=, >=, != | |
-| |, & | OR, AND |
-| is.na | tests for missing value NA | 
-|which |does logical comparison and indicates which elements are TRUE that is, gives the TRUE indices of a logical object|
-| any |does logical comparison returns 1 (TRUE) if any of the comparisons are TRUE, i.e. is at least one of the values true? |
-|exp |returns e to that power|
-|log |returns natural logarithm (to the base e)|
-|log10| returns logarithm (to the base 10)|
-|sqrt| returns square root|
-|table |does frequencies and cross-tabs|
-|help |help page on specified function|
-|cbind |combine by columns|
-|rbind |combine by rows|
-|matrix| create a matrix|
-|vector |create a vector|
-|nrow| number of rows in an array or data frame|
-|ncol |number of columns in an array or data frame|
-|dim| dimensions of an array or data frame|
-|array| create an array|
-
-| Function                 |             Description        |
-| -----------| -------------------------------------------- |
-|is.vector |answers the question, is this a vector TRUE or FALSE|
-|as.vector |attempts to coerce object into a vector|
-|read.table |reads data from a text file|
-|read.csv |reads data from a text file with comma separated data|
-|write.table| writes a data frame to a text file|
-|is.data.frame| tests object to see if it is data frame|
-|as.data.frame |coerces object into data frame|
-|is.factor |tests object to see if it is a factor|
-|as.factor |coerces object into a factor|
-|head, tail |list the first, last six rows|
-|names |returns names of elements of object|
-|colnames| returns or sets column names of object|
-|rownames |returns or sets row names of object|
-|subset| select part of a vector, matrix, or data frame|
-|merge |merge two data frames|
-|lm |multiple linear regression|
-|glm |generalized linear regression|
-|anova |analysis of variance|
-|chisq.test |Pearson’s Chi-squared test for count data|
-|summary| shows results of various model fitting functions|
-|predict |predicted results from model|
-|hist| histogram|
-|boxplot| box plot|
-|plot |scatterplot|
-|lines |connects points sequentially with lines (added to a plot)|
-|segments| add lines to a plot (between pairs of points)|
-|text |add text to a plot|
-|legend |add a legend to a plot|
-|abline |add a line to a plot by specifying its slope and intercept|
-|passing |an lm object will result in adding the predicted line to the plot|
-|x11 |open another graphics window (PC)|
-|pdf |open a pdf file for recording graphics|
-|dev.off| close graphics device|
-|par(mfrow) |arranges multiple plots on same page (by row)|
-|sample |produces a random sample of the specified values|
-|set.seed |sets seed for next random sample (repeat random sample)|
-|rnorm |produces a random sample from a normal distribution|
-|qnorm |quantiles (percentiles) of normal distribution|
-|pnorm |CDF of normal distribution|
-|dnorm |PDF of normal distribution|
-|rbinom |produces a random sample from a binomial distribution|
-
-## Let's do some basic recap
+## Expanding on Basic Plots in R
 
 Variable Assignment & Operations
 ```{r}
@@ -258,8 +168,8 @@ boxplot(SapDepth ~ spp, data= treedat, ylab= "SapDepth", col= "darkslateblue", m
 ```
 
 Note: hist() is the histogram function and boxplot() is the boxplot function. For the boxplot, notice how the x ~ y, data=dataframe syntax is. It's slightly different than the plotting instances above and for the histogram. For a histogram, the hist() function can only intake numerical values. Thus, if we wanted to take a species histogram, we would have to take a workaround like so - 
-```{r}
-barplot(summary(treedat$spp))
+```{r, eval=FALSE}
+barplot(vector(summary(treedat$spp)))
 ```
 
 ## Assignment:
@@ -286,6 +196,6 @@ par(cex.main=0.7) ## shrinks the name size of the titles. If we don't do this, t
 # Use the his() function to plot a histogram 
 hist(treedat$SapDepth, xlab= "Sap Depth (cm)", main= "James' SapDepth Hist", col= "gray50")
 boxplot(BarkThick ~ species, data= treedat, ylab= "Bark Thickness", col= "darkslateblue", main= "James' BarkThickness boxplot")
-barplot(summary(treedat$season))
+#barplot(summary(treedat$season))
 title("James' season count barplot")
 ```

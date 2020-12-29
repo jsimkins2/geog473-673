@@ -24,7 +24,7 @@
 <meta name="author" content="James Simkins" />
 
 
-<meta name="date" content="2020-09-23" />
+<meta name="date" content="2020-12-29" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -50,13 +50,12 @@
 
 
 
-<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 
 
 <style type="text/css">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
 pre.sourceCode { margin: 0; }
@@ -65,16 +64,14 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
 }
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
+    border: none; pointer-events: all; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -83,9 +80,9 @@ pre.numberSource code > span > a:first-child::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {   }
+  {  }
 @media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+a.sourceLine::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -118,6 +115,7 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<link rel="stylesheet" href="style.css" type="text/css" />
 </head>
 
 <body>
@@ -130,6 +128,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
+<li><a href="./">GEOG473-673 Open-sourced Environmental Computing</a></li>
+
+<li class="divider"></li>
 <li class="chapter" data-level="1" data-path="preface.html"><a href="preface.html"><i class="fa fa-check"></i><b>1</b> Preface</a><ul>
 <li class="chapter" data-level="1.1" data-path="preface.html"><a href="preface.html#course-github"><i class="fa fa-check"></i><b>1.1</b> Course Github</a></li>
 <li class="chapter" data-level="1.2" data-path="preface.html"><a href="preface.html#syllabus"><i class="fa fa-check"></i><b>1.2</b> Syllabus</a></li>
@@ -189,15 +190,29 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8" data-path="oceanography-global-tree-cover.html"><a href="oceanography-global-tree-cover.html"><i class="fa fa-check"></i><b>8</b> Oceanography &amp; Global Tree Cover</a><ul>
 <li class="chapter" data-level="8.1" data-path="oceanography-global-tree-cover.html"><a href="oceanography-global-tree-cover.html#paste0"><i class="fa fa-check"></i><b>8.1</b> <code>Paste0()</code></a></li>
 <li class="chapter" data-level="8.2" data-path="oceanography-global-tree-cover.html"><a href="oceanography-global-tree-cover.html#rasters"><i class="fa fa-check"></i><b>8.2</b> Rasters</a></li>
-<li class="chapter" data-level="8.3" data-path="time-series-fun-with-deos.html"><a href="time-series-fun-with-deos.html#assignment"><i class="fa fa-check"></i><b>8.3</b> Assignment</a></li>
+<li class="chapter" data-level="8.3" data-path="oceanography-global-tree-cover.html"><a href="oceanography-global-tree-cover.html#assignment-1"><i class="fa fa-check"></i><b>8.3</b> Assignment</a></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="reprojecting-writing-rasters.html"><a href="reprojecting-writing-rasters.html"><i class="fa fa-check"></i><b>9</b> Reprojecting &amp; Writing Rasters</a><ul>
 <li class="chapter" data-level="9.1" data-path="reprojecting-writing-rasters.html"><a href="reprojecting-writing-rasters.html#indexing-data"><i class="fa fa-check"></i><b>9.1</b> Indexing Data</a></li>
 <li class="chapter" data-level="9.2" data-path="reprojecting-writing-rasters.html"><a href="reprojecting-writing-rasters.html#resampling-and-reprojecting"><i class="fa fa-check"></i><b>9.2</b> Resampling and Reprojecting</a></li>
 <li class="chapter" data-level="9.3" data-path="reprojecting-writing-rasters.html"><a href="reprojecting-writing-rasters.html#pngs"><i class="fa fa-check"></i><b>9.3</b> PNGs</a></li>
 <li class="chapter" data-level="9.4" data-path="reprojecting-writing-rasters.html"><a href="reprojecting-writing-rasters.html#writing-rasters"><i class="fa fa-check"></i><b>9.4</b> Writing Rasters</a></li>
-<li class="chapter" data-level="9.5" data-path="time-series-fun-with-deos.html"><a href="time-series-fun-with-deos.html#assignment"><i class="fa fa-check"></i><b>9.5</b> Assignment</a></li>
+<li class="chapter" data-level="9.5" data-path="reprojecting-writing-rasters.html"><a href="reprojecting-writing-rasters.html#assignment-2"><i class="fa fa-check"></i><b>9.5</b> Assignment</a></li>
+<li class="chapter" data-level="9.6" data-path="reprojecting-writing-rasters.html"><a href="reprojecting-writing-rasters.html#basic-plotting"><i class="fa fa-check"></i><b>9.6</b> Basic Plotting</a></li>
 </ul></li>
+<li class="chapter" data-level="10" data-path="downloading-datafiles-via-r.html"><a href="downloading-datafiles-via-r.html"><i class="fa fa-check"></i><b>10</b> Downloading Datafiles via R</a><ul>
+<li class="chapter" data-level="10.1" data-path="downloading-datafiles-via-r.html"><a href="downloading-datafiles-via-r.html#expanding-on-basic-plots-in-r"><i class="fa fa-check"></i><b>10.1</b> Expanding on Basic Plots in R</a></li>
+<li class="chapter" data-level="10.2" data-path="downloading-datafiles-via-r.html"><a href="downloading-datafiles-via-r.html#in-class-exercise-1"><i class="fa fa-check"></i><b>10.2</b> In Class Exercise:</a></li>
+<li class="chapter" data-level="10.3" data-path="downloading-datafiles-via-r.html"><a href="downloading-datafiles-via-r.html#more-plotting"><i class="fa fa-check"></i><b>10.3</b> More Plotting</a></li>
+<li class="chapter" data-level="10.4" data-path="downloading-datafiles-via-r.html"><a href="downloading-datafiles-via-r.html#basic-types-of-plots-with-dummy-data"><i class="fa fa-check"></i><b>10.4</b> Basic types of plots with dummy data</a></li>
+<li class="chapter" data-level="10.5" data-path="downloading-datafiles-via-r.html"><a href="downloading-datafiles-via-r.html#now-lets-plot-this-fake-data"><i class="fa fa-check"></i><b>10.5</b> Now let’s plot this fake data</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="playing-with-tree-data.html"><a href="playing-with-tree-data.html"><i class="fa fa-check"></i><b>11</b> Playing with Tree Data</a><ul>
+<li class="chapter" data-level="11.1" data-path="playing-with-tree-data.html"><a href="playing-with-tree-data.html#assignment-3"><i class="fa fa-check"></i><b>11.1</b> Assignment:</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">James Simkins</a></li>
+
 </ul>
 
       </nav>
@@ -221,13 +236,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="for-loops" class="section level2">
 <h2><span class="header-section-number">7.1</span> For Loops</h2>
 <p>For loops &amp; conditional statements are a key skill in programming. They allow you to process through large datasets or multiple datasets thus minimizing the amount of manual work you need to do. The basic for loop looks like this…</p>
-<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb144-1"><a href="time-series-fun-with-deos.html#cb144-1"></a><span class="co"># Generate sequence of numbers from 1 to 10 using the seq() function (seq for sequence)</span></span>
-<span id="cb144-2"><a href="time-series-fun-with-deos.html#cb144-2"></a>numbersList =<span class="st"> </span><span class="kw">seq</span>(<span class="dt">from=</span><span class="dv">1</span>,<span class="dt">to=</span><span class="dv">10</span>,<span class="dt">by=</span><span class="dv">1</span>)</span>
-<span id="cb144-3"><a href="time-series-fun-with-deos.html#cb144-3"></a><span class="co"># Multiply each number in the numbersList by 8 and print the result</span></span>
-<span id="cb144-4"><a href="time-series-fun-with-deos.html#cb144-4"></a><span class="cf">for</span> (i <span class="cf">in</span> numbersList){</span>
-<span id="cb144-5"><a href="time-series-fun-with-deos.html#cb144-5"></a>  temNumber =<span class="st"> </span>i <span class="op">*</span><span class="st"> </span><span class="dv">8</span></span>
-<span id="cb144-6"><a href="time-series-fun-with-deos.html#cb144-6"></a>  <span class="kw">print</span>(temNumber)</span>
-<span id="cb144-7"><a href="time-series-fun-with-deos.html#cb144-7"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb144-1" data-line-number="1"><span class="co"># Generate sequence of numbers from 1 to 10 using the seq() function (seq for sequence)</span></a>
+<a class="sourceLine" id="cb144-2" data-line-number="2">numbersList =<span class="st"> </span><span class="kw">seq</span>(<span class="dt">from=</span><span class="dv">1</span>,<span class="dt">to=</span><span class="dv">10</span>,<span class="dt">by=</span><span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb144-3" data-line-number="3"><span class="co"># Multiply each number in the numbersList by 8 and print the result</span></a>
+<a class="sourceLine" id="cb144-4" data-line-number="4"><span class="cf">for</span> (i <span class="cf">in</span> numbersList){</a>
+<a class="sourceLine" id="cb144-5" data-line-number="5">  temNumber =<span class="st"> </span>i <span class="op">*</span><span class="st"> </span><span class="dv">8</span></a>
+<a class="sourceLine" id="cb144-6" data-line-number="6">  <span class="kw">print</span>(temNumber)</a>
+<a class="sourceLine" id="cb144-7" data-line-number="7">}</a></code></pre></div>
 <pre><code>## [1] 8
 ## [1] 16
 ## [1] 24
@@ -244,27 +259,27 @@ do something within these curly brackets
 }</p>
 <p>Yes, you must have these parentheses and curly brackets present and surrounding the appropriate code. If you forget a parentheses or curly bracket you’ll have <strong>errors</strong> pop up…this happens to advanced programmers all the time, so don’t be discouraged if it takes time getting used to this.</p>
 <p>The general structure is always: for(condition){do something}. If statements are set up the same way</p>
-<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb146-1"><a href="time-series-fun-with-deos.html#cb146-1"></a><span class="co"># Generate sequence of numbers from 1 to 10 using the seq() function (seq for sequence)</span></span>
-<span id="cb146-2"><a href="time-series-fun-with-deos.html#cb146-2"></a>numbersList =<span class="st"> </span><span class="kw">seq</span>(<span class="dt">from=</span><span class="dv">1</span>,<span class="dt">to=</span><span class="dv">10</span>,<span class="dt">by=</span><span class="dv">1</span>)</span>
-<span id="cb146-3"><a href="time-series-fun-with-deos.html#cb146-3"></a><span class="co"># Multiply each number in the numbersList by 8 and print the result</span></span>
-<span id="cb146-4"><a href="time-series-fun-with-deos.html#cb146-4"></a><span class="cf">for</span> (i <span class="cf">in</span> numbersList){</span>
-<span id="cb146-5"><a href="time-series-fun-with-deos.html#cb146-5"></a>  <span class="cf">if</span> (i<span class="op">==</span><span class="dv">4</span>){</span>
-<span id="cb146-6"><a href="time-series-fun-with-deos.html#cb146-6"></a>    temNumber =<span class="st"> </span>i <span class="op">*</span><span class="st"> </span><span class="dv">8</span></span>
-<span id="cb146-7"><a href="time-series-fun-with-deos.html#cb146-7"></a>    <span class="kw">print</span>(temNumber)</span>
-<span id="cb146-8"><a href="time-series-fun-with-deos.html#cb146-8"></a>  }</span>
-<span id="cb146-9"><a href="time-series-fun-with-deos.html#cb146-9"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb146-1" data-line-number="1"><span class="co"># Generate sequence of numbers from 1 to 10 using the seq() function (seq for sequence)</span></a>
+<a class="sourceLine" id="cb146-2" data-line-number="2">numbersList =<span class="st"> </span><span class="kw">seq</span>(<span class="dt">from=</span><span class="dv">1</span>,<span class="dt">to=</span><span class="dv">10</span>,<span class="dt">by=</span><span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb146-3" data-line-number="3"><span class="co"># Multiply each number in the numbersList by 8 and print the result</span></a>
+<a class="sourceLine" id="cb146-4" data-line-number="4"><span class="cf">for</span> (i <span class="cf">in</span> numbersList){</a>
+<a class="sourceLine" id="cb146-5" data-line-number="5">  <span class="cf">if</span> (i<span class="op">==</span><span class="dv">4</span>){</a>
+<a class="sourceLine" id="cb146-6" data-line-number="6">    temNumber =<span class="st"> </span>i <span class="op">*</span><span class="st"> </span><span class="dv">8</span></a>
+<a class="sourceLine" id="cb146-7" data-line-number="7">    <span class="kw">print</span>(temNumber)</a>
+<a class="sourceLine" id="cb146-8" data-line-number="8">  }</a>
+<a class="sourceLine" id="cb146-9" data-line-number="9">}</a></code></pre></div>
 <pre><code>## [1] 32</code></pre>
-<p>This is referred to as a <em>nested loop</em>, because there is a conditional statement within another one. Key takeaway here: in programming languages, <code>=</code> is an assignment (i.e. <code>x = 4</code>), whereas <code>==</code> is an equality test (<code>i == 4</code>). To put this loop in layman’s terms: <code>for i in numbersList, if i is equal to 4, multiply i by 8 and then print temNumber</code>.</p>
+<p>This is referred to as a <em>nested loop</em>, because there is a conditional statement within another one. Key takeaway here: in programming languages, <code>=</code> is an assignment (i.e. <code>x = 4</code>), whereas <code>==</code> is an equality test (<code>i == 4</code>). To put this loop in layman’s terms: <code>for i in numbersList, if i is equal to 4, multiply i by 8 and then print temNumber</code>.</p>
 <p>We can also have nested for loops.</p>
-<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="time-series-fun-with-deos.html#cb148-1"></a><span class="co"># Generate sequence of numbers from 1 to 3 this time using the seq() function (seq for sequence)</span></span>
-<span id="cb148-2"><a href="time-series-fun-with-deos.html#cb148-2"></a>numbersList =<span class="st"> </span><span class="kw">seq</span>(<span class="dt">from=</span><span class="dv">1</span>,<span class="dt">to=</span><span class="dv">3</span>,<span class="dt">by=</span><span class="dv">1</span>)</span>
-<span id="cb148-3"><a href="time-series-fun-with-deos.html#cb148-3"></a>lettersList =<span class="st"> </span><span class="kw">list</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>, <span class="st">&quot;C&quot;</span>)</span>
-<span id="cb148-4"><a href="time-series-fun-with-deos.html#cb148-4"></a></span>
-<span id="cb148-5"><a href="time-series-fun-with-deos.html#cb148-5"></a><span class="cf">for</span> (num <span class="cf">in</span> numbersList){</span>
-<span id="cb148-6"><a href="time-series-fun-with-deos.html#cb148-6"></a>  <span class="cf">for</span> (let <span class="cf">in</span> lettersList){</span>
-<span id="cb148-7"><a href="time-series-fun-with-deos.html#cb148-7"></a>    <span class="kw">print</span>(<span class="kw">c</span>(num,let))</span>
-<span id="cb148-8"><a href="time-series-fun-with-deos.html#cb148-8"></a>  }</span>
-<span id="cb148-9"><a href="time-series-fun-with-deos.html#cb148-9"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb148-1" data-line-number="1"><span class="co"># Generate sequence of numbers from 1 to 3 this time using the seq() function (seq for sequence)</span></a>
+<a class="sourceLine" id="cb148-2" data-line-number="2">numbersList =<span class="st"> </span><span class="kw">seq</span>(<span class="dt">from=</span><span class="dv">1</span>,<span class="dt">to=</span><span class="dv">3</span>,<span class="dt">by=</span><span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb148-3" data-line-number="3">lettersList =<span class="st"> </span><span class="kw">list</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>, <span class="st">&quot;C&quot;</span>)</a>
+<a class="sourceLine" id="cb148-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb148-5" data-line-number="5"><span class="cf">for</span> (num <span class="cf">in</span> numbersList){</a>
+<a class="sourceLine" id="cb148-6" data-line-number="6">  <span class="cf">for</span> (let <span class="cf">in</span> lettersList){</a>
+<a class="sourceLine" id="cb148-7" data-line-number="7">    <span class="kw">print</span>(<span class="kw">c</span>(num,let))</a>
+<a class="sourceLine" id="cb148-8" data-line-number="8">  }</a>
+<a class="sourceLine" id="cb148-9" data-line-number="9">}</a></code></pre></div>
 <pre><code>## [1] &quot;1&quot; &quot;A&quot;
 ## [1] &quot;1&quot; &quot;B&quot;
 ## [1] &quot;1&quot; &quot;C&quot;
@@ -275,15 +290,15 @@ do something within these curly brackets
 ## [1] &quot;3&quot; &quot;B&quot;
 ## [1] &quot;3&quot; &quot;C&quot;</code></pre>
 <p>You can name the object within the list whatever you want (i, j, num, let, etc.). Also, <code>c()</code> is the concatenate function that combines values into a vector or list. The order doesn’t matter in this for loop…</p>
-<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="time-series-fun-with-deos.html#cb150-1"></a><span class="co"># Generate sequence of numbers from 1 to 3 this time using the seq() function (seq for sequence)</span></span>
-<span id="cb150-2"><a href="time-series-fun-with-deos.html#cb150-2"></a>numbersList =<span class="st"> </span><span class="kw">seq</span>(<span class="dt">from=</span><span class="dv">1</span>,<span class="dt">to=</span><span class="dv">3</span>,<span class="dt">by=</span><span class="dv">1</span>)</span>
-<span id="cb150-3"><a href="time-series-fun-with-deos.html#cb150-3"></a>lettersList =<span class="st"> </span><span class="kw">list</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>, <span class="st">&quot;C&quot;</span>)</span>
-<span id="cb150-4"><a href="time-series-fun-with-deos.html#cb150-4"></a></span>
-<span id="cb150-5"><a href="time-series-fun-with-deos.html#cb150-5"></a><span class="cf">for</span> (let <span class="cf">in</span> lettersList){</span>
-<span id="cb150-6"><a href="time-series-fun-with-deos.html#cb150-6"></a>  <span class="cf">for</span> (num <span class="cf">in</span> numbersList){</span>
-<span id="cb150-7"><a href="time-series-fun-with-deos.html#cb150-7"></a>    <span class="kw">print</span>(<span class="kw">c</span>(num,let))</span>
-<span id="cb150-8"><a href="time-series-fun-with-deos.html#cb150-8"></a>  }</span>
-<span id="cb150-9"><a href="time-series-fun-with-deos.html#cb150-9"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb150-1" data-line-number="1"><span class="co"># Generate sequence of numbers from 1 to 3 this time using the seq() function (seq for sequence)</span></a>
+<a class="sourceLine" id="cb150-2" data-line-number="2">numbersList =<span class="st"> </span><span class="kw">seq</span>(<span class="dt">from=</span><span class="dv">1</span>,<span class="dt">to=</span><span class="dv">3</span>,<span class="dt">by=</span><span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb150-3" data-line-number="3">lettersList =<span class="st"> </span><span class="kw">list</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>, <span class="st">&quot;C&quot;</span>)</a>
+<a class="sourceLine" id="cb150-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb150-5" data-line-number="5"><span class="cf">for</span> (let <span class="cf">in</span> lettersList){</a>
+<a class="sourceLine" id="cb150-6" data-line-number="6">  <span class="cf">for</span> (num <span class="cf">in</span> numbersList){</a>
+<a class="sourceLine" id="cb150-7" data-line-number="7">    <span class="kw">print</span>(<span class="kw">c</span>(num,let))</a>
+<a class="sourceLine" id="cb150-8" data-line-number="8">  }</a>
+<a class="sourceLine" id="cb150-9" data-line-number="9">}</a></code></pre></div>
 <pre><code>## [1] &quot;1&quot; &quot;A&quot;
 ## [1] &quot;2&quot; &quot;A&quot;
 ## [1] &quot;3&quot; &quot;A&quot;
@@ -294,29 +309,29 @@ do something within these curly brackets
 ## [1] &quot;2&quot; &quot;C&quot;
 ## [1] &quot;3&quot; &quot;C&quot;</code></pre>
 <p>But it does in this one…</p>
-<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="time-series-fun-with-deos.html#cb152-1"></a><span class="co"># Generate sequence of numbers from 1 to 10 using the seq() function (seq for sequence)</span></span>
-<span id="cb152-2"><a href="time-series-fun-with-deos.html#cb152-2"></a>numbersList =<span class="st"> </span><span class="kw">seq</span>(<span class="dt">from=</span><span class="dv">1</span>,<span class="dt">to=</span><span class="dv">10</span>,<span class="dt">by=</span><span class="dv">1</span>)</span>
-<span id="cb152-3"><a href="time-series-fun-with-deos.html#cb152-3"></a><span class="co"># Multiply each number in the numbersList by 8 and print the result</span></span>
-<span id="cb152-4"><a href="time-series-fun-with-deos.html#cb152-4"></a><span class="cf">if</span> (i<span class="op">==</span><span class="dv">4</span>){</span>
-<span id="cb152-5"><a href="time-series-fun-with-deos.html#cb152-5"></a>  <span class="cf">for</span> (i <span class="cf">in</span> numbersList){</span>
-<span id="cb152-6"><a href="time-series-fun-with-deos.html#cb152-6"></a>    temNumber =<span class="st"> </span>i <span class="op">*</span><span class="st"> </span><span class="dv">8</span></span>
-<span id="cb152-7"><a href="time-series-fun-with-deos.html#cb152-7"></a>    <span class="kw">print</span>(temNumber)</span>
-<span id="cb152-8"><a href="time-series-fun-with-deos.html#cb152-8"></a>  }</span>
-<span id="cb152-9"><a href="time-series-fun-with-deos.html#cb152-9"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb152-1" data-line-number="1"><span class="co"># Generate sequence of numbers from 1 to 10 using the seq() function (seq for sequence)</span></a>
+<a class="sourceLine" id="cb152-2" data-line-number="2">numbersList =<span class="st"> </span><span class="kw">seq</span>(<span class="dt">from=</span><span class="dv">1</span>,<span class="dt">to=</span><span class="dv">10</span>,<span class="dt">by=</span><span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb152-3" data-line-number="3"><span class="co"># Multiply each number in the numbersList by 8 and print the result</span></a>
+<a class="sourceLine" id="cb152-4" data-line-number="4"><span class="cf">if</span> (i<span class="op">==</span><span class="dv">4</span>){</a>
+<a class="sourceLine" id="cb152-5" data-line-number="5">  <span class="cf">for</span> (i <span class="cf">in</span> numbersList){</a>
+<a class="sourceLine" id="cb152-6" data-line-number="6">    temNumber =<span class="st"> </span>i <span class="op">*</span><span class="st"> </span><span class="dv">8</span></a>
+<a class="sourceLine" id="cb152-7" data-line-number="7">    <span class="kw">print</span>(temNumber)</a>
+<a class="sourceLine" id="cb152-8" data-line-number="8">  }</a>
+<a class="sourceLine" id="cb152-9" data-line-number="9">}</a></code></pre></div>
 <p>Here’s one more example for multi conditional statement with an else…</p>
-<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="time-series-fun-with-deos.html#cb153-1"></a><span class="co"># Generate sequence of numbers from 1 to 3 this time using the seq() function (seq for sequence)</span></span>
-<span id="cb153-2"><a href="time-series-fun-with-deos.html#cb153-2"></a>numbersList =<span class="st"> </span><span class="kw">seq</span>(<span class="dt">from=</span><span class="dv">1</span>,<span class="dt">to=</span><span class="dv">3</span>,<span class="dt">by=</span><span class="dv">1</span>)</span>
-<span id="cb153-3"><a href="time-series-fun-with-deos.html#cb153-3"></a>lettersList =<span class="st"> </span><span class="kw">list</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>, <span class="st">&quot;C&quot;</span>)</span>
-<span id="cb153-4"><a href="time-series-fun-with-deos.html#cb153-4"></a></span>
-<span id="cb153-5"><a href="time-series-fun-with-deos.html#cb153-5"></a><span class="cf">for</span> (num <span class="cf">in</span> numbersList){</span>
-<span id="cb153-6"><a href="time-series-fun-with-deos.html#cb153-6"></a>  <span class="cf">for</span> (let <span class="cf">in</span> lettersList){</span>
-<span id="cb153-7"><a href="time-series-fun-with-deos.html#cb153-7"></a>    <span class="cf">if</span> (num <span class="op">==</span><span class="st"> </span><span class="dv">3</span> <span class="op">&amp;&amp;</span><span class="st"> </span>let <span class="op">==</span><span class="st"> &quot;B&quot;</span>){</span>
-<span id="cb153-8"><a href="time-series-fun-with-deos.html#cb153-8"></a>      <span class="kw">print</span>(<span class="kw">c</span>(num,let))</span>
-<span id="cb153-9"><a href="time-series-fun-with-deos.html#cb153-9"></a>    } <span class="cf">else</span>{</span>
-<span id="cb153-10"><a href="time-series-fun-with-deos.html#cb153-10"></a>      <span class="kw">print</span>(<span class="st">&quot;Not what we want&quot;</span>)</span>
-<span id="cb153-11"><a href="time-series-fun-with-deos.html#cb153-11"></a>    }</span>
-<span id="cb153-12"><a href="time-series-fun-with-deos.html#cb153-12"></a>  }</span>
-<span id="cb153-13"><a href="time-series-fun-with-deos.html#cb153-13"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb153-1" data-line-number="1"><span class="co"># Generate sequence of numbers from 1 to 3 this time using the seq() function (seq for sequence)</span></a>
+<a class="sourceLine" id="cb153-2" data-line-number="2">numbersList =<span class="st"> </span><span class="kw">seq</span>(<span class="dt">from=</span><span class="dv">1</span>,<span class="dt">to=</span><span class="dv">3</span>,<span class="dt">by=</span><span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb153-3" data-line-number="3">lettersList =<span class="st"> </span><span class="kw">list</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>, <span class="st">&quot;C&quot;</span>)</a>
+<a class="sourceLine" id="cb153-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb153-5" data-line-number="5"><span class="cf">for</span> (num <span class="cf">in</span> numbersList){</a>
+<a class="sourceLine" id="cb153-6" data-line-number="6">  <span class="cf">for</span> (let <span class="cf">in</span> lettersList){</a>
+<a class="sourceLine" id="cb153-7" data-line-number="7">    <span class="cf">if</span> (num <span class="op">==</span><span class="st"> </span><span class="dv">3</span> <span class="op">&amp;&amp;</span><span class="st"> </span>let <span class="op">==</span><span class="st"> &quot;B&quot;</span>){</a>
+<a class="sourceLine" id="cb153-8" data-line-number="8">      <span class="kw">print</span>(<span class="kw">c</span>(num,let))</a>
+<a class="sourceLine" id="cb153-9" data-line-number="9">    } <span class="cf">else</span>{</a>
+<a class="sourceLine" id="cb153-10" data-line-number="10">      <span class="kw">print</span>(<span class="st">&quot;Not what we want&quot;</span>)</a>
+<a class="sourceLine" id="cb153-11" data-line-number="11">    }</a>
+<a class="sourceLine" id="cb153-12" data-line-number="12">  }</a>
+<a class="sourceLine" id="cb153-13" data-line-number="13">}</a></code></pre></div>
 <pre><code>## [1] &quot;Not what we want&quot;
 ## [1] &quot;Not what we want&quot;
 ## [1] &quot;Not what we want&quot;
@@ -326,19 +341,19 @@ do something within these curly brackets
 ## [1] &quot;Not what we want&quot;
 ## [1] &quot;3&quot; &quot;B&quot;
 ## [1] &quot;Not what we want&quot;</code></pre>
-<p><code>&amp;&amp;</code> means “and” … <code>||</code> means “or”…these are useful in multi conditional statements. The <code>else</code> statement is an appendage of the <code>if</code> statement. It basically means if <code>num == 3</code> and <code>let == B</code> is <code>false</code>, <code>print "not what we want"</code>. Notice that the ‘else’ statement is outside of the <code>if</code> statement but immediately after it.</p>
+<p><code>&amp;&amp;</code> means “and” … <code>||</code> means “or”…these are useful in multi conditional statements. The <code>else</code> statement is an appendage of the <code>if</code> statement. It basically means if <code>num == 3</code> and <code>let == B</code> is <code>false</code>, <code>print &quot;not what we want&quot;</code>. Notice that the ‘else’ statement is outside of the <code>if</code> statement but immediately after it.</p>
 <p>In Class Exercise: debug this for loop</p>
-<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="time-series-fun-with-deos.html#cb155-1"></a>soiltype &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="st">&quot;sand&quot;</span>, <span class="st">&quot;silt&quot;</span>, <span class="st">&quot;saline&quot;</span>, <span class="st">&quot;clay&quot;</span>, <span class="st">&quot;peat&quot;</span>)</span>
-<span id="cb155-2"><a href="time-series-fun-with-deos.html#cb155-2"></a>permeability &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">0.09</span>, <span class="fl">0.05</span>, <span class="fl">0.03</span>, <span class="fl">0.01</span>, <span class="fl">0.005</span>)</span>
-<span id="cb155-3"><a href="time-series-fun-with-deos.html#cb155-3"></a></span>
-<span id="cb155-4"><a href="time-series-fun-with-deos.html#cb155-4"></a><span class="cf">for</span> (s <span class="cf">in</span> <span class="kw">seq</span>(<span class="kw">length</span>(soiltype)){</span>
-<span id="cb155-5"><a href="time-series-fun-with-deos.html#cb155-5"></a>  <span class="kw">print</span>(a)</span>
-<span id="cb155-6"><a href="time-series-fun-with-deos.html#cb155-6"></a>  <span class="cf">for</span> (p <span class="cf">in</span> permeability)</span>
-<span id="cb155-7"><a href="time-series-fun-with-deos.html#cb155-7"></a>    <span class="cf">if</span> (p <span class="op">==</span><span class="st"> </span><span class="fl">0.05</span> <span class="op">|</span><span class="st"> </span>p <span class="op">==</span><span class="st"> </span><span class="fl">0.005</span>){</span>
-<span id="cb155-8"><a href="time-series-fun-with-deos.html#cb155-8"></a>      <span class="kw">print</span>(permeability[s])</span>
-<span id="cb155-9"><a href="time-series-fun-with-deos.html#cb155-9"></a>    }</span>
-<span id="cb155-10"><a href="time-series-fun-with-deos.html#cb155-10"></a>  }</span>
-<span id="cb155-11"><a href="time-series-fun-with-deos.html#cb155-11"></a><span class="er">}</span></span></code></pre></div>
+<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb155-1" data-line-number="1">soiltype &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="st">&quot;sand&quot;</span>, <span class="st">&quot;silt&quot;</span>, <span class="st">&quot;saline&quot;</span>, <span class="st">&quot;clay&quot;</span>, <span class="st">&quot;peat&quot;</span>)</a>
+<a class="sourceLine" id="cb155-2" data-line-number="2">permeability &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">0.09</span>, <span class="fl">0.05</span>, <span class="fl">0.03</span>, <span class="fl">0.01</span>, <span class="fl">0.005</span>)</a>
+<a class="sourceLine" id="cb155-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb155-4" data-line-number="4"><span class="cf">for</span> (s <span class="cf">in</span> <span class="kw">seq</span>(<span class="kw">length</span>(soiltype)){</a>
+<a class="sourceLine" id="cb155-5" data-line-number="5">  <span class="kw">print</span>(a)</a>
+<a class="sourceLine" id="cb155-6" data-line-number="6">  <span class="cf">for</span> (p <span class="cf">in</span> permeability)</a>
+<a class="sourceLine" id="cb155-7" data-line-number="7">    <span class="cf">if</span> (p <span class="op">==</span><span class="st"> </span><span class="fl">0.05</span> <span class="op">|</span><span class="st"> </span>p <span class="op">==</span><span class="st"> </span><span class="fl">0.005</span>){</a>
+<a class="sourceLine" id="cb155-8" data-line-number="8">      <span class="kw">print</span>(permeability[s])</a>
+<a class="sourceLine" id="cb155-9" data-line-number="9">    }</a>
+<a class="sourceLine" id="cb155-10" data-line-number="10">  }</a>
+<a class="sourceLine" id="cb155-11" data-line-number="11"><span class="er">}</span></a></code></pre></div>
 <p>And get this output…</p>
 <pre><code>## [1] 1
 ## [1] 0.09
@@ -362,77 +377,101 @@ do something within these curly brackets
 <p><strong>Note: When we load the file, your path might look something like this:</strong></p>
 <p><code>Downloads/geog473-673/datasets/DEOS.csv</code></p>
 <p>Remember, we need to tell R <em>where</em> we stored the file we want to open. We can use <code>getwd()</code> to see where R is looking right now. From there, we can tell it to look in <code>Downloads</code>, or <code>Documents</code>, or <code>Desktop</code>, etc.</p>
-<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb157-1"><a href="time-series-fun-with-deos.html#cb157-1"></a><span class="co"># load the data using read.csv()</span></span>
-<span id="cb157-2"><a href="time-series-fun-with-deos.html#cb157-2"></a>deos_data &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;../datasets/DEOS.csv&quot;</span>, <span class="dt">header =</span> <span class="ot">TRUE</span>, <span class="dt">skip=</span><span class="dv">0</span>, <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>)</span>
-<span id="cb157-3"><a href="time-series-fun-with-deos.html#cb157-3"></a></span>
-<span id="cb157-4"><a href="time-series-fun-with-deos.html#cb157-4"></a><span class="co"># view the top few rows of data using the head() function</span></span>
-<span id="cb157-5"><a href="time-series-fun-with-deos.html#cb157-5"></a><span class="kw">head</span>(deos_data)</span></code></pre></div>
-<pre><code>##    Timestamp..UTC. Air.Temperature.deg..C. Dew.Point.Temperature.deg..C. Wind.Speed.m.sec. Wind.Direction.deg.. Barometric.Pressure.. Solar.Radiation.UNKNOWN.
-## 1 2014-04-04 04:05                     7.1                           4.3               3.7                351.7                    NA                        0
-## 2 2014-04-04 04:10                     6.9                           4.3               3.5                352.9                    NA                        0
-## 3 2014-04-04 04:15                     6.8                           4.3               3.9                357.5                    NA                        0
-## 4 2014-04-04 04:20                     6.7                           4.4               3.9                356.8                    NA                        0
-## 5 2014-04-04 04:25                     6.6                           4.4               3.3                  5.5                    NA                        0
-## 6 2014-04-04 04:30                     6.6                           4.4               2.7                 18.4                    NA                        0
-##   Wind.Gust.Speed..5..m.sec. Gage.Precipitation..5..mm.
-## 1                        5.1                       0.00
-## 2                        5.8                       0.00
-## 3                        6.2                       0.25
-## 4                        5.9                       0.00
-## 5                        4.9                       0.00
-## 6                        3.5                       0.00</code></pre>
-<div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb159-1"><a href="time-series-fun-with-deos.html#cb159-1"></a><span class="co"># view summary of the data</span></span>
-<span id="cb159-2"><a href="time-series-fun-with-deos.html#cb159-2"></a><span class="kw">summary</span>(deos_data)</span></code></pre></div>
-<pre><code>##  Timestamp..UTC.    Air.Temperature.deg..C. Dew.Point.Temperature.deg..C. Wind.Speed.m.sec. Wind.Direction.deg.. Barometric.Pressure.. Solar.Radiation.UNKNOWN.
-##  Length:182645      Min.   :-51.0           Min.   :-53.300               Min.   : 0.100    Min.   :  0.0        Mode:logical          Min.   :   0.0          
-##  Class :character   1st Qu.:  7.6           1st Qu.:  2.200               1st Qu.: 1.800    1st Qu.: 99.3        NA&#39;s:182645           1st Qu.:   0.0          
-##  Mode  :character   Median : 15.2           Median : 10.200               Median : 2.600    Median :202.2                              Median :   4.0          
-##                     Mean   : 14.1           Mean   :  8.505               Mean   : 2.997    Mean   :187.0                              Mean   : 192.7          
-##                     3rd Qu.: 21.2           3rd Qu.: 16.200               3rd Qu.: 3.700    3rd Qu.:258.9                              3rd Qu.: 313.0          
-##                     Max.   : 37.0           Max.   : 25.500               Max.   :16.700    Max.   :360.0                              Max.   :1335.0          
-##  Wind.Gust.Speed..5..m.sec. Gage.Precipitation..5..mm.
-##  Min.   : 0.100             Min.   :0.00000           
-##  1st Qu.: 2.900             1st Qu.:0.00000           
-##  Median : 4.400             Median :0.00000           
-##  Mean   : 4.907             Mean   :0.01354           
-##  3rd Qu.: 6.400             3rd Qu.:0.00000           
-##  Max.   :24.400             Max.   :9.65000</code></pre>
-<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb161-1"><a href="time-series-fun-with-deos.html#cb161-1"></a><span class="co"># view variable names</span></span>
-<span id="cb161-2"><a href="time-series-fun-with-deos.html#cb161-2"></a><span class="kw">colnames</span>(deos_data)</span></code></pre></div>
-<pre><code>## [1] &quot;Timestamp..UTC.&quot;               &quot;Air.Temperature.deg..C.&quot;       &quot;Dew.Point.Temperature.deg..C.&quot; &quot;Wind.Speed.m.sec.&quot;             &quot;Wind.Direction.deg..&quot;         
-## [6] &quot;Barometric.Pressure..&quot;         &quot;Solar.Radiation.UNKNOWN.&quot;      &quot;Wind.Gust.Speed..5..m.sec.&quot;    &quot;Gage.Precipitation..5..mm.&quot;</code></pre>
-<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb163-1"><a href="time-series-fun-with-deos.html#cb163-1"></a><span class="co">#the variable names look wonky because they have spaces in them - spaces in variable names is a big no-no</span></span>
-<span id="cb163-2"><a href="time-series-fun-with-deos.html#cb163-2"></a><span class="co">#change the names to something more readable</span></span>
-<span id="cb163-3"><a href="time-series-fun-with-deos.html#cb163-3"></a><span class="kw">names</span>(deos_data) =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;datetime&quot;</span>, <span class="st">&quot;air_temperature&quot;</span>, <span class="st">&quot;dewpoint&quot;</span>, <span class="st">&quot;windspeed&quot;</span>, <span class="st">&quot;winddirection&quot;</span>, <span class="st">&quot;pressure&quot;</span>, <span class="st">&quot;solar_radiation&quot;</span>, <span class="st">&quot;wind_gust&quot;</span>, <span class="st">&quot;precipitation&quot;</span>)</span>
-<span id="cb163-4"><a href="time-series-fun-with-deos.html#cb163-4"></a></span>
-<span id="cb163-5"><a href="time-series-fun-with-deos.html#cb163-5"></a><span class="co"># print the first datetime value </span></span>
-<span id="cb163-6"><a href="time-series-fun-with-deos.html#cb163-6"></a>deos_data<span class="op">$</span>datetime[<span class="dv">1</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb157-1" data-line-number="1"><span class="co"># load the data using read.csv()</span></a>
+<a class="sourceLine" id="cb157-2" data-line-number="2">deos_data &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;../datasets/DEOS.csv&quot;</span>, <span class="dt">header =</span> <span class="ot">TRUE</span>, <span class="dt">skip=</span><span class="dv">0</span>, <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb157-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb157-4" data-line-number="4"><span class="co"># view the top few rows of data using the head() function</span></a>
+<a class="sourceLine" id="cb157-5" data-line-number="5"><span class="kw">head</span>(deos_data)</a></code></pre></div>
+<pre><code>##    Timestamp..UTC. Air.Temperature.deg..C. Dew.Point.Temperature.deg..C.
+## 1 2014-04-04 04:05                     7.1                           4.3
+## 2 2014-04-04 04:10                     6.9                           4.3
+## 3 2014-04-04 04:15                     6.8                           4.3
+## 4 2014-04-04 04:20                     6.7                           4.4
+## 5 2014-04-04 04:25                     6.6                           4.4
+## 6 2014-04-04 04:30                     6.6                           4.4
+##   Wind.Speed.m.sec. Wind.Direction.deg.. Barometric.Pressure..
+## 1               3.7                351.7                    NA
+## 2               3.5                352.9                    NA
+## 3               3.9                357.5                    NA
+## 4               3.9                356.8                    NA
+## 5               3.3                  5.5                    NA
+## 6               2.7                 18.4                    NA
+##   Solar.Radiation.UNKNOWN. Wind.Gust.Speed..5..m.sec.
+## 1                        0                        5.1
+## 2                        0                        5.8
+## 3                        0                        6.2
+## 4                        0                        5.9
+## 5                        0                        4.9
+## 6                        0                        3.5
+##   Gage.Precipitation..5..mm.
+## 1                       0.00
+## 2                       0.00
+## 3                       0.25
+## 4                       0.00
+## 5                       0.00
+## 6                       0.00</code></pre>
+<div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb159-1" data-line-number="1"><span class="co"># view summary of the data</span></a>
+<a class="sourceLine" id="cb159-2" data-line-number="2"><span class="kw">summary</span>(deos_data)</a></code></pre></div>
+<pre><code>##  Timestamp..UTC.    Air.Temperature.deg..C. Dew.Point.Temperature.deg..C.
+##  Length:182645      Min.   :-51.0           Min.   :-53.300              
+##  Class :character   1st Qu.:  7.6           1st Qu.:  2.200              
+##  Mode  :character   Median : 15.2           Median : 10.200              
+##                     Mean   : 14.1           Mean   :  8.505              
+##                     3rd Qu.: 21.2           3rd Qu.: 16.200              
+##                     Max.   : 37.0           Max.   : 25.500              
+##  Wind.Speed.m.sec. Wind.Direction.deg.. Barometric.Pressure..
+##  Min.   : 0.100    Min.   :  0.0        Mode:logical         
+##  1st Qu.: 1.800    1st Qu.: 99.3        NA&#39;s:182645          
+##  Median : 2.600    Median :202.2                             
+##  Mean   : 2.997    Mean   :187.0                             
+##  3rd Qu.: 3.700    3rd Qu.:258.9                             
+##  Max.   :16.700    Max.   :360.0                             
+##  Solar.Radiation.UNKNOWN. Wind.Gust.Speed..5..m.sec. Gage.Precipitation..5..mm.
+##  Min.   :   0.0           Min.   : 0.100             Min.   :0.00000           
+##  1st Qu.:   0.0           1st Qu.: 2.900             1st Qu.:0.00000           
+##  Median :   4.0           Median : 4.400             Median :0.00000           
+##  Mean   : 192.7           Mean   : 4.907             Mean   :0.01354           
+##  3rd Qu.: 313.0           3rd Qu.: 6.400             3rd Qu.:0.00000           
+##  Max.   :1335.0           Max.   :24.400             Max.   :9.65000</code></pre>
+<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb161-1" data-line-number="1"><span class="co"># view variable names</span></a>
+<a class="sourceLine" id="cb161-2" data-line-number="2"><span class="kw">colnames</span>(deos_data)</a></code></pre></div>
+<pre><code>## [1] &quot;Timestamp..UTC.&quot;               &quot;Air.Temperature.deg..C.&quot;      
+## [3] &quot;Dew.Point.Temperature.deg..C.&quot; &quot;Wind.Speed.m.sec.&quot;            
+## [5] &quot;Wind.Direction.deg..&quot;          &quot;Barometric.Pressure..&quot;        
+## [7] &quot;Solar.Radiation.UNKNOWN.&quot;      &quot;Wind.Gust.Speed..5..m.sec.&quot;   
+## [9] &quot;Gage.Precipitation..5..mm.&quot;</code></pre>
+<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb163-1" data-line-number="1"><span class="co">#the variable names look wonky because they have spaces in them - spaces in variable names is a big no-no</span></a>
+<a class="sourceLine" id="cb163-2" data-line-number="2"><span class="co">#change the names to something more readable</span></a>
+<a class="sourceLine" id="cb163-3" data-line-number="3"><span class="kw">names</span>(deos_data) =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;datetime&quot;</span>, <span class="st">&quot;air_temperature&quot;</span>, <span class="st">&quot;dewpoint&quot;</span>, <span class="st">&quot;windspeed&quot;</span>, <span class="st">&quot;winddirection&quot;</span>, <span class="st">&quot;pressure&quot;</span>, <span class="st">&quot;solar_radiation&quot;</span>, <span class="st">&quot;wind_gust&quot;</span>, <span class="st">&quot;precipitation&quot;</span>)</a>
+<a class="sourceLine" id="cb163-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb163-5" data-line-number="5"><span class="co"># print the first datetime value </span></a>
+<a class="sourceLine" id="cb163-6" data-line-number="6">deos_data<span class="op">$</span>datetime[<span class="dv">1</span>]</a></code></pre></div>
 <pre><code>## [1] &quot;2014-04-04 04:05&quot;</code></pre>
-<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb165-1"><a href="time-series-fun-with-deos.html#cb165-1"></a><span class="co"># view the class of the first date index</span></span>
-<span id="cb165-2"><a href="time-series-fun-with-deos.html#cb165-2"></a><span class="kw">class</span>(deos_data<span class="op">$</span>datetime)</span></code></pre></div>
+<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb165-1" data-line-number="1"><span class="co"># view the class of the first date index</span></a>
+<a class="sourceLine" id="cb165-2" data-line-number="2"><span class="kw">class</span>(deos_data<span class="op">$</span>datetime)</a></code></pre></div>
 <pre><code>## [1] &quot;character&quot;</code></pre>
-<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb167-1"><a href="time-series-fun-with-deos.html#cb167-1"></a><span class="co"># give it a datetime class, notice the format</span></span>
-<span id="cb167-2"><a href="time-series-fun-with-deos.html#cb167-2"></a>deos_data<span class="op">$</span>datetime =<span class="st"> </span><span class="kw">as.POSIXct</span>(deos_data<span class="op">$</span>datetime, <span class="dt">format =</span> <span class="st">&#39;%Y-%m-%d %H:%M&#39;</span>)</span>
-<span id="cb167-3"><a href="time-series-fun-with-deos.html#cb167-3"></a></span>
-<span id="cb167-4"><a href="time-series-fun-with-deos.html#cb167-4"></a><span class="co"># subset the data using the which.min() and which.max() functions to find our indices</span></span>
-<span id="cb167-5"><a href="time-series-fun-with-deos.html#cb167-5"></a>low_ind =<span class="st"> </span><span class="kw">which.min</span>(deos_data<span class="op">$</span>datetime <span class="op">&lt;</span><span class="st"> &quot;2014-04-04 00:00:00&quot;</span>)</span>
-<span id="cb167-6"><a href="time-series-fun-with-deos.html#cb167-6"></a>upper_ind =<span class="st"> </span><span class="kw">which.max</span>(deos_data<span class="op">$</span>datetime <span class="op">&gt;</span><span class="st"> &quot;2015-04-04 23:59&quot;</span>)</span>
-<span id="cb167-7"><a href="time-series-fun-with-deos.html#cb167-7"></a></span>
-<span id="cb167-8"><a href="time-series-fun-with-deos.html#cb167-8"></a><span class="co"># plot the dataset by indexing it between teh low_ind and upper_ind</span></span>
-<span id="cb167-9"><a href="time-series-fun-with-deos.html#cb167-9"></a><span class="kw">plot</span>(deos_data<span class="op">$</span>datetime[low_ind<span class="op">:</span>upper_ind], deos_data<span class="op">$</span>air_temperature[low_ind<span class="op">:</span>upper_ind], <span class="dt">type =</span> <span class="st">&quot;l&quot;</span>, <span class="dt">col =</span> <span class="st">&#39;red&#39;</span>, </span>
-<span id="cb167-10"><a href="time-series-fun-with-deos.html#cb167-10"></a>     <span class="dt">xlab =</span> <span class="kw">paste0</span>(deos_data<span class="op">$</span>datetime[low_ind], <span class="st">&quot; to &quot;</span>, deos_data<span class="op">$</span>datetime[upper_ind]), <span class="dt">ylab =</span> <span class="st">&quot;Celsius&quot;</span>)</span>
-<span id="cb167-11"><a href="time-series-fun-with-deos.html#cb167-11"></a><span class="co"># add a title to the plot</span></span>
-<span id="cb167-12"><a href="time-series-fun-with-deos.html#cb167-12"></a><span class="kw">title</span>(<span class="st">&quot;1 Year Air Temperature at Station&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb167-1" data-line-number="1"><span class="co"># give it a datetime class, notice the format</span></a>
+<a class="sourceLine" id="cb167-2" data-line-number="2">deos_data<span class="op">$</span>datetime =<span class="st"> </span><span class="kw">as.POSIXct</span>(deos_data<span class="op">$</span>datetime, <span class="dt">format =</span> <span class="st">&#39;%Y-%m-%d %H:%M&#39;</span>)</a>
+<a class="sourceLine" id="cb167-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb167-4" data-line-number="4"><span class="co"># subset the data using the which.min() and which.max() functions to find our indices</span></a>
+<a class="sourceLine" id="cb167-5" data-line-number="5">low_ind =<span class="st"> </span><span class="kw">which.min</span>(deos_data<span class="op">$</span>datetime <span class="op">&lt;</span><span class="st"> &quot;2014-04-04 00:00:00&quot;</span>)</a>
+<a class="sourceLine" id="cb167-6" data-line-number="6">upper_ind =<span class="st"> </span><span class="kw">which.max</span>(deos_data<span class="op">$</span>datetime <span class="op">&gt;</span><span class="st"> &quot;2015-04-04 23:59&quot;</span>)</a>
+<a class="sourceLine" id="cb167-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb167-8" data-line-number="8"><span class="co"># plot the dataset by indexing it between teh low_ind and upper_ind</span></a>
+<a class="sourceLine" id="cb167-9" data-line-number="9"><span class="kw">plot</span>(deos_data<span class="op">$</span>datetime[low_ind<span class="op">:</span>upper_ind], deos_data<span class="op">$</span>air_temperature[low_ind<span class="op">:</span>upper_ind], <span class="dt">type =</span> <span class="st">&quot;l&quot;</span>, <span class="dt">col =</span> <span class="st">&#39;red&#39;</span>, </a>
+<a class="sourceLine" id="cb167-10" data-line-number="10">     <span class="dt">xlab =</span> <span class="kw">paste0</span>(deos_data<span class="op">$</span>datetime[low_ind], <span class="st">&quot; to &quot;</span>, deos_data<span class="op">$</span>datetime[upper_ind]), <span class="dt">ylab =</span> <span class="st">&quot;Celsius&quot;</span>)</a>
+<a class="sourceLine" id="cb167-11" data-line-number="11"><span class="co"># add a title to the plot</span></a>
+<a class="sourceLine" id="cb167-12" data-line-number="12"><span class="kw">title</span>(<span class="st">&quot;1 Year Air Temperature at Station&quot;</span>)</a></code></pre></div>
 <p><img src="Introduction-to-R_files/figure-html/unnamed-chunk-83-1.png" width="672" /></p>
-<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb168-1"><a href="time-series-fun-with-deos.html#cb168-1"></a><span class="co">#subset the data using the subset function  this time</span></span>
-<span id="cb168-2"><a href="time-series-fun-with-deos.html#cb168-2"></a>subDeos =<span class="st"> </span><span class="kw">subset</span>(deos_data, deos_data<span class="op">$</span>datetime <span class="op">&gt;=</span><span class="st"> &quot;2014-07-04 00:00:00&quot;</span> <span class="op">&amp;</span><span class="st"> </span>deos_data<span class="op">$</span>datetime <span class="op">&lt;=</span><span class="st"> &quot;2014-07-11 23:59:00&quot;</span>)</span>
-<span id="cb168-3"><a href="time-series-fun-with-deos.html#cb168-3"></a></span>
-<span id="cb168-4"><a href="time-series-fun-with-deos.html#cb168-4"></a><span class="co"># Now add dewpoint to that plot</span></span>
-<span id="cb168-5"><a href="time-series-fun-with-deos.html#cb168-5"></a><span class="kw">plot</span>(<span class="dt">x =</span> subDeos<span class="op">$</span>datetime, <span class="dt">y =</span> subDeos<span class="op">$</span>air_temperature, <span class="dt">type =</span> <span class="st">&quot;l&quot;</span>, <span class="dt">col =</span> <span class="st">&#39;red&#39;</span>, <span class="dt">xlab =</span> <span class="kw">paste0</span>(subDeos<span class="op">$</span>datetime[<span class="dv">1</span>], <span class="st">&quot; to &quot;</span>,   subDeos<span class="op">$</span>datetime[<span class="kw">length</span>(subDeos<span class="op">$</span>datetime)]), <span class="dt">ylab =</span> <span class="st">&quot;Celsius&quot;</span>, <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">5</span>,<span class="dv">40</span>))</span>
-<span id="cb168-6"><a href="time-series-fun-with-deos.html#cb168-6"></a><span class="co"># add &quot;lines&quot; to the plot, in this case we want our line to be the dewpoint</span></span>
-<span id="cb168-7"><a href="time-series-fun-with-deos.html#cb168-7"></a><span class="kw">lines</span>(<span class="dt">x =</span> subDeos<span class="op">$</span>datetime, <span class="dt">y =</span> subDeos<span class="op">$</span>dewpoint, <span class="dt">col =</span> <span class="st">&#39;yellow&#39;</span>)</span>
-<span id="cb168-8"><a href="time-series-fun-with-deos.html#cb168-8"></a><span class="kw">legend</span>(<span class="st">&#39;bottomright&#39;</span>, <span class="dt">legend=</span><span class="kw">c</span>(<span class="st">&#39;Air Temp&#39;</span>, <span class="st">&#39;Dew Pt&#39;</span>), <span class="dt">col =</span> <span class="kw">c</span>(<span class="st">&#39;red&#39;</span>, <span class="st">&#39;yellow&#39;</span>), <span class="dt">lty =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>))</span>
-<span id="cb168-9"><a href="time-series-fun-with-deos.html#cb168-9"></a><span class="kw">title</span>(<span class="st">&quot;Air Temperature &amp; Dew Point Temperature&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb168-1" data-line-number="1"><span class="co">#subset the data using the subset function  this time</span></a>
+<a class="sourceLine" id="cb168-2" data-line-number="2">subDeos =<span class="st"> </span><span class="kw">subset</span>(deos_data, deos_data<span class="op">$</span>datetime <span class="op">&gt;=</span><span class="st"> &quot;2014-07-04 00:00:00&quot;</span> <span class="op">&amp;</span><span class="st"> </span>deos_data<span class="op">$</span>datetime <span class="op">&lt;=</span><span class="st"> &quot;2014-07-11 23:59:00&quot;</span>)</a>
+<a class="sourceLine" id="cb168-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb168-4" data-line-number="4"><span class="co"># Now add dewpoint to that plot</span></a>
+<a class="sourceLine" id="cb168-5" data-line-number="5"><span class="kw">plot</span>(<span class="dt">x =</span> subDeos<span class="op">$</span>datetime, <span class="dt">y =</span> subDeos<span class="op">$</span>air_temperature, <span class="dt">type =</span> <span class="st">&quot;l&quot;</span>, <span class="dt">col =</span> <span class="st">&#39;red&#39;</span>, <span class="dt">xlab =</span> <span class="kw">paste0</span>(subDeos<span class="op">$</span>datetime[<span class="dv">1</span>], <span class="st">&quot; to &quot;</span>,   subDeos<span class="op">$</span>datetime[<span class="kw">length</span>(subDeos<span class="op">$</span>datetime)]), <span class="dt">ylab =</span> <span class="st">&quot;Celsius&quot;</span>, <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">5</span>,<span class="dv">40</span>))</a>
+<a class="sourceLine" id="cb168-6" data-line-number="6"><span class="co"># add &quot;lines&quot; to the plot, in this case we want our line to be the dewpoint</span></a>
+<a class="sourceLine" id="cb168-7" data-line-number="7"><span class="kw">lines</span>(<span class="dt">x =</span> subDeos<span class="op">$</span>datetime, <span class="dt">y =</span> subDeos<span class="op">$</span>dewpoint, <span class="dt">col =</span> <span class="st">&#39;yellow&#39;</span>)</a>
+<a class="sourceLine" id="cb168-8" data-line-number="8"><span class="kw">legend</span>(<span class="st">&#39;bottomright&#39;</span>, <span class="dt">legend=</span><span class="kw">c</span>(<span class="st">&#39;Air Temp&#39;</span>, <span class="st">&#39;Dew Pt&#39;</span>), <span class="dt">col =</span> <span class="kw">c</span>(<span class="st">&#39;red&#39;</span>, <span class="st">&#39;yellow&#39;</span>), <span class="dt">lty =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>))</a>
+<a class="sourceLine" id="cb168-9" data-line-number="9"><span class="kw">title</span>(<span class="st">&quot;Air Temperature &amp; Dew Point Temperature&quot;</span>)</a></code></pre></div>
 <p><img src="Introduction-to-R_files/figure-html/unnamed-chunk-83-2.png" width="672" /></p>
 </div>
 <div id="assignment" class="section level2">
@@ -443,7 +482,7 @@ do something within these curly brackets
 <li>Plot wind speed and wind gust on same plot - wind gust as points first, then wind speed as a line second</li>
 </ol>
 <ul>
-<li><em>Hint: you’ll have to use an argument of <code>type = "p"</code> for wind gust.</em></li>
+<li><em>Hint: you’ll have to use an argument of <code>type = &quot;p&quot;</code> for wind gust.</em></li>
 </ul>
 <ol start="4" style="list-style-type: decimal">
 <li>Add legend</li>

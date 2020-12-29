@@ -1,0 +1,216 @@
+# Customizing R Base Plots
+
+R has a plethora of plotting packages, tools, and techniques. Although more popular visualization methods require the installation of other packages, the base plotting package in R can be customized to look professional. 
+
+
+## Expanding on Basic Plots in R
+
+Variable Assignment & Operations
+```{r, out.width="60%", fig.align="center"}
+x = 7
+y = 9
+z <- y * (x/2 + 7) + sqrt(y)
+
+print(x)
+y
+z
+
+X <- 1:20
+Y <- (1 + 1/X) + 2
+X
+Y
+
+plot(X,Y)
+```
+
+Now let's add in some extra arguments to the plot function to make it prettier
+```{r, out.width="60%", fig.align="center"}
+plot(x=X,y=Y, type = "p", pch=c(24), col = 'yellow', bg='blue', cex = 1.6, xlab = "X", ylab = "Y")
+title("X vs Y")
+```
+
+| `plot()` Argument | Definition |
+|----|----------|
+| type | type of plot - p stands for points|
+| pch | plotting ‘character’, i.e., symbol to use|
+| col | color|
+| bg | background color (only applicable for pch's between 21:25)|
+| cex | size of the points|
+| xlab | x label|
+| ylab | y label |
+
+
+For more argument definitions, use the `help()` function or `?` function like so - `help(plot)` or `?plot`. Multiple options may pop up. This occurs when you have two functions from different packages with the same name. In this case, the `plot()` function we are using is from the `base` package. 
+
+
+## More Plotting
+Let's take a look at the different kind of points and arguments that go into a plotting function call
+```{r, out.width="60%", fig.align="center"}
+plot(1:25, 1:25, xlab="",ylab="",pch=1:25,col=1:25,cex=2)
+grid(lty=1, col="gray90")
+points(1:25, 1:25, xlab="",ylab="",pch=1:25,col=1:25,cex=2)
+title("Plotting symbol, line type, & color codes")
+legend("topleft", legend=1:6, lty=1:6, lwd=1.5, ncol=2, bg="gray95")
+legend("bottomright", legend=1:8, col=1:8, ncol=3, pch=19, bg="gray95")
+```
+
+## Basic types of plots with dummy data
+We're going to create a fake dataset of those who are infected by the coronavirus. Let's do so using the `sample()` function.
+```{r}
+# Create a random sample of the 3 types - Susceptible, Infected and Recovered
+InfStatus <- factor(sample(c("Susceptible", "Infected", "Recovered"),size = 50, replace = TRUE))
+I <- table(InfStatus)
+I
+
+# Now let's make a random sample of 3 genotypes (RR, Rr, and rr)
+Genotype <- factor(sample(c("RR", "Rr", "rr"), size = 50, replace = TRUE))
+G <- table(Genotype)
+G
+
+#show genotype and infected status as a table 
+table(Genotype, InfStatus)
+```
+
+Note - We turned the sample data info a `factor` to add `levels` (i.e. categories) of our test data.
+
+```{r}
+# WITHOUT the factor
+test <- sample(c("Susceptible", "Infected", "Recovered"),size = 50, replace = TRUE)
+test
+class(test)
+
+# Now as a factor
+test2 <- factor(sample(c("Susceptible", "Infected", "Recovered"),size = 50, replace = TRUE))
+test2
+class(test2)
+```
+
+## Now let's plot this fake data
+```{r, echo=FALSE, out.width="60%", fig.align="center"}
+par(mfrow=c(2, 2), mar=c(3, 2, 2, 1), oma=c(0, 0, 3, 0), bg = "white") ## create plot array of 2 row x 2 columns
+plot(InfStatus, ylim = c(0, 27)) # basic plot with y limit set as a range
+box() # just adds a box around the plot above
+barplot(table(Genotype, InfStatus), ylim = c(0, 13), beside = TRUE) # barplot
+box() # adds a box around the plot above
+legend("topright", c("RR", "Rr", "rr"), fill = c("gray40", "gray70", "gray90"), ncol = 1, cex = 0.75) # legend
+boxplot(rnorm(50, mean = 15, sd = 3) ~ Genotype, col = "gray75") # boxplot
+pie(G, col = c("gray50", "gray70", "gray90")) # pie plot
+mtext("Basic R Plots", outer = TRUE, cex = 1.5, font = 2) # main title
+```
+
+## Playing with Tree Data
+Let's say you're an ecologist who collected some tree data samples out in the field. Let's load this into R and explore the data. In order to proceed, you'll need to download **TreeData.csv** which is located here - (https://github.com/jsimkins2/geog473-673/tree/master/datasets/TreeData.csv)
+
+```{r}
+# Navigate to the location where your file is stored locally. Use read.csv() function to load the data
+treedat <- read.csv("/Users/james/Documents/Github/geog473-673/datasets/TreeData.csv")
+treedat
+```
+
+`treedat` is a data frame. As a reminder, a data frame is essentially a 2-dimensional array that contains a *combination* of vectors (columns of data) that are of the class; integer, numeric, character. This is *different* from a matrix which can only contain *1 type* of data. In this case, we have some tree data that includes species of tree, season the data was collected, diameter of the tree, bark thickness, area of no bark, heartwood diameter, and sapwood diameter.
+
+```{r, echo=FALSE, out.width="60%", fig.align="center"}
+knitr::include_graphics("../documents/images/heartwoodvssapwood.jpeg")
+```
+
+Let's manipulate this dataframe to make it easier to work wtih.
+
+```{r, out.width="60%", fig.align="center"}
+# let's set the rownames equal to the tree column
+treedat <- read.csv("/Users/james/Documents/Github/geog473-673/datasets/TreeData.csv",row.names='tree')
+# print treedat
+treedat
+# look at the data frame variable names 
+names(treedat)
+# print the dbh variable
+treedat$dbh
+# rename the dbh variable, but first let's be sure our index of the dbh variable is correct
+colnames(treedat)[4]
+# yep, dbh is the index number 4 
+colnames(treedat)[4] = "tree.diameter"
+treedat
+```
+
+### Combining PLots
+R makes it easy to combine multiple plots into one overall graph, using either the `par()` function. With the `par()` function, you can include the option `mfrow=c(nrows, ncols)` to create a matrix of `nrows` x `ncols` plots that are filled in by row. Additionally, we can control text size with `cex` - a number indicating the amount by which plotting text and symbols should be scaled relative to the default. 1=default, 1.5 is 50% larger, 0.5 is 50% smaller, etc.
+
+| option|	description|
+| :--- | :------ |
+|`cex.axis`	|magnification of axis annotation relative to `cex`|
+|`cex.lab`|	magnification of x and y labels relative to `cex`|
+|`cex.main`	|magnification of titles relative to `cex`|
+|`cex.sub`|	magnification of subtitles relative to `cex`|
+
+Now that our data is curated, let's create a figure with 2 plots in the window; plot 1 will be a histogram of bark thickness and plot 2 will be a boxplot of sapdepth by species.
+
+
+```{r, out.width="60%", fig.align="center"}
+# Now let's do some plotting 
+par(mfrow=c(1,2)) ## create plot array of 1 row x 2 columns
+par(cex.axis=0.8) ## shrinks the name size of the x axes. If we don't do this, not all the names in the boxplot show up
+par(cex.main=0.7) ## shrinks the name size of the titles. If we don't do this, the titles don't fit in the window
+# Use the his() function to plot a histogram 
+hist(treedat$BarkThick, xlab= "Bark Thickness (cm)", main= "Histogram: Bark Thickness", col= "darkgreen")
+boxplot(SapDepth ~ spp, data= treedat, ylab= "SapDepth", col= "darkslateblue", main= "Boxplot: Sapwood Depth by Species")
+
+```
+
+`hist()` is the histogram function; `boxplot()` is the boxplot function. The `boxplot()` function using a slightly different syntax for plotting in the form of `y ~ x`, or **y versus x**. `hist()`, on the other hand, can only plot numerical values. For categorical data, such as our tree species column, must be plotted with `barplot()` and the `table()` function. 
+
+```{r, out.width="60%", fig.align="center"}
+# print the table function output of treedat$spp - notice the categorical help from the table function
+table(treedat$spp)
+# plot this categorical data using barplot() function
+barplot(table(treedat$spp))
+
+# customize the barplot function
+barplot(table(treedat$spp), main="SPP Count Barplot",
+xlab="SPP",
+ylab="Count",
+border="red",
+col="blue",
+density=10)
+```
+
+
+## Assignment:
+
+1. Create the plot below using a sequence of X values where Y is the `log` of the X values. For the line type, use `type = "b"` to obtain lines and points. Use a `pch` of 21, `cex` of 1.5, and colors of your choosing. 
+
+```{r, echo=FALSE, out.width="60%", fig.align="center"}
+X=1:10
+Y=log(X)
+plot(x=X,y=Y, type = "b", pch=c(24), col = 'yellow', bg='blue', cex = 1.6, xlab = "X", ylab = "Y")
+title("X vs Y")
+```
+
+Using the `TreeData.csv` from the course dataset folder, complete the following:
+
+2. Rename `spp` variable to `species`
+2. Make a 3 column plot consisting of a Sapwood Depth histogram, a boxplot of Bark Thickness by species, and a histogram showing the seasonal counts.
+3. Submit plot to Assignment 1 on Canvas
+
+
+Your final plot should look like this
+
+```{r, echo=FALSE, out.width="60%", fig.align="center"}
+# let's set the rownames equal to the tree column
+treedat <- read.csv("/Users/james/Documents/Github/geog473-673/datasets/TreeData.csv",row.names='tree')
+# rename the dbh variable, but first let's be sure our index of the species variable is correct
+#colnames(treedat)[1]
+colnames(treedat)[1] = "species"
+
+# Now let's do some plotting 
+par(mfrow=c(1,3)) ## create plot array of 1 row x 3columns
+par(cex.axis=0.6) ## shrinks the name size of the x axes. If we don't do this, not all the names in the boxplot show up
+par(cex.main=0.7) ## shrinks the name size of the titles. If we don't do this, the titles don't fit in the window
+# Use the his() function to plot a histogram 
+hist(treedat$SapDepth, xlab= "Sap Depth (cm)", main= "James' SapDepth Hist", col= "darkgreen")
+boxplot(BarkThick ~ species, data= treedat, ylab= "Bark Thickness", col= "darkslateblue", main= "James' BarkThickness boxplot")
+barplot(table(treedat$season), main="James' season count barplot",
+xlab="Season",
+ylab="Count",
+border="red",
+col="blue",
+density=10)
+```
