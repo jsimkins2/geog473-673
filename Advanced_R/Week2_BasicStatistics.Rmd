@@ -99,137 +99,6 @@ This week we'll be diving into some basic statistical procedures. R started out 
 |dnorm |PDF of normal distribution|
 |rbinom |produces a random sample from a binomial distribution|
 
-## Recap of the for loop & coniditional statements
-
-For loops & conditional statements are a key skill in programming. They allow you to process through large datasets or multiple datasets thus minimizing the amount of manual work you need to do. The basic for loop looks like this...
-
-```{r}
-# Generate sequence of numbers from 1 to 10 using the seq() function (seq for sequence)
-numbersList = seq(from=1,to=10,by=1)
-# Multiply each number in the numbersList by 8 and print the result
-for (i in numbersList){
-  temNumber = i * 8
-  print(temNumber)
-}
-```
-
-Notice the general structure of R for loops. 'for' signals to R you're beginning a for loop, which requires the general structure to look like:
-
-for (something in something inside these parentheses){
-  do something within these curly brackets
-}
-
-Yes, you must have these parentheses and curly brackets present and surrounding the appropriate code. If you forget a parentheses or curly bracket you'll have errors pop up...this happens to me all the time still. 
-
-While these must be present, R doesn't care where they are in your code (****which is very unique amongst programming languages). For example, notice how this ugly code is different but still runs...
-
-```{r}
-# Generate sequence of numbers from 1 to 10 using the seq() function (seq for sequence)
-numbersList = seq(from=1,to=10,by=1)
-# Multiply each number in the numbersList by 8 and print the result
-for (        i in numbersList       
-      ){
-  temNumber = i * 8
-  print(temNumber)
-        }
-```
-
-
-The general structure is still: for(condition){do something}. If statements are set up the same way
-
-```{r}
-# Generate sequence of numbers from 1 to 10 using the seq() function (seq for sequence)
-numbersList = seq(from=1,to=10,by=1)
-# Multiply each number in the numbersList by 8 and print the result
-for (i in numbersList){
-  if (i==4){
-    temNumber = i * 8
-    print(temNumber)
-  }
-}
-```
-
-This is referred to as a 'nested loop', because there is a conditional statement within another one. Key takeaway here: in programming languages, '=' is an assignment (i.e. x = 4), whereas '==' is an equality test (i == 4). To put this loop in layman's terms: for i in numbersList, if i is equal to 4, multiply i by 8 and then print temNumber. 
-
-We can also have nested for loops. 
-
-```{r}
-# Generate sequence of numbers from 1 to 3 this time using the seq() function (seq for sequence)
-numbersList = seq(from=1,to=3,by=1)
-lettersList = list("A", "B", "C")
-
-for (num in numbersList){
-  for (let in lettersList){
-    print(c(num,let))
-  }
-}
-```
-
-You can name the object within the list whatever you want (i, j, num, let, etc.). Also, c() is the concatenate functin that combines values into a vector or list. The order doesn't matter in this for loop...
-
-```{r}
-# Generate sequence of numbers from 1 to 3 this time using the seq() function (seq for sequence)
-numbersList = seq(from=1,to=3,by=1)
-lettersList = list("A", "B", "C")
-
-for (let in lettersList){
-  for (num in numbersList){
-    print(c(num,let))
-  }
-}
-```
-
-But it does in this one...
-
-```{r}
-# Generate sequence of numbers from 1 to 10 using the seq() function (seq for sequence)
-numbersList = seq(from=1,to=10,by=1)
-# Multiply each number in the numbersList by 8 and print the result
-if (i==4){
-  for (i in numbersList){
-    temNumber = i * 8
-    print(temNumber)
-  }
-}
-```
-
-Here's one more example for multi conditional statement with an else...
-
-```{r}
-# Generate sequence of numbers from 1 to 3 this time using the seq() function (seq for sequence)
-numbersList = seq(from=1,to=3,by=1)
-lettersList = list("A", "B", "C")
-
-for (num in numbersList){
-  for (let in lettersList){
-    if (num == 3 && let == "B"){
-      print(c(num,let))
-    } else{
-      print("Not what we want")
-    }
-  }
-}
-```
-
-&& means "and" ... || means "or"...these are useful in multi conditional statements. The 'else' statement is an appendage of the 'if' statement. It basically means if num == 3 and let == B is false, print "not what we want". Notice that the 'else' statement is outside of the 'if' statement but immediately after it. 
-
-
-In Class Exercise: debug this for loop
-
-```{r, eval=FALSE,error=FALSE, warning=FALSE}
-soiltype <- list("sand", "silt", "saline", "clay", "peat")
-permeability <- c(0.09, 0.05, 0.03, 0.01, 0.005)
-
-for (s in seq(length(soiltype)){
-  print(a)
-  for (p in permeability)
-    if (p == 0.05 | p == 0.005){
-      print(permeability[s])
-    }
-  }
-}
-```
-
 # Basic Statistics in R
 
 R is famous for it's easy-to-use statistics features and once you get the hang of it you'll never want to touch Microsoft Excel again. Despite the fact that these stats functions seem pretty fancy to me, I call them basic functions because R has so much to offer to statisticians. We'll be using multiple meteorological / climate model datasets for this tutorial. Let's get started with some of these functions...
@@ -267,7 +136,7 @@ wcreek_df['datetime'] = date.seq
 summary(wcreek_df)
 ```
 
-Alright so our data is loaded up, organized, and ready for stats. Let's take a look at air temperature in relation to season. We're going to look at temperatures during the first half of the year by indexing air temperature and date from the 1st index to half the length of the dataset `[1:length(wcreek_df$datetime) / 2]` . So instead of having 8760 temperature values (there's 8760 hours in a non leap-year), we only have 4380. 
+The data is loaded, organized, and ready for statistical analysis. Let's take a look at air temperature in relation to season. We're going to look at temperatures during the first half of the year by indexing air temperature and date from the 1st index to half the length of the dataset `[1:length(wcreek_df$datetime) / 2]` . So instead of having 8760 temperature values (there's 8760 hours in a non leap-year), we only have 4380. 
 
 ```{r}
 plot(wcreek_df$air_temperature[1:length(wcreek_df$air_temperature) / 2] ~ wcreek_df$datetime[1:length(wcreek_df$datetime) / 2], pch = 20, col="blue")
@@ -303,6 +172,7 @@ lines(x, y, col = "red")
 ```
 
 Density plots can be thought of as plots of smoothed histograms. The smoothness is controlled by a bandwidth parameter that is analogous to the histogram binwidth.  Let's plot up the density of all the temperature values within this half of the data.
+
 ```{r}
 d = density(wcreek_df$air_temperature[start_ind:end_ind], bw = 0.5)
 plot(d, xlab = "Air Temperature (Kelvin)", ylab = "Density", main="Air Temperature Density", col="black")
@@ -313,6 +183,48 @@ For a moderate number of observations a useful addition is a jittered rug plot:
 ```{r}
 plot(density(wcreek_df$air_temperature[start_ind:end_ind], bw = 0.5), main = "jittered rug plot")
 rug(jitter(wcreek_df$air_temperature[start_ind:end_ind]))
+```
+
+### Correlation Plots
+
+Correlation plots show correlation coefficients across variables. For example, we expect shortwave radiation and temperature to have high a high correlation coefficient because generally speaking when the a lot of sunlight is received at the surface, temperature increases. There's a handy package called `corrplot` that caluclates correlation coefficients quickly and intuitively. We'll need to install this package and run our dataframe through it. One last thing...we'll need to calculate the residual values - that is the distance between actual data and the trendline. It's another way to express error. Let's reload a Willow Creek dataset.
+
+```{r, fig.width=10, fig.height=10}
+library(corrplot)
+library(lubridate) # might need to install lubridate
+library(ncdf4)
+y = 2010
+nc_file = nc_open(paste0("/Users/james/Documents/Github/geog473-673/datasets/WCr_1hr.", y,".nc"))
+# what does the nc file look like 
+var_names = names(nc_file$var)
+wcr_data = list()
+dim <- nc_file$dim
+for (v in seq_along(var_names)){
+  wcr_data[[v]] = ncvar_get(nc_file, varid = var_names[v])
+}
+wcreek_df = data.frame(wcr_data)
+colnames(wcreek_df) = var_names
+
+date.seq = seq(as.POSIXct(paste0(y,"-01-01 00:00:00")), as.POSIXct(paste0(y,"-12-31 23:00:00")), by="hour")
+# everything is the same as before, but HERE is where things change a little...
+# instead of plugging in the datetimes into the data frame, we need to plug in a numeric. Since a datetime
+# is a "POSIXct" class, the correlation matrix function won't know how to handle it. We need a NUMERIC value for this.
+# for now, let's just choose our "date" label to be in the form of day-of-year
+days = yday(date.seq) # use lubridates yday function, returns a NUMERIC value
+wcreek_df['day_of_year'] = days
+summary(wcreek_df)
+
+# awesome, now let's calculate the correlation coefficients
+cor_wcreek = cor(wcreek_df)
+head(cor_wcreek)
+# now let's calculate the residuals of the correlations with a 95% confidence interval
+residuals_1 <- cor.mtest(wcreek_df, conf.level = .95)
+# now let's plot this up. 
+corrplot(cor_wcreek, p.mat = residuals_1$p, method = 'color', number.cex = .7, type = 'lower',
+         addCoef.col = "black", # Add coefficient of correlation
+         tl.col = "black", tl.srt = 90, # Text label color and rotation
+         # Combine with significance
+         sig.level = 0.05, insig = "blank")
 ```
 
 
@@ -381,18 +293,18 @@ for (y in year.seq){
   date.seq = seq(as.POSIXct(paste0(y,"-01-01 00:00:00")), as.POSIXct(paste0(y,"-12-31 23:00:00")), by="hour")
   wcreek_df['datetime'] = date.seq
   
-  fit <- lm(wcreek_df$surface_downwelling_shortwave_flux_in_air[4380:length(wcreek_df$surface_downwelling_shortwave_flux_in_air)] ~ wcreek_df$datetime[4380:length(wcreek_df$datetime)], data = wcreek_df)
+  fit <- lm(wcreek_df$air_pressure[4380:length(wcreek_df$air_pressure)] ~ wcreek_df$datetime[4380:length(wcreek_df$datetime)], data = wcreek_df)
   summary(fit)
   coef(fit)
   
-  plot(density(wcreek_df$surface_downwelling_shortwave_flux_in_air[4380:length(wcreek_df$surface_downwelling_shortwave_flux_in_air)], bw = 0.5),
+  plot(density(wcreek_df$air_pressure[4380:length(wcreek_df$air_pressure)], bw = 0.25),
        main = paste0("shortwave radiation density jittered rugplot ", y), lwd=2, col="red")
-  rug(jitter(wcreek_df$surface_downwelling_shortwave_flux_in_air[4380:length(wcreek_df$surface_downwelling_shortwave_flux_in_air)]))
+  rug(jitter(wcreek_df$air_pressure[4380:length(wcreek_df$air_pressure)]))
 }
 ```
 
 
-## Extra Credit - 5 points !!!
+## Extra Credit - 2 points
 
 Using the WCr_1hr.2010.nc, WCr_1hr.2011.nc and WCr_1hr.2012.nc found in the datasets folder, complete the following
 

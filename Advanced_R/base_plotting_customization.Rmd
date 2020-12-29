@@ -1,6 +1,12 @@
 # Customizing R Base Plots
 
-R has a plethora of plotting packages, tools, and techniques. Although more popular visualization methods require the installation of other packages, the base plotting package in R can be customized to look professional. 
+```{r, echo=FALSE, out.width="100%", fig.align="center"}
+knitr::include_graphics("../documents/images/tree_basic_plots.png")  
+```
+
+R has a plethora of plotting packages, tools, and techniques. Generally speaking, base R graphs aren't as popular amongst advanced R users as others (e.g. `ggplot`). That being said, R base graphing offers a variety of styling techniques and unique customization. The base R plotting methods will offer a solid foundation before we learn more about the aforementioned `ggplot`. 
+
+Boxplots, histograms, pie charts, bar charts, and scatter plots are readily available and customizable in the base R plotting package. We can customize and style colors, text, line types, plotting symbols, line thicknesses, symbol size, and much more. 
 
 
 ## Expanding on Basic Plots in R
@@ -25,27 +31,32 @@ plot(X,Y)
 
 Now let's add in some extra arguments to the plot function to make it prettier
 ```{r, out.width="60%", fig.align="center"}
-plot(x=X,y=Y, type = "p", pch=c(24), col = 'yellow', bg='blue', cex = 1.6, xlab = "X", ylab = "Y")
-title("X vs Y")
+plot(x=X,y=Y, type = "b", pch=c(24), col = 'blue', bg='yellow', cex = 1.6, xlab = "X", ylab = "Y", 
+     col.lab = "orange", lwd=1.4, lty=2, main = "X vs Y")
 ```
 
 | `plot()` Argument | Definition |
 |----|----------|
-| type | type of plot - p stands for points|
-| pch | plotting ‘character’, i.e., symbol to use|
-| col | color|
-| bg | background color (only applicable for pch's between 21:25)|
-| cex | size of the points|
-| xlab | x label|
-| ylab | y label |
+| `type` | type of plot - p stands for points|
+| `pch` | plotting ‘character’, i.e., symbol to use|
+| `col` | color|
+| `bg` | background color (only applicable for pch's between 21:25)|
+| `cex` | size of the points|
+| `xlab` | x label|
+| `ylab` | y label |
+| `col.lab` | x and y label color |
+| `lwd` | line width |
+| `lty` | line type |
+| `main` | title of the plot | 
 
 
 For more argument definitions, use the `help()` function or `?` function like so - `help(plot)` or `?plot`. Multiple options may pop up. This occurs when you have two functions from different packages with the same name. In this case, the `plot()` function we are using is from the `base` package. 
 
 
-## More Plotting
-Let's take a look at the different kind of points and arguments that go into a plotting function call
-```{r, out.width="60%", fig.align="center"}
+### Symbols, Line Types, Color codes
+Let's expand on the arguments described above and show how to add a legend. 
+
+```{r, out.width="70%", fig.align="center"}
 plot(1:25, 1:25, xlab="",ylab="",pch=1:25,col=1:25,cex=2)
 grid(lty=1, col="gray90")
 points(1:25, 1:25, xlab="",ylab="",pch=1:25,col=1:25,cex=2)
@@ -54,7 +65,7 @@ legend("topleft", legend=1:6, lty=1:6, lwd=1.5, ncol=2, bg="gray95")
 legend("bottomright", legend=1:8, col=1:8, ncol=3, pch=19, bg="gray95")
 ```
 
-## Basic types of plots with dummy data
+## Barplots, Boxplots, Pie Charts
 We're going to create a fake dataset of those who are infected by the coronavirus. Let's do so using the `sample()` function.
 ```{r}
 # Create a random sample of the 3 types - Susceptible, Infected and Recovered
@@ -85,19 +96,36 @@ test2
 class(test2)
 ```
 
-Let's plot this test dataset...
+### Combining Plots
 
-```{r, echo=FALSE, out.width="60%", fig.align="center"}
+R makes it easy to combine multiple plots into one overall graph, using either the `par()` function. With the `par()` function, you can include the option `mfrow=c(nrows, ncols)` to create a matrix of `nrows` x `ncols` plots that are filled in by row. The  Additionally, we can control text size with `cex` - a number indicating the amount by which plotting text and symbols should be scaled relative to the default. 1=default, 1.5 is 50% larger, 0.5 is 50% smaller, etc. Here's some more descriptions. 
+
+| option|	description|
+| :--- | :------ |
+| `mfrow` |  `mfrow=c(nrows, ncols)` - `nrows` x `ncols` plots that are filled in by row|
+| `mar` | A numerical vector of the form c(bottom, left, top, right) which gives the number of lines of margin to be specified on the four sides of the plot |
+|`oma` | A vector of the form c(bottom, left, top, right) giving the size of the outer margins in lines of text.| 
+| `bg` | background color |
+| `cex` | magnification of text and symbols relative to default.  
+|`cex.axis`	|magnification of axis annotation relative to `cex`|
+|`cex.lab`|	magnification of x and y labels relative to `cex`|
+|`cex.main`	|magnification of titles relative to `cex`|
+|`cex.sub`|	magnification of subtitles relative to `cex`|
+
+We can always list the `par` settings by entering `par()` in the console. Let's use these par settings with our test data created above.
+
+```{r, out.width="60%", fig.align="center"}
 par(mfrow=c(2, 2), mar=c(3, 2, 2, 1), oma=c(0, 0, 3, 0), bg = "white") ## create plot array of 2 row x 2 columns
 plot(InfStatus, ylim = c(0, 27)) # basic plot with y limit set as a range
-box() # just adds a box around the plot above
-barplot(table(Genotype, InfStatus), ylim = c(0, 13), beside = TRUE) # barplot
-box() # adds a box around the plot above
-legend("topright", c("RR", "Rr", "rr"), fill = c("gray40", "gray70", "gray90"), ncol = 1, cex = 0.75) # legend
-boxplot(rnorm(50, mean = 15, sd = 3) ~ Genotype, col = "gray75") # boxplot
-pie(G, col = c("gray50", "gray70", "gray90")) # pie plot
-mtext("Basic R Plots", outer = TRUE, cex = 1.5, font = 2) # main title
+box() # adds a box around the plot coded before this line
+barplot(table(Genotype, InfStatus), ylim = c(0, 13), beside = TRUE, col = c("seagreen4", "coral", "dodgerblue2")) # barplot
+box() # adds a box around the plot coded before this line
+legend("topright", c("RR", "Rr", "rr"), fill = c("seagreen4", "coral", "dodgerblue2"), ncol = 1, cex = 0.75) # legend for the previous plot, which in this case is the barplot
+boxplot(rnorm(50, mean = 15, sd = 3) ~ Genotype,  col = c("seagreen4", "coral", "dodgerblue2")) # boxplot
+pie(G, col = c("seagreen4", "coral", "dodgerblue2")) # pie plot
+mtext("Basic R Plots with Test Genotype Data", outer = TRUE, cex = 1.5, font = 2) # main title
 ```
+
 
 ## Tree Data
 We're going to download the `TreeData.csv` file from the [course github]("https://github.com/jsimkins2/geog473-673/tree/master/datasets/") using a direct method. We can use the `download.file()` function to do this. 
@@ -138,16 +166,6 @@ colnames(treedat)[4] = "tree.diameter"
 treedat
 ```
 
-### Combining PLots
-R makes it easy to combine multiple plots into one overall graph, using either the `par()` function. With the `par()` function, you can include the option `mfrow=c(nrows, ncols)` to create a matrix of `nrows` x `ncols` plots that are filled in by row. Additionally, we can control text size with `cex` - a number indicating the amount by which plotting text and symbols should be scaled relative to the default. 1=default, 1.5 is 50% larger, 0.5 is 50% smaller, etc.
-
-| option|	description|
-| :--- | :------ |
-|`cex.axis`	|magnification of axis annotation relative to `cex`|
-|`cex.lab`|	magnification of x and y labels relative to `cex`|
-|`cex.main`	|magnification of titles relative to `cex`|
-|`cex.sub`|	magnification of subtitles relative to `cex`|
-
 Now that our data is curated, let's create a figure with 2 plots in the window; plot 1 will be a histogram of bark thickness and plot 2 will be a boxplot of sapdepth by species.
 
 
@@ -162,7 +180,7 @@ boxplot(SapDepth ~ spp, data= treedat, ylab= "SapDepth", col= "darkslateblue", m
 
 ```
 
-`hist()` is the histogram function; `boxplot()` is the boxplot function. The `boxplot()` function using a slightly different syntax for plotting in the form of `y ~ x`, or **y versus x**. `hist()`, on the other hand, can only plot numerical values. For categorical data, such as our tree species column, must be plotted with `barplot()` and the `table()` function. 
+First we notice that with the `par()` function, we can declare arguments in different lines so long as we call the `par()` function again. `hist()` is the histogram function; `boxplot()` is the boxplot function. The `boxplot()` function using a slightly different syntax for plotting in the form of `y ~ x`, or **y versus x**. `hist()`, on the other hand, can only plot numerical values. For categorical data, such as our tree species column, must be plotted with `barplot()` and the `table()` function. 
 
 ```{r, out.width="60%", fig.align="center"}
 # print the table function output of treedat$spp - notice the categorical help from the table function
@@ -194,8 +212,8 @@ title("X vs Y")
 Using the `TreeData.csv` from the course dataset folder, complete the following:
 
 2. Rename `spp` variable to `species`
-2. Make a 3 column plot consisting of a Sapwood Depth histogram, a boxplot of Bark Thickness by species, and a histogram showing the seasonal counts.
-3. Submit plot to Assignment 1 on Canvas
+3. Make a 3 column plot consisting of a **Sapwood Depth histogram**, **a boxplot of Bark Thickness by species**, and a **seasonal count barplot**. Use your own colors, borders, line types, etc. Your plot does not have to perfectly match the example below, but try and get close to it. 
+4. **Submit the plot to UD Canvas.**
 
 
 Your final plot should look like this
@@ -209,15 +227,17 @@ colnames(treedat)[1] = "species"
 
 # Now let's do some plotting 
 par(mfrow=c(1,3)) ## create plot array of 1 row x 3columns
+par(mar=c(3, 2, 2, 1), oma=c(0, 0, 3, 0), bg = "white")
 par(cex.axis=0.6) ## shrinks the name size of the x axes. If we don't do this, not all the names in the boxplot show up
 par(cex.main=0.7) ## shrinks the name size of the titles. If we don't do this, the titles don't fit in the window
 # Use the his() function to plot a histogram 
-hist(treedat$SapDepth, xlab= "Sap Depth (cm)", main= "James' SapDepth Hist", col= "darkgreen")
-boxplot(BarkThick ~ species, data= treedat, ylab= "Bark Thickness", col= "darkslateblue", main= "James' BarkThickness boxplot")
-barplot(table(treedat$season), main="James' season count barplot",
+hist(treedat$SapDepth, xlab= "Sap Depth (cm)", main= "Sap Depth Histogram", col= "darkgreen")
+boxplot(BarkThick ~ species, data= treedat, ylab= "Bark Thickness", col= "darkslateblue", main= "Bark Thickness Boxplot")
+barplot(table(treedat$season), main="Season Count",
 xlab="Season",
 ylab="Count",
 border="red",
 col="blue",
 density=10)
+mtext("James' Tree Data Plot", outer = TRUE, cex = 0.5, font = 2) # main title
 ```
