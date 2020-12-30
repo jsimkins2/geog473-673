@@ -52,9 +52,34 @@ plot(x=X,y=Y, type = "b", pch=c(24), col = 'blue', bg='yellow', cex = 1.6, xlab 
 
 For more argument definitions, use the `help()` function or `?` function like so - `help(plot)` or `?plot`. Multiple options may pop up. This occurs when you have two functions from different packages with the same name. In this case, the `plot()` function we are using is from the `base` package. 
 
+### Adding to a Plot
+We can add additional items to a particular plot. Some of these items might be...
 
-### Symbols, Line Types, Color codes
-Let's expand on the arguments described above and show how to add a legend. 
+| Function | Definition |
+|----|----------|
+| `legend` | adds a legend to a plot |
+|`lines` |connects points sequentially with lines (added to a plot) |
+| `points` | plots points (adds to a plot)
+|`segments`| add lines to a plot (between pairs of points)|
+|`text` |add text to a plot|
+|`legend` |add a legend to a plot|
+|`abline` |add a line to a plot by specifying its slope and intercept|
+| `title` | title can also be added outside of the function you use. This is necessary when we want an overarching title for multiple plots in one figure.  |
+
+Let's use our previous example but go about plotting it a different way to show how it works.
+
+```{r, out.width="60%", fig.align="center"}
+# plot our X and Y as a line plot
+plot(x=X,y=Y, type = "l", col='blue', xlab = "X", ylab = "Y",col.lab = "orange", lwd=1.4, lty=2, main = "X vs Y")
+# add points to the line via the points function
+points(x=X, y=Y, pch=c(24), col = 'blue', bg='yellow', cex = 1.6)
+# add a vertical line at 3.4 
+abline(v=10)
+# add a legend
+legend(x = "topright", legend=c("my points"), pch=c(24), col = 'blue', pt.bg='yellow')
+```
+
+Let's add in another 
 
 ```{r, out.width="70%", fig.align="center"}
 plot(1:25, 1:25, xlab="",ylab="",pch=1:25,col=1:25,cex=2)

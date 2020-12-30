@@ -1,29 +1,10 @@
----
-title: "Week2 - BasicStatistics "
-output: rmarkdown::github_document
----
-
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
-
 # Basic Statistics
 This week we'll be diving into some basic statistical procedures. R started out as THE statistical programming language. It spread like wildfire for it's performance and efficiency at crunching numbers. It's early success as a statistical programming langugae attracted the early developers who really made R into the do-it-all language we're using today. First, I'll throw in the useful definitions list at the top of this tutorial just for ease of access. Second, we'll dive into a recap of for loops and how they're structured. Then we'll show off some of R's great statistics functions and how to add them to a plot. Finally, we'll have an assignment where we cover some of 
 
-## Some Useful Definitions
+## Statistical Function Dictionary
 
 | Function                 |             Description        |
 | -----------| -------------------------------------------- |
-| ls | lists contents of R workspace/global environment | 
-| rm | removes objects from R workspace | 
-| save|  save selected objects |
-| +,-,*,/,^ | arithmetic operators | 
-| %*% |  matrix multiplication |
-| t | matrix transpose | 
-| solve | matrix inverse (and solving linear equations) | 
-| c | combines (concatenates) objects, simplest way to make vectors | 
-| seq | creates vectors that are regular sequences | 
-| rep | replicates vectors | 
 | length| returns length of a vector | 
 | sum | returns the sum |
 | mean | returns the mean | 
@@ -34,63 +15,13 @@ This week we'll be diving into some basic statistical procedures. R started out 
 | sort | sort a vector (rearranges the vector in order) |
 | order | returns indices of vectors that will order them |
 | rank | returns rank of each element in vector | 
-| ==, <, > | comparison operators |
-| <=, >=, != | |
-| |, & | OR, AND |
-| is.na | tests for missing value NA | 
-|which |does logical comparison and indicates which elements are TRUE that is, gives the TRUE indices of a logical object|
-| any |does logical comparison returns 1 (TRUE) if any of the comparisons are TRUE, i.e. is at least one of the values true? |
-|exp |returns e to that power|
-|log |returns natural logarithm (to the base e)|
-|log10| returns logarithm (to the base 10)|
-|sqrt| returns square root|
-|table |does frequencies and cross-tabs|
-|help |help page on specified function|
-|cbind |combine by columns|
-|rbind |combine by rows|
-|matrix| create a matrix|
-|vector |create a vector|
-|nrow| number of rows in an array or data frame|
-|ncol |number of columns in an array or data frame|
-|dim| dimensions of an array or data frame|
-|array| create an array|
-
-| Function                 |             Description        |
-| -----------| -------------------------------------------- |
-|is.vector |answers the question, is this a vector TRUE or FALSE|
-|as.vector |attempts to coerce object into a vector|
-|read.table |reads data from a text file|
-|read.csv |reads data from a text file with comma separated data|
-|write.table| writes a data frame to a text file|
-|is.data.frame| tests object to see if it is data frame|
-|as.data.frame |coerces object into data frame|
-|is.factor |tests object to see if it is a factor|
-|as.factor |coerces object into a factor|
-|head, tail |list the first, last six rows|
-|names |returns names of elements of object|
-|colnames| returns or sets column names of object|
-|rownames |returns or sets row names of object|
-|subset| select part of a vector, matrix, or data frame|
-|merge |merge two data frames|
 |lm |multiple linear regression|
 |glm |generalized linear regression|
 |anova |analysis of variance|
 |chisq.test |Pearson’s Chi-squared test for count data|
 |summary| shows results of various model fitting functions|
 |predict |predicted results from model|
-|hist| histogram|
-|boxplot| box plot|
-|plot |scatterplot|
-|lines |connects points sequentially with lines (added to a plot)|
-|segments| add lines to a plot (between pairs of points)|
-|text |add text to a plot|
-|legend |add a legend to a plot|
-|abline |add a line to a plot by specifying its slope and intercept|
 |passing |an lm object will result in adding the predicted line to the plot|
-|x11 |open another graphics window (PC)|
-|pdf |open a pdf file for recording graphics|
-|dev.off| close graphics device|
-|par(mfrow) |arranges multiple plots on same page (by row)|
 |sample |produces a random sample of the specified values|
 |set.seed |sets seed for next random sample (repeat random sample)|
 |rnorm |produces a random sample from a normal distribution|
@@ -99,7 +30,7 @@ This week we'll be diving into some basic statistical procedures. R started out 
 |dnorm |PDF of normal distribution|
 |rbinom |produces a random sample from a binomial distribution|
 
-# Basic Statistics in R
+## Basic Statistics in R
 
 R is famous for it's easy-to-use statistics features and once you get the hang of it you'll never want to touch Microsoft Excel again. Despite the fact that these stats functions seem pretty fancy to me, I call them basic functions because R has so much to offer to statisticians. We'll be using multiple meteorological / climate model datasets for this tutorial. Let's get started with some of these functions...
 
@@ -123,35 +54,78 @@ for (v in seq_along(var_names)){
 wcreek_df = data.frame(willow_creek_2010)
 # tell the dataframe what the column names are
 colnames(wcreek_df) = var_names
-# print some summary stats of wcreek_df
-summary(wcreek_df)
-# ok, so we see the units and values
-dim$time$units
-dim$time$vals[1:10]
-# so without any extra metadata, we can back out that this data is hourly data just from the units being seconds and time between
-# each recorded value (3600 seconds == 1 hour)
-#### Add a datetime column ####
-date.seq = seq(as.POSIXct("2010-01-01 00:00:00"), as.POSIXct("2010-12-31 23:00:00"), by="hour")
-wcreek_df['datetime'] = date.seq
+# print the column names
+names(wcreek_df)
+
+# let's rename the variables to make them shorter - note that these short names MUST be in the same order as the longer names
+short_names = c("tair", "tmax", "tmin", "swave", "pres", "lwave", "ewind", "nwind", "shum", "prec")
+# rename the column names to our new short name vector
+colnames(wcreek_df) = short_names
+# print the summary statistics
 summary(wcreek_df)
 ```
 
-The data is loaded, organized, and ready for statistical analysis. Let's take a look at air temperature in relation to season. We're going to look at temperatures during the first half of the year by indexing air temperature and date from the 1st index to half the length of the dataset `[1:length(wcreek_df$datetime) / 2]` . So instead of having 8760 temperature values (there's 8760 hours in a non leap-year), we only have 4380. 
+Our data has been parsed, except for the time variable. This is a time series dataset of weather variables so we'll need a time variable to keep us organized. Here's how we can create one...
 
 ```{r}
-plot(wcreek_df$air_temperature[1:length(wcreek_df$air_temperature) / 2] ~ wcreek_df$datetime[1:length(wcreek_df$datetime) / 2], pch = 20, col="blue")
+### TIME ###
+# what are the units of time
+dim$time$units
+# how are the time values spaced
+dim$time$vals[1:10]
+# we can back out that this data is hourly data just from knowing the units are seconds and time between
+# each recorded value is 3600 (3600 seconds == 1 hour)
+#### Add a datetime column ####
+date.seq = seq(as.POSIXct("2010-01-01 00:00:00"), as.POSIXct("2010-12-31 23:00:00"), by="hour")
+wcreek_df['datetime'] = date.seq
+wcreek_df$datetime[1:10]
+```
+
+The data is loaded, organized, and ready for statistical analysis. 
+
+### Subsetting Data
+
+In certain cases, our dataset may be too large. For example, our dataset contains 1 year of data. How can we subset our dataset from January 1 to June 30?
+
+#### Manual Subsetting
+
+We can use the `which` function to find out which row a particular datetime is located. In other words, the `which` function returns the dates index position. In order for this to work, **the datetime format we use must match the datetime format of the dataset**. In our case, the datetime is YYYY-mm-dd, so we need to search with that format. After we have our indices, we can subset the `wcreek_df` dataset using `wcreek_df[rows,columns]` subsetting rules. 
+
+```{r}
+# use YYYY-mm-dd to return which datettime index has a value of 2010-01-01
+start_ind = which(wcreek_df$datetime == "2010-01-01")
+# use YYYY-mm-dd to return which datettime index has a value of 2010-06-30
+end_ind = which(wcreek_df$datetime == "2010-06-30")
+# Index our wcree_df dataframe using the indices gathered above. We want all columns so column section stays blank
+jan2jun = wcreek_df[start_ind:end_ind,]
+```
+
+#### The subset() Function
+
+There is also a handy `subset()` function that can save us a few lines of code. Let's now use the `subset()` function to subset the data from Jan 1 to Jun 30. 
+
+```{r}
+# grab all values of the wcreek df when the datetime is less than 2010-07-01
+jan2jun = subset(wcreek_df, datetime < "2010-07-01")
+```
+
+
+Let's take a look at air temperature in relation to season. We're going to look at temperatures during the first half of the year by indexing air temperature and date from the 1st index to half the length of the dataset `[1:length(wcreek_df$datetime) / 2]` . So instead of having 8760 temperature values (there's 8760 hours in a non leap-year), we only have 4380. 
+
+```{r}
+plot(wcreek_df$tair[1:length(wcreek_df$tair) / 2] ~ wcreek_df$datetime[1:length(wcreek_df$datetime) / 2], pch = 20, col="blue")
 
 # alright, so yeah we know in the northern hemisphere that temperature increases between winter and summer months...but what is the trend like?
-fit <- lm(air_temperature[1:length(wcreek_df$air_temperature) / 2] ~ wcreek_df$datetime[1:length(wcreek_df$datetime) / 2], data = wcreek_df)
+fit <- lm(tair[1:length(wcreek_df$tair) / 2] ~ wcreek_df$datetime[1:length(wcreek_df$datetime) / 2], data = wcreek_df)
 summary(fit)
 coef(fit)
 
 # set our indexes
 start_ind = 1
-end_ind = length(wcreek_df$air_temperature) / 2 # calculate the length of the data and divide it by 2 to get the first half of year
+end_ind = length(wcreek_df$tair) / 2 # calculate the length of the data and divide it by 2 to get the first half of year
 
-plot(air_temperature[start_ind:end_ind] ~ wcreek_df$datetime[start_ind:end_ind], data = wcreek_df,
-  main= "air_temperature vs. datetime",
+plot(tair[start_ind:end_ind] ~ wcreek_df$datetime[start_ind:end_ind], data = wcreek_df,
+  main= "tair vs. datetime",
   ylab= "Air Temperature ( Kelvin )",
   xlab= "Datetime",
   pch= 19, col= 'blue')
