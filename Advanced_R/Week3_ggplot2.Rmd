@@ -1,61 +1,32 @@
----
-title: "Week3 - ggplot2"
-output: rmarkdown::github_document
----
-
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
-
-### Quick tutorial - Correlation Plots
-
-Correlation plots show correlation coefficients across variables. For example, we expect shortwave radiation and temperature to have high a high correlation coefficient because generally speaking when the a lot of sunlight is received at the surface, temperature increases. There's a handy package called `corrplot` that caluclates correlation coefficients quickly and intuitively. We'll need to install this package and run our dataframe through it. One last thing...we'll need to calculate the residual values - that is the distance between actual data and the trendline. It's another way to express error. For this quick tutorial, let's use the Willow Creek meteorology data we were just using. 
-
-```{r, fig.width=10, fig.height=10}
-library(corrplot)
-library(lubridate) # might need to install lubridate
-library(ncdf4)
-y = 2010
-nc_file = nc_open(paste0("/Users/james/Documents/Github/geog473-673/datasets/WCr_1hr.", y,".nc"))
-# what does the nc file look like 
-var_names = names(nc_file$var)
-wcr_data = list()
-dim <- nc_file$dim
-for (v in seq_along(var_names)){
-  wcr_data[[v]] = ncvar_get(nc_file, varid = var_names[v])
-}
-wcreek_df = data.frame(wcr_data)
-colnames(wcreek_df) = var_names
-
-date.seq = seq(as.POSIXct(paste0(y,"-01-01 00:00:00")), as.POSIXct(paste0(y,"-12-31 23:00:00")), by="hour")
-# everything is the same as before, but HERE is where things change a little...
-# instead of plugging in the datetimes into the data frame, we need to plug in a numeric. Since a datetime
-# is a "POSIXct" class, the correlation matrix function won't know how to handle it. We need a NUMERIC value for this.
-# for now, let's just choose our "date" label to be in the form of day-of-year
-days = yday(date.seq) # use lubridates yday function, returns a NUMERIC value
-wcreek_df['day_of_year'] = days
-summary(wcreek_df)
-
-# awesome, now let's calculate the correlation coefficients
-cor_wcreek = cor(wcreek_df)
-head(cor_wcreek)
-# now let's calculate the residuals of the correlations with a 95% confidence interval
-residuals_1 <- cor.mtest(wcreek_df, conf.level = .95)
-# now let's plot this up. 
-corrplot(cor_wcreek, p.mat = residuals_1$p, method = 'color', number.cex = .7, type = 'lower',
-         addCoef.col = "black", # Add coefficient of correlation
-         tl.col = "black", tl.srt = 90, # Text label color and rotation
-         # Combine with significance
-         sig.level = 0.05, insig = "blank")
-```
 
 
 # ggplot2
 
-So far, we've only used `base graphics` plotting routines. While there are endless customizations and schemes that can be used to generate publiation quality material, many advanced R programmers use `ggplot2` to create plots. `ggplot2` is a go-to plotting package and can do all that `base graphics` can do. So what's so different about it? Well, `ggplot2` is designed to work with `dataframes`, rather than individual `vectors`. `ggplot2` also has more aesthetic options that allow for more visually unique & pleasing plots. The first thing you'll notice about `ggplot2` is that the syntax is different. Instead of coding all customizations through arguments or additional functions with the `add=TRUE` option keyed in, `ggplot2` uses `+` to add in extra layers to a plot. This may seem weird at first, but the longer you spend with it the more regular it will seem.
+```{r, echo=FALSE, out.width="80%", fig.align="center"}
+knitr::include_graphics("../documents/images/ggplot2.jpeg")  
+```
 
 
-```{r}
+So far, we've only used `base graphics` plotting routines. While there are endless customizations and schemes that can be used to generate publiation quality material, many advanced R programmers use `ggplot2` to create plots. `ggplot2` is a go-to plotting package and can do all that `base graphics` can do with different styling. `ggplot2` is designed to work with `dataframes`, rather than individual `vectors`. `ggplot2` also has more aesthetic options that allow for more visually unique & pleasing plots. The first thing you'll notice about `ggplot2` is that the syntax is different. Instead of coding all customizations through arguments or additional functions with the `add=TRUE` option keyed in, `ggplot2` uses `+` to add in extra layers to a plot. This may seem weird at first, but the longer you spend with it the more regular it will seem. Below is a brief dicitonary of important `ggplot` functions.
+
+| Function | Description |
+| -----------| --------------------------- |
+| `ggplot()` | Creates a new ggplot |
+| `aes()` | Construct aesthetic mappings |
+| `+` | add components to a plot | 
+| `geom_line()` | add line geometry to a ggplot |
+| `geom_point()` | add point geometry to a ggplot |
+| `geom_smooth()` | adds a trendline to a ggplot based on provided aesthetic data |
+| `geom_density()` | adds a density plot to a ggplot |
+| `scale_color_manual` | Adds color to ggplot layers | 
+| `xlim()` | x limits | 
+| `ylim()` | y limits | 
+| `xlab()` | x label | 
+| `ylab()` | y label | 
+|`ggtitle()`| adds title to a ggplot |
+|`labs()` | ggplot function that takes a number of arguments and adds them to a ggplot (title, x label, y label, etc.)|
+
+```{r, out.width="60%", fig.align="center"}
 library(ggplot2)
 # load in a dataset - https://github.com/jsimkins2/geog473-673/blob/master/datasets/acadia.csv
 acadia = read.csv("/Users/james/Documents/Github/geog473-673/datasets/acadia.csv")
@@ -80,7 +51,7 @@ Notice above how `ggplot()` creates a ggplot plot, but the `geom_point()` or `ge
 
 Another cool thing about ggplot2() is that we can save a plot as an object and accumuatively add things to it
 
-```{r}
+```{r, out.width="60%", fig.align="center"}
 g = ggplot(acadia, aes(x=year, y=visitors)) + geom_point() + geom_smooth(method="lm")
 plot(g)
 
@@ -92,25 +63,36 @@ g = g + geom_smooth(method="lm")
 g
 ```
 
-We can "crop" out areas of a plot - note this deletes points
+If you place `aes` in the initial `ggplot` argument, that sets the aesthetics, and the dataframe, for the entire plot regardless of the layers you add to it. However, we can also place an `aes` argument for *each* ggplot function we use (`geom_line`, `geom_point`, `geom_smooth`, etc.). **This is useful if we are working with multiple datasets**. Let's create a dummy dataset with half the visitors of the `acadia` dataset and place the aesthetic function (`aes`) in each `geom_point` function. 
 
-```{r}
+```{r, out.width="60%", fig.align="center"}
+# create dummy data where we divide the actual number of visitors by 2
+dummy_data = acadia
+dummy_data$visitors = dummy_data$visitors/2
+# plot a ggplot instance with multiple lines
+g = ggplot(acadia) + geom_point(aes(x=year, y=visitors), color="red") + geom_smooth(data = acadia, aes(x=year, y=visitors), method="lm", color="red") + geom_point(data = dummy_data,aes(x=year, y=visitors), color="blue") + geom_smooth(data = dummy_data, aes(x=year, y=visitors), method="lm")
+plot(g)
+```
+
+We can "crop" out areas of a plot using `xlim` and `ylim`. This method does delete points, however.
+
+```{r, out.width="60%", fig.align="center"}
 g = ggplot(acadia, aes(x=year, y=visitors)) + geom_point() + geom_line() + geom_smooth(method="lm")
 g + xlim(c(2000,2017)) + ylim(c(2000000, 3500000))  # x axis years 2000 to 2017, ylimit 2000000 to 3500000
 ```
 
-Instead of cropping out, we can also just zoom in - which doesn't delete points
+Instead of cropping out, we can also just zoom in with the `coord_cartesian` function (we're using cartesian coordinates here). This method **does not delete points**.
 
-```{r}
+```{r, out.width="60%", fig.align="center"}
 g = ggplot(acadia, aes(x=year, y=visitors)) + geom_point() + geom_line() + geom_smooth(method="lm")
 g + coord_cartesian(xlim=c(2000,2017), ylim = c(2000000, 3500000))  # x axis years 2000 to 2017, ylimit 2000000 to 3500000
 ```
 
-Notice how different the trendline is above!!! When we just zoom in, we preserve all of the data going into the plot which helps us keep the trendline of the entire dataset. 
+Notice how different the trendline is above. When we just zoom in, we preserve all of the data going into the plot which helps us keep the trendline of the entire dataset. 
 
 Now let's check out adjusting the x/y labels and title. There are 2 ways.
 
-```{r}
+```{r, out.width="60%", fig.align="center"}
 # Add Title and Labels
 g1 = ggplot(acadia, aes(x=year, y=visitors)) + geom_point() + geom_line() + geom_smooth(method="lm")
 g1 + labs(title="Acadia National Park Attendance", subtitle="Total Visitors per year", y="Visitors", x="Year", caption="National Park Database")
@@ -123,7 +105,7 @@ g2 + xlab("Year") + ylab("Visitors")
 
 What about changing up the colors, size, etc.?
 
-```{r}
+```{r, out.width="60%", fig.align="center"}
 g = ggplot(acadia, aes(x=year, y=visitors)) +
     geom_line(col="yellow", size=5) + 
     geom_point(col="steelblue", size=3) + 
@@ -133,11 +115,11 @@ g = ggplot(acadia, aes(x=year, y=visitors)) +
 g
 ```
 
-## Density Plots
+## ggplot2 with Willow Creek Meteorological Data
 
-Remember density plots from last week? They look better in ggplot2...
+Let's use `ggplot2` to with the Willow Creek 2010 dataset.
 
-```{r, warning=FALSE}
+```{r, out.width="60%", fig.align="center"}
 library(ncdf4)
 y = 2010
 nc_file = nc_open(paste0("/Users/james/Documents/Github/geog473-673/datasets/WCr_1hr.", y,".nc"))
@@ -150,28 +132,40 @@ for (v in seq_along(var_names)){
 }
 wcreek_df = data.frame(wcr_data)
 colnames(wcreek_df) = var_names
+# create a new short_names vector that matches the order of the actual names
+short_names = c("tair", "tmax", "tmin", "lwave", "pres", "swave", "ewind", "nwind", "shum", "prec")
+# rename the column names to our new short name vector
+colnames(wcreek_df) = short_names
+date.seq = seq(as.POSIXct(paste0(y,"-01-01 00:00:00")), as.POSIXct(paste0(y,"-12-31 23:00:00")), by="hour")
+wcreek_df['datetime'] = date.seq
 
-# now plot
+# Plot a ggplot point plot of willow creek 2010 shortwave radiation
 ggplot(wcreek_df) + 
-  geom_density(data = wcreek_df, aes(x=specific_humidity, y=..density.., color = 'Specific Humidity'), size=3, adjust = 1, fill="lightblue", alpha = 0.5) + 
+  geom_point(data = wcreek_df, aes(y=swave, x=datetime, color = 'Shortwave Radiation'), size=0.5, alpha = 0.5) + 
+  xlab("Date") + 
+  ylab("Shortwave Radiaiton (W/m2") + 
+  ggtitle("Willow Creek Shortwave Radiation 2010") + 
+  scale_color_manual(values = c('Shortwave Radiation' = 'firebrick'))
+
+# plot a ggplot density plot of the specific humidity
+ggplot(wcreek_df) + 
+  geom_density(data = wcreek_df, aes(x=shum, y=..density.., color = 'Specific Humidity'), size=3, adjust = 1, fill="lightblue", alpha = 0.5) + 
   xlab("Specific Humidity") + 
   ggtitle("Gaussian Specific Humidity Densities 2010") + 
-  scale_color_manual(values = c('Specific Humidity' = 'firebrick')) +
-  scale_shape_manual(labels = c("Specific Humidity"), values = c(1))
+  scale_color_manual(values = c('Specific Humidity' = 'firebrick'))
 
 ```
 
-Let's break this down. I created a `ggplot` plot of `wcreek_df`. I called the `geom_density` function and declared my `data` and my `aes` specifications which included my x axis - `specific humidity` - and my y axis - `..density..` - which is necessary for the plot to know that's the axes you want density on. The final piece to the `aes()` argument is the color. I set the color of the line equal to `Specific Humidity` which ggplot recognizes as `firebrick` because of the `scale_color_manual` values I entered below. I set the `size` of the density line, set the `adjust` which is just ggplots name for bandwidth, declared a fill color to `fill` in the density area and gave that fill color an `alpha` of 0.5 to make it semi-transparent. Xlabel and title we've already covered. Finally I set a manual color label and shape of the label for specific humidity.
+Let's break down the `geom_density` plot above. First, we create a `ggplot` *window* of `wcreek_df` dataframe. Then, we call the the `geom_density` function and declared `data` argument as `wcreek_df`. Then, we specified the `aes` (aesthetics) function within the `geom_density` function. In the `aes`, we declared the x axis - `specific humidity` - and the y axis - `..density..` - which is necessary for the plot to know that's the axis to place the density on. The final piece to the `aes()` argument is the color. Notice that we also set the color here to "Specific Humidity". This is not a color in R. Rather, it's a reference to the color we declare down below with `scale_color_manual`. In other words, we state below that the color of "Specific Humidity" is firebrick within the `scale_color_manual` function. Still within the `geom_density` function, we set the `size` of the `density` line, set the `adjust` which is ggplots term for bandwidth, declared a fill color to `fill` in the density area and gave that fill color an `alpha` of 0.5 to make it semi-transparent. Xlabel and title we've already covered. Finally I set a manual color label and shape of the label for specific humidity.
 
 ## Assignment:
-Using the WCr_1hr.2012.nc found in the datasets folder, complete the following:
+Using the `WCr_1hr.2012.nc` found in the datasets folder, complete the following:
 
-1. Using `ggplot2`, create an `geom_line` plot of `air_temperature`. **Zoom in** to the first half of the year. Be Sure to include trendline and includes appropriate titles, axes, labels, etc.
+1. Using `ggplot2`, create an `geom_line` plot for `air_temperature`. Add a trendline to this plot. Include appropriate titles, axes, labels, colors, etc.
 
 2. Using `ggplot2`, create a density plot of `air temperature` with appropriate titles, axes, legend etc. 
 
-3. Submit plots to assignment 3 on canvas
-
+3. Submit the plots to UD canvas.
 
 
 Your final plots should look something like these...
@@ -196,7 +190,6 @@ ggplot(wcreek_df, aes(x=datetime, y=air_temperature)) +
   geom_line(col="coral", size=1) + 
   geom_point(col="dodgerblue4", size=0.4) + 
   geom_smooth(method="lm", col="black") + 
-  coord_cartesian(xlim=c(date.seq[1],date.seq[4370]), ylim = c(250, 305)) +
   labs(title="2012 Willow Creek Air Temperature", subtitle="Hourly Resolution", y="Temperature (Kelvin) ", x="DateTime", caption="Ameriflux Data")
 
 ggplot(wcreek_df) + 
@@ -208,13 +201,9 @@ ggplot(wcreek_df) +
 
 ```
 
-## Extra Credit - 2.5 Points !!!
+## Extra Credit - 2 Points
 
 Using the WCr_1hr.2010.nc, WCr_1hr.2011.nc and WCr_1hr.2012.nc found in the datasets folder, complete the following
 
 1) Create a density plot using ggplot2 of "Air temperature" with each year being a component of the density plot (adding each year to the density plot as you loop through the data). Adjust alpha settings, colors, linetypes, etc. to make each line extinct.
-4) Submit to assignment above labeled 'extra_credit.png' - **also submit your code**.
-
-## EXTRA, EXTRA CREDIT - 2.5 Points !!!
-
-Make the same plot as the extra credit plot above but include 2 smaller, zoomed in plots on the same image that highlight the tails of the distributions. Submit image (large image) AND code.
+2) Submit to assignment above labeled 'extra_credit.png' - **also submit your code**.

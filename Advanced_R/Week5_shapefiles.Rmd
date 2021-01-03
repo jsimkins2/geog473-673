@@ -1,10 +1,4 @@
----
-title: "Week5 - Shapefiles"
----
-
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
+# Shapefiles 
 
 ### Quick tutorial - ggplot2 themes
 Ever notice the gray background on ggplot2? Well that's referred to as the default theme. There are other themes that can be called every time you createa a ggplot. Let's take a look:
@@ -289,14 +283,3 @@ mapview(m['name'], col.regions = mycolours)
 
 
 ```
-
-## Extra Credit - 3 points !!!
-
-Using the **ne_10m_parks_and_protected_lands** shapefile dataset, create the following...
-
-1) spplot **with statelines and new color scheme**
-2) tmap **with statelines and new color scheme**
-3) ggplot2 **with legend containing only protected lands in the Pacific NW**
-4) mapview **with new color scheme**
-
-Submit resulting plots and code as "ec_**plottype**.png" with the above assignment

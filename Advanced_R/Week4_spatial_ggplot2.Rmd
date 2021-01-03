@@ -1,10 +1,125 @@
----
-title: "Week4 - Spatial ggplot2"
-output: rmarkdown::github_document
----
+# Spatial Data with ggplot2
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+```{r, echo=FALSE, out.width="80%", fig.align="center"}
+knitr::include_graphics("../documents/images/ggplot2.jpeg")  
+```
+
+In Geospatial Sciences we're constantly working with spatial datasets that come in many different projections. We've previously shown how R can be used to read in spatial data, reproject spatial data, and resample spatial datasets. Once a spatial dataset can be stored in R as a data frame, we can use `ggplot` to plot it. 
+
+## Simple Features
+
+One package useful for spatial data in R is the `sf` package (short for simple features). It contains functions that perform equations that place uneven projections on a 2 dimensional computer screen. It can handle many projections and is built to work seamlessly with `ggplot`. For sample data, we're also going to load `ozmaps` which contains maps of Australia.
+
+```{r}
+library(ozmaps)
+library(sf)
+
+oz_states <- ozmaps::ozmap_states
+oz_states
+```
+
+`oz_states` is a simple feature which stores data like data frames but has a projection (proj4string), spatial extents, and polygon geometry. In other words, we have shapes on a map that are georeferenced and stored within a data frame that `ggplot` is great at working with. So, let's plot these polygons!
+
+```{r}
+ggplot(oz_states) + 
+  geom_sf() + 
+  coord_sf()
+
+ggplot() + 
+  geom_sf(data = oz_states, mapping = aes(fill = NAME), show.legend = FALSE) +
+  coord_sf()
+```
+
+
+## Raster to Data Frame
+
+When it comes to spatial data, the `raster` package is our go-to library. After the data is translated to a dataframe and ready to plot, we'll need the help of a package called `mapproj` which makes sense of some external maps that `ggplot2` uses.
+
+```{r}
+library(ggplot2)
+library(mapproj)
+library(maptools) # also loads sp package
+library(raster)
+library(rasterVis)
+library(RColorBrewer)
+sstRast <- raster("/Users/james/Documents/Github/geog473-673/datasets/GOES_R_ROLLING_1DAY_20190814.nc")
+# crop the raster so this runs faster
+sstRast <- crop(sstRast, extent(-100,-80,16,30))
+sstRast
+
+# convert to dataframe and 
+df <- as.data.frame(sstRast, xy = TRUE) 
+# plot the raster
+ggplot() +
+  geom_raster(data = df , aes(x = x, y = y, fill = Sea.Surface.Temperature)) + 
+  coord_sf(crs=crs(sstRast))
+ggplot(data = df) +
+    geom_sf(mapping =  aes(x = x, y = y)) + 
+    coord_sf(crs = "+proj=laea +lat_0=52 +lon_0=10 +x_0=4321000 +y_0=3210000 +ellps=GRS80 +units=m +no_defs ")
+```
+
+The main new function here is `coord_quickmap()`. It gives the x/y values a geospatial domain. Here's what it looks like:
+
+`coord_quickmap(xlim = NULL, ylim = NULL, expand = TRUE,
+  clip = "on")`
+  
+It's derived from `coord_map` which looks like this:
+
+`coord_map(projection = "mercator", ..., parameters = NULL,
+  orientation = NULL, xlim = NULL, ylim = NULL, clip = "on")`
+
+We can see that `coord_map`, 
+```{r}
+# now let's use a better colorscheme
+jet.colors <- colorRampPalette(c("#00007F", "blue", "#007FFF", "cyan", "#7FFF7F", "yellow", "#FF7F00", "red", "#7F0000"))
+ggplot() +
+  geom_raster(data = df , aes(x = x, y = y, fill = Sea.Surface.Temperature)) + 
+  scale_fill_gradientn(colors = jet.colors(7), limits = c(28, 33)) + 
+  coord_quickmap()
+
+# now let's add borders
+ggplot() +
+  geom_raster(data = df , aes(x = x, y = y, fill = Sea.Surface.Temperature)) + 
+  scale_fill_gradientn(colors = jet.colors(7), limits = c(28, 33)) + 
+  borders(fill="white", xlim = c(-100,-80), ylim=c(16,30),alpha = 0.5) +
+  coord_quickmap(xlim = c(-100,-80), ylim=c(16,30))
+```
+
+Notice in the final map how I set xlimits and ylimits in the `coord_quickmap` function. This is the same as we did before with `ggplot2` and `coord_cartesian`. Now that we have lat/lon coordinates, we need to specifiy that "zoom in" boundary with `coord_quickmap`. 
+
+Let's get rid of the expanded area beyond the raster domain using the `expand=FALSE` argument in `coord_quickmap()`
+
+```{r}
+
+# levelplot the sstRast
+# USA shapefiles via the getData function
+usa <- getData('GADM', country = 'USA', level = 1)
+
+ggplot() +
+  geom_raster(data = df , aes(x = x, y = y, fill = Sea.Surface.Temperature)) + 
+  scale_fill_gradientn(colors = jet.colors(7), limits = c(28, 33)) + 
+  borders(fill="white", xlim = c(-100,-80), ylim=c(16,30),alpha = 0.5) +
+  coord_quickmap(xlim = c(-100,-80), ylim=c(16,30),expand = FALSE)
+```
+
+What are some other colors we could use?
+```{r,fig.width=8, fig.height=14}
+library(RColorBrewer)
+display.brewer.all()
+```
+
+Let's plot using new colors and a white NA value
+
+```{r}
+cols <- brewer.pal(9, "YlOrRd")# nmaximum for palette YlOrRd is 9
+pal <- colorRampPalette(cols)
+
+ggplot() +
+  geom_raster(data = df , aes(x = x, y = y, fill = Sea.Surface.Temperature)) + 
+  scale_fill_gradientn(colors = pal(20), limits = c(25, 35),na.value = "white") + 
+  borders(fill="white", xlim = c(-100,-80), ylim=c(16,30),alpha = 0.5) +
+  coord_quickmap(xlim = c(-100,-80), ylim=c(16,30),expand = FALSE)    
+
 ```
 
 ### Quick tutorial - Multi Plot with ggplot2
@@ -59,105 +174,6 @@ grid.arrange(p1,p2, ncol=1, nrow=3)
 
 Notice how it left the 3rd row empty because we only provided 2 plots (p1 and p2).
 
-# ggplot2 and Spatial Data
-
-#### Recap with base graphics
-
-When it comes to spatial data, the `raster` package is our go-to library. Here's how we imported and plotted rasters using base graphics. 
-
-```{r, warning=FALSE, message=FALSE}
-library(maptools) # also loads sp package
-library(raster)
-library(rasterVis)
-library(RColorBrewer)
-sstRast <- raster("/Users/james/Documents/Github/geog473-673/datasets/GOES_R_ROLLING_1DAY_20190814.nc")
-# crop the raster so this runs faster
-sstRast <- crop(sstRast, extent(-100,-80,16,30))
-sstRast
-image(sstRast)
-
-# levelplot the sstRast
-# USA shapefiles via the getData function
-usa <- getData('GADM', country = 'USA', level = 1)
-
-# Throw together the usa spatial polygons data frame
-plt <- levelplot(sstRast, margin=F, par.settings=BuRdTheme,
-       main="GOES-R Rolling SST 08/14")
-plt + layer(sp.polygons(usa, col='black',fill='grey', lwd=0.4))
-```
-
-Let's do this same thing with ggplot2. We'll need the help of a package called `mapproj` to make sense of some external maps `ggplot2` uses - note that we need to convert sstRast into a dataframe for `ggplot2`
-
-```{r}
-library(ggplot2)
-library(mapproj)
-# convert to dataframe
-df <- as.data.frame(sstRast, xy = TRUE) 
-ggplot() +
-  geom_raster(data = df , aes(x = x, y = y, fill = Sea.Surface.Temperature)) + 
-  coord_quickmap()
-
-# look into coord_quickmap
-```
-
-The main new function here is `coord_quickmap()`. It gives the x/y values a geospatial domain. Here's what it looks like:
-
-`coord_quickmap(xlim = NULL, ylim = NULL, expand = TRUE,
-  clip = "on")`
-  
-It's derived from `coord_map` which looks like this:
-
-`coord_map(projection = "mercator", ..., parameters = NULL,
-  orientation = NULL, xlim = NULL, ylim = NULL, clip = "on")`
-  
-```{r}
-# now let's use a better colorscheme
-jet.colors <- colorRampPalette(c("#00007F", "blue", "#007FFF", "cyan", "#7FFF7F", "yellow", "#FF7F00", "red", "#7F0000"))
-ggplot() +
-  geom_raster(data = df , aes(x = x, y = y, fill = Sea.Surface.Temperature)) + 
-  scale_fill_gradientn(colors = jet.colors(7), limits = c(28, 33)) + 
-  coord_quickmap()
-
-# now let's add borders
-ggplot() +
-  geom_raster(data = df , aes(x = x, y = y, fill = Sea.Surface.Temperature)) + 
-  scale_fill_gradientn(colors = jet.colors(7), limits = c(28, 33)) + 
-  borders(fill="white", xlim = c(-100,-80), ylim=c(16,30),alpha = 0.5) +
-  coord_quickmap(xlim = c(-100,-80), ylim=c(16,30))
-```
-
-Notice in the final map how I set xlimits and ylimits in the `coord_quickmap` function. This is the same as we did before with `ggplot2` and `coord_cartesian`. Now that we have lat/lon coordinates, we need to specifiy that "zoom in" boundary with `coord_quickmap`. 
-
-Let's get rid of the expanded area beyond the raster domain using the `expand=FALSE` argument in `coord_quickmap()`
-
-```{r}
-ggplot() +
-  geom_raster(data = df , aes(x = x, y = y, fill = Sea.Surface.Temperature)) + 
-  scale_fill_gradientn(colors = jet.colors(7), limits = c(28, 33)) + 
-  borders(fill="white", xlim = c(-100,-80), ylim=c(16,30),alpha = 0.5) +
-  coord_quickmap(xlim = c(-100,-80), ylim=c(16,30),expand = FALSE)
-```
-
-What are some other colors we could use?
-```{r,fig.width=8, fig.height=14}
-library(RColorBrewer)
-display.brewer.all()
-```
-
-Let's plot using new colors and a white NA value
-
-```{r}
-cols <- brewer.pal(9, "YlOrRd")# nmaximum for palette YlOrRd is 9
-pal <- colorRampPalette(cols)
-
-ggplot() +
-  geom_raster(data = df , aes(x = x, y = y, fill = Sea.Surface.Temperature)) + 
-  scale_fill_gradientn(colors = pal(20), limits = c(25, 35),na.value = "white") + 
-  borders(fill="white", xlim = c(-100,-80), ylim=c(16,30),alpha = 0.5) +
-  coord_quickmap(xlim = c(-100,-80), ylim=c(16,30),expand = FALSE)    
-
-```
-
 #Assignment:
 
 1. Download treecov.nc from the datasets folder
@@ -205,7 +221,7 @@ grid.arrange(g1,g2, ncol=2, nrow=1)
 ```
 
 
-## Extra Credit - 3 Points !!!
+## Extra Credit - 2 Points
 
 Using the data above, approximate the average tree cover for South America and Africa (extents don't have to be exact, just generally)
 
