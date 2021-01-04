@@ -1,25 +1,21 @@
----
-title: "Week 6 - Data Extraction"
-output: rmarkdown::github_document
----
-
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
-
 # THREDDS and ERDDAP
 
-So far this semester, we've only been playing with datasets that I have stored for you in the datasets folder. I showed you a quick way to download datasets from the folder using R - 
+```{r, echo=FALSE, out.width="60%", fig.align="center"}
+knitr::include_graphics("../documents/images/erddap.png")  
+```
+
+
+Up to this point, we've been using locally downloaded datasets derived from the course datasets folder. We downloaded these files in bulk or individually like so...
 
 `download.file("https://github.com/jsimkins2/geog473-673/tree/master/datasets/TreeData.csv", destfile = "/Users/james/Downloads/TreeData.csv" , mode='wb')`
 
-This is a really useful thing to have to download complete files from a datasets folder on Github. However, while Github is excellent for code, it's not a cloud service for datasets. THREDDS and ERDDAP are the future of environmental data repositories. 
+While Github is excellent for code, it's not a cloud service for datasets. THREDDS and ERDDAP are the future of environmental data repositories. 
 
-### THREDDS
+## THREDDS
 
 THREDDS (Thematic Realtime Environmental Distributed Data Services) is an efficient way to extract specific areas or time periods of a dataset. For example, if you're studying 2000-2020 water temperatures of the Delaware Bay, you don't necessarily want a water temperature dataset covering the Atlantic Ocean from 1960-2020. It's a waste of time to have to download, store, and process all of that data just to sub-select the Delaware Bay from 2000-2020. THREDDS makes it possible to download your desired subset from the get-go, saving you time and hard-drive space. 
 
-Here are some NASA/NOAA/UDEL THREDDS servers I frequently use:
+Here are some NASA/NOAA/UDEL THREDDS servers:
 
 1) https://thredds.jpl.nasa.gov/thredds/catalog.html - NASA Jet Propulsion Labratory
 2) https://thredds.daac.ornl.gov/thredds/catalog.html - Oak Ridge National Lab 
@@ -33,28 +29,28 @@ If you have a dataset or type of data you're interested in, google search it wit
 Today we'll use UDEL's Satellite Receiving Station THREDDS (#5 on the list). It's located at this URL - http://basin.ceoe.udel.edu/thredds/catalog.html 
 
 
-.Here's what that looks like:
-```{r, echo=FALSE}
+Here's what that looks like:
+```{r, out.width="60%", fig.align="center", echo=FALSE}
 knitr::include_graphics("../documents/images/basin_thredds.png")
 ```
 
 If we click on `GOES-R SST`, we see we have some different avenues for data extraction.
 
-```{r, echo=FALSE}
+```{r, out.width="60%", fig.align="center", echo=FALSE}
 knitr::include_graphics("../documents/images/basin_goesSST.png")
 ```
 
 OPeNDAP (Open-source Project for a Network Data Access Protocol) is a great way to subselect the data. Opendap offers html files of the data (BAD IDEA, THIS WILL CRASH YOUR BROWSER) or netCDF files of the data (great idea)
 
-```{r, echo=FALSE}
+```{r, out.width="60%", fig.align="center", echo=FALSE}
 knitr::include_graphics("../documents/images/basin_opendap.png")
 ```
 
-Now you can use this page to download subset datasets, or we can make this really easy and use R to accomplish that task. This is a high temporal resolution dataset, so let's say we want Delaware Bay data from July 14 - July 16, 2019. All we need to make this happen is the url of the opendap page - http://basin.ceoe.udel.edu/thredds/dodsC/goes_r_sst.nc.html -  and the `ncdf4` package. 
+Now you can use this page to download subset datasets, or we can make this really easy and use R to accomplish that task. This is a high temporal resolution dataset, so let's say we want Delaware Bay data from July 14 - July 16, 2019. All we need to make this happen is the url of the opendap page - http://basin.ceoe.udel.edu/thredds/dodsC/GOESJPLSST.nc.html -  and the `ncdf4` package. 
 
 ```{r}
 library(ncdf4)
-goes.nc = nc_open("http://basin.ceoe.udel.edu/thredds/dodsC/goes_r_sst.nc")
+goes.nc = nc_open("http://basin.ceoe.udel.edu/thredds/dodsC/GOESJPLSST.nc")
 goes.nc
 ```
 
@@ -121,7 +117,7 @@ goes.nc$dim$time$vals[index_start_time]
 epoch_start_time
 ```
 
-Alright, we have our start time index ! Now what about the latitude / longitudes? We'll need to find the index of the lat/lon grid we want. Delaware bay is approximately between -75.8 W, -74.7 W, 38.3 N, and 40 N. 
+Alright, we have our start time index! What about the latitudes and longitudes? We'll need to find the index of the lat/lon grid we want. Delaware bay is approximately between -75.8 W, -74.7 W, 38.3 N, and 40 N. 
 
 ```{r}
 # print out a few longitude values - notice that the entire dataset is on this grid right here. 
@@ -195,8 +191,8 @@ And here is what the `count` argument is looking for...
 We already have our `count` values in place..let's plug them in and run - note this will take a few seconds to run and even longer if you have poor internet connection. This is data being extracted through the internet in real time. 
 
 ```{r}
-# cool, let's grab SST (Sea Surface Temperature) for Delaware Bay from January 10th-12th
-sst.c <- ncvar_get(goes.nc, "SST",start = c(index_west_lon,index_south_lat,index_start_time), 
+# cool, let's grab sea_surface_temperature for Delaware Bay
+sst.c <- ncvar_get(goes.nc, "sea_surface_temperature",start = c(index_west_lon,index_south_lat,index_start_time), 
                    count = c(lon_count,lat_count,time_count))
 dim(sst.c)
 ```
@@ -217,7 +213,7 @@ test.sst
 
 What's missing? Well we just gave it the raw data, we still need to plug in the extents! Also, we will need to plug in the CRS - luckily we know this data is in lat/lon because of how awesome this metadata is!
 
-```{r}
+```{r, out.width="60%", fig.align="center"}
 # we need to transpose and flip this dataset just like we did in week 4 of the R intro course
 # for some reason when we put the netcdf data into R raster the data is upside down and inside out so this is our way of fixing it 
 test.sst = t(test.sst)
@@ -237,11 +233,11 @@ plt <- levelplot(test.sst, margin=F, par.settings=BuRdTheme,
 plt + layer(sp.polygons(usa, col='black', lwd=0.4))
 ```
 
-Boom...There's the data we wanted and you didn't have to leave R to get it. You also saved a ton of time and hard drive space. 
+Boom...There's the data we wanted and we didn't have to leave R to get it. We also saved a ton of time and hard drive space. 
 
 ## ERDDAP
 
-So THREDDS is super fast but it's not the most human-friendly. ERDDAP, on the other hand, is meant for humans. ERDDAP is a data server that gives you a simple, consistent way to download subsets of gridded and tabular scientific datasets in common file formats and make graphs and maps. ERDDAP can generate maps on the fly so you can check out the data before you proceed to download. Here are some NASA / NOAA / UDEL ERDDAP pages I frequently use:
+THREDDS is very fast and great when you're already familiar with a dataset. ERDDAP, on the other hand, is meant for humans. ERDDAP is a data server that gives you a simple, consistent way to download subsets of gridded and tabular scientific datasets in common file formats and make graphs and maps. ERDDAP can generate maps on the fly so you can check out the data before you proceed to download. Here are some NASA / NOAA / UDEL ERDDAP pages:
 
 1) https://upwell.pfeg.noaa.gov/erddap/index.html - NOAA Global Earth Observation Over 10,000 datasets available here
 2) https://coastwatch.pfeg.noaa.gov/erddap/index.html - NOAA Ocean ERDDAP - over 1400 datasets available here
@@ -253,18 +249,18 @@ So THREDDS is super fast but it's not the most human-friendly. ERDDAP, on the ot
 
 Let's check out the UDEL Satellite Receiving Station ERDDAP page - here's what it looks like
 
-```{r, echo=FALSE}
+```{r, out.width="60%", fig.align="center", echo=FALSE}
 knitr::include_graphics("../documents/images/basin_erddap.png")
 ```
 
 If we click on `GOES-R SST`, we see we have some different avenues for data extraction. 
-```{r, echo=FALSE}
+```{r, out.width="60%", fig.align="center", echo=FALSE}
 knitr::include_graphics("../documents/images/erddap_datasets.png")
 ```
 
 OPeNDAP (Open-source Project for a Network Data Access Protocol) is a great way to subselect the data. Opendap offers html files of the data (BAD IDEA, THIS WILL CRASH YOUR BROWSER) or netCDF files of the data (great idea)
 
-```{r, echo=FALSE}
+```{r, out.width="60%", fig.align="center", echo=FALSE}
 knitr::include_graphics("../documents/images/goesSST_erddap.png")
 ```
 
@@ -288,13 +284,13 @@ You can use the Data Access Form at the top of the page to select data and downl
 Be careful when using the functions `ed_search()` and `ed_datasets()`.  The default <span style="color:red">ERDDAP</span> has over 9,000 datasets,  most of which are grids, so that a list of all the gridded datasets can be quite long.  A seemly reasonable search:
 
 
-## Finding the Data You Want
+### Finding the Data You Want
 
 The first way to find a dataset is to browse the builtin web page for a particular <span style="color:red">ERDDAP</span> server.
 A list of some of the public available <span style="color:red">ERDDAP</span> servers can be obtained from the `rerddap` command:
 
 
-```r
+```
 servers()
 #>                                                                                             name
 #> 1                                                          Marine Domain Awareness (MDA) - Italy
@@ -353,8 +349,9 @@ NOAA’s National Data Buoy Center (NDBC) collects world-wide data from buoys in
 `rerddap::browse('cwwcNDBCMet')`
 
 
-That's the ERDDAP site that we're going to pull data from 
-```{r}
+That's the ERDDAP site that we're going to pull data from...
+
+```{r, out.width="60%", fig.align="center"}
 library(rerddap)
 library(ggplot2)
 library(mapdata)
@@ -384,14 +381,14 @@ ggplot() +
 `rerddap::griddap()` - Gridded datasets, like sea surface temperature from GOES-R.
 
 
-```r
+```{r, eval=FALSE}
 whichSST <- ed_search(query = "SST")
 ```
 
 returns about 1000 responses.  The more focused query:
 
 
-```r
+```{r, eval=FALSE}
 whichSST <- ed_search(query = "SST MODIS")
 ```
 
@@ -405,7 +402,7 @@ info('jplMURSST41')
 
 Alright, let's extract some of this data and plot it. For this, we can use 'last' for the latest time instead of plugging in a time string.
 
-```{r, warning=FALSE}
+```{r, out.width="60%", fig.align="center", warning=FALSE}
 require("ggplot2")
 require("mapdata")
 require("rerddap")
@@ -431,14 +428,13 @@ What if we want to use a custom URL that's not pre-loaded into `rerddap` ? Let's
 
 1) Go to http://erddap.marine.ie/erddap/ and select datasets
 2) Look to the far right column named Dataset ID
-3) Locate this ID - IMI_NEATL
+3) Locate this ID - `IMI_NEATL`
 4) Select Graph under 'Make a Graph' Column for that Dataset ID
-5) Look at the variables - see 'sea_surface_temperature'
+5) Look at the variables - see `sea_surface_temperature`
 
 
 
-```{r, warning=FALSE}
-
+```{r, out.width="60%", fig.align="center", warning=FALSE}
 urlBase <- "http://erddap.marine.ie/erddap/"
 parameter <- "sea_surface_temperature"
 sstTimes <- c("last", "last")
@@ -475,7 +471,7 @@ Deliverables:
 
 2) Select any dataset from the ERDDAP server and create a script that loads in the data and plots it. In your script explain why you chose that dataset, detail each step and describe why it's happening, Turn in your R script and the Image/Plot you've made. 
 
-## Extra Credit !!! 3 Points !!
+## Extra Credit - 2 Points
 
 Find a dataset that uses TableDap's instance of ERDDAP. This is a method for storing point data instead of spatial data. Create a routine that downloads and extracts data using the `tabledap()` function from rerddap 
 
