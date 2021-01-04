@@ -1,21 +1,36 @@
----
-title: "Week 7 - Functions and Presentations"
-output: rmarkdown::github_document
----
+# R Development and Presentation
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+In this tutorial, we'll focus on functions and displaying R code & results with style. Functions are important for code speed and documentation. Presenting R code is important if you need to explain how to do something using R (i.e. this tutorial). We'll start by explaining functions and proceeding through a complex example. Afterwards, we'll show how `RMarkdown` works so you can present a complex function of your own. 
+
+## Functions
+We create functions to speed up and organize code. So far, we've only been coding things via scripting and occasionally using for loops. While this is fine, it's slower than writing functions would be. Writing or creating functions is considered much cleaner and more *proper*. As a recap, whenever we use the phrase `library(ncdf4)` we are loading the `ncdf4` package. Within that package are a number of `.R` scripts/files that contain functions that someone has been kind enough to write for the world. By using `library(ncdf4)`, R reads in all of those functions and thus knows what we want when we execute a function like `nc_open()`. Instead of re-writing the pure function of `nc_open()` over and over again every time we want to open a netcdf file, we are able to just load the function. Before we get further into `ncdf4`, let's write some R code to square a sequence of values. 
+
+```{r}
+# square a sequence of values with start of 5 and stop of 10
+arg1 = 1
+arg2 = 5
+my.seq = seq(arg1, arg2, 1)
+my.seq.squared = my.seq ** 2
+my.seq.squared
 ```
 
-This week we are going to focus up on some formal work with R - creating your own functions and displaying R code & results in a fancy style. Functions are important for code speed and documentation. Presenting R code is important if you need to explain how to do something using R (this is how I create a tutorial). We'll start by explaining functions and going through an example. Afterwards, we'll show how RMarkdown works so you can explain how fancy this function of yours really is. 
+This code is straight-forward and light. Let's now assume, however, that we want to run this code on multiple sets of start and stop values. If we turn the code above into a function, this is streamlined.
 
-# Functions
-We create functions to speed up and organize code. So far, we've only been coding things via scripting and occasionally using for loops. While this is fine, it's slower than writing functions would be. Writing or creating functions is considered much cleaner and more *proper*. As a recap, whenever we use the phrase `library(ncdf4)` we are loading the `ncdf4` package. Within that package are a number of `.R` scripts/files that contain functions that someone has been kind enough to write to save us time. By using `library(ncdf4)`, R reads in all of those functions and thus knows what we want when we execute a function like `nc_open()`. Instead of re-writing `nc_open()` over and over again every time we want to open a netcdf file, we are able to just load the function. We're going to write a function today to save us time loading netcdf files.
+```{r}
+# create a function called seq_squared
+seq_squared = function(arg1, arg2){
+  my.seq = seq(arg1, arg2, 1)
+  my.seq.squared = my.seq ** 2
+  return(my.seq.squared)
+}
 
-### Back to Willow Creek, WI
+seq_squared(arg1 = 5, arg2 = 10)
+```
+
+Above we have a function that takes in start and stop values of a sequence, uses these values to make a sequence, and returns the squares of each of these values. We create a new `function` in R using the `function` R call and name it `seq_squared`. When we write a function of our own, we can add in our own arguments as we see fit. In this case, we create arguments named `arg1` and `arg2`. These arguments are used to create `my.seq` which is a sequence within our `xfunc` function. We create a `my.seq.squared ` variable which is a vector of `my.seq` values squared. Ultimately, `my.seq.squared` is the output of our function. It's what we include in our `return` statement. Every function requires something to be returned, and `my.seq.squared` is the output of our `seq_squared`. 
+
+## NetCDF Processing Function
 Loading in all of the weather data from Willow Creek, WI is cumbersome. Let's write a function that reads in the data and converts everything to a dataframe for us. 
-
-#### My Read Willow Creek Data function
 
 ```{r}
 library(ncdf4)
@@ -44,33 +59,18 @@ read.wcr = function(fname) {
   if(all(is.na(df$date))){
     df$date = data.date
   }
-  if(all(is.na(df$wind_speed))){
-    df$wind_speed = sqrt(df$eastward_wind^2 + df$northward_wind^2)
-  }
   return(df)
 }
 ```
-#### What if all means...
-Above is our function in all it's glory. All we're doing is reading a netCDF file that we know the structure of (and it's variables). The syntax is very similar to that of a for loop. `read.wcr` is our function name, the `function()` command tells R we're declaring a function. `fname` is one of the arguments that the function takes. For example, the function what we use for opening netCDF files - `nc_open()` has the following arguments...
+
+In the function above, we've refactored code that we previously wrote to read in a Willow Creek netCDF file. `read.wcr` is our function name, the `function()` command tells R we're declaring a function. `fname` is one of the arguments that the function takes. For example, the function what we use for opening netCDF files - `nc_open()` has the following arguments...
 
 `nc_open( filename, write=FALSE, readunlim=TRUE, verbose=FALSE, 
  	auto_GMT=TRUE, suppress_dimvals=FALSE )`
  	
-The function I've coded above only takes the filename, but if our routine was more complex we could add more arguments in. Once the argument is taken in, we **generalize** naming schemes that are unimportant. Notice how I use object names like `tem` for example. This is short for temporary, and is set up to be overwritten if we were to use this function within a for loop to open multiple files. There's also some extra bits down at the bottom where we calculate wind speed from eastward and northward wind components **if** the entire data frame of `wind_speed` is null. AKA, if we tell R to get the `wind_speed` variable but it doesn't exist, then it will just return *NA* for each value for that variable. This is nice to have given the case where some files have a variable and others don't.
+The function we've coded above only takes the filename, but if our routine was more complex we could add more arguments in. Once the argument is taken in, we **generalize** naming schemes that are unimportant. Notice how we use object names like `tem` for example. This is short for temporary, and is set up to be overwritten if we were to use this function within a for loop to open multiple files.
 
-Finally, focus in on the `return(df)` line. This is what the function spits back out. We can put whatever we want here. For example, let's write a function like so...
-
-```{r}
-
-xfunc = function(){
-  statement = "I put the fun in functions"
-  return(statement)
-}
-
-xfunc()
-```
-
-`return` is what we get out of a function. Now, let's actually use the `read.wcr()` function we wrote above. 
+Finally, focus in on the `return(df)` line - `return` is what we get out of a function. Now, let's actually use the `read.wcr()` function we wrote above. 
 
 ```{r}
 wcr_df = read.wcr(fname = "~/Documents/Github/geog473-673/datasets/WCr_1hr.2010.nc")
@@ -78,11 +78,11 @@ wcr_df = read.wcr(fname = "~/Documents/Github/geog473-673/datasets/WCr_1hr.2010.
 summary(wcr_df)
 ```
 
-It's as simple as that...This is why programming becomes a black box and why we don't always look under the hood. We don't need to. Once we write a function that works as nicely as this, we don't need to go back to said function until it breaks for some reason. Programmers are lazy. The better programmer you are, the lazier you can become. Why make things harder than they have to be?
+It's as simple as that. This is why programming can become a black box and why we don't always look under the hood. Code and functions like the one above can be messy and as long as we understand the output we don't always care how it gets done. 
 
-Let's set up a for loop for this to show how we might read in all 3 years of data. We're going to use the `rbind()` function to latch on extra data here.
+Remember that we have Willow Creek weather data for 2010, 2011, and 2012. Let's set up a for loop for this to show how we might read in all 3 years of data. We're going to use the `rbind()` function to latch on extra data here.
 
-#### Use the function in a for loop
+## Functions in For Loops
 
 ```{r}
 
@@ -106,53 +106,67 @@ length(wcr_df$date)
 summary(wcr_df)
 ```
 
-`!=` means DOES NOT EQUAL. The `!` means DOES NOT. This statement reads as - if `y` DOES NOT EQUAL the first year in `yearSeq`, proceed to use `rbind()`. Otherwise, if `y` is indeed the first year in `yearSeq`, we need to initialize `wcr_df` BEFORE we overwrite `tem_df`
+Remember, `!=` means DOES NOT EQUAL. This statement reads as - if `y` DOES NOT EQUAL the first year in `yearSeq`, proceed to use `rbind()`. Otherwise, if `y` is indeed the first year in `yearSeq`, we need to initialize `wcr_df` BEFORE we overwrite `tem_df`. 
 
-I have this in the commented sections, but felt it was worth repeating. Anyway, based on the summary we see that we have successfully merged the 3 datasets into one continuous dataset. Since we defined the function above, we don't need to make a messy for loop with all of the function bits in it. Functions speed up our program and also make for more sophisticated coding. 
-
+Based on the summary we see that we have successfully merged the 3 datasets into one continuous dataset. Since we defined the function above, we don't need to make a messy for loop with all of the function bits in it. Functions speed up our program and also make for more sophisticated coding. 
 
 
 ## RMarkdown
-Code is often messy and difficult to explain. Sharing code with numerous comments is fine, but if you really want to explain how your code is working and make it look good you'll want to use RMarkdown. This is how I create the tutorials that you use for my classes. RMarkdown is a combination of HTML like syntax with R. Here is how you make an RMarkdown document.
+Code is often messy and difficult to explain. One R feature that can make explaining code or a function easier is `RMarkdown`. This is how this textbook has been built. `RMarkdown` is a combination of HTML like syntax with R. Here is how you make an RMarkdown document.
 
-- Open a new RMarkdown document
+- Open a new RMarkdown document - `File -> New File -> R Markdown...`
 
-```{r, echo=FALSE}
+```{r, echo=FALSE, out.width="60%", fig.align="center"}
 knitr::include_graphics("../documents/images/rmd1.png")
 ```
 
 - Enter in details
 
-```{r, echo=FALSE}
+```{r, echo=FALSE, out.width="60%", fig.align="center"}
 knitr::include_graphics("../documents/images/rmd2.png")
 ```
 
-- It should look something like this
+- The initial RMarkdown should look like this
 
-```{r, echo=FALSE}
+```{r, echo=FALSE, out.width="60%", fig.align="center"}
 knitr::include_graphics("../documents/images/rmd3.png")
 ```
 
-- Enter R code into the `{r}` section
+- We tell RMarkdown we want to write and run R code with 3 backticks and `{r}` -  **\```{r}**
+- We end our R code section with 3 backticks - **\```**
+- Thus, for our `my.seq.squared` function above, it would be coded like this in RMarkdown. 
 
-```{r, echo=FALSE}
+**\```{r}**
+```{r}
+# create a function called seq_squared
+seq_squared = function(arg1, arg2){
+  my.seq = seq(arg1, arg2, 1)
+  my.seq.squared = my.seq ** 2
+  return(my.seq.squared)
+}
+
+```
+**\```**
+
+In our example here, R code is keyed in the R Markdown document like so. 
+
+```{r, echo=FALSE, out.width="60%", fig.align="center"}
 knitr::include_graphics("../documents/images/rmd4.png")
 ```
 
-- Add any additional text you might like
-- Knit the RMarkdown file to a PDF
+Notice the `cars` inside of `{r cars}`. This names the coding section but has no impact on the code itself. We do not need to name each coding section - `{r}` alone will suffice. 
 
-```{r, echo=FALSE}
+Anything outside of the R code sections will show up as plain text. When we are finished with our R Markdown document, we need to `Knit` the document. See the blue yarn ball at the top of your script? This will create a new PDF file. 
+
+```{r, echo=FALSE, out.width="60%", fig.align="center"}
 knitr::include_graphics("../documents/images/rmd5.png")
 ```
 
-Et Voila! There you have it, a professional looking RMarkdown PDF that makes your R code prettier. 
-
-Here's what it should look like - https://github.com/jsimkins2/geog473-673/tree/master/Advanced_R/rmdtest.pdf
+Et Voila! A professional looking RMarkdown PDF that makes your R code easier to explain and present. [Here's what the output above should look like](https://github.com/jsimkins2/geog473-673/tree/master/Advanced_R/rmdtest.pdf)
 
 
 
-# Assignment
+## Assignment
 
 Create a function that extracts and plots a spatial dataset given a time range. Follow the steps below:
 
@@ -163,10 +177,3 @@ Create a function that extracts and plots a spatial dataset given a time range. 
 5) Include an example of the function working to plot the given dataset 
 6) Submit resulting PDF to Canvas week 7 assignment
 
-## Extra Credit!! 3 Points
-
-Turn your above images into a GIF of at least 4 iamges. Here's a quick example on how one might do this...
-
-https://jarrettmeyer.com/2018/11/20/creating-animated-gif-r
-
-But it is one of many ways to do this...
