@@ -1,0 +1,12 @@
+# Supervised Maching Learning
+
+```{r, echo=FALSE, out.width="50%", fig.align="center"}
+knitr::include_graphics("../documents/images/robot.jpeg")  
+```
+
+Supervised Machine Learning (SML) involves a training dataset that has labeled inputs.SML itself is composed of classification, where the output is qualitative, and regression, where the output is quantitative. 
+
+# Regression
+
+# K-Nearest Neighbors
+
