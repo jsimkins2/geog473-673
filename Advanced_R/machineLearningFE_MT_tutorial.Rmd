@@ -1,0 +1,206 @@
+# Feature Engineering & Model Training
+
+```{r, echo=FALSE, out.width="50%", fig.align="center"}
+knitr::include_graphics("../documents/images/robot.jpeg")  
+```
+
+Time series forecasting is widely used in sciences with the intended purpose of predicting the future based on present data. This type of machine learning technique has been used for weather forecasting, glacier melting outlooks, and carbon dioxide concentration predictions. In this tutorial, we will use the Willow Creek Weather Datasets to try and forecast variables into the future. 
+
+2 regions of the dataset - 1 region for example and then use the other example for the assignment
+
+1. Date : (DD/MM/YYYY) Day, month ('june' to 'september'), year (2012)
+Weather data observations
+2. Temp : temperature noon (temperature max) in Celsius degrees: 22 to 42
+3. RH : Relative Humidity in %: 21 to 90
+4. Ws :Wind speed in km/h: 6 to 29
+5. Rain: total day in mm: 0 to 16.8
+FWI Components
+6. Fine Fuel Moisture Code (FFMC) index from the FWI system: 28.6 to 92.5
+7. Duff Moisture Code (DMC) index from the FWI system: 1.1 to 65.9
+8. Drought Code (DC) index from the FWI system: 7 to 220.4
+9. Initial Spread Index (ISI) index from the FWI system: 0 to 18.5
+10. Buildup Index (BUI) index from the FWI system: 1.1 to 68
+11. Fire Weather Index (FWI) Index: 0 to 31.1
+
+
+read in data and convert classes to more readable
+```{r, warning=FALSE, message=FALSE, out.width="50%", fig.align="center"}
+library(ggplot2)
+ff_data = read.csv("Documents/Github/geog473-673/datasets/Algerian_Forest_Fires.csv")
+ff_data = as.tibble(ff_data)
+# response variable used for classification
+ggplot(ff_data, aes(x = Fire, fill = Fire)) +
+  geom_bar()
+```
+
+analyze features
+```{r, warning=FALSE, message=FALSE, out.width="50%", fig.align="center"}
+library(tidyverse)
+gather(ff_data, x, y, day:FWI) %>%
+  ggplot(aes(x = y, color = Fire, fill = Fire)) +
+    geom_density(alpha = 0.3) +
+    facet_wrap( ~ x, scales = "free", ncol = 3)
+```
+
+
+PCA 
+
+```{r}
+library(ellipse)
+
+# convert to factor 
+ff_data$Fire = as.factor(as.numeric(as.factor(ff_data$Fire)))
+
+cutdata = data.frame(Temperature = ff_data$Temperature, Rain = ff_data$Rain, RH = ff_data$RH, Ws = ff_data$Ws, Fire = ff_data$Fire)
+
+# convert to numeric so prcomp is happy
+cutdata$Fire = as.numeric(cutdata$Fire)
+
+# perform pca and extract scores
+pcaOutput <- prcomp(as.matrix(cutdata), scale = TRUE, center = TRUE)
+pcaOutput2 <- as.data.frame(pcaOutput$x)
+  
+# define groups for plotting
+pcaOutput2$groups <- ff_data$Fire 
+  
+centroids <- aggregate(cbind(PC1, PC2) ~ groups, pcaOutput2, mean)
+
+conf.rgn  <- do.call(rbind, lapply(unique(pcaOutput2$groups), function(t)
+  data.frame(groups = as.character(t),
+             ellipse(cov(pcaOutput2[pcaOutput2$groups == t, 1:2]),
+                   centre = as.matrix(centroids[centroids$groups == t, 2:3]),
+                   level = 0.95),
+             stringsAsFactors = FALSE)))
+    
+ggplot(data = pcaOutput2, aes(x = PC1, y = PC2, group = as.factor(groups), color = as.factor(groups))) + 
+    geom_polygon(data = conf.rgn, aes(fill = groups), alpha = 0.2) +
+    geom_point(size = 2, alpha = 0.6)
+
+
+```
+Multidimensional Scaling
+
+```{r}
+ff_data %>%
+  dist() %>%
+  cmdscale %>%
+  as.data.frame() %>%
+  mutate(group = ff_data$Fire) %>%
+  ggplot(aes(x = V1, y = V2, color = group)) +
+    geom_point()
+
+
+```
+
+t-SNE dimensionality reduction
+```{r}
+library(tsne)
+
+ff_data%>%
+  dist() %>%
+  tsne() %>%
+  as.data.frame() %>%
+  mutate(group =ff_data$Fire) %>%
+  ggplot(aes(x = V1, y = V2, color = group)) +
+    geom_point()
+
+```
+
+classification
+
+```{r}
+library(rpart)
+library(rpart.plot)
+library(caret)
+# remove all indices before we do this create new ffdata with only rain, rh, temperature, 
+set.seed(56)
+cutdata = data.frame(Temperature = ff_data$Temperature, Rain = ff_data$Rain, RH = ff_data$RH, Ws = ff_data$Ws, Fire = ff_data$Fire)
+cutdata$Fire = as.factor(cutdata$Fire)
+
+levels(cutdata$Fire) = c("Fire", "No Fire")
+
+set.seed(42)
+fit <- rpart(Fire ~ .,
+            data = cutdata,
+            method = "class",
+            control = rpart.control(xval = 10, 
+                                    minbucket = 2, 
+                                    cp = 0), 
+             parms = list(split = "information"))
+
+rpart.plot(fit, extra = 100)
+
+```
+
+
+
+Random Forests
+
+```{r}
+library(caret)
+index <- createDataPartition(as.factor(cutdata$Fire), p = 0.7, list = FALSE)
+train_data <- cutdata[index, ]
+test_data  <- cutdata[-index, ]
+
+model_rf <- caret::train(Fire ~ .,
+                         data = train_data,
+                         method = "rf",
+                         preProcess = c("scale", "center"),
+                         trControl = trainControl(method = "repeatedcv", 
+                                                  number = 5, 
+                                                  repeats = 3, 
+                                                  savePredictions = TRUE, 
+                                                  verboseIter = FALSE))
+
+model_rf
+
+model_rf$finalModel$confusion
+
+importance <- varImp(model_rf, scale = TRUE)
+plot(importance)
+
+# remove all crazy f
+```
+
+```{r}
+confusionMatrix(predict(model_rf, test_data), as.factor(test_data$Fire))
+
+results <- data.frame(actual = test_data$Fire,
+                      predict(model_rf, test_data, type = "prob"))
+
+names(results) = c('actual', 'Fire', 'No Fire')
+
+results$prediction <- ifelse(results$Fire > 0.5, "Fire",
+                             ifelse(results$No.Fire > 0.5, "No Fire", NA))
+
+results$correct <- ifelse(results$actual == results$prediction, TRUE, FALSE)
+
+ggplot(results, aes(x = prediction, fill = correct)) +
+  geom_bar(position = "dodge")
+
+
+ggplot(results, aes(x = prediction, y = Fire, color = correct, shape = correct)) +
+  geom_jitter(size = 3, alpha = 0.6)
+
+
+```
+
+
+
+
+
+testing feature importance at this point everything above is GOOOOOOOD
+
+```{r}
+library(corrplot)
+
+# calculate correlation matrix
+train_data$Fire = as.numeric(train_data$Fire)
+corMatMy <- cor(train_data)
+corrplot(corMatMy, order = "hclust")
+
+
+highlyCor <- colnames(train_data)[findCorrelation(corMatMy, cutoff = 0.7, verbose = TRUE)]
+
+
+```

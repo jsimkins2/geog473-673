@@ -1,0 +1,266 @@
+# Time Series Forecasting
+
+```{r, echo=FALSE, out.width="50%", fig.align="center"}
+knitr::include_graphics("../documents/images/robot.jpeg")  
+```
+
+Time series forecasting is widely used in sciences with the intended purpose of predicting the future based on present data. This type of machine learning technique has been used for weather forecasting, glacier melting outlooks, and carbon dioxide concentration predictions. In this tutorial, we will use the Willow Creek Weather Datasets to try and forecast variables into the future. 
+
+
+## Load the Packages and Data
+
+```{r, warning=FALSE, message=FALSE, out.width="50%", fig.align="center"}
+library(ncdf4)
+read.wcr = function(fname) {
+  fullname = strsplit(fname, "/")
+  dataset_str = fullname[[1]][length(fullname[[1]])]
+  datname = strsplit(dataset_str, "_")[[1]][1]
+  data.year = substr(dataset_str, nchar(dataset_str)-6, nchar(dataset_str)-3)
+  data.date = seq(from=as.POSIXct(paste0(data.year,"-1-1 0:00", tz="UTC")),to=as.POSIXct(paste0(data.year,"-12-31 23:00", tz="UTC")),by="hour")
+  vars.info <- data.frame(CF.name = c("date", "air_temperature", "precipitation_flux", "surface_downwelling_shortwave_flux_in_air",
+                                      "specific_humidity", "surface_downwelling_longwave_flux_in_air", "air_pressure",
+                                      "eastward_wind", "northward_wind", "wind_speed"))
+  df <- list()
+  tem <- ncdf4::nc_open(fname)
+  dim <- tem$dim
+  for (j in seq_along(vars.info$CF.name)) {
+    if (exists(as.character(vars.info$CF.name[j]), tem$var)) {
+      df[[j]] <- ncdf4::ncvar_get(tem, as.character(vars.info$CF.name[j]))
+    } else {
+      df[[j]] = NA
+    }
+  }
+  names(df) <- vars.info$CF.name
+  df <- data.frame(df)
+  nc_close(tem)
+  if(all(is.na(df$date))){
+    df$date = data.date
+  }
+  return(df)
+}
+
+```
+
+
+```{r, warning=FALSE, message=FALSE, out.width="50%", fig.align="center"}
+
+# create a sequence of years for the years we have data
+yearSeq = seq(2010,2012)
+
+# begin the for loop to open each year of data
+for (y in yearSeq){
+  # use our read.wcr() function and paste in the filename that changes for each year of data
+  tem_df = read.wcr(fname = paste0("~/Documents/Github/geog473-673/datasets/WCr_1hr.",y,".nc"))
+  # != means DOES NOT EQUAL. This statement reads as - if y DOES NOT EQUAL the first year in yearSeq, proceed to use rbind
+  # otherwise, if y is indeed the first year in yearSeq, we need to initialize wcr_df BEFORE we overwrite tem_df
+  if (y != yearSeq[1]){
+    wcr_df = rbind(wcr_df, tem_df)
+  } else {
+    wcr_df = tem_df
+  }
+}
+
+length(wcr_df$date)
+head(wcr_df)
+```
+
+show the data
+
+```{r, warning=FALSE, message=FALSE, out.width="50%", fig.align="center"}
+library(ggplot2)
+library(lubridate)
+ggplot(data = wcr_df, aes(x = date, y = air_temperature)) +
+    geom_rect(xmin = as.POSIXct("2010-01-01"),
+              xmax = as.POSIXct("2012-06-01"),
+              ymin = 220, ymax = 320,
+              fill = "lightblue", alpha = 0.1) +
+    annotate("text", x = as.POSIXct("2011-01-01") , y = 250,
+             color = "blue", label = "Train Region") +
+    annotate("text", x = as.POSIXct("2012-10-01"), y = 250,
+             color = "coral", label = "Test Region") +
+    geom_point(alpha = 0.5, color = "black") +
+    labs(title = "Bikes Sharing Dataset: Daily Scale", x = "") + theme_light()
+
+```
+
+now aggregate to a weekly with xts package - to plot we have to use the index
+
+```{r, warning=FALSE, message=FALSE, out.width="50%", fig.align="center"}
+library(xts)
+library(zoo)
+xt = xts(wcr_df, order.by = wcr_df$date)
+daily = xts::apply.daily(xt,mean)
+daily = data.frame(date=index(daily), coredata(daily))
+daily$date.1 = NULL
+ggplot(data = daily, aes(x = date, y = air_temperature)) +
+    geom_rect(xmin = as.POSIXct("2010-01-01"),
+              xmax = as.POSIXct("2012-06-01"),
+              ymin = 220, ymax = 320,
+              fill = "lightblue", alpha = 0.1) +
+    annotate("text", x = as.POSIXct("2011-01-01") , y = 250,
+             color = "blue", label = "Train Region") +
+    annotate("text", x = as.POSIXct("2012-10-01"), y = 250,
+             color = "coral", label = "Test Region") +
+    geom_point(alpha = 0.5, color = "black") +
+    labs(title = "Bikes Sharing Dataset: Daily Scale", x = "") + theme_light()
+
+
+```
+
+ create subsets of training and test dataset - weird xts syntax
+ 
+```{r, warning=FALSE, message=FALSE, out.width="50%", fig.align="center"}
+train = daily[1:which(daily$date == as.POSIXct("2012-05-31 23:00:00 EDT")),]
+test = daily[which(daily$date == as.POSIXct("2012-06-01 23:00:00 EDT")):length(daily$date),]
+
+train = data.frame(date = train$date, air_temperature =  train$air_temperature)
+test = data.frame(date = test$date, air_temperature =  test$air_temperature)
+```
+
+
+prep the data with recipes bake
+
+```{r, warning=FALSE, message=FALSE, out.width="50%", fig.align="center"}
+library(timetk)
+library(recipes)
+rec_train <- recipe(air_temperature ~ ., data = train)
+recipe_ts = step_timeseries_signature(recipe = rec_train, "date") 
+
+bake(prep(recipe_ts), new_data = train)
+
+```
+
+```{r, warning=FALSE, message=FALSE, out.width="50%", fig.align="center"}
+recipe_spec_final <- recipe_ts %>%
+    step_rm(date) %>%
+    step_rm(contains("iso"), 
+            contains("second"), contains("minute"), contains("hour"),
+            contains("am.pm"), contains("xts")) %>%
+    step_normalize(contains("index.num"), date_year) %>%
+    step_interact(~ date_month.lbl * date_day) %>%
+    step_interact(~ date_month.lbl * date_mweek) %>%
+    step_interact(~ date_month.lbl * date_wday.lbl * date_yday) %>%
+    step_dummy(contains("lbl"), one_hot = TRUE) 
+bake(prep(recipe_spec_final), new_data = train)
+
+```
+
+Regularization is a process of introducing additional information in order to solve an ill-posed problem or to prevent overfitting
+
+```{r, warning=FALSE, message=FALSE, out.width="50%", fig.align="center"}
+library(workflows)
+library(parsnip)
+library(recipes)
+library(yardstick)
+library(glmnet)
+library(tidyverse)
+library(timetk)
+model_spec_glmnet <- parsnip::linear_reg(mode = "regression", penalty = 2, mixture = 0) %>%
+    set_engine("glmnet")
+
+workflow_glmnet <- workflow() %>%
+    add_recipe(recipe_spec_final) %>%
+    add_model(model_spec_glmnet)
+workflow_glmnet
+
+workflow_trained <- workflow_glmnet %>% fit(data = train)
+
+prediction_tbl <- workflow_trained %>% 
+    predict(test) %>%
+    bind_cols(test) 
+prediction_tbl
+
+ggplot(data = daily, aes(x = date, y = air_temperature)) +
+    geom_rect(xmin = as.POSIXct("2010-01-01"),
+              xmax = as.POSIXct("2012-06-01"),
+              ymin = 220, ymax = 320,
+              fill = "lightblue", alpha = 0.01) +
+    annotate("text", x = as.POSIXct("2011-01-01") , y = 250,
+             color = "blue", label = "Train Region") +
+    annotate("text", x = as.POSIXct("2012-10-01"), y = 250,
+             color = "coral", label = "Test Region") + 
+   geom_point(alpha = 0.5, color = "black") +
+    geom_point(aes(x = date, y = .pred), data = prediction_tbl, 
+               alpha = 0.5, color =  "darkblue") +
+    labs(title = "GLM: Out-Of-Sample Forecast")
+
+```
+
+validation and accuracy
+```{r, warning=FALSE, message=FALSE, out.width="50%", fig.align="center"}
+prediction_tbl %>% metrics(air_temperature, .pred)
+
+prediction_tbl %>%
+    ggplot(aes(x = date, y = air_temperature - .pred)) +
+    geom_hline(yintercept = 0, color = "black") +
+    geom_point(color = "blue", alpha = 0.5) +
+    geom_smooth(span = 0.05, color = "red") +
+    geom_smooth(span = 1.00, se = FALSE) +
+    labs(title = "GLM Model Residuals, Out-of-Sample", x = "") +
+    scale_y_continuous(limits = c(-5, 5))
+```
+
+forecast out into the future
+
+```{r, warning=FALSE, message=FALSE, out.width="50%", fig.align="center"}
+# Extract bikes index
+idx <- daily %>% tk_index()
+# Get time series summary from index
+bikes_summary <- idx %>% tk_get_timeseries_summary()
+
+idx_future <- idx %>% tk_make_future_timeseries(n_future = 180)
+future_tbl <- tibble(date = idx_future) 
+future_tbl
+
+future_predictions_tbl <- workflow_glmnet %>% 
+    fit(data = daily) %>%
+    predict(future_tbl) %>%
+    bind_cols(future_tbl)
+
+ggplot(data = daily, aes(x = date, y = air_temperature)) +
+    geom_rect(xmin = as.POSIXct("2010-01-01"),
+              xmax = as.POSIXct("2012-06-01"),
+              ymin = 220, ymax = 320,
+              fill = "lightblue", alpha = 0.01) +
+    annotate("text", x = as.POSIXct("2011-01-01") , y = 250,
+             color = "blue", label = "Train Region") +
+    annotate("text", x = as.POSIXct("2012-10-01"), y = 250,
+             color = "coral", label = "Test Region") + 
+   geom_point(alpha = 0.5, color = "black") +
+  geom_point(aes(x = as.POSIXct(date), y = .pred), data = future_predictions_tbl,
+               alpha = 0.5, color = "lightblue") +
+    geom_smooth(aes(x = as.POSIXct(date), y = .pred), data = future_predictions_tbl,
+                method = 'loess') + 
+    labs(title = "Bikes Sharing Dataset: 6-Month Forecast", x = "")
+    labs(title = "GLM: Out-Of-Sample Forecast")
+
+
+```
+
+
+```{r, warning=FALSE, message=FALSE, out.width="50%", fig.align="center"}
+# Calculate standard deviation of residuals
+test_resid_sd <- prediction_tbl %>%
+    summarize(stdev = sd(air_temperature- .pred))
+future_predictions_tbl <- future_predictions_tbl %>%
+    mutate(
+        lo.95 = .pred - 1.96 * test_resid_sd$stdev,
+        lo.80 = .pred - 1.28 * test_resid_sd$stdev,
+        hi.80 = .pred + 1.28 * test_resid_sd$stdev,
+        hi.95 = .pred + 1.96 * test_resid_sd$stdev
+    )
+
+ggplot(data = daily, aes(x = date, y = air_temperature)) +
+    geom_point(alpha = 0.5, color = "black") +
+    geom_ribbon(aes(y = .pred, x = as.POSIXct(date),ymin = lo.95, ymax = hi.95), 
+                data = future_predictions_tbl, 
+                fill = "#D5DBFF", color = NA, size = 0) +
+    geom_ribbon(aes(y = .pred, x = as.POSIXct(date),ymin = lo.80, ymax = hi.80, fill = key), 
+                data = future_predictions_tbl,
+                fill = "#596DD5", color = NA, size = 0, alpha = 0.8) +
+    geom_point(aes(x = as.POSIXct(date), y = .pred), data = future_predictions_tbl,
+               alpha = 0.5, color = "red") +
+    geom_smooth(aes(x = as.POSIXct(date), y = .pred), data = future_predictions_tbl,
+                method = 'loess', color = "white")
+    
+```
