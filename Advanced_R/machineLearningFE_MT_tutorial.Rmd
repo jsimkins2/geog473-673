@@ -36,8 +36,9 @@ ggplot(ff_data, aes(x = Fire, fill = Fire)) +
 analyze features
 ```{r, warning=FALSE, message=FALSE, out.width="50%", fig.align="center"}
 library(tidyverse)
-gather(ff_data, x, y, day:FWI) %>%
-  ggplot(aes(x = y, color = Fire, fill = Fire)) +
+gathered = gather(ff_data, x, y, day:FWI)
+
+ggplot(data = gathered, aes(x = y, color = Fire, fill = Fire)) +
     geom_density(alpha = 0.3) +
     facet_wrap( ~ x, scales = "free", ncol = 3)
 ```
@@ -81,12 +82,12 @@ ggplot(data = pcaOutput2, aes(x = PC1, y = PC2, group = as.factor(groups), color
 Multidimensional Scaling
 
 ```{r}
-ff_data %>%
-  dist() %>%
-  cmdscale %>%
-  as.data.frame() %>%
-  mutate(group = ff_data$Fire) %>%
-  ggplot(aes(x = V1, y = V2, color = group)) +
+m_scale = dist(ff_data)
+m_scale = cmdscale(m_scale)
+m_scale = as.data.frame(m_scale)
+m_scale = mutate(m_scale, group = ff_data$Fire)
+
+ggplot(data = m_scale,aes(x = V1, y = V2, color = group)) +
     geom_point()
 
 
@@ -96,12 +97,11 @@ t-SNE dimensionality reduction
 ```{r}
 library(tsne)
 
-ff_data%>%
-  dist() %>%
-  tsne() %>%
-  as.data.frame() %>%
-  mutate(group =ff_data$Fire) %>%
-  ggplot(aes(x = V1, y = V2, color = group)) +
+sne_data = dist(ff_data)
+sne_data = cmdscale(sne_data)
+sne_data = as.data.frame(sne_data)
+sne_data = mutate(sne_data, group = ff_data$Fire)
+ggplot(data = sne_data, aes(x = V1, y = V2, color = group)) +
     geom_point()
 
 ```

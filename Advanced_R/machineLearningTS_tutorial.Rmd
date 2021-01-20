@@ -1,13 +1,15 @@
 # Time Series Forecasting
 
-```{r, echo=FALSE, out.width="50%", fig.align="center"}
-knitr::include_graphics("../documents/images/robot.jpeg")  
+```{r, echo=FALSE, out.width="70%", fig.align="center"}
+knitr::include_graphics("../documents/images/temp_forecast.png")  
 ```
 
-Time series forecasting is widely used in sciences with the intended purpose of predicting the future based on present data. This type of machine learning technique has been used for weather forecasting, glacier melting outlooks, and carbon dioxide concentration predictions. In this tutorial, we will use the Willow Creek Weather Datasets to try and forecast variables into the future. 
+Time series forecasting is widely used in sciences with the intended purpose of predicting the future based on present data. This type of machine learning technique has been used for weather forecasting, glacier melting outlooks, and carbon dioxide concentration predictions. In this tutorial, we will use the Willow Creek Weather Datasets and build an Air Temperature Forecast using Linear Regression Modeling. 
 
 
 ## Load the Packages and Data
+
+Let's use the `read.wcr` function that we previously created to load in our dataset. 
 
 ```{r, warning=FALSE, message=FALSE, out.width="50%", fig.align="center"}
 library(ncdf4)
@@ -41,6 +43,7 @@ read.wcr = function(fname) {
 
 ```
 
+Now, let's throw the `read.wcr` function into a loop so we can read in the data for each year. 
 
 ```{r, warning=FALSE, message=FALSE, out.width="50%", fig.align="center"}
 
@@ -64,27 +67,33 @@ length(wcr_df$date)
 head(wcr_df)
 ```
 
-show the data
+Our data has been read in. Let's convert the Air Temperature units from degrees Kelvin to degrees Fahrenheit. Then, let's plot our time series. 
 
 ```{r, warning=FALSE, message=FALSE, out.width="50%", fig.align="center"}
 library(ggplot2)
 library(lubridate)
+
+# convert the data to Fahrenheit
+wcr_df$air_temperature = (wcr_df$air_temperature - 273.15) * (9/5) + 32
+
 ggplot(data = wcr_df, aes(x = date, y = air_temperature)) +
     geom_rect(xmin = as.POSIXct("2010-01-01"),
               xmax = as.POSIXct("2012-06-01"),
-              ymin = 220, ymax = 320,
+              ymin = -10, ymax = 100,
               fill = "lightblue", alpha = 0.1) +
-    annotate("text", x = as.POSIXct("2011-01-01") , y = 250,
+    annotate("text", x = as.POSIXct("2011-01-01") , y = 80,
              color = "blue", label = "Train Region") +
-    annotate("text", x = as.POSIXct("2012-10-01"), y = 250,
+    annotate("text", x = as.POSIXct("2012-12-01"), y = 80,
              color = "coral", label = "Test Region") +
-    geom_point(alpha = 0.5, color = "black") +
-    labs(title = "Bikes Sharing Dataset: Daily Scale", x = "") + theme_light()
+    geom_point(size=0.5, alpha = 0.5, color = "black") +
+    labs(title = "Willow Creek Hourly Air Temperature - 2010-2013",y = "Air Temperature (F)", x = "")
 
 ```
 
-now aggregate to a weekly with xts package - to plot we have to use the index
+When we build a linear regression model for a time series dataset, we select a training period and a testing period. For our case, we're going to train the dataset 
+now aggregate to a daily with xts package - to plot we have to use the index
 
+## Aggregate Data
 ```{r, warning=FALSE, message=FALSE, out.width="50%", fig.align="center"}
 library(xts)
 library(zoo)
@@ -95,20 +104,21 @@ daily$date.1 = NULL
 ggplot(data = daily, aes(x = date, y = air_temperature)) +
     geom_rect(xmin = as.POSIXct("2010-01-01"),
               xmax = as.POSIXct("2012-06-01"),
-              ymin = 220, ymax = 320,
+              ymin = -10, ymax = 85,
               fill = "lightblue", alpha = 0.1) +
-    annotate("text", x = as.POSIXct("2011-01-01") , y = 250,
+    annotate("text", x = as.POSIXct("2011-01-01") , y = 70,
              color = "blue", label = "Train Region") +
-    annotate("text", x = as.POSIXct("2012-10-01"), y = 250,
+    annotate("text", x = as.POSIXct("2012-12-01"), y = 70,
              color = "coral", label = "Test Region") +
     geom_point(alpha = 0.5, color = "black") +
-    labs(title = "Bikes Sharing Dataset: Daily Scale", x = "") + theme_light()
+    labs(title = "Willow Creek Daily Air Temperature - 2010-2013",y = "Air Temperature (F)", x = "")
 
 
 ```
 
  create subsets of training and test dataset - weird xts syntax
- 
+
+## Prepping the Model
 ```{r, warning=FALSE, message=FALSE, out.width="50%", fig.align="center"}
 train = daily[1:which(daily$date == as.POSIXct("2012-05-31 23:00:00 EDT")),]
 test = daily[which(daily$date == as.POSIXct("2012-06-01 23:00:00 EDT")):length(daily$date),]
@@ -120,33 +130,34 @@ test = data.frame(date = test$date, air_temperature =  test$air_temperature)
 
 prep the data with recipes bake
 
+must install 4.0.3 r for stupid timetk to work
+
+
 ```{r, warning=FALSE, message=FALSE, out.width="50%", fig.align="center"}
 library(timetk)
 library(recipes)
 rec_train <- recipe(air_temperature ~ ., data = train)
 recipe_ts = step_timeseries_signature(recipe = rec_train, "date") 
 
-bake(prep(recipe_ts), new_data = train)
-
 ```
 
 ```{r, warning=FALSE, message=FALSE, out.width="50%", fig.align="center"}
-recipe_spec_final <- recipe_ts %>%
-    step_rm(date) %>%
-    step_rm(contains("iso"), 
+recipe_spec = recipe_ts
+recipe_spec = step_rm(recipe_spec, date)
+recipe_spec = step_rm(recipe_spec, contains("iso"), 
             contains("second"), contains("minute"), contains("hour"),
-            contains("am.pm"), contains("xts")) %>%
-    step_normalize(contains("index.num"), date_year) %>%
-    step_interact(~ date_month.lbl * date_day) %>%
-    step_interact(~ date_month.lbl * date_mweek) %>%
-    step_interact(~ date_month.lbl * date_wday.lbl * date_yday) %>%
-    step_dummy(contains("lbl"), one_hot = TRUE) 
-bake(prep(recipe_spec_final), new_data = train)
+            contains("am.pm"), contains("xts"))
+recipe_spec = step_normalize(recipe_spec, contains("index.num"), date_year)
+recipe_spec = step_interact(recipe_spec, ~ date_month.lbl * date_day)
+recipe_spec = step_interact(recipe_spec, ~ date_month.lbl * date_mweek)
+recipe_spec = step_interact(recipe_spec, ~ date_month.lbl * date_wday.lbl * date_yday)
+recipe_spec_final = step_dummy(recipe_spec, contains("lbl"), one_hot = TRUE) 
 
 ```
 
 Regularization is a process of introducing additional information in order to solve an ill-posed problem or to prevent overfitting
 
+## Running the Model
 ```{r, warning=FALSE, message=FALSE, out.width="50%", fig.align="center"}
 library(workflows)
 library(parsnip)
@@ -154,30 +165,29 @@ library(recipes)
 library(yardstick)
 library(glmnet)
 library(tidyverse)
-library(timetk)
-model_spec_glmnet <- parsnip::linear_reg(mode = "regression", penalty = 2, mixture = 0) %>%
-    set_engine("glmnet")
 
-workflow_glmnet <- workflow() %>%
-    add_recipe(recipe_spec_final) %>%
-    add_model(model_spec_glmnet)
+model_spec_glmnet <- parsnip::linear_reg(mode = "regression", penalty = 2, mixture = 0)
+set_engine(model_spec_glmnet, "glmnet")
+
+workflow_glmnet = add_recipe(workflow(), recipe_spec_final)
+workflow_glmnet = add_model(workflow_glmnet, model_spec_glmnet)
 workflow_glmnet
 
-workflow_trained <- workflow_glmnet %>% fit(data = train)
+workflow_trained <- workflow_glmnet
+workflow_trained = fit(workflow_glmnet, data = train)
 
-prediction_tbl <- workflow_trained %>% 
-    predict(test) %>%
-    bind_cols(test) 
+prediction_tbl = predict(workflow_trained, test)
+prediction_tbl = bind_cols(prediction_tbl, test) 
 prediction_tbl
 
 ggplot(data = daily, aes(x = date, y = air_temperature)) +
     geom_rect(xmin = as.POSIXct("2010-01-01"),
               xmax = as.POSIXct("2012-06-01"),
-              ymin = 220, ymax = 320,
+              ymin = -10, ymax = 85,
               fill = "lightblue", alpha = 0.01) +
-    annotate("text", x = as.POSIXct("2011-01-01") , y = 250,
+    annotate("text", x = as.POSIXct("2011-01-01") , y = 75,
              color = "blue", label = "Train Region") +
-    annotate("text", x = as.POSIXct("2012-10-01"), y = 250,
+    annotate("text", x = as.POSIXct("2012-12-01"), y = 75,
              color = "coral", label = "Test Region") + 
    geom_point(alpha = 0.5, color = "black") +
     geom_point(aes(x = date, y = .pred), data = prediction_tbl, 
@@ -186,52 +196,53 @@ ggplot(data = daily, aes(x = date, y = air_temperature)) +
 
 ```
 
-validation and accuracy
-```{r, warning=FALSE, message=FALSE, out.width="50%", fig.align="center"}
-prediction_tbl %>% metrics(air_temperature, .pred)
 
-prediction_tbl %>%
-    ggplot(aes(x = date, y = air_temperature - .pred)) +
-    geom_hline(yintercept = 0, color = "black") +
-    geom_point(color = "blue", alpha = 0.5) +
-    geom_smooth(span = 0.05, color = "red") +
-    geom_smooth(span = 1.00, se = FALSE) +
-    labs(title = "GLM Model Residuals, Out-of-Sample", x = "") +
-    scale_y_continuous(limits = c(-5, 5))
+## Validation and Accuracy
+```{r, warning=FALSE, message=FALSE, out.width="50%", fig.align="center"}
+metrics(prediction_tbl, air_temperature, .pred)
+
+ggplot(data = prediction_tbl, aes(x = date, y = air_temperature - .pred)) +
+  geom_hline(yintercept = 0, color = "black") +
+  geom_point(color = "blue", alpha = 0.5) +
+  geom_smooth(span = 0.05, color = "red") +
+  geom_smooth(span = 1.00, se = FALSE) +
+  labs(title = "GLM Model Residuals, Out-of-Sample", y = "Air Temperature: Actual - Predicted",  x = "") +
+  scale_y_continuous(limits = c(-5, 5))
 ```
 
-forecast out into the future
+
+
+## Future Forecasting
 
 ```{r, warning=FALSE, message=FALSE, out.width="50%", fig.align="center"}
 # Extract bikes index
-idx <- daily %>% tk_index()
+idx <- tk_index(daily)
 # Get time series summary from index
-bikes_summary <- idx %>% tk_get_timeseries_summary()
+daily_summary <- tk_get_timeseries_summary(idx)
 
-idx_future <- idx %>% tk_make_future_timeseries(n_future = 180)
+idx_future <- tk_make_future_timeseries(idx, n_future = 180)
 future_tbl <- tibble(date = idx_future) 
-future_tbl
+head(future_tbl)
 
-future_predictions_tbl <- workflow_glmnet %>% 
-    fit(data = daily) %>%
-    predict(future_tbl) %>%
-    bind_cols(future_tbl)
+future_predictions_tbl = fit(workflow_glmnet, data = daily)
+future_predictions_tbl = predict(future_predictions_tbl, future_tbl)
+future_predictions_tbl = bind_cols(future_predictions_tbl, future_tbl)
 
 ggplot(data = daily, aes(x = date, y = air_temperature)) +
     geom_rect(xmin = as.POSIXct("2010-01-01"),
               xmax = as.POSIXct("2012-06-01"),
-              ymin = 220, ymax = 320,
+              ymin = -10, ymax = 85,
               fill = "lightblue", alpha = 0.01) +
-    annotate("text", x = as.POSIXct("2011-01-01") , y = 250,
+    annotate("text", x = as.POSIXct("2011-01-01") , y = 75,
              color = "blue", label = "Train Region") +
-    annotate("text", x = as.POSIXct("2012-10-01"), y = 250,
+    annotate("text", x = as.POSIXct("2012-12-01"), y = 75,
              color = "coral", label = "Test Region") + 
    geom_point(alpha = 0.5, color = "black") +
   geom_point(aes(x = as.POSIXct(date), y = .pred), data = future_predictions_tbl,
-               alpha = 0.5, color = "lightblue") +
+               alpha = 0.5, color = "dodgerblue1") +
     geom_smooth(aes(x = as.POSIXct(date), y = .pred), data = future_predictions_tbl,
-                method = 'loess') + 
-    labs(title = "Bikes Sharing Dataset: 6-Month Forecast", x = "")
+                method = 'loess', color = "dodgerblue4") + 
+    labs(title = "Willow Creek Air Temperature: 6-Month Forecast", y = "Air Temperature (F)", x = "")
     labs(title = "GLM: Out-Of-Sample Forecast")
 
 
@@ -240,15 +251,12 @@ ggplot(data = daily, aes(x = date, y = air_temperature)) +
 
 ```{r, warning=FALSE, message=FALSE, out.width="50%", fig.align="center"}
 # Calculate standard deviation of residuals
-test_resid_sd <- prediction_tbl %>%
-    summarize(stdev = sd(air_temperature- .pred))
-future_predictions_tbl <- future_predictions_tbl %>%
-    mutate(
+test_resid_sd <- summarize(prediction_tbl, stdev = sd(air_temperature- .pred))
+future_predictions_tbl <- mutate(future_predictions_tbl, 
         lo.95 = .pred - 1.96 * test_resid_sd$stdev,
         lo.80 = .pred - 1.28 * test_resid_sd$stdev,
         hi.80 = .pred + 1.28 * test_resid_sd$stdev,
-        hi.95 = .pred + 1.96 * test_resid_sd$stdev
-    )
+        hi.95 = .pred + 1.96 * test_resid_sd$stdev)
 
 ggplot(data = daily, aes(x = date, y = air_temperature)) +
     geom_point(alpha = 0.5, color = "black") +
@@ -261,6 +269,13 @@ ggplot(data = daily, aes(x = date, y = air_temperature)) +
     geom_point(aes(x = as.POSIXct(date), y = .pred), data = future_predictions_tbl,
                alpha = 0.5, color = "red") +
     geom_smooth(aes(x = as.POSIXct(date), y = .pred), data = future_predictions_tbl,
-                method = 'loess', color = "white")
+                method = 'loess', color = "white")+ 
+    labs(title = "Willow Creek Daily Air Temperature: 6 Month Forecast",y = "Air Temperature (F)", x = "")
     
 ```
+
+
+## Assignment
+Perform this same analysis for a weekly resolution for air temperature. does the model do better or worse. 
+
+
