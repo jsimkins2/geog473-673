@@ -70,6 +70,9 @@ Ensemble
 Decision Tree
 : A method for finding answers by asking questions with binary answers and proceeding accordingly.
 
+Feature Engineering
+: Feature engineering refers to a process of selecting and transforming variables when creating a predictive model using machine learning such as random forest or regression.
+
 ## Classical Machine Learning
 
 ```{r, echo=FALSE, out.width="80%", fig.align="center"}
