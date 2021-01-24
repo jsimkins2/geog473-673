@@ -1,0 +1,244 @@
+# Basic Statistics in R
+
+This week we'll be diving into some basic statistical procedures. R started out as THE statistical programming language. It spread like wildfire for it's performance and efficiency at crunching numbers. It's early success as a statistical programming langugae attracted the early developers who really made R into the do-it-all language we're using today. First, I'll throw in the useful definitions list at the top of this tutorial just for ease of access. Second, we'll dive into a recap of for loops and how they're structured. Then we'll show off some of R's great statistics functions and how to add them to a plot. Finally, we'll have an assignment where we cover some of 
+
+## Statistical Function Dictionary
+
+| Function                 |             Description        |
+| -----------| -------------------------------------------- |
+| length| returns length of a vector | 
+| sum | returns the sum |
+| mean | returns the mean | 
+| median | returns the median | 
+| sd | returns the standard deviation (n − 1 in denominator) | 
+| min | returns minimum | 
+| max | returns maximum |
+| sort | sort a vector (rearranges the vector in order) |
+| order | returns indices of vectors that will order them |
+| rank | returns rank of each element in vector | 
+|lm |multiple linear regression|
+|glm |generalized linear regression|
+|anova |analysis of variance|
+|chisq.test |Pearson’s Chi-squared test for count data|
+|summary| shows results of various model fitting functions|
+|predict |predicted results from model|
+|passing |an lm object will result in adding the predicted line to the plot|
+|sample |produces a random sample of the specified values|
+|set.seed |sets seed for next random sample (repeat random sample)|
+|rnorm |produces a random sample from a normal distribution|
+|qnorm |quantiles (percentiles) of normal distribution|
+|pnorm |CDF of normal distribution|
+|dnorm |PDF of normal distribution|
+|rbinom |produces a random sample from a binomial distribution|
+|fitdistrplus| package that helps find the fit of univariat eparametric distributions |
+|plotdist| empirical distribution plotting function |
+|descdist| Computes descriptive parameters of an empirical distribution and provides a skewness-kurtosis plot |
+|fitdist| Fits various distributions to data |
+|denscomp|plots the histogram against fitted density functions|
+|cdfcomp|lots the empirical cumulative distribution against fitted distribution functions|
+|qqcomp|plots theoretical quantiles against empirical ones|
+|ppcomp|plots theoretical probabilities against empirical ones|
+
+## Basic Statistics in R
+
+R is famous for it's easy-to-use statistics features and once you get the hang of it you'll never want to touch Microsoft Excel again. Despite the fact that these stats functions seem pretty fancy to me, I call them basic functions because R has so much to offer to statisticians. In this tutorial, we examine meteorological observations that were recorded in Willow Creek Wisconsin, USA. There are 3 years of Willow Creek data - WCr_1hr.2010.nc, WCr_1hr.2011.nc, WCr_1hr.2012.nc. Let's start with the 2010 dataset. 
+
+### Load Willow Creek data
+```{r}
+library(ncdf4)
+# open the netcdf file of Willow Creek, Wisconsin meteorology data
+nc_file = nc_open("/Users/james/Documents/Github/geog473-673/datasets/WCr_1hr.2010.nc")
+# what does the nc file look like 
+nc_file
+# ok, still a lot of info...let's list the names of the variables
+names(nc_file$var)
+# alright, now we have some names, so let's put the variables into a new dataframe separate from the nc_file
+var_names = names(nc_file$var)
+willow_creek_2010 = list()
+dim <- nc_file$dim
+for (v in seq_along(var_names)){
+  willow_creek_2010[[v]] = ncvar_get(nc_file, varid = var_names[v])
+}
+# convert the list into a dataframe
+wcreek_df = data.frame(willow_creek_2010)
+# tell the dataframe what the column names are
+colnames(wcreek_df) = var_names
+
+# let's rename the variables to make them shorter - note that these short names MUST be in the same order as the longer names
+short_names = c("tair", "tmax", "tmin", "lwave", "pres", "swave", "ewind", "nwind", "shum", "prec")
+# rename the column names to our new short name vector
+colnames(wcreek_df) = short_names
+# print the first few lines
+head(wcreek_df)
+```
+
+Our data has been read in and the variables have been renamed for our convenience. A major note here is that the replacement names **must** be in the same order as the variable names. Now, we turn our attnetion to the time component of this data. This is a time series dataset of weather variables so we'll need a time variable to keep us organized. Here's how we can create one...
+
+```{r}
+### TIME ###
+# what are the units of time
+dim$time$units
+# how are the time values spaced
+dim$time$vals[1:10]
+# we can back out that this data is hourly data just from knowing the units are seconds and time between
+# each recorded value is 3600 (3600 seconds == 1 hour)
+#### Add a datetime column ####
+date.seq = seq(as.POSIXct("2010-01-01 00:00:00"), as.POSIXct("2010-12-31 23:00:00"), by="hour")
+wcreek_df['datetime'] = date.seq
+wcreek_df$datetime[1:10]
+```
+
+The data is loaded, organized, and ready for statistical analysis. 
+
+### Subsetting Data
+
+In certain cases, our dataset may be too large. For example, our dataset contains 1 year of data. How can we subset our dataset from January 1 to June 30?
+
+We can use the `which` function to find out which row a particular datetime is located. In other words, the `which` function returns the dates index position. In order for this to work, **the datetime format we use must match the datetime format of the dataset**. In our case, the datetime is YYYY-mm-dd, so we need to search with that format. After we have our indices, we can subset the `wcreek_df` dataset using `wcreek_df[rows,columns]` subsetting rules. 
+
+```{r}
+# use YYYY-mm-dd to return which datettime index has a value of 2010-01-01
+start_ind = which(wcreek_df$datetime == "2010-01-01")
+# use YYYY-mm-dd to return which datettime index has a value of 2010-06-30
+end_ind = which(wcreek_df$datetime == "2010-06-30")
+# Index our wcree_df dataframe using the indices gathered above. We want all columns so column section stays blank
+jan2jun = wcreek_df[start_ind:end_ind,]
+```
+
+Note that there is also a `subset` function which is handy, but unreliable. Sometimes this function produces unintended consequences so the above method is the preferred for subsetting data. 
+
+### Trends and Distributions
+
+Our dataset has been subset from January 1 to June 30. In the Northern Hemisphere, we would expect air temperature to increase from January to June. Let's examine this and fit a trendline to the data. 
+
+```{r, out.width="60%", fig.align="center"}
+# air temperature ~ datetime - remember, the tilde (~) here can be thought of as 'versus' or 'against'.
+# So this plot is tair versus datetime 
+plot(tair ~ datetime, data = jan2jun, pch = 20, col="blue")
+
+# use the lm function to fit a trendline to the data 
+fit <- lm(tair ~ datetime, data = jan2jun)
+summary(fit)
+coef(fit)
+
+plot(tair ~ datetime, data = jan2jun,
+  main= "tair vs. datetime",
+  ylab= "Air Temperature ( Kelvin )",
+  xlab= "Datetime",
+  pch= 19, col= 'blue')
+grid(NA,NULL, lty= 4) # NA first for no y axis grid lines, null second to ignore the default x axis linetype
+abline(fit, col= 'black', lty= 4, lwd= 2)
+legend("topleft", legend=c("lm(fit)"), col= 2, lty= 4, bg= "gray85", box.lty=0)
+```
+
+Just as we suspected, the temperature increases from January to June. So, we have an idea of the trend now, but what about the frequency of recorded temperatures? Are some temperatures more likely to occur than others in this dataset? Histograms are a good way to check the distribution and answer these questions. Then, we'll overlay the expected probability distribution function given the standard deviation and mean values of the `jan2jun` dataset using the `dnorm` function.
+
+Let's add this to a histogram of the data. 
+
+```{r, out.width="60%", fig.align="center"}
+# plot a histogram of jan2jun air temperature and add a normal distribution over it. 
+hist(jan2jun$tair, freq = FALSE, main= "Willow Creek Air Temp - Jan 1 to June 30, 2010", xlab = "Temperature (Kelvin)")
+# create a sequence covering the x axis of our histogram
+temp_bins <- seq(240, 310, length.out=100)
+# calculate the normal PDF of tair
+y <- dnorm(x=temp_bins, mean=mean(jan2jun$tair), sd=sd(jan2jun$tair))
+# add lines of the normal dist to the histogram
+lines(temp_bins, y, col = "red", lwd=2, lty=2)
+```
+
+Generally speaking, a normal distribution does a reasonable job capturing the actual data points. We see that there is a positive trend in the dataset and that the normal PDF underestimates warmer temperatures. Density plots are another plotting method that can show the distribution of data. Density plots can be thought of as plots of smoothed histograms. The smoothness is controlled by a bandwidth parameter that is analogous to the histogram binwidth. Let's create a density plot the `jan2jun` air temperature. 
+
+```{r, out.width="60%", fig.align="center"}
+# calculate the density 
+d = density(jan2jun$tair, bw = 0.5)
+# plot the density of tair
+plot(d, xlab = "Air Temperature (Kelvin)", ylab = "Density", main="Air Temperature Density", col="black", lwd=2)
+# fill in the space below the density distribution instead of leaving it white
+polygon(d, col="coral", border="blue")
+```
+
+### Finding a Best-Fit Distribution
+
+The `fitdistrplus` package is excellent for performing statistical analysis tests and fitting distributions. We can use this package to tell us which distribution fits a particular set of data best. One useful function to perform quick histograms with empirical fits and cumulative distributions is the `plotdist` function.
+
+```{r, out.width="60%", fig.align="center"}
+library(fitdistrplus)
+
+plotdist(jan2jun$tair, histo = TRUE, demp = TRUE)
+```
+
+In the previous section, we fit our histogram of Air Temperature with a normal distribution. Was this a good selection? We can use the `descdist` function to plot a Cullen and Frey Graph. This graph provides analysis for which distribution (normal, uniform, exponential, etc.) best fits our data. Basically, we just look to see which theoretical distribution is closest to our observation point. 
+
+```{r, fig.width=7, fig.height=7, fig.align="center"}
+descdist(jan2jun$tair)
+```
+
+Uniform, normal, and gamma distributions are the 3 closest to our air temperature data. Let's fit each of these distributions to the empirical data and create a density plot (`denscomp`), a cumulative density function plot (`cdfcomp`), a Q-Q plot (`qqcomp`), and a P-P plot (`ppcomp`) for these distributions.
+
+```{r, fig.width=7, fig.height=7, fig.align="center"}
+fit_u  <- fitdist(jan2jun$tair, "unif")
+fit_n  <- fitdist(jan2jun$tair, "norm")
+fit_g <- fitdist(jan2jun$tair, "gamma")
+summary(fit_g)
+
+par(mfrow=c(2,2))
+plot.legend <- c("uniform", "normal", "gamma")
+denscomp(list(fit_u, fit_n, fit_g), legendtext = plot.legend)
+cdfcomp (list(fit_u, fit_n, fit_g), legendtext = plot.legend)
+qqcomp  (list(fit_u, fit_n, fit_g), legendtext = plot.legend)
+ppcomp  (list(fit_u, fit_n, fit_g), legendtext = plot.legend)
+```
+
+  Some of the statistics shown in this section are beyond the scope of this course but this package is important to know of.
+
+### Correlation Plots
+
+Correlation plots show correlation coefficients across variables. For example, we expect shortwave radiation and temperature to have high a high correlation coefficient because generally speaking when the a lot of sunlight is received at the surface, temperature increases. There's a handy package called `corrplot` that caluclates correlation coefficients quickly and intuitively. If you don't have the package installed, you'll need to use -  `install.packages("corrplot")`.  
+
+For the correlation plot, we're going to use the full year dataset, `wcreek_df`, rather than the `jan2jun` dataset. When we calculate correlations, the more data we have the better. We're also going to calculate residual values - that is the distance between actual data and the trendline. It's another way to express error. When we have a large dataset like this with many scatter points, it's difficult to nail down a specific trendline that may capture the dataset the best. Different trendlines may represent the data in similar ways. Residuals measure the diffence between a particular trendline and the data point. 
+
+
+```{r, fig.width=10, fig.height=10}
+library(corrplot)
+# create a duplicate of the wcreek_df - remove the datetime variable from this
+wcreek_nodate = wcreek_df
+# we need to remove the datetime so our dataset is full of numeric values only - no datetime values or characters
+wcreek_nodate$datetime = NULL
+
+# awesome, now let's calculate the correlation coefficients
+cor_wcreek = cor(wcreek_nodate)
+head(cor_wcreek)
+# now let's calculate the residuals of the correlations with a 95% confidence interval
+residuals_1 <- cor.mtest(wcreek_nodate, conf.level = .95)
+# now let's plot this up. 
+corrplot(cor_wcreek, p.mat = residuals_1$p, method = 'color', number.cex = .7, type = 'lower',
+         addCoef.col = "black", # Add coefficient of correlation
+         tl.col = "black", tl.srt = 90, # Text label color and rotation
+         # Combine with significance
+         sig.level = 0.05, insig = "blank")
+```
+
+Do these correlations make sense? Let's take two variables that are highly correlated - temperature and shortwave radiation (sunlight). Our correalation is .36 for these two variables - this is a slight correlation. Why isn't the correlation higher? Advection - that is air being transported from other locations via wind. 
+
+
+# Week 2 Assignment:
+
+Using the `WCr_1hr.2012.nc` dataset found in the datasets folder, create a document (word, pdf, notepad, etc.) answering these questions with accompanied figures (no code).
+
+1. Subset the data between July 1 and Dec 31. 
+2. Create a scatterplot with a trendline of Shortwave Radiation similar to the air temperature example above. Does this trendline make sense? 
+3. Create a filled density plot of Shortwave Radiation similar to the air temperature example above. Note, you will need to change your binwidth to fit the shortwave dataset. Does this density plot make sense? Why or why not? 
+4. Create a correlation plot of your willow creek 2012 dataset. How does it compare to the 2010 dataset in the tutorial?
+
+Save your plots created in #2, #3, #4, attach them to a document and answer the questions. Submit this document to Canvas. 
+
+
+## Extra Credit - 2 points
+
+Using the WCr_1hr.2010.nc, WCr_1hr.2011.nc and WCr_1hr.2012.nc found in the datasets folder, complete the following
+
+1) Fuse together the 3 datasets into one continuous dataframe.
+2) Resample the data from an hourly to a daily resolution
+3) Plot Air temperature for your new combined data frame and add a trendline to it.
+4) Submit to assignment above labeled 'extra_credit.png'
+

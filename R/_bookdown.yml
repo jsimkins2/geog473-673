@@ -1,4 +1,6 @@
 
+# bookdown::render_book("Index.Rmd", "bookdown::gitbook")
+
 book_filename: "Introduction to R"
 language:
   ui:
@@ -13,7 +15,16 @@ rmd_files: [
   "Week3_TimeSeriesDEOS.Rmd",
   "Week4_Oceanography.Rmd",
   "Week5_Reprojecting.Rmd",
-  "base_plotting_customization.Rmd"
+  "base_plotting_customization.Rmd",
+  "BasicStatistics.Rmd",
+  "ggplot2.Rmd",
+  "spatial_ggplot2.Rmd",
+  "shapefiles.Rmd",
+  "DataExtraction.Rmd",
+  "Functions_and_Presentations.Rmd",
+  "machineLearning1.Rmd",
+  "machineLearningTS_tutorial.Rmd",
+  "machineLearningRF_tutorial.Rmd"
  ]
 delete_merged_file: true
 output_dir: "../docs"

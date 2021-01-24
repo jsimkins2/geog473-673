@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>1 Basic R Scripts | 04-Basic-R-Scripts.utf8</title>
+  <meta name="description" content="" />
+  <meta name="generator" content="bookdown 0.20.6 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="1 Basic R Scripts | 04-Basic-R-Scripts.utf8" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="1 Basic R Scripts | 04-Basic-R-Scripts.utf8" />
+  
+  
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+
+
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">GEOG473-673 Open-sourced Environmental Computing</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path=""><a href="#basic-r-scripts"><i class="fa fa-check"></i><b>1</b> Basic R Scripts</a><ul>
+<li class="chapter" data-level="1.1" data-path=""><a href="#global-carbon-dioxide-concentrations"><i class="fa fa-check"></i><b>1.1</b> Global Carbon-Dioxide Concentrations</a><ul>
+<li class="chapter" data-level="1.1.1" data-path=""><a href="#saving-your-plot"><i class="fa fa-check"></i><b>1.1.1</b> Saving your plot</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path=""><a href="#cars---motor-trends-magazine-data"><i class="fa fa-check"></i><b>1.2</b> Cars - Motor Trends Magazine Data</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">James Simkins</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./"></a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<!--bookdown:title:end-->
+<!--bookdown:title:start-->
+<div id="basic-r-scripts" class="section level1">
+<h1><span class="header-section-number">1</span> Basic R Scripts</h1>
+<p>In this example, we’ll begin with data science question and answer it in R. We’ll go through these scripts line by line to show how we can use R. To follow along, copy each of these lines and paste them in your R Script (top left quadrant). Once it’s pasted there, we can run each line and view the output in the R Console (bottom left quadrant).</p>
+<div id="global-carbon-dioxide-concentrations" class="section level2">
+<h2><span class="header-section-number">1.1</span> Global Carbon-Dioxide Concentrations</h2>
+<p>CO2 is a greenhouse gas responsible for trapping heat. Human’s have released more CO2 into the atmosphere through industrialism. How have global carbon-dioxide (CO2) concentrations changed over time?</p>
+<p>First, we load the dataset. In our case, the dataset we’ll be using is pre-built into R as <code>co2</code>, meaning we don’t need to download this dataset, we just need to call it. The <code>co2</code> dataset contains atmospheric concentrations of CO2 are expressed in parts per million (ppm). This data is a time-series of monthly CO2 concentrations recorded between 1959 and 1997. First, let’s make sure the pre-built data is installed correcly.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a>co2</span></code></pre></div>
+<pre><code>##         Jan    Feb    Mar    Apr    May    Jun    Jul    Aug    Sep    Oct
+## 1959 315.42 316.31 316.50 317.56 318.13 318.00 316.39 314.65 313.68 313.18
+## 1960 316.27 316.81 317.42 318.87 319.87 319.43 318.01 315.74 314.00 313.68
+## 1961 316.73 317.54 318.38 319.31 320.42 319.61 318.42 316.63 314.83 315.16
+## 1962 317.78 318.40 319.53 320.42 320.85 320.45 319.45 317.25 316.11 315.27
+## 1963 318.58 318.92 319.70 321.22 322.08 321.31 319.58 317.61 316.05 315.83
+## 1964 319.41 320.07 320.74 321.40 322.06 321.73 320.27 318.54 316.54 316.71
+## 1965 319.27 320.28 320.73 321.97 322.00 321.71 321.05 318.71 317.66 317.14
+## 1966 320.46 321.43 322.23 323.54 323.91 323.59 322.24 320.20 318.48 317.94
+## 1967 322.17 322.34 322.88 324.25 324.83 323.93 322.38 320.76 319.10 319.24
+## 1968 322.40 322.99 323.73 324.86 325.40 325.20 323.98 321.95 320.18 320.09
+## 1969 323.83 324.26 325.47 326.50 327.21 326.54 325.72 323.50 322.22 321.62
+## 1970 324.89 325.82 326.77 327.97 327.91 327.50 326.18 324.53 322.93 322.90
+## 1971 326.01 326.51 327.01 327.62 328.76 328.40 327.20 325.27 323.20 323.40
+## 1972 326.60 327.47 327.58 329.56 329.90 328.92 327.88 326.16 324.68 325.04
+## 1973 328.37 329.40 330.14 331.33 332.31 331.90 330.70 329.15 327.35 327.02
+## 1974 329.18 330.55 331.32 332.48 332.92 332.08 331.01 329.23 327.27 327.21
+## 1975 330.23 331.25 331.87 333.14 333.80 333.43 331.73 329.90 328.40 328.17
+## 1976 331.58 332.39 333.33 334.41 334.71 334.17 332.89 330.77 329.14 328.78
+## 1977 332.75 333.24 334.53 335.90 336.57 336.10 334.76 332.59 331.42 330.98
+## 1978 334.80 335.22 336.47 337.59 337.84 337.72 336.37 334.51 332.60 332.38
+## 1979 336.05 336.59 337.79 338.71 339.30 339.12 337.56 335.92 333.75 333.70
+## 1980 337.84 338.19 339.91 340.60 341.29 341.00 339.39 337.43 335.72 335.84
+## 1981 339.06 340.30 341.21 342.33 342.74 342.08 340.32 338.26 336.52 336.68
+## 1982 340.57 341.44 342.53 343.39 343.96 343.18 341.88 339.65 337.81 337.69
+## 1983 341.20 342.35 342.93 344.77 345.58 345.14 343.81 342.21 339.69 339.82
+## 1984 343.52 344.33 345.11 346.88 347.25 346.62 345.22 343.11 340.90 341.18
+## 1985 344.79 345.82 347.25 348.17 348.74 348.07 346.38 344.51 342.92 342.62
+## 1986 346.11 346.78 347.68 349.37 350.03 349.37 347.76 345.73 344.68 343.99
+## 1987 347.84 348.29 349.23 350.80 351.66 351.07 349.33 347.92 346.27 346.18
+## 1988 350.25 351.54 352.05 353.41 354.04 353.62 352.22 350.27 348.55 348.72
+## 1989 352.60 352.92 353.53 355.26 355.52 354.97 353.75 351.52 349.64 349.83
+## 1990 353.50 354.55 355.23 356.04 357.00 356.07 354.67 352.76 350.82 351.04
+## 1991 354.59 355.63 357.03 358.48 359.22 358.12 356.06 353.92 352.05 352.11
+## 1992 355.88 356.63 357.72 359.07 359.58 359.17 356.94 354.92 352.94 353.23
+## 1993 356.63 357.10 358.32 359.41 360.23 359.55 357.53 355.48 353.67 353.95
+## 1994 358.34 358.89 359.95 361.25 361.67 360.94 359.55 357.49 355.84 356.00
+## 1995 359.98 361.03 361.66 363.48 363.82 363.30 361.94 359.50 358.11 357.80
+## 1996 362.09 363.29 364.06 364.76 365.45 365.01 363.70 361.54 359.51 359.65
+## 1997 363.23 364.06 364.61 366.40 366.84 365.68 364.52 362.57 360.24 360.83
+##         Nov    Dec
+## 1959 314.66 315.43
+## 1960 314.84 316.03
+## 1961 315.94 316.85
+## 1962 316.53 317.53
+## 1963 316.91 318.20
+## 1964 317.53 318.55
+## 1965 318.70 319.25
+## 1966 319.63 320.87
+## 1967 320.56 321.80
+## 1968 321.16 322.74
+## 1969 322.69 323.95
+## 1970 323.85 324.96
+## 1971 324.63 325.85
+## 1972 326.34 327.39
+## 1973 327.99 328.48
+## 1974 328.29 329.41
+## 1975 329.32 330.59
+## 1976 330.14 331.52
+## 1977 332.24 333.68
+## 1978 333.75 334.78
+## 1979 335.12 336.56
+## 1980 336.93 338.04
+## 1981 338.19 339.44
+## 1982 339.09 340.32
+## 1983 340.98 342.82
+## 1984 342.80 344.04
+## 1985 344.06 345.38
+## 1986 345.48 346.72
+## 1987 347.64 348.78
+## 1988 349.91 351.18
+## 1989 351.14 352.37
+## 1990 352.69 354.07
+## 1991 353.64 354.89
+## 1992 354.09 355.33
+## 1993 355.30 356.78
+## 1994 357.59 359.05
+## 1995 359.61 360.74
+## 1996 360.80 362.38
+## 1997 362.49 364.34</code></pre>
+<p>This dataset is stored in R as <code>co2</code>. We can create a new variable called co2_data that replicates this <code>co2</code> dataset.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>co2_data &lt;-<span class="st"> </span>co2</span>
+<span id="cb3-2"><a href="#cb3-2"></a>co2_data</span></code></pre></div>
+<pre><code>##         Jan    Feb    Mar    Apr    May    Jun    Jul    Aug    Sep    Oct
+## 1959 315.42 316.31 316.50 317.56 318.13 318.00 316.39 314.65 313.68 313.18
+## 1960 316.27 316.81 317.42 318.87 319.87 319.43 318.01 315.74 314.00 313.68
+## 1961 316.73 317.54 318.38 319.31 320.42 319.61 318.42 316.63 314.83 315.16
+## 1962 317.78 318.40 319.53 320.42 320.85 320.45 319.45 317.25 316.11 315.27
+## 1963 318.58 318.92 319.70 321.22 322.08 321.31 319.58 317.61 316.05 315.83
+## 1964 319.41 320.07 320.74 321.40 322.06 321.73 320.27 318.54 316.54 316.71
+## 1965 319.27 320.28 320.73 321.97 322.00 321.71 321.05 318.71 317.66 317.14
+## 1966 320.46 321.43 322.23 323.54 323.91 323.59 322.24 320.20 318.48 317.94
+## 1967 322.17 322.34 322.88 324.25 324.83 323.93 322.38 320.76 319.10 319.24
+## 1968 322.40 322.99 323.73 324.86 325.40 325.20 323.98 321.95 320.18 320.09
+## 1969 323.83 324.26 325.47 326.50 327.21 326.54 325.72 323.50 322.22 321.62
+## 1970 324.89 325.82 326.77 327.97 327.91 327.50 326.18 324.53 322.93 322.90
+## 1971 326.01 326.51 327.01 327.62 328.76 328.40 327.20 325.27 323.20 323.40
+## 1972 326.60 327.47 327.58 329.56 329.90 328.92 327.88 326.16 324.68 325.04
+## 1973 328.37 329.40 330.14 331.33 332.31 331.90 330.70 329.15 327.35 327.02
+## 1974 329.18 330.55 331.32 332.48 332.92 332.08 331.01 329.23 327.27 327.21
+## 1975 330.23 331.25 331.87 333.14 333.80 333.43 331.73 329.90 328.40 328.17
+## 1976 331.58 332.39 333.33 334.41 334.71 334.17 332.89 330.77 329.14 328.78
+## 1977 332.75 333.24 334.53 335.90 336.57 336.10 334.76 332.59 331.42 330.98
+## 1978 334.80 335.22 336.47 337.59 337.84 337.72 336.37 334.51 332.60 332.38
+## 1979 336.05 336.59 337.79 338.71 339.30 339.12 337.56 335.92 333.75 333.70
+## 1980 337.84 338.19 339.91 340.60 341.29 341.00 339.39 337.43 335.72 335.84
+## 1981 339.06 340.30 341.21 342.33 342.74 342.08 340.32 338.26 336.52 336.68
+## 1982 340.57 341.44 342.53 343.39 343.96 343.18 341.88 339.65 337.81 337.69
+## 1983 341.20 342.35 342.93 344.77 345.58 345.14 343.81 342.21 339.69 339.82
+## 1984 343.52 344.33 345.11 346.88 347.25 346.62 345.22 343.11 340.90 341.18
+## 1985 344.79 345.82 347.25 348.17 348.74 348.07 346.38 344.51 342.92 342.62
+## 1986 346.11 346.78 347.68 349.37 350.03 349.37 347.76 345.73 344.68 343.99
+## 1987 347.84 348.29 349.23 350.80 351.66 351.07 349.33 347.92 346.27 346.18
+## 1988 350.25 351.54 352.05 353.41 354.04 353.62 352.22 350.27 348.55 348.72
+## 1989 352.60 352.92 353.53 355.26 355.52 354.97 353.75 351.52 349.64 349.83
+## 1990 353.50 354.55 355.23 356.04 357.00 356.07 354.67 352.76 350.82 351.04
+## 1991 354.59 355.63 357.03 358.48 359.22 358.12 356.06 353.92 352.05 352.11
+## 1992 355.88 356.63 357.72 359.07 359.58 359.17 356.94 354.92 352.94 353.23
+## 1993 356.63 357.10 358.32 359.41 360.23 359.55 357.53 355.48 353.67 353.95
+## 1994 358.34 358.89 359.95 361.25 361.67 360.94 359.55 357.49 355.84 356.00
+## 1995 359.98 361.03 361.66 363.48 363.82 363.30 361.94 359.50 358.11 357.80
+## 1996 362.09 363.29 364.06 364.76 365.45 365.01 363.70 361.54 359.51 359.65
+## 1997 363.23 364.06 364.61 366.40 366.84 365.68 364.52 362.57 360.24 360.83
+##         Nov    Dec
+## 1959 314.66 315.43
+## 1960 314.84 316.03
+## 1961 315.94 316.85
+## 1962 316.53 317.53
+## 1963 316.91 318.20
+## 1964 317.53 318.55
+## 1965 318.70 319.25
+## 1966 319.63 320.87
+## 1967 320.56 321.80
+## 1968 321.16 322.74
+## 1969 322.69 323.95
+## 1970 323.85 324.96
+## 1971 324.63 325.85
+## 1972 326.34 327.39
+## 1973 327.99 328.48
+## 1974 328.29 329.41
+## 1975 329.32 330.59
+## 1976 330.14 331.52
+## 1977 332.24 333.68
+## 1978 333.75 334.78
+## 1979 335.12 336.56
+## 1980 336.93 338.04
+## 1981 338.19 339.44
+## 1982 339.09 340.32
+## 1983 340.98 342.82
+## 1984 342.80 344.04
+## 1985 344.06 345.38
+## 1986 345.48 346.72
+## 1987 347.64 348.78
+## 1988 349.91 351.18
+## 1989 351.14 352.37
+## 1990 352.69 354.07
+## 1991 353.64 354.89
+## 1992 354.09 355.33
+## 1993 355.30 356.78
+## 1994 357.59 359.05
+## 1995 359.61 360.74
+## 1996 360.80 362.38
+## 1997 362.49 364.34</code></pre>
+<p>We replicate this dataset and rename it as <code>co2_data</code> so that it’s a variable that is shown in our global environment (top right quadrant).</p>
+<p>What class is this data?</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="kw">class</span>(co2_data)</span></code></pre></div>
+<pre><code>## [1] &quot;ts&quot;</code></pre>
+<p>A <code>ts</code> class is a time-series class. We can print out a summary of the co2 dataset like so.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="kw">summary</span>(co2_data)</span></code></pre></div>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##   313.2   323.5   335.2   337.1   350.3   366.8</code></pre>
+<p>The <code>summary()</code> function is a base function R offers for quick statistics.</p>
+<p>How long is this dataset?</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="kw">length</span>(co2_data)</span></code></pre></div>
+<pre><code>## [1] 468</code></pre>
+<p>468 months worth of CO2 observations.</p>
+<p>Can we plot this dataset?</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="kw">plot</span>(<span class="dt">x =</span> co2, <span class="dt">ylab =</span> <span class="st">&quot;Atmospheric concentration of CO2 (ppm)&quot;</span>, <span class="dt">main =</span> <span class="st">&quot;CO2 Dataset&quot;</span>)</span></code></pre></div>
+<p><img src="04-Basic-R-Scripts_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<p>Altogether, this script looks like this…</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="co"># make sure the dataset is loaded - it&#39;s a prebuilt dataset automatically loaded into R</span></span>
+<span id="cb12-2"><a href="#cb12-2"></a>co2</span>
+<span id="cb12-3"><a href="#cb12-3"></a></span>
+<span id="cb12-4"><a href="#cb12-4"></a><span class="co"># rename the dataset as co2_data so it is visible in our global environment</span></span>
+<span id="cb12-5"><a href="#cb12-5"></a>co2_data &lt;-<span class="st"> </span>co2</span>
+<span id="cb12-6"><a href="#cb12-6"></a>co2_data</span>
+<span id="cb12-7"><a href="#cb12-7"></a></span>
+<span id="cb12-8"><a href="#cb12-8"></a><span class="co"># identify the class of the co2_data object</span></span>
+<span id="cb12-9"><a href="#cb12-9"></a><span class="kw">class</span>(co2_data)</span>
+<span id="cb12-10"><a href="#cb12-10"></a></span>
+<span id="cb12-11"><a href="#cb12-11"></a><span class="co"># print the summary of the co2_data dataset</span></span>
+<span id="cb12-12"><a href="#cb12-12"></a><span class="kw">summary</span>(co2_data)</span>
+<span id="cb12-13"><a href="#cb12-13"></a></span>
+<span id="cb12-14"><a href="#cb12-14"></a><span class="co"># find the length of the co2_data dataset using the length() function</span></span>
+<span id="cb12-15"><a href="#cb12-15"></a><span class="kw">length</span>(co2_data)</span>
+<span id="cb12-16"><a href="#cb12-16"></a></span>
+<span id="cb12-17"><a href="#cb12-17"></a><span class="co"># plot the dataset using the default plot function</span></span>
+<span id="cb12-18"><a href="#cb12-18"></a><span class="kw">plot</span>(<span class="dt">x =</span> co2, <span class="dt">ylab =</span> <span class="st">&quot;Atmospheric concentration of CO2 (ppm)&quot;</span>, <span class="dt">main =</span> <span class="st">&quot;CO2 Dataset&quot;</span>)</span></code></pre></div>
+<p>Above is our script. We run this script in the console. We can save this script and re-run this at any time. An example of this would be saving this file as <code>co2_script.R</code>. Once this is saved, you can close R, re-open it, and re-run your <code>co2_script.R</code> without re-writing any code.</p>
+<div id="saving-your-plot" class="section level3">
+<h3><span class="header-section-number">1.1.1</span> Saving your plot</h3>
+<p>We can save any plot from the R plot window. Simply navigate to the <strong>Plots</strong> tab and select <strong>Export</strong> then <strong>Save As Image</strong>.</p>
+<div class="figure"><span id="fig:unnamed-chunk-8"></span>
+<img src="images/save_image.png" alt="Save As Image" width="80%" />
+<p class="caption">
+Figure 1.1: Save As Image
+</p>
+</div>
+</div>
+</div>
+<div id="cars---motor-trends-magazine-data" class="section level2">
+<h2><span class="header-section-number">1.2</span> Cars - Motor Trends Magazine Data</h2>
+<p>The data was extracted from the 1974 Motor Trend US magazine, and comprises fuel consumption and 10 aspects of automobile design and performance for 32 automobiles (1973–74 models).</p>
+<p>Load the dataset - again this is a pre-loaded dataset, but let’s call on it so we can bring it into our global environment.</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="kw">data</span>(<span class="st">&#39;mtcars&#39;</span>)</span>
+<span id="cb13-2"><a href="#cb13-2"></a><span class="kw">head</span>(mtcars)</span></code></pre></div>
+<pre><code>##                    mpg cyl disp  hp drat    wt  qsec vs am gear carb
+## Mazda RX4         21.0   6  160 110 3.90 2.620 16.46  0  1    4    4
+## Mazda RX4 Wag     21.0   6  160 110 3.90 2.875 17.02  0  1    4    4
+## Datsun 710        22.8   4  108  93 3.85 2.320 18.61  1  1    4    1
+## Hornet 4 Drive    21.4   6  258 110 3.08 3.215 19.44  1  0    3    1
+## Hornet Sportabout 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2
+## Valiant           18.1   6  225 105 2.76 3.460 20.22  1  0    3    1</code></pre>
+<p>The <code>head()</code> function is a quick function that prints out the first few rows of a dataset.</p>
+<p>What’s exactly is <code>mtcars</code>?</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="kw">class</span>(mtcars)</span></code></pre></div>
+<pre><code>## [1] &quot;data.frame&quot;</code></pre>
+<p>It’s a data.frame. Data Frames have a different storage than time series. You can also view this dataframe by clicking on the <code>mtcars</code> dataframe in your global environment. What are the dimensions of this dataframe? How many rows and columns does it have?</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a><span class="kw">dim</span>(mtcars)</span></code></pre></div>
+<pre><code>## [1] 32 11</code></pre>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a><span class="kw">nrow</span>(mtcars)</span></code></pre></div>
+<pre><code>## [1] 32</code></pre>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a><span class="kw">ncol</span>(mtcars)</span></code></pre></div>
+<pre><code>## [1] 11</code></pre>
+<p>We have 32 rows and 11 columns within this dataframe.</p>
+<p>What are our column names?</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a><span class="kw">colnames</span>(mtcars)</span></code></pre></div>
+<pre><code>##  [1] &quot;mpg&quot;  &quot;cyl&quot;  &quot;disp&quot; &quot;hp&quot;   &quot;drat&quot; &quot;wt&quot;   &quot;qsec&quot; &quot;vs&quot;   &quot;am&quot;   &quot;gear&quot;
+## [11] &quot;carb&quot;</code></pre>
+<p>What are our row names (aka the make of the car)?</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a><span class="kw">rownames</span>(mtcars)</span></code></pre></div>
+<pre><code>##  [1] &quot;Mazda RX4&quot;           &quot;Mazda RX4 Wag&quot;       &quot;Datsun 710&quot;         
+##  [4] &quot;Hornet 4 Drive&quot;      &quot;Hornet Sportabout&quot;   &quot;Valiant&quot;            
+##  [7] &quot;Duster 360&quot;          &quot;Merc 240D&quot;           &quot;Merc 230&quot;           
+## [10] &quot;Merc 280&quot;            &quot;Merc 280C&quot;           &quot;Merc 450SE&quot;         
+## [13] &quot;Merc 450SL&quot;          &quot;Merc 450SLC&quot;         &quot;Cadillac Fleetwood&quot; 
+## [16] &quot;Lincoln Continental&quot; &quot;Chrysler Imperial&quot;   &quot;Fiat 128&quot;           
+## [19] &quot;Honda Civic&quot;         &quot;Toyota Corolla&quot;      &quot;Toyota Corona&quot;      
+## [22] &quot;Dodge Challenger&quot;    &quot;AMC Javelin&quot;         &quot;Camaro Z28&quot;         
+## [25] &quot;Pontiac Firebird&quot;    &quot;Fiat X1-9&quot;           &quot;Porsche 914-2&quot;      
+## [28] &quot;Lotus Europa&quot;        &quot;Ford Pantera L&quot;      &quot;Ferrari Dino&quot;       
+## [31] &quot;Maserati Bora&quot;       &quot;Volvo 142E&quot;</code></pre>
+<p>How do we extract individual columns/variables from this dataframe?</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a>mtcars[<span class="st">&quot;mpg&quot;</span>]</span></code></pre></div>
+<pre><code>##                      mpg
+## Mazda RX4           21.0
+## Mazda RX4 Wag       21.0
+## Datsun 710          22.8
+## Hornet 4 Drive      21.4
+## Hornet Sportabout   18.7
+## Valiant             18.1
+## Duster 360          14.3
+## Merc 240D           24.4
+## Merc 230            22.8
+## Merc 280            19.2
+## Merc 280C           17.8
+## Merc 450SE          16.4
+## Merc 450SL          17.3
+## Merc 450SLC         15.2
+## Cadillac Fleetwood  10.4
+## Lincoln Continental 10.4
+## Chrysler Imperial   14.7
+## Fiat 128            32.4
+## Honda Civic         30.4
+## Toyota Corolla      33.9
+## Toyota Corona       21.5
+## Dodge Challenger    15.5
+## AMC Javelin         15.2
+## Camaro Z28          13.3
+## Pontiac Firebird    19.2
+## Fiat X1-9           27.3
+## Porsche 914-2       26.0
+## Lotus Europa        30.4
+## Ford Pantera L      15.8
+## Ferrari Dino        19.7
+## Maserati Bora       15.0
+## Volvo 142E          21.4</code></pre>
+<p>We can also extract the vector of data using the <code>$</code> operator.</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1"></a>mtcars<span class="op">$</span>mpg</span></code></pre></div>
+<pre><code>##  [1] 21.0 21.0 22.8 21.4 18.7 18.1 14.3 24.4 22.8 19.2 17.8 16.4 17.3 15.2 10.4
+## [16] 10.4 14.7 32.4 30.4 33.9 21.5 15.5 15.2 13.3 19.2 27.3 26.0 30.4 15.8 19.7
+## [31] 15.0 21.4</code></pre>
+<p>What are the statistics like for each variable?</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1"></a><span class="kw">summary</span>(mtcars)</span></code></pre></div>
+<pre><code>##       mpg             cyl             disp             hp       
+##  Min.   :10.40   Min.   :4.000   Min.   : 71.1   Min.   : 52.0  
+##  1st Qu.:15.43   1st Qu.:4.000   1st Qu.:120.8   1st Qu.: 96.5  
+##  Median :19.20   Median :6.000   Median :196.3   Median :123.0  
+##  Mean   :20.09   Mean   :6.188   Mean   :230.7   Mean   :146.7  
+##  3rd Qu.:22.80   3rd Qu.:8.000   3rd Qu.:326.0   3rd Qu.:180.0  
+##  Max.   :33.90   Max.   :8.000   Max.   :472.0   Max.   :335.0  
+##       drat             wt             qsec             vs        
+##  Min.   :2.760   Min.   :1.513   Min.   :14.50   Min.   :0.0000  
+##  1st Qu.:3.080   1st Qu.:2.581   1st Qu.:16.89   1st Qu.:0.0000  
+##  Median :3.695   Median :3.325   Median :17.71   Median :0.0000  
+##  Mean   :3.597   Mean   :3.217   Mean   :17.85   Mean   :0.4375  
+##  3rd Qu.:3.920   3rd Qu.:3.610   3rd Qu.:18.90   3rd Qu.:1.0000  
+##  Max.   :4.930   Max.   :5.424   Max.   :22.90   Max.   :1.0000  
+##        am              gear            carb      
+##  Min.   :0.0000   Min.   :3.000   Min.   :1.000  
+##  1st Qu.:0.0000   1st Qu.:3.000   1st Qu.:2.000  
+##  Median :0.0000   Median :4.000   Median :2.000  
+##  Mean   :0.4062   Mean   :3.688   Mean   :2.812  
+##  3rd Qu.:1.0000   3rd Qu.:4.000   3rd Qu.:4.000  
+##  Max.   :1.0000   Max.   :5.000   Max.   :8.000</code></pre>
+<p>Notice that now the <code>summary()</code> function is printing out the summary statistics for each column (aka variable) within our dataframe (<code>mtcars</code>)</p>
+<p>What if we just wanted to focus on the first 5 cars in the dataset? We need to index.</p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1"></a>mtcars[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>,]</span></code></pre></div>
+<pre><code>##                    mpg cyl disp  hp drat    wt  qsec vs am gear carb
+## Mazda RX4         21.0   6  160 110 3.90 2.620 16.46  0  1    4    4
+## Mazda RX4 Wag     21.0   6  160 110 3.90 2.875 17.02  0  1    4    4
+## Datsun 710        22.8   4  108  93 3.85 2.320 18.61  1  1    4    1
+## Hornet 4 Drive    21.4   6  258 110 3.08 3.215 19.44  1  0    3    1
+## Hornet Sportabout 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2</code></pre>
+<p>Remember, data is stored as <code>Row, Column</code>. Above, we’re <code>indexing</code> the first 5 rows and then including all columns. What if we just wanted to focus on the first column?</p>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1"></a>mtcars[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>,<span class="dv">1</span>]</span></code></pre></div>
+<pre><code>## [1] 21.0 21.0 22.8 21.4 18.7</code></pre>
+<p>That’s the <code>mpg</code> column of the first 5 cars. Which car has the best miles per gallon (mpg)?</p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1"></a><span class="kw">barplot</span>(<span class="dt">height =</span> mtcars<span class="op">$</span>mpg[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>], <span class="dt">names.arg =</span> <span class="kw">rownames</span>(mtcars)[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>])</span></code></pre></div>
+<p><img src="04-Basic-R-Scripts_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
+<p>The Datsun 710 has the highest MPG rating of the first 5 cars (rows) in the dataset.</p>
+<p>The entire script looks like this:</p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1"></a><span class="co"># load the data - the mtcars dataset is pre-built </span></span>
+<span id="cb38-2"><a href="#cb38-2"></a><span class="kw">data</span>(<span class="st">&#39;mtcars&#39;</span>)</span>
+<span id="cb38-3"><a href="#cb38-3"></a></span>
+<span id="cb38-4"><a href="#cb38-4"></a><span class="co"># print out the first few rows of the dataset using the head() function</span></span>
+<span id="cb38-5"><a href="#cb38-5"></a><span class="kw">head</span>(mtcars)</span>
+<span id="cb38-6"><a href="#cb38-6"></a></span>
+<span id="cb38-7"><a href="#cb38-7"></a><span class="co"># print the class of the mtcars dataset</span></span>
+<span id="cb38-8"><a href="#cb38-8"></a><span class="kw">class</span>(mtcars)</span>
+<span id="cb38-9"><a href="#cb38-9"></a></span>
+<span id="cb38-10"><a href="#cb38-10"></a><span class="co"># dimensions of the mtcars dataframe</span></span>
+<span id="cb38-11"><a href="#cb38-11"></a><span class="kw">dim</span>(mtcars)</span>
+<span id="cb38-12"><a href="#cb38-12"></a></span>
+<span id="cb38-13"><a href="#cb38-13"></a><span class="co"># number of rows</span></span>
+<span id="cb38-14"><a href="#cb38-14"></a><span class="kw">nrow</span>(mtcars)</span>
+<span id="cb38-15"><a href="#cb38-15"></a></span>
+<span id="cb38-16"><a href="#cb38-16"></a><span class="co"># number of columns</span></span>
+<span id="cb38-17"><a href="#cb38-17"></a><span class="kw">ncol</span>(mtcars)</span>
+<span id="cb38-18"><a href="#cb38-18"></a></span>
+<span id="cb38-19"><a href="#cb38-19"></a><span class="co"># column names</span></span>
+<span id="cb38-20"><a href="#cb38-20"></a><span class="kw">colnames</span>(mtcars)</span>
+<span id="cb38-21"><a href="#cb38-21"></a></span>
+<span id="cb38-22"><a href="#cb38-22"></a><span class="co"># row names</span></span>
+<span id="cb38-23"><a href="#cb38-23"></a><span class="kw">rownames</span>(mtcars)</span>
+<span id="cb38-24"><a href="#cb38-24"></a></span>
+<span id="cb38-25"><a href="#cb38-25"></a><span class="co"># selecting the miles per gallon column</span></span>
+<span id="cb38-26"><a href="#cb38-26"></a>mtcars[<span class="st">&quot;mpg&quot;</span>]</span>
+<span id="cb38-27"><a href="#cb38-27"></a></span>
+<span id="cb38-28"><a href="#cb38-28"></a><span class="co"># selecting the vector of the mpg column</span></span>
+<span id="cb38-29"><a href="#cb38-29"></a>mtcars<span class="op">$</span>mpg</span>
+<span id="cb38-30"><a href="#cb38-30"></a></span>
+<span id="cb38-31"><a href="#cb38-31"></a><span class="co"># printing a summary of the dataframe</span></span>
+<span id="cb38-32"><a href="#cb38-32"></a><span class="kw">summary</span>(mtcars)</span>
+<span id="cb38-33"><a href="#cb38-33"></a></span>
+<span id="cb38-34"><a href="#cb38-34"></a><span class="co"># indexing the first 5 rows, including all of the columns</span></span>
+<span id="cb38-35"><a href="#cb38-35"></a>mtcars[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>,]</span>
+<span id="cb38-36"><a href="#cb38-36"></a></span>
+<span id="cb38-37"><a href="#cb38-37"></a><span class="co"># indexing the first 5 rows and the 1st column</span></span>
+<span id="cb38-38"><a href="#cb38-38"></a>mtcars[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>,<span class="dv">1</span>]</span>
+<span id="cb38-39"><a href="#cb38-39"></a></span>
+<span id="cb38-40"><a href="#cb38-40"></a><span class="co"># creating a barplot of mpg for the first 5 cars</span></span>
+<span id="cb38-41"><a href="#cb38-41"></a><span class="kw">barplot</span>(<span class="dt">height =</span> mtcars<span class="op">$</span>mpg[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>], <span class="dt">names.arg =</span> <span class="kw">rownames</span>(mtcars)[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>])</span></code></pre></div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+},
+"search": false
+});
+});
+</script>
+
+</body>
+
+</html>

@@ -112,7 +112,7 @@ You can save these rasters in a variety of formats. If you're interested in look
 7. Write raster to NetCDF
 8. Upload PNG **and** netCDF file to Canvas under week 5 assignment
 
-``` {r, echo = FALSE, message = FALSE, error = FALSE, warning = FALSE, fig.height=10, fig.width=16}
+``` {r end of reprojecting, echo = FALSE, message = FALSE, error = FALSE, warning = FALSE, fig.height=10, fig.width=16}
 library(raster)
 library(rasterVis)
 library(maptools) # also loads sp package

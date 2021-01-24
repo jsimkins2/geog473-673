@@ -205,7 +205,7 @@ title("Air Temperature & Dew Point Temperature")
 
 Aim for something like this (does not have to be exact)...
 
-``` {r, echo = FALSE, message = FALSE, warning = FALSE}
+``` {r end of week 3, echo = FALSE, message = FALSE, warning = FALSE}
 library(basicPlotteR)
 # load the data using read.csv()
 deos_data <- read.csv("../datasets/DEOS.csv", header = TRUE, skip=0, stringsAsFactors = FALSE)

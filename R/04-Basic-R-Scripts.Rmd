@@ -168,7 +168,7 @@ The Datsun 710 has the highest MPG rating of the first 5 cars (rows) in the data
 
 The entire script looks like this:
 
-```{r, eval=FALSE}
+```{r zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz, eval=FALSE}
 # load the data - the mtcars dataset is pre-built 
 data('mtcars')
 

@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>1 R Development and Presentation | Functions_and_Presentations.utf8</title>
+  <meta name="description" content="" />
+  <meta name="generator" content="bookdown 0.20.6 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="1 R Development and Presentation | Functions_and_Presentations.utf8" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="1 R Development and Presentation | Functions_and_Presentations.utf8" />
+  
+  
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+
+
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">GEOG473-673 Open-sourced Environmental Computing</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path=""><a href="#r-development-and-presentation"><i class="fa fa-check"></i><b>1</b> R Development and Presentation</a><ul>
+<li class="chapter" data-level="1.1" data-path=""><a href="#functions"><i class="fa fa-check"></i><b>1.1</b> Functions</a></li>
+<li class="chapter" data-level="1.2" data-path=""><a href="#netcdf-processing-function"><i class="fa fa-check"></i><b>1.2</b> NetCDF Processing Function</a></li>
+<li class="chapter" data-level="1.3" data-path=""><a href="#functions-in-for-loops"><i class="fa fa-check"></i><b>1.3</b> Functions in For Loops</a></li>
+<li class="chapter" data-level="1.4" data-path=""><a href="#rmarkdown"><i class="fa fa-check"></i><b>1.4</b> RMarkdown</a></li>
+<li class="chapter" data-level="1.5" data-path=""><a href="#assignment"><i class="fa fa-check"></i><b>1.5</b> Assignment</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">James Simkins</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./"></a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<!--bookdown:title:end-->
+<!--bookdown:title:start-->
+<div id="r-development-and-presentation" class="section level1">
+<h1><span class="header-section-number">1</span> R Development and Presentation</h1>
+<p>In this tutorial, we’ll focus on functions and displaying R code &amp; results with style. Functions are important for code speed and documentation. Presenting R code is important if you need to explain how to do something using R (i.e. this tutorial). We’ll start by explaining functions and proceeding through a complex example. Afterwards, we’ll show how <code>RMarkdown</code> works so you can present a complex function of your own.</p>
+<div id="functions" class="section level2">
+<h2><span class="header-section-number">1.1</span> Functions</h2>
+<p>We create functions to speed up and organize code. So far, we’ve only been coding things via scripting and occasionally using for loops. While this is fine, it’s slower than writing functions would be. Writing or creating functions is considered much cleaner and more <em>proper</em>. As a recap, whenever we use the phrase <code>library(ncdf4)</code> we are loading the <code>ncdf4</code> package. Within that package are a number of <code>.R</code> scripts/files that contain functions that someone has been kind enough to write for the world. By using <code>library(ncdf4)</code>, R reads in all of those functions and thus knows what we want when we execute a function like <code>nc_open()</code>. Instead of re-writing the pure function of <code>nc_open()</code> over and over again every time we want to open a netcdf file, we are able to just load the function. Before we get further into <code>ncdf4</code>, let’s write some R code to square a sequence of values.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="co"># square a sequence of values with start of 5 and stop of 10</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a>arg1 =<span class="st"> </span><span class="dv">1</span></span>
+<span id="cb1-3"><a href="#cb1-3"></a>arg2 =<span class="st"> </span><span class="dv">5</span></span>
+<span id="cb1-4"><a href="#cb1-4"></a>my.seq =<span class="st"> </span><span class="kw">seq</span>(arg1, arg2, <span class="dv">1</span>)</span>
+<span id="cb1-5"><a href="#cb1-5"></a>my.seq.squared =<span class="st"> </span>my.seq <span class="op">**</span><span class="st"> </span><span class="dv">2</span></span>
+<span id="cb1-6"><a href="#cb1-6"></a>my.seq.squared</span></code></pre></div>
+<pre><code>## [1]  1  4  9 16 25</code></pre>
+<p>This code is straight-forward and light. Let’s now assume, however, that we want to run this code on multiple sets of start and stop values. If we turn the code above into a function, this is streamlined.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="co"># create a function called seq_squared</span></span>
+<span id="cb3-2"><a href="#cb3-2"></a>seq_squared =<span class="st"> </span><span class="cf">function</span>(arg1, arg2){</span>
+<span id="cb3-3"><a href="#cb3-3"></a>  my.seq =<span class="st"> </span><span class="kw">seq</span>(arg1, arg2, <span class="dv">1</span>)</span>
+<span id="cb3-4"><a href="#cb3-4"></a>  my.seq.squared =<span class="st"> </span>my.seq <span class="op">**</span><span class="st"> </span><span class="dv">2</span></span>
+<span id="cb3-5"><a href="#cb3-5"></a>  <span class="kw">return</span>(my.seq.squared)</span>
+<span id="cb3-6"><a href="#cb3-6"></a>}</span>
+<span id="cb3-7"><a href="#cb3-7"></a></span>
+<span id="cb3-8"><a href="#cb3-8"></a><span class="kw">seq_squared</span>(<span class="dt">arg1 =</span> <span class="dv">5</span>, <span class="dt">arg2 =</span> <span class="dv">10</span>)</span></code></pre></div>
+<pre><code>## [1]  25  36  49  64  81 100</code></pre>
+<p>Above we have a function that takes in start and stop values of a sequence, uses these values to make a sequence, and returns the squares of each of these values. We create a new <code>function</code> in R using the <code>function</code> R call and name it <code>seq_squared</code>. When we write a function of our own, we can add in our own arguments as we see fit. In this case, we create arguments named <code>arg1</code> and <code>arg2</code>. These arguments are used to create <code>my.seq</code> which is a sequence within our <code>xfunc</code> function. We create a <code>my.seq.squared</code> variable which is a vector of <code>my.seq</code> values squared. Ultimately, <code>my.seq.squared</code> is the output of our function. It’s what we include in our <code>return</code> statement. Every function requires something to be returned, and <code>my.seq.squared</code> is the output of our <code>seq_squared</code>.</p>
+</div>
+<div id="netcdf-processing-function" class="section level2">
+<h2><span class="header-section-number">1.2</span> NetCDF Processing Function</h2>
+<p>Loading in all of the weather data from Willow Creek, WI is cumbersome. Let’s write a function that reads in the data and converts everything to a dataframe for us.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="kw">library</span>(ncdf4)</span>
+<span id="cb5-2"><a href="#cb5-2"></a>read.wcr =<span class="st"> </span><span class="cf">function</span>(fname) {</span>
+<span id="cb5-3"><a href="#cb5-3"></a>  fullname =<span class="st"> </span><span class="kw">strsplit</span>(fname, <span class="st">&quot;/&quot;</span>)</span>
+<span id="cb5-4"><a href="#cb5-4"></a>  dataset_str =<span class="st"> </span>fullname[[<span class="dv">1</span>]][<span class="kw">length</span>(fullname[[<span class="dv">1</span>]])]</span>
+<span id="cb5-5"><a href="#cb5-5"></a>  datname =<span class="st"> </span><span class="kw">strsplit</span>(dataset_str, <span class="st">&quot;_&quot;</span>)[[<span class="dv">1</span>]][<span class="dv">1</span>]</span>
+<span id="cb5-6"><a href="#cb5-6"></a>  data.year =<span class="st"> </span><span class="kw">substr</span>(dataset_str, <span class="kw">nchar</span>(dataset_str)<span class="op">-</span><span class="dv">6</span>, <span class="kw">nchar</span>(dataset_str)<span class="op">-</span><span class="dv">3</span>)</span>
+<span id="cb5-7"><a href="#cb5-7"></a>  data.date =<span class="st"> </span><span class="kw">seq</span>(<span class="dt">from=</span><span class="kw">as.POSIXct</span>(<span class="kw">paste0</span>(data.year,<span class="st">&quot;-1-1 0:00&quot;</span>, <span class="dt">tz=</span><span class="st">&quot;UTC&quot;</span>)),<span class="dt">to=</span><span class="kw">as.POSIXct</span>(<span class="kw">paste0</span>(data.year,<span class="st">&quot;-12-31 23:00&quot;</span>, <span class="dt">tz=</span><span class="st">&quot;UTC&quot;</span>)),<span class="dt">by=</span><span class="st">&quot;hour&quot;</span>)</span>
+<span id="cb5-8"><a href="#cb5-8"></a>  vars.info &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">CF.name =</span> <span class="kw">c</span>(<span class="st">&quot;date&quot;</span>, <span class="st">&quot;air_temperature&quot;</span>, <span class="st">&quot;precipitation_flux&quot;</span>, <span class="st">&quot;surface_downwelling_shortwave_flux_in_air&quot;</span>,</span>
+<span id="cb5-9"><a href="#cb5-9"></a>                                      <span class="st">&quot;specific_humidity&quot;</span>, <span class="st">&quot;surface_downwelling_longwave_flux_in_air&quot;</span>, <span class="st">&quot;air_pressure&quot;</span>,</span>
+<span id="cb5-10"><a href="#cb5-10"></a>                                      <span class="st">&quot;eastward_wind&quot;</span>, <span class="st">&quot;northward_wind&quot;</span>, <span class="st">&quot;wind_speed&quot;</span>))</span>
+<span id="cb5-11"><a href="#cb5-11"></a>  df &lt;-<span class="st"> </span><span class="kw">list</span>()</span>
+<span id="cb5-12"><a href="#cb5-12"></a>  tem &lt;-<span class="st"> </span>ncdf4<span class="op">::</span><span class="kw">nc_open</span>(fname)</span>
+<span id="cb5-13"><a href="#cb5-13"></a>  dim &lt;-<span class="st"> </span>tem<span class="op">$</span>dim</span>
+<span id="cb5-14"><a href="#cb5-14"></a>  <span class="cf">for</span> (j <span class="cf">in</span> <span class="kw">seq_along</span>(vars.info<span class="op">$</span>CF.name)) {</span>
+<span id="cb5-15"><a href="#cb5-15"></a>    <span class="cf">if</span> (<span class="kw">exists</span>(<span class="kw">as.character</span>(vars.info<span class="op">$</span>CF.name[j]), tem<span class="op">$</span>var)) {</span>
+<span id="cb5-16"><a href="#cb5-16"></a>      df[[j]] &lt;-<span class="st"> </span>ncdf4<span class="op">::</span><span class="kw">ncvar_get</span>(tem, <span class="kw">as.character</span>(vars.info<span class="op">$</span>CF.name[j]))</span>
+<span id="cb5-17"><a href="#cb5-17"></a>    } <span class="cf">else</span> {</span>
+<span id="cb5-18"><a href="#cb5-18"></a>      df[[j]] =<span class="st"> </span><span class="ot">NA</span></span>
+<span id="cb5-19"><a href="#cb5-19"></a>    }</span>
+<span id="cb5-20"><a href="#cb5-20"></a>  }</span>
+<span id="cb5-21"><a href="#cb5-21"></a>  <span class="kw">names</span>(df) &lt;-<span class="st"> </span>vars.info<span class="op">$</span>CF.name</span>
+<span id="cb5-22"><a href="#cb5-22"></a>  df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(df)</span>
+<span id="cb5-23"><a href="#cb5-23"></a>  <span class="kw">nc_close</span>(tem)</span>
+<span id="cb5-24"><a href="#cb5-24"></a>  <span class="cf">if</span>(<span class="kw">all</span>(<span class="kw">is.na</span>(df<span class="op">$</span>date))){</span>
+<span id="cb5-25"><a href="#cb5-25"></a>    df<span class="op">$</span>date =<span class="st"> </span>data.date</span>
+<span id="cb5-26"><a href="#cb5-26"></a>  }</span>
+<span id="cb5-27"><a href="#cb5-27"></a>  <span class="kw">return</span>(df)</span>
+<span id="cb5-28"><a href="#cb5-28"></a>}</span></code></pre></div>
+<p>In the function above, we’ve refactored code that we previously wrote to read in a Willow Creek netCDF file. <code>read.wcr</code> is our function name, the <code>function()</code> command tells R we’re declaring a function. <code>fname</code> is one of the arguments that the function takes. For example, the function what we use for opening netCDF files - <code>nc_open()</code> has the following arguments…</p>
+<p><code>nc_open( filename, write=FALSE, readunlim=TRUE, verbose=FALSE,      auto_GMT=TRUE, suppress_dimvals=FALSE )</code></p>
+<p>The function we’ve coded above only takes the filename, but if our routine was more complex we could add more arguments in. Once the argument is taken in, we <strong>generalize</strong> naming schemes that are unimportant. Notice how we use object names like <code>tem</code> for example. This is short for temporary, and is set up to be overwritten if we were to use this function within a for loop to open multiple files.</p>
+<p>Finally, focus in on the <code>return(df)</code> line - <code>return</code> is what we get out of a function. Now, let’s actually use the <code>read.wcr()</code> function we wrote above.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>wcr_df =<span class="st"> </span><span class="kw">read.wcr</span>(<span class="dt">fname =</span> <span class="st">&quot;~/Documents/Github/geog473-673/datasets/WCr_1hr.2010.nc&quot;</span>)</span>
+<span id="cb6-2"><a href="#cb6-2"></a></span>
+<span id="cb6-3"><a href="#cb6-3"></a><span class="kw">summary</span>(wcr_df)</span></code></pre></div>
+<pre><code>##       date                     air_temperature precipitation_flux 
+##  Min.   :2010-01-01 00:00:00   Min.   :248.4   Min.   :0.000e+00  
+##  1st Qu.:2010-04-02 06:45:00   1st Qu.:270.5   1st Qu.:0.000e+00  
+##  Median :2010-07-02 12:30:00   Median :280.9   Median :0.000e+00  
+##  Mean   :2010-07-02 12:30:00   Mean   :279.8   Mean   :2.564e-05  
+##  3rd Qu.:2010-10-01 18:15:00   3rd Qu.:289.4   3rd Qu.:0.000e+00  
+##  Max.   :2010-12-31 23:00:00   Max.   :304.0   Max.   :9.102e-03  
+##  surface_downwelling_shortwave_flux_in_air specific_humidity  
+##  Min.   :   0.00                           Min.   :0.0001864  
+##  1st Qu.:   0.00                           1st Qu.:0.0025622  
+##  Median :   0.00                           Median :0.0051646  
+##  Mean   :  78.04                           Mean   :0.0065146  
+##  3rd Qu.:  12.62                           3rd Qu.:0.0100803  
+##  Max.   :1045.39                           Max.   :0.0258134  
+##  surface_downwelling_longwave_flux_in_air  air_pressure   eastward_wind     
+##  Min.   :139.7                            Min.   :91108   Min.   :-10.6414  
+##  1st Qu.:263.0                            1st Qu.:94818   1st Qu.: -1.7298  
+##  Median :301.7                            Median :95236   Median : -0.2718  
+##  Mean   :304.7                            Mean   :95191   Mean   : -0.2817  
+##  3rd Qu.:351.6                            3rd Qu.:95650   3rd Qu.:  1.2213  
+##  Max.   :444.1                            Max.   :96918   Max.   : 13.7162  
+##  northward_wind     wind_speed    
+##  Min.   :-12.3305   Mode:logical  
+##  1st Qu.: -1.5300   NA&#39;s:8760     
+##  Median : -0.2183                 
+##  Mean   : -0.1984                 
+##  3rd Qu.:  1.0876                 
+##  Max.   :  6.5341</code></pre>
+<p>It’s as simple as that. This is why programming can become a black box and why we don’t always look under the hood. Code and functions like the one above can be messy and as long as we understand the output we don’t always care how it gets done.</p>
+<p>Remember that we have Willow Creek weather data for 2010, 2011, and 2012. Let’s set up a for loop for this to show how we might read in all 3 years of data. We’re going to use the <code>rbind()</code> function to latch on extra data here.</p>
+</div>
+<div id="functions-in-for-loops" class="section level2">
+<h2><span class="header-section-number">1.3</span> Functions in For Loops</h2>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="co"># create a sequence of years for the years we have data</span></span>
+<span id="cb8-2"><a href="#cb8-2"></a>yearSeq =<span class="st"> </span><span class="kw">seq</span>(<span class="dv">2010</span>,<span class="dv">2012</span>)</span>
+<span id="cb8-3"><a href="#cb8-3"></a></span>
+<span id="cb8-4"><a href="#cb8-4"></a><span class="co"># begin the for loop to open each year of data</span></span>
+<span id="cb8-5"><a href="#cb8-5"></a><span class="cf">for</span> (y <span class="cf">in</span> yearSeq){</span>
+<span id="cb8-6"><a href="#cb8-6"></a>  <span class="co"># use our read.wcr() function and paste in the filename that changes for each year of data</span></span>
+<span id="cb8-7"><a href="#cb8-7"></a>  tem_df =<span class="st"> </span><span class="kw">read.wcr</span>(<span class="dt">fname =</span> <span class="kw">paste0</span>(<span class="st">&quot;~/Documents/Github/geog473-673/datasets/WCr_1hr.&quot;</span>,y,<span class="st">&quot;.nc&quot;</span>))</span>
+<span id="cb8-8"><a href="#cb8-8"></a>  <span class="co"># != means DOES NOT EQUAL. This statement reads as - if y DOES NOT EQUAL the first year in yearSeq, proceed to use rbind</span></span>
+<span id="cb8-9"><a href="#cb8-9"></a>  <span class="co"># otherwise, if y is indeed the first year in yearSeq, we need to initialize wcr_df BEFORE we overwrite tem_df</span></span>
+<span id="cb8-10"><a href="#cb8-10"></a>  <span class="cf">if</span> (y <span class="op">!=</span><span class="st"> </span>yearSeq[<span class="dv">1</span>]){</span>
+<span id="cb8-11"><a href="#cb8-11"></a>    wcr_df =<span class="st"> </span><span class="kw">rbind</span>(wcr_df, tem_df)</span>
+<span id="cb8-12"><a href="#cb8-12"></a>  } <span class="cf">else</span> {</span>
+<span id="cb8-13"><a href="#cb8-13"></a>    wcr_df =<span class="st"> </span>tem_df</span>
+<span id="cb8-14"><a href="#cb8-14"></a>  }</span>
+<span id="cb8-15"><a href="#cb8-15"></a>}</span>
+<span id="cb8-16"><a href="#cb8-16"></a></span>
+<span id="cb8-17"><a href="#cb8-17"></a><span class="kw">length</span>(wcr_df<span class="op">$</span>date)</span></code></pre></div>
+<pre><code>## [1] 26304</code></pre>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="kw">summary</span>(wcr_df)</span></code></pre></div>
+<pre><code>##       date                     air_temperature precipitation_flux 
+##  Min.   :2010-01-01 00:00:00   Min.   :245.0   Min.   :0.000e+00  
+##  1st Qu.:2010-10-02 00:45:00   1st Qu.:270.4   1st Qu.:0.000e+00  
+##  Median :2011-07-03 00:30:00   Median :280.0   Median :0.000e+00  
+##  Mean   :2011-07-03 00:30:00   Mean   :279.6   Mean   :1.937e-05  
+##  3rd Qu.:2012-04-02 00:15:00   3rd Qu.:289.4   3rd Qu.:0.000e+00  
+##  Max.   :2012-12-31 23:00:00   Max.   :305.5   Max.   :9.102e-03  
+##  surface_downwelling_shortwave_flux_in_air specific_humidity 
+##  Min.   :   0.00                           Min.   :0.000001  
+##  1st Qu.:   0.00                           1st Qu.:0.002611  
+##  Median :   0.00                           Median :0.004790  
+##  Mean   :  79.62                           Mean   :0.006324  
+##  3rd Qu.:  13.01                           3rd Qu.:0.009615  
+##  Max.   :1045.39                           Max.   :0.027334  
+##  surface_downwelling_longwave_flux_in_air  air_pressure   eastward_wind     
+##  Min.   :132.8                            Min.   :91108   Min.   :-12.3726  
+##  1st Qu.:266.0                            1st Qu.:94838   1st Qu.: -1.7470  
+##  Median :304.8                            Median :95287   Median : -0.3203  
+##  Mean   :305.5                            Mean   :95222   Mean   : -0.2160  
+##  3rd Qu.:349.3                            3rd Qu.:95676   3rd Qu.:  1.3130  
+##  Max.   :465.8                            Max.   :97104   Max.   : 13.7162  
+##  northward_wind     wind_speed    
+##  Min.   :-12.3305   Mode:logical  
+##  1st Qu.: -1.7196   NA&#39;s:26304    
+##  Median : -0.3798                 
+##  Mean   : -0.4407                 
+##  3rd Qu.:  0.8609                 
+##  Max.   :  8.0738</code></pre>
+<p>Remember, <code>!=</code> means DOES NOT EQUAL. This statement reads as - if <code>y</code> DOES NOT EQUAL the first year in <code>yearSeq</code>, proceed to use <code>rbind()</code>. Otherwise, if <code>y</code> is indeed the first year in <code>yearSeq</code>, we need to initialize <code>wcr_df</code> BEFORE we overwrite <code>tem_df</code>.</p>
+<p>Based on the summary we see that we have successfully merged the 3 datasets into one continuous dataset. Since we defined the function above, we don’t need to make a messy for loop with all of the function bits in it. Functions speed up our program and also make for more sophisticated coding.</p>
+</div>
+<div id="rmarkdown" class="section level2">
+<h2><span class="header-section-number">1.4</span> RMarkdown</h2>
+<p>Code is often messy and difficult to explain. One R feature that can make explaining code or a function easier is <code>RMarkdown</code>. This is how this textbook has been built. <code>RMarkdown</code> is a combination of HTML like syntax with R. Here is how you make an RMarkdown document.</p>
+<ul>
+<li>Open a new RMarkdown document - <code>File -&gt; New File -&gt; R Markdown...</code></li>
+</ul>
+<p><img src="../documents/images/rmd1.png" width="60%" style="display: block; margin: auto;" /></p>
+<ul>
+<li>Enter in details</li>
+</ul>
+<p><img src="../documents/images/rmd2.png" width="60%" style="display: block; margin: auto;" /></p>
+<ul>
+<li>The initial RMarkdown should look like this</li>
+</ul>
+<p><img src="../documents/images/rmd3.png" width="60%" style="display: block; margin: auto;" /></p>
+<ul>
+<li>We tell RMarkdown we want to write and run R code with 3 backticks and <code>{r}</code> - <strong>```{r}</strong></li>
+<li>We end our R code section with 3 backticks - <strong>```</strong></li>
+<li>Thus, for our <code>my.seq.squared</code> function above, it would be coded like this in RMarkdown.</li>
+</ul>
+<p><strong>```{r}</strong></p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="co"># create a function called seq_squared</span></span>
+<span id="cb12-2"><a href="#cb12-2"></a>seq_squared =<span class="st"> </span><span class="cf">function</span>(arg1, arg2){</span>
+<span id="cb12-3"><a href="#cb12-3"></a>  my.seq =<span class="st"> </span><span class="kw">seq</span>(arg1, arg2, <span class="dv">1</span>)</span>
+<span id="cb12-4"><a href="#cb12-4"></a>  my.seq.squared =<span class="st"> </span>my.seq <span class="op">**</span><span class="st"> </span><span class="dv">2</span></span>
+<span id="cb12-5"><a href="#cb12-5"></a>  <span class="kw">return</span>(my.seq.squared)</span>
+<span id="cb12-6"><a href="#cb12-6"></a>}</span></code></pre></div>
+<p><strong>```</strong></p>
+<p>In our example here, R code is keyed in the R Markdown document like so.</p>
+<p><img src="../documents/images/rmd4.png" width="60%" style="display: block; margin: auto;" /></p>
+<p>Notice the <code>cars</code> inside of <code>{r cars}</code>. This names the coding section but has no impact on the code itself. We do not need to name each coding section - <code>{r}</code> alone will suffice.</p>
+<p>Anything outside of the R code sections will show up as plain text. When we are finished with our R Markdown document, we need to <code>Knit</code> the document. See the blue yarn ball at the top of your script? This will create a new PDF file.</p>
+<p><img src="../documents/images/rmd5.png" width="60%" style="display: block; margin: auto;" /></p>
+<p>Et Voila! A professional looking RMarkdown PDF that makes your R code easier to explain and present. <a href="https://github.com/jsimkins2/geog473-673/tree/master/Advanced_R/rmdtest.pdf">Here’s what the output above should look like</a></p>
+</div>
+<div id="assignment" class="section level2">
+<h2><span class="header-section-number">1.5</span> Assignment</h2>
+<p>Create a function that extracts and plots a spatial dataset given a time range. Follow the steps below:</p>
+<ol style="list-style-type: decimal">
+<li>Choose an online dataset like we did last week.</li>
+<li>Create a function that extracts the data given a time range, creates a data frame and plots the dataset.</li>
+<li>Include arguments within the function such as time range, spatial extents, etc.</li>
+<li>Create an RMarkdown PDF that details how the function works.</li>
+<li>Include an example of the function working to plot the given dataset</li>
+<li>Submit resulting PDF to Canvas week 7 assignment</li>
+</ol>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+},
+"search": false
+});
+});
+</script>
+
+</body>
+
+</html>
