@@ -70,6 +70,7 @@
 <script src="libs/clipboard-0.0.1/setClipboardText.js"></script>
 <link href="libs/mapviewCSS-0.0.1/mapview-popup.css" rel="stylesheet" />
 <link href="libs/mapviewCSS-0.0.1/mapview.css" rel="stylesheet" />
+<link id="m[name]-1-attachment" rel="attachment" href="libs/m[name]-0.0.1/m[name]_layer.fgb"/>
 
 
 <style type="text/css">
@@ -392,7 +393,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb538-5" data-line-number="5"><span class="co"># response variable used for classification</span></a>
 <a class="sourceLine" id="cb538-6" data-line-number="6"><span class="kw">ggplot</span>(ff_data, <span class="kw">aes</span>(<span class="dt">x =</span> Class, <span class="dt">fill =</span> Class)) <span class="op">+</span></a>
 <a class="sourceLine" id="cb538-7" data-line-number="7"><span class="st">  </span><span class="kw">geom_bar</span>()</a></code></pre></div>
-<p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-217-1.png" width="50%" style="display: block; margin: auto;" /></p>
+<p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-215-1.png" width="50%" style="display: block; margin: auto;" /></p>
 <p>Now, let’s use the <code>gather</code> function from the <code>tidyverse</code> to evaluate each variable against the Class (aka Fire or No Fire). Once we have our <code>gathered</code> data frame, let’s show a density plot for each variable.</p>
 <div class="sourceCode" id="cb539"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb539-1" data-line-number="1"><span class="kw">library</span>(tidyverse)</a>
 <a class="sourceLine" id="cb539-2" data-line-number="2">gathered =<span class="st"> </span><span class="kw">gather</span>(ff_data, x, y, day<span class="op">:</span>FWI)</a>
@@ -400,7 +401,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb539-4" data-line-number="4"><span class="kw">ggplot</span>(<span class="dt">data =</span> gathered, <span class="kw">aes</span>(<span class="dt">x =</span> y, <span class="dt">color =</span> Class, <span class="dt">fill =</span> Class)) <span class="op">+</span></a>
 <a class="sourceLine" id="cb539-5" data-line-number="5"><span class="st">    </span><span class="kw">geom_density</span>(<span class="dt">alpha =</span> <span class="fl">0.3</span>) <span class="op">+</span></a>
 <a class="sourceLine" id="cb539-6" data-line-number="6"><span class="st">    </span><span class="kw">facet_wrap</span>( <span class="op">~</span><span class="st"> </span>x, <span class="dt">scales =</span> <span class="st">&quot;free&quot;</span>, <span class="dt">ncol =</span> <span class="dv">3</span>)</a></code></pre></div>
-<p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-218-1.png" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-216-1.png" width="80%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="dimensionality-reduction" class="section level2">
 <h2><span class="header-section-number">19.2</span> Dimensionality Reduction</h2>
@@ -455,7 +456,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb544-20" data-line-number="20"><span class="st">    </span><span class="kw">geom_polygon</span>(<span class="dt">data =</span> conf.rgn, <span class="kw">aes</span>(<span class="dt">fill =</span> groups), <span class="dt">alpha =</span> <span class="fl">0.2</span>) <span class="op">+</span></a>
 <a class="sourceLine" id="cb544-21" data-line-number="21"><span class="st">    </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="dv">2</span>, <span class="dt">alpha =</span> <span class="fl">0.6</span>) <span class="op">+</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb544-22" data-line-number="22"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Principal Component Analysis of Bejaia Forest Fires: PC1 and PC2&quot;</span>)</a></code></pre></div>
-<p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-219-1.png" width="50%" style="display: block; margin: auto;" /></p>
+<p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-217-1.png" width="50%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="t-sne-dimensionality-reduction" class="section level3">
 <h3><span class="header-section-number">19.2.2</span> t-SNE Dimensionality Reduction</h3>
@@ -469,7 +470,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb545-7" data-line-number="7"></a>
 <a class="sourceLine" id="cb545-8" data-line-number="8"><span class="kw">ggplot</span>(<span class="dt">data =</span> sne_data, <span class="kw">aes</span>(<span class="dt">x =</span> V1, <span class="dt">y =</span> V2, <span class="dt">color =</span> Class)) <span class="op">+</span></a>
 <a class="sourceLine" id="cb545-9" data-line-number="9"><span class="st">    </span><span class="kw">geom_point</span>()</a></code></pre></div>
-<p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-220-1.png" width="50%" style="display: block; margin: auto;" /></p>
+<p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-218-1.png" width="50%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="multidimensional-scaling" class="section level3">
 <h3><span class="header-section-number">19.2.3</span> Multidimensional Scaling</h3>
@@ -486,7 +487,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb546-10" data-line-number="10"><span class="kw">ggplot</span>(<span class="dt">data =</span> m_scale,<span class="kw">aes</span>(<span class="dt">x =</span> V1, <span class="dt">y =</span> V2, <span class="dt">color =</span> Class)) <span class="op">+</span></a>
 <a class="sourceLine" id="cb546-11" data-line-number="11"><span class="st">    </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
 <a class="sourceLine" id="cb546-12" data-line-number="12"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&#39;Multidimensional Scaling of Bejaia Forest Fire Data&#39;</span>)</a></code></pre></div>
-<p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-221-1.png" width="50%" style="display: block; margin: auto;" /></p>
+<p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-219-1.png" width="50%" style="display: block; margin: auto;" /></p>
 </div>
 </div>
 <div id="random-forests" class="section level2">
@@ -519,7 +520,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb547-22" data-line-number="22"></a>
 <a class="sourceLine" id="cb547-23" data-line-number="23"><span class="co"># plot the fit!</span></a>
 <a class="sourceLine" id="cb547-24" data-line-number="24"><span class="kw">rpart.plot</span>(fit, <span class="dt">extra =</span> <span class="dv">100</span>)</a></code></pre></div>
-<p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-222-1.png" width="50%" style="display: block; margin: auto;" /></p>
+<p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-220-1.png" width="50%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="data-partition" class="section level3">
 <h3><span class="header-section-number">19.3.2</span> Data Partition</h3>
@@ -538,7 +539,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb548-12" data-line-number="12">num_train_data<span class="op">$</span>Class =<span class="st"> </span><span class="kw">as.numeric</span>(num_train_data<span class="op">$</span>Class)</a>
 <a class="sourceLine" id="cb548-13" data-line-number="13">corMatMy &lt;-<span class="st"> </span><span class="kw">cor</span>(num_train_data)</a>
 <a class="sourceLine" id="cb548-14" data-line-number="14"><span class="kw">corrplot</span>(corMatMy, <span class="dt">order =</span> <span class="st">&quot;hclust&quot;</span>)</a></code></pre></div>
-<p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-223-1.png" width="50%" style="display: block; margin: auto;" /></p>
+<p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-221-1.png" width="50%" style="display: block; margin: auto;" /></p>
 <div class="sourceCode" id="cb549"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb549-1" data-line-number="1">highlyCor &lt;-<span class="st"> </span><span class="kw">colnames</span>(train_data)[<span class="kw">findCorrelation</span>(corMatMy, <span class="dt">cutoff =</span> <span class="fl">0.7</span>, <span class="dt">verbose =</span> <span class="ot">TRUE</span>)]</a></code></pre></div>
 <pre><code>## All correlations &lt;= 0.7</code></pre>
 </div>
@@ -587,7 +588,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb555"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb555-1" data-line-number="1"><span class="co"># plot variable importance of the model</span></a>
 <a class="sourceLine" id="cb555-2" data-line-number="2">importance &lt;-<span class="st"> </span><span class="kw">varImp</span>(model_rf, <span class="dt">scale =</span> <span class="ot">TRUE</span>)</a>
 <a class="sourceLine" id="cb555-3" data-line-number="3"><span class="kw">plot</span>(importance)</a></code></pre></div>
-<p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-224-1.png" width="50%" style="display: block; margin: auto;" /></p>
+<p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-222-1.png" width="50%" style="display: block; margin: auto;" /></p>
 <p>Rain is the most important variable for the presence/absence of forest fires. Relative Humidity and Temperature carry importance but not as much as Rain. Wind Speed doesn’t seem to be all that important.</p>
 </div>
 <div id="testing-the-model" class="section level3">
@@ -640,19 +641,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb558-16" data-line-number="16"><span class="kw">ggplot</span>(results, <span class="kw">aes</span>(<span class="dt">x =</span> prediction, <span class="dt">fill =</span> correct)) <span class="op">+</span></a>
 <a class="sourceLine" id="cb558-17" data-line-number="17"><span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">position =</span> <span class="st">&quot;dodge&quot;</span>) <span class="op">+</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb558-18" data-line-number="18"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Random Forest Performance&quot;</span>, <span class="dt">xlab =</span> <span class="st">&quot;Prediction&quot;</span>)</a></code></pre></div>
-<p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-225-1.png" width="50%" style="display: block; margin: auto;" /></p>
+<p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-223-1.png" width="50%" style="display: block; margin: auto;" /></p>
 <div class="sourceCode" id="cb559"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb559-1" data-line-number="1"><span class="co"># plot thhe results using geom_jitter</span></a>
 <a class="sourceLine" id="cb559-2" data-line-number="2"><span class="kw">ggplot</span>(results, <span class="kw">aes</span>(<span class="dt">x =</span> prediction, <span class="dt">y =</span> Fire, <span class="dt">color =</span> correct, <span class="dt">shape =</span> correct)) <span class="op">+</span></a>
 <a class="sourceLine" id="cb559-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_jitter</span>(<span class="dt">size =</span> <span class="dv">3</span>, <span class="dt">alpha =</span> <span class="fl">0.9</span>) <span class="op">+</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb559-4" data-line-number="4"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Random Forest Performance&quot;</span>, <span class="dt">xlab =</span> <span class="st">&quot;Prediction&quot;</span>)</a></code></pre></div>
-<p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-225-2.png" width="50%" style="display: block; margin: auto;" /></p>
+<p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-223-2.png" width="50%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="hyperparameter-tuning" class="section level3">
 <h3><span class="header-section-number">19.3.5</span> Hyperparameter Tuning</h3>
 <p>Models like the random forest model we constructed above are built based on the predictor variables. Model parameters are constructed <em>based</em> on these variables, although hyperparameters are not model parameters and they cannot be directly trained from the data. Model parameters are learned during training when we optimize a loss function. Sometimes, the construction of the architecture (i.e. format of a decision tree) may not be optimal. The act of finding the optimal model archicture is called hyperparameter tuning. We can tune our model by applying a <code>tuneGrid</code> argument with the <code>caret::train()</code> function. Our <code>tuneGrid</code> will be defined by <code>mtry</code> : The number of variables randomly sampled as candidates at each split.</p>
 <div class="sourceCode" id="cb560"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb560-1" data-line-number="1"><span class="co"># plot the original model</span></a>
 <a class="sourceLine" id="cb560-2" data-line-number="2"><span class="kw">plot</span>(model_rf)</a></code></pre></div>
-<p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-226-1.png" width="50%" style="display: block; margin: auto;" /></p>
+<p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-224-1.png" width="50%" style="display: block; margin: auto;" /></p>
 <div class="sourceCode" id="cb561"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb561-1" data-line-number="1"><span class="co"># create hyperparameter grid</span></a>
 <a class="sourceLine" id="cb561-2" data-line-number="2"><span class="kw">set.seed</span>(<span class="dv">42</span>)</a>
 <a class="sourceLine" id="cb561-3" data-line-number="3">grid &lt;-<span class="st"> </span><span class="kw">expand.grid</span>(<span class="dt">mtry =</span> <span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>))</a>
@@ -695,7 +696,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## Accuracy was used to select the optimal model using the largest value.
 ## The final value used for the model was mtry = 1.</code></pre>
 <div class="sourceCode" id="cb563"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb563-1" data-line-number="1"><span class="kw">plot</span>(model_rf_tune_man)</a></code></pre></div>
-<p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-226-2.png" width="50%" style="display: block; margin: auto;" /></p>
+<p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-224-2.png" width="50%" style="display: block; margin: auto;" /></p>
 <p>Notice hoe many more predictors we get. Our dataset is not the best example for this practice because our dataset only has a handful of predictors. However, The search of the <code>tuneGrid</code> function above is not random by default. Let’s perform a random search of the tuning parmaeters and provide a <code>tuneLength</code> - An integer denoting the amount of granularity in the tuning parameter grid.</p>
 <div class="sourceCode" id="cb564"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb564-1" data-line-number="1">model_rf_tune_auto &lt;-<span class="st"> </span>caret<span class="op">::</span><span class="kw">train</span>(Class <span class="op">~</span><span class="st"> </span>.,</a>
 <a class="sourceLine" id="cb564-2" data-line-number="2">                         <span class="dt">data =</span> train_data,</a>
@@ -736,7 +737,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## Accuracy was used to select the optimal model using the largest value.
 ## The final value used for the model was mtry = 1.</code></pre>
 <div class="sourceCode" id="cb566"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb566-1" data-line-number="1"><span class="kw">plot</span>(model_rf_tune_auto)</a></code></pre></div>
-<p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-227-1.png" width="50%" style="display: block; margin: auto;" /></p>
+<p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-225-1.png" width="50%" style="display: block; margin: auto;" /></p>
 <p>As we see above, random forest models can quickly become complex due to the fact that there’s uncertainty in any classification prediction. A particular model can require tuning as seen above. Once again, this practice is much more useful for a dataset with more predictors but it’s important to show how it can be done here.</p>
 </div>
 </div>

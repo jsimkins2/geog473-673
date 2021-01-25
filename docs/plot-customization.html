@@ -70,6 +70,7 @@
 <script src="libs/clipboard-0.0.1/setClipboardText.js"></script>
 <link href="libs/mapviewCSS-0.0.1/mapview-popup.css" rel="stylesheet" />
 <link href="libs/mapviewCSS-0.0.1/mapview.css" rel="stylesheet" />
+<link id="m[name]-1-attachment" rel="attachment" href="libs/m[name]-0.0.1/m[name]_layer.fgb"/>
 
 
 <style type="text/css">
@@ -502,49 +503,49 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb253-4" data-line-number="4">I</a></code></pre></div>
 <pre><code>## InfStatus
 ##    Infected   Recovered Susceptible 
-##          12          19          19</code></pre>
+##          13          20          17</code></pre>
 <div class="sourceCode" id="cb255"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb255-1" data-line-number="1"><span class="co"># Now let&#39;s make a random sample of 3 genotypes (RR, Rr, and rr)</span></a>
 <a class="sourceLine" id="cb255-2" data-line-number="2">Genotype &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="kw">sample</span>(<span class="kw">c</span>(<span class="st">&quot;RR&quot;</span>, <span class="st">&quot;Rr&quot;</span>, <span class="st">&quot;rr&quot;</span>), <span class="dt">size =</span> <span class="dv">50</span>, <span class="dt">replace =</span> <span class="ot">TRUE</span>))</a>
 <a class="sourceLine" id="cb255-3" data-line-number="3">G &lt;-<span class="st"> </span><span class="kw">table</span>(Genotype)</a>
 <a class="sourceLine" id="cb255-4" data-line-number="4">G</a></code></pre></div>
 <pre><code>## Genotype
 ## rr Rr RR 
-## 18 11 21</code></pre>
+## 16 16 18</code></pre>
 <div class="sourceCode" id="cb257"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb257-1" data-line-number="1"><span class="co">#show genotype and infected status as a table </span></a>
 <a class="sourceLine" id="cb257-2" data-line-number="2"><span class="kw">table</span>(Genotype, InfStatus)</a></code></pre></div>
 <pre><code>##         InfStatus
 ## Genotype Infected Recovered Susceptible
-##       rr        4        10           4
-##       Rr        2         3           6
-##       RR        6         6           9</code></pre>
+##       rr        2         7           7
+##       Rr        5         6           5
+##       RR        6         7           5</code></pre>
 <p>Note - We turned the sample data info a <code>factor</code> to add <code>levels</code> (i.e. categories) of our test data.</p>
 <div class="sourceCode" id="cb259"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb259-1" data-line-number="1"><span class="co"># WITHOUT the factor</span></a>
 <a class="sourceLine" id="cb259-2" data-line-number="2">test &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="kw">c</span>(<span class="st">&quot;Susceptible&quot;</span>, <span class="st">&quot;Infected&quot;</span>, <span class="st">&quot;Recovered&quot;</span>),<span class="dt">size =</span> <span class="dv">50</span>, <span class="dt">replace =</span> <span class="ot">TRUE</span>)</a>
 <a class="sourceLine" id="cb259-3" data-line-number="3">test</a></code></pre></div>
-<pre><code>##  [1] &quot;Recovered&quot;   &quot;Recovered&quot;   &quot;Infected&quot;    &quot;Recovered&quot;   &quot;Susceptible&quot;
-##  [6] &quot;Infected&quot;    &quot;Infected&quot;    &quot;Infected&quot;    &quot;Susceptible&quot; &quot;Recovered&quot;  
-## [11] &quot;Susceptible&quot; &quot;Infected&quot;    &quot;Recovered&quot;   &quot;Recovered&quot;   &quot;Infected&quot;   
-## [16] &quot;Infected&quot;    &quot;Infected&quot;    &quot;Susceptible&quot; &quot;Recovered&quot;   &quot;Infected&quot;   
-## [21] &quot;Infected&quot;    &quot;Infected&quot;    &quot;Recovered&quot;   &quot;Infected&quot;    &quot;Recovered&quot;  
-## [26] &quot;Susceptible&quot; &quot;Susceptible&quot; &quot;Recovered&quot;   &quot;Susceptible&quot; &quot;Recovered&quot;  
-## [31] &quot;Recovered&quot;   &quot;Recovered&quot;   &quot;Recovered&quot;   &quot;Recovered&quot;   &quot;Recovered&quot;  
-## [36] &quot;Recovered&quot;   &quot;Recovered&quot;   &quot;Infected&quot;    &quot;Recovered&quot;   &quot;Recovered&quot;  
-## [41] &quot;Infected&quot;    &quot;Infected&quot;    &quot;Susceptible&quot; &quot;Susceptible&quot; &quot;Susceptible&quot;
-## [46] &quot;Susceptible&quot; &quot;Susceptible&quot; &quot;Recovered&quot;   &quot;Recovered&quot;   &quot;Infected&quot;</code></pre>
+<pre><code>##  [1] &quot;Recovered&quot;   &quot;Recovered&quot;   &quot;Recovered&quot;   &quot;Susceptible&quot; &quot;Infected&quot;   
+##  [6] &quot;Recovered&quot;   &quot;Susceptible&quot; &quot;Recovered&quot;   &quot;Susceptible&quot; &quot;Recovered&quot;  
+## [11] &quot;Susceptible&quot; &quot;Susceptible&quot; &quot;Infected&quot;    &quot;Susceptible&quot; &quot;Recovered&quot;  
+## [16] &quot;Susceptible&quot; &quot;Infected&quot;    &quot;Susceptible&quot; &quot;Susceptible&quot; &quot;Infected&quot;   
+## [21] &quot;Recovered&quot;   &quot;Recovered&quot;   &quot;Infected&quot;    &quot;Recovered&quot;   &quot;Recovered&quot;  
+## [26] &quot;Infected&quot;    &quot;Recovered&quot;   &quot;Susceptible&quot; &quot;Susceptible&quot; &quot;Recovered&quot;  
+## [31] &quot;Susceptible&quot; &quot;Recovered&quot;   &quot;Recovered&quot;   &quot;Susceptible&quot; &quot;Recovered&quot;  
+## [36] &quot;Susceptible&quot; &quot;Recovered&quot;   &quot;Susceptible&quot; &quot;Recovered&quot;   &quot;Infected&quot;   
+## [41] &quot;Susceptible&quot; &quot;Infected&quot;    &quot;Recovered&quot;   &quot;Susceptible&quot; &quot;Infected&quot;   
+## [46] &quot;Susceptible&quot; &quot;Recovered&quot;   &quot;Infected&quot;    &quot;Infected&quot;    &quot;Recovered&quot;</code></pre>
 <div class="sourceCode" id="cb261"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb261-1" data-line-number="1"><span class="kw">class</span>(test)</a></code></pre></div>
 <pre><code>## [1] &quot;character&quot;</code></pre>
 <div class="sourceCode" id="cb263"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb263-1" data-line-number="1"><span class="co"># Now as a factor</span></a>
 <a class="sourceLine" id="cb263-2" data-line-number="2">test2 &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="kw">sample</span>(<span class="kw">c</span>(<span class="st">&quot;Susceptible&quot;</span>, <span class="st">&quot;Infected&quot;</span>, <span class="st">&quot;Recovered&quot;</span>),<span class="dt">size =</span> <span class="dv">50</span>, <span class="dt">replace =</span> <span class="ot">TRUE</span>))</a>
 <a class="sourceLine" id="cb263-3" data-line-number="3">test2</a></code></pre></div>
-<pre><code>##  [1] Infected    Infected    Recovered   Susceptible Susceptible Infected   
-##  [7] Susceptible Infected    Susceptible Susceptible Infected    Infected   
-## [13] Recovered   Susceptible Recovered   Recovered   Infected    Infected   
-## [19] Recovered   Recovered   Susceptible Susceptible Susceptible Susceptible
-## [25] Recovered   Infected    Infected    Infected    Infected    Recovered  
-## [31] Susceptible Susceptible Infected    Susceptible Recovered   Susceptible
-## [37] Recovered   Susceptible Infected    Infected    Recovered   Susceptible
-## [43] Recovered   Susceptible Susceptible Infected    Infected    Recovered  
-## [49] Recovered   Susceptible
+<pre><code>##  [1] Susceptible Susceptible Recovered   Infected    Infected    Infected   
+##  [7] Recovered   Infected    Susceptible Infected    Infected    Infected   
+## [13] Infected    Infected    Susceptible Infected    Infected    Recovered  
+## [19] Susceptible Infected    Susceptible Recovered   Susceptible Susceptible
+## [25] Infected    Recovered   Infected    Infected    Recovered   Susceptible
+## [31] Infected    Susceptible Infected    Susceptible Infected    Infected   
+## [37] Susceptible Infected    Infected    Infected    Recovered   Susceptible
+## [43] Susceptible Susceptible Infected    Infected    Recovered   Susceptible
+## [49] Susceptible Susceptible
 ## Levels: Infected Recovered Susceptible</code></pre>
 <div class="sourceCode" id="cb265"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb265-1" data-line-number="1"><span class="kw">class</span>(test2)</a></code></pre></div>
 <pre><code>## [1] &quot;factor&quot;</code></pre>

@@ -143,10 +143,6 @@ library(mapview)
 mapview(merged.coast['maxpred'], col.regions = mycolours)
 ```
 
-```{r, echo=FALSE, out.width="60%", fig.align="center"}
-knitr::include_graphics("images/delmaxpred.png")  
-```
-
 
 ## Saving a shapefile
 So we combined our csv station data with the corresponding shapefile statoin to make these plots. We don't need to duplicate that hard work again because we can actually save our merged shapefile/csv as an ENVI shapefile using the `writeOGR` function from `rgdal`. 
@@ -192,13 +188,10 @@ ggplot(data = states) + geom_sf() + theme_void() +
   coord_sf(xlim = c(-127, -110), ylim = c(40,50), expand = FALSE) + 
   theme(legend.position = "none") + ggtitle("Protected Lands in Pacific NW")
 
-#mapview(m['name'], col.regions = mycolours)
+mapview(m['name'], col.regions = mycolours)
 ```
 
 
-```{r, echo=FALSE, out.width="60%", fig.align="center"}
-knitr::include_graphics("images/denali_out.png")  
-```
 
 
 

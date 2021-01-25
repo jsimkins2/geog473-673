@@ -70,6 +70,7 @@
 <script src="libs/clipboard-0.0.1/setClipboardText.js"></script>
 <link href="libs/mapviewCSS-0.0.1/mapview-popup.css" rel="stylesheet" />
 <link href="libs/mapviewCSS-0.0.1/mapview.css" rel="stylesheet" />
+<link id="m[name]-1-attachment" rel="attachment" href="libs/m[name]-0.0.1/m[name]_layer.fgb"/>
 
 
 <style type="text/css">
@@ -414,7 +415,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##         longitude  Size:2500
 ##             standard_name: longitude
 ##             units: degrees_east
-##         time  Size:26399
+##         time  Size:26400
 ##             standard_name: time
 ##             long_name: EPOCH Time
 ##             units: seconds since 1970-01-01T00:00:00Z
@@ -442,16 +443,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Seconds since 1970-01-01 is referred to as <strong>EPOCH time</strong>. Basically, this datetime is considered the inception of the internet. Computers are very good at storing information in this format and this is why we use this. Let’s take out the last value -</p>
 <div class="sourceCode" id="cb435"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb435-1" data-line-number="1">lastVal =<span class="st"> </span><span class="kw">length</span>(goes.nc<span class="op">$</span>dim<span class="op">$</span>time<span class="op">$</span>vals)</a>
 <a class="sourceLine" id="cb435-2" data-line-number="2">lastVal</a></code></pre></div>
-<pre><code>## [1] 26399</code></pre>
+<pre><code>## [1] 26400</code></pre>
 <div class="sourceCode" id="cb437"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb437-1" data-line-number="1">epoch_val =<span class="st"> </span>goes.nc<span class="op">$</span>dim<span class="op">$</span>time<span class="op">$</span>vals[lastVal]</a></code></pre></div>
 <p>There you go, that’s an EPOCH time value. Let’s convert it to a human timestamp…</p>
 <div class="sourceCode" id="cb438"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb438-1" data-line-number="1">human_time =<span class="st"> </span><span class="kw">as.POSIXct</span>(epoch_val, <span class="dt">origin=</span><span class="st">&quot;1970-01-01&quot;</span>)</a>
 <a class="sourceLine" id="cb438-2" data-line-number="2">human_time</a></code></pre></div>
-<pre><code>## [1] &quot;2021-01-25 14:00:00 EST&quot;</code></pre>
+<pre><code>## [1] &quot;2021-01-25 15:00:00 EST&quot;</code></pre>
 <p><code>as.POSIXct</code> is a datetime package in R. It is a gold standard and you’ll see it as you gain more experience in playing with datetime conversions. You can also use <code>anytime</code> package.</p>
 <div class="sourceCode" id="cb440"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb440-1" data-line-number="1"><span class="kw">library</span>(anytime)</a>
 <a class="sourceLine" id="cb440-2" data-line-number="2"><span class="kw">anytime</span>(epoch_val)</a></code></pre></div>
-<pre><code>## [1] &quot;2021-01-25 14:00:00 EST&quot;</code></pre>
+<pre><code>## [1] &quot;2021-01-25 15:00:00 EST&quot;</code></pre>
 <p>At this point, all we have to do is convert our human dates to EPOCH so we can extract the data. In order to do this all we need to do is convert a datetime object to a numeric. R handles it for us…</p>
 <div class="sourceCode" id="cb442"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb442-1" data-line-number="1">start_time =<span class="st"> &quot;2019-07-14&quot;</span> <span class="co"># year dash month dash day</span></a>
 <a class="sourceLine" id="cb442-2" data-line-number="2">epoch_start_time =<span class="st"> </span><span class="kw">as.numeric</span>(<span class="kw">as.POSIXct</span>(start_time, <span class="dt">format=</span><span class="st">&quot;%Y-%m-%d&quot;</span>)) <span class="co"># %Y-%m-%d is telling the computer the format of our datestring is year dash month dash day</span></a>
@@ -476,7 +477,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Alright, we have our start time index! What about the latitudes and longitudes? We’ll need to find the index of the lat/lon grid we want. Delaware bay is approximately between -77W, -73W, 36N, and 42N.</p>
 <div class="sourceCode" id="cb449"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb449-1" data-line-number="1"><span class="co"># print out a few longitude values - notice that the entire dataset is on this grid right here. </span></a>
 <a class="sourceLine" id="cb449-2" data-line-number="2"><span class="kw">head</span>(goes.nc<span class="op">$</span>dim<span class="op">$</span>lon<span class="op">$</span>vals)</a></code></pre></div>
-<pre><code>## [1] -99.99 -99.97 -99.95 -99.93 -99.91 -99.89</code></pre>
+<pre><code>## [1] -99.99001 -99.97000 -99.95000 -99.93000 -99.91000 -99.89000</code></pre>
 <div class="sourceCode" id="cb451"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb451-1" data-line-number="1"><span class="co"># notice how we extract those values using indexing - the 100th value </span></a>
 <a class="sourceLine" id="cb451-2" data-line-number="2">goes.nc<span class="op">$</span>dim<span class="op">$</span>lon<span class="op">$</span>vals[<span class="dv">100</span>]</a></code></pre></div>
 <pre><code>## [1] -98.01</code></pre>
@@ -485,9 +486,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb453"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb453-1" data-line-number="1">west_lon =<span class="st"> </span><span class="dv">-77</span></a>
 <a class="sourceLine" id="cb453-2" data-line-number="2">index_west_lon =<span class="st"> </span><span class="kw">which.min</span>(<span class="kw">abs</span>(goes.nc<span class="op">$</span>dim<span class="op">$</span>longitude<span class="op">$</span>vals <span class="op">-</span><span class="st"> </span>west_lon))</a>
 <a class="sourceLine" id="cb453-3" data-line-number="3">index_west_lon</a></code></pre></div>
-<pre><code>## [1] 1150</code></pre>
+<pre><code>## [1] 1151</code></pre>
 <div class="sourceCode" id="cb455"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb455-1" data-line-number="1">goes.nc<span class="op">$</span>dim<span class="op">$</span>longitude<span class="op">$</span>vals[index_west_lon]</a></code></pre></div>
-<pre><code>## [1] -77.01</code></pre>
+<pre><code>## [1] -76.99001</code></pre>
 <p>So our desired <code>west_lon</code> is <code>-77</code>, and the closest value within our longitude array is <code>-76.99001</code>. Not bad…let’s run the rest.</p>
 <div class="sourceCode" id="cb457"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb457-1" data-line-number="1">east_lon =<span class="st"> </span><span class="dv">-73</span></a>
 <a class="sourceLine" id="cb457-2" data-line-number="2">index_east_lon =<span class="st"> </span><span class="kw">which.min</span>(<span class="kw">abs</span>(goes.nc<span class="op">$</span>dim<span class="op">$</span>longitude<span class="op">$</span>vals <span class="op">-</span><span class="st"> </span>east_lon))</a>
@@ -510,13 +511,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><code>A vector of indices indicating where to start reading the passed values (beginning at 1). The length of this vector must equal the number of dimensions the variable has. Order is X-Y-Z-T (i.e., the time dimension is last). If not specified, reading starts at the beginning of the file (1,1,1,...).</code></p>
 <p>So x is longitude, y is latitude, and t is time. Whichever value is lower between <code>index_west_lon</code> and <code>index_east_lon</code> is our <code>start</code> value, and vice versa for latitudes.</p>
 <div class="sourceCode" id="cb461"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb461-1" data-line-number="1">index_west_lon</a></code></pre></div>
-<pre><code>## [1] 1150</code></pre>
+<pre><code>## [1] 1151</code></pre>
 <div class="sourceCode" id="cb463"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb463-1" data-line-number="1">index_east_lon</a></code></pre></div>
-<pre><code>## [1] 1350</code></pre>
+<pre><code>## [1] 1351</code></pre>
 <div class="sourceCode" id="cb465"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb465-1" data-line-number="1">index_south_lat</a></code></pre></div>
-<pre><code>## [1] 800</code></pre>
+<pre><code>## [1] 801</code></pre>
 <div class="sourceCode" id="cb467"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb467-1" data-line-number="1">index_north_lat</a></code></pre></div>
-<pre><code>## [1] 500</code></pre>
+<pre><code>## [1] 501</code></pre>
 <p><strong>Wait just a second</strong>…the southern index is <em>greater than</em> the northern index. Typically, values are stored from least to greatest. However, we’ve seen before that netCDF files can be stored upside-down before. So, instead of counting from our southern latitude to our northern latitude, <strong>we need to count from our northern latitude to our southern latitude</strong>. Here is what the <code>count</code> argument is looking for…</p>
 <p><code>A vector of integers indicating the count of values to read along each dimension (order is X-Y-Z-T). The length of this vector must equal the number of dimensions the variable has. If not specified and the variable does NOT have an unlimited dimension, the entire variable is read. As a special case, the value &quot;-1&quot; indicates that all entries along that dimension should be read.</code></p>
 <p>We tell <code>ncvar_get()</code> where to start it’s longitude, latitude, time and <em>count</em> until we have our lat/lon box and time slices selected. We already have our <code>count</code> values so now we plug them in and run - note this will take a few seconds to run and even longer if you have poor internet connection. This is data being extracted through the internet in real time.</p>
@@ -694,7 +695,7 @@ A list of some of the public available <span style="color:red">ERDDAP</span> ser
 ##          Range: -9.37, 6.13 
 ##          Units: m 
 ##      time: 
-##          Range: 4910400.0, 1.6115949E9 
+##          Range: 4910400.0, 1.6116012E9 
 ##          Units: seconds since 1970-01-01T00:00:00Z 
 ##      vis: 
 ##          Range: 0.0, 66.7 

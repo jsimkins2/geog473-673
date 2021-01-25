@@ -70,6 +70,7 @@
 <script src="libs/clipboard-0.0.1/setClipboardText.js"></script>
 <link href="libs/mapviewCSS-0.0.1/mapview-popup.css" rel="stylesheet" />
 <link href="libs/mapviewCSS-0.0.1/mapview.css" rel="stylesheet" />
+<link id="m[name]-1-attachment" rel="attachment" href="libs/m[name]-0.0.1/m[name]_layer.fgb"/>
 
 
 <style type="text/css">
@@ -438,7 +439,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb514-15" data-line-number="15">             <span class="dt">color =</span> <span class="st">&quot;coral&quot;</span>, <span class="dt">label =</span> <span class="st">&quot;Test Region&quot;</span>) <span class="op">+</span></a>
 <a class="sourceLine" id="cb514-16" data-line-number="16"><span class="st">    </span><span class="kw">geom_point</span>(<span class="dt">size=</span><span class="fl">0.5</span>, <span class="dt">alpha =</span> <span class="fl">0.5</span>, <span class="dt">color =</span> <span class="st">&quot;black&quot;</span>) <span class="op">+</span></a>
 <a class="sourceLine" id="cb514-17" data-line-number="17"><span class="st">    </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Willow Creek Hourly Air Temperature - 2010-2013&quot;</span>,<span class="dt">y =</span> <span class="st">&quot;Air Temperature (F)&quot;</span>, <span class="dt">x =</span> <span class="st">&quot;&quot;</span>)</a></code></pre></div>
-<p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-207-1.png" width="50%" style="display: block; margin: auto;" /></p>
+<p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-205-1.png" width="50%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="aggregate-data" class="section level2">
 <h2><span class="header-section-number">18.2</span> Aggregate Data</h2>
@@ -465,7 +466,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb515-20" data-line-number="20">             <span class="dt">color =</span> <span class="st">&quot;coral&quot;</span>, <span class="dt">label =</span> <span class="st">&quot;Test Region&quot;</span>) <span class="op">+</span></a>
 <a class="sourceLine" id="cb515-21" data-line-number="21"><span class="st">    </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="fl">0.5</span>, <span class="dt">color =</span> <span class="st">&quot;black&quot;</span>) <span class="op">+</span></a>
 <a class="sourceLine" id="cb515-22" data-line-number="22"><span class="st">    </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Willow Creek Daily Air Temperature - 2010-2013&quot;</span>,<span class="dt">y =</span> <span class="st">&quot;Air Temperature (F)&quot;</span>, <span class="dt">x =</span> <span class="st">&quot;&quot;</span>)</a></code></pre></div>
-<p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-208-1.png" width="50%" style="display: block; margin: auto;" /></p>
+<p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-206-1.png" width="50%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="prepping-the-model" class="section level2">
 <h2><span class="header-section-number">18.3</span> Prepping the Model</h2>
@@ -626,7 +627,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb530-12" data-line-number="12"><span class="st">    </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">x =</span> date, <span class="dt">y =</span> .pred), <span class="dt">data =</span> prediction_tbl, </a>
 <a class="sourceLine" id="cb530-13" data-line-number="13">               <span class="dt">alpha =</span> <span class="fl">0.5</span>, <span class="dt">color =</span>  <span class="st">&quot;darkblue&quot;</span>) <span class="op">+</span></a>
 <a class="sourceLine" id="cb530-14" data-line-number="14"><span class="st">    </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;GLM: Out-Of-Sample Forecast&quot;</span>)</a></code></pre></div>
-<p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-212-1.png" width="50%" style="display: block; margin: auto;" /></p>
+<p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-210-1.png" width="50%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="validation-and-accuracy" class="section level2">
 <h2><span class="header-section-number">18.5</span> Validation and Accuracy</h2>
@@ -647,7 +648,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb533-6" data-line-number="6"><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">span =</span> <span class="fl">1.00</span>, <span class="dt">se =</span> <span class="ot">FALSE</span>) <span class="op">+</span></a>
 <a class="sourceLine" id="cb533-7" data-line-number="7"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;GLM Model Residuals, Out-of-Sample&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Air Temperature: Actual - Predicted&quot;</span>,  <span class="dt">x =</span> <span class="st">&quot;&quot;</span>) <span class="op">+</span></a>
 <a class="sourceLine" id="cb533-8" data-line-number="8"><span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">limits =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">5</span>, <span class="dv">5</span>))</a></code></pre></div>
-<p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-213-1.png" width="50%" style="display: block; margin: auto;" /></p>
+<p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-211-1.png" width="50%" style="display: block; margin: auto;" /></p>
 <p>Remember, we don’t want to overfit our model and make it too accurate! Overfitting of our model to the training dataset can create unrealistic outcomes with unrealistic regularity. Temperatures are variable!</p>
 </div>
 <div id="future-forecasting" class="section level2">
@@ -693,7 +694,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb536-19" data-line-number="19"><span class="st">    </span><span class="kw">geom_smooth</span>(<span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">as.POSIXct</span>(date), <span class="dt">y =</span> .pred), <span class="dt">data =</span> future_predictions_tbl,</a>
 <a class="sourceLine" id="cb536-20" data-line-number="20">                <span class="dt">method =</span> <span class="st">&#39;loess&#39;</span>, <span class="dt">color =</span> <span class="st">&quot;dodgerblue4&quot;</span>) <span class="op">+</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb536-21" data-line-number="21"><span class="st">    </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Willow Creek Air Temperature: 6-Month Forecast&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Air Temperature (F)&quot;</span>, <span class="dt">x =</span> <span class="st">&quot;&quot;</span>)</a></code></pre></div>
-<p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-214-1.png" width="50%" style="display: block; margin: auto;" /></p>
+<p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-212-1.png" width="50%" style="display: block; margin: auto;" /></p>
 <p>Let’s add in some error regions. We’ll calculate the spread of the 95th percentile and the 80th percentile confidence intervals. 95% of the area under a normal curve lies within roughly 1.96 standard deviations of the mean, and due to the central limit theorem, this number is therefore used in the construction of approximate 95% confidence intervals. For 80%, the are under a normal curve lies within roughly 1.28 standard deviations. We’ll use these values to create our prediction error thresholds.</p>
 <div class="sourceCode" id="cb537"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb537-1" data-line-number="1"><span class="co"># Calculate standard deviation of residuals (actual temp subtracted from residuals)</span></a>
 <a class="sourceLine" id="cb537-2" data-line-number="2">test_resid_sd &lt;-<span class="st"> </span><span class="kw">summarize</span>(prediction_tbl, <span class="dt">stdev =</span> <span class="kw">sd</span>(air_temperature<span class="op">-</span><span class="st"> </span>.pred))</a>
@@ -718,7 +719,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb537-21" data-line-number="21"><span class="st">    </span><span class="kw">geom_smooth</span>(<span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">as.POSIXct</span>(date), <span class="dt">y =</span> .pred), <span class="dt">data =</span> future_predictions_tbl,</a>
 <a class="sourceLine" id="cb537-22" data-line-number="22">                <span class="dt">method =</span> <span class="st">&#39;loess&#39;</span>, <span class="dt">color =</span> <span class="st">&quot;white&quot;</span>)<span class="op">+</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb537-23" data-line-number="23"><span class="st">    </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Willow Creek Daily Air Temperature: 6 Month Forecast&quot;</span>,<span class="dt">y =</span> <span class="st">&quot;Air Temperature (F)&quot;</span>, <span class="dt">x =</span> <span class="st">&quot;&quot;</span>)</a></code></pre></div>
-<p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-215-1.png" width="50%" style="display: block; margin: auto;" /></p>
+<p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-213-1.png" width="50%" style="display: block; margin: auto;" /></p>
 <p>Remember, no forecast is ever perfect!</p>
 </div>
 <div id="assignment-10" class="section level2">
