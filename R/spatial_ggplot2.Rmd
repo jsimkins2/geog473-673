@@ -1,7 +1,7 @@
 # Spatial Plots with `ggplot2`
 
 ```{r, echo=FALSE, out.width="60%", fig.align="center"}
-knitr::include_graphics("../documents/images/tasmania.png")  
+knitr::include_graphics("images/tasmania.png")  
 ```
 
 In Geospatial Sciences we're constantly working with spatial datasets that come in many different projections. We've previously shown how R can be used to read in spatial data, reproject spatial data, and resample spatial datasets. Once a spatial dataset can be stored in R as a data frame, we can use `ggplot` to plot it. 

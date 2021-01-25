@@ -1,7 +1,7 @@
 # Remote Data Extraction
 
 ```{r, echo=FALSE, out.width="60%", fig.align="center"}
-knitr::include_graphics("../documents/images/erddap.png")  
+knitr::include_graphics("images/erddap.png")  
 ```
 
 
@@ -31,19 +31,19 @@ Today we'll use UD's Satellite Receiving Station THREDDS (#5 on the list). It's 
 
 Here's what that looks like:
 ```{r beginning data extraction zzzzzzzzzzzzzzzzzzzzzzzzzz, out.width="60%", fig.align="center", echo=FALSE}
-knitr::include_graphics("../documents/images/basin_thredds.png")
+knitr::include_graphics("images/basin_thredds.png")
 ```
 
 If we click on `GOES-R SST`, we see we have some different avenues for data extraction.
 
 ```{r, out.width="60%", fig.align="center", echo=FALSE}
-knitr::include_graphics("../documents/images/basin_goesSST.png")
+knitr::include_graphics("images/basin_goesSST.png")
 ```
 
 OPeNDAP (Open-source Project for a Network Data Access Protocol) is a great way to subselect the data. Opendap offers html files of the data (BAD IDEA, THIS WILL CRASH YOUR BROWSER) or netCDF files of the data (great idea)
 
 ```{r, out.width="60%", fig.align="center", echo=FALSE}
-knitr::include_graphics("../documents/images/basin_opendap.png")
+knitr::include_graphics("images/basin_opendap.png")
 ```
 
 Now you can use this page to download subset datasets, or we can make this really easy and use R to accomplish that task. This is a high temporal resolution dataset, so let's say we want Delaware Bay data from July 14 - July 16, 2019. All we need to make this happen is the url of the opendap page - http://basin.ceoe.udel.edu/thredds/dodsC/GOESJPLSST.nc.html -  and the `ncdf4` package. 
@@ -249,18 +249,18 @@ THREDDS is very fast and great when you're already familiar with a dataset. ERDD
 Let's check out the UDEL Satellite Receiving Station ERDDAP page - here's what it looks like
 
 ```{r, out.width="60%", fig.align="center", echo=FALSE}
-knitr::include_graphics("../documents/images/basin_erddap.png")
+knitr::include_graphics("images/basin_erddap.png")
 ```
 
 If we click on `GOES-R SST`, we see we have some different avenues for data extraction. 
 ```{r, out.width="60%", fig.align="center", echo=FALSE}
-knitr::include_graphics("../documents/images/erddap_datasets.png")
+knitr::include_graphics("images/erddap_datasets.png")
 ```
 
 OPeNDAP (Open-source Project for a Network Data Access Protocol) is a great way to subselect the data. Opendap offers html files of the data (BAD IDEA, THIS WILL CRASH YOUR BROWSER) or netCDF files of the data (great idea)
 
 ```{r, out.width="60%", fig.align="center", echo=FALSE}
-knitr::include_graphics("../documents/images/goesSST_erddap.png")
+knitr::include_graphics("images/goesSST_erddap.png")
 ```
 
 You can use the Data Access Form at the top of the page to select data and download, or we can streamline this and use R to accomplish this easily. In order to do this, we just need the `rerddap` package. 

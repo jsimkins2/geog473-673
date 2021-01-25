@@ -1,7 +1,7 @@
 # Random Forest Modeling
 
 ```{r, echo=FALSE, out.width="80%", fig.align="center"}
-knitr::include_graphics("../documents/images/randomForest.png")  
+knitr::include_graphics("images/randomForest.png")  
 ```
 
 In this tutorial, we'll explore feature engineering, training and test splitting, and model selecting with random forests. We'll introduce the `caret` package, a popular R package with machine learning tools. The dataset we'll be using is called `Bejaia_ForestFires.csv` and contains information regarding forest fire conditions in Algeria. We are going to use machine learning practices to extract trends from the dataset and attempt to predict whether a forest fire will occur on a particular day given environmental conditions. Here are the variables within the dataset:

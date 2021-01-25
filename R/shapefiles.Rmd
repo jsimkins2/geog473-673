@@ -1,7 +1,7 @@
 # Shapefiles 
 
 ```{r, echo=FALSE, out.width="60%", fig.align="center"}
-knitr::include_graphics("../documents/images/denali.png")  
+knitr::include_graphics("images/denali.png")  
 ```
 
 Shapefiles are polygons containing geolocated data. R is great at handling shapefiles and is often faster and more efficient in visualizing these than other programs like ArcGIS. For shapefiles, we will use a combination of new packages. Most notably, we'll be using `rgdal`, a package designed to work with geolocated datasets with any projection, and `sp` (spatial points), the sister package of `sf`. These two packages are useful for reading and curating shapefiles. Data derived from these two packages can also work with mulitiple visualization packages including `ggplot2`. 
@@ -138,13 +138,13 @@ Looks pretty good even though the shapefile isn't quite as sharp as we'd like. B
 
 The last package we'll introduce for visualizing shapefiles is the `mapview` package. This package overlays shapefiles and corresponding data over an HTML based interactive map. This package handles a lot of the dirty work for us. 
 
-```{r, eval=FALSE,out.width="60%", fig.align="center"}
+```{r, out.width="60%", fig.align="center"}
 library(mapview)
 mapview(merged.coast['maxpred'], col.regions = mycolours)
 ```
 
 ```{r, echo=FALSE, out.width="60%", fig.align="center"}
-knitr::include_graphics("../documents/images/delmaxpred.png")  
+knitr::include_graphics("images/delmaxpred.png")  
 ```
 
 
@@ -197,7 +197,7 @@ ggplot(data = states) + geom_sf() + theme_void() +
 
 
 ```{r, echo=FALSE, out.width="60%", fig.align="center"}
-knitr::include_graphics("../documents/images/denali_out.png")  
+knitr::include_graphics("images/denali_out.png")  
 ```
 
 

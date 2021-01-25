@@ -11,7 +11,7 @@ Let's explain machine learning with an example regarding mathematics in school. 
 ## Machine Learning Terms
 
 ```{r, echo=FALSE, out.width="80%", fig.align="center"}
-knitr::include_graphics("../documents/images/learning_vs_intelligence.jpeg")  
+knitr::include_graphics("images/learning_vs_intelligence.jpeg")  
 ```
 
 Machine Learning is a subject within a broader knowledge category known as artificial intelligence. Machine learning has 3 components associated with it - data, features, and algorithms. These components are present within every sub-category or technique of Machine Learning. Let's start from the top and describe some important terms as simply as possible. 
@@ -76,7 +76,7 @@ Feature Engineering
 ## Classical Machine Learning
 
 ```{r, echo=FALSE, out.width="60%", fig.align="center"}
-knitr::include_graphics("../documents/images/classical.jpg")  
+knitr::include_graphics("images/classical.jpg")  
 ```
 
 Classical machine learning has actually been around since the 1950s. These machine learning models were built on algorithms that solved formal math tasks — searching for patterns in numbers, evaluating the proximity of data points, and calculating vectors' directions. These same algorithms are used today by social media companies (Instagram), e-commerce companies (Amazon), and credit card companies (Chase). Ever wonder how targeted ads on Instagram, Facebook, or Google work? This is classical machine learning in action. Classical machine learning is often divided into two categories – Supervised and Unsupervised Learning.
@@ -88,7 +88,7 @@ In supervised learning, we have clear training data that serves as the "Supervis
 #### Classification
 
 ```{r, echo=FALSE, out.width="40%", fig.align="center"}
-knitr::include_graphics("../documents/images/classification.jpg")  
+knitr::include_graphics("images/classification.jpg")  
 ```
 
 Categorizes objects based on one of the attributes beforehand. For example, separate music by genre, highlight video by sport, student by grade, etc. 
@@ -98,7 +98,7 @@ We've all seen same-day loan services through commercials or billboards before. 
 #### Regression
 
 ```{r, echo=FALSE, out.width="80%", fig.align="center"}
-knitr::include_graphics("../documents/images/regression.jpg")  
+knitr::include_graphics("images/regression.jpg")  
 ```
 
 Regression is basically classification where we forecast a number instead of category. Examples are temperature by time of day, traffic by time of the day, housing prices by year, etc. Regression is perfect when something depends on time. In the image above we draw a line through some data points - yes, this is machine learning.
@@ -110,7 +110,7 @@ Unsupervised learning is a technique that was created out of bad data. Labeled d
 #### Clustering
 
 ```{r, echo=FALSE, out.width="40%", fig.align="center"}
-knitr::include_graphics("../documents/images/clustering.jpg")  
+knitr::include_graphics("images/clustering.jpg")  
 ```
 
 Divides objects based on unknown features and let the machine choose the best way. Clustering is done with creating a gridded dataset from a point dataset. For example, with weather modeling, clustering is a step that is used to spatially interpolate points to a structured grid. Popular clustering algorithms include K-means clustering, mean-shift, and DBSCAN. 
@@ -119,7 +119,7 @@ Divides objects based on unknown features and let the machine choose the best wa
 #### Dimension Reduction
 
 ```{r, echo=FALSE, out.width="40%", fig.align="center"}
-knitr::include_graphics("../documents/images/reduction.jpg")  
+knitr::include_graphics("images/reduction.jpg")  
 ```
 
 Assembles specific features into more high-level ones. For example, we can merge all dogs with triangle ears, long noses, and big tails to a nice abstraction — "shepherd". Yes, we're losing some information about the specific shepherds, but the new abstraction is much more useful for naming and explaining purposes. As a bonus, such "abstracted" models learn faster, overfit less and use a lower number of features. Principal Component Analysis (PCA) and Singular Value Decomposition (SVD) are often used in Earth Science machine learning applications.
@@ -139,7 +139,7 @@ Connections are like channels between neurons. They connect outputs of one neuro
 These weights tell the neuron to respond more to one input and less to another. Weights are adjusted when training — that's how the network learns. Basically, that's all there is to it.
 
 ```{r, echo=FALSE, out.width="60%", fig.align="center"}
-knitr::include_graphics("../documents/images/neural.jpg")  
+knitr::include_graphics("images/neural.jpg")  
 ```
 
 ### Reinforcement Learning

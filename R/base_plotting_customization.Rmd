@@ -1,7 +1,7 @@
 # Plot Customization
 
 ```{r, echo=FALSE, out.width="70%", fig.align="center"}
-knitr::include_graphics("../documents/images/tree_basic_plots.png")  
+knitr::include_graphics("images/tree_basic_plots.png")  
 ```
 
 R has a plethora of plotting packages, tools, and techniques. Generally speaking, base R graphs aren't as popular amongst advanced R users as others (e.g. `ggplot`). That being said, R base graphing offers a variety of styling techniques and unique customization. The base R plotting methods will offer a solid foundation before we learn more about the aforementioned `ggplot`. 

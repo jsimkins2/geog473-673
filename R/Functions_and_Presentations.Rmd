@@ -117,19 +117,19 @@ Code is often messy and difficult to explain. One R feature that can make explai
 - Open a new RMarkdown document - `File -> New File -> R Markdown...`
 
 ```{r, echo=FALSE, out.width="60%", fig.align="center"}
-knitr::include_graphics("../documents/images/rmd1.png")
+knitr::include_graphics("images/rmd1.png")
 ```
 
 - Enter in details
 
 ```{r, echo=FALSE, out.width="60%", fig.align="center"}
-knitr::include_graphics("../documents/images/rmd2.png")
+knitr::include_graphics("images/rmd2.png")
 ```
 
 - The initial RMarkdown should look like this
 
 ```{r, echo=FALSE, out.width="60%", fig.align="center"}
-knitr::include_graphics("../documents/images/rmd3.png")
+knitr::include_graphics("images/rmd3.png")
 ```
 
 - We tell RMarkdown we want to write and run R code with 3 backticks and `{r}` -  **\```{r}**
@@ -151,7 +151,7 @@ seq_squared = function(arg1, arg2){
 In our example here, R code is keyed in the R Markdown document like so. 
 
 ```{r, echo=FALSE, out.width="60%", fig.align="center"}
-knitr::include_graphics("../documents/images/rmd4.png")
+knitr::include_graphics("images/rmd4.png")
 ```
 
 Notice the `cars` inside of `{r cars}`. This names the coding section but has no impact on the code itself. We do not need to name each coding section - `{r}` alone will suffice. 
@@ -159,7 +159,7 @@ Notice the `cars` inside of `{r cars}`. This names the coding section but has no
 Anything outside of the R code sections will show up as plain text. When we are finished with our R Markdown document, we need to `Knit` the document. See the blue yarn ball at the top of your script? This will create a new PDF file. 
 
 ```{r, echo=FALSE, out.width="60%", fig.align="center"}
-knitr::include_graphics("../documents/images/rmd5.png")
+knitr::include_graphics("images/rmd5.png")
 ```
 
 Et Voila! A professional looking RMarkdown PDF that makes your R code easier to explain and present. [Here's what the output above should look like](https://github.com/jsimkins2/geog473-673/tree/master/Advanced_R/rmdtest.pdf)

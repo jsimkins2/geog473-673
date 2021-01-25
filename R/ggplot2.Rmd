@@ -1,7 +1,7 @@
 # Plotting with `ggplot2`
 
 ```{r, echo=FALSE, out.width="60%", fig.align="center"}
-knitr::include_graphics("../documents/images/ggplot2.jpeg")  
+knitr::include_graphics("images/ggplot2.jpeg")  
 ```
 
 

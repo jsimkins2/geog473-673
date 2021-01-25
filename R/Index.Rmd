@@ -12,7 +12,7 @@ description: "Advanced R"
 # Preface
 
 ```{r, echo=FALSE, out.width="80%", fig.align="center"}
-knitr::include_graphics("../documents/images/ireland_sst.png")  
+knitr::include_graphics("images/ireland_sst.png")
 ```
 
 
@@ -37,7 +37,7 @@ This course is split into 2 phases but this textbook will be the only material f
 | Week | Topic |
 |:----------|:----------|
 |1 | [Customizing Plots](https://jsimkins2.github.io/geog473-673/plot-customization.html)|
-|2 | [Scientific R Scripts](https://jsimkins2.github.io/geog473-673/basic-Statistics.html)| 
+|2 | [Basic Statistics](https://jsimkins2.github.io/geog473-673/basic-statistics.html)| 
 |3 | [Plotting with `ggplot2`](https://jsimkins2.github.io/geog473-673/plotting-with-ggplot2.html)| 
 |4 | [Spatial Plots with `ggplot2`](https://jsimkins2.github.io/geog473-673/spatial-plots-with-ggplot2.html)| |
 |5 | [Shapefiles](https://jsimkins2.github.io/geog473-673/shapefiles.html)|
@@ -49,9 +49,9 @@ This course is split into 2 phases but this textbook will be the only material f
 ## Phase 2: Spring GEOG473-673 1-Credit Agenda
 | Week | Topic |
 |:----------|:----------|
-|1 | [Machine Learning Intro](https://jsimkins2.github.io/geog473-673/machine-learning-with-R.html)|
-|2 | [Time Series Forecasting](https://jsimkins2.github.io/geog473-673/time-series-Forecasting.html)|
-|3 | [Time Series Forecasting](https://jsimkins2.github.io/geog473-673/time-series-Forecasting.html)|
-|4 | [Random Forest Modeling](https://jsimkins2.github.io/geog473-673/random-forest-Modeling.html)|
-|5 | [Random Forest Modeling](https://jsimkins2.github.io/geog473-673/random-forest-Modeling.html)|
+|1 | [Machine Learning Intro](https://jsimkins2.github.io/geog473-673/machine-learning-with-r.html)|
+|2 | [Time Series Forecasting](https://jsimkins2.github.io/geog473-673/time-series-forecasting.html)|
+|3 | [Time Series Forecasting](https://jsimkins2.github.io/geog473-673/time-series-forecasting.html)|
+|4 | [Random Forest Modeling](https://jsimkins2.github.io/geog473-673/random-forest-modeling.html)|
+|5 | [Random Forest Modeling](https://jsimkins2.github.io/geog473-673/random-forest-modeling.html)|
 

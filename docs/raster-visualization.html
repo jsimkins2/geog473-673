@@ -50,6 +50,26 @@
 
 
 
+<script src="libs/htmlwidgets-1.5.3/htmlwidgets.js"></script>
+<link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-1.3.1/leaflet.js"></script>
+<link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
+<script src="libs/proj4-2.6.2/proj4.min.js"></script>
+<script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+<link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-binding-2.0.4.1/leaflet.js"></script>
+<script src="libs/leaflet-providers-1.9.0/leaflet-providers_1.9.0.js"></script>
+<script src="libs/leaflet-providers-plugin-2.0.4.1/leaflet-providers-plugin.js"></script>
+<script src="libs/FlatGeoBuf-3.3.3/fgb.js"></script>
+<script src="libs/FlatGeoBuf-3.3.3/flatgeobuf-geojson.min.js"></script>
+<script src="libs/chromajs-2.1.0/chroma.min.js"></script>
+<link id="merged_coast[maxpred]-1-attachment" rel="attachment" href="libs/merged_coast[maxpred]-0.0.1/merged_coast[maxpred]_layer.fgb"/>
+<link href="libs/HomeButton-0.0.1/home-button.css" rel="stylesheet" />
+<script src="libs/HomeButton-0.0.1/home-button.js"></script>
+<script src="libs/HomeButton-0.0.1/easy-button-src.min.js"></script>
+<script src="libs/clipboard-0.0.1/setClipboardText.js"></script>
+<link href="libs/mapviewCSS-0.0.1/mapview-popup.css" rel="stylesheet" />
+<link href="libs/mapviewCSS-0.0.1/mapview.css" rel="stylesheet" />
 
 
 <style type="text/css">
@@ -421,26 +441,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb191-10" data-line-number="10"></a>
 <a class="sourceLine" id="cb191-11" data-line-number="11"><span class="co"># plot using quick &#39;image&#39; function from raster</span></a>
 <a class="sourceLine" id="cb191-12" data-line-number="12"><span class="kw">image</span>(sstRast)</a></code></pre></div>
-<p><img src="Introduction-to-R_files/figure-html/raster%20section-1.png" width="672" /></p>
+<p><img src="R_Geospatial_Sciences_files/figure-html/raster%20section-1.png" width="672" /></p>
 <div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb192-1" data-line-number="1"><span class="co"># netcdf stores data backwards, so to convert it to raster we need to transpose it</span></a>
 <a class="sourceLine" id="cb192-2" data-line-number="2">sstRast &lt;-<span class="st"> </span><span class="kw">t</span>(sstRast)</a>
 <a class="sourceLine" id="cb192-3" data-line-number="3"></a>
 <a class="sourceLine" id="cb192-4" data-line-number="4"><span class="co"># plot using quick &#39;image&#39; function from raster</span></a>
 <a class="sourceLine" id="cb192-5" data-line-number="5"><span class="kw">image</span>(sstRast)</a></code></pre></div>
-<p><img src="Introduction-to-R_files/figure-html/raster%20section-2.png" width="672" /></p>
+<p><img src="R_Geospatial_Sciences_files/figure-html/raster%20section-2.png" width="672" /></p>
 <div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb193-1" data-line-number="1"><span class="co"># now we see that the data is just upside down, so we use the flip() function</span></a>
 <a class="sourceLine" id="cb193-2" data-line-number="2">sstRast &lt;-<span class="st"> </span><span class="kw">flip</span>(sstRast, <span class="dv">2</span>)</a>
 <a class="sourceLine" id="cb193-3" data-line-number="3"></a>
 <a class="sourceLine" id="cb193-4" data-line-number="4"><span class="co"># plot using quick &#39;image&#39; function from raster</span></a>
 <a class="sourceLine" id="cb193-5" data-line-number="5"><span class="kw">image</span>(sstRast)</a></code></pre></div>
-<p><img src="Introduction-to-R_files/figure-html/raster%20section-3.png" width="672" /></p>
+<p><img src="R_Geospatial_Sciences_files/figure-html/raster%20section-3.png" width="672" /></p>
 <div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb194-1" data-line-number="1">sstRast</a></code></pre></div>
 <pre><code>## class      : RasterLayer 
 ## dimensions : 1989, 2778, 5525442  (nrow, ncol, ncell)
 ## resolution : 0.0003599712, 0.0005027652  (x, y)
 ## extent     : 0, 1, 0, 1  (xmin, xmax, ymin, ymax)
 ## crs        : NA 
-## source     : /private/var/folders/6m/1b7gn_m93g9380p1jxvm2_700000gr/T/RtmpCypCGa/raster/r_tmp_2021-01-25_120114_31322_26470.grd 
+## source     : memory
 ## names      : layer 
 ## values     : 5.344696, 34.9397  (min, max)</code></pre>
 <div class="sourceCode" id="cb196"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb196-1" data-line-number="1"><span class="co"># notice that the extent and crs information are wrong/not included so let&#39;s fix this</span></a>
@@ -458,14 +478,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## resolution : 0.01799352, 0.0180909  (x, y)
 ## extent     : -99.99015, -50.00415, 16.00283, 51.98563  (xmin, xmax, ymin, ymax)
 ## crs        : +proj=longlat +datum=WGS84 +no_defs 
-## source     : /private/var/folders/6m/1b7gn_m93g9380p1jxvm2_700000gr/T/RtmpCypCGa/raster/r_tmp_2021-01-25_120114_31322_26470.grd 
+## source     : memory
 ## names      : layer 
 ## values     : 5.344696, 34.9397  (min, max)</code></pre>
 <div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb198-1" data-line-number="1"><span class="kw">image</span>(sstRast)</a></code></pre></div>
-<p><img src="Introduction-to-R_files/figure-html/raster%20section-4.png" width="672" /></p>
+<p><img src="R_Geospatial_Sciences_files/figure-html/raster%20section-4.png" width="672" /></p>
 <div class="sourceCode" id="cb199"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb199-1" data-line-number="1"><span class="co"># levelplot the sstRast - levelplot is from rasterVis package</span></a>
 <a class="sourceLine" id="cb199-2" data-line-number="2"><span class="kw">levelplot</span>(sstRast)</a></code></pre></div>
-<p><img src="Introduction-to-R_files/figure-html/raster%20section-5.png" width="672" /></p>
+<p><img src="R_Geospatial_Sciences_files/figure-html/raster%20section-5.png" width="672" /></p>
 <div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb200-1" data-line-number="1"><span class="co"># USA shapefiles via the getData function</span></a>
 <a class="sourceLine" id="cb200-2" data-line-number="2">usa &lt;-<span class="st"> </span><span class="kw">getData</span>(<span class="st">&#39;GADM&#39;</span>, <span class="dt">country =</span> <span class="st">&#39;USA&#39;</span>, <span class="dt">level =</span> <span class="dv">1</span>)</a>
 <a class="sourceLine" id="cb200-3" data-line-number="3"></a>
@@ -473,20 +493,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb200-5" data-line-number="5">plt &lt;-<span class="st"> </span><span class="kw">levelplot</span>(sstRast, <span class="dt">margin=</span>F, <span class="dt">par.settings=</span>BuRdTheme,</a>
 <a class="sourceLine" id="cb200-6" data-line-number="6">       <span class="dt">main=</span><span class="st">&quot;GOES-R Rolling SST 08/14&quot;</span>)</a>
 <a class="sourceLine" id="cb200-7" data-line-number="7">plt <span class="op">+</span><span class="st"> </span><span class="kw">layer</span>(<span class="kw">sp.polygons</span>(usa, <span class="dt">col=</span><span class="st">&#39;black&#39;</span>,<span class="dt">fill=</span><span class="st">&#39;grey&#39;</span>, <span class="dt">lwd=</span><span class="fl">0.4</span>))</a></code></pre></div>
-<p><img src="Introduction-to-R_files/figure-html/raster%20section-6.png" width="672" /></p>
+<p><img src="R_Geospatial_Sciences_files/figure-html/raster%20section-6.png" width="672" /></p>
 <div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb201-1" data-line-number="1"><span class="co"># Now let&#39;s do the same with geotiff</span></a>
 <a class="sourceLine" id="cb201-2" data-line-number="2">tifFile =<span class="st"> &quot;../datasets/goesSST.tif&quot;</span></a>
 <a class="sourceLine" id="cb201-3" data-line-number="3">sstRast =<span class="st"> </span><span class="kw">raster</span>(tifFile)</a>
 <a class="sourceLine" id="cb201-4" data-line-number="4"></a>
 <a class="sourceLine" id="cb201-5" data-line-number="5"><span class="co"># Quick image using raster&#39;s image plot generator function</span></a>
 <a class="sourceLine" id="cb201-6" data-line-number="6"><span class="kw">image</span>(sstRast)</a></code></pre></div>
-<p><img src="Introduction-to-R_files/figure-html/geotiff%20section-1.png" width="672" /></p>
+<p><img src="R_Geospatial_Sciences_files/figure-html/geotiff%20section-1.png" width="672" /></p>
 <div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb202-1" data-line-number="1"><span class="co"># Now let&#39;s load a base dataset of world maps that R already has stored</span></a>
 <a class="sourceLine" id="cb202-2" data-line-number="2"><span class="kw">data</span>(wrld_simpl)</a>
 <a class="sourceLine" id="cb202-3" data-line-number="3">plt &lt;-<span class="st"> </span><span class="kw">levelplot</span>(sstRast, <span class="dt">margin=</span>F, <span class="dt">par.settings=</span>BuRdTheme,</a>
 <a class="sourceLine" id="cb202-4" data-line-number="4">       <span class="dt">main=</span><span class="st">&quot;GOES-R Rolling SST 08/14&quot;</span>)</a>
 <a class="sourceLine" id="cb202-5" data-line-number="5">plt <span class="op">+</span><span class="st"> </span><span class="kw">layer</span>(<span class="kw">sp.lines</span>(wrld_simpl, <span class="dt">col=</span><span class="st">&#39;black&#39;</span>, <span class="dt">lwd=</span><span class="fl">0.4</span>))</a></code></pre></div>
-<p><img src="Introduction-to-R_files/figure-html/geotiff%20section-2.png" width="672" /></p>
+<p><img src="R_Geospatial_Sciences_files/figure-html/geotiff%20section-2.png" width="672" /></p>
 <div class="sourceCode" id="cb203"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb203-1" data-line-number="1"><span class="co"># Let&#39;s do the same plot but with a custom shapefile</span></a>
 <a class="sourceLine" id="cb203-2" data-line-number="2"><span class="co"># note that even though we only point the function to the &#39;.shp&#39; file, the &#39;.shx&#39; and &#39;.dbf&#39; need to be in the same folder for this to work. </span></a>
 <a class="sourceLine" id="cb203-3" data-line-number="3">world.shp &lt;-<span class="st"> </span>rgdal<span class="op">::</span><span class="kw">readOGR</span>(<span class="st">&quot;../datasets/world_shpfiles/world.shp&quot;</span>)</a></code></pre></div>
@@ -500,7 +520,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb205-4" data-line-number="4">plt &lt;-<span class="st"> </span><span class="kw">levelplot</span>(sstRast, <span class="dt">margin=</span>F, <span class="dt">par.settings=</span>mapTheme,</a>
 <a class="sourceLine" id="cb205-5" data-line-number="5">       <span class="dt">main=</span><span class="st">&quot;GOES-R Rolling SST 08/14&quot;</span>)</a>
 <a class="sourceLine" id="cb205-6" data-line-number="6">plt <span class="op">+</span><span class="st"> </span><span class="kw">layer</span>(<span class="kw">sp.lines</span>(world.shp, <span class="dt">col=</span><span class="st">&#39;gray&#39;</span>, <span class="dt">lwd=</span><span class="fl">0.4</span>))</a></code></pre></div>
-<p><img src="Introduction-to-R_files/figure-html/geotiff%20section-3.png" width="672" /></p>
+<p><img src="R_Geospatial_Sciences_files/figure-html/geotiff%20section-3.png" width="672" /></p>
 </div>
 <div id="assignment-1" class="section level2">
 <h2><span class="header-section-number">8.3</span> Assignment</h2>
@@ -514,7 +534,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## Source: &quot;/Users/james/Documents/Github/geog473-673/datasets/world_shpfiles/world.shp&quot;, layer: &quot;world&quot;
 ## with 252 features
 ## It has 2 fields</code></pre>
-<p><img src="Introduction-to-R_files/figure-html/end%20of%20week%2044444444444444444444-1.png" width="1536" /></p>
+<p><img src="R_Geospatial_Sciences_files/figure-html/end%20of%20week%2044444444444444444444-1.png" width="1536" /></p>
 
 </div>
 </div>

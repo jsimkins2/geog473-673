@@ -1,7 +1,7 @@
 # Time Series Forecasting
 
 ```{r, echo=FALSE, out.width="70%", fig.align="center"}
-knitr::include_graphics("../documents/images/temp_forecast.png")  
+knitr::include_graphics("images/temp_forecast.png")  
 ```
 
 Time series forecasting is widely used in sciences with the intended purpose of predicting the future based on present data. This type of machine learning technique has been used for weather forecasting, glacier melting outlooks, and carbon dioxide concentration predictions. In this tutorial, we will use the Willow Creek Weather Datasets and build an Air Temperature Forecast using Linear Regression Modeling. The goal of this exercise is to build a linear regression model using existing training data to accurately predict existing testing data. This is an isolated tutorial that **does not** account for other variables (precipitation, shortwave radiation, etc.) that may have an influence on Air Temperature. While it may not serve as the best predictive model for air temperature, it serves as a first step in linear regression modeling and machine learning. 
