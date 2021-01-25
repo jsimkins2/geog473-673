@@ -7,7 +7,7 @@ bookdown::gitbook:
       before: |
         <li><a href="./">R for Geospatial Sciences</a></li>
       after: |
-        <li><a href="https://github.com/rstudio/bookdown" target="blank">James Simkins</a></li>
+        <li><a href="https://github.com/jsimkins2" target="blank">James Simkins</a></li>
 bookdown::pdf_book:
   includes:
     in_header: preamble.tex
