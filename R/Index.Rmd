@@ -15,13 +15,10 @@ description: "Advanced R"
 knitr::include_graphics("images/ireland_sst.png")
 ```
 
+This textbook provides R programming tutorials for geospatial sciences. These were built for University of Delaware Department of Geography and Spatial Sciences 473/673 course. This is a complete manual covering ~ 4 credits of material designed to take a student with little to no R coding experience to proficient in R for geospatial sciences. Data ingest, quality control, reprojection, publication quality visualization, and machine learning techniques are all covered in this book with a focus on spatial datasets. 
 
-- Phase 1: Advanced R for Geospatial Sciences - 02/15/2021 - 04/16/2021 – 2cr
+The objective of the Spring installment of GEOG 473/673 is to expand on the topics covered in the Fall version of GEOG 473/673 (Open-source Environmental Computing, sections 2-9 of this book). The course will be split into 2 phases. The first phase is a 2-credit course focused on using advanced tools within the R programming language (sections 10-16 of this book). The goal of this phase is for students to gain practical experience with challenging R topics that can be used for generating publication quality material. The second phase is a 1-credit course focused on introducing machine learning practices and implementing these via R (sections 17-19 of this book). Machine Learning is a growing practice in data science and can be useful for geospatial sciences. Students will apply R programming knowledge and gain confidence in machine learning techniques and application with R. This challenging, fast-paced course is intended for students that already have programming experience with R or Python. If you're coming into this course without any R experience, you are encouraged to visit sections 2-9 of this book for introductory guidance with R. 
 
-- Phase 2: Machine Learning with R – 04/19/2021 to 05/18/2021 – 1cr
-
-
-The objective of the spring installment of GEOG 473/673 is to expand on the topics covered in the fall version of GEOG 473/673 – open source environmental computing. The course will be split into 2 phases. The first phase is a 2-credit course focused on using advanced tools within the R programming language. The goal of this phase is for students to gain practical experience with challenging R topics that can be used for generating publication quality material. The second phase is a 1-credit course focused on introducing machine learning practices and implementing these via R. Machine Learning is a growing practice in data science and can be useful for geospatial sciences. Students will apply R programming knowledge and gain confidence in machine learning techniques and application with R. This challenging, fast-paced course is intended for students that already have programming experience with R or Python.
 
 ## Course Github
 
@@ -31,8 +28,8 @@ https://github.com/jsimkins2/geog473-673
 
 https://github.com/jsimkins2/geog473-673/blob/master/documents/spring_geog473_673_syllabus.pdf
 
-## Phase 1: Spring GEOG473-673 2-Credit Agenda
-This course is split into 2 phases but this textbook will be the only material for both courses. YouTube recordings will accompany all tutorials. 
+## Phase 1
+**Advanced R for Geospatial Sciences - 02/15/2021 - 04/16/2021 – 2cr**
 
 | Week | Topic |
 |:----------|:----------|
@@ -47,6 +44,8 @@ This course is split into 2 phases but this textbook will be the only material f
 |9 | [Project](https://github.com/jsimkins2/geog473-673/blob/master/documents/AdvancedR_finalproject.pdf)|
 
 ## Phase 2: Spring GEOG473-673 1-Credit Agenda
+**Machine Learning with R – 04/19/2021 to 05/18/2021 – 1cr**
+
 | Week | Topic |
 |:----------|:----------|
 |1 | [Machine Learning Intro](https://jsimkins2.github.io/geog473-673/machine-learning-with-r.html)|

@@ -155,7 +155,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1" data-path="preface.html"><a href="preface.html"><i class="fa fa-check"></i><b>1</b> Preface</a><ul>
 <li class="chapter" data-level="1.1" data-path="preface.html"><a href="preface.html#course-github"><i class="fa fa-check"></i><b>1.1</b> Course Github</a></li>
 <li class="chapter" data-level="1.2" data-path="preface.html"><a href="preface.html#syllabus"><i class="fa fa-check"></i><b>1.2</b> Syllabus</a></li>
-<li class="chapter" data-level="1.3" data-path="preface.html"><a href="preface.html#phase-1-spring-geog473-673-2-credit-agenda"><i class="fa fa-check"></i><b>1.3</b> Phase 1: Spring GEOG473-673 2-Credit Agenda</a></li>
+<li class="chapter" data-level="1.3" data-path="preface.html"><a href="preface.html#phase-1"><i class="fa fa-check"></i><b>1.3</b> Phase 1</a></li>
 <li class="chapter" data-level="1.4" data-path="preface.html"><a href="preface.html#phase-2-spring-geog473-673-1-credit-agenda"><i class="fa fa-check"></i><b>1.4</b> Phase 2: Spring GEOG473-673 1-Credit Agenda</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html"><i class="fa fa-check"></i><b>2</b> Getting Started with R</a><ul>
@@ -415,7 +415,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##         longitude  Size:2500
 ##             standard_name: longitude
 ##             units: degrees_east
-##         time  Size:26400
+##         time  Size:26401
 ##             standard_name: time
 ##             long_name: EPOCH Time
 ##             units: seconds since 1970-01-01T00:00:00Z
@@ -443,16 +443,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Seconds since 1970-01-01 is referred to as <strong>EPOCH time</strong>. Basically, this datetime is considered the inception of the internet. Computers are very good at storing information in this format and this is why we use this. Let’s take out the last value -</p>
 <div class="sourceCode" id="cb435"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb435-1" data-line-number="1">lastVal =<span class="st"> </span><span class="kw">length</span>(goes.nc<span class="op">$</span>dim<span class="op">$</span>time<span class="op">$</span>vals)</a>
 <a class="sourceLine" id="cb435-2" data-line-number="2">lastVal</a></code></pre></div>
-<pre><code>## [1] 26400</code></pre>
+<pre><code>## [1] 26401</code></pre>
 <div class="sourceCode" id="cb437"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb437-1" data-line-number="1">epoch_val =<span class="st"> </span>goes.nc<span class="op">$</span>dim<span class="op">$</span>time<span class="op">$</span>vals[lastVal]</a></code></pre></div>
 <p>There you go, that’s an EPOCH time value. Let’s convert it to a human timestamp…</p>
 <div class="sourceCode" id="cb438"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb438-1" data-line-number="1">human_time =<span class="st"> </span><span class="kw">as.POSIXct</span>(epoch_val, <span class="dt">origin=</span><span class="st">&quot;1970-01-01&quot;</span>)</a>
 <a class="sourceLine" id="cb438-2" data-line-number="2">human_time</a></code></pre></div>
-<pre><code>## [1] &quot;2021-01-25 15:00:00 EST&quot;</code></pre>
+<pre><code>## [1] &quot;2021-01-25 16:00:00 EST&quot;</code></pre>
 <p><code>as.POSIXct</code> is a datetime package in R. It is a gold standard and you’ll see it as you gain more experience in playing with datetime conversions. You can also use <code>anytime</code> package.</p>
 <div class="sourceCode" id="cb440"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb440-1" data-line-number="1"><span class="kw">library</span>(anytime)</a>
 <a class="sourceLine" id="cb440-2" data-line-number="2"><span class="kw">anytime</span>(epoch_val)</a></code></pre></div>
-<pre><code>## [1] &quot;2021-01-25 15:00:00 EST&quot;</code></pre>
+<pre><code>## [1] &quot;2021-01-25 16:00:00 EST&quot;</code></pre>
 <p>At this point, all we have to do is convert our human dates to EPOCH so we can extract the data. In order to do this all we need to do is convert a datetime object to a numeric. R handles it for us…</p>
 <div class="sourceCode" id="cb442"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb442-1" data-line-number="1">start_time =<span class="st"> &quot;2019-07-14&quot;</span> <span class="co"># year dash month dash day</span></a>
 <a class="sourceLine" id="cb442-2" data-line-number="2">epoch_start_time =<span class="st"> </span><span class="kw">as.numeric</span>(<span class="kw">as.POSIXct</span>(start_time, <span class="dt">format=</span><span class="st">&quot;%Y-%m-%d&quot;</span>)) <span class="co"># %Y-%m-%d is telling the computer the format of our datestring is year dash month dash day</span></a>
@@ -695,7 +695,7 @@ A list of some of the public available <span style="color:red">ERDDAP</span> ser
 ##          Range: -9.37, 6.13 
 ##          Units: m 
 ##      time: 
-##          Range: 4910400.0, 1.6116012E9 
+##          Range: 4910400.0, 1.6116021E9 
 ##          Units: seconds since 1970-01-01T00:00:00Z 
 ##      vis: 
 ##          Range: 0.0, 66.7 
