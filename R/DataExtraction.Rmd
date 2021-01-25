@@ -1,4 +1,4 @@
-# THREDDS and ERDDAP
+# Remote Data Extraction
 
 ```{r, echo=FALSE, out.width="60%", fig.align="center"}
 knitr::include_graphics("../documents/images/erddap.png")  
@@ -15,7 +15,7 @@ While Github is excellent for code, it's not a cloud service for datasets. THRED
 
 THREDDS (Thematic Realtime Environmental Distributed Data Services) is an efficient way to extract specific areas or time periods of a dataset. For example, if you're studying 2000-2020 water temperatures of the Delaware Bay, you don't necessarily want a water temperature dataset covering the Atlantic Ocean from 1960-2020. It's a waste of time to have to download, store, and process all of that data just to sub-select the Delaware Bay from 2000-2020. THREDDS makes it possible to download your desired subset from the get-go, saving you time and hard-drive space. 
 
-Here are some NASA/NOAA/UDEL THREDDS servers:
+Here are some NASA/NOAA/UD THREDDS servers:
 
 1) https://thredds.jpl.nasa.gov/thredds/catalog.html - NASA Jet Propulsion Labratory
 2) https://thredds.daac.ornl.gov/thredds/catalog.html - Oak Ridge National Lab 
@@ -26,7 +26,7 @@ Here are some NASA/NOAA/UDEL THREDDS servers:
 
 If you have a dataset or type of data you're interested in, google search it with **thredds** or **thredds server** after it.
 
-Today we'll use UDEL's Satellite Receiving Station THREDDS (#5 on the list). It's located at this URL - http://basin.ceoe.udel.edu/thredds/catalog.html 
+Today we'll use UD's Satellite Receiving Station THREDDS (#5 on the list). It's located at this URL - http://basin.ceoe.udel.edu/thredds/catalog.html 
 
 
 Here's what that looks like:
@@ -117,7 +117,7 @@ goes.nc$dim$time$vals[index_start_time]
 epoch_start_time
 ```
 
-Alright, we have our start time index! What about the latitudes and longitudes? We'll need to find the index of the lat/lon grid we want. Delaware bay is approximately between -75.8 W, -74.7 W, 38.3 N, and 40 N. 
+Alright, we have our start time index! What about the latitudes and longitudes? We'll need to find the index of the lat/lon grid we want. Delaware bay is approximately between -77W, -73W, 36N, and 42N. 
 
 ```{r}
 # print out a few longitude values - notice that the entire dataset is on this grid right here. 
@@ -127,27 +127,27 @@ head(goes.nc$dim$lon$vals)
 goes.nc$dim$lon$vals[100]
 ```
 
-The 100th lon value is -98.20815. Aka, a lon index of 100 returns -98.20815.
+The 100th `lon` value is `-98.20815`. Aka, a `lon` index of 100 returns `-98.20815`.
 
 
 So...which value is the minimum of the absolute value of the array of values minus the specific value? Let's plug it in...
 
 
 ```{r}
-west_lon = -76.8
+west_lon = -77
 index_west_lon = which.min(abs(goes.nc$dim$longitude$vals - west_lon))
 index_west_lon
 goes.nc$dim$longitude$vals[index_west_lon]
 ```
 
-So our desired `west_lon` is `-75.8`, and the closest value within our longitude array is `-75.79815`. Not bad...let's run the rest. 
+So our desired `west_lon` is `-77`, and the closest value within our longitude array is `-76.99001`. Not bad...let's run the rest. 
 ```{r}
-east_lon = -73.7
+east_lon = -73
 index_east_lon = which.min(abs(goes.nc$dim$longitude$vals - east_lon))
 
-north_lat = 41
+north_lat = 42
 index_north_lat = which.min(abs(goes.nc$dim$latitude$vals - north_lat))
-south_lat = 37.3
+south_lat = 36
 index_south_lat = which.min(abs(goes.nc$dim$latitude$vals - south_lat))
 ```
 
@@ -184,15 +184,15 @@ index_south_lat
 index_north_lat
 ```
 
-And here is what the `count` argument is looking for...
+**Wait just a second**...the southern index is *greater than* the northern index. Typically, values are stored from least to greatest. However, we've seen before that netCDF files can be stored upside-down before. So, instead of counting from our southern latitude to our northern latitude, **we need to count from our northern latitude to our southern latitude**. Here is what the `count` argument is looking for...
 
 `A vector of integers indicating the count of values to read along each dimension (order is X-Y-Z-T). The length of this vector must equal the number of dimensions the variable has. If not specified and the variable does NOT have an unlimited dimension, the entire variable is read. As a special case, the value "-1" indicates that all entries along that dimension should be read.`
 
-We already have our `count` values in place..let's plug them in and run - note this will take a few seconds to run and even longer if you have poor internet connection. This is data being extracted through the internet in real time. 
+We tell `ncvar_get()` where to start it's longitude, latitude, time and *count* until we have our lat/lon box and time slices selected. We already have our `count` values so now we plug them in and run - note this will take a few seconds to run and even longer if you have poor internet connection. This is data being extracted through the internet in real time. 
 
 ```{r}
 # cool, let's grab sea_surface_temperature for Delaware Bay
-sst.c <- ncvar_get(goes.nc, "sea_surface_temperature",start = c(index_west_lon,index_south_lat,index_start_time), 
+sst.c <- ncvar_get(goes.nc, "sea_surface_temperature",start = c(index_west_lon,index_north_lat,index_start_time), 
                    count = c(lon_count,lat_count,time_count))
 dim(sst.c)
 ```
@@ -213,24 +213,23 @@ test.sst
 
 What's missing? Well we just gave it the raw data, we still need to plug in the extents! Also, we will need to plug in the CRS - luckily we know this data is in lat/lon because of how awesome this metadata is!
 
-```{r, out.width="60%", fig.align="center"}
-# we need to transpose and flip this dataset just like we did in week 4 of the R intro course
-# for some reason when we put the netcdf data into R raster the data is upside down and inside out so this is our way of fixing it 
+```{r thredddddsssss plotttttttttt, out.width="60%", fig.align="center"}
+library(ggplot2)
+# we need to transpose this dataset just like we did in week 4 of the R intro course
 test.sst = t(test.sst)
-test.sst = flip(test.sst, 2)
+
 # define the projection
 sst.crs = ncatt_get(goes.nc, "projection")
 extent(test.sst) = c(west_lon, east_lon, south_lat, north_lat)
 crs(test.sst) = sst.crs$proj4_string
 
-
-# let's use levelplot to get this done
-usa <- getData('GADM', country = 'USA', level = 1)
-
+# convert raster to dataframe for ggplot
+df <- as.data.frame(test.sst, xy = TRUE)
 # Throw together the usa spatial polygons data frame
-plt <- levelplot(test.sst, margin=F, par.settings=BuRdTheme,
-       main="GOES-R SST 07/14")
-plt + layer(sp.polygons(usa, col='black', lwd=0.4))
+ggplot() +
+  geom_raster(data = df , aes(x = x, y = y, fill = layer)) + 
+  borders(fill="white", xlim = c(-77,-73), ylim=c(36,42),alpha = 0.5) +
+  coord_quickmap(xlim = c(-77,-73), ylim=c(36,42),expand = FALSE)    
 ```
 
 Boom...There's the data we wanted and we didn't have to leave R to get it. We also saved a ton of time and hard drive space. 
@@ -456,11 +455,11 @@ myplot <- ggplot() +
     theme_bw() + scale_fill_gradientn(colours = my.col, na.value = NA, limits = c(5,15), name = "Temperature") +
     ylab("latitude") + xlab("longitude") +
     coord_fixed(1.3, xlim = xlim, ylim = ylim, expand=FALSE) + 
-    ggtitle(paste("temperture", NAtlsst$data$time[1]))
+    ggtitle(paste("Sea Surface Temperature : ", NAtlsst$data$time[1]))
 myplot
 ```
 
-# Week 6 Assignment - Extract Data in R via THREDDS and ERDDAP
+## Assignment
 
 Deliverables:
  - R Code/Script
@@ -471,7 +470,7 @@ Deliverables:
 
 2) Select any dataset from the ERDDAP server and create a script that loads in the data and plots it. In your script explain why you chose that dataset, detail each step and describe why it's happening, Turn in your R script and the Image/Plot you've made. 
 
-## Extra Credit - 2 Points
+### Extra Credit - 2 Points
 
 Find a dataset that uses TableDap's instance of ERDDAP. This is a method for storing point data instead of spatial data. Create a routine that downloads and extracts data using the `tabledap()` function from rerddap 
 

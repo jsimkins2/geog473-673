@@ -1,6 +1,6 @@
-# ggplot2
+# Plotting with `ggplot2`
 
-```{r, echo=FALSE, out.width="80%", fig.align="center"}
+```{r, echo=FALSE, out.width="60%", fig.align="center"}
 knitr::include_graphics("../documents/images/ggplot2.jpeg")  
 ```
 

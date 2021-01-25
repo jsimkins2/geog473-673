@@ -1,4 +1,4 @@
-# Basic Statistics in R
+# Basic Statistics
 
 This week we'll be diving into some basic statistical procedures. R started out as THE statistical programming language. It spread like wildfire for it's performance and efficiency at crunching numbers. It's early success as a statistical programming langugae attracted the early developers who really made R into the do-it-all language we're using today. First, I'll throw in the useful definitions list at the top of this tutorial just for ease of access. Second, we'll dive into a recap of for loops and how they're structured. Then we'll show off some of R's great statistics functions and how to add them to a plot. Finally, we'll have an assignment where we cover some of 
 
@@ -221,7 +221,7 @@ corrplot(cor_wcreek, p.mat = residuals_1$p, method = 'color', number.cex = .7, t
 Do these correlations make sense? Let's take two variables that are highly correlated - temperature and shortwave radiation (sunlight). Our correalation is .36 for these two variables - this is a slight correlation. Why isn't the correlation higher? Advection - that is air being transported from other locations via wind. 
 
 
-# Week 2 Assignment:
+## Assignment
 
 Using the `WCr_1hr.2012.nc` dataset found in the datasets folder, create a document (word, pdf, notepad, etc.) answering these questions with accompanied figures (no code).
 
@@ -233,7 +233,7 @@ Using the `WCr_1hr.2012.nc` dataset found in the datasets folder, create a docum
 Save your plots created in #2, #3, #4, attach them to a document and answer the questions. Submit this document to Canvas. 
 
 
-## Extra Credit - 2 points
+### Extra Credit - 2 points
 
 Using the WCr_1hr.2010.nc, WCr_1hr.2011.nc and WCr_1hr.2012.nc found in the datasets folder, complete the following
 

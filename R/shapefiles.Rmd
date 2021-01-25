@@ -153,7 +153,7 @@ writeOGR(obj = merged.coast, dsn = "/Users/james/Downloads/coast_files/merged.co
 
 
 
-# Week 5 Assignment - Replicate these Plots
+## Assignment
 
 Using the **ne_10m_parks_and_protected_lands** shapefile dataset, map the names of the protected lands (variable is `name`) in the **Pacific Northwest** using the methods listed below. You will need to download all of the contents of the **ne_10m_parks_and_protected_lands** shapefile folder. Below, a bounding lat/lon box of -127 W, -110 E, 40 S, 50 N was used for `tmap` plot and `ggplot` plot. You may use a bounding box of your choice where you see fit. 
 
@@ -165,7 +165,7 @@ Using the **ne_10m_parks_and_protected_lands** shapefile dataset, map the names 
 Create the 3 plots above and make them look as close as possible to the ones below. 
 
 
-```{r zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz, echo=FALSE, warning=FALSE, message=FALSE, fig.width=7, fig.height=7}
+```{r zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz, echo=FALSE, warning=FALSE, message=FALSE, fig.width=8, fig.height=8, fig.align='center'}
 library(maptools)
 m <- readOGR("/Users/james/Documents/Github/geog473-673/datasets//ne_10m_parks_and_protected_lands/ne_10m_parks_and_protected_lands_area.shp")
 

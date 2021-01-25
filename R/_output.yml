@@ -3,9 +3,9 @@ bookdown::gitbook:
   split_by: chapter
   config:
     toc:
-      collapse: subsection
+      collapse: section
       before: |
-        <li><a href="./">GEOG473-673 Open-sourced Environmental Computing</a></li>
+        <li><a href="./">R for Geospatial Sciences</a></li>
       after: |
         <li><a href="https://github.com/rstudio/bookdown" target="blank">James Simkins</a></li>
 bookdown::pdf_book:

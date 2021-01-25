@@ -1,4 +1,4 @@
-# Oceanography & Global Tree Cover
+# Raster Visualization
 
 This week we'll use a different dataset from the GOES-16 satellite to explore new coding practices. We'll take what we have learned from the example and apply it to a global tree cover dataset. First, let's cover an important skill - understanding the `paste0()` function. 
 

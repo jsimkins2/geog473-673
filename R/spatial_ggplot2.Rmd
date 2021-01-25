@@ -1,7 +1,7 @@
-# Spatial Data with ggplot2
+# Spatial Plots with `ggplot2`
 
-```{r, echo=FALSE, out.width="80%", fig.align="center"}
-knitr::include_graphics("../documents/images/ggplot2.jpeg")  
+```{r, echo=FALSE, out.width="60%", fig.align="center"}
+knitr::include_graphics("../documents/images/tasmania.png")  
 ```
 
 In Geospatial Sciences we're constantly working with spatial datasets that come in many different projections. We've previously shown how R can be used to read in spatial data, reproject spatial data, and resample spatial datasets. Once a spatial dataset can be stored in R as a data frame, we can use `ggplot` to plot it. 
@@ -193,7 +193,7 @@ grid.arrange(p1,p2, ncol=2, nrow=1)
 
 `grid.arrange` takes ggplot objects and plots them onto a window with specified rows and columns. Here we wanted these two separate plots side by side. 
 
-#Assignment:
+## Assignment
 
 1. Download `treecov.nc` from the datasets folder
 
@@ -240,7 +240,7 @@ grid.arrange(g1,g2, ncol=2, nrow=1)
 ```
 
 
-## Extra Credit - 2 Points
+### Extra Credit - 2 Points
 
 Using the data above, approximate the average tree cover for South America and Africa (extents don't have to be exact, just generally)
 

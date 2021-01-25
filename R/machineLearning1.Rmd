@@ -87,7 +87,7 @@ In supervised learning, we have clear training data that serves as the "Supervis
 
 #### Classification
 
-```{r, echo=FALSE, out.width="60%", fig.align="center"}
+```{r, echo=FALSE, out.width="50%", fig.align="center"}
 knitr::include_graphics("../documents/images/classification.jpg")  
 ```
 
@@ -109,7 +109,7 @@ Unsupervised learning is a technique that was created out of bad data. Labeled d
 
 #### Clustering
 
-```{r, echo=FALSE, out.width="60%", fig.align="center"}
+```{r, echo=FALSE, out.width="50%", fig.align="center"}
 knitr::include_graphics("../documents/images/clustering.jpg")  
 ```
 
@@ -118,7 +118,7 @@ Divides objects based on unknown features and let the machine choose the best wa
 
 #### Dimension Reduction
 
-```{r, echo=FALSE, out.width="60%", fig.align="center"}
+```{r, echo=FALSE, out.width="50%", fig.align="center"}
 knitr::include_graphics("../documents/images/reduction.jpg")  
 ```
 
@@ -150,7 +150,7 @@ This type of machine learning is used by self driving cars and robot vacuums. Re
 
 
 
-The images shown in this tutorial were taken from [Vasily Zubarev who wrote an excellent machine learning concepts manual](https://vas3k.com/blog/machine_learning/?ref=hn). 
+The images shown in this tutorial were taken from [Vasily Zubarev who wrote an excellent machine learning concepts manual](https://vas3k.com/blog/machine_learning/?ref=hn). Vasily Zubarev is the best Machine Learning educator I've come across and I suggest poking around [his website](https://vas3k.com) for more Machine Learning content. 
 
 
 

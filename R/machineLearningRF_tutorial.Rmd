@@ -45,7 +45,7 @@ FWI
 
 **Class Component**
 
-: Class : Whether or not a Forest Fire was present on that day
+Class : Forest Fire presence (fire) or absence (no fire)
 
 
 ## Prepare the Data
@@ -131,7 +131,7 @@ sne_data = tsne(sne_data)
 sne_data = as.data.frame(sne_data)
 sne_data$Class = ff_data$Class
 
-ggplot(data = sne_data, aes(x = V1, y = V2, color = group)) +
+ggplot(data = sne_data, aes(x = V1, y = V2, color = Class)) +
     geom_point()
 
 ```

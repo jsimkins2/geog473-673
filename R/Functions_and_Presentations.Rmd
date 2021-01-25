@@ -1,4 +1,4 @@
-# R Development and Presentation
+# Functions and Code Presentation
 
 In this tutorial, we'll focus on functions and displaying R code & results with style. Functions are important for code speed and documentation. Presenting R code is important if you need to explain how to do something using R (i.e. this tutorial). We'll start by explaining functions and proceeding through a complex example. Afterwards, we'll show how `RMarkdown` works so you can present a complex function of your own. 
 
