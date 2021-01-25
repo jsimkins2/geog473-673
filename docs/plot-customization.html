@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>10 Plot Customization | R Programming for Geospatial Sciences</title>
+  <meta name="description" content="Advanced R" />
+  <meta name="generator" content="bookdown 0.20.6 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="10 Plot Customization | R Programming for Geospatial Sciences" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Advanced R" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="10 Plot Customization | R Programming for Geospatial Sciences" />
+  
+  <meta name="twitter:description" content="Advanced R" />
+  
+
+<meta name="author" content="James Simkins" />
+
+
+<meta name="date" content="2021-01-25" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="reprojecting-writing-rasters.html"/>
+<link rel="next" href="basic-statistics.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">R for Geospatial Sciences</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="preface.html"><a href="preface.html"><i class="fa fa-check"></i><b>1</b> Preface</a><ul>
+<li class="chapter" data-level="1.1" data-path="preface.html"><a href="preface.html#course-github"><i class="fa fa-check"></i><b>1.1</b> Course Github</a></li>
+<li class="chapter" data-level="1.2" data-path="preface.html"><a href="preface.html#syllabus"><i class="fa fa-check"></i><b>1.2</b> Syllabus</a></li>
+<li class="chapter" data-level="1.3" data-path="preface.html"><a href="preface.html#phase-1-spring-geog473-673-2-credit-agenda"><i class="fa fa-check"></i><b>1.3</b> Phase 1: Spring GEOG473-673 2-Credit Agenda</a></li>
+<li class="chapter" data-level="1.4" data-path="preface.html"><a href="preface.html#phase-2-spring-geog473-673-1-credit-agenda"><i class="fa fa-check"></i><b>1.4</b> Phase 2: Spring GEOG473-673 1-Credit Agenda</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html"><i class="fa fa-check"></i><b>2</b> Getting Started with R</a><ul>
+<li class="chapter" data-level="2.1" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#why-is-there-such-a-buzz-around-r"><i class="fa fa-check"></i><b>2.1</b> Why is there such a buzz around R?</a></li>
+<li class="chapter" data-level="2.2" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#reasons-to-love-r"><i class="fa fa-check"></i><b>2.2</b> Reasons to love R</a></li>
+<li class="chapter" data-level="2.3" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#downloading-guide"><i class="fa fa-check"></i><b>2.3</b> Downloading Guide</a></li>
+<li class="chapter" data-level="2.4" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#rstudio"><i class="fa fa-check"></i><b>2.4</b> Rstudio</a></li>
+<li class="chapter" data-level="2.5" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#download-course-datasets"><i class="fa fa-check"></i><b>2.5</b> Download Course Datasets</a></li>
+<li class="chapter" data-level="2.6" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#video-examples"><i class="fa fa-check"></i><b>2.6</b> Video Examples</a></li>
+<li class="chapter" data-level="2.7" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#getting-familiar-with-rstudio"><i class="fa fa-check"></i><b>2.7</b> Getting familiar with RStudio</a></li>
+<li class="chapter" data-level="2.8" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#open-rstudio"><i class="fa fa-check"></i><b>2.8</b> Open RStudio</a></li>
+<li class="chapter" data-level="2.9" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#r-studio-layout"><i class="fa fa-check"></i><b>2.9</b> R Studio Layout</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="definitions-rules.html"><a href="definitions-rules.html"><i class="fa fa-check"></i><b>3</b> Definitions &amp; Rules</a><ul>
+<li class="chapter" data-level="3.1" data-path="definitions-rules.html"><a href="definitions-rules.html#important-r-programming-definitions"><i class="fa fa-check"></i><b>3.1</b> Important R Programming Definitions</a></li>
+<li class="chapter" data-level="3.2" data-path="definitions-rules.html"><a href="definitions-rules.html#rules"><i class="fa fa-check"></i><b>3.2</b> Rules</a></li>
+<li class="chapter" data-level="3.3" data-path="definitions-rules.html"><a href="definitions-rules.html#general-recommendations"><i class="fa fa-check"></i><b>3.3</b> General Recommendations</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="r-coding-fundamentals.html"><a href="r-coding-fundamentals.html"><i class="fa fa-check"></i><b>4</b> R Coding Fundamentals</a><ul>
+<li class="chapter" data-level="4.1" data-path="r-coding-fundamentals.html"><a href="r-coding-fundamentals.html#entering-input"><i class="fa fa-check"></i><b>4.1</b> Entering Input</a></li>
+<li class="chapter" data-level="4.2" data-path="r-coding-fundamentals.html"><a href="r-coding-fundamentals.html#running-code"><i class="fa fa-check"></i><b>4.2</b> Running Code</a></li>
+<li class="chapter" data-level="4.3" data-path="r-coding-fundamentals.html"><a href="r-coding-fundamentals.html#evaluation"><i class="fa fa-check"></i><b>4.3</b> Evaluation</a></li>
+<li class="chapter" data-level="4.4" data-path="r-coding-fundamentals.html"><a href="r-coding-fundamentals.html#r-objects"><i class="fa fa-check"></i><b>4.4</b> R Objects</a></li>
+<li class="chapter" data-level="4.5" data-path="r-coding-fundamentals.html"><a href="r-coding-fundamentals.html#numbers"><i class="fa fa-check"></i><b>4.5</b> Numbers</a></li>
+<li class="chapter" data-level="4.6" data-path="r-coding-fundamentals.html"><a href="r-coding-fundamentals.html#attributes"><i class="fa fa-check"></i><b>4.6</b> Attributes</a></li>
+<li class="chapter" data-level="4.7" data-path="r-coding-fundamentals.html"><a href="r-coding-fundamentals.html#creating-vectors"><i class="fa fa-check"></i><b>4.7</b> Creating Vectors</a></li>
+<li class="chapter" data-level="4.8" data-path="r-coding-fundamentals.html"><a href="r-coding-fundamentals.html#mixing-objects"><i class="fa fa-check"></i><b>4.8</b> Mixing Objects</a></li>
+<li class="chapter" data-level="4.9" data-path="r-coding-fundamentals.html"><a href="r-coding-fundamentals.html#explicit-coercion"><i class="fa fa-check"></i><b>4.9</b> Explicit Coercion</a></li>
+<li class="chapter" data-level="4.10" data-path="r-coding-fundamentals.html"><a href="r-coding-fundamentals.html#matrices"><i class="fa fa-check"></i><b>4.10</b> Matrices</a></li>
+<li class="chapter" data-level="4.11" data-path="r-coding-fundamentals.html"><a href="r-coding-fundamentals.html#lists"><i class="fa fa-check"></i><b>4.11</b> Lists</a></li>
+<li class="chapter" data-level="4.12" data-path="r-coding-fundamentals.html"><a href="r-coding-fundamentals.html#factors"><i class="fa fa-check"></i><b>4.12</b> Factors</a></li>
+<li class="chapter" data-level="4.13" data-path="r-coding-fundamentals.html"><a href="r-coding-fundamentals.html#missing-values"><i class="fa fa-check"></i><b>4.13</b> Missing Values</a></li>
+<li class="chapter" data-level="4.14" data-path="r-coding-fundamentals.html"><a href="r-coding-fundamentals.html#data-frames"><i class="fa fa-check"></i><b>4.14</b> Data Frames</a></li>
+<li class="chapter" data-level="4.15" data-path="r-coding-fundamentals.html"><a href="r-coding-fundamentals.html#names"><i class="fa fa-check"></i><b>4.15</b> Names</a></li>
+<li class="chapter" data-level="4.16" data-path="r-coding-fundamentals.html"><a href="r-coding-fundamentals.html#summary"><i class="fa fa-check"></i><b>4.16</b> Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="basic-r-scripts.html"><a href="basic-r-scripts.html"><i class="fa fa-check"></i><b>5</b> Basic R Scripts</a><ul>
+<li class="chapter" data-level="5.1" data-path="basic-r-scripts.html"><a href="basic-r-scripts.html#global-carbon-dioxide-concentrations"><i class="fa fa-check"></i><b>5.1</b> Global Carbon-Dioxide Concentrations</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="basic-r-scripts.html"><a href="basic-r-scripts.html#saving-your-plot"><i class="fa fa-check"></i><b>5.1.1</b> Saving your plot</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="basic-r-scripts.html"><a href="basic-r-scripts.html#cars---motor-trends-magazine-data"><i class="fa fa-check"></i><b>5.2</b> Cars - Motor Trends Magazine Data</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="scientific-r-scripts.html"><a href="scientific-r-scripts.html"><i class="fa fa-check"></i><b>6</b> Scientific R Scripts</a><ul>
+<li class="chapter" data-level="6.1" data-path="scientific-r-scripts.html"><a href="scientific-r-scripts.html#script-breakdown"><i class="fa fa-check"></i><b>6.1</b> Script Breakdown</a></li>
+<li class="chapter" data-level="6.2" data-path="scientific-r-scripts.html"><a href="scientific-r-scripts.html#in-class-exercise"><i class="fa fa-check"></i><b>6.2</b> In Class Exercise</a><ul>
+<li class="chapter" data-level="6.2.1" data-path="scientific-r-scripts.html"><a href="scientific-r-scripts.html#further-explanation-of-datatypes"><i class="fa fa-check"></i><b>6.2.1</b> Further Explanation of DataTypes</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="time-series-data.html"><a href="time-series-data.html"><i class="fa fa-check"></i><b>7</b> Time Series Data</a><ul>
+<li class="chapter" data-level="7.1" data-path="time-series-data.html"><a href="time-series-data.html#for-loops"><i class="fa fa-check"></i><b>7.1</b> For Loops</a></li>
+<li class="chapter" data-level="7.2" data-path="time-series-data.html"><a href="time-series-data.html#deos-data"><i class="fa fa-check"></i><b>7.2</b> DEOS Data</a></li>
+<li class="chapter" data-level="7.3" data-path="time-series-data.html"><a href="time-series-data.html#assignment"><i class="fa fa-check"></i><b>7.3</b> Assignment</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="raster-visualization.html"><a href="raster-visualization.html"><i class="fa fa-check"></i><b>8</b> Raster Visualization</a><ul>
+<li class="chapter" data-level="8.1" data-path="raster-visualization.html"><a href="raster-visualization.html#paste0"><i class="fa fa-check"></i><b>8.1</b> <code>Paste0()</code></a></li>
+<li class="chapter" data-level="8.2" data-path="raster-visualization.html"><a href="raster-visualization.html#rasters"><i class="fa fa-check"></i><b>8.2</b> Rasters</a></li>
+<li class="chapter" data-level="8.3" data-path="raster-visualization.html"><a href="raster-visualization.html#assignment-1"><i class="fa fa-check"></i><b>8.3</b> Assignment</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="reprojecting-writing-rasters.html"><a href="reprojecting-writing-rasters.html"><i class="fa fa-check"></i><b>9</b> Reprojecting &amp; Writing Rasters</a><ul>
+<li class="chapter" data-level="9.1" data-path="reprojecting-writing-rasters.html"><a href="reprojecting-writing-rasters.html#indexing-data"><i class="fa fa-check"></i><b>9.1</b> Indexing Data</a></li>
+<li class="chapter" data-level="9.2" data-path="reprojecting-writing-rasters.html"><a href="reprojecting-writing-rasters.html#resampling-and-reprojecting"><i class="fa fa-check"></i><b>9.2</b> Resampling and Reprojecting</a></li>
+<li class="chapter" data-level="9.3" data-path="reprojecting-writing-rasters.html"><a href="reprojecting-writing-rasters.html#pngs"><i class="fa fa-check"></i><b>9.3</b> PNGs</a></li>
+<li class="chapter" data-level="9.4" data-path="reprojecting-writing-rasters.html"><a href="reprojecting-writing-rasters.html#writing-rasters"><i class="fa fa-check"></i><b>9.4</b> Writing Rasters</a></li>
+<li class="chapter" data-level="9.5" data-path="reprojecting-writing-rasters.html"><a href="reprojecting-writing-rasters.html#assignment-2"><i class="fa fa-check"></i><b>9.5</b> Assignment</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="plot-customization.html"><a href="plot-customization.html"><i class="fa fa-check"></i><b>10</b> Plot Customization</a><ul>
+<li class="chapter" data-level="10.1" data-path="plot-customization.html"><a href="plot-customization.html#expanding-on-basic-plots-in-r"><i class="fa fa-check"></i><b>10.1</b> Expanding on Basic Plots in R</a><ul>
+<li class="chapter" data-level="10.1.1" data-path="plot-customization.html"><a href="plot-customization.html#adding-to-a-plot"><i class="fa fa-check"></i><b>10.1.1</b> Adding to a Plot</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="plot-customization.html"><a href="plot-customization.html#barplots-boxplots-pie-charts"><i class="fa fa-check"></i><b>10.2</b> Barplots, Boxplots, Pie Charts</a><ul>
+<li class="chapter" data-level="10.2.1" data-path="plot-customization.html"><a href="plot-customization.html#combining-plots"><i class="fa fa-check"></i><b>10.2.1</b> Combining Plots</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="plot-customization.html"><a href="plot-customization.html#tree-data"><i class="fa fa-check"></i><b>10.3</b> Tree Data</a><ul>
+<li class="chapter" data-level="10.3.1" data-path="plot-customization.html"><a href="plot-customization.html#loading-the-dataset"><i class="fa fa-check"></i><b>10.3.1</b> Loading the Dataset</a></li>
+</ul></li>
+<li class="chapter" data-level="10.4" data-path="plot-customization.html"><a href="plot-customization.html#assignment-3"><i class="fa fa-check"></i><b>10.4</b> Assignment:</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="basic-statistics.html"><a href="basic-statistics.html"><i class="fa fa-check"></i><b>11</b> Basic Statistics</a><ul>
+<li class="chapter" data-level="11.1" data-path="basic-statistics.html"><a href="basic-statistics.html#statistical-function-dictionary"><i class="fa fa-check"></i><b>11.1</b> Statistical Function Dictionary</a></li>
+<li class="chapter" data-level="11.2" data-path="basic-statistics.html"><a href="basic-statistics.html#basic-statistics-in-r"><i class="fa fa-check"></i><b>11.2</b> Basic Statistics in R</a><ul>
+<li class="chapter" data-level="11.2.1" data-path="basic-statistics.html"><a href="basic-statistics.html#load-willow-creek-data"><i class="fa fa-check"></i><b>11.2.1</b> Load Willow Creek data</a></li>
+<li class="chapter" data-level="11.2.2" data-path="basic-statistics.html"><a href="basic-statistics.html#subsetting-data"><i class="fa fa-check"></i><b>11.2.2</b> Subsetting Data</a></li>
+<li class="chapter" data-level="11.2.3" data-path="basic-statistics.html"><a href="basic-statistics.html#trends-and-distributions"><i class="fa fa-check"></i><b>11.2.3</b> Trends and Distributions</a></li>
+<li class="chapter" data-level="11.2.4" data-path="basic-statistics.html"><a href="basic-statistics.html#finding-a-best-fit-distribution"><i class="fa fa-check"></i><b>11.2.4</b> Finding a Best-Fit Distribution</a></li>
+<li class="chapter" data-level="11.2.5" data-path="basic-statistics.html"><a href="basic-statistics.html#correlation-plots"><i class="fa fa-check"></i><b>11.2.5</b> Correlation Plots</a></li>
+</ul></li>
+<li class="chapter" data-level="11.3" data-path="basic-statistics.html"><a href="basic-statistics.html#assignment-4"><i class="fa fa-check"></i><b>11.3</b> Assignment</a><ul>
+<li class="chapter" data-level="11.3.1" data-path="basic-statistics.html"><a href="basic-statistics.html#extra-credit---2-points"><i class="fa fa-check"></i><b>11.3.1</b> Extra Credit - 2 points</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="plotting-with-ggplot2.html"><a href="plotting-with-ggplot2.html"><i class="fa fa-check"></i><b>12</b> Plotting with <code>ggplot2</code></a><ul>
+<li class="chapter" data-level="12.1" data-path="plotting-with-ggplot2.html"><a href="plotting-with-ggplot2.html#ggplot2-with-willow-creek-meteorological-data"><i class="fa fa-check"></i><b>12.1</b> ggplot2 with Willow Creek Meteorological Data</a></li>
+<li class="chapter" data-level="12.2" data-path="plotting-with-ggplot2.html"><a href="plotting-with-ggplot2.html#assignment-5"><i class="fa fa-check"></i><b>12.2</b> Assignment:</a></li>
+<li class="chapter" data-level="12.3" data-path="plotting-with-ggplot2.html"><a href="plotting-with-ggplot2.html#extra-credit---2-points-1"><i class="fa fa-check"></i><b>12.3</b> Extra Credit - 2 Points</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="spatial-plots-with-ggplot2.html"><a href="spatial-plots-with-ggplot2.html"><i class="fa fa-check"></i><b>13</b> Spatial Plots with <code>ggplot2</code></a><ul>
+<li class="chapter" data-level="13.1" data-path="spatial-plots-with-ggplot2.html"><a href="spatial-plots-with-ggplot2.html#simple-features"><i class="fa fa-check"></i><b>13.1</b> Simple Features</a></li>
+<li class="chapter" data-level="13.2" data-path="spatial-plots-with-ggplot2.html"><a href="spatial-plots-with-ggplot2.html#sea-surface-temperature-ggplot"><i class="fa fa-check"></i><b>13.2</b> Sea Surface Temperature ggplot</a></li>
+<li class="chapter" data-level="13.3" data-path="spatial-plots-with-ggplot2.html"><a href="spatial-plots-with-ggplot2.html#r-color-brewer-palettes"><i class="fa fa-check"></i><b>13.3</b> R Color Brewer Palettes</a><ul>
+<li class="chapter" data-level="13.3.1" data-path="spatial-plots-with-ggplot2.html"><a href="spatial-plots-with-ggplot2.html#multi-plot-ggplot"><i class="fa fa-check"></i><b>13.3.1</b> Multi Plot ggplot</a></li>
+</ul></li>
+<li class="chapter" data-level="13.4" data-path="spatial-plots-with-ggplot2.html"><a href="spatial-plots-with-ggplot2.html#assignment-6"><i class="fa fa-check"></i><b>13.4</b> Assignment</a><ul>
+<li class="chapter" data-level="13.4.1" data-path="spatial-plots-with-ggplot2.html"><a href="spatial-plots-with-ggplot2.html#extra-credit---2-points-2"><i class="fa fa-check"></i><b>13.4.1</b> Extra Credit - 2 Points</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="shapefiles.html"><a href="shapefiles.html"><i class="fa fa-check"></i><b>14</b> Shapefiles</a><ul>
+<li class="chapter" data-level="14.1" data-path="shapefiles.html"><a href="shapefiles.html#reading-in-shapefiles"><i class="fa fa-check"></i><b>14.1</b> Reading in Shapefiles</a></li>
+<li class="chapter" data-level="14.2" data-path="shapefiles.html"><a href="shapefiles.html#combining-shapefiles-with-data"><i class="fa fa-check"></i><b>14.2</b> Combining Shapefiles with Data</a></li>
+<li class="chapter" data-level="14.3" data-path="shapefiles.html"><a href="shapefiles.html#visualizing-the-shapefiles-data"><i class="fa fa-check"></i><b>14.3</b> Visualizing the Shapefiles &amp; Data</a></li>
+<li class="chapter" data-level="14.4" data-path="shapefiles.html"><a href="shapefiles.html#saving-a-shapefile"><i class="fa fa-check"></i><b>14.4</b> Saving a shapefile</a></li>
+<li class="chapter" data-level="14.5" data-path="shapefiles.html"><a href="shapefiles.html#assignment-7"><i class="fa fa-check"></i><b>14.5</b> Assignment</a></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html"><i class="fa fa-check"></i><b>15</b> Remote Data Extraction</a><ul>
+<li class="chapter" data-level="15.1" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#thredds"><i class="fa fa-check"></i><b>15.1</b> THREDDS</a></li>
+<li class="chapter" data-level="15.2" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#erddap"><i class="fa fa-check"></i><b>15.2</b> ERDDAP</a><ul>
+<li class="chapter" data-level="15.2.1" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#finding-the-data-you-want"><i class="fa fa-check"></i><b>15.2.1</b> Finding the Data You Want</a></li>
+</ul></li>
+<li class="chapter" data-level="15.3" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#assignment-8"><i class="fa fa-check"></i><b>15.3</b> Assignment</a><ul>
+<li class="chapter" data-level="15.3.1" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#extra-credit---2-points-3"><i class="fa fa-check"></i><b>15.3.1</b> Extra Credit - 2 Points</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="functions-and-code-presentation.html"><a href="functions-and-code-presentation.html"><i class="fa fa-check"></i><b>16</b> Functions and Code Presentation</a><ul>
+<li class="chapter" data-level="16.1" data-path="functions-and-code-presentation.html"><a href="functions-and-code-presentation.html#functions"><i class="fa fa-check"></i><b>16.1</b> Functions</a></li>
+<li class="chapter" data-level="16.2" data-path="functions-and-code-presentation.html"><a href="functions-and-code-presentation.html#netcdf-processing-function"><i class="fa fa-check"></i><b>16.2</b> NetCDF Processing Function</a></li>
+<li class="chapter" data-level="16.3" data-path="functions-and-code-presentation.html"><a href="functions-and-code-presentation.html#functions-in-for-loops"><i class="fa fa-check"></i><b>16.3</b> Functions in For Loops</a></li>
+<li class="chapter" data-level="16.4" data-path="functions-and-code-presentation.html"><a href="functions-and-code-presentation.html#rmarkdown"><i class="fa fa-check"></i><b>16.4</b> RMarkdown</a></li>
+<li class="chapter" data-level="16.5" data-path="functions-and-code-presentation.html"><a href="functions-and-code-presentation.html#assignment-9"><i class="fa fa-check"></i><b>16.5</b> Assignment</a></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="machine-learning-with-r.html"><a href="machine-learning-with-r.html"><i class="fa fa-check"></i><b>17</b> Machine Learning with R</a><ul>
+<li class="chapter" data-level="17.1" data-path="machine-learning-with-r.html"><a href="machine-learning-with-r.html#machine-learning-terms"><i class="fa fa-check"></i><b>17.1</b> Machine Learning Terms</a></li>
+<li class="chapter" data-level="17.2" data-path="machine-learning-with-r.html"><a href="machine-learning-with-r.html#classical-machine-learning"><i class="fa fa-check"></i><b>17.2</b> Classical Machine Learning</a><ul>
+<li class="chapter" data-level="17.2.1" data-path="machine-learning-with-r.html"><a href="machine-learning-with-r.html#supervised-learning"><i class="fa fa-check"></i><b>17.2.1</b> Supervised Learning</a></li>
+<li class="chapter" data-level="17.2.2" data-path="machine-learning-with-r.html"><a href="machine-learning-with-r.html#unsupervised-learning"><i class="fa fa-check"></i><b>17.2.2</b> Unsupervised Learning</a></li>
+<li class="chapter" data-level="17.2.3" data-path="machine-learning-with-r.html"><a href="machine-learning-with-r.html#neural-networks"><i class="fa fa-check"></i><b>17.2.3</b> Neural Networks</a></li>
+<li class="chapter" data-level="17.2.4" data-path="machine-learning-with-r.html"><a href="machine-learning-with-r.html#reinforcement-learning"><i class="fa fa-check"></i><b>17.2.4</b> Reinforcement Learning</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="18" data-path="time-series-forecasting.html"><a href="time-series-forecasting.html"><i class="fa fa-check"></i><b>18</b> Time Series Forecasting</a><ul>
+<li class="chapter" data-level="18.1" data-path="time-series-forecasting.html"><a href="time-series-forecasting.html#load-the-packages-and-data"><i class="fa fa-check"></i><b>18.1</b> Load the Packages and Data</a></li>
+<li class="chapter" data-level="18.2" data-path="time-series-forecasting.html"><a href="time-series-forecasting.html#aggregate-data"><i class="fa fa-check"></i><b>18.2</b> Aggregate Data</a></li>
+<li class="chapter" data-level="18.3" data-path="time-series-forecasting.html"><a href="time-series-forecasting.html#prepping-the-model"><i class="fa fa-check"></i><b>18.3</b> Prepping the Model</a></li>
+<li class="chapter" data-level="18.4" data-path="time-series-forecasting.html"><a href="time-series-forecasting.html#running-the-model"><i class="fa fa-check"></i><b>18.4</b> Running the Model</a></li>
+<li class="chapter" data-level="18.5" data-path="time-series-forecasting.html"><a href="time-series-forecasting.html#validation-and-accuracy"><i class="fa fa-check"></i><b>18.5</b> Validation and Accuracy</a></li>
+<li class="chapter" data-level="18.6" data-path="time-series-forecasting.html"><a href="time-series-forecasting.html#future-forecasting"><i class="fa fa-check"></i><b>18.6</b> Future Forecasting</a></li>
+<li class="chapter" data-level="18.7" data-path="time-series-forecasting.html"><a href="time-series-forecasting.html#assignment-10"><i class="fa fa-check"></i><b>18.7</b> Assignment</a></li>
+</ul></li>
+<li class="chapter" data-level="19" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html"><i class="fa fa-check"></i><b>19</b> Random Forest Modeling</a><ul>
+<li class="chapter" data-level="19.1" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#prepare-the-data"><i class="fa fa-check"></i><b>19.1</b> Prepare the Data</a></li>
+<li class="chapter" data-level="19.2" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#dimensionality-reduction"><i class="fa fa-check"></i><b>19.2</b> Dimensionality Reduction</a><ul>
+<li class="chapter" data-level="19.2.1" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#principal-component-analysis"><i class="fa fa-check"></i><b>19.2.1</b> Principal Component Analysis</a></li>
+<li class="chapter" data-level="19.2.2" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#t-sne-dimensionality-reduction"><i class="fa fa-check"></i><b>19.2.2</b> t-SNE Dimensionality Reduction</a></li>
+<li class="chapter" data-level="19.2.3" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#multidimensional-scaling"><i class="fa fa-check"></i><b>19.2.3</b> Multidimensional Scaling</a></li>
+</ul></li>
+<li class="chapter" data-level="19.3" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#random-forests"><i class="fa fa-check"></i><b>19.3</b> Random Forests</a><ul>
+<li class="chapter" data-level="19.3.1" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#decision-trees"><i class="fa fa-check"></i><b>19.3.1</b> Decision Trees</a></li>
+<li class="chapter" data-level="19.3.2" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#data-partition"><i class="fa fa-check"></i><b>19.3.2</b> Data Partition</a></li>
+<li class="chapter" data-level="19.3.3" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#training-the-model"><i class="fa fa-check"></i><b>19.3.3</b> Training the Model</a></li>
+<li class="chapter" data-level="19.3.4" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#testing-the-model"><i class="fa fa-check"></i><b>19.3.4</b> Testing the Model</a></li>
+<li class="chapter" data-level="19.3.5" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#hyperparameter-tuning"><i class="fa fa-check"></i><b>19.3.5</b> Hyperparameter Tuning</a></li>
+</ul></li>
+<li class="chapter" data-level="19.4" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#assignment-11"><i class="fa fa-check"></i><b>19.4</b> Assignment</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">James Simkins</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">R Programming for Geospatial Sciences</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="plot-customization" class="section level1">
+<h1><span class="header-section-number">10</span> Plot Customization</h1>
+<p><img src="../documents/images/tree_basic_plots.png" width="70%" style="display: block; margin: auto;" /></p>
+<p>R has a plethora of plotting packages, tools, and techniques. Generally speaking, base R graphs aren’t as popular amongst advanced R users as others (e.g. <code>ggplot</code>). That being said, R base graphing offers a variety of styling techniques and unique customization. The base R plotting methods will offer a solid foundation before we learn more about the aforementioned <code>ggplot</code>.</p>
+<p>Boxplots, histograms, pie charts, bar charts, and scatter plots are readily available and customizable in the base R plotting package. We can customize and style colors, text, line types, plotting symbols, line thicknesses, symbol size, and much more.</p>
+<div id="expanding-on-basic-plots-in-r" class="section level2">
+<h2><span class="header-section-number">10.1</span> Expanding on Basic Plots in R</h2>
+<p>Variable Assignment &amp; Operations</p>
+<div class="sourceCode" id="cb239"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb239-1" data-line-number="1">x =<span class="st"> </span><span class="dv">7</span></a>
+<a class="sourceLine" id="cb239-2" data-line-number="2">y =<span class="st"> </span><span class="dv">9</span></a>
+<a class="sourceLine" id="cb239-3" data-line-number="3">z &lt;-<span class="st"> </span>y <span class="op">*</span><span class="st"> </span>(x<span class="op">/</span><span class="dv">2</span> <span class="op">+</span><span class="st"> </span><span class="dv">7</span>) <span class="op">+</span><span class="st"> </span><span class="kw">sqrt</span>(y)</a>
+<a class="sourceLine" id="cb239-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb239-5" data-line-number="5"><span class="kw">print</span>(x)</a></code></pre></div>
+<pre><code>## [1] 7</code></pre>
+<div class="sourceCode" id="cb241"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb241-1" data-line-number="1">y</a></code></pre></div>
+<pre><code>## [1] 9</code></pre>
+<div class="sourceCode" id="cb243"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb243-1" data-line-number="1">z</a></code></pre></div>
+<pre><code>## [1] 97.5</code></pre>
+<div class="sourceCode" id="cb245"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb245-1" data-line-number="1">X &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">20</span></a>
+<a class="sourceLine" id="cb245-2" data-line-number="2">Y &lt;-<span class="st"> </span>(<span class="dv">1</span> <span class="op">+</span><span class="st"> </span><span class="dv">1</span><span class="op">/</span>X) <span class="op">+</span><span class="st"> </span><span class="dv">2</span></a>
+<a class="sourceLine" id="cb245-3" data-line-number="3">X</a></code></pre></div>
+<pre><code>##  [1]  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20</code></pre>
+<div class="sourceCode" id="cb247"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb247-1" data-line-number="1">Y</a></code></pre></div>
+<pre><code>##  [1] 4.000000 3.500000 3.333333 3.250000 3.200000 3.166667 3.142857 3.125000
+##  [9] 3.111111 3.100000 3.090909 3.083333 3.076923 3.071429 3.066667 3.062500
+## [17] 3.058824 3.055556 3.052632 3.050000</code></pre>
+<div class="sourceCode" id="cb249"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb249-1" data-line-number="1"><span class="kw">plot</span>(X,Y)</a></code></pre></div>
+<p><img src="Introduction-to-R_files/figure-html/unnamed-chunk-92-1.png" width="60%" style="display: block; margin: auto;" /></p>
+<p>Now let’s add in some extra arguments to the plot function to make it prettier</p>
+<div class="sourceCode" id="cb250"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb250-1" data-line-number="1"><span class="kw">plot</span>(<span class="dt">x=</span>X,<span class="dt">y=</span>Y, <span class="dt">type =</span> <span class="st">&quot;b&quot;</span>, <span class="dt">pch=</span><span class="kw">c</span>(<span class="dv">24</span>), <span class="dt">col =</span> <span class="st">&#39;blue&#39;</span>, <span class="dt">bg=</span><span class="st">&#39;yellow&#39;</span>, <span class="dt">cex =</span> <span class="fl">1.6</span>, <span class="dt">xlab =</span> <span class="st">&quot;X&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;Y&quot;</span>, </a>
+<a class="sourceLine" id="cb250-2" data-line-number="2">     <span class="dt">col.lab =</span> <span class="st">&quot;orange&quot;</span>, <span class="dt">lwd=</span><span class="fl">1.4</span>, <span class="dt">lty=</span><span class="dv">2</span>, <span class="dt">main =</span> <span class="st">&quot;X vs Y&quot;</span>)</a></code></pre></div>
+<p><img src="Introduction-to-R_files/figure-html/unnamed-chunk-93-1.png" width="60%" style="display: block; margin: auto;" /></p>
+<table>
+<thead>
+<tr class="header">
+<th><code>plot()</code> Argument</th>
+<th>Definition</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>type</code></td>
+<td>type of plot - p stands for points</td>
+</tr>
+<tr class="even">
+<td><code>pch</code></td>
+<td>plotting ‘character’, i.e., symbol to use</td>
+</tr>
+<tr class="odd">
+<td><code>col</code></td>
+<td>color</td>
+</tr>
+<tr class="even">
+<td><code>bg</code></td>
+<td>background color (only applicable for pch’s between 21:25)</td>
+</tr>
+<tr class="odd">
+<td><code>cex</code></td>
+<td>size of the points</td>
+</tr>
+<tr class="even">
+<td><code>xlab</code></td>
+<td>x label</td>
+</tr>
+<tr class="odd">
+<td><code>ylab</code></td>
+<td>y label</td>
+</tr>
+<tr class="even">
+<td><code>col.lab</code></td>
+<td>x and y label color</td>
+</tr>
+<tr class="odd">
+<td><code>lwd</code></td>
+<td>line width</td>
+</tr>
+<tr class="even">
+<td><code>lty</code></td>
+<td>line type</td>
+</tr>
+<tr class="odd">
+<td><code>main</code></td>
+<td>title of the plot</td>
+</tr>
+</tbody>
+</table>
+<p>For more argument definitions, use the <code>help()</code> function or <code>?</code> function like so - <code>help(plot)</code> or <code>?plot</code>. Multiple options may pop up. This occurs when you have two functions from different packages with the same name. In this case, the <code>plot()</code> function we are using is from the <code>base</code> package.</p>
+<div id="adding-to-a-plot" class="section level3">
+<h3><span class="header-section-number">10.1.1</span> Adding to a Plot</h3>
+<p>We can add additional items to a particular plot. Some of these items might be…</p>
+<table>
+<colgroup>
+<col width="28%" />
+<col width="71%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Function</th>
+<th>Definition</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>legend</code></td>
+<td>adds a legend to a plot</td>
+</tr>
+<tr class="even">
+<td><code>lines</code></td>
+<td>connects points sequentially with lines (added to a plot)</td>
+</tr>
+<tr class="odd">
+<td><code>points</code></td>
+<td>plots points (adds to a plot)</td>
+</tr>
+<tr class="even">
+<td><code>segments</code></td>
+<td>add lines to a plot (between pairs of points)</td>
+</tr>
+<tr class="odd">
+<td><code>text</code></td>
+<td>add text to a plot</td>
+</tr>
+<tr class="even">
+<td><code>legend</code></td>
+<td>add a legend to a plot</td>
+</tr>
+<tr class="odd">
+<td><code>abline</code></td>
+<td>add a line to a plot by specifying its slope and intercept</td>
+</tr>
+<tr class="even">
+<td><code>title</code></td>
+<td>title can also be added outside of the function you use. This is necessary when we want an overarching title for multiple plots in one figure.</td>
+</tr>
+</tbody>
+</table>
+<p>Let’s use our previous example but go about plotting it a different way to show how it works.</p>
+<div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb251-1" data-line-number="1"><span class="co"># plot our X and Y as a line plot</span></a>
+<a class="sourceLine" id="cb251-2" data-line-number="2"><span class="kw">plot</span>(<span class="dt">x=</span>X,<span class="dt">y=</span>Y, <span class="dt">type =</span> <span class="st">&quot;l&quot;</span>, <span class="dt">col=</span><span class="st">&#39;blue&#39;</span>, <span class="dt">xlab =</span> <span class="st">&quot;X&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;Y&quot;</span>,<span class="dt">col.lab =</span> <span class="st">&quot;orange&quot;</span>, <span class="dt">lwd=</span><span class="fl">1.4</span>, <span class="dt">lty=</span><span class="dv">2</span>, <span class="dt">main =</span> <span class="st">&quot;X vs Y&quot;</span>)</a>
+<a class="sourceLine" id="cb251-3" data-line-number="3"><span class="co"># add points to the line via the points function</span></a>
+<a class="sourceLine" id="cb251-4" data-line-number="4"><span class="kw">points</span>(<span class="dt">x=</span>X, <span class="dt">y=</span>Y, <span class="dt">pch=</span><span class="kw">c</span>(<span class="dv">24</span>), <span class="dt">col =</span> <span class="st">&#39;blue&#39;</span>, <span class="dt">bg=</span><span class="st">&#39;yellow&#39;</span>, <span class="dt">cex =</span> <span class="fl">1.6</span>)</a>
+<a class="sourceLine" id="cb251-5" data-line-number="5"><span class="co"># add a vertical line at 3.4 </span></a>
+<a class="sourceLine" id="cb251-6" data-line-number="6"><span class="kw">abline</span>(<span class="dt">v=</span><span class="dv">10</span>)</a>
+<a class="sourceLine" id="cb251-7" data-line-number="7"><span class="co"># add a legend</span></a>
+<a class="sourceLine" id="cb251-8" data-line-number="8"><span class="kw">legend</span>(<span class="dt">x =</span> <span class="st">&quot;topright&quot;</span>, <span class="dt">legend=</span><span class="kw">c</span>(<span class="st">&quot;my points&quot;</span>), <span class="dt">pch=</span><span class="kw">c</span>(<span class="dv">24</span>), <span class="dt">col =</span> <span class="st">&#39;blue&#39;</span>, <span class="dt">pt.bg=</span><span class="st">&#39;yellow&#39;</span>)</a></code></pre></div>
+<p><img src="Introduction-to-R_files/figure-html/unnamed-chunk-94-1.png" width="60%" style="display: block; margin: auto;" /></p>
+<p>Let’s add in another</p>
+<div class="sourceCode" id="cb252"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb252-1" data-line-number="1"><span class="kw">plot</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">25</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">25</span>, <span class="dt">xlab=</span><span class="st">&quot;&quot;</span>,<span class="dt">ylab=</span><span class="st">&quot;&quot;</span>,<span class="dt">pch=</span><span class="dv">1</span><span class="op">:</span><span class="dv">25</span>,<span class="dt">col=</span><span class="dv">1</span><span class="op">:</span><span class="dv">25</span>,<span class="dt">cex=</span><span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb252-2" data-line-number="2"><span class="kw">grid</span>(<span class="dt">lty=</span><span class="dv">1</span>, <span class="dt">col=</span><span class="st">&quot;gray90&quot;</span>)</a>
+<a class="sourceLine" id="cb252-3" data-line-number="3"><span class="kw">points</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">25</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">25</span>, <span class="dt">xlab=</span><span class="st">&quot;&quot;</span>,<span class="dt">ylab=</span><span class="st">&quot;&quot;</span>,<span class="dt">pch=</span><span class="dv">1</span><span class="op">:</span><span class="dv">25</span>,<span class="dt">col=</span><span class="dv">1</span><span class="op">:</span><span class="dv">25</span>,<span class="dt">cex=</span><span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb252-4" data-line-number="4"><span class="kw">title</span>(<span class="st">&quot;Plotting symbol, line type, &amp; color codes&quot;</span>)</a>
+<a class="sourceLine" id="cb252-5" data-line-number="5"><span class="kw">legend</span>(<span class="st">&quot;topleft&quot;</span>, <span class="dt">legend=</span><span class="dv">1</span><span class="op">:</span><span class="dv">6</span>, <span class="dt">lty=</span><span class="dv">1</span><span class="op">:</span><span class="dv">6</span>, <span class="dt">lwd=</span><span class="fl">1.5</span>, <span class="dt">ncol=</span><span class="dv">2</span>, <span class="dt">bg=</span><span class="st">&quot;gray95&quot;</span>)</a>
+<a class="sourceLine" id="cb252-6" data-line-number="6"><span class="kw">legend</span>(<span class="st">&quot;bottomright&quot;</span>, <span class="dt">legend=</span><span class="dv">1</span><span class="op">:</span><span class="dv">8</span>, <span class="dt">col=</span><span class="dv">1</span><span class="op">:</span><span class="dv">8</span>, <span class="dt">ncol=</span><span class="dv">3</span>, <span class="dt">pch=</span><span class="dv">19</span>, <span class="dt">bg=</span><span class="st">&quot;gray95&quot;</span>)</a></code></pre></div>
+<p><img src="Introduction-to-R_files/figure-html/unnamed-chunk-95-1.png" width="70%" style="display: block; margin: auto;" /></p>
+</div>
+</div>
+<div id="barplots-boxplots-pie-charts" class="section level2">
+<h2><span class="header-section-number">10.2</span> Barplots, Boxplots, Pie Charts</h2>
+<p>We’re going to create a fake dataset of those who are infected by the coronavirus. Let’s do so using the <code>sample()</code> function.</p>
+<div class="sourceCode" id="cb253"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb253-1" data-line-number="1"><span class="co"># Create a random sample of the 3 types - Susceptible, Infected and Recovered</span></a>
+<a class="sourceLine" id="cb253-2" data-line-number="2">InfStatus &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="kw">sample</span>(<span class="kw">c</span>(<span class="st">&quot;Susceptible&quot;</span>, <span class="st">&quot;Infected&quot;</span>, <span class="st">&quot;Recovered&quot;</span>),<span class="dt">size =</span> <span class="dv">50</span>, <span class="dt">replace =</span> <span class="ot">TRUE</span>))</a>
+<a class="sourceLine" id="cb253-3" data-line-number="3">I &lt;-<span class="st"> </span><span class="kw">table</span>(InfStatus)</a>
+<a class="sourceLine" id="cb253-4" data-line-number="4">I</a></code></pre></div>
+<pre><code>## InfStatus
+##    Infected   Recovered Susceptible 
+##          18          13          19</code></pre>
+<div class="sourceCode" id="cb255"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb255-1" data-line-number="1"><span class="co"># Now let&#39;s make a random sample of 3 genotypes (RR, Rr, and rr)</span></a>
+<a class="sourceLine" id="cb255-2" data-line-number="2">Genotype &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="kw">sample</span>(<span class="kw">c</span>(<span class="st">&quot;RR&quot;</span>, <span class="st">&quot;Rr&quot;</span>, <span class="st">&quot;rr&quot;</span>), <span class="dt">size =</span> <span class="dv">50</span>, <span class="dt">replace =</span> <span class="ot">TRUE</span>))</a>
+<a class="sourceLine" id="cb255-3" data-line-number="3">G &lt;-<span class="st"> </span><span class="kw">table</span>(Genotype)</a>
+<a class="sourceLine" id="cb255-4" data-line-number="4">G</a></code></pre></div>
+<pre><code>## Genotype
+## rr Rr RR 
+## 12 18 20</code></pre>
+<div class="sourceCode" id="cb257"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb257-1" data-line-number="1"><span class="co">#show genotype and infected status as a table </span></a>
+<a class="sourceLine" id="cb257-2" data-line-number="2"><span class="kw">table</span>(Genotype, InfStatus)</a></code></pre></div>
+<pre><code>##         InfStatus
+## Genotype Infected Recovered Susceptible
+##       rr        5         1           6
+##       Rr        8         2           8
+##       RR        5        10           5</code></pre>
+<p>Note - We turned the sample data info a <code>factor</code> to add <code>levels</code> (i.e. categories) of our test data.</p>
+<div class="sourceCode" id="cb259"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb259-1" data-line-number="1"><span class="co"># WITHOUT the factor</span></a>
+<a class="sourceLine" id="cb259-2" data-line-number="2">test &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="kw">c</span>(<span class="st">&quot;Susceptible&quot;</span>, <span class="st">&quot;Infected&quot;</span>, <span class="st">&quot;Recovered&quot;</span>),<span class="dt">size =</span> <span class="dv">50</span>, <span class="dt">replace =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb259-3" data-line-number="3">test</a></code></pre></div>
+<pre><code>##  [1] &quot;Recovered&quot;   &quot;Susceptible&quot; &quot;Recovered&quot;   &quot;Infected&quot;    &quot;Recovered&quot;  
+##  [6] &quot;Recovered&quot;   &quot;Susceptible&quot; &quot;Susceptible&quot; &quot;Infected&quot;    &quot;Infected&quot;   
+## [11] &quot;Infected&quot;    &quot;Recovered&quot;   &quot;Recovered&quot;   &quot;Susceptible&quot; &quot;Susceptible&quot;
+## [16] &quot;Infected&quot;    &quot;Susceptible&quot; &quot;Susceptible&quot; &quot;Recovered&quot;   &quot;Susceptible&quot;
+## [21] &quot;Recovered&quot;   &quot;Susceptible&quot; &quot;Infected&quot;    &quot;Recovered&quot;   &quot;Recovered&quot;  
+## [26] &quot;Infected&quot;    &quot;Infected&quot;    &quot;Infected&quot;    &quot;Susceptible&quot; &quot;Recovered&quot;  
+## [31] &quot;Infected&quot;    &quot;Susceptible&quot; &quot;Susceptible&quot; &quot;Infected&quot;    &quot;Susceptible&quot;
+## [36] &quot;Infected&quot;    &quot;Infected&quot;    &quot;Infected&quot;    &quot;Susceptible&quot; &quot;Susceptible&quot;
+## [41] &quot;Infected&quot;    &quot;Susceptible&quot; &quot;Recovered&quot;   &quot;Infected&quot;    &quot;Infected&quot;   
+## [46] &quot;Recovered&quot;   &quot;Infected&quot;    &quot;Infected&quot;    &quot;Infected&quot;    &quot;Infected&quot;</code></pre>
+<div class="sourceCode" id="cb261"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb261-1" data-line-number="1"><span class="kw">class</span>(test)</a></code></pre></div>
+<pre><code>## [1] &quot;character&quot;</code></pre>
+<div class="sourceCode" id="cb263"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb263-1" data-line-number="1"><span class="co"># Now as a factor</span></a>
+<a class="sourceLine" id="cb263-2" data-line-number="2">test2 &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="kw">sample</span>(<span class="kw">c</span>(<span class="st">&quot;Susceptible&quot;</span>, <span class="st">&quot;Infected&quot;</span>, <span class="st">&quot;Recovered&quot;</span>),<span class="dt">size =</span> <span class="dv">50</span>, <span class="dt">replace =</span> <span class="ot">TRUE</span>))</a>
+<a class="sourceLine" id="cb263-3" data-line-number="3">test2</a></code></pre></div>
+<pre><code>##  [1] Susceptible Infected    Susceptible Infected    Susceptible Infected   
+##  [7] Infected    Infected    Recovered   Recovered   Susceptible Infected   
+## [13] Recovered   Susceptible Recovered   Infected    Infected    Infected   
+## [19] Susceptible Infected    Recovered   Susceptible Recovered   Susceptible
+## [25] Recovered   Recovered   Susceptible Recovered   Infected    Susceptible
+## [31] Recovered   Susceptible Susceptible Recovered   Susceptible Susceptible
+## [37] Recovered   Susceptible Recovered   Infected    Infected    Recovered  
+## [43] Susceptible Infected    Recovered   Infected    Recovered   Susceptible
+## [49] Susceptible Recovered  
+## Levels: Infected Recovered Susceptible</code></pre>
+<div class="sourceCode" id="cb265"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb265-1" data-line-number="1"><span class="kw">class</span>(test2)</a></code></pre></div>
+<pre><code>## [1] &quot;factor&quot;</code></pre>
+<div id="combining-plots" class="section level3">
+<h3><span class="header-section-number">10.2.1</span> Combining Plots</h3>
+<p>R makes it easy to combine multiple plots into one overall graph, using either the <code>par()</code> function. With the <code>par()</code> function, you can include the option <code>mfrow=c(nrows, ncols)</code> to create a matrix of <code>nrows</code> x <code>ncols</code> plots that are filled in by row. The Additionally, we can control text size with <code>cex</code> - a number indicating the amount by which plotting text and symbols should be scaled relative to the default. 1=default, 1.5 is 50% larger, 0.5 is 50% smaller, etc. Here’s some more descriptions.</p>
+<table>
+<colgroup>
+<col width="36%" />
+<col width="63%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">option</th>
+<th align="left">description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code>mfrow</code></td>
+<td align="left"><code>mfrow=c(nrows, ncols)</code> - <code>nrows</code> x <code>ncols</code> plots that are filled in by row</td>
+</tr>
+<tr class="even">
+<td align="left"><code>mar</code></td>
+<td align="left">A numerical vector of the form c(bottom, left, top, right) which gives the number of lines of margin to be specified on the four sides of the plot</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>oma</code></td>
+<td align="left">A vector of the form c(bottom, left, top, right) giving the size of the outer margins in lines of text.</td>
+</tr>
+<tr class="even">
+<td align="left"><code>bg</code></td>
+<td align="left">background color</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>cex</code></td>
+<td align="left">magnification of text and symbols relative to default.</td>
+</tr>
+<tr class="even">
+<td align="left"><code>cex.axis</code></td>
+<td align="left">magnification of axis annotation relative to <code>cex</code></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>cex.lab</code></td>
+<td align="left">magnification of x and y labels relative to <code>cex</code></td>
+</tr>
+<tr class="even">
+<td align="left"><code>cex.main</code></td>
+<td align="left">magnification of titles relative to <code>cex</code></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>cex.sub</code></td>
+<td align="left">magnification of subtitles relative to <code>cex</code></td>
+</tr>
+</tbody>
+</table>
+<p>We can always list the <code>par</code> settings by entering <code>par()</code> in the console. Let’s use these par settings with our test data created above.</p>
+<div class="sourceCode" id="cb267"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb267-1" data-line-number="1"><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">2</span>), <span class="dt">mar=</span><span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">1</span>), <span class="dt">oma=</span><span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">3</span>, <span class="dv">0</span>), <span class="dt">bg =</span> <span class="st">&quot;white&quot;</span>) <span class="co">## create plot array of 2 row x 2 columns</span></a>
+<a class="sourceLine" id="cb267-2" data-line-number="2"><span class="kw">plot</span>(InfStatus, <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">27</span>)) <span class="co"># basic plot with y limit set as a range</span></a>
+<a class="sourceLine" id="cb267-3" data-line-number="3"><span class="kw">box</span>() <span class="co"># adds a box around the plot coded before this line</span></a>
+<a class="sourceLine" id="cb267-4" data-line-number="4"><span class="kw">barplot</span>(<span class="kw">table</span>(Genotype, InfStatus), <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">13</span>), <span class="dt">beside =</span> <span class="ot">TRUE</span>, <span class="dt">col =</span> <span class="kw">c</span>(<span class="st">&quot;seagreen4&quot;</span>, <span class="st">&quot;coral&quot;</span>, <span class="st">&quot;dodgerblue2&quot;</span>)) <span class="co"># barplot</span></a>
+<a class="sourceLine" id="cb267-5" data-line-number="5"><span class="kw">box</span>() <span class="co"># adds a box around the plot coded before this line</span></a>
+<a class="sourceLine" id="cb267-6" data-line-number="6"><span class="kw">legend</span>(<span class="st">&quot;topright&quot;</span>, <span class="kw">c</span>(<span class="st">&quot;RR&quot;</span>, <span class="st">&quot;Rr&quot;</span>, <span class="st">&quot;rr&quot;</span>), <span class="dt">fill =</span> <span class="kw">c</span>(<span class="st">&quot;seagreen4&quot;</span>, <span class="st">&quot;coral&quot;</span>, <span class="st">&quot;dodgerblue2&quot;</span>), <span class="dt">ncol =</span> <span class="dv">1</span>, <span class="dt">cex =</span> <span class="fl">0.75</span>) <span class="co"># legend for the previous plot, which in this case is the barplot</span></a>
+<a class="sourceLine" id="cb267-7" data-line-number="7"><span class="kw">boxplot</span>(<span class="kw">rnorm</span>(<span class="dv">50</span>, <span class="dt">mean =</span> <span class="dv">15</span>, <span class="dt">sd =</span> <span class="dv">3</span>) <span class="op">~</span><span class="st"> </span>Genotype,  <span class="dt">col =</span> <span class="kw">c</span>(<span class="st">&quot;seagreen4&quot;</span>, <span class="st">&quot;coral&quot;</span>, <span class="st">&quot;dodgerblue2&quot;</span>)) <span class="co"># boxplot</span></a>
+<a class="sourceLine" id="cb267-8" data-line-number="8"><span class="kw">pie</span>(G, <span class="dt">col =</span> <span class="kw">c</span>(<span class="st">&quot;seagreen4&quot;</span>, <span class="st">&quot;coral&quot;</span>, <span class="st">&quot;dodgerblue2&quot;</span>)) <span class="co"># pie plot</span></a>
+<a class="sourceLine" id="cb267-9" data-line-number="9"><span class="kw">mtext</span>(<span class="st">&quot;Basic R Plots with Test Genotype Data&quot;</span>, <span class="dt">outer =</span> <span class="ot">TRUE</span>, <span class="dt">cex =</span> <span class="fl">1.5</span>, <span class="dt">font =</span> <span class="dv">2</span>) <span class="co"># main title</span></a></code></pre></div>
+<p><img src="Introduction-to-R_files/figure-html/unnamed-chunk-98-1.png" width="60%" style="display: block; margin: auto;" /></p>
+</div>
+</div>
+<div id="tree-data" class="section level2">
+<h2><span class="header-section-number">10.3</span> Tree Data</h2>
+<p>We’re going to download the <code>TreeData.csv</code> file from the <a href="%22https://github.com/jsimkins2/geog473-673/tree/master/datasets/%22">course github</a> using a direct method. We can use the <code>download.file()</code> function to do this.</p>
+<p><code>download.file(url = &quot;https://github.com/jsimkins2/geog473-673/tree/master/datasets/TreeData.csv&quot;, destfile = &quot;/Users/james/Downloads/TreeData.csv&quot; , mode='wb')</code></p>
+<p>The <code>url</code> argument is the direct url of the file we wish to download. <code>destfile</code> is the destination file path + name - note that this is <em>my relative path</em> and that yours will look different. <code>mode</code> describes the method with whcih to write the file (<code>wb</code> can be used in most cases).</p>
+<div id="loading-the-dataset" class="section level3">
+<h3><span class="header-section-number">10.3.1</span> Loading the Dataset</h3>
+<div class="sourceCode" id="cb268"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb268-1" data-line-number="1"><span class="co"># Our file location is our destfile argument above. For me, it&#39;s /Users/james/Downloads/TreeData.csv</span></a>
+<a class="sourceLine" id="cb268-2" data-line-number="2">treedat &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;/Users/james/Documents/Github/geog473-673/datasets/TreeData.csv&quot;</span>)</a>
+<a class="sourceLine" id="cb268-3" data-line-number="3">treedat</a></code></pre></div>
+<pre><code>##    tree  spp season Infected  dbh SapDepth BarkThick NobarkArea Heartwood
+## 1     1 PICO Summer      Yes 42.2      8.4       0.3     1359.2     483.1
+## 2     2 ABLA   Fall      Yes 13.4      2.0       0.4      124.7      58.1
+## 3     3 ABLA Summer       No 13.1      1.5       0.3      122.7      70.9
+## 4     4 PICO Spring       No 15.0      4.1       0.2      167.4      32.2
+## 5     5 POTR Winter      Yes 14.2      3.6       0.0      158.4      38.5
+## 6     6 POTR Winter      Yes 20.0      5.9       0.0      314.2      52.8
+## 7     7 ABLA Summer      Yes  9.1      2.1       0.3       56.7      14.5
+## 8     8 ABLA Spring       No  9.2      2.5       0.5       52.8       8.0
+## 9     9 ABLA   Fall      Yes 27.3      3.0       0.6      535.0     317.3
+## 10   10 PICO   Fall       No 11.2      3.4       0.3       88.2      11.3
+## 11   11 PICO Spring      Yes 18.0      5.9       0.3      237.8      24.6
+## 12   12 POTR Summer       No  9.0      3.0       0.0       63.6       7.1
+## 13   13 POTR Spring       No 15.4      4.1       0.0      186.3      40.7
+## 14   14 POTR Winter       No 24.1      6.2       0.0      456.2     107.5
+## 15   15 PICO Winter      Yes 24.2      7.0       0.5      422.7      66.5
+## 16   16 PIFL   Fall       No 14.4      4.2       0.5      141.0      19.6
+## 17   17 PIFL Winter       No 13.1      2.2       0.6      111.2      44.2
+## 18   18 PIFL Summer      Yes 21.5      5.1       0.6      323.7      80.1
+## 19   19 PIFL Spring       No 13.4      2.2       0.5      120.8      50.3
+## 20   20 PIFL   Fall      Yes 16.2      3.5       0.5      181.5      52.8
+##    SapArea
+## 1    876.1
+## 2     66.6
+## 3     51.8
+## 4    135.2
+## 5    119.9
+## 6    261.3
+## 7     42.2
+## 8     44.8
+## 9    217.7
+## 10    76.9
+## 11   213.2
+## 12    56.5
+## 13   145.5
+## 14   348.7
+## 15   356.3
+## 16   121.4
+## 17    67.0
+## 18   243.5
+## 19    70.5
+## 20   128.6</code></pre>
+<p><code>treedat</code> is a data frame. As a reminder, a data frame is essentially a 2-dimensional array that contains a <em>combination</em> of vectors (columns of data) that are of the class; integer, numeric, character. This is <em>different</em> from a matrix which can only contain <em>1 type</em> of data. In this case, we have some tree data that includes species of tree, season the data was collected, diameter of the tree, bark thickness, area of no bark, heartwood diameter, and sapwood diameter.</p>
+<p><img src="../documents/images/heartwoodvssapwood.jpeg" width="60%" style="display: block; margin: auto;" /></p>
+<p>Let’s manipulate this dataframe to make it easier to work wtih.</p>
+<div class="sourceCode" id="cb270"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb270-1" data-line-number="1"><span class="co"># let&#39;s set the rownames equal to the tree column</span></a>
+<a class="sourceLine" id="cb270-2" data-line-number="2">treedat &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;/Users/james/Documents/Github/geog473-673/datasets/TreeData.csv&quot;</span>,<span class="dt">row.names=</span><span class="st">&#39;tree&#39;</span>)</a>
+<a class="sourceLine" id="cb270-3" data-line-number="3"><span class="co"># print treedat</span></a>
+<a class="sourceLine" id="cb270-4" data-line-number="4">treedat</a></code></pre></div>
+<pre><code>##     spp season Infected  dbh SapDepth BarkThick NobarkArea Heartwood SapArea
+## 1  PICO Summer      Yes 42.2      8.4       0.3     1359.2     483.1   876.1
+## 2  ABLA   Fall      Yes 13.4      2.0       0.4      124.7      58.1    66.6
+## 3  ABLA Summer       No 13.1      1.5       0.3      122.7      70.9    51.8
+## 4  PICO Spring       No 15.0      4.1       0.2      167.4      32.2   135.2
+## 5  POTR Winter      Yes 14.2      3.6       0.0      158.4      38.5   119.9
+## 6  POTR Winter      Yes 20.0      5.9       0.0      314.2      52.8   261.3
+## 7  ABLA Summer      Yes  9.1      2.1       0.3       56.7      14.5    42.2
+## 8  ABLA Spring       No  9.2      2.5       0.5       52.8       8.0    44.8
+## 9  ABLA   Fall      Yes 27.3      3.0       0.6      535.0     317.3   217.7
+## 10 PICO   Fall       No 11.2      3.4       0.3       88.2      11.3    76.9
+## 11 PICO Spring      Yes 18.0      5.9       0.3      237.8      24.6   213.2
+## 12 POTR Summer       No  9.0      3.0       0.0       63.6       7.1    56.5
+## 13 POTR Spring       No 15.4      4.1       0.0      186.3      40.7   145.5
+## 14 POTR Winter       No 24.1      6.2       0.0      456.2     107.5   348.7
+## 15 PICO Winter      Yes 24.2      7.0       0.5      422.7      66.5   356.3
+## 16 PIFL   Fall       No 14.4      4.2       0.5      141.0      19.6   121.4
+## 17 PIFL Winter       No 13.1      2.2       0.6      111.2      44.2    67.0
+## 18 PIFL Summer      Yes 21.5      5.1       0.6      323.7      80.1   243.5
+## 19 PIFL Spring       No 13.4      2.2       0.5      120.8      50.3    70.5
+## 20 PIFL   Fall      Yes 16.2      3.5       0.5      181.5      52.8   128.6</code></pre>
+<div class="sourceCode" id="cb272"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb272-1" data-line-number="1"><span class="co"># look at the data frame variable names </span></a>
+<a class="sourceLine" id="cb272-2" data-line-number="2"><span class="kw">names</span>(treedat)</a></code></pre></div>
+<pre><code>## [1] &quot;spp&quot;        &quot;season&quot;     &quot;Infected&quot;   &quot;dbh&quot;        &quot;SapDepth&quot;  
+## [6] &quot;BarkThick&quot;  &quot;NobarkArea&quot; &quot;Heartwood&quot;  &quot;SapArea&quot;</code></pre>
+<div class="sourceCode" id="cb274"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb274-1" data-line-number="1"><span class="co"># print the dbh variable</span></a>
+<a class="sourceLine" id="cb274-2" data-line-number="2">treedat<span class="op">$</span>dbh</a></code></pre></div>
+<pre><code>##  [1] 42.2 13.4 13.1 15.0 14.2 20.0  9.1  9.2 27.3 11.2 18.0  9.0 15.4 24.1 24.2
+## [16] 14.4 13.1 21.5 13.4 16.2</code></pre>
+<div class="sourceCode" id="cb276"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb276-1" data-line-number="1"><span class="co"># rename the dbh variable, but first let&#39;s be sure our index of the dbh variable is correct</span></a>
+<a class="sourceLine" id="cb276-2" data-line-number="2"><span class="kw">colnames</span>(treedat)[<span class="dv">4</span>]</a></code></pre></div>
+<pre><code>## [1] &quot;dbh&quot;</code></pre>
+<div class="sourceCode" id="cb278"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb278-1" data-line-number="1"><span class="co"># yep, dbh is the index number 4 </span></a>
+<a class="sourceLine" id="cb278-2" data-line-number="2"><span class="kw">colnames</span>(treedat)[<span class="dv">4</span>] =<span class="st"> &quot;tree.diameter&quot;</span></a>
+<a class="sourceLine" id="cb278-3" data-line-number="3">treedat</a></code></pre></div>
+<pre><code>##     spp season Infected tree.diameter SapDepth BarkThick NobarkArea Heartwood
+## 1  PICO Summer      Yes          42.2      8.4       0.3     1359.2     483.1
+## 2  ABLA   Fall      Yes          13.4      2.0       0.4      124.7      58.1
+## 3  ABLA Summer       No          13.1      1.5       0.3      122.7      70.9
+## 4  PICO Spring       No          15.0      4.1       0.2      167.4      32.2
+## 5  POTR Winter      Yes          14.2      3.6       0.0      158.4      38.5
+## 6  POTR Winter      Yes          20.0      5.9       0.0      314.2      52.8
+## 7  ABLA Summer      Yes           9.1      2.1       0.3       56.7      14.5
+## 8  ABLA Spring       No           9.2      2.5       0.5       52.8       8.0
+## 9  ABLA   Fall      Yes          27.3      3.0       0.6      535.0     317.3
+## 10 PICO   Fall       No          11.2      3.4       0.3       88.2      11.3
+## 11 PICO Spring      Yes          18.0      5.9       0.3      237.8      24.6
+## 12 POTR Summer       No           9.0      3.0       0.0       63.6       7.1
+## 13 POTR Spring       No          15.4      4.1       0.0      186.3      40.7
+## 14 POTR Winter       No          24.1      6.2       0.0      456.2     107.5
+## 15 PICO Winter      Yes          24.2      7.0       0.5      422.7      66.5
+## 16 PIFL   Fall       No          14.4      4.2       0.5      141.0      19.6
+## 17 PIFL Winter       No          13.1      2.2       0.6      111.2      44.2
+## 18 PIFL Summer      Yes          21.5      5.1       0.6      323.7      80.1
+## 19 PIFL Spring       No          13.4      2.2       0.5      120.8      50.3
+## 20 PIFL   Fall      Yes          16.2      3.5       0.5      181.5      52.8
+##    SapArea
+## 1    876.1
+## 2     66.6
+## 3     51.8
+## 4    135.2
+## 5    119.9
+## 6    261.3
+## 7     42.2
+## 8     44.8
+## 9    217.7
+## 10    76.9
+## 11   213.2
+## 12    56.5
+## 13   145.5
+## 14   348.7
+## 15   356.3
+## 16   121.4
+## 17    67.0
+## 18   243.5
+## 19    70.5
+## 20   128.6</code></pre>
+<p>Now that our data is curated, let’s create a figure with 2 plots in the window; plot 1 will be a histogram of bark thickness and plot 2 will be a boxplot of sapdepth by species.</p>
+<div class="sourceCode" id="cb280"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb280-1" data-line-number="1"><span class="co"># Now let&#39;s do some plotting </span></a>
+<a class="sourceLine" id="cb280-2" data-line-number="2"><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>)) <span class="co">## create plot array of 1 row x 2 columns</span></a>
+<a class="sourceLine" id="cb280-3" data-line-number="3"><span class="kw">par</span>(<span class="dt">cex.axis=</span><span class="fl">0.8</span>) <span class="co">## shrinks the name size of the x axes. If we don&#39;t do this, not all the names in the boxplot show up</span></a>
+<a class="sourceLine" id="cb280-4" data-line-number="4"><span class="kw">par</span>(<span class="dt">cex.main=</span><span class="fl">0.7</span>) <span class="co">## shrinks the name size of the titles. If we don&#39;t do this, the titles don&#39;t fit in the window</span></a>
+<a class="sourceLine" id="cb280-5" data-line-number="5"><span class="co"># Use the his() function to plot a histogram </span></a>
+<a class="sourceLine" id="cb280-6" data-line-number="6"><span class="kw">hist</span>(treedat<span class="op">$</span>BarkThick, <span class="dt">xlab=</span> <span class="st">&quot;Bark Thickness (cm)&quot;</span>, <span class="dt">main=</span> <span class="st">&quot;Histogram: Bark Thickness&quot;</span>, <span class="dt">col=</span> <span class="st">&quot;darkgreen&quot;</span>)</a>
+<a class="sourceLine" id="cb280-7" data-line-number="7"><span class="kw">boxplot</span>(SapDepth <span class="op">~</span><span class="st"> </span>spp, <span class="dt">data=</span> treedat, <span class="dt">ylab=</span> <span class="st">&quot;SapDepth&quot;</span>, <span class="dt">col=</span> <span class="st">&quot;darkslateblue&quot;</span>, <span class="dt">main=</span> <span class="st">&quot;Boxplot: Sapwood Depth by Species&quot;</span>)</a></code></pre></div>
+<p><img src="Introduction-to-R_files/figure-html/unnamed-chunk-102-1.png" width="60%" style="display: block; margin: auto;" /></p>
+<p>First we notice that with the <code>par()</code> function, we can declare arguments in different lines so long as we call the <code>par()</code> function again. <code>hist()</code> is the histogram function; <code>boxplot()</code> is the boxplot function. The <code>boxplot()</code> function using a slightly different syntax for plotting in the form of <code>y ~ x</code>, or <strong>y versus x</strong>. <code>hist()</code>, on the other hand, can only plot numerical values. For categorical data, such as our tree species column, must be plotted with <code>barplot()</code> and the <code>table()</code> function.</p>
+<div class="sourceCode" id="cb281"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb281-1" data-line-number="1"><span class="co"># print the table function output of treedat$spp - notice the categorical help from the table function</span></a>
+<a class="sourceLine" id="cb281-2" data-line-number="2"><span class="kw">table</span>(treedat<span class="op">$</span>spp)</a></code></pre></div>
+<pre><code>## 
+## ABLA PICO PIFL POTR 
+##    5    5    5    5</code></pre>
+<div class="sourceCode" id="cb283"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb283-1" data-line-number="1"><span class="co"># plot this categorical data using barplot() function</span></a>
+<a class="sourceLine" id="cb283-2" data-line-number="2"><span class="kw">barplot</span>(<span class="kw">table</span>(treedat<span class="op">$</span>spp))</a></code></pre></div>
+<p><img src="Introduction-to-R_files/figure-html/unnamed-chunk-103-1.png" width="60%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb284"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb284-1" data-line-number="1"><span class="co"># customize the barplot function</span></a>
+<a class="sourceLine" id="cb284-2" data-line-number="2"><span class="kw">barplot</span>(<span class="kw">table</span>(treedat<span class="op">$</span>spp), <span class="dt">main=</span><span class="st">&quot;SPP Count Barplot&quot;</span>,</a>
+<a class="sourceLine" id="cb284-3" data-line-number="3"><span class="dt">xlab=</span><span class="st">&quot;SPP&quot;</span>,</a>
+<a class="sourceLine" id="cb284-4" data-line-number="4"><span class="dt">ylab=</span><span class="st">&quot;Count&quot;</span>,</a>
+<a class="sourceLine" id="cb284-5" data-line-number="5"><span class="dt">border=</span><span class="st">&quot;red&quot;</span>,</a>
+<a class="sourceLine" id="cb284-6" data-line-number="6"><span class="dt">col=</span><span class="st">&quot;blue&quot;</span>,</a>
+<a class="sourceLine" id="cb284-7" data-line-number="7"><span class="dt">density=</span><span class="dv">10</span>)</a></code></pre></div>
+<p><img src="Introduction-to-R_files/figure-html/unnamed-chunk-103-2.png" width="60%" style="display: block; margin: auto;" /></p>
+</div>
+</div>
+<div id="assignment-3" class="section level2">
+<h2><span class="header-section-number">10.4</span> Assignment:</h2>
+<ol style="list-style-type: decimal">
+<li>Create the plot below using a sequence of X values where Y is the <code>log</code> of the X values. For the line type, use <code>type = &quot;b&quot;</code> to obtain lines and points. Use a <code>pch</code> of 21, <code>cex</code> of 1.5, and colors of your choosing.</li>
+</ol>
+<p><img src="Introduction-to-R_files/figure-html/unnamed-chunk-104-1.png" width="60%" style="display: block; margin: auto;" /></p>
+<p>Using the <code>TreeData.csv</code> from the course dataset folder, complete the following:</p>
+<ol start="2" style="list-style-type: decimal">
+<li>Rename <code>spp</code> variable to <code>species</code></li>
+<li>Make a 3 column plot consisting of a <strong>Sapwood Depth histogram</strong>, <strong>a boxplot of Bark Thickness by species</strong>, and a <strong>seasonal count barplot</strong>. Use your own colors, borders, line types, etc. Your plot does not have to perfectly match the example below, but try and get close to it.</li>
+<li><strong>Submit the plot to UD Canvas.</strong></li>
+</ol>
+<p>Your final plot should look like this</p>
+<p><img src="Introduction-to-R_files/figure-html/unnamed-chunk-105-1.png" width="60%" style="display: block; margin: auto;" /></p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="reprojecting-writing-rasters.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="basic-statistics.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

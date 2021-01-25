@@ -4,27 +4,27 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>8 Oceanography &amp; Global Tree Cover | GEOG 473/673 Open-sourced Environmental Computing</title>
-  <meta name="description" content="Phase 1 - Introduction to R" />
+  <title>8 Oceanography &amp; Global Tree Cover | Advanced R for Geospatial Sciences</title>
+  <meta name="description" content="Advanced R" />
   <meta name="generator" content="bookdown 0.20.6 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="8 Oceanography &amp; Global Tree Cover | GEOG 473/673 Open-sourced Environmental Computing" />
+  <meta property="og:title" content="8 Oceanography &amp; Global Tree Cover | Advanced R for Geospatial Sciences" />
   <meta property="og:type" content="book" />
   
   
-  <meta property="og:description" content="Phase 1 - Introduction to R" />
+  <meta property="og:description" content="Advanced R" />
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="8 Oceanography &amp; Global Tree Cover | GEOG 473/673 Open-sourced Environmental Computing" />
+  <meta name="twitter:title" content="8 Oceanography &amp; Global Tree Cover | Advanced R for Geospatial Sciences" />
   
-  <meta name="twitter:description" content="Phase 1 - Introduction to R" />
+  <meta name="twitter:description" content="Advanced R" />
   
 
 <meta name="author" content="James Simkins" />
 
 
-<meta name="date" content="2020-12-29" />
+<meta name="date" content="2021-01-25" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -50,6 +50,27 @@
 
 
 
+<script src="libs/htmlwidgets-1.5.3/htmlwidgets.js"></script>
+<link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-1.3.1/leaflet.js"></script>
+<link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
+<script src="libs/proj4-2.6.2/proj4.min.js"></script>
+<script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+<link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-binding-2.0.4.1/leaflet.js"></script>
+<script src="libs/leaflet-providers-1.9.0/leaflet-providers_1.9.0.js"></script>
+<script src="libs/leaflet-providers-plugin-2.0.4.1/leaflet-providers-plugin.js"></script>
+<script src="libs/FlatGeoBuf-3.3.3/fgb.js"></script>
+<script src="libs/FlatGeoBuf-3.3.3/flatgeobuf-geojson.min.js"></script>
+<script src="libs/chromajs-2.1.0/chroma.min.js"></script>
+<link id="merged_coast[maxpred]-1-attachment" rel="attachment" href="libs/merged_coast[maxpred]-0.0.1/merged_coast[maxpred]_layer.fgb"/>
+<link href="libs/HomeButton-0.0.1/home-button.css" rel="stylesheet" />
+<script src="libs/HomeButton-0.0.1/home-button.js"></script>
+<script src="libs/HomeButton-0.0.1/easy-button-src.min.js"></script>
+<script src="libs/clipboard-0.0.1/setClipboardText.js"></script>
+<link href="libs/mapviewCSS-0.0.1/mapview-popup.css" rel="stylesheet" />
+<link href="libs/mapviewCSS-0.0.1/mapview.css" rel="stylesheet" />
+<link id="m[name]-1-attachment" rel="attachment" href="libs/m[name]-0.0.1/m[name]_layer.fgb"/>
 
 
 <style type="text/css">
@@ -198,17 +219,101 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.3" data-path="reprojecting-writing-rasters.html"><a href="reprojecting-writing-rasters.html#pngs"><i class="fa fa-check"></i><b>9.3</b> PNGs</a></li>
 <li class="chapter" data-level="9.4" data-path="reprojecting-writing-rasters.html"><a href="reprojecting-writing-rasters.html#writing-rasters"><i class="fa fa-check"></i><b>9.4</b> Writing Rasters</a></li>
 <li class="chapter" data-level="9.5" data-path="reprojecting-writing-rasters.html"><a href="reprojecting-writing-rasters.html#assignment-2"><i class="fa fa-check"></i><b>9.5</b> Assignment</a></li>
-<li class="chapter" data-level="9.6" data-path="reprojecting-writing-rasters.html"><a href="reprojecting-writing-rasters.html#basic-plotting"><i class="fa fa-check"></i><b>9.6</b> Basic Plotting</a></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="downloading-datafiles-via-r.html"><a href="downloading-datafiles-via-r.html"><i class="fa fa-check"></i><b>10</b> Downloading Datafiles via R</a><ul>
-<li class="chapter" data-level="10.1" data-path="downloading-datafiles-via-r.html"><a href="downloading-datafiles-via-r.html#expanding-on-basic-plots-in-r"><i class="fa fa-check"></i><b>10.1</b> Expanding on Basic Plots in R</a></li>
-<li class="chapter" data-level="10.2" data-path="downloading-datafiles-via-r.html"><a href="downloading-datafiles-via-r.html#in-class-exercise-1"><i class="fa fa-check"></i><b>10.2</b> In Class Exercise:</a></li>
-<li class="chapter" data-level="10.3" data-path="downloading-datafiles-via-r.html"><a href="downloading-datafiles-via-r.html#more-plotting"><i class="fa fa-check"></i><b>10.3</b> More Plotting</a></li>
-<li class="chapter" data-level="10.4" data-path="downloading-datafiles-via-r.html"><a href="downloading-datafiles-via-r.html#basic-types-of-plots-with-dummy-data"><i class="fa fa-check"></i><b>10.4</b> Basic types of plots with dummy data</a></li>
-<li class="chapter" data-level="10.5" data-path="downloading-datafiles-via-r.html"><a href="downloading-datafiles-via-r.html#now-lets-plot-this-fake-data"><i class="fa fa-check"></i><b>10.5</b> Now let’s plot this fake data</a></li>
+<li class="chapter" data-level="10" data-path="customizing-r-base-plots.html"><a href="customizing-r-base-plots.html"><i class="fa fa-check"></i><b>10</b> Customizing R Base Plots</a><ul>
+<li class="chapter" data-level="10.1" data-path="customizing-r-base-plots.html"><a href="customizing-r-base-plots.html#expanding-on-basic-plots-in-r"><i class="fa fa-check"></i><b>10.1</b> Expanding on Basic Plots in R</a><ul>
+<li class="chapter" data-level="10.1.1" data-path="customizing-r-base-plots.html"><a href="customizing-r-base-plots.html#adding-to-a-plot"><i class="fa fa-check"></i><b>10.1.1</b> Adding to a Plot</a></li>
 </ul></li>
-<li class="chapter" data-level="11" data-path="playing-with-tree-data.html"><a href="playing-with-tree-data.html"><i class="fa fa-check"></i><b>11</b> Playing with Tree Data</a><ul>
-<li class="chapter" data-level="11.1" data-path="playing-with-tree-data.html"><a href="playing-with-tree-data.html#assignment-3"><i class="fa fa-check"></i><b>11.1</b> Assignment:</a></li>
+<li class="chapter" data-level="10.2" data-path="customizing-r-base-plots.html"><a href="customizing-r-base-plots.html#barplots-boxplots-pie-charts"><i class="fa fa-check"></i><b>10.2</b> Barplots, Boxplots, Pie Charts</a><ul>
+<li class="chapter" data-level="10.2.1" data-path="customizing-r-base-plots.html"><a href="customizing-r-base-plots.html#combining-plots"><i class="fa fa-check"></i><b>10.2.1</b> Combining Plots</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="customizing-r-base-plots.html"><a href="customizing-r-base-plots.html#tree-data"><i class="fa fa-check"></i><b>10.3</b> Tree Data</a><ul>
+<li class="chapter" data-level="10.3.1" data-path="customizing-r-base-plots.html"><a href="customizing-r-base-plots.html#loading-the-dataset"><i class="fa fa-check"></i><b>10.3.1</b> Loading the Dataset</a></li>
+</ul></li>
+<li class="chapter" data-level="10.4" data-path="customizing-r-base-plots.html"><a href="customizing-r-base-plots.html#assignment-3"><i class="fa fa-check"></i><b>10.4</b> Assignment:</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="basic-statistics-in-r.html"><a href="basic-statistics-in-r.html"><i class="fa fa-check"></i><b>11</b> Basic Statistics in R</a><ul>
+<li class="chapter" data-level="11.1" data-path="basic-statistics-in-r.html"><a href="basic-statistics-in-r.html#statistical-function-dictionary"><i class="fa fa-check"></i><b>11.1</b> Statistical Function Dictionary</a></li>
+<li class="chapter" data-level="11.2" data-path="basic-statistics-in-r.html"><a href="basic-statistics-in-r.html#basic-statistics-in-r-1"><i class="fa fa-check"></i><b>11.2</b> Basic Statistics in R</a><ul>
+<li class="chapter" data-level="11.2.1" data-path="basic-statistics-in-r.html"><a href="basic-statistics-in-r.html#load-willow-creek-data"><i class="fa fa-check"></i><b>11.2.1</b> Load Willow Creek data</a></li>
+<li class="chapter" data-level="11.2.2" data-path="basic-statistics-in-r.html"><a href="basic-statistics-in-r.html#subsetting-data"><i class="fa fa-check"></i><b>11.2.2</b> Subsetting Data</a></li>
+<li class="chapter" data-level="11.2.3" data-path="basic-statistics-in-r.html"><a href="basic-statistics-in-r.html#trends-and-distributions"><i class="fa fa-check"></i><b>11.2.3</b> Trends and Distributions</a></li>
+<li class="chapter" data-level="11.2.4" data-path="basic-statistics-in-r.html"><a href="basic-statistics-in-r.html#finding-a-best-fit-distribution"><i class="fa fa-check"></i><b>11.2.4</b> Finding a Best-Fit Distribution</a></li>
+<li class="chapter" data-level="11.2.5" data-path="basic-statistics-in-r.html"><a href="basic-statistics-in-r.html#correlation-plots"><i class="fa fa-check"></i><b>11.2.5</b> Correlation Plots</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="week-2-assignment.html"><a href="week-2-assignment.html"><i class="fa fa-check"></i><b>12</b> Week 2 Assignment:</a><ul>
+<li class="chapter" data-level="12.1" data-path="week-2-assignment.html"><a href="week-2-assignment.html#extra-credit---2-points"><i class="fa fa-check"></i><b>12.1</b> Extra Credit - 2 points</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="ggplot2.html"><a href="ggplot2.html"><i class="fa fa-check"></i><b>13</b> ggplot2</a><ul>
+<li class="chapter" data-level="13.1" data-path="ggplot2.html"><a href="ggplot2.html#ggplot2-with-willow-creek-meteorological-data"><i class="fa fa-check"></i><b>13.1</b> ggplot2 with Willow Creek Meteorological Data</a></li>
+<li class="chapter" data-level="13.2" data-path="ggplot2.html"><a href="ggplot2.html#assignment-4"><i class="fa fa-check"></i><b>13.2</b> Assignment:</a></li>
+<li class="chapter" data-level="13.3" data-path="ggplot2.html"><a href="ggplot2.html#extra-credit---2-points-1"><i class="fa fa-check"></i><b>13.3</b> Extra Credit - 2 Points</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="spatial-data-with-ggplot2.html"><a href="spatial-data-with-ggplot2.html"><i class="fa fa-check"></i><b>14</b> Spatial Data with ggplot2</a><ul>
+<li class="chapter" data-level="14.1" data-path="spatial-data-with-ggplot2.html"><a href="spatial-data-with-ggplot2.html#simple-features"><i class="fa fa-check"></i><b>14.1</b> Simple Features</a></li>
+<li class="chapter" data-level="14.2" data-path="spatial-data-with-ggplot2.html"><a href="spatial-data-with-ggplot2.html#sea-surface-temperature-ggplot"><i class="fa fa-check"></i><b>14.2</b> Sea Surface Temperature ggplot</a></li>
+<li class="chapter" data-level="14.3" data-path="spatial-data-with-ggplot2.html"><a href="spatial-data-with-ggplot2.html#r-color-brewer-palettes"><i class="fa fa-check"></i><b>14.3</b> R Color Brewer Palettes</a><ul>
+<li class="chapter" data-level="14.3.1" data-path="spatial-data-with-ggplot2.html"><a href="spatial-data-with-ggplot2.html#multi-plot-ggplot"><i class="fa fa-check"></i><b>14.3.1</b> Multi Plot ggplot</a></li>
+</ul></li>
+<li class="chapter" data-level="14.4" data-path="spatial-data-with-ggplot2.html"><a href="spatial-data-with-ggplot2.html#extra-credit---2-points-2"><i class="fa fa-check"></i><b>14.4</b> Extra Credit - 2 Points</a></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="shapefiles.html"><a href="shapefiles.html"><i class="fa fa-check"></i><b>15</b> Shapefiles</a><ul>
+<li class="chapter" data-level="15.1" data-path="shapefiles.html"><a href="shapefiles.html#reading-in-shapefiles"><i class="fa fa-check"></i><b>15.1</b> Reading in Shapefiles</a></li>
+<li class="chapter" data-level="15.2" data-path="shapefiles.html"><a href="shapefiles.html#combining-shapefiles-with-data"><i class="fa fa-check"></i><b>15.2</b> Combining Shapefiles with Data</a></li>
+<li class="chapter" data-level="15.3" data-path="shapefiles.html"><a href="shapefiles.html#visualizing-the-shapefiles-data"><i class="fa fa-check"></i><b>15.3</b> Visualizing the Shapefiles &amp; Data</a></li>
+<li class="chapter" data-level="15.4" data-path="shapefiles.html"><a href="shapefiles.html#saving-a-shapefile"><i class="fa fa-check"></i><b>15.4</b> Saving a shapefile</a></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="week-5-assignment-replicate-these-plots.html"><a href="week-5-assignment-replicate-these-plots.html"><i class="fa fa-check"></i><b>16</b> Week 5 Assignment - Replicate these Plots</a></li>
+<li class="chapter" data-level="17" data-path="thredds-and-erddap.html"><a href="thredds-and-erddap.html"><i class="fa fa-check"></i><b>17</b> THREDDS and ERDDAP</a><ul>
+<li class="chapter" data-level="17.1" data-path="thredds-and-erddap.html"><a href="thredds-and-erddap.html#thredds"><i class="fa fa-check"></i><b>17.1</b> THREDDS</a></li>
+<li class="chapter" data-level="17.2" data-path="thredds-and-erddap.html"><a href="thredds-and-erddap.html#erddap"><i class="fa fa-check"></i><b>17.2</b> ERDDAP</a><ul>
+<li class="chapter" data-level="17.2.1" data-path="thredds-and-erddap.html"><a href="thredds-and-erddap.html#finding-the-data-you-want"><i class="fa fa-check"></i><b>17.2.1</b> Finding the Data You Want</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="18" data-path="week-6-assignment-extract-data-in-r-via-thredds-and-erddap.html"><a href="week-6-assignment-extract-data-in-r-via-thredds-and-erddap.html"><i class="fa fa-check"></i><b>18</b> Week 6 Assignment - Extract Data in R via THREDDS and ERDDAP</a><ul>
+<li class="chapter" data-level="18.1" data-path="week-6-assignment-extract-data-in-r-via-thredds-and-erddap.html"><a href="week-6-assignment-extract-data-in-r-via-thredds-and-erddap.html#extra-credit---2-points-3"><i class="fa fa-check"></i><b>18.1</b> Extra Credit - 2 Points</a></li>
+</ul></li>
+<li class="chapter" data-level="19" data-path="r-development-and-presentation.html"><a href="r-development-and-presentation.html"><i class="fa fa-check"></i><b>19</b> R Development and Presentation</a><ul>
+<li class="chapter" data-level="19.1" data-path="r-development-and-presentation.html"><a href="r-development-and-presentation.html#functions"><i class="fa fa-check"></i><b>19.1</b> Functions</a></li>
+<li class="chapter" data-level="19.2" data-path="r-development-and-presentation.html"><a href="r-development-and-presentation.html#netcdf-processing-function"><i class="fa fa-check"></i><b>19.2</b> NetCDF Processing Function</a></li>
+<li class="chapter" data-level="19.3" data-path="r-development-and-presentation.html"><a href="r-development-and-presentation.html#functions-in-for-loops"><i class="fa fa-check"></i><b>19.3</b> Functions in For Loops</a></li>
+<li class="chapter" data-level="19.4" data-path="r-development-and-presentation.html"><a href="r-development-and-presentation.html#rmarkdown"><i class="fa fa-check"></i><b>19.4</b> RMarkdown</a></li>
+<li class="chapter" data-level="19.5" data-path="r-development-and-presentation.html"><a href="r-development-and-presentation.html#assignment-5"><i class="fa fa-check"></i><b>19.5</b> Assignment</a></li>
+</ul></li>
+<li class="chapter" data-level="20" data-path="machine-learning-with-r.html"><a href="machine-learning-with-r.html"><i class="fa fa-check"></i><b>20</b> Machine Learning with R</a><ul>
+<li class="chapter" data-level="20.1" data-path="machine-learning-with-r.html"><a href="machine-learning-with-r.html#machine-learning-terms"><i class="fa fa-check"></i><b>20.1</b> Machine Learning Terms</a></li>
+<li class="chapter" data-level="20.2" data-path="machine-learning-with-r.html"><a href="machine-learning-with-r.html#classical-machine-learning"><i class="fa fa-check"></i><b>20.2</b> Classical Machine Learning</a><ul>
+<li class="chapter" data-level="20.2.1" data-path="machine-learning-with-r.html"><a href="machine-learning-with-r.html#supervised-learning"><i class="fa fa-check"></i><b>20.2.1</b> Supervised Learning</a></li>
+<li class="chapter" data-level="20.2.2" data-path="machine-learning-with-r.html"><a href="machine-learning-with-r.html#unsupervised-learning"><i class="fa fa-check"></i><b>20.2.2</b> Unsupervised Learning</a></li>
+<li class="chapter" data-level="20.2.3" data-path="machine-learning-with-r.html"><a href="machine-learning-with-r.html#neural-networks"><i class="fa fa-check"></i><b>20.2.3</b> Neural Networks</a></li>
+<li class="chapter" data-level="20.2.4" data-path="machine-learning-with-r.html"><a href="machine-learning-with-r.html#reinforcement-learning"><i class="fa fa-check"></i><b>20.2.4</b> Reinforcement Learning</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="21" data-path="time-series-forecasting.html"><a href="time-series-forecasting.html"><i class="fa fa-check"></i><b>21</b> Time Series Forecasting</a><ul>
+<li class="chapter" data-level="21.1" data-path="time-series-forecasting.html"><a href="time-series-forecasting.html#load-the-packages-and-data"><i class="fa fa-check"></i><b>21.1</b> Load the Packages and Data</a></li>
+<li class="chapter" data-level="21.2" data-path="time-series-forecasting.html"><a href="time-series-forecasting.html#aggregate-data"><i class="fa fa-check"></i><b>21.2</b> Aggregate Data</a></li>
+<li class="chapter" data-level="21.3" data-path="time-series-forecasting.html"><a href="time-series-forecasting.html#prepping-the-model"><i class="fa fa-check"></i><b>21.3</b> Prepping the Model</a></li>
+<li class="chapter" data-level="21.4" data-path="time-series-forecasting.html"><a href="time-series-forecasting.html#running-the-model"><i class="fa fa-check"></i><b>21.4</b> Running the Model</a></li>
+<li class="chapter" data-level="21.5" data-path="time-series-forecasting.html"><a href="time-series-forecasting.html#validation-and-accuracy"><i class="fa fa-check"></i><b>21.5</b> Validation and Accuracy</a></li>
+<li class="chapter" data-level="21.6" data-path="time-series-forecasting.html"><a href="time-series-forecasting.html#future-forecasting"><i class="fa fa-check"></i><b>21.6</b> Future Forecasting</a></li>
+<li class="chapter" data-level="21.7" data-path="time-series-forecasting.html"><a href="time-series-forecasting.html#assignment-6"><i class="fa fa-check"></i><b>21.7</b> Assignment</a></li>
+</ul></li>
+<li class="chapter" data-level="22" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html"><i class="fa fa-check"></i><b>22</b> Random Forest Modeling</a><ul>
+<li class="chapter" data-level="22.1" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#prepare-the-data"><i class="fa fa-check"></i><b>22.1</b> Prepare the Data</a></li>
+<li class="chapter" data-level="22.2" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#dimensionality-reduction"><i class="fa fa-check"></i><b>22.2</b> Dimensionality Reduction</a><ul>
+<li class="chapter" data-level="22.2.1" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#principal-component-analysis"><i class="fa fa-check"></i><b>22.2.1</b> Principal Component Analysis</a></li>
+<li class="chapter" data-level="22.2.2" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#t-sne-dimensionality-reduction"><i class="fa fa-check"></i><b>22.2.2</b> t-SNE Dimensionality Reduction</a></li>
+<li class="chapter" data-level="22.2.3" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#multidimensional-scaling"><i class="fa fa-check"></i><b>22.2.3</b> Multidimensional Scaling</a></li>
+</ul></li>
+<li class="chapter" data-level="22.3" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#random-forests"><i class="fa fa-check"></i><b>22.3</b> Random Forests</a><ul>
+<li class="chapter" data-level="22.3.1" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#decision-trees"><i class="fa fa-check"></i><b>22.3.1</b> Decision Trees</a></li>
+<li class="chapter" data-level="22.3.2" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#data-partition"><i class="fa fa-check"></i><b>22.3.2</b> Data Partition</a></li>
+<li class="chapter" data-level="22.3.3" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#training-the-model"><i class="fa fa-check"></i><b>22.3.3</b> Training the Model</a></li>
+<li class="chapter" data-level="22.3.4" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#testing-the-model"><i class="fa fa-check"></i><b>22.3.4</b> Testing the Model</a></li>
+<li class="chapter" data-level="22.3.5" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#hyperparameter-tuning"><i class="fa fa-check"></i><b>22.3.5</b> Hyperparameter Tuning</a></li>
+</ul></li>
+<li class="chapter" data-level="22.4" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#assignment-7"><i class="fa fa-check"></i><b>22.4</b> Assignment</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">James Simkins</a></li>
@@ -222,7 +327,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">GEOG 473/673 Open-sourced Environmental Computing</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Advanced R for Geospatial Sciences</a>
           </h1>
         </div>
 
@@ -252,7 +357,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb177-2" data-line-number="2">person &lt;-<span class="st">&quot;Grover&quot;</span></a>
 <a class="sourceLine" id="cb177-3" data-line-number="3">action &lt;-<span class="st">&quot;flying&quot;</span></a>
 <a class="sourceLine" id="cb177-4" data-line-number="4"><span class="kw">message</span>(<span class="kw">sprintf</span>(<span class="st">&quot;On %s I realized %s was...</span><span class="ch">\n</span><span class="st">%s by the street&quot;</span>, <span class="kw">Sys.Date</span>(), person, action))</a></code></pre></div>
-<pre><code>## On 2020-12-29 I realized Grover was...
+<pre><code>## On 2021-01-25 I realized Grover was...
 ## flying by the street</code></pre>
 <div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb179-1" data-line-number="1"><span class="co"># Notice that paste() is limiting because the separating character is not always present between</span></a>
 <a class="sourceLine" id="cb179-2" data-line-number="2"><span class="co"># each string you&#39;re concatenating</span></a>
@@ -334,19 +439,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb191-10" data-line-number="10"></a>
 <a class="sourceLine" id="cb191-11" data-line-number="11"><span class="co"># plot using quick &#39;image&#39; function from raster</span></a>
 <a class="sourceLine" id="cb191-12" data-line-number="12"><span class="kw">image</span>(sstRast)</a></code></pre></div>
-<p><img src="Introduction-to-R_files/figure-html/unnamed-chunk-88-1.png" width="672" /></p>
+<p><img src="Introduction-to-R_files/figure-html/raster%20section-1.png" width="672" /></p>
 <div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb192-1" data-line-number="1"><span class="co"># netcdf stores data backwards, so to convert it to raster we need to transpose it</span></a>
 <a class="sourceLine" id="cb192-2" data-line-number="2">sstRast &lt;-<span class="st"> </span><span class="kw">t</span>(sstRast)</a>
 <a class="sourceLine" id="cb192-3" data-line-number="3"></a>
 <a class="sourceLine" id="cb192-4" data-line-number="4"><span class="co"># plot using quick &#39;image&#39; function from raster</span></a>
 <a class="sourceLine" id="cb192-5" data-line-number="5"><span class="kw">image</span>(sstRast)</a></code></pre></div>
-<p><img src="Introduction-to-R_files/figure-html/unnamed-chunk-88-2.png" width="672" /></p>
+<p><img src="Introduction-to-R_files/figure-html/raster%20section-2.png" width="672" /></p>
 <div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb193-1" data-line-number="1"><span class="co"># now we see that the data is just upside down, so we use the flip() function</span></a>
 <a class="sourceLine" id="cb193-2" data-line-number="2">sstRast &lt;-<span class="st"> </span><span class="kw">flip</span>(sstRast, <span class="dv">2</span>)</a>
 <a class="sourceLine" id="cb193-3" data-line-number="3"></a>
 <a class="sourceLine" id="cb193-4" data-line-number="4"><span class="co"># plot using quick &#39;image&#39; function from raster</span></a>
 <a class="sourceLine" id="cb193-5" data-line-number="5"><span class="kw">image</span>(sstRast)</a></code></pre></div>
-<p><img src="Introduction-to-R_files/figure-html/unnamed-chunk-88-3.png" width="672" /></p>
+<p><img src="Introduction-to-R_files/figure-html/raster%20section-3.png" width="672" /></p>
 <div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb194-1" data-line-number="1">sstRast</a></code></pre></div>
 <pre><code>## class      : RasterLayer 
 ## dimensions : 1989, 2778, 5525442  (nrow, ncol, ncell)
@@ -375,10 +480,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## names      : layer 
 ## values     : 5.344696, 34.9397  (min, max)</code></pre>
 <div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb198-1" data-line-number="1"><span class="kw">image</span>(sstRast)</a></code></pre></div>
-<p><img src="Introduction-to-R_files/figure-html/unnamed-chunk-88-4.png" width="672" /></p>
+<p><img src="Introduction-to-R_files/figure-html/raster%20section-4.png" width="672" /></p>
 <div class="sourceCode" id="cb199"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb199-1" data-line-number="1"><span class="co"># levelplot the sstRast - levelplot is from rasterVis package</span></a>
 <a class="sourceLine" id="cb199-2" data-line-number="2"><span class="kw">levelplot</span>(sstRast)</a></code></pre></div>
-<p><img src="Introduction-to-R_files/figure-html/unnamed-chunk-88-5.png" width="672" /></p>
+<p><img src="Introduction-to-R_files/figure-html/raster%20section-5.png" width="672" /></p>
 <div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb200-1" data-line-number="1"><span class="co"># USA shapefiles via the getData function</span></a>
 <a class="sourceLine" id="cb200-2" data-line-number="2">usa &lt;-<span class="st"> </span><span class="kw">getData</span>(<span class="st">&#39;GADM&#39;</span>, <span class="dt">country =</span> <span class="st">&#39;USA&#39;</span>, <span class="dt">level =</span> <span class="dv">1</span>)</a>
 <a class="sourceLine" id="cb200-3" data-line-number="3"></a>
@@ -386,20 +491,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb200-5" data-line-number="5">plt &lt;-<span class="st"> </span><span class="kw">levelplot</span>(sstRast, <span class="dt">margin=</span>F, <span class="dt">par.settings=</span>BuRdTheme,</a>
 <a class="sourceLine" id="cb200-6" data-line-number="6">       <span class="dt">main=</span><span class="st">&quot;GOES-R Rolling SST 08/14&quot;</span>)</a>
 <a class="sourceLine" id="cb200-7" data-line-number="7">plt <span class="op">+</span><span class="st"> </span><span class="kw">layer</span>(<span class="kw">sp.polygons</span>(usa, <span class="dt">col=</span><span class="st">&#39;black&#39;</span>,<span class="dt">fill=</span><span class="st">&#39;grey&#39;</span>, <span class="dt">lwd=</span><span class="fl">0.4</span>))</a></code></pre></div>
-<p><img src="Introduction-to-R_files/figure-html/unnamed-chunk-88-6.png" width="672" /></p>
+<p><img src="Introduction-to-R_files/figure-html/raster%20section-6.png" width="672" /></p>
 <div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb201-1" data-line-number="1"><span class="co"># Now let&#39;s do the same with geotiff</span></a>
 <a class="sourceLine" id="cb201-2" data-line-number="2">tifFile =<span class="st"> &quot;../datasets/goesSST.tif&quot;</span></a>
 <a class="sourceLine" id="cb201-3" data-line-number="3">sstRast =<span class="st"> </span><span class="kw">raster</span>(tifFile)</a>
 <a class="sourceLine" id="cb201-4" data-line-number="4"></a>
 <a class="sourceLine" id="cb201-5" data-line-number="5"><span class="co"># Quick image using raster&#39;s image plot generator function</span></a>
 <a class="sourceLine" id="cb201-6" data-line-number="6"><span class="kw">image</span>(sstRast)</a></code></pre></div>
-<p><img src="Introduction-to-R_files/figure-html/unnamed-chunk-88-7.png" width="672" /></p>
+<p><img src="Introduction-to-R_files/figure-html/geotiff%20section-1.png" width="672" /></p>
 <div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb202-1" data-line-number="1"><span class="co"># Now let&#39;s load a base dataset of world maps that R already has stored</span></a>
 <a class="sourceLine" id="cb202-2" data-line-number="2"><span class="kw">data</span>(wrld_simpl)</a>
 <a class="sourceLine" id="cb202-3" data-line-number="3">plt &lt;-<span class="st"> </span><span class="kw">levelplot</span>(sstRast, <span class="dt">margin=</span>F, <span class="dt">par.settings=</span>BuRdTheme,</a>
 <a class="sourceLine" id="cb202-4" data-line-number="4">       <span class="dt">main=</span><span class="st">&quot;GOES-R Rolling SST 08/14&quot;</span>)</a>
 <a class="sourceLine" id="cb202-5" data-line-number="5">plt <span class="op">+</span><span class="st"> </span><span class="kw">layer</span>(<span class="kw">sp.lines</span>(wrld_simpl, <span class="dt">col=</span><span class="st">&#39;black&#39;</span>, <span class="dt">lwd=</span><span class="fl">0.4</span>))</a></code></pre></div>
-<p><img src="Introduction-to-R_files/figure-html/unnamed-chunk-88-8.png" width="672" /></p>
+<p><img src="Introduction-to-R_files/figure-html/geotiff%20section-2.png" width="672" /></p>
 <div class="sourceCode" id="cb203"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb203-1" data-line-number="1"><span class="co"># Let&#39;s do the same plot but with a custom shapefile</span></a>
 <a class="sourceLine" id="cb203-2" data-line-number="2"><span class="co"># note that even though we only point the function to the &#39;.shp&#39; file, the &#39;.shx&#39; and &#39;.dbf&#39; need to be in the same folder for this to work. </span></a>
 <a class="sourceLine" id="cb203-3" data-line-number="3">world.shp &lt;-<span class="st"> </span>rgdal<span class="op">::</span><span class="kw">readOGR</span>(<span class="st">&quot;../datasets/world_shpfiles/world.shp&quot;</span>)</a></code></pre></div>
@@ -413,7 +518,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb205-4" data-line-number="4">plt &lt;-<span class="st"> </span><span class="kw">levelplot</span>(sstRast, <span class="dt">margin=</span>F, <span class="dt">par.settings=</span>mapTheme,</a>
 <a class="sourceLine" id="cb205-5" data-line-number="5">       <span class="dt">main=</span><span class="st">&quot;GOES-R Rolling SST 08/14&quot;</span>)</a>
 <a class="sourceLine" id="cb205-6" data-line-number="6">plt <span class="op">+</span><span class="st"> </span><span class="kw">layer</span>(<span class="kw">sp.lines</span>(world.shp, <span class="dt">col=</span><span class="st">&#39;gray&#39;</span>, <span class="dt">lwd=</span><span class="fl">0.4</span>))</a></code></pre></div>
-<p><img src="Introduction-to-R_files/figure-html/unnamed-chunk-88-9.png" width="672" /></p>
+<p><img src="Introduction-to-R_files/figure-html/geotiff%20section-3.png" width="672" /></p>
 </div>
 <div id="assignment-1" class="section level2">
 <h2><span class="header-section-number">8.3</span> Assignment</h2>
@@ -427,7 +532,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## Source: &quot;/Users/james/Documents/Github/geog473-673/datasets/world_shpfiles/world.shp&quot;, layer: &quot;world&quot;
 ## with 252 features
 ## It has 2 fields</code></pre>
-<p><img src="Introduction-to-R_files/figure-html/unnamed-chunk-89-1.png" width="1536" /></p>
+<p><img src="Introduction-to-R_files/figure-html/end%20of%20week%2044444444444444444444-1.png" width="1536" /></p>
 
 </div>
 </div>

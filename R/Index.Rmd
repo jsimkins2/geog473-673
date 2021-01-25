@@ -29,7 +29,7 @@ https://github.com/jsimkins2/geog473-673
 
 ## Syllabus
 
-https://github.com/jsimkins2/geog473-673/blob/master/documents/fall_geog473_673_syllabus.pdf
+https://github.com/jsimkins2/geog473-673/blob/master/documents/spring_geog473_673_syllabus.pdf
 
 ## Phase 1: Spring GEOG473-673 2-Credit Agenda
 This course is split into 2 phases but this textbook will be the only material for both courses. YouTube recordings will accompany all tutorials. 

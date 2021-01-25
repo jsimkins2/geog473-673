@@ -1,0 +1,4 @@
+
+rmarkdown::render("05-world-cup.Rmd", "github_document")
+
+bookdown::render_book("Index.Rmd", "bookdown::gitbook")

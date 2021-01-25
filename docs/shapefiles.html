@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>14 Shapefiles | R Programming for Geospatial Sciences</title>
+  <meta name="description" content="Advanced R" />
+  <meta name="generator" content="bookdown 0.20.6 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="14 Shapefiles | R Programming for Geospatial Sciences" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Advanced R" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="14 Shapefiles | R Programming for Geospatial Sciences" />
+  
+  <meta name="twitter:description" content="Advanced R" />
+  
+
+<meta name="author" content="James Simkins" />
+
+
+<meta name="date" content="2021-01-25" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="spatial-plots-with-ggplot2.html"/>
+<link rel="next" href="remote-data-extraction.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">R for Geospatial Sciences</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="preface.html"><a href="preface.html"><i class="fa fa-check"></i><b>1</b> Preface</a><ul>
+<li class="chapter" data-level="1.1" data-path="preface.html"><a href="preface.html#course-github"><i class="fa fa-check"></i><b>1.1</b> Course Github</a></li>
+<li class="chapter" data-level="1.2" data-path="preface.html"><a href="preface.html#syllabus"><i class="fa fa-check"></i><b>1.2</b> Syllabus</a></li>
+<li class="chapter" data-level="1.3" data-path="preface.html"><a href="preface.html#phase-1-spring-geog473-673-2-credit-agenda"><i class="fa fa-check"></i><b>1.3</b> Phase 1: Spring GEOG473-673 2-Credit Agenda</a></li>
+<li class="chapter" data-level="1.4" data-path="preface.html"><a href="preface.html#phase-2-spring-geog473-673-1-credit-agenda"><i class="fa fa-check"></i><b>1.4</b> Phase 2: Spring GEOG473-673 1-Credit Agenda</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html"><i class="fa fa-check"></i><b>2</b> Getting Started with R</a><ul>
+<li class="chapter" data-level="2.1" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#why-is-there-such-a-buzz-around-r"><i class="fa fa-check"></i><b>2.1</b> Why is there such a buzz around R?</a></li>
+<li class="chapter" data-level="2.2" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#reasons-to-love-r"><i class="fa fa-check"></i><b>2.2</b> Reasons to love R</a></li>
+<li class="chapter" data-level="2.3" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#downloading-guide"><i class="fa fa-check"></i><b>2.3</b> Downloading Guide</a></li>
+<li class="chapter" data-level="2.4" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#rstudio"><i class="fa fa-check"></i><b>2.4</b> Rstudio</a></li>
+<li class="chapter" data-level="2.5" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#download-course-datasets"><i class="fa fa-check"></i><b>2.5</b> Download Course Datasets</a></li>
+<li class="chapter" data-level="2.6" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#video-examples"><i class="fa fa-check"></i><b>2.6</b> Video Examples</a></li>
+<li class="chapter" data-level="2.7" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#getting-familiar-with-rstudio"><i class="fa fa-check"></i><b>2.7</b> Getting familiar with RStudio</a></li>
+<li class="chapter" data-level="2.8" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#open-rstudio"><i class="fa fa-check"></i><b>2.8</b> Open RStudio</a></li>
+<li class="chapter" data-level="2.9" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#r-studio-layout"><i class="fa fa-check"></i><b>2.9</b> R Studio Layout</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="definitions-rules.html"><a href="definitions-rules.html"><i class="fa fa-check"></i><b>3</b> Definitions &amp; Rules</a><ul>
+<li class="chapter" data-level="3.1" data-path="definitions-rules.html"><a href="definitions-rules.html#important-r-programming-definitions"><i class="fa fa-check"></i><b>3.1</b> Important R Programming Definitions</a></li>
+<li class="chapter" data-level="3.2" data-path="definitions-rules.html"><a href="definitions-rules.html#rules"><i class="fa fa-check"></i><b>3.2</b> Rules</a></li>
+<li class="chapter" data-level="3.3" data-path="definitions-rules.html"><a href="definitions-rules.html#general-recommendations"><i class="fa fa-check"></i><b>3.3</b> General Recommendations</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="r-coding-fundamentals.html"><a href="r-coding-fundamentals.html"><i class="fa fa-check"></i><b>4</b> R Coding Fundamentals</a><ul>
+<li class="chapter" data-level="4.1" data-path="r-coding-fundamentals.html"><a href="r-coding-fundamentals.html#entering-input"><i class="fa fa-check"></i><b>4.1</b> Entering Input</a></li>
+<li class="chapter" data-level="4.2" data-path="r-coding-fundamentals.html"><a href="r-coding-fundamentals.html#running-code"><i class="fa fa-check"></i><b>4.2</b> Running Code</a></li>
+<li class="chapter" data-level="4.3" data-path="r-coding-fundamentals.html"><a href="r-coding-fundamentals.html#evaluation"><i class="fa fa-check"></i><b>4.3</b> Evaluation</a></li>
+<li class="chapter" data-level="4.4" data-path="r-coding-fundamentals.html"><a href="r-coding-fundamentals.html#r-objects"><i class="fa fa-check"></i><b>4.4</b> R Objects</a></li>
+<li class="chapter" data-level="4.5" data-path="r-coding-fundamentals.html"><a href="r-coding-fundamentals.html#numbers"><i class="fa fa-check"></i><b>4.5</b> Numbers</a></li>
+<li class="chapter" data-level="4.6" data-path="r-coding-fundamentals.html"><a href="r-coding-fundamentals.html#attributes"><i class="fa fa-check"></i><b>4.6</b> Attributes</a></li>
+<li class="chapter" data-level="4.7" data-path="r-coding-fundamentals.html"><a href="r-coding-fundamentals.html#creating-vectors"><i class="fa fa-check"></i><b>4.7</b> Creating Vectors</a></li>
+<li class="chapter" data-level="4.8" data-path="r-coding-fundamentals.html"><a href="r-coding-fundamentals.html#mixing-objects"><i class="fa fa-check"></i><b>4.8</b> Mixing Objects</a></li>
+<li class="chapter" data-level="4.9" data-path="r-coding-fundamentals.html"><a href="r-coding-fundamentals.html#explicit-coercion"><i class="fa fa-check"></i><b>4.9</b> Explicit Coercion</a></li>
+<li class="chapter" data-level="4.10" data-path="r-coding-fundamentals.html"><a href="r-coding-fundamentals.html#matrices"><i class="fa fa-check"></i><b>4.10</b> Matrices</a></li>
+<li class="chapter" data-level="4.11" data-path="r-coding-fundamentals.html"><a href="r-coding-fundamentals.html#lists"><i class="fa fa-check"></i><b>4.11</b> Lists</a></li>
+<li class="chapter" data-level="4.12" data-path="r-coding-fundamentals.html"><a href="r-coding-fundamentals.html#factors"><i class="fa fa-check"></i><b>4.12</b> Factors</a></li>
+<li class="chapter" data-level="4.13" data-path="r-coding-fundamentals.html"><a href="r-coding-fundamentals.html#missing-values"><i class="fa fa-check"></i><b>4.13</b> Missing Values</a></li>
+<li class="chapter" data-level="4.14" data-path="r-coding-fundamentals.html"><a href="r-coding-fundamentals.html#data-frames"><i class="fa fa-check"></i><b>4.14</b> Data Frames</a></li>
+<li class="chapter" data-level="4.15" data-path="r-coding-fundamentals.html"><a href="r-coding-fundamentals.html#names"><i class="fa fa-check"></i><b>4.15</b> Names</a></li>
+<li class="chapter" data-level="4.16" data-path="r-coding-fundamentals.html"><a href="r-coding-fundamentals.html#summary"><i class="fa fa-check"></i><b>4.16</b> Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="basic-r-scripts.html"><a href="basic-r-scripts.html"><i class="fa fa-check"></i><b>5</b> Basic R Scripts</a><ul>
+<li class="chapter" data-level="5.1" data-path="basic-r-scripts.html"><a href="basic-r-scripts.html#global-carbon-dioxide-concentrations"><i class="fa fa-check"></i><b>5.1</b> Global Carbon-Dioxide Concentrations</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="basic-r-scripts.html"><a href="basic-r-scripts.html#saving-your-plot"><i class="fa fa-check"></i><b>5.1.1</b> Saving your plot</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="basic-r-scripts.html"><a href="basic-r-scripts.html#cars---motor-trends-magazine-data"><i class="fa fa-check"></i><b>5.2</b> Cars - Motor Trends Magazine Data</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="scientific-r-scripts.html"><a href="scientific-r-scripts.html"><i class="fa fa-check"></i><b>6</b> Scientific R Scripts</a><ul>
+<li class="chapter" data-level="6.1" data-path="scientific-r-scripts.html"><a href="scientific-r-scripts.html#script-breakdown"><i class="fa fa-check"></i><b>6.1</b> Script Breakdown</a></li>
+<li class="chapter" data-level="6.2" data-path="scientific-r-scripts.html"><a href="scientific-r-scripts.html#in-class-exercise"><i class="fa fa-check"></i><b>6.2</b> In Class Exercise</a><ul>
+<li class="chapter" data-level="6.2.1" data-path="scientific-r-scripts.html"><a href="scientific-r-scripts.html#further-explanation-of-datatypes"><i class="fa fa-check"></i><b>6.2.1</b> Further Explanation of DataTypes</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="time-series-data.html"><a href="time-series-data.html"><i class="fa fa-check"></i><b>7</b> Time Series Data</a><ul>
+<li class="chapter" data-level="7.1" data-path="time-series-data.html"><a href="time-series-data.html#for-loops"><i class="fa fa-check"></i><b>7.1</b> For Loops</a></li>
+<li class="chapter" data-level="7.2" data-path="time-series-data.html"><a href="time-series-data.html#deos-data"><i class="fa fa-check"></i><b>7.2</b> DEOS Data</a></li>
+<li class="chapter" data-level="7.3" data-path="time-series-data.html"><a href="time-series-data.html#assignment"><i class="fa fa-check"></i><b>7.3</b> Assignment</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="raster-visualization.html"><a href="raster-visualization.html"><i class="fa fa-check"></i><b>8</b> Raster Visualization</a><ul>
+<li class="chapter" data-level="8.1" data-path="raster-visualization.html"><a href="raster-visualization.html#paste0"><i class="fa fa-check"></i><b>8.1</b> <code>Paste0()</code></a></li>
+<li class="chapter" data-level="8.2" data-path="raster-visualization.html"><a href="raster-visualization.html#rasters"><i class="fa fa-check"></i><b>8.2</b> Rasters</a></li>
+<li class="chapter" data-level="8.3" data-path="raster-visualization.html"><a href="raster-visualization.html#assignment-1"><i class="fa fa-check"></i><b>8.3</b> Assignment</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="reprojecting-writing-rasters.html"><a href="reprojecting-writing-rasters.html"><i class="fa fa-check"></i><b>9</b> Reprojecting &amp; Writing Rasters</a><ul>
+<li class="chapter" data-level="9.1" data-path="reprojecting-writing-rasters.html"><a href="reprojecting-writing-rasters.html#indexing-data"><i class="fa fa-check"></i><b>9.1</b> Indexing Data</a></li>
+<li class="chapter" data-level="9.2" data-path="reprojecting-writing-rasters.html"><a href="reprojecting-writing-rasters.html#resampling-and-reprojecting"><i class="fa fa-check"></i><b>9.2</b> Resampling and Reprojecting</a></li>
+<li class="chapter" data-level="9.3" data-path="reprojecting-writing-rasters.html"><a href="reprojecting-writing-rasters.html#pngs"><i class="fa fa-check"></i><b>9.3</b> PNGs</a></li>
+<li class="chapter" data-level="9.4" data-path="reprojecting-writing-rasters.html"><a href="reprojecting-writing-rasters.html#writing-rasters"><i class="fa fa-check"></i><b>9.4</b> Writing Rasters</a></li>
+<li class="chapter" data-level="9.5" data-path="reprojecting-writing-rasters.html"><a href="reprojecting-writing-rasters.html#assignment-2"><i class="fa fa-check"></i><b>9.5</b> Assignment</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="plot-customization.html"><a href="plot-customization.html"><i class="fa fa-check"></i><b>10</b> Plot Customization</a><ul>
+<li class="chapter" data-level="10.1" data-path="plot-customization.html"><a href="plot-customization.html#expanding-on-basic-plots-in-r"><i class="fa fa-check"></i><b>10.1</b> Expanding on Basic Plots in R</a><ul>
+<li class="chapter" data-level="10.1.1" data-path="plot-customization.html"><a href="plot-customization.html#adding-to-a-plot"><i class="fa fa-check"></i><b>10.1.1</b> Adding to a Plot</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="plot-customization.html"><a href="plot-customization.html#barplots-boxplots-pie-charts"><i class="fa fa-check"></i><b>10.2</b> Barplots, Boxplots, Pie Charts</a><ul>
+<li class="chapter" data-level="10.2.1" data-path="plot-customization.html"><a href="plot-customization.html#combining-plots"><i class="fa fa-check"></i><b>10.2.1</b> Combining Plots</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="plot-customization.html"><a href="plot-customization.html#tree-data"><i class="fa fa-check"></i><b>10.3</b> Tree Data</a><ul>
+<li class="chapter" data-level="10.3.1" data-path="plot-customization.html"><a href="plot-customization.html#loading-the-dataset"><i class="fa fa-check"></i><b>10.3.1</b> Loading the Dataset</a></li>
+</ul></li>
+<li class="chapter" data-level="10.4" data-path="plot-customization.html"><a href="plot-customization.html#assignment-3"><i class="fa fa-check"></i><b>10.4</b> Assignment:</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="basic-statistics.html"><a href="basic-statistics.html"><i class="fa fa-check"></i><b>11</b> Basic Statistics</a><ul>
+<li class="chapter" data-level="11.1" data-path="basic-statistics.html"><a href="basic-statistics.html#statistical-function-dictionary"><i class="fa fa-check"></i><b>11.1</b> Statistical Function Dictionary</a></li>
+<li class="chapter" data-level="11.2" data-path="basic-statistics.html"><a href="basic-statistics.html#basic-statistics-in-r"><i class="fa fa-check"></i><b>11.2</b> Basic Statistics in R</a><ul>
+<li class="chapter" data-level="11.2.1" data-path="basic-statistics.html"><a href="basic-statistics.html#load-willow-creek-data"><i class="fa fa-check"></i><b>11.2.1</b> Load Willow Creek data</a></li>
+<li class="chapter" data-level="11.2.2" data-path="basic-statistics.html"><a href="basic-statistics.html#subsetting-data"><i class="fa fa-check"></i><b>11.2.2</b> Subsetting Data</a></li>
+<li class="chapter" data-level="11.2.3" data-path="basic-statistics.html"><a href="basic-statistics.html#trends-and-distributions"><i class="fa fa-check"></i><b>11.2.3</b> Trends and Distributions</a></li>
+<li class="chapter" data-level="11.2.4" data-path="basic-statistics.html"><a href="basic-statistics.html#finding-a-best-fit-distribution"><i class="fa fa-check"></i><b>11.2.4</b> Finding a Best-Fit Distribution</a></li>
+<li class="chapter" data-level="11.2.5" data-path="basic-statistics.html"><a href="basic-statistics.html#correlation-plots"><i class="fa fa-check"></i><b>11.2.5</b> Correlation Plots</a></li>
+</ul></li>
+<li class="chapter" data-level="11.3" data-path="basic-statistics.html"><a href="basic-statistics.html#assignment-4"><i class="fa fa-check"></i><b>11.3</b> Assignment</a><ul>
+<li class="chapter" data-level="11.3.1" data-path="basic-statistics.html"><a href="basic-statistics.html#extra-credit---2-points"><i class="fa fa-check"></i><b>11.3.1</b> Extra Credit - 2 points</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="plotting-with-ggplot2.html"><a href="plotting-with-ggplot2.html"><i class="fa fa-check"></i><b>12</b> Plotting with <code>ggplot2</code></a><ul>
+<li class="chapter" data-level="12.1" data-path="plotting-with-ggplot2.html"><a href="plotting-with-ggplot2.html#ggplot2-with-willow-creek-meteorological-data"><i class="fa fa-check"></i><b>12.1</b> ggplot2 with Willow Creek Meteorological Data</a></li>
+<li class="chapter" data-level="12.2" data-path="plotting-with-ggplot2.html"><a href="plotting-with-ggplot2.html#assignment-5"><i class="fa fa-check"></i><b>12.2</b> Assignment:</a></li>
+<li class="chapter" data-level="12.3" data-path="plotting-with-ggplot2.html"><a href="plotting-with-ggplot2.html#extra-credit---2-points-1"><i class="fa fa-check"></i><b>12.3</b> Extra Credit - 2 Points</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="spatial-plots-with-ggplot2.html"><a href="spatial-plots-with-ggplot2.html"><i class="fa fa-check"></i><b>13</b> Spatial Plots with <code>ggplot2</code></a><ul>
+<li class="chapter" data-level="13.1" data-path="spatial-plots-with-ggplot2.html"><a href="spatial-plots-with-ggplot2.html#simple-features"><i class="fa fa-check"></i><b>13.1</b> Simple Features</a></li>
+<li class="chapter" data-level="13.2" data-path="spatial-plots-with-ggplot2.html"><a href="spatial-plots-with-ggplot2.html#sea-surface-temperature-ggplot"><i class="fa fa-check"></i><b>13.2</b> Sea Surface Temperature ggplot</a></li>
+<li class="chapter" data-level="13.3" data-path="spatial-plots-with-ggplot2.html"><a href="spatial-plots-with-ggplot2.html#r-color-brewer-palettes"><i class="fa fa-check"></i><b>13.3</b> R Color Brewer Palettes</a><ul>
+<li class="chapter" data-level="13.3.1" data-path="spatial-plots-with-ggplot2.html"><a href="spatial-plots-with-ggplot2.html#multi-plot-ggplot"><i class="fa fa-check"></i><b>13.3.1</b> Multi Plot ggplot</a></li>
+</ul></li>
+<li class="chapter" data-level="13.4" data-path="spatial-plots-with-ggplot2.html"><a href="spatial-plots-with-ggplot2.html#assignment-6"><i class="fa fa-check"></i><b>13.4</b> Assignment</a><ul>
+<li class="chapter" data-level="13.4.1" data-path="spatial-plots-with-ggplot2.html"><a href="spatial-plots-with-ggplot2.html#extra-credit---2-points-2"><i class="fa fa-check"></i><b>13.4.1</b> Extra Credit - 2 Points</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="shapefiles.html"><a href="shapefiles.html"><i class="fa fa-check"></i><b>14</b> Shapefiles</a><ul>
+<li class="chapter" data-level="14.1" data-path="shapefiles.html"><a href="shapefiles.html#reading-in-shapefiles"><i class="fa fa-check"></i><b>14.1</b> Reading in Shapefiles</a></li>
+<li class="chapter" data-level="14.2" data-path="shapefiles.html"><a href="shapefiles.html#combining-shapefiles-with-data"><i class="fa fa-check"></i><b>14.2</b> Combining Shapefiles with Data</a></li>
+<li class="chapter" data-level="14.3" data-path="shapefiles.html"><a href="shapefiles.html#visualizing-the-shapefiles-data"><i class="fa fa-check"></i><b>14.3</b> Visualizing the Shapefiles &amp; Data</a></li>
+<li class="chapter" data-level="14.4" data-path="shapefiles.html"><a href="shapefiles.html#saving-a-shapefile"><i class="fa fa-check"></i><b>14.4</b> Saving a shapefile</a></li>
+<li class="chapter" data-level="14.5" data-path="shapefiles.html"><a href="shapefiles.html#assignment-7"><i class="fa fa-check"></i><b>14.5</b> Assignment</a></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html"><i class="fa fa-check"></i><b>15</b> Remote Data Extraction</a><ul>
+<li class="chapter" data-level="15.1" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#thredds"><i class="fa fa-check"></i><b>15.1</b> THREDDS</a></li>
+<li class="chapter" data-level="15.2" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#erddap"><i class="fa fa-check"></i><b>15.2</b> ERDDAP</a><ul>
+<li class="chapter" data-level="15.2.1" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#finding-the-data-you-want"><i class="fa fa-check"></i><b>15.2.1</b> Finding the Data You Want</a></li>
+</ul></li>
+<li class="chapter" data-level="15.3" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#assignment-8"><i class="fa fa-check"></i><b>15.3</b> Assignment</a><ul>
+<li class="chapter" data-level="15.3.1" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#extra-credit---2-points-3"><i class="fa fa-check"></i><b>15.3.1</b> Extra Credit - 2 Points</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="functions-and-code-presentation.html"><a href="functions-and-code-presentation.html"><i class="fa fa-check"></i><b>16</b> Functions and Code Presentation</a><ul>
+<li class="chapter" data-level="16.1" data-path="functions-and-code-presentation.html"><a href="functions-and-code-presentation.html#functions"><i class="fa fa-check"></i><b>16.1</b> Functions</a></li>
+<li class="chapter" data-level="16.2" data-path="functions-and-code-presentation.html"><a href="functions-and-code-presentation.html#netcdf-processing-function"><i class="fa fa-check"></i><b>16.2</b> NetCDF Processing Function</a></li>
+<li class="chapter" data-level="16.3" data-path="functions-and-code-presentation.html"><a href="functions-and-code-presentation.html#functions-in-for-loops"><i class="fa fa-check"></i><b>16.3</b> Functions in For Loops</a></li>
+<li class="chapter" data-level="16.4" data-path="functions-and-code-presentation.html"><a href="functions-and-code-presentation.html#rmarkdown"><i class="fa fa-check"></i><b>16.4</b> RMarkdown</a></li>
+<li class="chapter" data-level="16.5" data-path="functions-and-code-presentation.html"><a href="functions-and-code-presentation.html#assignment-9"><i class="fa fa-check"></i><b>16.5</b> Assignment</a></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="machine-learning-with-r.html"><a href="machine-learning-with-r.html"><i class="fa fa-check"></i><b>17</b> Machine Learning with R</a><ul>
+<li class="chapter" data-level="17.1" data-path="machine-learning-with-r.html"><a href="machine-learning-with-r.html#machine-learning-terms"><i class="fa fa-check"></i><b>17.1</b> Machine Learning Terms</a></li>
+<li class="chapter" data-level="17.2" data-path="machine-learning-with-r.html"><a href="machine-learning-with-r.html#classical-machine-learning"><i class="fa fa-check"></i><b>17.2</b> Classical Machine Learning</a><ul>
+<li class="chapter" data-level="17.2.1" data-path="machine-learning-with-r.html"><a href="machine-learning-with-r.html#supervised-learning"><i class="fa fa-check"></i><b>17.2.1</b> Supervised Learning</a></li>
+<li class="chapter" data-level="17.2.2" data-path="machine-learning-with-r.html"><a href="machine-learning-with-r.html#unsupervised-learning"><i class="fa fa-check"></i><b>17.2.2</b> Unsupervised Learning</a></li>
+<li class="chapter" data-level="17.2.3" data-path="machine-learning-with-r.html"><a href="machine-learning-with-r.html#neural-networks"><i class="fa fa-check"></i><b>17.2.3</b> Neural Networks</a></li>
+<li class="chapter" data-level="17.2.4" data-path="machine-learning-with-r.html"><a href="machine-learning-with-r.html#reinforcement-learning"><i class="fa fa-check"></i><b>17.2.4</b> Reinforcement Learning</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="18" data-path="time-series-forecasting.html"><a href="time-series-forecasting.html"><i class="fa fa-check"></i><b>18</b> Time Series Forecasting</a><ul>
+<li class="chapter" data-level="18.1" data-path="time-series-forecasting.html"><a href="time-series-forecasting.html#load-the-packages-and-data"><i class="fa fa-check"></i><b>18.1</b> Load the Packages and Data</a></li>
+<li class="chapter" data-level="18.2" data-path="time-series-forecasting.html"><a href="time-series-forecasting.html#aggregate-data"><i class="fa fa-check"></i><b>18.2</b> Aggregate Data</a></li>
+<li class="chapter" data-level="18.3" data-path="time-series-forecasting.html"><a href="time-series-forecasting.html#prepping-the-model"><i class="fa fa-check"></i><b>18.3</b> Prepping the Model</a></li>
+<li class="chapter" data-level="18.4" data-path="time-series-forecasting.html"><a href="time-series-forecasting.html#running-the-model"><i class="fa fa-check"></i><b>18.4</b> Running the Model</a></li>
+<li class="chapter" data-level="18.5" data-path="time-series-forecasting.html"><a href="time-series-forecasting.html#validation-and-accuracy"><i class="fa fa-check"></i><b>18.5</b> Validation and Accuracy</a></li>
+<li class="chapter" data-level="18.6" data-path="time-series-forecasting.html"><a href="time-series-forecasting.html#future-forecasting"><i class="fa fa-check"></i><b>18.6</b> Future Forecasting</a></li>
+<li class="chapter" data-level="18.7" data-path="time-series-forecasting.html"><a href="time-series-forecasting.html#assignment-10"><i class="fa fa-check"></i><b>18.7</b> Assignment</a></li>
+</ul></li>
+<li class="chapter" data-level="19" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html"><i class="fa fa-check"></i><b>19</b> Random Forest Modeling</a><ul>
+<li class="chapter" data-level="19.1" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#prepare-the-data"><i class="fa fa-check"></i><b>19.1</b> Prepare the Data</a></li>
+<li class="chapter" data-level="19.2" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#dimensionality-reduction"><i class="fa fa-check"></i><b>19.2</b> Dimensionality Reduction</a><ul>
+<li class="chapter" data-level="19.2.1" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#principal-component-analysis"><i class="fa fa-check"></i><b>19.2.1</b> Principal Component Analysis</a></li>
+<li class="chapter" data-level="19.2.2" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#t-sne-dimensionality-reduction"><i class="fa fa-check"></i><b>19.2.2</b> t-SNE Dimensionality Reduction</a></li>
+<li class="chapter" data-level="19.2.3" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#multidimensional-scaling"><i class="fa fa-check"></i><b>19.2.3</b> Multidimensional Scaling</a></li>
+</ul></li>
+<li class="chapter" data-level="19.3" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#random-forests"><i class="fa fa-check"></i><b>19.3</b> Random Forests</a><ul>
+<li class="chapter" data-level="19.3.1" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#decision-trees"><i class="fa fa-check"></i><b>19.3.1</b> Decision Trees</a></li>
+<li class="chapter" data-level="19.3.2" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#data-partition"><i class="fa fa-check"></i><b>19.3.2</b> Data Partition</a></li>
+<li class="chapter" data-level="19.3.3" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#training-the-model"><i class="fa fa-check"></i><b>19.3.3</b> Training the Model</a></li>
+<li class="chapter" data-level="19.3.4" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#testing-the-model"><i class="fa fa-check"></i><b>19.3.4</b> Testing the Model</a></li>
+<li class="chapter" data-level="19.3.5" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#hyperparameter-tuning"><i class="fa fa-check"></i><b>19.3.5</b> Hyperparameter Tuning</a></li>
+</ul></li>
+<li class="chapter" data-level="19.4" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#assignment-11"><i class="fa fa-check"></i><b>19.4</b> Assignment</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">James Simkins</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">R Programming for Geospatial Sciences</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="shapefiles" class="section level1">
+<h1><span class="header-section-number">14</span> Shapefiles</h1>
+<p><img src="../documents/images/denali.png" width="60%" style="display: block; margin: auto;" /></p>
+<p>Shapefiles are polygons containing geolocated data. R is great at handling shapefiles and is often faster and more efficient in visualizing these than other programs like ArcGIS. For shapefiles, we will use a combination of new packages. Most notably, we’ll be using <code>rgdal</code>, a package designed to work with geolocated datasets with any projection, and <code>sp</code> (spatial points), the sister package of <code>sf</code>. These two packages are useful for reading and curating shapefiles. Data derived from these two packages can also work with mulitiple visualization packages including <code>ggplot2</code>.</p>
+<div id="reading-in-shapefiles" class="section level2">
+<h2><span class="header-section-number">14.1</span> Reading in Shapefiles</h2>
+<p>Often times, the spatial data that we want aren’t in a nice, gridded lat/lon. The oblate spheroid that we call home presents some challenges when it comes to displaying spatial datasets. Often times, datasets like these are stored as separate entities - shapefiles &amp; data tables. Fortunately, we have multiple avenues for working with this data. For this tutorial, we’re going to use data from the University of Delaware <a href="coast-flood.udel.edu">coastal flooding dashboard</a> - a emergency warning product for the coastal communities of Delaware.</p>
+<p>The data is located in the datasets folder under the <em>folder</em> titled <code>cfms_shapefiles/</code>. The file we need to read in from this group is <code>cfms_watersheds.shp</code>, <strong>however, we need all files from this folder to stick together</strong>. In other words, all files must reside in the same folder together on your local machine. In any program, when you read in a shapefile (<code>.shp</code>), the program automatically references the <code>.shx</code>, <code>.prj</code>, <code>.dbf</code>, etc. files as well.</p>
+<div class="sourceCode" id="cb379"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb379-1" data-line-number="1"><span class="co">#Load packages</span></a>
+<a class="sourceLine" id="cb379-2" data-line-number="2"><span class="kw">library</span>(RColorBrewer)</a>
+<a class="sourceLine" id="cb379-3" data-line-number="3"><span class="kw">library</span>(rgdal)</a>
+<a class="sourceLine" id="cb379-4" data-line-number="4"><span class="kw">library</span>(sp)</a>
+<a class="sourceLine" id="cb379-5" data-line-number="5"><span class="kw">library</span>(ggplot2)</a>
+<a class="sourceLine" id="cb379-6" data-line-number="6"><span class="kw">library</span>(ggmap)</a></code></pre></div>
+<pre><code>## Google&#39;s Terms of Service: https://cloud.google.com/maps-platform/terms/.</code></pre>
+<pre><code>## Please cite ggmap if you use it! See citation(&quot;ggmap&quot;) for details.</code></pre>
+<div class="sourceCode" id="cb382"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb382-1" data-line-number="1"><span class="kw">library</span>(scales)</a>
+<a class="sourceLine" id="cb382-2" data-line-number="2"><span class="kw">library</span>(viridis)</a></code></pre></div>
+<pre><code>## Loading required package: viridisLite</code></pre>
+<pre><code>## 
+## Attaching package: &#39;viridis&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:scales&#39;:
+## 
+##     viridis_pal</code></pre>
+<div class="sourceCode" id="cb386"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb386-1" data-line-number="1"><span class="co"># Use the readOGR function from the rgdal package to open a shapefile &amp; constituents</span></a>
+<a class="sourceLine" id="cb386-2" data-line-number="2">coast.shp &lt;-<span class="st"> </span><span class="kw">readOGR</span>(<span class="st">&quot;/Users/james/Documents/Github/geog473-673/datasets/cfms_shapefiles/cfms_watersheds.shp&quot;</span>)</a></code></pre></div>
+<pre><code>## OGR data source with driver: ESRI Shapefile 
+## Source: &quot;/Users/james/Documents/Github/geog473-673/datasets/cfms_shapefiles/cfms_watersheds.shp&quot;, layer: &quot;cfms_watersheds&quot;
+## with 24 features
+## It has 15 fields</code></pre>
+<div class="sourceCode" id="cb388"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb388-1" data-line-number="1"><span class="kw">class</span>(coast.shp)</a></code></pre></div>
+<pre><code>## [1] &quot;SpatialPolygonsDataFrame&quot;
+## attr(,&quot;package&quot;)
+## [1] &quot;sp&quot;</code></pre>
+<div class="sourceCode" id="cb390"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb390-1" data-line-number="1">coast.shp<span class="op">@</span>proj4string</a></code></pre></div>
+<pre><code>## CRS arguments:
+##  +proj=tmerc +lat_0=38 +lon_0=-75.4166666666667 +k=0.999995 +x_0=200000
+## +y_0=0 +datum=NAD83 +units=m +no_defs</code></pre>
+<p>We use <code>readOGR</code> from the <code>rgdal</code> package to load in the shapefile. As stated above, even though we only key the loading of the <code>cfms_watersheds.shp</code> file, <code>readOGR</code> is also opening the other files (<code>.shx</code>, <code>.prj</code>, <code>.dbf</code>, etc.) as well. This projection is <strong>unique</strong>. It’s a transverse mercator with some specific lat_0 and lon_0 starting points. Notice the class of the shapefile - the underlying package controlling it’s translation to R is the <code>sp</code> package. The <code>sp</code> package provides classes and methods for the points, lines, polygons, and grids of this shapefile. Notice the *<span class="citation">@*</span> symbol in <code>coast.shp@proj4string</code>. This is how we query metadata associated with shapefiles.</p>
+</div>
+<div id="combining-shapefiles-with-data" class="section level2">
+<h2><span class="header-section-number">14.2</span> Combining Shapefiles with Data</h2>
+<p>We have a data file that contains flooding data for the polygons of the shapefile read in above. This data file is <code>water_levels.csv</code>. Let’s read this data in.</p>
+<div class="sourceCode" id="cb392"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb392-1" data-line-number="1"><span class="kw">plot</span>(coast.shp)</a></code></pre></div>
+<p><img src="Introduction-to-R_files/figure-html/unnamed-chunk-143-1.png" width="672" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb393"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb393-1" data-line-number="1"><span class="co"># Open the dataset that corresponds to the water levels within the shapefile boxes </span></a>
+<a class="sourceLine" id="cb393-2" data-line-number="2">coast.data &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;/Users/james/Documents/Github/geog473-673/datasets/cfms_shapefiles/water_levels.csv&quot;</span>)</a>
+<a class="sourceLine" id="cb393-3" data-line-number="3"><span class="kw">head</span>(coast.data)</a></code></pre></div>
+<pre><code>##    station       lon      lat mhhwtomsl navd88tomsl mllwtomsl     mhhw    mllw
+## 1 DBOFS001 -75.14990 38.79219  2.488845   0.3779528   -2.1168 2.110892 -2.4948
+## 2 DBOFS001 -75.14990 38.79219  2.488845   0.3779528   -2.1168 2.110892 -2.4948
+## 3 DBOFS001 -75.14990 38.79219  2.488845   0.3779528   -2.1168 2.110892 -2.4948
+## 4 DBOFS002 -75.30239 38.94447  2.752297   0.2916667   -2.3451 2.460630 -2.6368
+## 5 DBOFS003 -75.30879 38.95471  2.771982   0.2877297   -2.3543 2.484252 -2.6421
+## 6 DBOFS003 -75.30879 38.95471  2.771982   0.2877297   -2.3543 2.484252 -2.6421
+##    maxpred maxovermhhw
+## 1 3.622047    1.510047
+## 2 3.622047    1.510047
+## 3 3.622047    1.510047
+## 4 4.048557    1.587557
+## 5 4.048557    1.564557
+## 6 4.048557    1.564557</code></pre>
+<p>The data is loaded, but how to we correspond the data of the <code>csv</code> file with the appropriate polygon within the <code>shp</code> file? We must find a matching key. In this case, the key is the <code>station</code>. Both the <code>coast.shp</code> and <code>coast.data</code> datasets contain the <code>station</code> variable. Now, we must merge together the flooding data with the station within each polygon.</p>
+<div class="sourceCode" id="cb395"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb395-1" data-line-number="1"><span class="co"># now let&#39;s find the matching key - in this case, the matching key is the &quot;station&quot;.</span></a>
+<a class="sourceLine" id="cb395-2" data-line-number="2"><span class="kw">as.vector</span>(coast.shp<span class="op">$</span>station[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>])</a></code></pre></div>
+<pre><code>## [1] &quot;DBOFS015&quot; &quot;DBOFS016&quot; &quot;DBOFS003&quot; &quot;DBOFS012&quot; &quot;DBOFS013&quot;</code></pre>
+<div class="sourceCode" id="cb397"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb397-1" data-line-number="1"><span class="kw">as.vector</span>(coast.data<span class="op">$</span>station[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>])</a></code></pre></div>
+<pre><code>## [1] &quot;DBOFS001&quot; &quot;DBOFS001&quot; &quot;DBOFS001&quot; &quot;DBOFS002&quot; &quot;DBOFS003&quot;</code></pre>
+<p><code>station</code> is the matching column, but the stations are not in the same order. We must reorder them appropriately before we merge together the datasets.</p>
+<div class="sourceCode" id="cb399"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb399-1" data-line-number="1"><span class="co"># notice the difference above - let&#39;s reorder the data from the shapefile and the csv data by the station, otherwise merging will NOT work. </span></a>
+<a class="sourceLine" id="cb399-2" data-line-number="2">coast.shp  =<span class="st"> </span>coast.shp[<span class="kw">order</span>(<span class="kw">as.vector</span>(coast.shp<span class="op">$</span>station)),]</a>
+<a class="sourceLine" id="cb399-3" data-line-number="3">coast.data  =<span class="st"> </span>coast.data[<span class="kw">order</span>(<span class="kw">as.vector</span>(coast.data<span class="op">$</span>station)),]</a>
+<a class="sourceLine" id="cb399-4" data-line-number="4"><span class="kw">as.vector</span>(coast.shp<span class="op">$</span>station[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>])</a></code></pre></div>
+<pre><code>## [1] &quot;DBOFS001&quot; &quot;DBOFS001&quot; &quot;DBOFS001&quot; &quot;DBOFS002&quot; &quot;DBOFS003&quot;</code></pre>
+<div class="sourceCode" id="cb401"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb401-1" data-line-number="1"><span class="kw">as.vector</span>(coast.data<span class="op">$</span>station[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>])</a></code></pre></div>
+<pre><code>## [1] &quot;DBOFS001&quot; &quot;DBOFS001&quot; &quot;DBOFS001&quot; &quot;DBOFS002&quot; &quot;DBOFS003&quot;</code></pre>
+<p>Now that the order of the stations are the same, we can merge together the two datasets. We will merge together the datasets using the <code>merge</code> function from <code>sp</code>. Here, we denote the use of this function by <code>sp::merge</code>. Why? There are multiple merge functions in R, and we need to tell R which package contains the specific merge function we wish to use. The function is straight-forward, but one argument that you may notice is the <code>duplicateGeoms = TRUE</code> argument. We need to specify this because we have multiple data values for the same station name. For example, there are multiple <code>DBOFS001</code> stations above.</p>
+<div class="sourceCode" id="cb403"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb403-1" data-line-number="1"><span class="co"># merge together the shapefile data and the csv data based on common variable, here called &#39;station&#39; - we MUST use the duplicateGeoms argument because there are multiple values for the same station name</span></a>
+<a class="sourceLine" id="cb403-2" data-line-number="2">merged.coast =<span class="st"> </span>sp<span class="op">::</span><span class="kw">merge</span>(coast.shp,coast.data,<span class="dt">by=</span><span class="st">&#39;station&#39;</span>, <span class="dt">duplicateGeoms =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb403-3" data-line-number="3"><span class="kw">class</span>(merged.coast)</a></code></pre></div>
+<pre><code>## [1] &quot;SpatialPolygonsDataFrame&quot;
+## attr(,&quot;package&quot;)
+## [1] &quot;sp&quot;</code></pre>
+<p>We have merged together the data for each station and thus each polygon now has data associated with it. There’s 24 variables here and station is the only variable we’ve covered so far. The variable that contains the data we’re interested in here is called <code>maxpred</code>, which is the maximum predicted water level in feet above sea level for the next 24 hours for each station. Before we color the polygons based on this <code>maxpred</code> variable, we need to create a color palette using <code>RColorBrewer</code>.</p>
+<div class="sourceCode" id="cb405"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb405-1" data-line-number="1"><span class="co"># Now let&#39;s use brewer.pal from RColorBrewer to create a blues color pallette</span></a>
+<a class="sourceLine" id="cb405-2" data-line-number="2">mycolours &lt;-<span class="st"> </span><span class="kw">brewer.pal</span>(<span class="dv">8</span>, <span class="st">&quot;Blues&quot;</span>)</a></code></pre></div>
+</div>
+<div id="visualizing-the-shapefiles-data" class="section level2">
+<h2><span class="header-section-number">14.3</span> Visualizing the Shapefiles &amp; Data</h2>
+<p>The color scheme has been prepared with the appropriate breaks that we wanted. Now, we can plot the dataset and color the shapefile polygons. There are multiple ways to plot this data and we’ll begin with a simple <code>spplot</code> from the <code>sp</code> package.</p>
+<div class="sourceCode" id="cb406"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb406-1" data-line-number="1"><span class="co"># first we&#39;ll plot a simple one to show this function</span></a>
+<a class="sourceLine" id="cb406-2" data-line-number="2"><span class="kw">spplot</span>(<span class="dt">obj =</span> merged.coast, <span class="dt">zcol =</span> <span class="st">&quot;maxpred&quot;</span>)</a></code></pre></div>
+<p><img src="Introduction-to-R_files/figure-html/unnamed-chunk-148-1.png" width="60%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb407"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb407-1" data-line-number="1"><span class="co"># now let&#39;s add in extra arguments and color our polygons with our colorshcmee</span></a>
+<a class="sourceLine" id="cb407-2" data-line-number="2"><span class="kw">spplot</span>(<span class="dt">obj =</span> merged.coast, <span class="dt">zcol =</span> <span class="st">&quot;maxpred&quot;</span>, <span class="dt">par.settings =</span> <span class="kw">list</span>(<span class="dt">axis.line =</span> <span class="kw">list</span>(<span class="dt">col =</span><span class="st">&quot;transparent&quot;</span>)), <span class="dt">main =</span> <span class="st">&quot;Projected Water Levels (Feet)&quot;</span>, <span class="dt">cuts =</span> <span class="dv">5</span>, <span class="dt">col =</span><span class="st">&quot;transparent&quot;</span>, <span class="dt">col.regions =</span> mycolours)</a></code></pre></div>
+<p><img src="Introduction-to-R_files/figure-html/unnamed-chunk-148-2.png" width="60%" style="display: block; margin: auto;" /></p>
+<p>Simple and displays the data easily. Now we turn our attention to the <code>tamp</code> package - Thematic Map Visualization. Thematic maps are geographical maps in which spatial data distributions are visualized. This package offers a flexible, layer-based, and easy to use approach to create thematic maps, such as choropleths and bubble maps. It is based on the grammar of graphics, and resembles the syntax of ggplot2.</p>
+<div class="sourceCode" id="cb408"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb408-1" data-line-number="1"><span class="kw">library</span>(tmap)</a>
+<a class="sourceLine" id="cb408-2" data-line-number="2"><span class="kw">tm_shape</span>(merged.coast) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb408-3" data-line-number="3"><span class="st">  </span><span class="kw">tm_polygons</span>(<span class="dt">col=</span><span class="st">&#39;maxpred&#39;</span>, <span class="dt">title =</span> <span class="st">&quot;Projected Water Levels&quot;</span>, <span class="dt">palette =</span> <span class="st">&quot;Blues&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">tm_style</span>(<span class="st">&quot;classic&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">tm_scale_bar</span>(<span class="dt">position =</span> <span class="kw">c</span>(<span class="st">&quot;left&quot;</span>, <span class="st">&quot;bottom&quot;</span>)) </a></code></pre></div>
+<pre><code>## Warning in sp::proj4string(obj): CRS object has comment, which is lost in output</code></pre>
+<p><img src="Introduction-to-R_files/figure-html/unnamed-chunk-149-1.png" width="60%" style="display: block; margin: auto;" /></p>
+<p>We automatically queried a Blues color palette with automatic breaks with the <code>tm_shape</code> and <code>tm_polygons</code> functions. Notice how similar this functionality is to <code>ggplot2</code>. Let’s turn our attention to <code>ggplot2</code> at this time. Before we use this package, we will need to convert our <code>SpatialPolygonsDataFrame</code> to a <code>sf</code> dataframe. For this, we can use the <code>st_as_sf</code> function which converts a foreign object to an <code>sf</code> object.</p>
+<div class="sourceCode" id="cb410"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb410-1" data-line-number="1"><span class="kw">library</span>(sf)</a>
+<a class="sourceLine" id="cb410-2" data-line-number="2"><span class="co"># convert it to an sf object</span></a>
+<a class="sourceLine" id="cb410-3" data-line-number="3">gg_merged =<span class="st"> </span><span class="kw">st_as_sf</span>(merged.coast)</a>
+<a class="sourceLine" id="cb410-4" data-line-number="4"><span class="kw">class</span>(gg_merged)</a></code></pre></div>
+<pre><code>## [1] &quot;sf&quot;         &quot;data.frame&quot;</code></pre>
+<div class="sourceCode" id="cb412"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb412-1" data-line-number="1"><span class="co"># now we use geom_sf since our gg_merged is now a simple feature</span></a>
+<a class="sourceLine" id="cb412-2" data-line-number="2"><span class="kw">ggplot</span>() <span class="op">+</span><span class="st"> </span><span class="kw">geom_sf</span>(<span class="dt">data =</span> gg_merged, <span class="kw">aes</span>(<span class="dt">fill =</span> maxpred))</a></code></pre></div>
+<p><img src="Introduction-to-R_files/figure-html/unnamed-chunk-150-1.png" width="60%" style="display: block; margin: auto;" /></p>
+<p>Let’s get rid of the default gray background of this <code>ggplot</code> instance. This default background is actually part of the default <code>ggplot</code> theme. There are multiple themes we can use including theme_bw(), theme_dark(), theme_light(), theme_void() and more.</p>
+<p><img src="Introduction-to-R_files/figure-html/unnamed-chunk-151-1.png" width="60%" style="display: block; margin: auto;" /></p>
+<p>Each of these themes are useful under varying circumstances. The void theme is nice when we want to bring more visual focus to the data. However, this map would look better if we added in state polygons.</p>
+<div class="sourceCode" id="cb413"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb413-1" data-line-number="1"><span class="co"># read in the states shapefile from the course datasets folder</span></a>
+<a class="sourceLine" id="cb413-2" data-line-number="2">states &lt;-<span class="st"> </span><span class="kw">readOGR</span>(<span class="st">&quot;/Users/james/Documents/Github/geog473-673/datasets/ne_10m_admin_1_states_provinces/ne_10m_admin_1_states_provinces.shp&quot;</span>)</a></code></pre></div>
+<pre><code>## OGR data source with driver: ESRI Shapefile 
+## Source: &quot;/Users/james/Documents/Github/geog473-673/datasets/ne_10m_admin_1_states_provinces/ne_10m_admin_1_states_provinces.shp&quot;, layer: &quot;ne_10m_admin_1_states_provinces&quot;
+## with 4594 features
+## It has 83 fields
+## Integer64 fields read as strings:  ne_id</code></pre>
+<div class="sourceCode" id="cb415"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb415-1" data-line-number="1"><span class="kw">class</span>(states)</a></code></pre></div>
+<pre><code>## [1] &quot;SpatialPolygonsDataFrame&quot;
+## attr(,&quot;package&quot;)
+## [1] &quot;sp&quot;</code></pre>
+<div class="sourceCode" id="cb417"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb417-1" data-line-number="1">states =<span class="st"> </span><span class="kw">st_as_sf</span>(states)</a>
+<a class="sourceLine" id="cb417-2" data-line-number="2"><span class="kw">class</span>(states)</a></code></pre></div>
+<pre><code>## [1] &quot;sf&quot;         &quot;data.frame&quot;</code></pre>
+<div class="sourceCode" id="cb419"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb419-1" data-line-number="1"><span class="kw">ggplot</span>(<span class="dt">data =</span> states) <span class="op">+</span><span class="st"> </span><span class="kw">geom_sf</span>() <span class="op">+</span><span class="st"> </span><span class="kw">theme_void</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb419-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_sf</span>(<span class="dt">data =</span> gg_merged, <span class="kw">aes</span>(<span class="dt">fill =</span> maxpred)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb419-3" data-line-number="3"><span class="st">  </span><span class="kw">coord_sf</span>(<span class="dt">xlim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="fl">76.1</span>, <span class="fl">-74.7</span>), <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="fl">38.3</span>,<span class="dv">40</span>), <span class="dt">expand =</span> <span class="ot">FALSE</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb419-4" data-line-number="4"><span class="st">  </span><span class="kw">scale_fill_distiller</span>(<span class="dt">palette =</span> <span class="st">&quot;Blues&quot;</span>, <span class="dt">direction=</span> <span class="dv">1</span>)</a></code></pre></div>
+<p><img src="Introduction-to-R_files/figure-html/unnamed-chunk-152-1.png" width="60%" style="display: block; margin: auto;" /></p>
+<p>Looks pretty good even though the shapefile isn’t quite as sharp as we’d like. Besides the shapefile which we added to the plot via <code>geom_sf()</code>, take notice of the <code>theme_void()</code>…this plot will NOT WORK without <code>theme_void()</code>. There is ongoing github discussions with some of the developers at <code>ggplot2</code> to figure out why, but for now just make sure you use <code>theme_void</code> to add shapefiles to the same plot in R and have them work properly. Also take note of the <code>scale_fill_distiller</code> function. This is an easy way to throw in a <code>RColorbrewer</code> color pallette. In this case we used the Blues colorpallete since we’re dealing with water but you can make it any <code>RColorbrewer</code> palette you want. Also notice the <code>direction=1</code>. This reverses the order of the blues color pallette. Instead of the <code>scale_fill_distiller</code> function, you can also use <code>scale_fill_viridis()</code> function which has some default pallettes such as - “magma”, “plasma”, and “inferno”.</p>
+<p>The last package we’ll introduce for visualizing shapefiles is the <code>mapview</code> package. This package overlays shapefiles and corresponding data over an HTML based interactive map. This package handles a lot of the dirty work for us.</p>
+<div class="sourceCode" id="cb420"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb420-1" data-line-number="1"><span class="kw">library</span>(mapview)</a>
+<a class="sourceLine" id="cb420-2" data-line-number="2"><span class="kw">mapview</span>(merged.coast[<span class="st">&#39;maxpred&#39;</span>], <span class="dt">col.regions =</span> mycolours)</a></code></pre></div>
+<p><img src="../documents/images/delmaxpred.png" width="60%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="saving-a-shapefile" class="section level2">
+<h2><span class="header-section-number">14.4</span> Saving a shapefile</h2>
+<p>So we combined our csv station data with the corresponding shapefile statoin to make these plots. We don’t need to duplicate that hard work again because we can actually save our merged shapefile/csv as an ENVI shapefile using the <code>writeOGR</code> function from <code>rgdal</code>.</p>
+<div class="sourceCode" id="cb421"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb421-1" data-line-number="1"><span class="kw">writeOGR</span>(<span class="dt">obj =</span> merged.coast, <span class="dt">dsn =</span> <span class="st">&quot;/Users/james/Downloads/coast_files/merged.coast&quot;</span>, <span class="dt">layer =</span> <span class="st">&quot;coast-rgdal&quot;</span>, <span class="dt">driver =</span> <span class="st">&quot;ESRI Shapefile&quot;</span>)</a></code></pre></div>
+</div>
+<div id="assignment-7" class="section level2">
+<h2><span class="header-section-number">14.5</span> Assignment</h2>
+<p>Using the <strong>ne_10m_parks_and_protected_lands</strong> shapefile dataset, map the names of the protected lands (variable is <code>name</code>) in the <strong>Pacific Northwest</strong> using the methods listed below. You will need to download all of the contents of the <strong>ne_10m_parks_and_protected_lands</strong> shapefile folder. Below, a bounding lat/lon box of -127 W, -110 E, 40 S, 50 N was used for <code>tmap</code> plot and <code>ggplot</code> plot. You may use a bounding box of your choice where you see fit. Submit your plots to UD Canvas.</p>
+<ol style="list-style-type: decimal">
+<li><code>tmap</code></li>
+<li><code>ggplot2</code></li>
+<li><code>mapview</code></li>
+</ol>
+<p>Create the 3 plots above and make them look as close as possible to the ones below.</p>
+<pre><code>## OGR data source with driver: ESRI Shapefile 
+## Source: &quot;/Users/james/Documents/Github/geog473-673/datasets/ne_10m_parks_and_protected_lands/ne_10m_parks_and_protected_lands_area.shp&quot;, layer: &quot;ne_10m_parks_and_protected_lands_area&quot;
+## with 61 features
+## It has 8 fields
+## Integer64 fields read as strings:  scalerank</code></pre>
+<p><img src="Introduction-to-R_files/figure-html/unnamed-chunk-156-1.png" width="768" style="display: block; margin: auto;" /></p>
+<pre><code>## OGR data source with driver: ESRI Shapefile 
+## Source: &quot;/Users/james/Documents/Github/geog473-673/datasets/ne_10m_admin_1_states_provinces/ne_10m_admin_1_states_provinces.shp&quot;, layer: &quot;ne_10m_admin_1_states_provinces&quot;
+## with 4594 features
+## It has 83 fields
+## Integer64 fields read as strings:  ne_id</code></pre>
+<pre><code>## [1] &quot;SpatialPolygonsDataFrame&quot;
+## attr(,&quot;package&quot;)
+## [1] &quot;sp&quot;</code></pre>
+<pre><code>## [1] &quot;sf&quot;         &quot;data.frame&quot;</code></pre>
+<p><img src="Introduction-to-R_files/figure-html/unnamed-chunk-156-2.png" width="768" style="display: block; margin: auto;" /></p>
+<p><img src="../documents/images/denali_out.png" width="60%" style="display: block; margin: auto;" /></p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="spatial-plots-with-ggplot2.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="remote-data-extraction.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

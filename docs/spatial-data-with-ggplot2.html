@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>13 Spatial Data with ggplot2 | Advanced R for Geospatial Sciences</title>
+  <meta name="description" content="Advanced R" />
+  <meta name="generator" content="bookdown 0.20.6 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="13 Spatial Data with ggplot2 | Advanced R for Geospatial Sciences" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Advanced R" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="13 Spatial Data with ggplot2 | Advanced R for Geospatial Sciences" />
+  
+  <meta name="twitter:description" content="Advanced R" />
+  
+
+<meta name="author" content="James Simkins" />
+
+
+<meta name="date" content="2021-01-25" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="plotting-with-ggplot2.html"/>
+<link rel="next" href="shapefiles.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/htmlwidgets-1.5.3/htmlwidgets.js"></script>
+<link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-1.3.1/leaflet.js"></script>
+<link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
+<script src="libs/proj4-2.6.2/proj4.min.js"></script>
+<script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+<link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-binding-2.0.4.1/leaflet.js"></script>
+<script src="libs/leaflet-providers-1.9.0/leaflet-providers_1.9.0.js"></script>
+<script src="libs/leaflet-providers-plugin-2.0.4.1/leaflet-providers-plugin.js"></script>
+<script src="libs/FlatGeoBuf-3.3.3/fgb.js"></script>
+<script src="libs/FlatGeoBuf-3.3.3/flatgeobuf-geojson.min.js"></script>
+<script src="libs/chromajs-2.1.0/chroma.min.js"></script>
+<link id="merged_coast[maxpred]-1-attachment" rel="attachment" href="libs/merged_coast[maxpred]-0.0.1/merged_coast[maxpred]_layer.fgb"/>
+<link href="libs/HomeButton-0.0.1/home-button.css" rel="stylesheet" />
+<script src="libs/HomeButton-0.0.1/home-button.js"></script>
+<script src="libs/HomeButton-0.0.1/easy-button-src.min.js"></script>
+<script src="libs/clipboard-0.0.1/setClipboardText.js"></script>
+<link href="libs/mapviewCSS-0.0.1/mapview-popup.css" rel="stylesheet" />
+<link href="libs/mapviewCSS-0.0.1/mapview.css" rel="stylesheet" />
+<link id="m[name]-1-attachment" rel="attachment" href="libs/m[name]-0.0.1/m[name]_layer.fgb"/>
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">GEOG473-673 Open-sourced Environmental Computing</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="preface.html"><a href="preface.html"><i class="fa fa-check"></i><b>1</b> Preface</a><ul>
+<li class="chapter" data-level="1.1" data-path="preface.html"><a href="preface.html#course-github"><i class="fa fa-check"></i><b>1.1</b> Course Github</a></li>
+<li class="chapter" data-level="1.2" data-path="preface.html"><a href="preface.html#syllabus"><i class="fa fa-check"></i><b>1.2</b> Syllabus</a></li>
+<li class="chapter" data-level="1.3" data-path="preface.html"><a href="preface.html#agenda"><i class="fa fa-check"></i><b>1.3</b> Agenda</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html"><i class="fa fa-check"></i><b>2</b> Getting Started with R</a><ul>
+<li class="chapter" data-level="2.1" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#why-is-there-such-a-buzz-around-r"><i class="fa fa-check"></i><b>2.1</b> Why is there such a buzz around R?</a></li>
+<li class="chapter" data-level="2.2" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#reasons-to-love-r"><i class="fa fa-check"></i><b>2.2</b> Reasons to love R</a></li>
+<li class="chapter" data-level="2.3" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#downloading-guide"><i class="fa fa-check"></i><b>2.3</b> Downloading Guide</a></li>
+<li class="chapter" data-level="2.4" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#rstudio"><i class="fa fa-check"></i><b>2.4</b> Rstudio</a></li>
+<li class="chapter" data-level="2.5" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#download-course-datasets"><i class="fa fa-check"></i><b>2.5</b> Download Course Datasets</a></li>
+<li class="chapter" data-level="2.6" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#video-examples"><i class="fa fa-check"></i><b>2.6</b> Video Examples</a></li>
+<li class="chapter" data-level="2.7" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#getting-familiar-with-rstudio"><i class="fa fa-check"></i><b>2.7</b> Getting familiar with RStudio</a></li>
+<li class="chapter" data-level="2.8" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#open-rstudio"><i class="fa fa-check"></i><b>2.8</b> Open RStudio</a></li>
+<li class="chapter" data-level="2.9" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#r-studio-layout"><i class="fa fa-check"></i><b>2.9</b> R Studio Layout</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="definitions-rules.html"><a href="definitions-rules.html"><i class="fa fa-check"></i><b>3</b> Definitions &amp; Rules</a><ul>
+<li class="chapter" data-level="3.1" data-path="definitions-rules.html"><a href="definitions-rules.html#important-r-programming-definitions"><i class="fa fa-check"></i><b>3.1</b> Important R Programming Definitions</a></li>
+<li class="chapter" data-level="3.2" data-path="definitions-rules.html"><a href="definitions-rules.html#rules"><i class="fa fa-check"></i><b>3.2</b> Rules</a></li>
+<li class="chapter" data-level="3.3" data-path="definitions-rules.html"><a href="definitions-rules.html#general-recommendations"><i class="fa fa-check"></i><b>3.3</b> General Recommendations</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="r-coding-fundamentals.html"><a href="r-coding-fundamentals.html"><i class="fa fa-check"></i><b>4</b> R Coding Fundamentals</a><ul>
+<li class="chapter" data-level="4.1" data-path="r-coding-fundamentals.html"><a href="r-coding-fundamentals.html#entering-input"><i class="fa fa-check"></i><b>4.1</b> Entering Input</a></li>
+<li class="chapter" data-level="4.2" data-path="r-coding-fundamentals.html"><a href="r-coding-fundamentals.html#running-code"><i class="fa fa-check"></i><b>4.2</b> Running Code</a></li>
+<li class="chapter" data-level="4.3" data-path="r-coding-fundamentals.html"><a href="r-coding-fundamentals.html#evaluation"><i class="fa fa-check"></i><b>4.3</b> Evaluation</a></li>
+<li class="chapter" data-level="4.4" data-path="r-coding-fundamentals.html"><a href="r-coding-fundamentals.html#r-objects"><i class="fa fa-check"></i><b>4.4</b> R Objects</a></li>
+<li class="chapter" data-level="4.5" data-path="r-coding-fundamentals.html"><a href="r-coding-fundamentals.html#numbers"><i class="fa fa-check"></i><b>4.5</b> Numbers</a></li>
+<li class="chapter" data-level="4.6" data-path="r-coding-fundamentals.html"><a href="r-coding-fundamentals.html#attributes"><i class="fa fa-check"></i><b>4.6</b> Attributes</a></li>
+<li class="chapter" data-level="4.7" data-path="r-coding-fundamentals.html"><a href="r-coding-fundamentals.html#creating-vectors"><i class="fa fa-check"></i><b>4.7</b> Creating Vectors</a></li>
+<li class="chapter" data-level="4.8" data-path="r-coding-fundamentals.html"><a href="r-coding-fundamentals.html#mixing-objects"><i class="fa fa-check"></i><b>4.8</b> Mixing Objects</a></li>
+<li class="chapter" data-level="4.9" data-path="r-coding-fundamentals.html"><a href="r-coding-fundamentals.html#explicit-coercion"><i class="fa fa-check"></i><b>4.9</b> Explicit Coercion</a></li>
+<li class="chapter" data-level="4.10" data-path="r-coding-fundamentals.html"><a href="r-coding-fundamentals.html#matrices"><i class="fa fa-check"></i><b>4.10</b> Matrices</a></li>
+<li class="chapter" data-level="4.11" data-path="r-coding-fundamentals.html"><a href="r-coding-fundamentals.html#lists"><i class="fa fa-check"></i><b>4.11</b> Lists</a></li>
+<li class="chapter" data-level="4.12" data-path="r-coding-fundamentals.html"><a href="r-coding-fundamentals.html#factors"><i class="fa fa-check"></i><b>4.12</b> Factors</a></li>
+<li class="chapter" data-level="4.13" data-path="r-coding-fundamentals.html"><a href="r-coding-fundamentals.html#missing-values"><i class="fa fa-check"></i><b>4.13</b> Missing Values</a></li>
+<li class="chapter" data-level="4.14" data-path="r-coding-fundamentals.html"><a href="r-coding-fundamentals.html#data-frames"><i class="fa fa-check"></i><b>4.14</b> Data Frames</a></li>
+<li class="chapter" data-level="4.15" data-path="r-coding-fundamentals.html"><a href="r-coding-fundamentals.html#names"><i class="fa fa-check"></i><b>4.15</b> Names</a></li>
+<li class="chapter" data-level="4.16" data-path="r-coding-fundamentals.html"><a href="r-coding-fundamentals.html#summary"><i class="fa fa-check"></i><b>4.16</b> Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="basic-r-scripts.html"><a href="basic-r-scripts.html"><i class="fa fa-check"></i><b>5</b> Basic R Scripts</a><ul>
+<li class="chapter" data-level="5.1" data-path="basic-r-scripts.html"><a href="basic-r-scripts.html#global-carbon-dioxide-concentrations"><i class="fa fa-check"></i><b>5.1</b> Global Carbon-Dioxide Concentrations</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="basic-r-scripts.html"><a href="basic-r-scripts.html#saving-your-plot"><i class="fa fa-check"></i><b>5.1.1</b> Saving your plot</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="basic-r-scripts.html"><a href="basic-r-scripts.html#cars---motor-trends-magazine-data"><i class="fa fa-check"></i><b>5.2</b> Cars - Motor Trends Magazine Data</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="scientific-r-scripts.html"><a href="scientific-r-scripts.html"><i class="fa fa-check"></i><b>6</b> Scientific R Scripts</a><ul>
+<li class="chapter" data-level="6.1" data-path="scientific-r-scripts.html"><a href="scientific-r-scripts.html#script-breakdown"><i class="fa fa-check"></i><b>6.1</b> Script Breakdown</a></li>
+<li class="chapter" data-level="6.2" data-path="scientific-r-scripts.html"><a href="scientific-r-scripts.html#in-class-exercise"><i class="fa fa-check"></i><b>6.2</b> In Class Exercise</a><ul>
+<li class="chapter" data-level="6.2.1" data-path="scientific-r-scripts.html"><a href="scientific-r-scripts.html#further-explanation-of-datatypes"><i class="fa fa-check"></i><b>6.2.1</b> Further Explanation of DataTypes</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="time-series.html"><a href="time-series.html"><i class="fa fa-check"></i><b>7</b> Time Series</a><ul>
+<li class="chapter" data-level="7.1" data-path="time-series.html"><a href="time-series.html#for-loops"><i class="fa fa-check"></i><b>7.1</b> For Loops</a></li>
+<li class="chapter" data-level="7.2" data-path="time-series.html"><a href="time-series.html#deos-data"><i class="fa fa-check"></i><b>7.2</b> DEOS Data</a></li>
+<li class="chapter" data-level="7.3" data-path="time-series.html"><a href="time-series.html#assignment"><i class="fa fa-check"></i><b>7.3</b> Assignment</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="raster-visualization.html"><a href="raster-visualization.html"><i class="fa fa-check"></i><b>8</b> Raster Visualization</a><ul>
+<li class="chapter" data-level="8.1" data-path="raster-visualization.html"><a href="raster-visualization.html#paste0"><i class="fa fa-check"></i><b>8.1</b> <code>Paste0()</code></a></li>
+<li class="chapter" data-level="8.2" data-path="raster-visualization.html"><a href="raster-visualization.html#rasters"><i class="fa fa-check"></i><b>8.2</b> Rasters</a></li>
+<li class="chapter" data-level="8.3" data-path="raster-visualization.html"><a href="raster-visualization.html#assignment-1"><i class="fa fa-check"></i><b>8.3</b> Assignment</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="reprojecting-writing-rasters.html"><a href="reprojecting-writing-rasters.html"><i class="fa fa-check"></i><b>9</b> Reprojecting &amp; Writing Rasters</a><ul>
+<li class="chapter" data-level="9.1" data-path="reprojecting-writing-rasters.html"><a href="reprojecting-writing-rasters.html#indexing-data"><i class="fa fa-check"></i><b>9.1</b> Indexing Data</a></li>
+<li class="chapter" data-level="9.2" data-path="reprojecting-writing-rasters.html"><a href="reprojecting-writing-rasters.html#resampling-and-reprojecting"><i class="fa fa-check"></i><b>9.2</b> Resampling and Reprojecting</a></li>
+<li class="chapter" data-level="9.3" data-path="reprojecting-writing-rasters.html"><a href="reprojecting-writing-rasters.html#pngs"><i class="fa fa-check"></i><b>9.3</b> PNGs</a></li>
+<li class="chapter" data-level="9.4" data-path="reprojecting-writing-rasters.html"><a href="reprojecting-writing-rasters.html#writing-rasters"><i class="fa fa-check"></i><b>9.4</b> Writing Rasters</a></li>
+<li class="chapter" data-level="9.5" data-path="reprojecting-writing-rasters.html"><a href="reprojecting-writing-rasters.html#assignment-2"><i class="fa fa-check"></i><b>9.5</b> Assignment</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="plot-customization.html"><a href="plot-customization.html"><i class="fa fa-check"></i><b>10</b> Plot Customization</a><ul>
+<li class="chapter" data-level="10.1" data-path="plot-customization.html"><a href="plot-customization.html#expanding-on-basic-plots-in-r"><i class="fa fa-check"></i><b>10.1</b> Expanding on Basic Plots in R</a><ul>
+<li class="chapter" data-level="10.1.1" data-path="plot-customization.html"><a href="plot-customization.html#adding-to-a-plot"><i class="fa fa-check"></i><b>10.1.1</b> Adding to a Plot</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="plot-customization.html"><a href="plot-customization.html#barplots-boxplots-pie-charts"><i class="fa fa-check"></i><b>10.2</b> Barplots, Boxplots, Pie Charts</a><ul>
+<li class="chapter" data-level="10.2.1" data-path="plot-customization.html"><a href="plot-customization.html#combining-plots"><i class="fa fa-check"></i><b>10.2.1</b> Combining Plots</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="plot-customization.html"><a href="plot-customization.html#tree-data"><i class="fa fa-check"></i><b>10.3</b> Tree Data</a><ul>
+<li class="chapter" data-level="10.3.1" data-path="plot-customization.html"><a href="plot-customization.html#loading-the-dataset"><i class="fa fa-check"></i><b>10.3.1</b> Loading the Dataset</a></li>
+</ul></li>
+<li class="chapter" data-level="10.4" data-path="plot-customization.html"><a href="plot-customization.html#assignment-3"><i class="fa fa-check"></i><b>10.4</b> Assignment:</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="basic-statistics-in-r.html"><a href="basic-statistics-in-r.html"><i class="fa fa-check"></i><b>11</b> Basic Statistics in R</a><ul>
+<li class="chapter" data-level="11.1" data-path="basic-statistics-in-r.html"><a href="basic-statistics-in-r.html#statistical-function-dictionary"><i class="fa fa-check"></i><b>11.1</b> Statistical Function Dictionary</a></li>
+<li class="chapter" data-level="11.2" data-path="basic-statistics-in-r.html"><a href="basic-statistics-in-r.html#basic-statistics-in-r-1"><i class="fa fa-check"></i><b>11.2</b> Basic Statistics in R</a><ul>
+<li class="chapter" data-level="11.2.1" data-path="basic-statistics-in-r.html"><a href="basic-statistics-in-r.html#load-willow-creek-data"><i class="fa fa-check"></i><b>11.2.1</b> Load Willow Creek data</a></li>
+<li class="chapter" data-level="11.2.2" data-path="basic-statistics-in-r.html"><a href="basic-statistics-in-r.html#subsetting-data"><i class="fa fa-check"></i><b>11.2.2</b> Subsetting Data</a></li>
+<li class="chapter" data-level="11.2.3" data-path="basic-statistics-in-r.html"><a href="basic-statistics-in-r.html#trends-and-distributions"><i class="fa fa-check"></i><b>11.2.3</b> Trends and Distributions</a></li>
+<li class="chapter" data-level="11.2.4" data-path="basic-statistics-in-r.html"><a href="basic-statistics-in-r.html#finding-a-best-fit-distribution"><i class="fa fa-check"></i><b>11.2.4</b> Finding a Best-Fit Distribution</a></li>
+<li class="chapter" data-level="11.2.5" data-path="basic-statistics-in-r.html"><a href="basic-statistics-in-r.html#correlation-plots"><i class="fa fa-check"></i><b>11.2.5</b> Correlation Plots</a></li>
+</ul></li>
+<li class="chapter" data-level="11.3" data-path="basic-statistics-in-r.html"><a href="basic-statistics-in-r.html#assignment-4"><i class="fa fa-check"></i><b>11.3</b> Assignment</a><ul>
+<li class="chapter" data-level="11.3.1" data-path="basic-statistics-in-r.html"><a href="basic-statistics-in-r.html#extra-credit---2-points"><i class="fa fa-check"></i><b>11.3.1</b> Extra Credit - 2 points</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="plotting-with-ggplot2.html"><a href="plotting-with-ggplot2.html"><i class="fa fa-check"></i><b>12</b> Plotting with <code>ggplot2</code></a><ul>
+<li class="chapter" data-level="12.1" data-path="plotting-with-ggplot2.html"><a href="plotting-with-ggplot2.html#ggplot2-with-willow-creek-meteorological-data"><i class="fa fa-check"></i><b>12.1</b> ggplot2 with Willow Creek Meteorological Data</a></li>
+<li class="chapter" data-level="12.2" data-path="plotting-with-ggplot2.html"><a href="plotting-with-ggplot2.html#assignment-5"><i class="fa fa-check"></i><b>12.2</b> Assignment:</a></li>
+<li class="chapter" data-level="12.3" data-path="plotting-with-ggplot2.html"><a href="plotting-with-ggplot2.html#extra-credit---2-points-1"><i class="fa fa-check"></i><b>12.3</b> Extra Credit - 2 Points</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="spatial-data-with-ggplot2.html"><a href="spatial-data-with-ggplot2.html"><i class="fa fa-check"></i><b>13</b> Spatial Data with ggplot2</a><ul>
+<li class="chapter" data-level="13.1" data-path="spatial-data-with-ggplot2.html"><a href="spatial-data-with-ggplot2.html#simple-features"><i class="fa fa-check"></i><b>13.1</b> Simple Features</a></li>
+<li class="chapter" data-level="13.2" data-path="spatial-data-with-ggplot2.html"><a href="spatial-data-with-ggplot2.html#sea-surface-temperature-ggplot"><i class="fa fa-check"></i><b>13.2</b> Sea Surface Temperature ggplot</a></li>
+<li class="chapter" data-level="13.3" data-path="spatial-data-with-ggplot2.html"><a href="spatial-data-with-ggplot2.html#r-color-brewer-palettes"><i class="fa fa-check"></i><b>13.3</b> R Color Brewer Palettes</a><ul>
+<li class="chapter" data-level="13.3.1" data-path="spatial-data-with-ggplot2.html"><a href="spatial-data-with-ggplot2.html#multi-plot-ggplot"><i class="fa fa-check"></i><b>13.3.1</b> Multi Plot ggplot</a></li>
+</ul></li>
+<li class="chapter" data-level="13.4" data-path="spatial-data-with-ggplot2.html"><a href="spatial-data-with-ggplot2.html#assignment-6"><i class="fa fa-check"></i><b>13.4</b> Assignment</a><ul>
+<li class="chapter" data-level="13.4.1" data-path="spatial-data-with-ggplot2.html"><a href="spatial-data-with-ggplot2.html#extra-credit---2-points-2"><i class="fa fa-check"></i><b>13.4.1</b> Extra Credit - 2 Points</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="shapefiles.html"><a href="shapefiles.html"><i class="fa fa-check"></i><b>14</b> Shapefiles</a><ul>
+<li class="chapter" data-level="14.1" data-path="shapefiles.html"><a href="shapefiles.html#reading-in-shapefiles"><i class="fa fa-check"></i><b>14.1</b> Reading in Shapefiles</a></li>
+<li class="chapter" data-level="14.2" data-path="shapefiles.html"><a href="shapefiles.html#combining-shapefiles-with-data"><i class="fa fa-check"></i><b>14.2</b> Combining Shapefiles with Data</a></li>
+<li class="chapter" data-level="14.3" data-path="shapefiles.html"><a href="shapefiles.html#visualizing-the-shapefiles-data"><i class="fa fa-check"></i><b>14.3</b> Visualizing the Shapefiles &amp; Data</a></li>
+<li class="chapter" data-level="14.4" data-path="shapefiles.html"><a href="shapefiles.html#saving-a-shapefile"><i class="fa fa-check"></i><b>14.4</b> Saving a shapefile</a></li>
+<li class="chapter" data-level="14.5" data-path="shapefiles.html"><a href="shapefiles.html#assignment-7"><i class="fa fa-check"></i><b>14.5</b> Assignment</a></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="thredds-and-erddap.html"><a href="thredds-and-erddap.html"><i class="fa fa-check"></i><b>15</b> THREDDS and ERDDAP</a><ul>
+<li class="chapter" data-level="15.1" data-path="thredds-and-erddap.html"><a href="thredds-and-erddap.html#thredds"><i class="fa fa-check"></i><b>15.1</b> THREDDS</a></li>
+<li class="chapter" data-level="15.2" data-path="thredds-and-erddap.html"><a href="thredds-and-erddap.html#erddap"><i class="fa fa-check"></i><b>15.2</b> ERDDAP</a><ul>
+<li class="chapter" data-level="15.2.1" data-path="thredds-and-erddap.html"><a href="thredds-and-erddap.html#finding-the-data-you-want"><i class="fa fa-check"></i><b>15.2.1</b> Finding the Data You Want</a></li>
+</ul></li>
+<li class="chapter" data-level="15.3" data-path="thredds-and-erddap.html"><a href="thredds-and-erddap.html#assignment-8"><i class="fa fa-check"></i><b>15.3</b> Assignment</a><ul>
+<li class="chapter" data-level="15.3.1" data-path="thredds-and-erddap.html"><a href="thredds-and-erddap.html#extra-credit---2-points-3"><i class="fa fa-check"></i><b>15.3.1</b> Extra Credit - 2 Points</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="r-development-and-presentation.html"><a href="r-development-and-presentation.html"><i class="fa fa-check"></i><b>16</b> R Development and Presentation</a><ul>
+<li class="chapter" data-level="16.1" data-path="r-development-and-presentation.html"><a href="r-development-and-presentation.html#functions"><i class="fa fa-check"></i><b>16.1</b> Functions</a></li>
+<li class="chapter" data-level="16.2" data-path="r-development-and-presentation.html"><a href="r-development-and-presentation.html#netcdf-processing-function"><i class="fa fa-check"></i><b>16.2</b> NetCDF Processing Function</a></li>
+<li class="chapter" data-level="16.3" data-path="r-development-and-presentation.html"><a href="r-development-and-presentation.html#functions-in-for-loops"><i class="fa fa-check"></i><b>16.3</b> Functions in For Loops</a></li>
+<li class="chapter" data-level="16.4" data-path="r-development-and-presentation.html"><a href="r-development-and-presentation.html#rmarkdown"><i class="fa fa-check"></i><b>16.4</b> RMarkdown</a></li>
+<li class="chapter" data-level="16.5" data-path="r-development-and-presentation.html"><a href="r-development-and-presentation.html#assignment-9"><i class="fa fa-check"></i><b>16.5</b> Assignment</a></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="machine-learning-with-r.html"><a href="machine-learning-with-r.html"><i class="fa fa-check"></i><b>17</b> Machine Learning with R</a><ul>
+<li class="chapter" data-level="17.1" data-path="machine-learning-with-r.html"><a href="machine-learning-with-r.html#machine-learning-terms"><i class="fa fa-check"></i><b>17.1</b> Machine Learning Terms</a></li>
+<li class="chapter" data-level="17.2" data-path="machine-learning-with-r.html"><a href="machine-learning-with-r.html#classical-machine-learning"><i class="fa fa-check"></i><b>17.2</b> Classical Machine Learning</a><ul>
+<li class="chapter" data-level="17.2.1" data-path="machine-learning-with-r.html"><a href="machine-learning-with-r.html#supervised-learning"><i class="fa fa-check"></i><b>17.2.1</b> Supervised Learning</a></li>
+<li class="chapter" data-level="17.2.2" data-path="machine-learning-with-r.html"><a href="machine-learning-with-r.html#unsupervised-learning"><i class="fa fa-check"></i><b>17.2.2</b> Unsupervised Learning</a></li>
+<li class="chapter" data-level="17.2.3" data-path="machine-learning-with-r.html"><a href="machine-learning-with-r.html#neural-networks"><i class="fa fa-check"></i><b>17.2.3</b> Neural Networks</a></li>
+<li class="chapter" data-level="17.2.4" data-path="machine-learning-with-r.html"><a href="machine-learning-with-r.html#reinforcement-learning"><i class="fa fa-check"></i><b>17.2.4</b> Reinforcement Learning</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="18" data-path="time-series-forecasting.html"><a href="time-series-forecasting.html"><i class="fa fa-check"></i><b>18</b> Time Series Forecasting</a><ul>
+<li class="chapter" data-level="18.1" data-path="time-series-forecasting.html"><a href="time-series-forecasting.html#load-the-packages-and-data"><i class="fa fa-check"></i><b>18.1</b> Load the Packages and Data</a></li>
+<li class="chapter" data-level="18.2" data-path="time-series-forecasting.html"><a href="time-series-forecasting.html#aggregate-data"><i class="fa fa-check"></i><b>18.2</b> Aggregate Data</a></li>
+<li class="chapter" data-level="18.3" data-path="time-series-forecasting.html"><a href="time-series-forecasting.html#prepping-the-model"><i class="fa fa-check"></i><b>18.3</b> Prepping the Model</a></li>
+<li class="chapter" data-level="18.4" data-path="time-series-forecasting.html"><a href="time-series-forecasting.html#running-the-model"><i class="fa fa-check"></i><b>18.4</b> Running the Model</a></li>
+<li class="chapter" data-level="18.5" data-path="time-series-forecasting.html"><a href="time-series-forecasting.html#validation-and-accuracy"><i class="fa fa-check"></i><b>18.5</b> Validation and Accuracy</a></li>
+<li class="chapter" data-level="18.6" data-path="time-series-forecasting.html"><a href="time-series-forecasting.html#future-forecasting"><i class="fa fa-check"></i><b>18.6</b> Future Forecasting</a></li>
+<li class="chapter" data-level="18.7" data-path="time-series-forecasting.html"><a href="time-series-forecasting.html#assignment-10"><i class="fa fa-check"></i><b>18.7</b> Assignment</a></li>
+</ul></li>
+<li class="chapter" data-level="19" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html"><i class="fa fa-check"></i><b>19</b> Random Forest Modeling</a><ul>
+<li class="chapter" data-level="19.1" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#prepare-the-data"><i class="fa fa-check"></i><b>19.1</b> Prepare the Data</a></li>
+<li class="chapter" data-level="19.2" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#dimensionality-reduction"><i class="fa fa-check"></i><b>19.2</b> Dimensionality Reduction</a><ul>
+<li class="chapter" data-level="19.2.1" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#principal-component-analysis"><i class="fa fa-check"></i><b>19.2.1</b> Principal Component Analysis</a></li>
+<li class="chapter" data-level="19.2.2" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#t-sne-dimensionality-reduction"><i class="fa fa-check"></i><b>19.2.2</b> t-SNE Dimensionality Reduction</a></li>
+<li class="chapter" data-level="19.2.3" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#multidimensional-scaling"><i class="fa fa-check"></i><b>19.2.3</b> Multidimensional Scaling</a></li>
+</ul></li>
+<li class="chapter" data-level="19.3" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#random-forests"><i class="fa fa-check"></i><b>19.3</b> Random Forests</a><ul>
+<li class="chapter" data-level="19.3.1" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#decision-trees"><i class="fa fa-check"></i><b>19.3.1</b> Decision Trees</a></li>
+<li class="chapter" data-level="19.3.2" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#data-partition"><i class="fa fa-check"></i><b>19.3.2</b> Data Partition</a></li>
+<li class="chapter" data-level="19.3.3" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#training-the-model"><i class="fa fa-check"></i><b>19.3.3</b> Training the Model</a></li>
+<li class="chapter" data-level="19.3.4" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#testing-the-model"><i class="fa fa-check"></i><b>19.3.4</b> Testing the Model</a></li>
+<li class="chapter" data-level="19.3.5" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#hyperparameter-tuning"><i class="fa fa-check"></i><b>19.3.5</b> Hyperparameter Tuning</a></li>
+</ul></li>
+<li class="chapter" data-level="19.4" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#assignment-11"><i class="fa fa-check"></i><b>19.4</b> Assignment</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">James Simkins</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Advanced R for Geospatial Sciences</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="spatial-data-with-ggplot2" class="section level1">
+<h1><span class="header-section-number">13</span> Spatial Data with ggplot2</h1>
+<p><img src="../documents/images/ggplot2.jpeg" width="80%" style="display: block; margin: auto;" /></p>
+<p>In Geospatial Sciences we’re constantly working with spatial datasets that come in many different projections. We’ve previously shown how R can be used to read in spatial data, reproject spatial data, and resample spatial datasets. Once a spatial dataset can be stored in R as a data frame, we can use <code>ggplot</code> to plot it.</p>
+<table>
+<colgroup>
+<col width="28%" />
+<col width="71%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Function</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>geom_sf()</code></td>
+<td>Adds geometry stored in a <code>sf</code> object to a ggplot</td>
+</tr>
+<tr class="even">
+<td><code>coord_sf()</code></td>
+<td>Provides coordinate specifications for a ggplot</td>
+</tr>
+<tr class="odd">
+<td><code>geom_raster()</code></td>
+<td>Plots a data frame as a raster on a ggplot</td>
+</tr>
+<tr class="even">
+<td><code>st_crs()</code></td>
+<td>Obtains projection information from an EPSG code</td>
+</tr>
+<tr class="odd">
+<td><code>geom_sf_label()</code></td>
+<td>adds label to an sf geometry</td>
+</tr>
+<tr class="even">
+<td><code>scale_fill_gradientn()</code></td>
+<td>adds a density plot to a ggplot</td>
+</tr>
+<tr class="odd">
+<td><code>borders()</code></td>
+<td>Adds country borders to a ggplot</td>
+</tr>
+<tr class="even">
+<td><code>coord_quickmap()</code></td>
+<td>Approximates projected lines for faster image creation</td>
+</tr>
+<tr class="odd">
+<td><code>colorRampPalette()</code></td>
+<td>Create custom color ramp palette</td>
+</tr>
+<tr class="even">
+<td><code>brewer.pal()</code></td>
+<td>Grabs premade color palette from RColorBrewer</td>
+</tr>
+<tr class="odd">
+<td><code>grid.arrange()</code></td>
+<td>Function that allows you to organize multiple ggplot objects into the same window</td>
+</tr>
+</tbody>
+</table>
+<div id="simple-features" class="section level2">
+<h2><span class="header-section-number">13.1</span> Simple Features</h2>
+<p>One package useful for spatial data in R is the <code>sf</code> package (short for simple features). It contains functions that perform equations that place uneven projections on a 2 dimensional computer screen. It can handle many projections and is built to work seamlessly with <code>ggplot</code>. For sample data, we’re also going to load <code>ozmaps</code> which contains maps of Australia.</p>
+<div class="sourceCode" id="cb354"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb354-1" data-line-number="1"><span class="kw">library</span>(ozmaps)</a>
+<a class="sourceLine" id="cb354-2" data-line-number="2"><span class="kw">library</span>(sf)</a></code></pre></div>
+<pre><code>## Linking to GEOS 3.8.1, GDAL 3.1.4, PROJ 6.3.1</code></pre>
+<div class="sourceCode" id="cb356"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb356-1" data-line-number="1">oz_states &lt;-<span class="st"> </span>ozmaps<span class="op">::</span>ozmap_states</a>
+<a class="sourceLine" id="cb356-2" data-line-number="2">oz_states</a></code></pre></div>
+<pre><code>## Simple feature collection with 9 features and 1 field
+## geometry type:  MULTIPOLYGON
+## dimension:      XY
+## bbox:           xmin: 105.5507 ymin: -43.63203 xmax: 167.9969 ymax: -9.229287
+## geographic CRS: GDA94
+## # A tibble: 9 x 2
+##   NAME                                                                  geometry
+##   &lt;chr&gt;                                                       &lt;MULTIPOLYGON [°]&gt;
+## 1 New South Wales      (((150.7016 -35.12286, 150.6611 -35.11782, 150.6373 -35.…
+## 2 Victoria             (((146.6196 -38.70196, 146.6721 -38.70259, 146.6744 -38.…
+## 3 Queensland           (((148.8473 -20.3457, 148.8722 -20.37575, 148.8515 -20.3…
+## 4 South Australia      (((137.3481 -34.48242, 137.3749 -34.46885, 137.3805 -34.…
+## 5 Western Australia    (((126.3868 -14.01168, 126.3625 -13.98264, 126.3765 -13.…
+## 6 Tasmania             (((147.8397 -40.29844, 147.8902 -40.30258, 147.8812 -40.…
+## 7 Northern Territory   (((136.3669 -13.84237, 136.3339 -13.83922, 136.3532 -13.…
+## 8 Australian Capital … (((149.2317 -35.222, 149.2346 -35.24047, 149.2716 -35.27…
+## 9 Other Territories    (((167.9333 -29.05421, 167.9188 -29.0344, 167.9313 -29.0…</code></pre>
+<p><code>oz_states</code> is a simple feature which stores data like data frames but has a projection (proj4string), spatial extents, and polygon geometry. In other words, we have shapes on a map that are georeferenced and stored within a data frame that <code>ggplot</code> is great at working with. There are two columns - <code>NAME</code> and <code>geometry</code>. The <code>NAME</code> column is the name of the Australian State. The <code>geometry</code> specifies where the lines of the polygons are drawn (the state boundaries). So, let’s plot these polygons!</p>
+<div class="sourceCode" id="cb358"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb358-1" data-line-number="1"><span class="kw">library</span>(ggplot2)</a>
+<a class="sourceLine" id="cb358-2" data-line-number="2"><span class="kw">ggplot</span>(<span class="dt">data =</span> oz_states) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb358-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_sf</span>() <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb358-4" data-line-number="4"><span class="st">  </span><span class="kw">coord_sf</span>()</a></code></pre></div>
+<p><img src="Introduction-to-R_files/figure-html/unnamed-chunk-128-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb359"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb359-1" data-line-number="1"><span class="co"># if we declare mapping aesthetics, we can tell ggplot to fill the spatial features (australian states) based on the NAME column / variable - ggplot automatically chooses coloring for us if we don&#39;t specify</span></a>
+<a class="sourceLine" id="cb359-2" data-line-number="2"><span class="kw">ggplot</span>() <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb359-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_sf</span>(<span class="dt">data =</span> oz_states, <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">fill =</span> NAME)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb359-4" data-line-number="4"><span class="st">  </span><span class="kw">coord_sf</span>()</a></code></pre></div>
+<p><img src="Introduction-to-R_files/figure-html/unnamed-chunk-129-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p>The function <code>coord_sf</code> allows to deal with the coordinate system, which includes both projection and extent of the map. By default, the map will use the coordinate system of the first layer that defines one (i.e. scanned in the order provided), or if none, fall back on WGS84 (latitude/longitude, the reference system used in GPS). Remember, our <code>oz_states</code> is a simple feature data frame that contains projection information. Thus, <code>coord_sf</code> is assuming we want the projection of <code>oz_states</code> - <code>+proj=longlat +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +no_defs</code>. We can specify our own <code>crs</code> argument if we want to override the assumed projection. If we set the <code>crs</code> argument to a valid PROJ4 string, we can accoimplish this. Let’s project our <code>oz_states</code> onto a Mollewide graph.</p>
+<div class="sourceCode" id="cb360"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb360-1" data-line-number="1"><span class="kw">ggplot</span>() <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb360-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_sf</span>(<span class="dt">data =</span> oz_states, <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">fill =</span> NAME)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb360-3" data-line-number="3"><span class="st">  </span><span class="kw">coord_sf</span>(<span class="dt">crs =</span> <span class="st">&quot;+proj=moll +lon_0=0 +x_0=0 +y_0=0 +datum=WGS84 +units=m +no_defs&quot;</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb360-4" data-line-number="4"><span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;oz_states projected onto Mollewide ggplot&quot;</span>)</a></code></pre></div>
+<p><img src="Introduction-to-R_files/figure-html/unnamed-chunk-130-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p>We did not overwrite the data to this new projection. We simply performed a transformation on the fly to fit the data to a new grid. Instead of a PROJ4 string, we could use an EPSG code with the <code>st_crs()</code> function. Let’s not project our data onto a grid with EPSG code 3112.</p>
+<div class="sourceCode" id="cb361"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb361-1" data-line-number="1"><span class="kw">ggplot</span>() <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb361-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_sf</span>(<span class="dt">data =</span> oz_states, <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">fill =</span> NAME)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb361-3" data-line-number="3"><span class="st">  </span><span class="kw">coord_sf</span>(<span class="dt">crs =</span> <span class="kw">st_crs</span>(<span class="dv">3112</span>)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb361-4" data-line-number="4"><span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;oz_states projected onto EPSG 3112&quot;</span>)</a></code></pre></div>
+<p><img src="Introduction-to-R_files/figure-html/unnamed-chunk-131-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><code>st_crs()</code> is that simple, just plug in the code and the function will grab the PROJ4 string for you. <code>coord_sf</code> has other options that are useful too such as x and y limits. Let’s go back to our regular projection of this data and show the limits in action.</p>
+<div class="sourceCode" id="cb362"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb362-1" data-line-number="1"><span class="kw">ggplot</span>() <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb362-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_sf</span>(<span class="dt">data =</span> oz_states, <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">fill =</span> NAME), <span class="dt">show.legend =</span> <span class="ot">FALSE</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb362-3" data-line-number="3"><span class="st">  </span><span class="kw">coord_sf</span>(<span class="dt">xlim =</span> <span class="kw">c</span>(<span class="dv">140</span>, <span class="dv">150</span>), <span class="dt">ylim=</span><span class="kw">c</span>(<span class="op">-</span><span class="dv">44</span>, <span class="fl">-39.5</span>)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb362-4" data-line-number="4"><span class="st">  </span><span class="kw">geom_sf_label</span>( <span class="dt">data =</span> oz_states, <span class="kw">aes</span>(<span class="dt">label =</span> NAME))</a></code></pre></div>
+<p><img src="Introduction-to-R_files/figure-html/unnamed-chunk-132-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p>We also added <code>geom_sf_label</code> which adds a label to an <code>sf</code> geometry. In this case, we added the Tasmania name tag to the geometry.</p>
+</div>
+<div id="sea-surface-temperature-ggplot" class="section level2">
+<h2><span class="header-section-number">13.2</span> Sea Surface Temperature ggplot</h2>
+<p>When it comes to spatial data, the <code>raster</code> package is our go-to library. After the data is translated to a dataframe and ready to plot, we’ll need the help of a package called <code>mapproj</code> which makes sense of some external maps that <code>ggplot2</code> uses.</p>
+<div class="sourceCode" id="cb363"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb363-1" data-line-number="1"><span class="kw">library</span>(ggplot2)</a>
+<a class="sourceLine" id="cb363-2" data-line-number="2"><span class="kw">library</span>(mapproj)</a></code></pre></div>
+<pre><code>## Loading required package: maps</code></pre>
+<div class="sourceCode" id="cb365"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb365-1" data-line-number="1"><span class="kw">library</span>(maptools) <span class="co"># also loads sp package</span></a>
+<a class="sourceLine" id="cb365-2" data-line-number="2"><span class="kw">library</span>(raster)</a>
+<a class="sourceLine" id="cb365-3" data-line-number="3"><span class="kw">library</span>(rasterVis)</a>
+<a class="sourceLine" id="cb365-4" data-line-number="4"><span class="kw">library</span>(RColorBrewer)</a>
+<a class="sourceLine" id="cb365-5" data-line-number="5">sstRast &lt;-<span class="st"> </span><span class="kw">raster</span>(<span class="st">&quot;/Users/james/Documents/Github/geog473-673/datasets/GOES_R_ROLLING_1DAY_20190814.nc&quot;</span>)</a>
+<a class="sourceLine" id="cb365-6" data-line-number="6"><span class="co"># crop the raster so this runs faster</span></a>
+<a class="sourceLine" id="cb365-7" data-line-number="7">sstRast &lt;-<span class="st"> </span><span class="kw">crop</span>(sstRast, <span class="kw">extent</span>(<span class="op">-</span><span class="dv">100</span>,<span class="op">-</span><span class="dv">80</span>,<span class="dv">16</span>,<span class="dv">30</span>))</a>
+<a class="sourceLine" id="cb365-8" data-line-number="8">sstRast</a></code></pre></div>
+<pre><code>## class      : RasterLayer 
+## dimensions : 774, 1111, 859914  (nrow, ncol, ncell)
+## resolution : 0.018, 0.0181  (x, y)
+## extent     : -99.99915, -80.00115, 15.99378, 30.00318  (xmin, xmax, ymin, ymax)
+## crs        : +proj=longlat +datum=WGS84 +no_defs 
+## source     : memory
+## names      : Sea.Surface.Temperature 
+## values     : 25.86023, 34.9397  (min, max)
+## time       : 2019-08-14 16:30:43</code></pre>
+<div class="sourceCode" id="cb367"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb367-1" data-line-number="1"><span class="co"># convert to dataframe and </span></a>
+<a class="sourceLine" id="cb367-2" data-line-number="2">df &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(sstRast, <span class="dt">xy =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb367-3" data-line-number="3"><span class="kw">head</span>(df)</a></code></pre></div>
+<pre><code>##           x        y Sea.Surface.Temperature
+## 1 -99.99015 29.99413                     NaN
+## 2 -99.97215 29.99413                     NaN
+## 3 -99.95415 29.99413                     NaN
+## 4 -99.93615 29.99413                     NaN
+## 5 -99.91815 29.99413                     NaN
+## 6 -99.90015 29.99413                     NaN</code></pre>
+<div class="sourceCode" id="cb369"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb369-1" data-line-number="1"><span class="co"># plot the raster</span></a>
+<a class="sourceLine" id="cb369-2" data-line-number="2"><span class="kw">ggplot</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb369-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_raster</span>(<span class="dt">data =</span> df , <span class="kw">aes</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> y, <span class="dt">fill =</span> Sea.Surface.Temperature)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb369-4" data-line-number="4"><span class="st">  </span><span class="kw">coord_sf</span>()</a></code></pre></div>
+<p><img src="Introduction-to-R_files/figure-html/unnamed-chunk-133-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p>In this case, <code>df</code> is just a data frame - not an <code>sf</code> data frame. We need to use <code>geom_raster</code> in this case to plot a regular data frame as a raster. As for the projeciton, <code>ggplot</code> automatically guessed lat/long which in this case is correct. A better practice is to use the <code>crs</code> from the <code>sstRast</code> which contains all of the projection information.</p>
+<div class="sourceCode" id="cb370"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb370-1" data-line-number="1"><span class="co"># print the crs of the sstRast</span></a>
+<a class="sourceLine" id="cb370-2" data-line-number="2"><span class="kw">crs</span>(sstRast)</a></code></pre></div>
+<pre><code>## CRS arguments: +proj=longlat +datum=WGS84 +no_defs</code></pre>
+<div class="sourceCode" id="cb372"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb372-1" data-line-number="1"><span class="co"># plug in crs into the `coord_sf` function</span></a>
+<a class="sourceLine" id="cb372-2" data-line-number="2"><span class="kw">ggplot</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb372-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_raster</span>(<span class="dt">data =</span> df , <span class="kw">aes</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> y, <span class="dt">fill =</span> Sea.Surface.Temperature)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb372-4" data-line-number="4"><span class="st">  </span><span class="kw">coord_sf</span>(<span class="dt">crs=</span><span class="kw">crs</span>(sstRast))</a></code></pre></div>
+<p><img src="Introduction-to-R_files/figure-html/unnamed-chunk-134-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p>The georeferenced data is properly placed. Let’s now turn our attention to the coloring of the data. We can use the <code>RColorBrewer</code> package to create our own color palettes. Also, becuase we’re in lat/long projection, we’re going to use <code>coord_quickmap</code> instead of <code>coord_sf</code>. This function approximates geolocated lines for faster plotting. This can be used in lat/long projected data close to the equator.</p>
+<div class="sourceCode" id="cb373"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb373-1" data-line-number="1"><span class="co"># now let&#39;s use a better colorscheme</span></a>
+<a class="sourceLine" id="cb373-2" data-line-number="2">jet.colors &lt;-<span class="st"> </span><span class="kw">colorRampPalette</span>(<span class="kw">c</span>(<span class="st">&quot;#00007F&quot;</span>, <span class="st">&quot;blue&quot;</span>, <span class="st">&quot;#007FFF&quot;</span>, <span class="st">&quot;cyan&quot;</span>, <span class="st">&quot;#7FFF7F&quot;</span>, <span class="st">&quot;yellow&quot;</span>, <span class="st">&quot;#FF7F00&quot;</span>, <span class="st">&quot;red&quot;</span>, <span class="st">&quot;#7F0000&quot;</span>))</a>
+<a class="sourceLine" id="cb373-3" data-line-number="3"><span class="kw">ggplot</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb373-4" data-line-number="4"><span class="st">  </span><span class="kw">geom_raster</span>(<span class="dt">data =</span> df , <span class="kw">aes</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> y, <span class="dt">fill =</span> Sea.Surface.Temperature)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb373-5" data-line-number="5"><span class="st">  </span><span class="kw">scale_fill_gradientn</span>(<span class="dt">colors =</span> <span class="kw">jet.colors</span>(<span class="dv">7</span>), <span class="dt">limits =</span> <span class="kw">c</span>(<span class="dv">28</span>, <span class="dv">33</span>)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb373-6" data-line-number="6"><span class="st">  </span><span class="kw">coord_quickmap</span>()</a></code></pre></div>
+<p><img src="Introduction-to-R_files/figure-html/unnamed-chunk-135-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb374"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb374-1" data-line-number="1"><span class="co"># now let&#39;s add borders using the borders function</span></a>
+<a class="sourceLine" id="cb374-2" data-line-number="2"><span class="kw">ggplot</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb374-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_raster</span>(<span class="dt">data =</span> df , <span class="kw">aes</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> y, <span class="dt">fill =</span> Sea.Surface.Temperature)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb374-4" data-line-number="4"><span class="st">  </span><span class="kw">scale_fill_gradientn</span>(<span class="dt">colors =</span> <span class="kw">jet.colors</span>(<span class="dv">7</span>), <span class="dt">limits =</span> <span class="kw">c</span>(<span class="dv">28</span>, <span class="dv">33</span>)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb374-5" data-line-number="5"><span class="st">  </span><span class="kw">borders</span>(<span class="dt">fill=</span><span class="st">&quot;white&quot;</span>, <span class="dt">xlim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">100</span>,<span class="op">-</span><span class="dv">80</span>), <span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">16</span>,<span class="dv">30</span>),<span class="dt">alpha =</span> <span class="fl">0.5</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb374-6" data-line-number="6"><span class="st">  </span><span class="kw">coord_quickmap</span>(<span class="dt">xlim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">100</span>,<span class="op">-</span><span class="dv">80</span>), <span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">16</span>,<span class="dv">30</span>))</a></code></pre></div>
+<p><img src="Introduction-to-R_files/figure-html/unnamed-chunk-135-2.png" width="70%" style="display: block; margin: auto;" /></p>
+<p>Let’s get rid of the expanded area beyond the raster domain using the <code>expand=FALSE</code> argument in <code>coord_quickmap()</code></p>
+<div class="sourceCode" id="cb375"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb375-1" data-line-number="1"><span class="kw">ggplot</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb375-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_raster</span>(<span class="dt">data =</span> df , <span class="kw">aes</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> y, <span class="dt">fill =</span> Sea.Surface.Temperature)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb375-3" data-line-number="3"><span class="st">  </span><span class="kw">scale_fill_gradientn</span>(<span class="dt">colors =</span> <span class="kw">jet.colors</span>(<span class="dv">7</span>), <span class="dt">limits =</span> <span class="kw">c</span>(<span class="dv">28</span>, <span class="dv">33</span>)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb375-4" data-line-number="4"><span class="st">  </span><span class="kw">borders</span>(<span class="dt">fill=</span><span class="st">&quot;white&quot;</span>, <span class="dt">xlim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">100</span>,<span class="op">-</span><span class="dv">80</span>), <span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">16</span>,<span class="dv">30</span>),<span class="dt">alpha =</span> <span class="fl">0.5</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb375-5" data-line-number="5"><span class="st">  </span><span class="kw">coord_quickmap</span>(<span class="dt">xlim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">100</span>,<span class="op">-</span><span class="dv">80</span>), <span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">16</span>,<span class="dv">30</span>),<span class="dt">expand =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
+<p><img src="Introduction-to-R_files/figure-html/unnamed-chunk-136-1.png" width="70%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="r-color-brewer-palettes" class="section level2">
+<h2><span class="header-section-number">13.3</span> R Color Brewer Palettes</h2>
+<p>There are a number of pre-made color palettes from <code>RColorBrewer</code>. Here is a list.</p>
+<div class="sourceCode" id="cb376"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb376-1" data-line-number="1"><span class="kw">library</span>(RColorBrewer)</a>
+<a class="sourceLine" id="cb376-2" data-line-number="2"><span class="kw">display.brewer.all</span>()</a></code></pre></div>
+<p><img src="Introduction-to-R_files/figure-html/unnamed-chunk-137-1.png" width="768" style="display: block; margin: auto;" /></p>
+<p>Let’s plot using a Yellow-Orange-Red palette and a white NA value</p>
+<div class="sourceCode" id="cb377"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb377-1" data-line-number="1">cols &lt;-<span class="st"> </span><span class="kw">brewer.pal</span>(<span class="dv">9</span>, <span class="st">&quot;YlOrRd&quot;</span>) <span class="co"># maximum number of colors in palette YlOrRd is 9</span></a>
+<a class="sourceLine" id="cb377-2" data-line-number="2">pal &lt;-<span class="st"> </span><span class="kw">colorRampPalette</span>(cols)</a>
+<a class="sourceLine" id="cb377-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb377-4" data-line-number="4"><span class="kw">ggplot</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb377-5" data-line-number="5"><span class="st">  </span><span class="kw">geom_raster</span>(<span class="dt">data =</span> df , <span class="kw">aes</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> y, <span class="dt">fill =</span> Sea.Surface.Temperature)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb377-6" data-line-number="6"><span class="st">  </span><span class="kw">scale_fill_gradientn</span>(<span class="dt">colors =</span> <span class="kw">pal</span>(<span class="dv">20</span>), <span class="dt">limits =</span> <span class="kw">c</span>(<span class="dv">25</span>, <span class="dv">35</span>),<span class="dt">na.value =</span> <span class="st">&quot;white&quot;</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb377-7" data-line-number="7"><span class="st">  </span><span class="kw">borders</span>(<span class="dt">fill=</span><span class="st">&quot;white&quot;</span>, <span class="dt">xlim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">100</span>,<span class="op">-</span><span class="dv">80</span>), <span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">16</span>,<span class="dv">30</span>),<span class="dt">alpha =</span> <span class="fl">0.5</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb377-8" data-line-number="8"><span class="st">  </span><span class="kw">coord_quickmap</span>(<span class="dt">xlim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">100</span>,<span class="op">-</span><span class="dv">80</span>), <span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">16</span>,<span class="dv">30</span>),<span class="dt">expand =</span> <span class="ot">FALSE</span>)    </a></code></pre></div>
+<p><img src="Introduction-to-R_files/figure-html/unnamed-chunk-138-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<div id="multi-plot-ggplot" class="section level3">
+<h3><span class="header-section-number">13.3.1</span> Multi Plot ggplot</h3>
+<p>Multiple Plots in one window is possible with ggplot2 but is done with a different method. Remember how we explicitly named ggplot2 instances in the previous tutorial? We must do that again in order to achieve the results we want. Let’s split up the image above into West Gulf of Mexico and East Gulf of Mexico.</p>
+<div class="sourceCode" id="cb378"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb378-1" data-line-number="1"><span class="kw">library</span>(ggplot2)</a>
+<a class="sourceLine" id="cb378-2" data-line-number="2"><span class="kw">library</span>(grid)</a>
+<a class="sourceLine" id="cb378-3" data-line-number="3"><span class="kw">library</span>(gridExtra)</a>
+<a class="sourceLine" id="cb378-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb378-5" data-line-number="5">p1 =<span class="st"> </span><span class="kw">ggplot</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb378-6" data-line-number="6"><span class="st">  </span><span class="kw">geom_raster</span>(<span class="dt">data =</span> df , <span class="kw">aes</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> y, <span class="dt">fill =</span> Sea.Surface.Temperature), <span class="dt">show.legend=</span><span class="ot">FALSE</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb378-7" data-line-number="7"><span class="st">  </span><span class="kw">scale_fill_gradientn</span>(<span class="dt">colors =</span> <span class="kw">pal</span>(<span class="dv">20</span>), <span class="dt">limits =</span> <span class="kw">c</span>(<span class="dv">25</span>, <span class="dv">35</span>),<span class="dt">na.value =</span> <span class="st">&quot;white&quot;</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb378-8" data-line-number="8"><span class="st">  </span><span class="kw">borders</span>(<span class="dt">fill=</span><span class="st">&quot;white&quot;</span>, <span class="dt">xlim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">100</span>,<span class="op">-</span><span class="dv">90</span>), <span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">16</span>,<span class="dv">30</span>),<span class="dt">alpha =</span> <span class="fl">0.5</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb378-9" data-line-number="9"><span class="st">  </span><span class="kw">coord_quickmap</span>(<span class="dt">xlim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">100</span>,<span class="op">-</span><span class="dv">90</span>), <span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">16</span>,<span class="dv">30</span>),<span class="dt">expand =</span> <span class="ot">FALSE</span>)    </a>
+<a class="sourceLine" id="cb378-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb378-11" data-line-number="11">p2 =<span class="st"> </span><span class="kw">ggplot</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb378-12" data-line-number="12"><span class="st">  </span><span class="kw">geom_raster</span>(<span class="dt">data =</span> df , <span class="kw">aes</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> y, <span class="dt">fill =</span> Sea.Surface.Temperature), <span class="dt">show.legend=</span><span class="ot">FALSE</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb378-13" data-line-number="13"><span class="st">  </span><span class="kw">scale_fill_gradientn</span>(<span class="dt">colors =</span> <span class="kw">pal</span>(<span class="dv">20</span>), <span class="dt">limits =</span> <span class="kw">c</span>(<span class="dv">25</span>, <span class="dv">35</span>),<span class="dt">na.value =</span> <span class="st">&quot;white&quot;</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb378-14" data-line-number="14"><span class="st">  </span><span class="kw">borders</span>(<span class="dt">fill=</span><span class="st">&quot;white&quot;</span>, <span class="dt">xlim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">90</span>,<span class="op">-</span><span class="dv">80</span>), <span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">16</span>,<span class="dv">30</span>),<span class="dt">alpha =</span> <span class="fl">0.5</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb378-15" data-line-number="15"><span class="st">  </span><span class="kw">coord_quickmap</span>(<span class="dt">xlim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">90</span>,<span class="op">-</span><span class="dv">80</span>), <span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">16</span>,<span class="dv">30</span>),<span class="dt">expand =</span> <span class="ot">FALSE</span>)    </a>
+<a class="sourceLine" id="cb378-16" data-line-number="16"></a>
+<a class="sourceLine" id="cb378-17" data-line-number="17"><span class="co"># use the grid.arrange function from grid and gridExtra to plot our 2 ggplots in the same window</span></a>
+<a class="sourceLine" id="cb378-18" data-line-number="18"><span class="kw">grid.arrange</span>(p1,p2, <span class="dt">ncol=</span><span class="dv">2</span>, <span class="dt">nrow=</span><span class="dv">1</span>)</a></code></pre></div>
+<p><img src="Introduction-to-R_files/figure-html/unnamed-chunk-139-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><code>grid.arrange</code> takes ggplot objects and plots them onto a window with specified rows and columns. Here we wanted these two separate plots side by side.</p>
+</div>
+</div>
+<div id="assignment-6" class="section level2">
+<h2><span class="header-section-number">13.4</span> Assignment</h2>
+<ol style="list-style-type: decimal">
+<li><p>Download <code>treecov.nc</code> from the datasets folder</p></li>
+<li><p>For South America and Africa, plot the tree cover variable using <code>ggplot2</code>. Use a green color theme from <code>RColorBrewer</code>. Add borders.</p></li>
+<li><p>Place each <code>ggplot</code> next to each other in one plot window using <code>grid.arrange</code>.</p></li>
+<li><p>Submit resulting image to UD Canvas.</p></li>
+</ol>
+<p>Your final product should look something like…</p>
+<p><img src="Introduction-to-R_files/figure-html/unnamed-chunk-140-1.png" width="1344" /></p>
+<div id="extra-credit---2-points-2" class="section level3">
+<h3><span class="header-section-number">13.4.1</span> Extra Credit - 2 Points</h3>
+<p>Using the data above, approximate the average tree cover for South America and Africa (extents don’t have to be exact, just generally)</p>
+<ol style="list-style-type: decimal">
+<li><p>Plot the same domains above but this time color each continent (yes, the whole thing) based on the average tree cover. For example, if one of the continent has an average tree cover of 30%, the entire continent would be red based on the colorscale you choose where 30% is red.</p></li>
+<li><p>Submit plot and code to canvas</p></li>
+</ol>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="plotting-with-ggplot2.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="shapefiles.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

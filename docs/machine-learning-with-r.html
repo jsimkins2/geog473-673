@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>17 Machine Learning with R | R Programming for Geospatial Sciences</title>
+  <meta name="description" content="Advanced R" />
+  <meta name="generator" content="bookdown 0.20.6 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="17 Machine Learning with R | R Programming for Geospatial Sciences" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Advanced R" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="17 Machine Learning with R | R Programming for Geospatial Sciences" />
+  
+  <meta name="twitter:description" content="Advanced R" />
+  
+
+<meta name="author" content="James Simkins" />
+
+
+<meta name="date" content="2021-01-25" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="functions-and-code-presentation.html"/>
+<link rel="next" href="time-series-forecasting.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">R for Geospatial Sciences</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="preface.html"><a href="preface.html"><i class="fa fa-check"></i><b>1</b> Preface</a><ul>
+<li class="chapter" data-level="1.1" data-path="preface.html"><a href="preface.html#course-github"><i class="fa fa-check"></i><b>1.1</b> Course Github</a></li>
+<li class="chapter" data-level="1.2" data-path="preface.html"><a href="preface.html#syllabus"><i class="fa fa-check"></i><b>1.2</b> Syllabus</a></li>
+<li class="chapter" data-level="1.3" data-path="preface.html"><a href="preface.html#phase-1-spring-geog473-673-2-credit-agenda"><i class="fa fa-check"></i><b>1.3</b> Phase 1: Spring GEOG473-673 2-Credit Agenda</a></li>
+<li class="chapter" data-level="1.4" data-path="preface.html"><a href="preface.html#phase-2-spring-geog473-673-1-credit-agenda"><i class="fa fa-check"></i><b>1.4</b> Phase 2: Spring GEOG473-673 1-Credit Agenda</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html"><i class="fa fa-check"></i><b>2</b> Getting Started with R</a><ul>
+<li class="chapter" data-level="2.1" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#why-is-there-such-a-buzz-around-r"><i class="fa fa-check"></i><b>2.1</b> Why is there such a buzz around R?</a></li>
+<li class="chapter" data-level="2.2" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#reasons-to-love-r"><i class="fa fa-check"></i><b>2.2</b> Reasons to love R</a></li>
+<li class="chapter" data-level="2.3" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#downloading-guide"><i class="fa fa-check"></i><b>2.3</b> Downloading Guide</a></li>
+<li class="chapter" data-level="2.4" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#rstudio"><i class="fa fa-check"></i><b>2.4</b> Rstudio</a></li>
+<li class="chapter" data-level="2.5" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#download-course-datasets"><i class="fa fa-check"></i><b>2.5</b> Download Course Datasets</a></li>
+<li class="chapter" data-level="2.6" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#video-examples"><i class="fa fa-check"></i><b>2.6</b> Video Examples</a></li>
+<li class="chapter" data-level="2.7" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#getting-familiar-with-rstudio"><i class="fa fa-check"></i><b>2.7</b> Getting familiar with RStudio</a></li>
+<li class="chapter" data-level="2.8" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#open-rstudio"><i class="fa fa-check"></i><b>2.8</b> Open RStudio</a></li>
+<li class="chapter" data-level="2.9" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#r-studio-layout"><i class="fa fa-check"></i><b>2.9</b> R Studio Layout</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="definitions-rules.html"><a href="definitions-rules.html"><i class="fa fa-check"></i><b>3</b> Definitions &amp; Rules</a><ul>
+<li class="chapter" data-level="3.1" data-path="definitions-rules.html"><a href="definitions-rules.html#important-r-programming-definitions"><i class="fa fa-check"></i><b>3.1</b> Important R Programming Definitions</a></li>
+<li class="chapter" data-level="3.2" data-path="definitions-rules.html"><a href="definitions-rules.html#rules"><i class="fa fa-check"></i><b>3.2</b> Rules</a></li>
+<li class="chapter" data-level="3.3" data-path="definitions-rules.html"><a href="definitions-rules.html#general-recommendations"><i class="fa fa-check"></i><b>3.3</b> General Recommendations</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="r-coding-fundamentals.html"><a href="r-coding-fundamentals.html"><i class="fa fa-check"></i><b>4</b> R Coding Fundamentals</a><ul>
+<li class="chapter" data-level="4.1" data-path="r-coding-fundamentals.html"><a href="r-coding-fundamentals.html#entering-input"><i class="fa fa-check"></i><b>4.1</b> Entering Input</a></li>
+<li class="chapter" data-level="4.2" data-path="r-coding-fundamentals.html"><a href="r-coding-fundamentals.html#running-code"><i class="fa fa-check"></i><b>4.2</b> Running Code</a></li>
+<li class="chapter" data-level="4.3" data-path="r-coding-fundamentals.html"><a href="r-coding-fundamentals.html#evaluation"><i class="fa fa-check"></i><b>4.3</b> Evaluation</a></li>
+<li class="chapter" data-level="4.4" data-path="r-coding-fundamentals.html"><a href="r-coding-fundamentals.html#r-objects"><i class="fa fa-check"></i><b>4.4</b> R Objects</a></li>
+<li class="chapter" data-level="4.5" data-path="r-coding-fundamentals.html"><a href="r-coding-fundamentals.html#numbers"><i class="fa fa-check"></i><b>4.5</b> Numbers</a></li>
+<li class="chapter" data-level="4.6" data-path="r-coding-fundamentals.html"><a href="r-coding-fundamentals.html#attributes"><i class="fa fa-check"></i><b>4.6</b> Attributes</a></li>
+<li class="chapter" data-level="4.7" data-path="r-coding-fundamentals.html"><a href="r-coding-fundamentals.html#creating-vectors"><i class="fa fa-check"></i><b>4.7</b> Creating Vectors</a></li>
+<li class="chapter" data-level="4.8" data-path="r-coding-fundamentals.html"><a href="r-coding-fundamentals.html#mixing-objects"><i class="fa fa-check"></i><b>4.8</b> Mixing Objects</a></li>
+<li class="chapter" data-level="4.9" data-path="r-coding-fundamentals.html"><a href="r-coding-fundamentals.html#explicit-coercion"><i class="fa fa-check"></i><b>4.9</b> Explicit Coercion</a></li>
+<li class="chapter" data-level="4.10" data-path="r-coding-fundamentals.html"><a href="r-coding-fundamentals.html#matrices"><i class="fa fa-check"></i><b>4.10</b> Matrices</a></li>
+<li class="chapter" data-level="4.11" data-path="r-coding-fundamentals.html"><a href="r-coding-fundamentals.html#lists"><i class="fa fa-check"></i><b>4.11</b> Lists</a></li>
+<li class="chapter" data-level="4.12" data-path="r-coding-fundamentals.html"><a href="r-coding-fundamentals.html#factors"><i class="fa fa-check"></i><b>4.12</b> Factors</a></li>
+<li class="chapter" data-level="4.13" data-path="r-coding-fundamentals.html"><a href="r-coding-fundamentals.html#missing-values"><i class="fa fa-check"></i><b>4.13</b> Missing Values</a></li>
+<li class="chapter" data-level="4.14" data-path="r-coding-fundamentals.html"><a href="r-coding-fundamentals.html#data-frames"><i class="fa fa-check"></i><b>4.14</b> Data Frames</a></li>
+<li class="chapter" data-level="4.15" data-path="r-coding-fundamentals.html"><a href="r-coding-fundamentals.html#names"><i class="fa fa-check"></i><b>4.15</b> Names</a></li>
+<li class="chapter" data-level="4.16" data-path="r-coding-fundamentals.html"><a href="r-coding-fundamentals.html#summary"><i class="fa fa-check"></i><b>4.16</b> Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="basic-r-scripts.html"><a href="basic-r-scripts.html"><i class="fa fa-check"></i><b>5</b> Basic R Scripts</a><ul>
+<li class="chapter" data-level="5.1" data-path="basic-r-scripts.html"><a href="basic-r-scripts.html#global-carbon-dioxide-concentrations"><i class="fa fa-check"></i><b>5.1</b> Global Carbon-Dioxide Concentrations</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="basic-r-scripts.html"><a href="basic-r-scripts.html#saving-your-plot"><i class="fa fa-check"></i><b>5.1.1</b> Saving your plot</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="basic-r-scripts.html"><a href="basic-r-scripts.html#cars---motor-trends-magazine-data"><i class="fa fa-check"></i><b>5.2</b> Cars - Motor Trends Magazine Data</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="scientific-r-scripts.html"><a href="scientific-r-scripts.html"><i class="fa fa-check"></i><b>6</b> Scientific R Scripts</a><ul>
+<li class="chapter" data-level="6.1" data-path="scientific-r-scripts.html"><a href="scientific-r-scripts.html#script-breakdown"><i class="fa fa-check"></i><b>6.1</b> Script Breakdown</a></li>
+<li class="chapter" data-level="6.2" data-path="scientific-r-scripts.html"><a href="scientific-r-scripts.html#in-class-exercise"><i class="fa fa-check"></i><b>6.2</b> In Class Exercise</a><ul>
+<li class="chapter" data-level="6.2.1" data-path="scientific-r-scripts.html"><a href="scientific-r-scripts.html#further-explanation-of-datatypes"><i class="fa fa-check"></i><b>6.2.1</b> Further Explanation of DataTypes</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="time-series-data.html"><a href="time-series-data.html"><i class="fa fa-check"></i><b>7</b> Time Series Data</a><ul>
+<li class="chapter" data-level="7.1" data-path="time-series-data.html"><a href="time-series-data.html#for-loops"><i class="fa fa-check"></i><b>7.1</b> For Loops</a></li>
+<li class="chapter" data-level="7.2" data-path="time-series-data.html"><a href="time-series-data.html#deos-data"><i class="fa fa-check"></i><b>7.2</b> DEOS Data</a></li>
+<li class="chapter" data-level="7.3" data-path="time-series-data.html"><a href="time-series-data.html#assignment"><i class="fa fa-check"></i><b>7.3</b> Assignment</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="raster-visualization.html"><a href="raster-visualization.html"><i class="fa fa-check"></i><b>8</b> Raster Visualization</a><ul>
+<li class="chapter" data-level="8.1" data-path="raster-visualization.html"><a href="raster-visualization.html#paste0"><i class="fa fa-check"></i><b>8.1</b> <code>Paste0()</code></a></li>
+<li class="chapter" data-level="8.2" data-path="raster-visualization.html"><a href="raster-visualization.html#rasters"><i class="fa fa-check"></i><b>8.2</b> Rasters</a></li>
+<li class="chapter" data-level="8.3" data-path="raster-visualization.html"><a href="raster-visualization.html#assignment-1"><i class="fa fa-check"></i><b>8.3</b> Assignment</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="reprojecting-writing-rasters.html"><a href="reprojecting-writing-rasters.html"><i class="fa fa-check"></i><b>9</b> Reprojecting &amp; Writing Rasters</a><ul>
+<li class="chapter" data-level="9.1" data-path="reprojecting-writing-rasters.html"><a href="reprojecting-writing-rasters.html#indexing-data"><i class="fa fa-check"></i><b>9.1</b> Indexing Data</a></li>
+<li class="chapter" data-level="9.2" data-path="reprojecting-writing-rasters.html"><a href="reprojecting-writing-rasters.html#resampling-and-reprojecting"><i class="fa fa-check"></i><b>9.2</b> Resampling and Reprojecting</a></li>
+<li class="chapter" data-level="9.3" data-path="reprojecting-writing-rasters.html"><a href="reprojecting-writing-rasters.html#pngs"><i class="fa fa-check"></i><b>9.3</b> PNGs</a></li>
+<li class="chapter" data-level="9.4" data-path="reprojecting-writing-rasters.html"><a href="reprojecting-writing-rasters.html#writing-rasters"><i class="fa fa-check"></i><b>9.4</b> Writing Rasters</a></li>
+<li class="chapter" data-level="9.5" data-path="reprojecting-writing-rasters.html"><a href="reprojecting-writing-rasters.html#assignment-2"><i class="fa fa-check"></i><b>9.5</b> Assignment</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="plot-customization.html"><a href="plot-customization.html"><i class="fa fa-check"></i><b>10</b> Plot Customization</a><ul>
+<li class="chapter" data-level="10.1" data-path="plot-customization.html"><a href="plot-customization.html#expanding-on-basic-plots-in-r"><i class="fa fa-check"></i><b>10.1</b> Expanding on Basic Plots in R</a><ul>
+<li class="chapter" data-level="10.1.1" data-path="plot-customization.html"><a href="plot-customization.html#adding-to-a-plot"><i class="fa fa-check"></i><b>10.1.1</b> Adding to a Plot</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="plot-customization.html"><a href="plot-customization.html#barplots-boxplots-pie-charts"><i class="fa fa-check"></i><b>10.2</b> Barplots, Boxplots, Pie Charts</a><ul>
+<li class="chapter" data-level="10.2.1" data-path="plot-customization.html"><a href="plot-customization.html#combining-plots"><i class="fa fa-check"></i><b>10.2.1</b> Combining Plots</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="plot-customization.html"><a href="plot-customization.html#tree-data"><i class="fa fa-check"></i><b>10.3</b> Tree Data</a><ul>
+<li class="chapter" data-level="10.3.1" data-path="plot-customization.html"><a href="plot-customization.html#loading-the-dataset"><i class="fa fa-check"></i><b>10.3.1</b> Loading the Dataset</a></li>
+</ul></li>
+<li class="chapter" data-level="10.4" data-path="plot-customization.html"><a href="plot-customization.html#assignment-3"><i class="fa fa-check"></i><b>10.4</b> Assignment:</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="basic-statistics.html"><a href="basic-statistics.html"><i class="fa fa-check"></i><b>11</b> Basic Statistics</a><ul>
+<li class="chapter" data-level="11.1" data-path="basic-statistics.html"><a href="basic-statistics.html#statistical-function-dictionary"><i class="fa fa-check"></i><b>11.1</b> Statistical Function Dictionary</a></li>
+<li class="chapter" data-level="11.2" data-path="basic-statistics.html"><a href="basic-statistics.html#basic-statistics-in-r"><i class="fa fa-check"></i><b>11.2</b> Basic Statistics in R</a><ul>
+<li class="chapter" data-level="11.2.1" data-path="basic-statistics.html"><a href="basic-statistics.html#load-willow-creek-data"><i class="fa fa-check"></i><b>11.2.1</b> Load Willow Creek data</a></li>
+<li class="chapter" data-level="11.2.2" data-path="basic-statistics.html"><a href="basic-statistics.html#subsetting-data"><i class="fa fa-check"></i><b>11.2.2</b> Subsetting Data</a></li>
+<li class="chapter" data-level="11.2.3" data-path="basic-statistics.html"><a href="basic-statistics.html#trends-and-distributions"><i class="fa fa-check"></i><b>11.2.3</b> Trends and Distributions</a></li>
+<li class="chapter" data-level="11.2.4" data-path="basic-statistics.html"><a href="basic-statistics.html#finding-a-best-fit-distribution"><i class="fa fa-check"></i><b>11.2.4</b> Finding a Best-Fit Distribution</a></li>
+<li class="chapter" data-level="11.2.5" data-path="basic-statistics.html"><a href="basic-statistics.html#correlation-plots"><i class="fa fa-check"></i><b>11.2.5</b> Correlation Plots</a></li>
+</ul></li>
+<li class="chapter" data-level="11.3" data-path="basic-statistics.html"><a href="basic-statistics.html#assignment-4"><i class="fa fa-check"></i><b>11.3</b> Assignment</a><ul>
+<li class="chapter" data-level="11.3.1" data-path="basic-statistics.html"><a href="basic-statistics.html#extra-credit---2-points"><i class="fa fa-check"></i><b>11.3.1</b> Extra Credit - 2 points</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="plotting-with-ggplot2.html"><a href="plotting-with-ggplot2.html"><i class="fa fa-check"></i><b>12</b> Plotting with <code>ggplot2</code></a><ul>
+<li class="chapter" data-level="12.1" data-path="plotting-with-ggplot2.html"><a href="plotting-with-ggplot2.html#ggplot2-with-willow-creek-meteorological-data"><i class="fa fa-check"></i><b>12.1</b> ggplot2 with Willow Creek Meteorological Data</a></li>
+<li class="chapter" data-level="12.2" data-path="plotting-with-ggplot2.html"><a href="plotting-with-ggplot2.html#assignment-5"><i class="fa fa-check"></i><b>12.2</b> Assignment:</a></li>
+<li class="chapter" data-level="12.3" data-path="plotting-with-ggplot2.html"><a href="plotting-with-ggplot2.html#extra-credit---2-points-1"><i class="fa fa-check"></i><b>12.3</b> Extra Credit - 2 Points</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="spatial-plots-with-ggplot2.html"><a href="spatial-plots-with-ggplot2.html"><i class="fa fa-check"></i><b>13</b> Spatial Plots with <code>ggplot2</code></a><ul>
+<li class="chapter" data-level="13.1" data-path="spatial-plots-with-ggplot2.html"><a href="spatial-plots-with-ggplot2.html#simple-features"><i class="fa fa-check"></i><b>13.1</b> Simple Features</a></li>
+<li class="chapter" data-level="13.2" data-path="spatial-plots-with-ggplot2.html"><a href="spatial-plots-with-ggplot2.html#sea-surface-temperature-ggplot"><i class="fa fa-check"></i><b>13.2</b> Sea Surface Temperature ggplot</a></li>
+<li class="chapter" data-level="13.3" data-path="spatial-plots-with-ggplot2.html"><a href="spatial-plots-with-ggplot2.html#r-color-brewer-palettes"><i class="fa fa-check"></i><b>13.3</b> R Color Brewer Palettes</a><ul>
+<li class="chapter" data-level="13.3.1" data-path="spatial-plots-with-ggplot2.html"><a href="spatial-plots-with-ggplot2.html#multi-plot-ggplot"><i class="fa fa-check"></i><b>13.3.1</b> Multi Plot ggplot</a></li>
+</ul></li>
+<li class="chapter" data-level="13.4" data-path="spatial-plots-with-ggplot2.html"><a href="spatial-plots-with-ggplot2.html#assignment-6"><i class="fa fa-check"></i><b>13.4</b> Assignment</a><ul>
+<li class="chapter" data-level="13.4.1" data-path="spatial-plots-with-ggplot2.html"><a href="spatial-plots-with-ggplot2.html#extra-credit---2-points-2"><i class="fa fa-check"></i><b>13.4.1</b> Extra Credit - 2 Points</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="shapefiles.html"><a href="shapefiles.html"><i class="fa fa-check"></i><b>14</b> Shapefiles</a><ul>
+<li class="chapter" data-level="14.1" data-path="shapefiles.html"><a href="shapefiles.html#reading-in-shapefiles"><i class="fa fa-check"></i><b>14.1</b> Reading in Shapefiles</a></li>
+<li class="chapter" data-level="14.2" data-path="shapefiles.html"><a href="shapefiles.html#combining-shapefiles-with-data"><i class="fa fa-check"></i><b>14.2</b> Combining Shapefiles with Data</a></li>
+<li class="chapter" data-level="14.3" data-path="shapefiles.html"><a href="shapefiles.html#visualizing-the-shapefiles-data"><i class="fa fa-check"></i><b>14.3</b> Visualizing the Shapefiles &amp; Data</a></li>
+<li class="chapter" data-level="14.4" data-path="shapefiles.html"><a href="shapefiles.html#saving-a-shapefile"><i class="fa fa-check"></i><b>14.4</b> Saving a shapefile</a></li>
+<li class="chapter" data-level="14.5" data-path="shapefiles.html"><a href="shapefiles.html#assignment-7"><i class="fa fa-check"></i><b>14.5</b> Assignment</a></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html"><i class="fa fa-check"></i><b>15</b> Remote Data Extraction</a><ul>
+<li class="chapter" data-level="15.1" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#thredds"><i class="fa fa-check"></i><b>15.1</b> THREDDS</a></li>
+<li class="chapter" data-level="15.2" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#erddap"><i class="fa fa-check"></i><b>15.2</b> ERDDAP</a><ul>
+<li class="chapter" data-level="15.2.1" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#finding-the-data-you-want"><i class="fa fa-check"></i><b>15.2.1</b> Finding the Data You Want</a></li>
+</ul></li>
+<li class="chapter" data-level="15.3" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#assignment-8"><i class="fa fa-check"></i><b>15.3</b> Assignment</a><ul>
+<li class="chapter" data-level="15.3.1" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#extra-credit---2-points-3"><i class="fa fa-check"></i><b>15.3.1</b> Extra Credit - 2 Points</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="functions-and-code-presentation.html"><a href="functions-and-code-presentation.html"><i class="fa fa-check"></i><b>16</b> Functions and Code Presentation</a><ul>
+<li class="chapter" data-level="16.1" data-path="functions-and-code-presentation.html"><a href="functions-and-code-presentation.html#functions"><i class="fa fa-check"></i><b>16.1</b> Functions</a></li>
+<li class="chapter" data-level="16.2" data-path="functions-and-code-presentation.html"><a href="functions-and-code-presentation.html#netcdf-processing-function"><i class="fa fa-check"></i><b>16.2</b> NetCDF Processing Function</a></li>
+<li class="chapter" data-level="16.3" data-path="functions-and-code-presentation.html"><a href="functions-and-code-presentation.html#functions-in-for-loops"><i class="fa fa-check"></i><b>16.3</b> Functions in For Loops</a></li>
+<li class="chapter" data-level="16.4" data-path="functions-and-code-presentation.html"><a href="functions-and-code-presentation.html#rmarkdown"><i class="fa fa-check"></i><b>16.4</b> RMarkdown</a></li>
+<li class="chapter" data-level="16.5" data-path="functions-and-code-presentation.html"><a href="functions-and-code-presentation.html#assignment-9"><i class="fa fa-check"></i><b>16.5</b> Assignment</a></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="machine-learning-with-r.html"><a href="machine-learning-with-r.html"><i class="fa fa-check"></i><b>17</b> Machine Learning with R</a><ul>
+<li class="chapter" data-level="17.1" data-path="machine-learning-with-r.html"><a href="machine-learning-with-r.html#machine-learning-terms"><i class="fa fa-check"></i><b>17.1</b> Machine Learning Terms</a></li>
+<li class="chapter" data-level="17.2" data-path="machine-learning-with-r.html"><a href="machine-learning-with-r.html#classical-machine-learning"><i class="fa fa-check"></i><b>17.2</b> Classical Machine Learning</a><ul>
+<li class="chapter" data-level="17.2.1" data-path="machine-learning-with-r.html"><a href="machine-learning-with-r.html#supervised-learning"><i class="fa fa-check"></i><b>17.2.1</b> Supervised Learning</a></li>
+<li class="chapter" data-level="17.2.2" data-path="machine-learning-with-r.html"><a href="machine-learning-with-r.html#unsupervised-learning"><i class="fa fa-check"></i><b>17.2.2</b> Unsupervised Learning</a></li>
+<li class="chapter" data-level="17.2.3" data-path="machine-learning-with-r.html"><a href="machine-learning-with-r.html#neural-networks"><i class="fa fa-check"></i><b>17.2.3</b> Neural Networks</a></li>
+<li class="chapter" data-level="17.2.4" data-path="machine-learning-with-r.html"><a href="machine-learning-with-r.html#reinforcement-learning"><i class="fa fa-check"></i><b>17.2.4</b> Reinforcement Learning</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="18" data-path="time-series-forecasting.html"><a href="time-series-forecasting.html"><i class="fa fa-check"></i><b>18</b> Time Series Forecasting</a><ul>
+<li class="chapter" data-level="18.1" data-path="time-series-forecasting.html"><a href="time-series-forecasting.html#load-the-packages-and-data"><i class="fa fa-check"></i><b>18.1</b> Load the Packages and Data</a></li>
+<li class="chapter" data-level="18.2" data-path="time-series-forecasting.html"><a href="time-series-forecasting.html#aggregate-data"><i class="fa fa-check"></i><b>18.2</b> Aggregate Data</a></li>
+<li class="chapter" data-level="18.3" data-path="time-series-forecasting.html"><a href="time-series-forecasting.html#prepping-the-model"><i class="fa fa-check"></i><b>18.3</b> Prepping the Model</a></li>
+<li class="chapter" data-level="18.4" data-path="time-series-forecasting.html"><a href="time-series-forecasting.html#running-the-model"><i class="fa fa-check"></i><b>18.4</b> Running the Model</a></li>
+<li class="chapter" data-level="18.5" data-path="time-series-forecasting.html"><a href="time-series-forecasting.html#validation-and-accuracy"><i class="fa fa-check"></i><b>18.5</b> Validation and Accuracy</a></li>
+<li class="chapter" data-level="18.6" data-path="time-series-forecasting.html"><a href="time-series-forecasting.html#future-forecasting"><i class="fa fa-check"></i><b>18.6</b> Future Forecasting</a></li>
+<li class="chapter" data-level="18.7" data-path="time-series-forecasting.html"><a href="time-series-forecasting.html#assignment-10"><i class="fa fa-check"></i><b>18.7</b> Assignment</a></li>
+</ul></li>
+<li class="chapter" data-level="19" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html"><i class="fa fa-check"></i><b>19</b> Random Forest Modeling</a><ul>
+<li class="chapter" data-level="19.1" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#prepare-the-data"><i class="fa fa-check"></i><b>19.1</b> Prepare the Data</a></li>
+<li class="chapter" data-level="19.2" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#dimensionality-reduction"><i class="fa fa-check"></i><b>19.2</b> Dimensionality Reduction</a><ul>
+<li class="chapter" data-level="19.2.1" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#principal-component-analysis"><i class="fa fa-check"></i><b>19.2.1</b> Principal Component Analysis</a></li>
+<li class="chapter" data-level="19.2.2" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#t-sne-dimensionality-reduction"><i class="fa fa-check"></i><b>19.2.2</b> t-SNE Dimensionality Reduction</a></li>
+<li class="chapter" data-level="19.2.3" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#multidimensional-scaling"><i class="fa fa-check"></i><b>19.2.3</b> Multidimensional Scaling</a></li>
+</ul></li>
+<li class="chapter" data-level="19.3" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#random-forests"><i class="fa fa-check"></i><b>19.3</b> Random Forests</a><ul>
+<li class="chapter" data-level="19.3.1" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#decision-trees"><i class="fa fa-check"></i><b>19.3.1</b> Decision Trees</a></li>
+<li class="chapter" data-level="19.3.2" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#data-partition"><i class="fa fa-check"></i><b>19.3.2</b> Data Partition</a></li>
+<li class="chapter" data-level="19.3.3" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#training-the-model"><i class="fa fa-check"></i><b>19.3.3</b> Training the Model</a></li>
+<li class="chapter" data-level="19.3.4" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#testing-the-model"><i class="fa fa-check"></i><b>19.3.4</b> Testing the Model</a></li>
+<li class="chapter" data-level="19.3.5" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#hyperparameter-tuning"><i class="fa fa-check"></i><b>19.3.5</b> Hyperparameter Tuning</a></li>
+</ul></li>
+<li class="chapter" data-level="19.4" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#assignment-11"><i class="fa fa-check"></i><b>19.4</b> Assignment</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">James Simkins</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">R Programming for Geospatial Sciences</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="machine-learning-with-r" class="section level1">
+<h1><span class="header-section-number">17</span> Machine Learning with R</h1>
+<p><img src="../documents/images/robot.jpeg" width="520" style="display: block; margin: auto;" /></p>
+<p>Machine Learning is data science technique where we predict results based on incoming data. Machine Learning is behind the recommended videos for you to watch on YouTube, the recommended products for you to purchase on Amazon, and the targeted advertisements you see on search engine results. Huge companies use data from our browsing history or purchase history to evaluate trends and create predictions on what product a consumer will want to buy next - this is machine learning in action.Various tasks for machine learning include data concepts learning, data function learning, or predictive modeling which involves the identification of predictive patterns. Each of these tasks are learned from an initial dataset. Algorithms, or simply R code with a purpose, can be used to observe patterns, trends, experiences, and/or instructions from this initial dataset. The goal of machine learning is to use these initial instructions to create advanced insights and improve algorithms. As humans, we’re constantly undergoing subconscious machine learning. We recognize patterns in our daily lives and use this data to form a more accurate analysis or form a better prediction model for ourselves.</p>
+<p>Let’s explain machine learning with an example regarding mathematics in school. Students in math classes are often given practice problems to train their mathematic ability. Often times, a math concept is taught to the students and then students use this concept to help solve practice problems. Let’s assume that for this example, <em>the math concept is not taught</em>. Instead, only practice problems and their associated answers are given. Each practice problem encodes pieces of information that a student observes alongside the answer. We can call this learning process the training of an algorithm. After many practice problems, we expect that the students would have identified a pattern they can use to help solve the problem. So a test is given to the student and we compare their results to the answer key. Evaluating the accuracy of the students answers gives us a measure of effectiveness for both the student and the set of practice problems. To summarize, machine learning algorithms are like math students who have been given vast amounts of practice problems and instructed to find methods for solving them by finding patterns between the math problems and their associated answers. Machine Learning aims to understand the concepts or the formulas behind datasets. Computers are much better at crunching numbers than us and this is why we use machine learning.</p>
+<div id="machine-learning-terms" class="section level2">
+<h2><span class="header-section-number">17.1</span> Machine Learning Terms</h2>
+<p><img src="../documents/images/learning_vs_intelligence.jpeg" width="80%" style="display: block; margin: auto;" /></p>
+<p>Machine Learning is a subject within a broader knowledge category known as artificial intelligence. Machine learning has 3 components associated with it - data, features, and algorithms. These components are present within every sub-category or technique of Machine Learning. Let’s start from the top and describe some important terms as simply as possible.</p>
+<dl>
+<dt>Artificial Intelligence</dt>
+<dd>Intelligence demonstrated by machines. This is the name of the knowledge field machine learning lies in, similar to physics in the science knowledge field.
+</dd>
+<dt>Machine Learning</dt>
+<dd>Data science technique aimed to predict results based on data. One category of artificial intelligence.
+</dd>
+<dt>Data</dt>
+<dd>A collection of observations or informative metrics used to practice machine learning. Many times we will encounter training datasets - used to train an algorithm, and test datasets - datasets used to test an algorithm. In our math example above, training datasets are the practice problems, test datasets are the exam given to the students.
+</dd>
+<dt>Training Data</dt>
+<dd>Dataset that is used to train a machine learning algorithm. The algorithm aims to find patterns within this dataset that it can then use to make predictions. In our math example above, the training dataset is the set of practice problems the students are given initially.
+</dd>
+<dt>Test Data</dt>
+<dd>Dataset that is used to test an algorithm. In the math example above, the test dataset is the exam given to the students to check their comprehension.
+</dd>
+<dt>Features</dt>
+<dd>Variables/columns of a dataset that act as input for a machine learning model or algorithm.
+</dd>
+<dt>Algorithms</dt>
+<dd>A process, set of functions, or calculation aimed to solve problems. In our case, we’ll develop machine learning algorithms via R code. Algorithm is a fancy term that gets used as a buzzword but we’ve developed code in this course that are technically algorithms, just not with the purpose of <em>machine learning</em>.
+</dd>
+<dt>Model</dt>
+<dd>A mathematical representation of a real-world process that are built with algorithms and training data. Models are the entire process from inputting data, to training an algorithm, to analyzing output.
+</dd>
+<dt>Label/Output</dt>
+<dd>The final output of a machine learning process which can be output classes such as students who got an A on a math exam, students who got a B, etc.
+</dd>
+<dt>Regression</dt>
+<dd>Machine learning technique used on continuous data such as time series data. This technique involves fitting a line. We’ve fit regression lines to time-series data before with the Willow Creek Air Temperature dataset. In machine learning, regression would be used to predict future temperatures based on the dataset we’ve initially used.
+</dd>
+<dt>Classification</dt>
+<dd>Categorizing data into groups or predefined classes. For example, we could classify a particular lat/lon point as land or ocean. Another example would be classifying fruits and vegetables.
+</dd>
+<dt>Generalization</dt>
+<dd>The entire point of machine learning. A model is trained to utilize patterns learned from a task to solve a similar task with slight variations. For example, a consumer product model may be used to suggest next purchases for that consumer. Let’s say a consumer buys a basketball so the machine learning model recommends basketball shoes, as consumers who bought basketballs prior have also purchased basketball shoes. Generalization is the act of performing tasks of the same difficulty and nature. This may also be referred to as interpolation, although generalization is a more commonly used and understood term.
+</dd>
+<dt>Extrapolation</dt>
+<dd>Extrapolation, on the other hand, is when the model is able to obtain higher-dimensional insights from a lower-dimensional training. Extrapolation is a more difficult task. Weather models use extrapolation to predict the future based on current values.
+</dd>
+<dt>Overfitting</dt>
+<dd>A term used when a machine learning model fits the training dataset <em>too well</em>. A model is overfitting if it fits the training data too well and there is a poor generalization of new data.
+</dd>
+<dt>Underfitting</dt>
+<dd>A machine learning model that fits a training dataset poorly.
+</dd>
+<dt>Parameter</dt>
+<dd>A function argument for algorithms. For example, in a climate change prediction model, a parameter is carbon dioxide emission scenario.
+</dd>
+<dt>Ensemble</dt>
+<dd>A member of a collection of varying output data. Ensembles are used to show variance of output within a model. For example, algorithms often have calculations that have some variance associated with them - in other words, we have a range of possibilities. Ensembles are used to show that output can vary despite having the same input data and algorithm.
+</dd>
+<dt>Decision Tree</dt>
+<dd>A method for finding answers by asking questions with binary answers and proceeding accordingly.
+</dd>
+<dt>Feature Engineering</dt>
+<dd>Feature engineering refers to a process of selecting and transforming variables when creating a predictive model using machine learning such as random forest or regression.
+</dd>
+</dl>
+</div>
+<div id="classical-machine-learning" class="section level2">
+<h2><span class="header-section-number">17.2</span> Classical Machine Learning</h2>
+<p><img src="../documents/images/classical.jpg" width="60%" style="display: block; margin: auto;" /></p>
+<p>Classical machine learning has actually been around since the 1950s. These machine learning models were built on algorithms that solved formal math tasks — searching for patterns in numbers, evaluating the proximity of data points, and calculating vectors’ directions. These same algorithms are used today by social media companies (Instagram), e-commerce companies (Amazon), and credit card companies (Chase). Ever wonder how targeted ads on Instagram, Facebook, or Google work? This is classical machine learning in action. Classical machine learning is often divided into two categories – Supervised and Unsupervised Learning.</p>
+<div id="supervised-learning" class="section level3">
+<h3><span class="header-section-number">17.2.1</span> Supervised Learning</h3>
+<p>In supervised learning, we have clear training data that serves as the “Superviser” or “Teacher” who gives the machine all the answers. In our math example, the students were given the answers with the practice problem (training dataset) by the Superviser. As another example, let’s say we wish to train an algorithm to identify a latitude and longitude point as land or ocean. In order to teach the algorithm, we would provide it with the answer (ocean or land) of a particular point so it can learn. There are two primary types of supervised learning - classification and regression.</p>
+<div id="classification" class="section level4">
+<h4><span class="header-section-number">17.2.1.1</span> Classification</h4>
+<p><img src="../documents/images/classification.jpg" width="40%" style="display: block; margin: auto;" /></p>
+<p>Categorizes objects based on one of the attributes beforehand. For example, separate music by genre, highlight video by sport, student by grade, etc.</p>
+<p>We’ve all seen same-day loan services through commercials or billboards before. Some of these loan services today don’t involve human interaction. How can machine learning be used to decide whether someone should be given a loan or not? The loan company has lots of profiles of people who took money before. They have data about age, education, occupation and salary and – most importantly – the fact of paying the money back. Or not. They use this data as input for a machine learning algorithm that decides whether to give an applicant a loan or not.</p>
+</div>
+<div id="regression" class="section level4">
+<h4><span class="header-section-number">17.2.1.2</span> Regression</h4>
+<p><img src="../documents/images/regression.jpg" width="80%" style="display: block; margin: auto;" /></p>
+<p>Regression is basically classification where we forecast a number instead of category. Examples are temperature by time of day, traffic by time of the day, housing prices by year, etc. Regression is perfect when something depends on time. In the image above we draw a line through some data points - yes, this is machine learning.</p>
+</div>
+</div>
+<div id="unsupervised-learning" class="section level3">
+<h3><span class="header-section-number">17.2.2</span> Unsupervised Learning</h3>
+<p>Unsupervised learning is a technique that was created out of bad data. Labeled data with variables/columns is not always available and this is where unsupervised learning can come in and help. Exploratory data analysis can be used to aid unsupervised learning techniques. Two of the more popular unsupervised learning techniques include clustering, dimension reduction, and association.</p>
+<div id="clustering" class="section level4">
+<h4><span class="header-section-number">17.2.2.1</span> Clustering</h4>
+<p><img src="../documents/images/clustering.jpg" width="40%" style="display: block; margin: auto;" /></p>
+<p>Divides objects based on unknown features and let the machine choose the best way. Clustering is done with creating a gridded dataset from a point dataset. For example, with weather modeling, clustering is a step that is used to spatially interpolate points to a structured grid. Popular clustering algorithms include K-means clustering, mean-shift, and DBSCAN.</p>
+</div>
+<div id="dimension-reduction" class="section level4">
+<h4><span class="header-section-number">17.2.2.2</span> Dimension Reduction</h4>
+<p><img src="../documents/images/reduction.jpg" width="40%" style="display: block; margin: auto;" /></p>
+<p>Assembles specific features into more high-level ones. For example, we can merge all dogs with triangle ears, long noses, and big tails to a nice abstraction — “shepherd”. Yes, we’re losing some information about the specific shepherds, but the new abstraction is much more useful for naming and explaining purposes. As a bonus, such “abstracted” models learn faster, overfit less and use a lower number of features. Principal Component Analysis (PCA) and Singular Value Decomposition (SVD) are often used in Earth Science machine learning applications.</p>
+</div>
+<div id="association" class="section level4">
+<h4><span class="header-section-number">17.2.2.3</span> Association</h4>
+<p>Look for a pattern based on consumer purchases. Basketball purchases are sometimes followed by basketball shoe purchases. Recommend basketball shoe purchases to the consumer!</p>
+</div>
+</div>
+<div id="neural-networks" class="section level3">
+<h3><span class="header-section-number">17.2.3</span> Neural Networks</h3>
+<p>Any neural network is basically a collection of neurons and connections between them. Neuron is a function with a bunch of inputs and one output. Its task is to take all numbers from its input, perform a function on them and send the result to the output.</p>
+<p>Here is an example of a simple but useful in real life neuron: sum up all numbers from the inputs and if that sum is bigger than N — give 1 as a result. Otherwise — zero.</p>
+<p>Connections are like channels between neurons. They connect outputs of one neuron with the inputs of another so they can send digits to each other. Each connection has only one parameter — weight. It’s like a connection strength for a signal. When the number 10 passes through a connection with a weight 0.5 it turns into 5.</p>
+<p>These weights tell the neuron to respond more to one input and less to another. Weights are adjusted when training — that’s how the network learns. Basically, that’s all there is to it.</p>
+<p><img src="../documents/images/neural.jpg" width="60%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="reinforcement-learning" class="section level3">
+<h3><span class="header-section-number">17.2.4</span> Reinforcement Learning</h3>
+<p>This type of machine learning is used by self driving cars and robot vacuums. Reinforcement learning is used in cases when your problem is not related to data at all, but you have an environment to live in. The algorithm learns based on the reactions of an action within an environment.</p>
+<p>The images shown in this tutorial were taken from <a href="https://vas3k.com/blog/machine_learning/?ref=hn">Vasily Zubarev who wrote an excellent machine learning concepts manual</a>. Vasily Zubarev is the best Machine Learning educator I’ve come across and I suggest poking around <a href="https://vas3k.com">his website</a> for more Machine Learning content.</p>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="functions-and-code-presentation.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="time-series-forecasting.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
