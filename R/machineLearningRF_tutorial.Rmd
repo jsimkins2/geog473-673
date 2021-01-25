@@ -1,6 +1,6 @@
 # Random Forest Modeling
 
-```{r, echo=FALSE, out.width="70%", fig.align="center"}
+```{r, echo=FALSE, out.width="80%", fig.align="center"}
 knitr::include_graphics("../documents/images/randomForest.png")  
 ```
 

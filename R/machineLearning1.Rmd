@@ -1,6 +1,6 @@
 # Machine Learning with R
 
-```{r, echo=FALSE, out.width="50%", fig.align="center"}
+```{r, echo=FALSE, fig.width=6, fig.align="center", fig.height=8}
 knitr::include_graphics("../documents/images/robot.jpeg")  
 ```
 
@@ -75,7 +75,7 @@ Feature Engineering
 
 ## Classical Machine Learning
 
-```{r, echo=FALSE, out.width="80%", fig.align="center"}
+```{r, echo=FALSE, out.width="60%", fig.align="center"}
 knitr::include_graphics("../documents/images/classical.jpg")  
 ```
 
@@ -87,7 +87,7 @@ In supervised learning, we have clear training data that serves as the "Supervis
 
 #### Classification
 
-```{r, echo=FALSE, out.width="50%", fig.align="center"}
+```{r, echo=FALSE, out.width="40%", fig.align="center"}
 knitr::include_graphics("../documents/images/classification.jpg")  
 ```
 
@@ -109,7 +109,7 @@ Unsupervised learning is a technique that was created out of bad data. Labeled d
 
 #### Clustering
 
-```{r, echo=FALSE, out.width="50%", fig.align="center"}
+```{r, echo=FALSE, out.width="40%", fig.align="center"}
 knitr::include_graphics("../documents/images/clustering.jpg")  
 ```
 
@@ -118,7 +118,7 @@ Divides objects based on unknown features and let the machine choose the best wa
 
 #### Dimension Reduction
 
-```{r, echo=FALSE, out.width="50%", fig.align="center"}
+```{r, echo=FALSE, out.width="40%", fig.align="center"}
 knitr::include_graphics("../documents/images/reduction.jpg")  
 ```
 

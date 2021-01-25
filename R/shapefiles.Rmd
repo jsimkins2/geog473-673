@@ -35,7 +35,7 @@ We use `readOGR` from the `rgdal` package to load in the shapefile. As stated ab
 
 We have a data file that contains flooding data for the polygons of the shapefile read in above. This data file is `water_levels.csv`. Let's read this data in. 
 
-```{r}
+```{r, fig.align="center"}
 plot(coast.shp)
 # Open the dataset that corresponds to the water levels within the shapefile boxes 
 coast.data <- read.csv("/Users/james/Documents/Github/geog473-673/datasets/cfms_shapefiles/water_levels.csv")
@@ -138,9 +138,13 @@ Looks pretty good even though the shapefile isn't quite as sharp as we'd like. B
 
 The last package we'll introduce for visualizing shapefiles is the `mapview` package. This package overlays shapefiles and corresponding data over an HTML based interactive map. This package handles a lot of the dirty work for us. 
 
-```{r, out.width="60%", fig.align="center"}
+```{r, eval=FALSE,out.width="60%", fig.align="center"}
 library(mapview)
 mapview(merged.coast['maxpred'], col.regions = mycolours)
+```
+
+```{r, echo=FALSE, out.width="60%", fig.align="center"}
+knitr::include_graphics("../documents/images/delmaxpred.png")  
 ```
 
 
@@ -155,7 +159,7 @@ writeOGR(obj = merged.coast, dsn = "/Users/james/Downloads/coast_files/merged.co
 
 ## Assignment
 
-Using the **ne_10m_parks_and_protected_lands** shapefile dataset, map the names of the protected lands (variable is `name`) in the **Pacific Northwest** using the methods listed below. You will need to download all of the contents of the **ne_10m_parks_and_protected_lands** shapefile folder. Below, a bounding lat/lon box of -127 W, -110 E, 40 S, 50 N was used for `tmap` plot and `ggplot` plot. You may use a bounding box of your choice where you see fit. 
+Using the **ne_10m_parks_and_protected_lands** shapefile dataset, map the names of the protected lands (variable is `name`) in the **Pacific Northwest** using the methods listed below. You will need to download all of the contents of the **ne_10m_parks_and_protected_lands** shapefile folder. Below, a bounding lat/lon box of -127 W, -110 E, 40 S, 50 N was used for `tmap` plot and `ggplot` plot. You may use a bounding box of your choice where you see fit. Submit your plots to UD Canvas.
 
 1) `tmap`
 2) `ggplot2`
@@ -165,8 +169,9 @@ Using the **ne_10m_parks_and_protected_lands** shapefile dataset, map the names 
 Create the 3 plots above and make them look as close as possible to the ones below. 
 
 
-```{r zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz, echo=FALSE, warning=FALSE, message=FALSE, fig.width=8, fig.height=8, fig.align='center'}
+```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.width=8, fig.height=8, fig.align='center'}
 library(maptools)
+library(mapview)
 m <- readOGR("/Users/james/Documents/Github/geog473-673/datasets//ne_10m_parks_and_protected_lands/ne_10m_parks_and_protected_lands_area.shp")
 
 library(tmap)
@@ -187,11 +192,15 @@ ggplot(data = states) + geom_sf() + theme_void() +
   coord_sf(xlim = c(-127, -110), ylim = c(40,50), expand = FALSE) + 
   theme(legend.position = "none") + ggtitle("Protected Lands in Pacific NW")
 
-
-library(mapview)
-mapview(m['name'], col.regions = mycolours)
+#mapview(m['name'], col.regions = mycolours)
 ```
 
-** Submit plots to UD Canvas **
+
+```{r, echo=FALSE, out.width="60%", fig.align="center"}
+knitr::include_graphics("../documents/images/denali_out.png")  
+```
+
+
+
 
 
