@@ -1,5 +1,5 @@
 --- 
-title: "R Programming for Geospatial Sciences"
+title: "R for Geospatial Sciences"
 author: "James Simkins"
 date: "`r Sys.Date()`"
 site: 'github.com/jsimkins2/geog473-673'
@@ -9,11 +9,13 @@ link-citations: yes
 description: "Advanced R"
 ---
 
-# Preface
+# R for Geospatial Sciences
 
 ```{r, echo=FALSE, out.width="80%", fig.align="center"}
 knitr::include_graphics("images/ireland_sst.png")
 ```
+
+## Welcome
 
 This textbook provides R programming tutorials for geospatial sciences. These were built for University of Delaware Department of Geography and Spatial Sciences 473/673 course. This is a complete manual covering ~ 4 credits of material designed to take a student with little to no R coding experience to proficient in R for geospatial sciences. Data ingest, quality control, reprojection, publication quality visualization, and machine learning techniques are all covered in this book with a focus on spatial datasets. 
 
@@ -43,7 +45,7 @@ https://github.com/jsimkins2/geog473-673/blob/master/documents/spring_geog473_67
 |8 | [Project](https://github.com/jsimkins2/geog473-673/blob/master/documents/AdvancedR_finalproject.pdf)| 
 |9 | [Project](https://github.com/jsimkins2/geog473-673/blob/master/documents/AdvancedR_finalproject.pdf)|
 
-## Phase 2: Spring GEOG473-673 1-Credit Agenda
+## Phase 2
 **Machine Learning with R – 04/19/2021 to 05/18/2021 – 1cr**
 
 | Week | Topic |

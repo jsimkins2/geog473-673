@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>7 Time Series Data | R Programming for Geospatial Sciences</title>
+  <title>7 Time Series Data | R for Geospatial Sciences</title>
   <meta name="description" content="Advanced R" />
   <meta name="generator" content="bookdown 0.20.6 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="7 Time Series Data | R Programming for Geospatial Sciences" />
+  <meta property="og:title" content="7 Time Series Data | R for Geospatial Sciences" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="7 Time Series Data | R Programming for Geospatial Sciences" />
+  <meta name="twitter:title" content="7 Time Series Data | R for Geospatial Sciences" />
   
   <meta name="twitter:description" content="Advanced R" />
   
@@ -24,7 +24,7 @@
 <meta name="author" content="James Simkins" />
 
 
-<meta name="date" content="2021-01-25" />
+<meta name="date" content="2021-01-26" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -152,11 +152,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">R for Geospatial Sciences</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="1" data-path="preface.html"><a href="preface.html"><i class="fa fa-check"></i><b>1</b> Preface</a><ul>
-<li class="chapter" data-level="1.1" data-path="preface.html"><a href="preface.html#course-github"><i class="fa fa-check"></i><b>1.1</b> Course Github</a></li>
-<li class="chapter" data-level="1.2" data-path="preface.html"><a href="preface.html#syllabus"><i class="fa fa-check"></i><b>1.2</b> Syllabus</a></li>
-<li class="chapter" data-level="1.3" data-path="preface.html"><a href="preface.html#phase-1"><i class="fa fa-check"></i><b>1.3</b> Phase 1</a></li>
-<li class="chapter" data-level="1.4" data-path="preface.html"><a href="preface.html#phase-2-spring-geog473-673-1-credit-agenda"><i class="fa fa-check"></i><b>1.4</b> Phase 2: Spring GEOG473-673 1-Credit Agenda</a></li>
+<li class="chapter" data-level="1" data-path="r-for-geospatial-sciences.html"><a href="r-for-geospatial-sciences.html"><i class="fa fa-check"></i><b>1</b> R for Geospatial Sciences</a><ul>
+<li class="chapter" data-level="1.1" data-path="r-for-geospatial-sciences.html"><a href="r-for-geospatial-sciences.html#welcome"><i class="fa fa-check"></i><b>1.1</b> Welcome</a></li>
+<li class="chapter" data-level="1.2" data-path="r-for-geospatial-sciences.html"><a href="r-for-geospatial-sciences.html#course-github"><i class="fa fa-check"></i><b>1.2</b> Course Github</a></li>
+<li class="chapter" data-level="1.3" data-path="r-for-geospatial-sciences.html"><a href="r-for-geospatial-sciences.html#syllabus"><i class="fa fa-check"></i><b>1.3</b> Syllabus</a></li>
+<li class="chapter" data-level="1.4" data-path="r-for-geospatial-sciences.html"><a href="r-for-geospatial-sciences.html#phase-1"><i class="fa fa-check"></i><b>1.4</b> Phase 1</a></li>
+<li class="chapter" data-level="1.5" data-path="r-for-geospatial-sciences.html"><a href="r-for-geospatial-sciences.html#phase-2"><i class="fa fa-check"></i><b>1.5</b> Phase 2</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html"><i class="fa fa-check"></i><b>2</b> Getting Started with R</a><ul>
 <li class="chapter" data-level="2.1" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#why-is-there-such-a-buzz-around-r"><i class="fa fa-check"></i><b>2.1</b> Why is there such a buzz around R?</a></li>
@@ -330,7 +331,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">R Programming for Geospatial Sciences</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">R for Geospatial Sciences</a>
           </h1>
         </div>
 
@@ -570,7 +571,7 @@ do something within these curly brackets
 <a class="sourceLine" id="cb167-10" data-line-number="10">     <span class="dt">xlab =</span> <span class="kw">paste0</span>(deos_data<span class="op">$</span>datetime[low_ind], <span class="st">&quot; to &quot;</span>, deos_data<span class="op">$</span>datetime[upper_ind]), <span class="dt">ylab =</span> <span class="st">&quot;Celsius&quot;</span>)</a>
 <a class="sourceLine" id="cb167-11" data-line-number="11"><span class="co"># add a title to the plot</span></a>
 <a class="sourceLine" id="cb167-12" data-line-number="12"><span class="kw">title</span>(<span class="st">&quot;1 Year Air Temperature at Station&quot;</span>)</a></code></pre></div>
-<p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-82-1.png" width="672" /></p>
+<p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-83-1.png" width="60%" style="display: block; margin: auto;" /></p>
 <div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb168-1" data-line-number="1"><span class="co">#subset the data using the subset function  this time</span></a>
 <a class="sourceLine" id="cb168-2" data-line-number="2">subDeos =<span class="st"> </span><span class="kw">subset</span>(deos_data, deos_data<span class="op">$</span>datetime <span class="op">&gt;=</span><span class="st"> &quot;2014-07-04 00:00:00&quot;</span> <span class="op">&amp;</span><span class="st"> </span>deos_data<span class="op">$</span>datetime <span class="op">&lt;=</span><span class="st"> &quot;2014-07-11 23:59:00&quot;</span>)</a>
 <a class="sourceLine" id="cb168-3" data-line-number="3"></a>
@@ -580,7 +581,7 @@ do something within these curly brackets
 <a class="sourceLine" id="cb168-7" data-line-number="7"><span class="kw">lines</span>(<span class="dt">x =</span> subDeos<span class="op">$</span>datetime, <span class="dt">y =</span> subDeos<span class="op">$</span>dewpoint, <span class="dt">col =</span> <span class="st">&#39;yellow&#39;</span>)</a>
 <a class="sourceLine" id="cb168-8" data-line-number="8"><span class="kw">legend</span>(<span class="st">&#39;bottomright&#39;</span>, <span class="dt">legend=</span><span class="kw">c</span>(<span class="st">&#39;Air Temp&#39;</span>, <span class="st">&#39;Dew Pt&#39;</span>), <span class="dt">col =</span> <span class="kw">c</span>(<span class="st">&#39;red&#39;</span>, <span class="st">&#39;yellow&#39;</span>), <span class="dt">lty =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>))</a>
 <a class="sourceLine" id="cb168-9" data-line-number="9"><span class="kw">title</span>(<span class="st">&quot;Air Temperature &amp; Dew Point Temperature&quot;</span>)</a></code></pre></div>
-<p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-82-2.png" width="672" /></p>
+<p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-83-2.png" width="60%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="assignment" class="section level2">
 <h2><span class="header-section-number">7.3</span> Assignment</h2>

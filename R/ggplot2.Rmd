@@ -168,7 +168,7 @@ Using the `WCr_1hr.2012.nc` found in the datasets folder, complete the following
 
 Your final plots should look something like these...
 
-```{r, echo=FALSE}
+```{r, echo=FALSE, fig.align="center"}
 library(ncdf4)
 y = 2012
 nc_file = nc_open(paste0("/Users/james/Documents/Github/geog473-673/datasets/WCr_1hr.", y,".nc"))

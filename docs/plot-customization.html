@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>10 Plot Customization | R Programming for Geospatial Sciences</title>
+  <title>10 Plot Customization | R for Geospatial Sciences</title>
   <meta name="description" content="Advanced R" />
   <meta name="generator" content="bookdown 0.20.6 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="10 Plot Customization | R Programming for Geospatial Sciences" />
+  <meta property="og:title" content="10 Plot Customization | R for Geospatial Sciences" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="10 Plot Customization | R Programming for Geospatial Sciences" />
+  <meta name="twitter:title" content="10 Plot Customization | R for Geospatial Sciences" />
   
   <meta name="twitter:description" content="Advanced R" />
   
@@ -24,7 +24,7 @@
 <meta name="author" content="James Simkins" />
 
 
-<meta name="date" content="2021-01-25" />
+<meta name="date" content="2021-01-26" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -152,11 +152,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">R for Geospatial Sciences</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="1" data-path="preface.html"><a href="preface.html"><i class="fa fa-check"></i><b>1</b> Preface</a><ul>
-<li class="chapter" data-level="1.1" data-path="preface.html"><a href="preface.html#course-github"><i class="fa fa-check"></i><b>1.1</b> Course Github</a></li>
-<li class="chapter" data-level="1.2" data-path="preface.html"><a href="preface.html#syllabus"><i class="fa fa-check"></i><b>1.2</b> Syllabus</a></li>
-<li class="chapter" data-level="1.3" data-path="preface.html"><a href="preface.html#phase-1"><i class="fa fa-check"></i><b>1.3</b> Phase 1</a></li>
-<li class="chapter" data-level="1.4" data-path="preface.html"><a href="preface.html#phase-2-spring-geog473-673-1-credit-agenda"><i class="fa fa-check"></i><b>1.4</b> Phase 2: Spring GEOG473-673 1-Credit Agenda</a></li>
+<li class="chapter" data-level="1" data-path="r-for-geospatial-sciences.html"><a href="r-for-geospatial-sciences.html"><i class="fa fa-check"></i><b>1</b> R for Geospatial Sciences</a><ul>
+<li class="chapter" data-level="1.1" data-path="r-for-geospatial-sciences.html"><a href="r-for-geospatial-sciences.html#welcome"><i class="fa fa-check"></i><b>1.1</b> Welcome</a></li>
+<li class="chapter" data-level="1.2" data-path="r-for-geospatial-sciences.html"><a href="r-for-geospatial-sciences.html#course-github"><i class="fa fa-check"></i><b>1.2</b> Course Github</a></li>
+<li class="chapter" data-level="1.3" data-path="r-for-geospatial-sciences.html"><a href="r-for-geospatial-sciences.html#syllabus"><i class="fa fa-check"></i><b>1.3</b> Syllabus</a></li>
+<li class="chapter" data-level="1.4" data-path="r-for-geospatial-sciences.html"><a href="r-for-geospatial-sciences.html#phase-1"><i class="fa fa-check"></i><b>1.4</b> Phase 1</a></li>
+<li class="chapter" data-level="1.5" data-path="r-for-geospatial-sciences.html"><a href="r-for-geospatial-sciences.html#phase-2"><i class="fa fa-check"></i><b>1.5</b> Phase 2</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html"><i class="fa fa-check"></i><b>2</b> Getting Started with R</a><ul>
 <li class="chapter" data-level="2.1" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#why-is-there-such-a-buzz-around-r"><i class="fa fa-check"></i><b>2.1</b> Why is there such a buzz around R?</a></li>
@@ -330,7 +331,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">R Programming for Geospatial Sciences</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">R for Geospatial Sciences</a>
           </h1>
         </div>
 
@@ -365,11 +366,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  [9] 3.111111 3.100000 3.090909 3.083333 3.076923 3.071429 3.066667 3.062500
 ## [17] 3.058824 3.055556 3.052632 3.050000</code></pre>
 <div class="sourceCode" id="cb249"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb249-1" data-line-number="1"><span class="kw">plot</span>(X,Y)</a></code></pre></div>
-<p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-92-1.png" width="60%" style="display: block; margin: auto;" /></p>
+<p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-93-1.png" width="60%" style="display: block; margin: auto;" /></p>
 <p>Now let’s add in some extra arguments to the plot function to make it prettier</p>
 <div class="sourceCode" id="cb250"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb250-1" data-line-number="1"><span class="kw">plot</span>(<span class="dt">x=</span>X,<span class="dt">y=</span>Y, <span class="dt">type =</span> <span class="st">&quot;b&quot;</span>, <span class="dt">pch=</span><span class="kw">c</span>(<span class="dv">24</span>), <span class="dt">col =</span> <span class="st">&#39;blue&#39;</span>, <span class="dt">bg=</span><span class="st">&#39;yellow&#39;</span>, <span class="dt">cex =</span> <span class="fl">1.6</span>, <span class="dt">xlab =</span> <span class="st">&quot;X&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;Y&quot;</span>, </a>
 <a class="sourceLine" id="cb250-2" data-line-number="2">     <span class="dt">col.lab =</span> <span class="st">&quot;orange&quot;</span>, <span class="dt">lwd=</span><span class="fl">1.4</span>, <span class="dt">lty=</span><span class="dv">2</span>, <span class="dt">main =</span> <span class="st">&quot;X vs Y&quot;</span>)</a></code></pre></div>
-<p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-93-1.png" width="60%" style="display: block; margin: auto;" /></p>
+<p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-94-1.png" width="60%" style="display: block; margin: auto;" /></p>
 <table>
 <thead>
 <tr class="header">
@@ -483,7 +484,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb251-6" data-line-number="6"><span class="kw">abline</span>(<span class="dt">v=</span><span class="dv">10</span>)</a>
 <a class="sourceLine" id="cb251-7" data-line-number="7"><span class="co"># add a legend</span></a>
 <a class="sourceLine" id="cb251-8" data-line-number="8"><span class="kw">legend</span>(<span class="dt">x =</span> <span class="st">&quot;topright&quot;</span>, <span class="dt">legend=</span><span class="kw">c</span>(<span class="st">&quot;my points&quot;</span>), <span class="dt">pch=</span><span class="kw">c</span>(<span class="dv">24</span>), <span class="dt">col =</span> <span class="st">&#39;blue&#39;</span>, <span class="dt">pt.bg=</span><span class="st">&#39;yellow&#39;</span>)</a></code></pre></div>
-<p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-94-1.png" width="60%" style="display: block; margin: auto;" /></p>
+<p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-95-1.png" width="60%" style="display: block; margin: auto;" /></p>
 <p>Let’s add in another</p>
 <div class="sourceCode" id="cb252"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb252-1" data-line-number="1"><span class="kw">plot</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">25</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">25</span>, <span class="dt">xlab=</span><span class="st">&quot;&quot;</span>,<span class="dt">ylab=</span><span class="st">&quot;&quot;</span>,<span class="dt">pch=</span><span class="dv">1</span><span class="op">:</span><span class="dv">25</span>,<span class="dt">col=</span><span class="dv">1</span><span class="op">:</span><span class="dv">25</span>,<span class="dt">cex=</span><span class="dv">2</span>)</a>
 <a class="sourceLine" id="cb252-2" data-line-number="2"><span class="kw">grid</span>(<span class="dt">lty=</span><span class="dv">1</span>, <span class="dt">col=</span><span class="st">&quot;gray90&quot;</span>)</a>
@@ -491,7 +492,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb252-4" data-line-number="4"><span class="kw">title</span>(<span class="st">&quot;Plotting symbol, line type, &amp; color codes&quot;</span>)</a>
 <a class="sourceLine" id="cb252-5" data-line-number="5"><span class="kw">legend</span>(<span class="st">&quot;topleft&quot;</span>, <span class="dt">legend=</span><span class="dv">1</span><span class="op">:</span><span class="dv">6</span>, <span class="dt">lty=</span><span class="dv">1</span><span class="op">:</span><span class="dv">6</span>, <span class="dt">lwd=</span><span class="fl">1.5</span>, <span class="dt">ncol=</span><span class="dv">2</span>, <span class="dt">bg=</span><span class="st">&quot;gray95&quot;</span>)</a>
 <a class="sourceLine" id="cb252-6" data-line-number="6"><span class="kw">legend</span>(<span class="st">&quot;bottomright&quot;</span>, <span class="dt">legend=</span><span class="dv">1</span><span class="op">:</span><span class="dv">8</span>, <span class="dt">col=</span><span class="dv">1</span><span class="op">:</span><span class="dv">8</span>, <span class="dt">ncol=</span><span class="dv">3</span>, <span class="dt">pch=</span><span class="dv">19</span>, <span class="dt">bg=</span><span class="st">&quot;gray95&quot;</span>)</a></code></pre></div>
-<p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-95-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-96-1.png" width="70%" style="display: block; margin: auto;" /></p>
 </div>
 </div>
 <div id="barplots-boxplots-pie-charts" class="section level2">
@@ -503,48 +504,48 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb253-4" data-line-number="4">I</a></code></pre></div>
 <pre><code>## InfStatus
 ##    Infected   Recovered Susceptible 
-##          18          10          22</code></pre>
+##          18          15          17</code></pre>
 <div class="sourceCode" id="cb255"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb255-1" data-line-number="1"><span class="co"># Now let&#39;s make a random sample of 3 genotypes (RR, Rr, and rr)</span></a>
 <a class="sourceLine" id="cb255-2" data-line-number="2">Genotype &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="kw">sample</span>(<span class="kw">c</span>(<span class="st">&quot;RR&quot;</span>, <span class="st">&quot;Rr&quot;</span>, <span class="st">&quot;rr&quot;</span>), <span class="dt">size =</span> <span class="dv">50</span>, <span class="dt">replace =</span> <span class="ot">TRUE</span>))</a>
 <a class="sourceLine" id="cb255-3" data-line-number="3">G &lt;-<span class="st"> </span><span class="kw">table</span>(Genotype)</a>
 <a class="sourceLine" id="cb255-4" data-line-number="4">G</a></code></pre></div>
 <pre><code>## Genotype
 ## rr Rr RR 
-## 14 18 18</code></pre>
+## 13 21 16</code></pre>
 <div class="sourceCode" id="cb257"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb257-1" data-line-number="1"><span class="co">#show genotype and infected status as a table </span></a>
 <a class="sourceLine" id="cb257-2" data-line-number="2"><span class="kw">table</span>(Genotype, InfStatus)</a></code></pre></div>
 <pre><code>##         InfStatus
 ## Genotype Infected Recovered Susceptible
-##       rr        5         2           7
-##       Rr        7         4           7
-##       RR        6         4           8</code></pre>
+##       rr        6         4           3
+##       Rr        8         8           5
+##       RR        4         3           9</code></pre>
 <p>Note - We turned the sample data info a <code>factor</code> to add <code>levels</code> (i.e. categories) of our test data.</p>
 <div class="sourceCode" id="cb259"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb259-1" data-line-number="1"><span class="co"># WITHOUT the factor</span></a>
 <a class="sourceLine" id="cb259-2" data-line-number="2">test &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="kw">c</span>(<span class="st">&quot;Susceptible&quot;</span>, <span class="st">&quot;Infected&quot;</span>, <span class="st">&quot;Recovered&quot;</span>),<span class="dt">size =</span> <span class="dv">50</span>, <span class="dt">replace =</span> <span class="ot">TRUE</span>)</a>
 <a class="sourceLine" id="cb259-3" data-line-number="3">test</a></code></pre></div>
-<pre><code>##  [1] &quot;Susceptible&quot; &quot;Infected&quot;    &quot;Infected&quot;    &quot;Recovered&quot;   &quot;Recovered&quot;  
-##  [6] &quot;Recovered&quot;   &quot;Infected&quot;    &quot;Infected&quot;    &quot;Infected&quot;    &quot;Infected&quot;   
-## [11] &quot;Infected&quot;    &quot;Susceptible&quot; &quot;Susceptible&quot; &quot;Infected&quot;    &quot;Infected&quot;   
-## [16] &quot;Infected&quot;    &quot;Susceptible&quot; &quot;Recovered&quot;   &quot;Recovered&quot;   &quot;Recovered&quot;  
-## [21] &quot;Infected&quot;    &quot;Susceptible&quot; &quot;Recovered&quot;   &quot;Infected&quot;    &quot;Susceptible&quot;
-## [26] &quot;Recovered&quot;   &quot;Infected&quot;    &quot;Infected&quot;    &quot;Infected&quot;    &quot;Susceptible&quot;
-## [31] &quot;Infected&quot;    &quot;Recovered&quot;   &quot;Susceptible&quot; &quot;Infected&quot;    &quot;Recovered&quot;  
-## [36] &quot;Infected&quot;    &quot;Recovered&quot;   &quot;Susceptible&quot; &quot;Recovered&quot;   &quot;Recovered&quot;  
-## [41] &quot;Infected&quot;    &quot;Recovered&quot;   &quot;Susceptible&quot; &quot;Recovered&quot;   &quot;Recovered&quot;  
-## [46] &quot;Recovered&quot;   &quot;Infected&quot;    &quot;Susceptible&quot; &quot;Susceptible&quot; &quot;Infected&quot;</code></pre>
+<pre><code>##  [1] &quot;Recovered&quot;   &quot;Infected&quot;    &quot;Susceptible&quot; &quot;Recovered&quot;   &quot;Susceptible&quot;
+##  [6] &quot;Recovered&quot;   &quot;Susceptible&quot; &quot;Infected&quot;    &quot;Recovered&quot;   &quot;Infected&quot;   
+## [11] &quot;Susceptible&quot; &quot;Infected&quot;    &quot;Infected&quot;    &quot;Susceptible&quot; &quot;Infected&quot;   
+## [16] &quot;Susceptible&quot; &quot;Susceptible&quot; &quot;Recovered&quot;   &quot;Infected&quot;    &quot;Infected&quot;   
+## [21] &quot;Recovered&quot;   &quot;Recovered&quot;   &quot;Recovered&quot;   &quot;Infected&quot;    &quot;Recovered&quot;  
+## [26] &quot;Susceptible&quot; &quot;Susceptible&quot; &quot;Recovered&quot;   &quot;Recovered&quot;   &quot;Infected&quot;   
+## [31] &quot;Recovered&quot;   &quot;Recovered&quot;   &quot;Susceptible&quot; &quot;Susceptible&quot; &quot;Recovered&quot;  
+## [36] &quot;Susceptible&quot; &quot;Infected&quot;    &quot;Infected&quot;    &quot;Recovered&quot;   &quot;Infected&quot;   
+## [41] &quot;Recovered&quot;   &quot;Recovered&quot;   &quot;Susceptible&quot; &quot;Infected&quot;    &quot;Infected&quot;   
+## [46] &quot;Recovered&quot;   &quot;Infected&quot;    &quot;Infected&quot;    &quot;Recovered&quot;   &quot;Recovered&quot;</code></pre>
 <div class="sourceCode" id="cb261"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb261-1" data-line-number="1"><span class="kw">class</span>(test)</a></code></pre></div>
 <pre><code>## [1] &quot;character&quot;</code></pre>
 <div class="sourceCode" id="cb263"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb263-1" data-line-number="1"><span class="co"># Now as a factor</span></a>
 <a class="sourceLine" id="cb263-2" data-line-number="2">test2 &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="kw">sample</span>(<span class="kw">c</span>(<span class="st">&quot;Susceptible&quot;</span>, <span class="st">&quot;Infected&quot;</span>, <span class="st">&quot;Recovered&quot;</span>),<span class="dt">size =</span> <span class="dv">50</span>, <span class="dt">replace =</span> <span class="ot">TRUE</span>))</a>
 <a class="sourceLine" id="cb263-3" data-line-number="3">test2</a></code></pre></div>
-<pre><code>##  [1] Infected    Susceptible Susceptible Infected    Recovered   Infected   
-##  [7] Susceptible Infected    Infected    Susceptible Susceptible Infected   
-## [13] Recovered   Recovered   Infected    Susceptible Susceptible Infected   
-## [19] Infected    Infected    Recovered   Recovered   Recovered   Recovered  
-## [25] Infected    Infected    Infected    Recovered   Infected    Susceptible
-## [31] Infected    Infected    Recovered   Infected    Recovered   Susceptible
-## [37] Infected    Susceptible Susceptible Recovered   Infected    Infected   
-## [43] Susceptible Recovered   Susceptible Infected    Susceptible Susceptible
+<pre><code>##  [1] Susceptible Recovered   Susceptible Infected    Infected    Recovered  
+##  [7] Infected    Susceptible Recovered   Infected    Recovered   Infected   
+## [13] Recovered   Infected    Infected    Susceptible Recovered   Recovered  
+## [19] Susceptible Infected    Recovered   Susceptible Susceptible Susceptible
+## [25] Infected    Infected    Infected    Susceptible Susceptible Infected   
+## [31] Recovered   Recovered   Recovered   Susceptible Infected    Susceptible
+## [37] Susceptible Recovered   Recovered   Infected    Recovered   Infected   
+## [43] Susceptible Infected    Recovered   Recovered   Susceptible Recovered  
 ## [49] Recovered   Susceptible
 ## Levels: Infected Recovered Susceptible</code></pre>
 <div class="sourceCode" id="cb265"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb265-1" data-line-number="1"><span class="kw">class</span>(test2)</a></code></pre></div>
@@ -612,7 +613,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb267-7" data-line-number="7"><span class="kw">boxplot</span>(<span class="kw">rnorm</span>(<span class="dv">50</span>, <span class="dt">mean =</span> <span class="dv">15</span>, <span class="dt">sd =</span> <span class="dv">3</span>) <span class="op">~</span><span class="st"> </span>Genotype,  <span class="dt">col =</span> <span class="kw">c</span>(<span class="st">&quot;seagreen4&quot;</span>, <span class="st">&quot;coral&quot;</span>, <span class="st">&quot;dodgerblue2&quot;</span>)) <span class="co"># boxplot</span></a>
 <a class="sourceLine" id="cb267-8" data-line-number="8"><span class="kw">pie</span>(G, <span class="dt">col =</span> <span class="kw">c</span>(<span class="st">&quot;seagreen4&quot;</span>, <span class="st">&quot;coral&quot;</span>, <span class="st">&quot;dodgerblue2&quot;</span>)) <span class="co"># pie plot</span></a>
 <a class="sourceLine" id="cb267-9" data-line-number="9"><span class="kw">mtext</span>(<span class="st">&quot;Basic R Plots with Test Genotype Data&quot;</span>, <span class="dt">outer =</span> <span class="ot">TRUE</span>, <span class="dt">cex =</span> <span class="fl">1.5</span>, <span class="dt">font =</span> <span class="dv">2</span>) <span class="co"># main title</span></a></code></pre></div>
-<p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-98-1.png" width="60%" style="display: block; margin: auto;" /></p>
+<p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-99-1.png" width="60%" style="display: block; margin: auto;" /></p>
 </div>
 </div>
 <div id="tree-data" class="section level2">
@@ -759,7 +760,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb280-5" data-line-number="5"><span class="co"># Use the his() function to plot a histogram </span></a>
 <a class="sourceLine" id="cb280-6" data-line-number="6"><span class="kw">hist</span>(treedat<span class="op">$</span>BarkThick, <span class="dt">xlab=</span> <span class="st">&quot;Bark Thickness (cm)&quot;</span>, <span class="dt">main=</span> <span class="st">&quot;Histogram: Bark Thickness&quot;</span>, <span class="dt">col=</span> <span class="st">&quot;darkgreen&quot;</span>)</a>
 <a class="sourceLine" id="cb280-7" data-line-number="7"><span class="kw">boxplot</span>(SapDepth <span class="op">~</span><span class="st"> </span>spp, <span class="dt">data=</span> treedat, <span class="dt">ylab=</span> <span class="st">&quot;SapDepth&quot;</span>, <span class="dt">col=</span> <span class="st">&quot;darkslateblue&quot;</span>, <span class="dt">main=</span> <span class="st">&quot;Boxplot: Sapwood Depth by Species&quot;</span>)</a></code></pre></div>
-<p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-102-1.png" width="60%" style="display: block; margin: auto;" /></p>
+<p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-103-1.png" width="60%" style="display: block; margin: auto;" /></p>
 <p>First we notice that with the <code>par()</code> function, we can declare arguments in different lines so long as we call the <code>par()</code> function again. <code>hist()</code> is the histogram function; <code>boxplot()</code> is the boxplot function. The <code>boxplot()</code> function using a slightly different syntax for plotting in the form of <code>y ~ x</code>, or <strong>y versus x</strong>. <code>hist()</code>, on the other hand, can only plot numerical values. For categorical data, such as our tree species column, must be plotted with <code>barplot()</code> and the <code>table()</code> function.</p>
 <div class="sourceCode" id="cb281"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb281-1" data-line-number="1"><span class="co"># print the table function output of treedat$spp - notice the categorical help from the table function</span></a>
 <a class="sourceLine" id="cb281-2" data-line-number="2"><span class="kw">table</span>(treedat<span class="op">$</span>spp)</a></code></pre></div>
@@ -768,7 +769,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##    5    5    5    5</code></pre>
 <div class="sourceCode" id="cb283"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb283-1" data-line-number="1"><span class="co"># plot this categorical data using barplot() function</span></a>
 <a class="sourceLine" id="cb283-2" data-line-number="2"><span class="kw">barplot</span>(<span class="kw">table</span>(treedat<span class="op">$</span>spp))</a></code></pre></div>
-<p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-103-1.png" width="60%" style="display: block; margin: auto;" /></p>
+<p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-104-1.png" width="60%" style="display: block; margin: auto;" /></p>
 <div class="sourceCode" id="cb284"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb284-1" data-line-number="1"><span class="co"># customize the barplot function</span></a>
 <a class="sourceLine" id="cb284-2" data-line-number="2"><span class="kw">barplot</span>(<span class="kw">table</span>(treedat<span class="op">$</span>spp), <span class="dt">main=</span><span class="st">&quot;SPP Count Barplot&quot;</span>,</a>
 <a class="sourceLine" id="cb284-3" data-line-number="3"><span class="dt">xlab=</span><span class="st">&quot;SPP&quot;</span>,</a>
@@ -776,7 +777,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb284-5" data-line-number="5"><span class="dt">border=</span><span class="st">&quot;red&quot;</span>,</a>
 <a class="sourceLine" id="cb284-6" data-line-number="6"><span class="dt">col=</span><span class="st">&quot;blue&quot;</span>,</a>
 <a class="sourceLine" id="cb284-7" data-line-number="7"><span class="dt">density=</span><span class="dv">10</span>)</a></code></pre></div>
-<p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-103-2.png" width="60%" style="display: block; margin: auto;" /></p>
+<p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-104-2.png" width="60%" style="display: block; margin: auto;" /></p>
 </div>
 </div>
 <div id="assignment-3" class="section level2">
@@ -784,7 +785,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ol style="list-style-type: decimal">
 <li>Create the plot below using a sequence of X values where Y is the <code>log</code> of the X values. For the line type, use <code>type = &quot;b&quot;</code> to obtain lines and points. Use a <code>pch</code> of 21, <code>cex</code> of 1.5, and colors of your choosing.</li>
 </ol>
-<p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-104-1.png" width="60%" style="display: block; margin: auto;" /></p>
+<p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-105-1.png" width="60%" style="display: block; margin: auto;" /></p>
 <p>Using the <code>TreeData.csv</code> from the course dataset folder, complete the following:</p>
 <ol start="2" style="list-style-type: decimal">
 <li>Rename <code>spp</code> variable to <code>species</code></li>
@@ -792,7 +793,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><strong>Submit the plot to UD Canvas.</strong></li>
 </ol>
 <p>Your final plot should look like this</p>
-<p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-105-1.png" width="60%" style="display: block; margin: auto;" /></p>
+<p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-106-1.png" width="60%" style="display: block; margin: auto;" /></p>
 
 </div>
 </div>

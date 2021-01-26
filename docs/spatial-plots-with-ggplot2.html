@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>13 Spatial Plots with ggplot2 | R Programming for Geospatial Sciences</title>
+  <title>13 Spatial Plots with ggplot2 | R for Geospatial Sciences</title>
   <meta name="description" content="Advanced R" />
   <meta name="generator" content="bookdown 0.20.6 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="13 Spatial Plots with ggplot2 | R Programming for Geospatial Sciences" />
+  <meta property="og:title" content="13 Spatial Plots with ggplot2 | R for Geospatial Sciences" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="13 Spatial Plots with ggplot2 | R Programming for Geospatial Sciences" />
+  <meta name="twitter:title" content="13 Spatial Plots with ggplot2 | R for Geospatial Sciences" />
   
   <meta name="twitter:description" content="Advanced R" />
   
@@ -24,7 +24,7 @@
 <meta name="author" content="James Simkins" />
 
 
-<meta name="date" content="2021-01-25" />
+<meta name="date" content="2021-01-26" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -152,11 +152,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">R for Geospatial Sciences</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="1" data-path="preface.html"><a href="preface.html"><i class="fa fa-check"></i><b>1</b> Preface</a><ul>
-<li class="chapter" data-level="1.1" data-path="preface.html"><a href="preface.html#course-github"><i class="fa fa-check"></i><b>1.1</b> Course Github</a></li>
-<li class="chapter" data-level="1.2" data-path="preface.html"><a href="preface.html#syllabus"><i class="fa fa-check"></i><b>1.2</b> Syllabus</a></li>
-<li class="chapter" data-level="1.3" data-path="preface.html"><a href="preface.html#phase-1"><i class="fa fa-check"></i><b>1.3</b> Phase 1</a></li>
-<li class="chapter" data-level="1.4" data-path="preface.html"><a href="preface.html#phase-2-spring-geog473-673-1-credit-agenda"><i class="fa fa-check"></i><b>1.4</b> Phase 2: Spring GEOG473-673 1-Credit Agenda</a></li>
+<li class="chapter" data-level="1" data-path="r-for-geospatial-sciences.html"><a href="r-for-geospatial-sciences.html"><i class="fa fa-check"></i><b>1</b> R for Geospatial Sciences</a><ul>
+<li class="chapter" data-level="1.1" data-path="r-for-geospatial-sciences.html"><a href="r-for-geospatial-sciences.html#welcome"><i class="fa fa-check"></i><b>1.1</b> Welcome</a></li>
+<li class="chapter" data-level="1.2" data-path="r-for-geospatial-sciences.html"><a href="r-for-geospatial-sciences.html#course-github"><i class="fa fa-check"></i><b>1.2</b> Course Github</a></li>
+<li class="chapter" data-level="1.3" data-path="r-for-geospatial-sciences.html"><a href="r-for-geospatial-sciences.html#syllabus"><i class="fa fa-check"></i><b>1.3</b> Syllabus</a></li>
+<li class="chapter" data-level="1.4" data-path="r-for-geospatial-sciences.html"><a href="r-for-geospatial-sciences.html#phase-1"><i class="fa fa-check"></i><b>1.4</b> Phase 1</a></li>
+<li class="chapter" data-level="1.5" data-path="r-for-geospatial-sciences.html"><a href="r-for-geospatial-sciences.html#phase-2"><i class="fa fa-check"></i><b>1.5</b> Phase 2</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html"><i class="fa fa-check"></i><b>2</b> Getting Started with R</a><ul>
 <li class="chapter" data-level="2.1" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#why-is-there-such-a-buzz-around-r"><i class="fa fa-check"></i><b>2.1</b> Why is there such a buzz around R?</a></li>
@@ -330,7 +331,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">R Programming for Geospatial Sciences</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">R for Geospatial Sciences</a>
           </h1>
         </div>
 
@@ -403,11 +404,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="simple-features" class="section level2">
 <h2><span class="header-section-number">13.1</span> Simple Features</h2>
 <p>One package useful for spatial data in R is the <code>sf</code> package (short for simple features). It contains functions that perform equations that place uneven projections on a 2 dimensional computer screen. It can handle many projections and is built to work seamlessly with <code>ggplot</code>. For sample data, we’re also going to load <code>ozmaps</code> which contains maps of Australia.</p>
-<div class="sourceCode" id="cb354"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb354-1" data-line-number="1"><span class="kw">library</span>(ozmaps)</a>
-<a class="sourceLine" id="cb354-2" data-line-number="2"><span class="kw">library</span>(sf)</a></code></pre></div>
+<div class="sourceCode" id="cb355"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb355-1" data-line-number="1"><span class="kw">library</span>(ozmaps)</a>
+<a class="sourceLine" id="cb355-2" data-line-number="2"><span class="kw">library</span>(sf)</a></code></pre></div>
 <pre><code>## Linking to GEOS 3.8.1, GDAL 3.1.4, PROJ 6.3.1</code></pre>
-<div class="sourceCode" id="cb356"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb356-1" data-line-number="1">oz_states &lt;-<span class="st"> </span>ozmaps<span class="op">::</span>ozmap_states</a>
-<a class="sourceLine" id="cb356-2" data-line-number="2">oz_states</a></code></pre></div>
+<div class="sourceCode" id="cb357"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb357-1" data-line-number="1">oz_states &lt;-<span class="st"> </span>ozmaps<span class="op">::</span>ozmap_states</a>
+<a class="sourceLine" id="cb357-2" data-line-number="2">oz_states</a></code></pre></div>
 <pre><code>## Simple feature collection with 9 features and 1 field
 ## geometry type:  MULTIPOLYGON
 ## dimension:      XY
@@ -426,50 +427,50 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 8 Australian Capital … (((149.2317 -35.222, 149.2346 -35.24047, 149.2716 -35.27…
 ## 9 Other Territories    (((167.9333 -29.05421, 167.9188 -29.0344, 167.9313 -29.0…</code></pre>
 <p><code>oz_states</code> is a simple feature which stores data like data frames but has a projection (proj4string), spatial extents, and polygon geometry. In other words, we have shapes on a map that are georeferenced and stored within a data frame that <code>ggplot</code> is great at working with. There are two columns - <code>NAME</code> and <code>geometry</code>. The <code>NAME</code> column is the name of the Australian State. The <code>geometry</code> specifies where the lines of the polygons are drawn (the state boundaries). So, let’s plot these polygons!</p>
-<div class="sourceCode" id="cb358"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb358-1" data-line-number="1"><span class="kw">library</span>(ggplot2)</a>
-<a class="sourceLine" id="cb358-2" data-line-number="2"><span class="kw">ggplot</span>(<span class="dt">data =</span> oz_states) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb358-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_sf</span>() <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb358-4" data-line-number="4"><span class="st">  </span><span class="kw">coord_sf</span>()</a></code></pre></div>
-<p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-128-1.png" width="70%" style="display: block; margin: auto;" /></p>
-<div class="sourceCode" id="cb359"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb359-1" data-line-number="1"><span class="co"># if we declare mapping aesthetics, we can tell ggplot to fill the spatial features (australian states) based on the NAME column / variable - ggplot automatically chooses coloring for us if we don&#39;t specify</span></a>
-<a class="sourceLine" id="cb359-2" data-line-number="2"><span class="kw">ggplot</span>() <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb359-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_sf</span>(<span class="dt">data =</span> oz_states, <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">fill =</span> NAME)) <span class="op">+</span></a>
+<div class="sourceCode" id="cb359"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb359-1" data-line-number="1"><span class="kw">library</span>(ggplot2)</a>
+<a class="sourceLine" id="cb359-2" data-line-number="2"><span class="kw">ggplot</span>(<span class="dt">data =</span> oz_states) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb359-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_sf</span>() <span class="op">+</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb359-4" data-line-number="4"><span class="st">  </span><span class="kw">coord_sf</span>()</a></code></pre></div>
 <p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-129-1.png" width="70%" style="display: block; margin: auto;" /></p>
-<p>The function <code>coord_sf</code> allows to deal with the coordinate system, which includes both projection and extent of the map. By default, the map will use the coordinate system of the first layer that defines one (i.e. scanned in the order provided), or if none, fall back on WGS84 (latitude/longitude, the reference system used in GPS). Remember, our <code>oz_states</code> is a simple feature data frame that contains projection information. Thus, <code>coord_sf</code> is assuming we want the projection of <code>oz_states</code> - <code>+proj=longlat +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +no_defs</code>. We can specify our own <code>crs</code> argument if we want to override the assumed projection. If we set the <code>crs</code> argument to a valid PROJ4 string, we can accoimplish this. Let’s project our <code>oz_states</code> onto a Mollewide graph.</p>
-<div class="sourceCode" id="cb360"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb360-1" data-line-number="1"><span class="kw">ggplot</span>() <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb360-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_sf</span>(<span class="dt">data =</span> oz_states, <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">fill =</span> NAME)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb360-3" data-line-number="3"><span class="st">  </span><span class="kw">coord_sf</span>(<span class="dt">crs =</span> <span class="st">&quot;+proj=moll +lon_0=0 +x_0=0 +y_0=0 +datum=WGS84 +units=m +no_defs&quot;</span>) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb360-4" data-line-number="4"><span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;oz_states projected onto Mollewide ggplot&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb360"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb360-1" data-line-number="1"><span class="co"># if we declare mapping aesthetics, we can tell ggplot to fill the spatial features (australian states) based on the NAME column / variable - ggplot automatically chooses coloring for us if we don&#39;t specify</span></a>
+<a class="sourceLine" id="cb360-2" data-line-number="2"><span class="kw">ggplot</span>() <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb360-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_sf</span>(<span class="dt">data =</span> oz_states, <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">fill =</span> NAME)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb360-4" data-line-number="4"><span class="st">  </span><span class="kw">coord_sf</span>()</a></code></pre></div>
 <p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-130-1.png" width="70%" style="display: block; margin: auto;" /></p>
-<p>We did not overwrite the data to this new projection. We simply performed a transformation on the fly to fit the data to a new grid. Instead of a PROJ4 string, we could use an EPSG code with the <code>st_crs()</code> function. Let’s not project our data onto a grid with EPSG code 3112.</p>
+<p>The function <code>coord_sf</code> allows to deal with the coordinate system, which includes both projection and extent of the map. By default, the map will use the coordinate system of the first layer that defines one (i.e. scanned in the order provided), or if none, fall back on WGS84 (latitude/longitude, the reference system used in GPS). Remember, our <code>oz_states</code> is a simple feature data frame that contains projection information. Thus, <code>coord_sf</code> is assuming we want the projection of <code>oz_states</code> - <code>+proj=longlat +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +no_defs</code>. We can specify our own <code>crs</code> argument if we want to override the assumed projection. If we set the <code>crs</code> argument to a valid PROJ4 string, we can accoimplish this. Let’s project our <code>oz_states</code> onto a Mollewide graph.</p>
 <div class="sourceCode" id="cb361"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb361-1" data-line-number="1"><span class="kw">ggplot</span>() <span class="op">+</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb361-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_sf</span>(<span class="dt">data =</span> oz_states, <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">fill =</span> NAME)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb361-3" data-line-number="3"><span class="st">  </span><span class="kw">coord_sf</span>(<span class="dt">crs =</span> <span class="kw">st_crs</span>(<span class="dv">3112</span>)) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb361-4" data-line-number="4"><span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;oz_states projected onto EPSG 3112&quot;</span>)</a></code></pre></div>
+<a class="sourceLine" id="cb361-3" data-line-number="3"><span class="st">  </span><span class="kw">coord_sf</span>(<span class="dt">crs =</span> <span class="st">&quot;+proj=moll +lon_0=0 +x_0=0 +y_0=0 +datum=WGS84 +units=m +no_defs&quot;</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb361-4" data-line-number="4"><span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;oz_states projected onto Mollewide ggplot&quot;</span>)</a></code></pre></div>
 <p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-131-1.png" width="70%" style="display: block; margin: auto;" /></p>
-<p><code>st_crs()</code> is that simple, just plug in the code and the function will grab the PROJ4 string for you. <code>coord_sf</code> has other options that are useful too such as x and y limits. Let’s go back to our regular projection of this data and show the limits in action.</p>
+<p>We did not overwrite the data to this new projection. We simply performed a transformation on the fly to fit the data to a new grid. Instead of a PROJ4 string, we could use an EPSG code with the <code>st_crs()</code> function. Let’s not project our data onto a grid with EPSG code 3112.</p>
 <div class="sourceCode" id="cb362"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb362-1" data-line-number="1"><span class="kw">ggplot</span>() <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb362-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_sf</span>(<span class="dt">data =</span> oz_states, <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">fill =</span> NAME), <span class="dt">show.legend =</span> <span class="ot">FALSE</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb362-3" data-line-number="3"><span class="st">  </span><span class="kw">coord_sf</span>(<span class="dt">xlim =</span> <span class="kw">c</span>(<span class="dv">140</span>, <span class="dv">150</span>), <span class="dt">ylim=</span><span class="kw">c</span>(<span class="op">-</span><span class="dv">44</span>, <span class="fl">-39.5</span>)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb362-4" data-line-number="4"><span class="st">  </span><span class="kw">geom_sf_label</span>( <span class="dt">data =</span> oz_states, <span class="kw">aes</span>(<span class="dt">label =</span> NAME))</a></code></pre></div>
+<a class="sourceLine" id="cb362-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_sf</span>(<span class="dt">data =</span> oz_states, <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">fill =</span> NAME)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb362-3" data-line-number="3"><span class="st">  </span><span class="kw">coord_sf</span>(<span class="dt">crs =</span> <span class="kw">st_crs</span>(<span class="dv">3112</span>)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb362-4" data-line-number="4"><span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;oz_states projected onto EPSG 3112&quot;</span>)</a></code></pre></div>
 <p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-132-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><code>st_crs()</code> is that simple, just plug in the code and the function will grab the PROJ4 string for you. <code>coord_sf</code> has other options that are useful too such as x and y limits. Let’s go back to our regular projection of this data and show the limits in action.</p>
+<div class="sourceCode" id="cb363"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb363-1" data-line-number="1"><span class="kw">ggplot</span>() <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb363-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_sf</span>(<span class="dt">data =</span> oz_states, <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">fill =</span> NAME), <span class="dt">show.legend =</span> <span class="ot">FALSE</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb363-3" data-line-number="3"><span class="st">  </span><span class="kw">coord_sf</span>(<span class="dt">xlim =</span> <span class="kw">c</span>(<span class="dv">140</span>, <span class="dv">150</span>), <span class="dt">ylim=</span><span class="kw">c</span>(<span class="op">-</span><span class="dv">44</span>, <span class="fl">-39.5</span>)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb363-4" data-line-number="4"><span class="st">  </span><span class="kw">geom_sf_label</span>( <span class="dt">data =</span> oz_states, <span class="kw">aes</span>(<span class="dt">label =</span> NAME))</a></code></pre></div>
+<p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-133-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>We also added <code>geom_sf_label</code> which adds a label to an <code>sf</code> geometry. In this case, we added the Tasmania name tag to the geometry.</p>
 </div>
 <div id="sea-surface-temperature-ggplot" class="section level2">
 <h2><span class="header-section-number">13.2</span> Sea Surface Temperature ggplot</h2>
 <p>When it comes to spatial data, the <code>raster</code> package is our go-to library. After the data is translated to a dataframe and ready to plot, we’ll need the help of a package called <code>mapproj</code> which makes sense of some external maps that <code>ggplot2</code> uses.</p>
-<div class="sourceCode" id="cb363"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb363-1" data-line-number="1"><span class="kw">library</span>(ggplot2)</a>
-<a class="sourceLine" id="cb363-2" data-line-number="2"><span class="kw">library</span>(mapproj)</a></code></pre></div>
+<div class="sourceCode" id="cb364"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb364-1" data-line-number="1"><span class="kw">library</span>(ggplot2)</a>
+<a class="sourceLine" id="cb364-2" data-line-number="2"><span class="kw">library</span>(mapproj)</a></code></pre></div>
 <pre><code>## Loading required package: maps</code></pre>
-<div class="sourceCode" id="cb365"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb365-1" data-line-number="1"><span class="kw">library</span>(maptools) <span class="co"># also loads sp package</span></a>
-<a class="sourceLine" id="cb365-2" data-line-number="2"><span class="kw">library</span>(raster)</a>
-<a class="sourceLine" id="cb365-3" data-line-number="3"><span class="kw">library</span>(rasterVis)</a>
-<a class="sourceLine" id="cb365-4" data-line-number="4"><span class="kw">library</span>(RColorBrewer)</a>
-<a class="sourceLine" id="cb365-5" data-line-number="5">sstRast &lt;-<span class="st"> </span><span class="kw">raster</span>(<span class="st">&quot;/Users/james/Documents/Github/geog473-673/datasets/GOES_R_ROLLING_1DAY_20190814.nc&quot;</span>)</a>
-<a class="sourceLine" id="cb365-6" data-line-number="6"><span class="co"># crop the raster so this runs faster</span></a>
-<a class="sourceLine" id="cb365-7" data-line-number="7">sstRast &lt;-<span class="st"> </span><span class="kw">crop</span>(sstRast, <span class="kw">extent</span>(<span class="op">-</span><span class="dv">100</span>,<span class="op">-</span><span class="dv">80</span>,<span class="dv">16</span>,<span class="dv">30</span>))</a>
-<a class="sourceLine" id="cb365-8" data-line-number="8">sstRast</a></code></pre></div>
+<div class="sourceCode" id="cb366"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb366-1" data-line-number="1"><span class="kw">library</span>(maptools) <span class="co"># also loads sp package</span></a>
+<a class="sourceLine" id="cb366-2" data-line-number="2"><span class="kw">library</span>(raster)</a>
+<a class="sourceLine" id="cb366-3" data-line-number="3"><span class="kw">library</span>(rasterVis)</a>
+<a class="sourceLine" id="cb366-4" data-line-number="4"><span class="kw">library</span>(RColorBrewer)</a>
+<a class="sourceLine" id="cb366-5" data-line-number="5">sstRast &lt;-<span class="st"> </span><span class="kw">raster</span>(<span class="st">&quot;/Users/james/Documents/Github/geog473-673/datasets/GOES_R_ROLLING_1DAY_20190814.nc&quot;</span>)</a>
+<a class="sourceLine" id="cb366-6" data-line-number="6"><span class="co"># crop the raster so this runs faster</span></a>
+<a class="sourceLine" id="cb366-7" data-line-number="7">sstRast &lt;-<span class="st"> </span><span class="kw">crop</span>(sstRast, <span class="kw">extent</span>(<span class="op">-</span><span class="dv">100</span>,<span class="op">-</span><span class="dv">80</span>,<span class="dv">16</span>,<span class="dv">30</span>))</a>
+<a class="sourceLine" id="cb366-8" data-line-number="8">sstRast</a></code></pre></div>
 <pre><code>## class      : RasterLayer 
 ## dimensions : 774, 1111, 859914  (nrow, ncol, ncell)
 ## resolution : 0.018, 0.0181  (x, y)
@@ -479,9 +480,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## names      : Sea.Surface.Temperature 
 ## values     : 25.86023, 34.9397  (min, max)
 ## time       : 2019-08-14 16:30:43</code></pre>
-<div class="sourceCode" id="cb367"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb367-1" data-line-number="1"><span class="co"># convert to dataframe and </span></a>
-<a class="sourceLine" id="cb367-2" data-line-number="2">df &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(sstRast, <span class="dt">xy =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb367-3" data-line-number="3"><span class="kw">head</span>(df)</a></code></pre></div>
+<div class="sourceCode" id="cb368"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb368-1" data-line-number="1"><span class="co"># convert to dataframe and </span></a>
+<a class="sourceLine" id="cb368-2" data-line-number="2">df &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(sstRast, <span class="dt">xy =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb368-3" data-line-number="3"><span class="kw">head</span>(df)</a></code></pre></div>
 <pre><code>##           x        y Sea.Surface.Temperature
 ## 1 -99.99015 29.99413                     NaN
 ## 2 -99.97215 29.99413                     NaN
@@ -489,81 +490,81 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 4 -99.93615 29.99413                     NaN
 ## 5 -99.91815 29.99413                     NaN
 ## 6 -99.90015 29.99413                     NaN</code></pre>
-<div class="sourceCode" id="cb369"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb369-1" data-line-number="1"><span class="co"># plot the raster</span></a>
-<a class="sourceLine" id="cb369-2" data-line-number="2"><span class="kw">ggplot</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb369-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_raster</span>(<span class="dt">data =</span> df , <span class="kw">aes</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> y, <span class="dt">fill =</span> Sea.Surface.Temperature)) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb369-4" data-line-number="4"><span class="st">  </span><span class="kw">coord_sf</span>()</a></code></pre></div>
-<p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-133-1.png" width="70%" style="display: block; margin: auto;" /></p>
-<p>In this case, <code>df</code> is just a data frame - not an <code>sf</code> data frame. We need to use <code>geom_raster</code> in this case to plot a regular data frame as a raster. As for the projeciton, <code>ggplot</code> automatically guessed lat/long which in this case is correct. A better practice is to use the <code>crs</code> from the <code>sstRast</code> which contains all of the projection information.</p>
-<div class="sourceCode" id="cb370"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb370-1" data-line-number="1"><span class="co"># print the crs of the sstRast</span></a>
-<a class="sourceLine" id="cb370-2" data-line-number="2"><span class="kw">crs</span>(sstRast)</a></code></pre></div>
-<pre><code>## CRS arguments: +proj=longlat +datum=WGS84 +no_defs</code></pre>
-<div class="sourceCode" id="cb372"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb372-1" data-line-number="1"><span class="co"># plug in crs into the `coord_sf` function</span></a>
-<a class="sourceLine" id="cb372-2" data-line-number="2"><span class="kw">ggplot</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb372-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_raster</span>(<span class="dt">data =</span> df , <span class="kw">aes</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> y, <span class="dt">fill =</span> Sea.Surface.Temperature)) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb372-4" data-line-number="4"><span class="st">  </span><span class="kw">coord_sf</span>(<span class="dt">crs=</span><span class="kw">crs</span>(sstRast))</a></code></pre></div>
+<div class="sourceCode" id="cb370"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb370-1" data-line-number="1"><span class="co"># plot the raster</span></a>
+<a class="sourceLine" id="cb370-2" data-line-number="2"><span class="kw">ggplot</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb370-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_raster</span>(<span class="dt">data =</span> df , <span class="kw">aes</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> y, <span class="dt">fill =</span> Sea.Surface.Temperature)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb370-4" data-line-number="4"><span class="st">  </span><span class="kw">coord_sf</span>()</a></code></pre></div>
 <p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-134-1.png" width="70%" style="display: block; margin: auto;" /></p>
-<p>The georeferenced data is properly placed. Let’s now turn our attention to the coloring of the data. We can use the <code>RColorBrewer</code> package to create our own color palettes. Also, becuase we’re in lat/long projection, we’re going to use <code>coord_quickmap</code> instead of <code>coord_sf</code>. This function approximates geolocated lines for faster plotting. This can be used in lat/long projected data close to the equator.</p>
-<div class="sourceCode" id="cb373"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb373-1" data-line-number="1"><span class="co"># now let&#39;s use a better colorscheme</span></a>
-<a class="sourceLine" id="cb373-2" data-line-number="2">jet.colors &lt;-<span class="st"> </span><span class="kw">colorRampPalette</span>(<span class="kw">c</span>(<span class="st">&quot;#00007F&quot;</span>, <span class="st">&quot;blue&quot;</span>, <span class="st">&quot;#007FFF&quot;</span>, <span class="st">&quot;cyan&quot;</span>, <span class="st">&quot;#7FFF7F&quot;</span>, <span class="st">&quot;yellow&quot;</span>, <span class="st">&quot;#FF7F00&quot;</span>, <span class="st">&quot;red&quot;</span>, <span class="st">&quot;#7F0000&quot;</span>))</a>
-<a class="sourceLine" id="cb373-3" data-line-number="3"><span class="kw">ggplot</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb373-4" data-line-number="4"><span class="st">  </span><span class="kw">geom_raster</span>(<span class="dt">data =</span> df , <span class="kw">aes</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> y, <span class="dt">fill =</span> Sea.Surface.Temperature)) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb373-5" data-line-number="5"><span class="st">  </span><span class="kw">scale_fill_gradientn</span>(<span class="dt">colors =</span> <span class="kw">jet.colors</span>(<span class="dv">7</span>), <span class="dt">limits =</span> <span class="kw">c</span>(<span class="dv">28</span>, <span class="dv">33</span>)) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb373-6" data-line-number="6"><span class="st">  </span><span class="kw">coord_quickmap</span>()</a></code></pre></div>
+<p>In this case, <code>df</code> is just a data frame - not an <code>sf</code> data frame. We need to use <code>geom_raster</code> in this case to plot a regular data frame as a raster. As for the projeciton, <code>ggplot</code> automatically guessed lat/long which in this case is correct. A better practice is to use the <code>crs</code> from the <code>sstRast</code> which contains all of the projection information.</p>
+<div class="sourceCode" id="cb371"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb371-1" data-line-number="1"><span class="co"># print the crs of the sstRast</span></a>
+<a class="sourceLine" id="cb371-2" data-line-number="2"><span class="kw">crs</span>(sstRast)</a></code></pre></div>
+<pre><code>## CRS arguments: +proj=longlat +datum=WGS84 +no_defs</code></pre>
+<div class="sourceCode" id="cb373"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb373-1" data-line-number="1"><span class="co"># plug in crs into the `coord_sf` function</span></a>
+<a class="sourceLine" id="cb373-2" data-line-number="2"><span class="kw">ggplot</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb373-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_raster</span>(<span class="dt">data =</span> df , <span class="kw">aes</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> y, <span class="dt">fill =</span> Sea.Surface.Temperature)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb373-4" data-line-number="4"><span class="st">  </span><span class="kw">coord_sf</span>(<span class="dt">crs=</span><span class="kw">crs</span>(sstRast))</a></code></pre></div>
 <p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-135-1.png" width="70%" style="display: block; margin: auto;" /></p>
-<div class="sourceCode" id="cb374"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb374-1" data-line-number="1"><span class="co"># now let&#39;s add borders using the borders function</span></a>
-<a class="sourceLine" id="cb374-2" data-line-number="2"><span class="kw">ggplot</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb374-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_raster</span>(<span class="dt">data =</span> df , <span class="kw">aes</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> y, <span class="dt">fill =</span> Sea.Surface.Temperature)) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb374-4" data-line-number="4"><span class="st">  </span><span class="kw">scale_fill_gradientn</span>(<span class="dt">colors =</span> <span class="kw">jet.colors</span>(<span class="dv">7</span>), <span class="dt">limits =</span> <span class="kw">c</span>(<span class="dv">28</span>, <span class="dv">33</span>)) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb374-5" data-line-number="5"><span class="st">  </span><span class="kw">borders</span>(<span class="dt">fill=</span><span class="st">&quot;white&quot;</span>, <span class="dt">xlim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">100</span>,<span class="op">-</span><span class="dv">80</span>), <span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">16</span>,<span class="dv">30</span>),<span class="dt">alpha =</span> <span class="fl">0.5</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb374-6" data-line-number="6"><span class="st">  </span><span class="kw">coord_quickmap</span>(<span class="dt">xlim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">100</span>,<span class="op">-</span><span class="dv">80</span>), <span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">16</span>,<span class="dv">30</span>))</a></code></pre></div>
-<p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-135-2.png" width="70%" style="display: block; margin: auto;" /></p>
-<p>Let’s get rid of the expanded area beyond the raster domain using the <code>expand=FALSE</code> argument in <code>coord_quickmap()</code></p>
-<div class="sourceCode" id="cb375"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb375-1" data-line-number="1"><span class="kw">ggplot</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb375-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_raster</span>(<span class="dt">data =</span> df , <span class="kw">aes</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> y, <span class="dt">fill =</span> Sea.Surface.Temperature)) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb375-3" data-line-number="3"><span class="st">  </span><span class="kw">scale_fill_gradientn</span>(<span class="dt">colors =</span> <span class="kw">jet.colors</span>(<span class="dv">7</span>), <span class="dt">limits =</span> <span class="kw">c</span>(<span class="dv">28</span>, <span class="dv">33</span>)) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb375-4" data-line-number="4"><span class="st">  </span><span class="kw">borders</span>(<span class="dt">fill=</span><span class="st">&quot;white&quot;</span>, <span class="dt">xlim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">100</span>,<span class="op">-</span><span class="dv">80</span>), <span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">16</span>,<span class="dv">30</span>),<span class="dt">alpha =</span> <span class="fl">0.5</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb375-5" data-line-number="5"><span class="st">  </span><span class="kw">coord_quickmap</span>(<span class="dt">xlim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">100</span>,<span class="op">-</span><span class="dv">80</span>), <span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">16</span>,<span class="dv">30</span>),<span class="dt">expand =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
+<p>The georeferenced data is properly placed. Let’s now turn our attention to the coloring of the data. We can use the <code>RColorBrewer</code> package to create our own color palettes. Also, becuase we’re in lat/long projection, we’re going to use <code>coord_quickmap</code> instead of <code>coord_sf</code>. This function approximates geolocated lines for faster plotting. This can be used in lat/long projected data close to the equator.</p>
+<div class="sourceCode" id="cb374"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb374-1" data-line-number="1"><span class="co"># now let&#39;s use a better colorscheme</span></a>
+<a class="sourceLine" id="cb374-2" data-line-number="2">jet.colors &lt;-<span class="st"> </span><span class="kw">colorRampPalette</span>(<span class="kw">c</span>(<span class="st">&quot;#00007F&quot;</span>, <span class="st">&quot;blue&quot;</span>, <span class="st">&quot;#007FFF&quot;</span>, <span class="st">&quot;cyan&quot;</span>, <span class="st">&quot;#7FFF7F&quot;</span>, <span class="st">&quot;yellow&quot;</span>, <span class="st">&quot;#FF7F00&quot;</span>, <span class="st">&quot;red&quot;</span>, <span class="st">&quot;#7F0000&quot;</span>))</a>
+<a class="sourceLine" id="cb374-3" data-line-number="3"><span class="kw">ggplot</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb374-4" data-line-number="4"><span class="st">  </span><span class="kw">geom_raster</span>(<span class="dt">data =</span> df , <span class="kw">aes</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> y, <span class="dt">fill =</span> Sea.Surface.Temperature)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb374-5" data-line-number="5"><span class="st">  </span><span class="kw">scale_fill_gradientn</span>(<span class="dt">colors =</span> <span class="kw">jet.colors</span>(<span class="dv">7</span>), <span class="dt">limits =</span> <span class="kw">c</span>(<span class="dv">28</span>, <span class="dv">33</span>)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb374-6" data-line-number="6"><span class="st">  </span><span class="kw">coord_quickmap</span>()</a></code></pre></div>
 <p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-136-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb375"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb375-1" data-line-number="1"><span class="co"># now let&#39;s add borders using the borders function</span></a>
+<a class="sourceLine" id="cb375-2" data-line-number="2"><span class="kw">ggplot</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb375-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_raster</span>(<span class="dt">data =</span> df , <span class="kw">aes</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> y, <span class="dt">fill =</span> Sea.Surface.Temperature)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb375-4" data-line-number="4"><span class="st">  </span><span class="kw">scale_fill_gradientn</span>(<span class="dt">colors =</span> <span class="kw">jet.colors</span>(<span class="dv">7</span>), <span class="dt">limits =</span> <span class="kw">c</span>(<span class="dv">28</span>, <span class="dv">33</span>)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb375-5" data-line-number="5"><span class="st">  </span><span class="kw">borders</span>(<span class="dt">fill=</span><span class="st">&quot;white&quot;</span>, <span class="dt">xlim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">100</span>,<span class="op">-</span><span class="dv">80</span>), <span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">16</span>,<span class="dv">30</span>),<span class="dt">alpha =</span> <span class="fl">0.5</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb375-6" data-line-number="6"><span class="st">  </span><span class="kw">coord_quickmap</span>(<span class="dt">xlim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">100</span>,<span class="op">-</span><span class="dv">80</span>), <span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">16</span>,<span class="dv">30</span>))</a></code></pre></div>
+<p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-136-2.png" width="70%" style="display: block; margin: auto;" /></p>
+<p>Let’s get rid of the expanded area beyond the raster domain using the <code>expand=FALSE</code> argument in <code>coord_quickmap()</code></p>
+<div class="sourceCode" id="cb376"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb376-1" data-line-number="1"><span class="kw">ggplot</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb376-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_raster</span>(<span class="dt">data =</span> df , <span class="kw">aes</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> y, <span class="dt">fill =</span> Sea.Surface.Temperature)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb376-3" data-line-number="3"><span class="st">  </span><span class="kw">scale_fill_gradientn</span>(<span class="dt">colors =</span> <span class="kw">jet.colors</span>(<span class="dv">7</span>), <span class="dt">limits =</span> <span class="kw">c</span>(<span class="dv">28</span>, <span class="dv">33</span>)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb376-4" data-line-number="4"><span class="st">  </span><span class="kw">borders</span>(<span class="dt">fill=</span><span class="st">&quot;white&quot;</span>, <span class="dt">xlim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">100</span>,<span class="op">-</span><span class="dv">80</span>), <span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">16</span>,<span class="dv">30</span>),<span class="dt">alpha =</span> <span class="fl">0.5</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb376-5" data-line-number="5"><span class="st">  </span><span class="kw">coord_quickmap</span>(<span class="dt">xlim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">100</span>,<span class="op">-</span><span class="dv">80</span>), <span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">16</span>,<span class="dv">30</span>),<span class="dt">expand =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
+<p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-137-1.png" width="70%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="r-color-brewer-palettes" class="section level2">
 <h2><span class="header-section-number">13.3</span> R Color Brewer Palettes</h2>
 <p>There are a number of pre-made color palettes from <code>RColorBrewer</code>. Here is a list.</p>
-<div class="sourceCode" id="cb376"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb376-1" data-line-number="1"><span class="kw">library</span>(RColorBrewer)</a>
-<a class="sourceLine" id="cb376-2" data-line-number="2"><span class="kw">display.brewer.all</span>()</a></code></pre></div>
-<p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-137-1.png" width="768" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb377"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb377-1" data-line-number="1"><span class="kw">library</span>(RColorBrewer)</a>
+<a class="sourceLine" id="cb377-2" data-line-number="2"><span class="kw">display.brewer.all</span>()</a></code></pre></div>
+<p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-138-1.png" width="768" style="display: block; margin: auto;" /></p>
 <p>Let’s plot using a Yellow-Orange-Red palette and a white NA value</p>
-<div class="sourceCode" id="cb377"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb377-1" data-line-number="1">cols &lt;-<span class="st"> </span><span class="kw">brewer.pal</span>(<span class="dv">9</span>, <span class="st">&quot;YlOrRd&quot;</span>) <span class="co"># maximum number of colors in palette YlOrRd is 9</span></a>
-<a class="sourceLine" id="cb377-2" data-line-number="2">pal &lt;-<span class="st"> </span><span class="kw">colorRampPalette</span>(cols)</a>
-<a class="sourceLine" id="cb377-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb377-4" data-line-number="4"><span class="kw">ggplot</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb377-5" data-line-number="5"><span class="st">  </span><span class="kw">geom_raster</span>(<span class="dt">data =</span> df , <span class="kw">aes</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> y, <span class="dt">fill =</span> Sea.Surface.Temperature)) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb377-6" data-line-number="6"><span class="st">  </span><span class="kw">scale_fill_gradientn</span>(<span class="dt">colors =</span> <span class="kw">pal</span>(<span class="dv">20</span>), <span class="dt">limits =</span> <span class="kw">c</span>(<span class="dv">25</span>, <span class="dv">35</span>),<span class="dt">na.value =</span> <span class="st">&quot;white&quot;</span>) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb377-7" data-line-number="7"><span class="st">  </span><span class="kw">borders</span>(<span class="dt">fill=</span><span class="st">&quot;white&quot;</span>, <span class="dt">xlim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">100</span>,<span class="op">-</span><span class="dv">80</span>), <span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">16</span>,<span class="dv">30</span>),<span class="dt">alpha =</span> <span class="fl">0.5</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb377-8" data-line-number="8"><span class="st">  </span><span class="kw">coord_quickmap</span>(<span class="dt">xlim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">100</span>,<span class="op">-</span><span class="dv">80</span>), <span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">16</span>,<span class="dv">30</span>),<span class="dt">expand =</span> <span class="ot">FALSE</span>)    </a></code></pre></div>
-<p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-138-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb378"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb378-1" data-line-number="1">cols &lt;-<span class="st"> </span><span class="kw">brewer.pal</span>(<span class="dv">9</span>, <span class="st">&quot;YlOrRd&quot;</span>) <span class="co"># maximum number of colors in palette YlOrRd is 9</span></a>
+<a class="sourceLine" id="cb378-2" data-line-number="2">pal &lt;-<span class="st"> </span><span class="kw">colorRampPalette</span>(cols)</a>
+<a class="sourceLine" id="cb378-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb378-4" data-line-number="4"><span class="kw">ggplot</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb378-5" data-line-number="5"><span class="st">  </span><span class="kw">geom_raster</span>(<span class="dt">data =</span> df , <span class="kw">aes</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> y, <span class="dt">fill =</span> Sea.Surface.Temperature)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb378-6" data-line-number="6"><span class="st">  </span><span class="kw">scale_fill_gradientn</span>(<span class="dt">colors =</span> <span class="kw">pal</span>(<span class="dv">20</span>), <span class="dt">limits =</span> <span class="kw">c</span>(<span class="dv">25</span>, <span class="dv">35</span>),<span class="dt">na.value =</span> <span class="st">&quot;white&quot;</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb378-7" data-line-number="7"><span class="st">  </span><span class="kw">borders</span>(<span class="dt">fill=</span><span class="st">&quot;white&quot;</span>, <span class="dt">xlim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">100</span>,<span class="op">-</span><span class="dv">80</span>), <span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">16</span>,<span class="dv">30</span>),<span class="dt">alpha =</span> <span class="fl">0.5</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb378-8" data-line-number="8"><span class="st">  </span><span class="kw">coord_quickmap</span>(<span class="dt">xlim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">100</span>,<span class="op">-</span><span class="dv">80</span>), <span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">16</span>,<span class="dv">30</span>),<span class="dt">expand =</span> <span class="ot">FALSE</span>)    </a></code></pre></div>
+<p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-139-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <div id="multi-plot-ggplot" class="section level3">
 <h3><span class="header-section-number">13.3.1</span> Multi Plot ggplot</h3>
 <p>Multiple Plots in one window is possible with ggplot2 but is done with a different method. Remember how we explicitly named ggplot2 instances in the previous tutorial? We must do that again in order to achieve the results we want. Let’s split up the image above into West Gulf of Mexico and East Gulf of Mexico.</p>
-<div class="sourceCode" id="cb378"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb378-1" data-line-number="1"><span class="kw">library</span>(ggplot2)</a>
-<a class="sourceLine" id="cb378-2" data-line-number="2"><span class="kw">library</span>(grid)</a>
-<a class="sourceLine" id="cb378-3" data-line-number="3"><span class="kw">library</span>(gridExtra)</a>
-<a class="sourceLine" id="cb378-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb378-5" data-line-number="5">p1 =<span class="st"> </span><span class="kw">ggplot</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb378-6" data-line-number="6"><span class="st">  </span><span class="kw">geom_raster</span>(<span class="dt">data =</span> df , <span class="kw">aes</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> y, <span class="dt">fill =</span> Sea.Surface.Temperature), <span class="dt">show.legend=</span><span class="ot">FALSE</span>) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb378-7" data-line-number="7"><span class="st">  </span><span class="kw">scale_fill_gradientn</span>(<span class="dt">colors =</span> <span class="kw">pal</span>(<span class="dv">20</span>), <span class="dt">limits =</span> <span class="kw">c</span>(<span class="dv">25</span>, <span class="dv">35</span>),<span class="dt">na.value =</span> <span class="st">&quot;white&quot;</span>) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb378-8" data-line-number="8"><span class="st">  </span><span class="kw">borders</span>(<span class="dt">fill=</span><span class="st">&quot;white&quot;</span>, <span class="dt">xlim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">100</span>,<span class="op">-</span><span class="dv">90</span>), <span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">16</span>,<span class="dv">30</span>),<span class="dt">alpha =</span> <span class="fl">0.5</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb378-9" data-line-number="9"><span class="st">  </span><span class="kw">coord_quickmap</span>(<span class="dt">xlim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">100</span>,<span class="op">-</span><span class="dv">90</span>), <span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">16</span>,<span class="dv">30</span>),<span class="dt">expand =</span> <span class="ot">FALSE</span>)    </a>
-<a class="sourceLine" id="cb378-10" data-line-number="10"></a>
-<a class="sourceLine" id="cb378-11" data-line-number="11">p2 =<span class="st"> </span><span class="kw">ggplot</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb378-12" data-line-number="12"><span class="st">  </span><span class="kw">geom_raster</span>(<span class="dt">data =</span> df , <span class="kw">aes</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> y, <span class="dt">fill =</span> Sea.Surface.Temperature), <span class="dt">show.legend=</span><span class="ot">FALSE</span>) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb378-13" data-line-number="13"><span class="st">  </span><span class="kw">scale_fill_gradientn</span>(<span class="dt">colors =</span> <span class="kw">pal</span>(<span class="dv">20</span>), <span class="dt">limits =</span> <span class="kw">c</span>(<span class="dv">25</span>, <span class="dv">35</span>),<span class="dt">na.value =</span> <span class="st">&quot;white&quot;</span>) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb378-14" data-line-number="14"><span class="st">  </span><span class="kw">borders</span>(<span class="dt">fill=</span><span class="st">&quot;white&quot;</span>, <span class="dt">xlim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">90</span>,<span class="op">-</span><span class="dv">80</span>), <span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">16</span>,<span class="dv">30</span>),<span class="dt">alpha =</span> <span class="fl">0.5</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb378-15" data-line-number="15"><span class="st">  </span><span class="kw">coord_quickmap</span>(<span class="dt">xlim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">90</span>,<span class="op">-</span><span class="dv">80</span>), <span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">16</span>,<span class="dv">30</span>),<span class="dt">expand =</span> <span class="ot">FALSE</span>)    </a>
-<a class="sourceLine" id="cb378-16" data-line-number="16"></a>
-<a class="sourceLine" id="cb378-17" data-line-number="17"><span class="co"># use the grid.arrange function from grid and gridExtra to plot our 2 ggplots in the same window</span></a>
-<a class="sourceLine" id="cb378-18" data-line-number="18"><span class="kw">grid.arrange</span>(p1,p2, <span class="dt">ncol=</span><span class="dv">2</span>, <span class="dt">nrow=</span><span class="dv">1</span>)</a></code></pre></div>
-<p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-139-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb379"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb379-1" data-line-number="1"><span class="kw">library</span>(ggplot2)</a>
+<a class="sourceLine" id="cb379-2" data-line-number="2"><span class="kw">library</span>(grid)</a>
+<a class="sourceLine" id="cb379-3" data-line-number="3"><span class="kw">library</span>(gridExtra)</a>
+<a class="sourceLine" id="cb379-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb379-5" data-line-number="5">p1 =<span class="st"> </span><span class="kw">ggplot</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb379-6" data-line-number="6"><span class="st">  </span><span class="kw">geom_raster</span>(<span class="dt">data =</span> df , <span class="kw">aes</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> y, <span class="dt">fill =</span> Sea.Surface.Temperature), <span class="dt">show.legend=</span><span class="ot">FALSE</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb379-7" data-line-number="7"><span class="st">  </span><span class="kw">scale_fill_gradientn</span>(<span class="dt">colors =</span> <span class="kw">pal</span>(<span class="dv">20</span>), <span class="dt">limits =</span> <span class="kw">c</span>(<span class="dv">25</span>, <span class="dv">35</span>),<span class="dt">na.value =</span> <span class="st">&quot;white&quot;</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb379-8" data-line-number="8"><span class="st">  </span><span class="kw">borders</span>(<span class="dt">fill=</span><span class="st">&quot;white&quot;</span>, <span class="dt">xlim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">100</span>,<span class="op">-</span><span class="dv">90</span>), <span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">16</span>,<span class="dv">30</span>),<span class="dt">alpha =</span> <span class="fl">0.5</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb379-9" data-line-number="9"><span class="st">  </span><span class="kw">coord_quickmap</span>(<span class="dt">xlim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">100</span>,<span class="op">-</span><span class="dv">90</span>), <span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">16</span>,<span class="dv">30</span>),<span class="dt">expand =</span> <span class="ot">FALSE</span>)    </a>
+<a class="sourceLine" id="cb379-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb379-11" data-line-number="11">p2 =<span class="st"> </span><span class="kw">ggplot</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb379-12" data-line-number="12"><span class="st">  </span><span class="kw">geom_raster</span>(<span class="dt">data =</span> df , <span class="kw">aes</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> y, <span class="dt">fill =</span> Sea.Surface.Temperature), <span class="dt">show.legend=</span><span class="ot">FALSE</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb379-13" data-line-number="13"><span class="st">  </span><span class="kw">scale_fill_gradientn</span>(<span class="dt">colors =</span> <span class="kw">pal</span>(<span class="dv">20</span>), <span class="dt">limits =</span> <span class="kw">c</span>(<span class="dv">25</span>, <span class="dv">35</span>),<span class="dt">na.value =</span> <span class="st">&quot;white&quot;</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb379-14" data-line-number="14"><span class="st">  </span><span class="kw">borders</span>(<span class="dt">fill=</span><span class="st">&quot;white&quot;</span>, <span class="dt">xlim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">90</span>,<span class="op">-</span><span class="dv">80</span>), <span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">16</span>,<span class="dv">30</span>),<span class="dt">alpha =</span> <span class="fl">0.5</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb379-15" data-line-number="15"><span class="st">  </span><span class="kw">coord_quickmap</span>(<span class="dt">xlim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">90</span>,<span class="op">-</span><span class="dv">80</span>), <span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">16</span>,<span class="dv">30</span>),<span class="dt">expand =</span> <span class="ot">FALSE</span>)    </a>
+<a class="sourceLine" id="cb379-16" data-line-number="16"></a>
+<a class="sourceLine" id="cb379-17" data-line-number="17"><span class="co"># use the grid.arrange function from grid and gridExtra to plot our 2 ggplots in the same window</span></a>
+<a class="sourceLine" id="cb379-18" data-line-number="18"><span class="kw">grid.arrange</span>(p1,p2, <span class="dt">ncol=</span><span class="dv">2</span>, <span class="dt">nrow=</span><span class="dv">1</span>)</a></code></pre></div>
+<p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-140-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p><code>grid.arrange</code> takes ggplot objects and plots them onto a window with specified rows and columns. Here we wanted these two separate plots side by side.</p>
 </div>
 </div>
@@ -576,7 +577,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>Submit resulting image to UD Canvas.</p></li>
 </ol>
 <p>Your final product should look something like…</p>
-<p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-140-1.png" width="1344" /></p>
+<p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-141-1.png" width="1344" /></p>
 <div id="extra-credit---2-points-2" class="section level3">
 <h3><span class="header-section-number">13.4.1</span> Extra Credit - 2 Points</h3>
 <p>Using the data above, approximate the average tree cover for South America and Africa (extents don’t have to be exact, just generally)</p>

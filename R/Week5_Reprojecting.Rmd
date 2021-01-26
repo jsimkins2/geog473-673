@@ -37,7 +37,7 @@ matA
 
 This week we'll be working an example with **globalTemClim1961-1990.nc**. This is Global Temperature climatology from 1961 to 1990. We'll look at resampling this raster to a different size (resolution). Next, we'll reproject this dataset. Reprojection and resampling are a frequent task for spatial datasets because the Earth isn't flat (despite what your distant relative on Facebook might think). Earth's shape (oblate spheroid) presents challenging projection issues. 
 
-```{r, warning=FALSE, message=FALSE}
+```{r, warning=FALSE, message=FALSE, fig.align="center", out.width="60%"}
 # load in the packages
 library(raster)
 library(rasterVis)
@@ -81,7 +81,7 @@ plt + layer(sp.lines(wrld_simpl, col='black', lwd=0.4))
 The `png()` function is a function that saves a plot to png. After we invoke the function and fill out the arguments, we need to execute the plot code between the `png()` function and `dev.off()`. `dev.off()` tells R that you're done adding things to the plot and that it can be done plotting.
 
 
-```{r, eval=FALSE}
+```{r, eval=FALSE, fig.align="center"}
 png(filename = "~/Downloads/myPNG.png", width = 10, height = 6, units = 'in',res=100)
 plt <- levelplot(projTemClim, margin=F, par.settings=BuRdTheme,
                  main="January Global Average Temp 1961-1990")
@@ -112,7 +112,7 @@ You can save these rasters in a variety of formats. If you're interested in look
 7. Write raster to NetCDF
 8. Upload PNG **and** netCDF file to Canvas under week 5 assignment
 
-``` {r end of reprojecting, echo = FALSE, message = FALSE, error = FALSE, warning = FALSE, fig.height=10, fig.width=16}
+``` {r end of reprojecting, echo = FALSE, message = FALSE, fig.align="center", error = FALSE, warning = FALSE, fig.height=10, fig.width=16}
 library(raster)
 library(rasterVis)
 library(maptools) # also loads sp package

@@ -175,7 +175,7 @@ descdist(jan2jun$tair)
 
 Uniform, normal, and gamma distributions are the 3 closest to our air temperature data. Let's fit each of these distributions to the empirical data and create a density plot (`denscomp`), a cumulative density function plot (`cdfcomp`), a Q-Q plot (`qqcomp`), and a P-P plot (`ppcomp`) for these distributions.
 
-```{r, fig.width=7, fig.height=7, fig.align="center"}
+```{r, fig.width=10, fig.height=10, fig.align="center"}
 fit_u  <- fitdist(jan2jun$tair, "unif")
 fit_n  <- fitdist(jan2jun$tair, "norm")
 fit_g <- fitdist(jan2jun$tair, "gamma")
@@ -198,7 +198,7 @@ Correlation plots show correlation coefficients across variables. For example, w
 For the correlation plot, we're going to use the full year dataset, `wcreek_df`, rather than the `jan2jun` dataset. When we calculate correlations, the more data we have the better. We're also going to calculate residual values - that is the distance between actual data and the trendline. It's another way to express error. When we have a large dataset like this with many scatter points, it's difficult to nail down a specific trendline that may capture the dataset the best. Different trendlines may represent the data in similar ways. Residuals measure the diffence between a particular trendline and the data point. 
 
 
-```{r, fig.width=10, fig.height=10}
+```{r, fig.width=8, fig.height=8, fig.align="center"}
 library(corrplot)
 # create a duplicate of the wcreek_df - remove the datetime variable from this
 wcreek_nodate = wcreek_df

@@ -1,9 +1,10 @@
 fig:unnamed-chunk-52
-preface
+r-for-geospatial-sciences
+welcome
 course-github
 syllabus
 phase-1
-phase-2-spring-geog473-673-1-credit-agenda
+phase-2
 getting-started-with-r
 why-is-there-such-a-buzz-around-r
 reasons-to-love-r

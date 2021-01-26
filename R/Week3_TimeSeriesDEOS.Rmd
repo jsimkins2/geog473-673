@@ -143,7 +143,7 @@ The dataset we'll be using is named - **DEOS.csv** . It contains a variety of me
   
 Remember, we need to tell R *where* we stored the file we want to open. We can use `getwd()` to see where R is looking right now. From there, we can tell it to look in `Downloads`, or `Documents`, or `Desktop`, etc. 
 
-``` {r, warning = FALSE}
+``` {r, warning = FALSE, fig.align="center", out.width="60%"}
 # load the data using read.csv()
 deos_data <- read.csv("../datasets/DEOS.csv", header = TRUE, skip=0, stringsAsFactors = FALSE)
 

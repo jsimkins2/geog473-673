@@ -107,7 +107,7 @@ The final `pathList[[1]]` should look like this...
 
 Rasters offer us a 2 dimensional dataset (matrix) of data with geospatial coordinates. Rasters can come in a variety of filetypes including netCDF, GeoTIFF, CSV (if they come in CSV, they'll be massive - this is an inefficient datatype), etc. We'll be looking at the GOES-16 Rolling 1 Day average datafile - **GOES_R_ROLLING_1DAY_20190814.nc**. The GOES-16 Satellite records sea surface temperatures every hour. A rolling 1 day is an average of the previous 24 hours of record of sea surface temperature (and this dataset is created by CEMA here at UD). 
 
-``` {r raster section, message=FALSE, warning=FALSE, error = FALSE}
+``` {r raster section, message=FALSE, warning=FALSE, out.width="60%", fig.align="center", error = FALSE}
 library(maptools)
 library(sp)
 library(ncdf4)
@@ -159,7 +159,7 @@ plt <- levelplot(sstRast, margin=F, par.settings=BuRdTheme,
 plt + layer(sp.polygons(usa, col='black',fill='grey', lwd=0.4))
 ```
 
-```{r geotiff section}
+```{r geotiff section, fig.align="center", out.width="60%"}
 # Now let's do the same with geotiff
 tifFile = "../datasets/goesSST.tif"
 sstRast = raster(tifFile)
@@ -197,7 +197,7 @@ plt + layer(sp.lines(world.shp, col='gray', lwd=0.4))
 
 4. Submit resulting image to Canvas assignment 4
 
-``` {r end of week 44444444444444444444, echo = FALSE, message = FALSE, error = FALSE, warning = FALSE, fig.height=10, fig.width=16}
+``` {r end of week 44444444444444444444, echo = FALSE, message = FALSE, error = FALSE, fig.align="center", warning = FALSE, fig.height=10, fig.width=16}
 library(basicPlotteR)
 library(ncdf4)
 library(raster)

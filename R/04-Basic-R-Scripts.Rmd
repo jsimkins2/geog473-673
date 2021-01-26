@@ -46,7 +46,7 @@ length(co2_data)
 
 Can we plot this dataset?
 
-```{r}
+```{r, fig.align="center", out.width="60%"}
 plot(x = co2, ylab = "Atmospheric concentration of CO2 (ppm)", main = "CO2 Dataset")
 ```
 
@@ -80,7 +80,7 @@ Above is our script. We run this script in the console. We can save this script 
 
 We can save any plot from the R plot window. Simply navigate to the **Plots** tab and select **Export** then **Save As Image**. 
 
-```{r, echo=FALSE, fig.cap="Save As Image", out.width = '80%'}
+```{r, echo=FALSE, fig.cap="Save As Image", fig.align="center", out.width = '80%'}
 knitr::include_graphics("images/save_image.png")  
 ```
 
@@ -168,7 +168,7 @@ The Datsun 710 has the highest MPG rating of the first 5 cars (rows) in the data
 
 The entire script looks like this:
 
-```{r zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz, eval=FALSE}
+```{r, eval=FALSE}
 # load the data - the mtcars dataset is pre-built 
 data('mtcars')
 

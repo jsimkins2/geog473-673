@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>6 Scientific R Scripts | R Programming for Geospatial Sciences</title>
+  <title>6 Scientific R Scripts | R for Geospatial Sciences</title>
   <meta name="description" content="Advanced R" />
   <meta name="generator" content="bookdown 0.20.6 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="6 Scientific R Scripts | R Programming for Geospatial Sciences" />
+  <meta property="og:title" content="6 Scientific R Scripts | R for Geospatial Sciences" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="6 Scientific R Scripts | R Programming for Geospatial Sciences" />
+  <meta name="twitter:title" content="6 Scientific R Scripts | R for Geospatial Sciences" />
   
   <meta name="twitter:description" content="Advanced R" />
   
@@ -24,7 +24,7 @@
 <meta name="author" content="James Simkins" />
 
 
-<meta name="date" content="2021-01-25" />
+<meta name="date" content="2021-01-26" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -152,11 +152,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">R for Geospatial Sciences</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="1" data-path="preface.html"><a href="preface.html"><i class="fa fa-check"></i><b>1</b> Preface</a><ul>
-<li class="chapter" data-level="1.1" data-path="preface.html"><a href="preface.html#course-github"><i class="fa fa-check"></i><b>1.1</b> Course Github</a></li>
-<li class="chapter" data-level="1.2" data-path="preface.html"><a href="preface.html#syllabus"><i class="fa fa-check"></i><b>1.2</b> Syllabus</a></li>
-<li class="chapter" data-level="1.3" data-path="preface.html"><a href="preface.html#phase-1"><i class="fa fa-check"></i><b>1.3</b> Phase 1</a></li>
-<li class="chapter" data-level="1.4" data-path="preface.html"><a href="preface.html#phase-2-spring-geog473-673-1-credit-agenda"><i class="fa fa-check"></i><b>1.4</b> Phase 2: Spring GEOG473-673 1-Credit Agenda</a></li>
+<li class="chapter" data-level="1" data-path="r-for-geospatial-sciences.html"><a href="r-for-geospatial-sciences.html"><i class="fa fa-check"></i><b>1</b> R for Geospatial Sciences</a><ul>
+<li class="chapter" data-level="1.1" data-path="r-for-geospatial-sciences.html"><a href="r-for-geospatial-sciences.html#welcome"><i class="fa fa-check"></i><b>1.1</b> Welcome</a></li>
+<li class="chapter" data-level="1.2" data-path="r-for-geospatial-sciences.html"><a href="r-for-geospatial-sciences.html#course-github"><i class="fa fa-check"></i><b>1.2</b> Course Github</a></li>
+<li class="chapter" data-level="1.3" data-path="r-for-geospatial-sciences.html"><a href="r-for-geospatial-sciences.html#syllabus"><i class="fa fa-check"></i><b>1.3</b> Syllabus</a></li>
+<li class="chapter" data-level="1.4" data-path="r-for-geospatial-sciences.html"><a href="r-for-geospatial-sciences.html#phase-1"><i class="fa fa-check"></i><b>1.4</b> Phase 1</a></li>
+<li class="chapter" data-level="1.5" data-path="r-for-geospatial-sciences.html"><a href="r-for-geospatial-sciences.html#phase-2"><i class="fa fa-check"></i><b>1.5</b> Phase 2</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html"><i class="fa fa-check"></i><b>2</b> Getting Started with R</a><ul>
 <li class="chapter" data-level="2.1" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#why-is-there-such-a-buzz-around-r"><i class="fa fa-check"></i><b>2.1</b> Why is there such a buzz around R?</a></li>
@@ -330,7 +331,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">R Programming for Geospatial Sciences</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">R for Geospatial Sciences</a>
           </h1>
         </div>
 
@@ -346,18 +347,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb132-2" data-line-number="2"><span class="co"># Load libraries</span></a>
 <a class="sourceLine" id="cb132-3" data-line-number="3"><span class="kw">library</span>(ncdf4)</a>
 <a class="sourceLine" id="cb132-4" data-line-number="4"><span class="kw">library</span>(fields)</a>
-<a class="sourceLine" id="cb132-5" data-line-number="5">ncFile &lt;-<span class="st"> </span>ncdf4<span class="op">::</span><span class="kw">nc_open</span>(<span class="st">&quot;~/Documents/Github/geog473-673/datasets/OR_ABI-L2-SSTF-M3_G16_s20192081300453_e20192081400161_c20192081406297.nc&quot;</span>)</a>
-<a class="sourceLine" id="cb132-6" data-line-number="6">sstK &lt;-<span class="st"> </span>ncdf4<span class="op">::</span><span class="kw">ncvar_get</span>(<span class="dt">nc=</span>ncFile, <span class="dt">varid=</span><span class="st">&quot;SST&quot;</span>)</a>
-<a class="sourceLine" id="cb132-7" data-line-number="7">lat &lt;-<span class="st"> </span>ncdf4<span class="op">::</span><span class="kw">ncvar_get</span>(<span class="dt">nc=</span>ncFile, <span class="dt">varid=</span><span class="st">&quot;latitude&quot;</span>)</a>
-<a class="sourceLine" id="cb132-8" data-line-number="8">lon &lt;-<span class="st"> </span>ncdf4<span class="op">::</span><span class="kw">ncvar_get</span>(<span class="dt">nc=</span>ncFile, <span class="dt">varid=</span><span class="st">&quot;longitude&quot;</span>)</a>
-<a class="sourceLine" id="cb132-9" data-line-number="9"><span class="co"># convert sst from Kelvin to Celsius</span></a>
-<a class="sourceLine" id="cb132-10" data-line-number="10">sstC &lt;-<span class="st"> </span>sstK <span class="op">-</span><span class="st"> </span><span class="fl">273.15</span></a>
-<a class="sourceLine" id="cb132-11" data-line-number="11"><span class="co"># remove values below 0C</span></a>
-<a class="sourceLine" id="cb132-12" data-line-number="12">sstC[sstC <span class="op">&lt;</span><span class="st"> </span><span class="dv">0</span>] =<span class="st"> </span><span class="ot">NA</span></a>
-<a class="sourceLine" id="cb132-13" data-line-number="13"><span class="co"># Plot the matrix</span></a>
-<a class="sourceLine" id="cb132-14" data-line-number="14">fields<span class="op">::</span><span class="kw">image.plot</span>(<span class="dt">x=</span>lon, <span class="dt">y=</span>lat, <span class="dt">z=</span>sstC, <span class="dt">legend.lab=</span><span class="st">&quot;Celsius&quot;</span>)</a>
-<a class="sourceLine" id="cb132-15" data-line-number="15"><span class="kw">title</span>(<span class="st">&quot;GOES-R SST Product 7/25/2019 19:00 UTC&quot;</span>)</a></code></pre></div>
-<p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-64-1.png" width="672" /></p>
+<a class="sourceLine" id="cb132-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb132-6" data-line-number="6"><span class="co"># open netcdf file</span></a>
+<a class="sourceLine" id="cb132-7" data-line-number="7">ncFile &lt;-<span class="st"> </span>ncdf4<span class="op">::</span><span class="kw">nc_open</span>(<span class="st">&quot;~/Documents/Github/geog473-673/datasets/OR_ABI-L2-SSTF-M3_G16_s20192081300453_e20192081400161_c20192081406297.nc&quot;</span>)</a>
+<a class="sourceLine" id="cb132-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb132-9" data-line-number="9"><span class="co"># extract SST - sea surface temperature </span></a>
+<a class="sourceLine" id="cb132-10" data-line-number="10">sstK &lt;-<span class="st"> </span>ncdf4<span class="op">::</span><span class="kw">ncvar_get</span>(<span class="dt">nc=</span>ncFile, <span class="dt">varid=</span><span class="st">&quot;SST&quot;</span>)</a>
+<a class="sourceLine" id="cb132-11" data-line-number="11">lat &lt;-<span class="st"> </span>ncdf4<span class="op">::</span><span class="kw">ncvar_get</span>(<span class="dt">nc=</span>ncFile, <span class="dt">varid=</span><span class="st">&quot;latitude&quot;</span>)</a>
+<a class="sourceLine" id="cb132-12" data-line-number="12">lon &lt;-<span class="st"> </span>ncdf4<span class="op">::</span><span class="kw">ncvar_get</span>(<span class="dt">nc=</span>ncFile, <span class="dt">varid=</span><span class="st">&quot;longitude&quot;</span>)</a>
+<a class="sourceLine" id="cb132-13" data-line-number="13"><span class="co"># convert sst from Kelvin to Celsius</span></a>
+<a class="sourceLine" id="cb132-14" data-line-number="14">sstC &lt;-<span class="st"> </span>sstK <span class="op">-</span><span class="st"> </span><span class="fl">273.15</span></a>
+<a class="sourceLine" id="cb132-15" data-line-number="15"><span class="co"># remove values below 0C</span></a>
+<a class="sourceLine" id="cb132-16" data-line-number="16">sstC[sstC <span class="op">&lt;</span><span class="st"> </span><span class="dv">0</span>] =<span class="st"> </span><span class="ot">NA</span></a>
+<a class="sourceLine" id="cb132-17" data-line-number="17"><span class="co"># Plot the matrix</span></a>
+<a class="sourceLine" id="cb132-18" data-line-number="18">fields<span class="op">::</span><span class="kw">image.plot</span>(<span class="dt">x=</span>lon, <span class="dt">y=</span>lat, <span class="dt">z=</span>sstC, <span class="dt">legend.lab=</span><span class="st">&quot;Celsius&quot;</span>)</a>
+<a class="sourceLine" id="cb132-19" data-line-number="19"><span class="kw">title</span>(<span class="st">&quot;GOES-R SST Product 7/25/2019 19:00 UTC&quot;</span>)</a></code></pre></div>
+<p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-65-1.png" width="60%" style="display: block; margin: auto;" /></p>
 <div id="script-breakdown" class="section level2">
 <h2><span class="header-section-number">6.1</span> Script Breakdown</h2>
 <div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb133-1" data-line-number="1"><span class="co"># Load libraries</span></a>
@@ -455,7 +460,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb143-16" data-line-number="16"><span class="co"># Plot the matrix</span></a>
 <a class="sourceLine" id="cb143-17" data-line-number="17">fields<span class="op">::</span><span class="kw">image.plot</span>(<span class="dt">x=</span>lon, <span class="dt">y=</span>lat, <span class="dt">z=</span>sstC, <span class="dt">legend.lab=</span><span class="st">&quot;Celsius&quot;</span>)</a>
 <a class="sourceLine" id="cb143-18" data-line-number="18"><span class="kw">title</span>(<span class="st">&quot;GOES-R SST Product 7/25/2019 19:00 UTC&quot;</span>)</a></code></pre></div>
-<p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-72-1.png" width="672" /></p>
+<p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-73-1.png" width="60%" style="display: block; margin: auto;" /></p>
 <p>Now we plot this up using the <code>image.plot()</code> function from the <code>fields</code> library. <code>image.plot()</code> takes the arguments <code>x</code>, <code>y</code>, and <code>z</code>. This is a 2 dimensional dataset of Sea Surface Temperature where the <code>x</code> is <code>longitude</code>, the <code>y</code> is <code>latitude</code>, and what we plot within the box (<code>z</code>) is <code>sstC</code>. Notice that for this kind of plot, the ‘title()’ function is a separate function rather than an argument that goes inside of <code>image.plot()</code>. Remember, if you’re ever confused about something like this just tell R you need ‘help()’.</p>
 </div>
 <div id="in-class-exercise" class="section level2">
@@ -463,11 +468,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ol style="list-style-type: decimal">
 <li>Go to <a href="https://github.com/jsimkins2/geog473-673/tree/master/datasets" class="uri">https://github.com/jsimkins2/geog473-673/tree/master/datasets</a></li>
 <li>Download ‘OR_ABI-L2-SSTF-M3_G16_s20192081300453_e20192081400161_c20192081406297.nc’</li>
-<li>Make simple plot of the ‘DQF’ (Data Quality Flag) variable</li>
+<li>Make simple plot of the <code>DQF</code> (Data Quality Flag) variable</li>
 </ol>
-<p>-Hint: You may have to use ‘install.packages’ in your console first</p>
+<p>-Hint: You may have to use <code>install.packages()</code> to install pacakages you may not have yet on your machine.</p>
 <p>Aim for something like this:
-<img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-73-1.png" width="672" /></p>
+<img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-74-1.png" width="60%" style="display: block; margin: auto;" /></p>
 <div id="further-explanation-of-datatypes" class="section level3">
 <h3><span class="header-section-number">6.2.1</span> Further Explanation of DataTypes</h3>
 <p>If you look into your environment from the in class exercise, you’ll notice under the ‘Data’ tab you have a large matrix of the DQF values. R stores these matrices without the column/row identifier (aka lat &amp; lon). We provide the image.plot() function with the lon &amp; lat arrays becuase it doesn’t know what the x &amp; y coordinates are of the matrix. Notice that the environment tells you the dimensions - the matrix is 2778 x 1989. R is indexed from 1 to the length of the dimension. Here is what I mean:</p>

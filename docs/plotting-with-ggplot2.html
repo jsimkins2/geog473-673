@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>12 Plotting with ggplot2 | R Programming for Geospatial Sciences</title>
+  <title>12 Plotting with ggplot2 | R for Geospatial Sciences</title>
   <meta name="description" content="Advanced R" />
   <meta name="generator" content="bookdown 0.20.6 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="12 Plotting with ggplot2 | R Programming for Geospatial Sciences" />
+  <meta property="og:title" content="12 Plotting with ggplot2 | R for Geospatial Sciences" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="12 Plotting with ggplot2 | R Programming for Geospatial Sciences" />
+  <meta name="twitter:title" content="12 Plotting with ggplot2 | R for Geospatial Sciences" />
   
   <meta name="twitter:description" content="Advanced R" />
   
@@ -24,7 +24,7 @@
 <meta name="author" content="James Simkins" />
 
 
-<meta name="date" content="2021-01-25" />
+<meta name="date" content="2021-01-26" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -152,11 +152,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">R for Geospatial Sciences</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="1" data-path="preface.html"><a href="preface.html"><i class="fa fa-check"></i><b>1</b> Preface</a><ul>
-<li class="chapter" data-level="1.1" data-path="preface.html"><a href="preface.html#course-github"><i class="fa fa-check"></i><b>1.1</b> Course Github</a></li>
-<li class="chapter" data-level="1.2" data-path="preface.html"><a href="preface.html#syllabus"><i class="fa fa-check"></i><b>1.2</b> Syllabus</a></li>
-<li class="chapter" data-level="1.3" data-path="preface.html"><a href="preface.html#phase-1"><i class="fa fa-check"></i><b>1.3</b> Phase 1</a></li>
-<li class="chapter" data-level="1.4" data-path="preface.html"><a href="preface.html#phase-2-spring-geog473-673-1-credit-agenda"><i class="fa fa-check"></i><b>1.4</b> Phase 2: Spring GEOG473-673 1-Credit Agenda</a></li>
+<li class="chapter" data-level="1" data-path="r-for-geospatial-sciences.html"><a href="r-for-geospatial-sciences.html"><i class="fa fa-check"></i><b>1</b> R for Geospatial Sciences</a><ul>
+<li class="chapter" data-level="1.1" data-path="r-for-geospatial-sciences.html"><a href="r-for-geospatial-sciences.html#welcome"><i class="fa fa-check"></i><b>1.1</b> Welcome</a></li>
+<li class="chapter" data-level="1.2" data-path="r-for-geospatial-sciences.html"><a href="r-for-geospatial-sciences.html#course-github"><i class="fa fa-check"></i><b>1.2</b> Course Github</a></li>
+<li class="chapter" data-level="1.3" data-path="r-for-geospatial-sciences.html"><a href="r-for-geospatial-sciences.html#syllabus"><i class="fa fa-check"></i><b>1.3</b> Syllabus</a></li>
+<li class="chapter" data-level="1.4" data-path="r-for-geospatial-sciences.html"><a href="r-for-geospatial-sciences.html#phase-1"><i class="fa fa-check"></i><b>1.4</b> Phase 1</a></li>
+<li class="chapter" data-level="1.5" data-path="r-for-geospatial-sciences.html"><a href="r-for-geospatial-sciences.html#phase-2"><i class="fa fa-check"></i><b>1.5</b> Phase 2</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html"><i class="fa fa-check"></i><b>2</b> Getting Started with R</a><ul>
 <li class="chapter" data-level="2.1" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#why-is-there-such-a-buzz-around-r"><i class="fa fa-check"></i><b>2.1</b> Why is there such a buzz around R?</a></li>
@@ -330,7 +331,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">R Programming for Geospatial Sciences</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">R for Geospatial Sciences</a>
           </h1>
         </div>
 
@@ -413,15 +414,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tbody>
 </table>
 <div class="sourceCode" id="cb322"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb322-1" data-line-number="1"><span class="kw">library</span>(ggplot2)</a></code></pre></div>
+<pre><code>## Learn more about the underlying theory at https://ggplot2-book.org/</code></pre>
 <pre><code>## 
 ## Attaching package: &#39;ggplot2&#39;</code></pre>
 <pre><code>## The following object is masked from &#39;package:latticeExtra&#39;:
 ## 
 ##     layer</code></pre>
-<div class="sourceCode" id="cb325"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb325-1" data-line-number="1"><span class="co"># load in a dataset - https://github.com/jsimkins2/geog473-673/blob/master/datasets/acadia.csv</span></a>
-<a class="sourceLine" id="cb325-2" data-line-number="2">acadia =<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;/Users/james/Documents/Github/geog473-673/datasets/acadia.csv&quot;</span>)</a>
-<a class="sourceLine" id="cb325-3" data-line-number="3"><span class="co"># list the top rows of acadia</span></a>
-<a class="sourceLine" id="cb325-4" data-line-number="4"><span class="kw">head</span>(acadia)</a></code></pre></div>
+<div class="sourceCode" id="cb326"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb326-1" data-line-number="1"><span class="co"># load in a dataset - https://github.com/jsimkins2/geog473-673/blob/master/datasets/acadia.csv</span></a>
+<a class="sourceLine" id="cb326-2" data-line-number="2">acadia =<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;/Users/james/Documents/Github/geog473-673/datasets/acadia.csv&quot;</span>)</a>
+<a class="sourceLine" id="cb326-3" data-line-number="3"><span class="co"># list the top rows of acadia</span></a>
+<a class="sourceLine" id="cb326-4" data-line-number="4"><span class="kw">head</span>(acadia)</a></code></pre></div>
 <pre><code>##   X region state code            park_name          type visitors year
 ## 1 1     NE    ME ACAD Acadia National Park National Park    64000 1919
 ## 2 2     NE    ME ACAD Acadia National Park National Park    66500 1920
@@ -429,118 +431,118 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 4 4     NE    ME ACAD Acadia National Park National Park    73779 1922
 ## 5 5     NE    ME ACAD Acadia National Park National Park    64200 1923
 ## 6 6     NE    ME ACAD Acadia National Park National Park    71758 1924</code></pre>
-<div class="sourceCode" id="cb327"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb327-1" data-line-number="1"><span class="co"># remove the X column, it&#39;s just a duplicate index</span></a>
-<a class="sourceLine" id="cb327-2" data-line-number="2">acadia<span class="op">$</span>X =<span class="st"> </span><span class="ot">NULL</span></a>
-<a class="sourceLine" id="cb327-3" data-line-number="3"><span class="co"># Initialize Ggplot</span></a>
-<a class="sourceLine" id="cb327-4" data-line-number="4"><span class="kw">ggplot</span>(acadia, <span class="kw">aes</span>(<span class="dt">x=</span>year, <span class="dt">y=</span>visitors))  <span class="co"># year and visitors are columns in acadia dataframe, aes() stands for aesthetics</span></a></code></pre></div>
-<p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-117-1.png" width="60%" style="display: block; margin: auto;" /></p>
-<div class="sourceCode" id="cb328"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb328-1" data-line-number="1"><span class="co"># simple scatter plot</span></a>
-<a class="sourceLine" id="cb328-2" data-line-number="2"><span class="kw">ggplot</span>(acadia, <span class="kw">aes</span>(<span class="dt">x=</span>year, <span class="dt">y=</span>visitors)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>()</a></code></pre></div>
-<p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-117-2.png" width="60%" style="display: block; margin: auto;" /></p>
-<div class="sourceCode" id="cb329"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb329-1" data-line-number="1"><span class="co"># simple line plot</span></a>
-<a class="sourceLine" id="cb329-2" data-line-number="2"><span class="kw">ggplot</span>(acadia, <span class="kw">aes</span>(<span class="dt">x=</span>year, <span class="dt">y=</span>visitors)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_line</span>()</a></code></pre></div>
-<p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-117-3.png" width="60%" style="display: block; margin: auto;" /></p>
-<div class="sourceCode" id="cb330"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb330-1" data-line-number="1"><span class="co"># remember the trendline? here is how easy it is to add with ggplot2</span></a>
-<a class="sourceLine" id="cb330-2" data-line-number="2"><span class="kw">ggplot</span>(acadia, <span class="kw">aes</span>(<span class="dt">x=</span>year, <span class="dt">y=</span>visitors)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span><span class="kw">geom_smooth</span>(<span class="dt">method=</span><span class="st">&quot;lm&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb328"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb328-1" data-line-number="1"><span class="co"># remove the X column, it&#39;s just a duplicate index</span></a>
+<a class="sourceLine" id="cb328-2" data-line-number="2">acadia<span class="op">$</span>X =<span class="st"> </span><span class="ot">NULL</span></a>
+<a class="sourceLine" id="cb328-3" data-line-number="3"><span class="co"># Initialize Ggplot</span></a>
+<a class="sourceLine" id="cb328-4" data-line-number="4"><span class="kw">ggplot</span>(acadia, <span class="kw">aes</span>(<span class="dt">x=</span>year, <span class="dt">y=</span>visitors))  <span class="co"># year and visitors are columns in acadia dataframe, aes() stands for aesthetics</span></a></code></pre></div>
+<p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-118-1.png" width="60%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb329"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb329-1" data-line-number="1"><span class="co"># simple scatter plot</span></a>
+<a class="sourceLine" id="cb329-2" data-line-number="2"><span class="kw">ggplot</span>(acadia, <span class="kw">aes</span>(<span class="dt">x=</span>year, <span class="dt">y=</span>visitors)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>()</a></code></pre></div>
+<p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-118-2.png" width="60%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb330"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb330-1" data-line-number="1"><span class="co"># simple line plot</span></a>
+<a class="sourceLine" id="cb330-2" data-line-number="2"><span class="kw">ggplot</span>(acadia, <span class="kw">aes</span>(<span class="dt">x=</span>year, <span class="dt">y=</span>visitors)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_line</span>()</a></code></pre></div>
+<p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-118-3.png" width="60%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb331"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb331-1" data-line-number="1"><span class="co"># remember the trendline? here is how easy it is to add with ggplot2</span></a>
+<a class="sourceLine" id="cb331-2" data-line-number="2"><span class="kw">ggplot</span>(acadia, <span class="kw">aes</span>(<span class="dt">x=</span>year, <span class="dt">y=</span>visitors)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span><span class="kw">geom_smooth</span>(<span class="dt">method=</span><span class="st">&quot;lm&quot;</span>)</a></code></pre></div>
 <pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
-<p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-117-4.png" width="60%" style="display: block; margin: auto;" /></p>
+<p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-118-4.png" width="60%" style="display: block; margin: auto;" /></p>
 <p>Notice above how <code>ggplot()</code> creates a ggplot plot, but the <code>geom_point()</code> or <code>geom_line()</code> add the data to the plot. This is a key difference between <code>base graphics</code> and <code>ggplot2</code>. Also notice how you add what you want to the plot via the <code>+</code> symbol. Since the <code>aes()</code> (aesthetics) axes are already defined and since the <code>acadia</code> dataframe has been set, the functions <code>geom_point()</code> and <code>geom_line()</code> already know what data to add to the plots based on the dataset, x and y axes.</p>
 <p>Another cool thing about ggplot2() is that we can save a plot as an object and accumuatively add things to it</p>
-<div class="sourceCode" id="cb332"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb332-1" data-line-number="1">g =<span class="st"> </span><span class="kw">ggplot</span>(acadia, <span class="kw">aes</span>(<span class="dt">x=</span>year, <span class="dt">y=</span>visitors)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span><span class="kw">geom_smooth</span>(<span class="dt">method=</span><span class="st">&quot;lm&quot;</span>)</a>
-<a class="sourceLine" id="cb332-2" data-line-number="2"><span class="kw">plot</span>(g)</a></code></pre></div>
+<div class="sourceCode" id="cb333"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb333-1" data-line-number="1">g =<span class="st"> </span><span class="kw">ggplot</span>(acadia, <span class="kw">aes</span>(<span class="dt">x=</span>year, <span class="dt">y=</span>visitors)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span><span class="kw">geom_smooth</span>(<span class="dt">method=</span><span class="st">&quot;lm&quot;</span>)</a>
+<a class="sourceLine" id="cb333-2" data-line-number="2"><span class="kw">plot</span>(g)</a></code></pre></div>
 <pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
-<p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-118-1.png" width="60%" style="display: block; margin: auto;" /></p>
-<div class="sourceCode" id="cb334"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb334-1" data-line-number="1"><span class="co"># technically, we don&#39;t even have to say plot(g)...we can just print it and it will plot!</span></a>
-<a class="sourceLine" id="cb334-2" data-line-number="2">g =<span class="st"> </span><span class="kw">ggplot</span>(acadia, <span class="kw">aes</span>(<span class="dt">x=</span>year, <span class="dt">y=</span>visitors))</a>
-<a class="sourceLine" id="cb334-3" data-line-number="3">g =<span class="st"> </span>g <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>()</a>
-<a class="sourceLine" id="cb334-4" data-line-number="4">g =<span class="st"> </span>g <span class="op">+</span><span class="st"> </span><span class="kw">geom_line</span>()</a>
-<a class="sourceLine" id="cb334-5" data-line-number="5">g =<span class="st"> </span>g <span class="op">+</span><span class="st"> </span><span class="kw">geom_smooth</span>(<span class="dt">method=</span><span class="st">&quot;lm&quot;</span>)</a>
-<a class="sourceLine" id="cb334-6" data-line-number="6">g</a></code></pre></div>
+<p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-119-1.png" width="60%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb335"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb335-1" data-line-number="1"><span class="co"># technically, we don&#39;t even have to say plot(g)...we can just print it and it will plot!</span></a>
+<a class="sourceLine" id="cb335-2" data-line-number="2">g =<span class="st"> </span><span class="kw">ggplot</span>(acadia, <span class="kw">aes</span>(<span class="dt">x=</span>year, <span class="dt">y=</span>visitors))</a>
+<a class="sourceLine" id="cb335-3" data-line-number="3">g =<span class="st"> </span>g <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>()</a>
+<a class="sourceLine" id="cb335-4" data-line-number="4">g =<span class="st"> </span>g <span class="op">+</span><span class="st"> </span><span class="kw">geom_line</span>()</a>
+<a class="sourceLine" id="cb335-5" data-line-number="5">g =<span class="st"> </span>g <span class="op">+</span><span class="st"> </span><span class="kw">geom_smooth</span>(<span class="dt">method=</span><span class="st">&quot;lm&quot;</span>)</a>
+<a class="sourceLine" id="cb335-6" data-line-number="6">g</a></code></pre></div>
 <pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
-<p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-118-2.png" width="60%" style="display: block; margin: auto;" /></p>
+<p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-119-2.png" width="60%" style="display: block; margin: auto;" /></p>
 <p>If you place <code>aes</code> in the initial <code>ggplot</code> argument, that sets the aesthetics, and the dataframe, for the entire plot regardless of the layers you add to it. However, we can also place an <code>aes</code> argument for <em>each</em> ggplot function we use (<code>geom_line</code>, <code>geom_point</code>, <code>geom_smooth</code>, etc.). <strong>This is useful if we are working with multiple datasets</strong>. Let’s create a dummy dataset with half the visitors of the <code>acadia</code> dataset and place the aesthetic function (<code>aes</code>) in each <code>geom_point</code> function.</p>
-<div class="sourceCode" id="cb336"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb336-1" data-line-number="1"><span class="co"># create dummy data where we divide the actual number of visitors by 2</span></a>
-<a class="sourceLine" id="cb336-2" data-line-number="2">dummy_data =<span class="st"> </span>acadia</a>
-<a class="sourceLine" id="cb336-3" data-line-number="3">dummy_data<span class="op">$</span>visitors =<span class="st"> </span>dummy_data<span class="op">$</span>visitors<span class="op">/</span><span class="dv">2</span></a>
-<a class="sourceLine" id="cb336-4" data-line-number="4"><span class="co"># plot a ggplot instance with multiple lines</span></a>
-<a class="sourceLine" id="cb336-5" data-line-number="5">g =<span class="st"> </span><span class="kw">ggplot</span>(acadia) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">x=</span>year, <span class="dt">y=</span>visitors), <span class="dt">color=</span><span class="st">&quot;red&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">geom_smooth</span>(<span class="dt">data =</span> acadia, <span class="kw">aes</span>(<span class="dt">x=</span>year, <span class="dt">y=</span>visitors), <span class="dt">method=</span><span class="st">&quot;lm&quot;</span>, <span class="dt">color=</span><span class="st">&quot;red&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>(<span class="dt">data =</span> dummy_data,<span class="kw">aes</span>(<span class="dt">x=</span>year, <span class="dt">y=</span>visitors), <span class="dt">color=</span><span class="st">&quot;blue&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">geom_smooth</span>(<span class="dt">data =</span> dummy_data, <span class="kw">aes</span>(<span class="dt">x=</span>year, <span class="dt">y=</span>visitors), <span class="dt">method=</span><span class="st">&quot;lm&quot;</span>)</a>
-<a class="sourceLine" id="cb336-6" data-line-number="6"><span class="kw">plot</span>(g)</a></code></pre></div>
+<div class="sourceCode" id="cb337"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb337-1" data-line-number="1"><span class="co"># create dummy data where we divide the actual number of visitors by 2</span></a>
+<a class="sourceLine" id="cb337-2" data-line-number="2">dummy_data =<span class="st"> </span>acadia</a>
+<a class="sourceLine" id="cb337-3" data-line-number="3">dummy_data<span class="op">$</span>visitors =<span class="st"> </span>dummy_data<span class="op">$</span>visitors<span class="op">/</span><span class="dv">2</span></a>
+<a class="sourceLine" id="cb337-4" data-line-number="4"><span class="co"># plot a ggplot instance with multiple lines</span></a>
+<a class="sourceLine" id="cb337-5" data-line-number="5">g =<span class="st"> </span><span class="kw">ggplot</span>(acadia) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">x=</span>year, <span class="dt">y=</span>visitors), <span class="dt">color=</span><span class="st">&quot;red&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">geom_smooth</span>(<span class="dt">data =</span> acadia, <span class="kw">aes</span>(<span class="dt">x=</span>year, <span class="dt">y=</span>visitors), <span class="dt">method=</span><span class="st">&quot;lm&quot;</span>, <span class="dt">color=</span><span class="st">&quot;red&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>(<span class="dt">data =</span> dummy_data,<span class="kw">aes</span>(<span class="dt">x=</span>year, <span class="dt">y=</span>visitors), <span class="dt">color=</span><span class="st">&quot;blue&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">geom_smooth</span>(<span class="dt">data =</span> dummy_data, <span class="kw">aes</span>(<span class="dt">x=</span>year, <span class="dt">y=</span>visitors), <span class="dt">method=</span><span class="st">&quot;lm&quot;</span>)</a>
+<a class="sourceLine" id="cb337-6" data-line-number="6"><span class="kw">plot</span>(g)</a></code></pre></div>
 <pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;
 ## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
-<p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-119-1.png" width="60%" style="display: block; margin: auto;" /></p>
+<p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-120-1.png" width="60%" style="display: block; margin: auto;" /></p>
 <p>We can “crop” out areas of a plot using <code>xlim</code> and <code>ylim</code>. This method does delete points, however.</p>
-<div class="sourceCode" id="cb338"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb338-1" data-line-number="1">g =<span class="st"> </span><span class="kw">ggplot</span>(acadia, <span class="kw">aes</span>(<span class="dt">x=</span>year, <span class="dt">y=</span>visitors)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span><span class="kw">geom_line</span>() <span class="op">+</span><span class="st"> </span><span class="kw">geom_smooth</span>(<span class="dt">method=</span><span class="st">&quot;lm&quot;</span>)</a>
-<a class="sourceLine" id="cb338-2" data-line-number="2">g <span class="op">+</span><span class="st"> </span><span class="kw">xlim</span>(<span class="kw">c</span>(<span class="dv">2000</span>,<span class="dv">2017</span>)) <span class="op">+</span><span class="st"> </span><span class="kw">ylim</span>(<span class="kw">c</span>(<span class="dv">2000000</span>, <span class="dv">3500000</span>))  <span class="co"># x axis years 2000 to 2017, ylimit 2000000 to 3500000</span></a></code></pre></div>
+<div class="sourceCode" id="cb339"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb339-1" data-line-number="1">g =<span class="st"> </span><span class="kw">ggplot</span>(acadia, <span class="kw">aes</span>(<span class="dt">x=</span>year, <span class="dt">y=</span>visitors)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span><span class="kw">geom_line</span>() <span class="op">+</span><span class="st"> </span><span class="kw">geom_smooth</span>(<span class="dt">method=</span><span class="st">&quot;lm&quot;</span>)</a>
+<a class="sourceLine" id="cb339-2" data-line-number="2">g <span class="op">+</span><span class="st"> </span><span class="kw">xlim</span>(<span class="kw">c</span>(<span class="dv">2000</span>,<span class="dv">2017</span>)) <span class="op">+</span><span class="st"> </span><span class="kw">ylim</span>(<span class="kw">c</span>(<span class="dv">2000000</span>, <span class="dv">3500000</span>))  <span class="co"># x axis years 2000 to 2017, ylimit 2000000 to 3500000</span></a></code></pre></div>
 <pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
 <pre><code>## Warning: Removed 81 rows containing non-finite values (stat_smooth).</code></pre>
 <pre><code>## Warning: Removed 81 rows containing missing values (geom_point).</code></pre>
 <pre><code>## Warning: Removed 81 row(s) containing missing values (geom_path).</code></pre>
-<p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-120-1.png" width="60%" style="display: block; margin: auto;" /></p>
-<p>Instead of cropping out, we can also just zoom in with the <code>coord_cartesian</code> function (we’re using cartesian coordinates here). This method <strong>does not delete points</strong>.</p>
-<div class="sourceCode" id="cb343"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb343-1" data-line-number="1">g =<span class="st"> </span><span class="kw">ggplot</span>(acadia, <span class="kw">aes</span>(<span class="dt">x=</span>year, <span class="dt">y=</span>visitors)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span><span class="kw">geom_line</span>() <span class="op">+</span><span class="st"> </span><span class="kw">geom_smooth</span>(<span class="dt">method=</span><span class="st">&quot;lm&quot;</span>)</a>
-<a class="sourceLine" id="cb343-2" data-line-number="2">g <span class="op">+</span><span class="st"> </span><span class="kw">coord_cartesian</span>(<span class="dt">xlim=</span><span class="kw">c</span>(<span class="dv">2000</span>,<span class="dv">2017</span>), <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">2000000</span>, <span class="dv">3500000</span>))  <span class="co"># x axis years 2000 to 2017, ylimit 2000000 to 3500000</span></a></code></pre></div>
-<pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
 <p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-121-1.png" width="60%" style="display: block; margin: auto;" /></p>
-<p>Notice how different the trendline is above. When we just zoom in, we preserve all of the data going into the plot which helps us keep the trendline of the entire dataset.</p>
-<p>Now let’s check out adjusting the x/y labels and title. There are 2 ways.</p>
-<div class="sourceCode" id="cb345"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb345-1" data-line-number="1"><span class="co"># Add Title and Labels</span></a>
-<a class="sourceLine" id="cb345-2" data-line-number="2">g1 =<span class="st"> </span><span class="kw">ggplot</span>(acadia, <span class="kw">aes</span>(<span class="dt">x=</span>year, <span class="dt">y=</span>visitors)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span><span class="kw">geom_line</span>() <span class="op">+</span><span class="st"> </span><span class="kw">geom_smooth</span>(<span class="dt">method=</span><span class="st">&quot;lm&quot;</span>)</a>
-<a class="sourceLine" id="cb345-3" data-line-number="3">g1 <span class="op">+</span><span class="st"> </span><span class="kw">labs</span>(<span class="dt">title=</span><span class="st">&quot;Acadia National Park Attendance&quot;</span>, <span class="dt">subtitle=</span><span class="st">&quot;Total Visitors per year&quot;</span>, <span class="dt">y=</span><span class="st">&quot;Visitors&quot;</span>, <span class="dt">x=</span><span class="st">&quot;Year&quot;</span>, <span class="dt">caption=</span><span class="st">&quot;National Park Database&quot;</span>)</a></code></pre></div>
+<p>Instead of cropping out, we can also just zoom in with the <code>coord_cartesian</code> function (we’re using cartesian coordinates here). This method <strong>does not delete points</strong>.</p>
+<div class="sourceCode" id="cb344"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb344-1" data-line-number="1">g =<span class="st"> </span><span class="kw">ggplot</span>(acadia, <span class="kw">aes</span>(<span class="dt">x=</span>year, <span class="dt">y=</span>visitors)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span><span class="kw">geom_line</span>() <span class="op">+</span><span class="st"> </span><span class="kw">geom_smooth</span>(<span class="dt">method=</span><span class="st">&quot;lm&quot;</span>)</a>
+<a class="sourceLine" id="cb344-2" data-line-number="2">g <span class="op">+</span><span class="st"> </span><span class="kw">coord_cartesian</span>(<span class="dt">xlim=</span><span class="kw">c</span>(<span class="dv">2000</span>,<span class="dv">2017</span>), <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">2000000</span>, <span class="dv">3500000</span>))  <span class="co"># x axis years 2000 to 2017, ylimit 2000000 to 3500000</span></a></code></pre></div>
 <pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
 <p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-122-1.png" width="60%" style="display: block; margin: auto;" /></p>
-<div class="sourceCode" id="cb347"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb347-1" data-line-number="1"><span class="co"># or</span></a>
-<a class="sourceLine" id="cb347-2" data-line-number="2">g2 =<span class="st"> </span><span class="kw">ggplot</span>(acadia, <span class="kw">aes</span>(<span class="dt">x=</span>year, <span class="dt">y=</span>visitors)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span><span class="kw">geom_line</span>() <span class="op">+</span><span class="st"> </span><span class="kw">geom_smooth</span>(<span class="dt">method=</span><span class="st">&quot;lm&quot;</span>)</a>
-<a class="sourceLine" id="cb347-3" data-line-number="3">g2 =<span class="st"> </span>g2 <span class="op">+</span><span class="st"> </span><span class="kw">ggtitle</span>(<span class="st">&quot;Acadia National Park Attendance&quot;</span>, <span class="dt">subtitle=</span><span class="st">&quot;Total Visitors per year&quot;</span>)</a>
-<a class="sourceLine" id="cb347-4" data-line-number="4">g2 <span class="op">+</span><span class="st"> </span><span class="kw">xlab</span>(<span class="st">&quot;Year&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;Visitors&quot;</span>)</a></code></pre></div>
-<pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
-<p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-122-2.png" width="60%" style="display: block; margin: auto;" /></p>
-<p>What about changing up the colors, size, etc.?</p>
-<div class="sourceCode" id="cb349"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb349-1" data-line-number="1">g =<span class="st"> </span><span class="kw">ggplot</span>(acadia, <span class="kw">aes</span>(<span class="dt">x=</span>year, <span class="dt">y=</span>visitors)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb349-2" data-line-number="2"><span class="st">    </span><span class="kw">geom_line</span>(<span class="dt">col=</span><span class="st">&quot;yellow&quot;</span>, <span class="dt">size=</span><span class="dv">5</span>) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb349-3" data-line-number="3"><span class="st">    </span><span class="kw">geom_point</span>(<span class="dt">col=</span><span class="st">&quot;steelblue&quot;</span>, <span class="dt">size=</span><span class="dv">3</span>) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb349-4" data-line-number="4"><span class="st">    </span><span class="kw">geom_smooth</span>(<span class="dt">method=</span><span class="st">&quot;lm&quot;</span>, <span class="dt">col=</span><span class="st">&quot;firebrick&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb349-5" data-line-number="5"><span class="st">    </span><span class="kw">labs</span>(<span class="dt">title=</span><span class="st">&quot;Acadia National Park Attendance&quot;</span>, <span class="dt">subtitle=</span><span class="st">&quot;Total Visitors per year&quot;</span>, <span class="dt">y=</span><span class="st">&quot;Visitors&quot;</span>, <span class="dt">x=</span><span class="st">&quot;Year&quot;</span>, <span class="dt">caption=</span><span class="st">&quot;National Park Database&quot;</span>)</a>
-<a class="sourceLine" id="cb349-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb349-7" data-line-number="7">g</a></code></pre></div>
+<p>Notice how different the trendline is above. When we just zoom in, we preserve all of the data going into the plot which helps us keep the trendline of the entire dataset.</p>
+<p>Now let’s check out adjusting the x/y labels and title. There are 2 ways.</p>
+<div class="sourceCode" id="cb346"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb346-1" data-line-number="1"><span class="co"># Add Title and Labels</span></a>
+<a class="sourceLine" id="cb346-2" data-line-number="2">g1 =<span class="st"> </span><span class="kw">ggplot</span>(acadia, <span class="kw">aes</span>(<span class="dt">x=</span>year, <span class="dt">y=</span>visitors)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span><span class="kw">geom_line</span>() <span class="op">+</span><span class="st"> </span><span class="kw">geom_smooth</span>(<span class="dt">method=</span><span class="st">&quot;lm&quot;</span>)</a>
+<a class="sourceLine" id="cb346-3" data-line-number="3">g1 <span class="op">+</span><span class="st"> </span><span class="kw">labs</span>(<span class="dt">title=</span><span class="st">&quot;Acadia National Park Attendance&quot;</span>, <span class="dt">subtitle=</span><span class="st">&quot;Total Visitors per year&quot;</span>, <span class="dt">y=</span><span class="st">&quot;Visitors&quot;</span>, <span class="dt">x=</span><span class="st">&quot;Year&quot;</span>, <span class="dt">caption=</span><span class="st">&quot;National Park Database&quot;</span>)</a></code></pre></div>
 <pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
 <p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-123-1.png" width="60%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb348"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb348-1" data-line-number="1"><span class="co"># or</span></a>
+<a class="sourceLine" id="cb348-2" data-line-number="2">g2 =<span class="st"> </span><span class="kw">ggplot</span>(acadia, <span class="kw">aes</span>(<span class="dt">x=</span>year, <span class="dt">y=</span>visitors)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span><span class="kw">geom_line</span>() <span class="op">+</span><span class="st"> </span><span class="kw">geom_smooth</span>(<span class="dt">method=</span><span class="st">&quot;lm&quot;</span>)</a>
+<a class="sourceLine" id="cb348-3" data-line-number="3">g2 =<span class="st"> </span>g2 <span class="op">+</span><span class="st"> </span><span class="kw">ggtitle</span>(<span class="st">&quot;Acadia National Park Attendance&quot;</span>, <span class="dt">subtitle=</span><span class="st">&quot;Total Visitors per year&quot;</span>)</a>
+<a class="sourceLine" id="cb348-4" data-line-number="4">g2 <span class="op">+</span><span class="st"> </span><span class="kw">xlab</span>(<span class="st">&quot;Year&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;Visitors&quot;</span>)</a></code></pre></div>
+<pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
+<p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-123-2.png" width="60%" style="display: block; margin: auto;" /></p>
+<p>What about changing up the colors, size, etc.?</p>
+<div class="sourceCode" id="cb350"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb350-1" data-line-number="1">g =<span class="st"> </span><span class="kw">ggplot</span>(acadia, <span class="kw">aes</span>(<span class="dt">x=</span>year, <span class="dt">y=</span>visitors)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb350-2" data-line-number="2"><span class="st">    </span><span class="kw">geom_line</span>(<span class="dt">col=</span><span class="st">&quot;yellow&quot;</span>, <span class="dt">size=</span><span class="dv">5</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb350-3" data-line-number="3"><span class="st">    </span><span class="kw">geom_point</span>(<span class="dt">col=</span><span class="st">&quot;steelblue&quot;</span>, <span class="dt">size=</span><span class="dv">3</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb350-4" data-line-number="4"><span class="st">    </span><span class="kw">geom_smooth</span>(<span class="dt">method=</span><span class="st">&quot;lm&quot;</span>, <span class="dt">col=</span><span class="st">&quot;firebrick&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb350-5" data-line-number="5"><span class="st">    </span><span class="kw">labs</span>(<span class="dt">title=</span><span class="st">&quot;Acadia National Park Attendance&quot;</span>, <span class="dt">subtitle=</span><span class="st">&quot;Total Visitors per year&quot;</span>, <span class="dt">y=</span><span class="st">&quot;Visitors&quot;</span>, <span class="dt">x=</span><span class="st">&quot;Year&quot;</span>, <span class="dt">caption=</span><span class="st">&quot;National Park Database&quot;</span>)</a>
+<a class="sourceLine" id="cb350-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb350-7" data-line-number="7">g</a></code></pre></div>
+<pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
+<p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-124-1.png" width="60%" style="display: block; margin: auto;" /></p>
 <div id="ggplot2-with-willow-creek-meteorological-data" class="section level2">
 <h2><span class="header-section-number">12.1</span> ggplot2 with Willow Creek Meteorological Data</h2>
 <p>Let’s use <code>ggplot2</code> to with the Willow Creek 2010 dataset.</p>
-<div class="sourceCode" id="cb351"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb351-1" data-line-number="1"><span class="kw">library</span>(ncdf4)</a>
-<a class="sourceLine" id="cb351-2" data-line-number="2">y =<span class="st"> </span><span class="dv">2010</span></a>
-<a class="sourceLine" id="cb351-3" data-line-number="3">nc_file =<span class="st"> </span><span class="kw">nc_open</span>(<span class="kw">paste0</span>(<span class="st">&quot;/Users/james/Documents/Github/geog473-673/datasets/WCr_1hr.&quot;</span>, y,<span class="st">&quot;.nc&quot;</span>))</a>
-<a class="sourceLine" id="cb351-4" data-line-number="4"><span class="co"># what does the nc file look like </span></a>
-<a class="sourceLine" id="cb351-5" data-line-number="5">var_names =<span class="st"> </span><span class="kw">names</span>(nc_file<span class="op">$</span>var)</a>
-<a class="sourceLine" id="cb351-6" data-line-number="6">wcr_data =<span class="st"> </span><span class="kw">list</span>()</a>
-<a class="sourceLine" id="cb351-7" data-line-number="7">dim &lt;-<span class="st"> </span>nc_file<span class="op">$</span>dim</a>
-<a class="sourceLine" id="cb351-8" data-line-number="8"><span class="cf">for</span> (v <span class="cf">in</span> <span class="kw">seq_along</span>(var_names)){</a>
-<a class="sourceLine" id="cb351-9" data-line-number="9">  wcr_data[[v]] =<span class="st"> </span><span class="kw">ncvar_get</span>(nc_file, <span class="dt">varid =</span> var_names[v])</a>
-<a class="sourceLine" id="cb351-10" data-line-number="10">}</a>
-<a class="sourceLine" id="cb351-11" data-line-number="11">wcreek_df =<span class="st"> </span><span class="kw">data.frame</span>(wcr_data)</a>
-<a class="sourceLine" id="cb351-12" data-line-number="12"><span class="kw">colnames</span>(wcreek_df) =<span class="st"> </span>var_names</a>
-<a class="sourceLine" id="cb351-13" data-line-number="13"><span class="co"># create a new short_names vector that matches the order of the actual names</span></a>
-<a class="sourceLine" id="cb351-14" data-line-number="14">short_names =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;tair&quot;</span>, <span class="st">&quot;tmax&quot;</span>, <span class="st">&quot;tmin&quot;</span>, <span class="st">&quot;lwave&quot;</span>, <span class="st">&quot;pres&quot;</span>, <span class="st">&quot;swave&quot;</span>, <span class="st">&quot;ewind&quot;</span>, <span class="st">&quot;nwind&quot;</span>, <span class="st">&quot;shum&quot;</span>, <span class="st">&quot;prec&quot;</span>)</a>
-<a class="sourceLine" id="cb351-15" data-line-number="15"><span class="co"># rename the column names to our new short name vector</span></a>
-<a class="sourceLine" id="cb351-16" data-line-number="16"><span class="kw">colnames</span>(wcreek_df) =<span class="st"> </span>short_names</a>
-<a class="sourceLine" id="cb351-17" data-line-number="17">date.seq =<span class="st"> </span><span class="kw">seq</span>(<span class="kw">as.POSIXct</span>(<span class="kw">paste0</span>(y,<span class="st">&quot;-01-01 00:00:00&quot;</span>)), <span class="kw">as.POSIXct</span>(<span class="kw">paste0</span>(y,<span class="st">&quot;-12-31 23:00:00&quot;</span>)), <span class="dt">by=</span><span class="st">&quot;hour&quot;</span>)</a>
-<a class="sourceLine" id="cb351-18" data-line-number="18">wcreek_df[<span class="st">&#39;datetime&#39;</span>] =<span class="st"> </span>date.seq</a>
-<a class="sourceLine" id="cb351-19" data-line-number="19"></a>
-<a class="sourceLine" id="cb351-20" data-line-number="20"><span class="co"># Plot a ggplot point plot of willow creek 2010 shortwave radiation</span></a>
-<a class="sourceLine" id="cb351-21" data-line-number="21"><span class="kw">ggplot</span>(wcreek_df) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb351-22" data-line-number="22"><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">data =</span> wcreek_df, <span class="kw">aes</span>(<span class="dt">y=</span>swave, <span class="dt">x=</span>datetime, <span class="dt">color =</span> <span class="st">&#39;Shortwave Radiation&#39;</span>), <span class="dt">size=</span><span class="fl">0.5</span>, <span class="dt">alpha =</span> <span class="fl">0.5</span>) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb351-23" data-line-number="23"><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Date&quot;</span>) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb351-24" data-line-number="24"><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Shortwave Radiaiton (W/m2&quot;</span>) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb351-25" data-line-number="25"><span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Willow Creek Shortwave Radiation 2010&quot;</span>) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb351-26" data-line-number="26"><span class="st">  </span><span class="kw">scale_color_manual</span>(<span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&#39;Shortwave Radiation&#39;</span> =<span class="st"> &#39;firebrick&#39;</span>))</a></code></pre></div>
-<p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-124-1.png" width="60%" style="display: block; margin: auto;" /></p>
-<div class="sourceCode" id="cb352"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb352-1" data-line-number="1"><span class="co"># plot a ggplot density plot of the specific humidity</span></a>
-<a class="sourceLine" id="cb352-2" data-line-number="2"><span class="kw">ggplot</span>(wcreek_df) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb352-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_density</span>(<span class="dt">data =</span> wcreek_df, <span class="kw">aes</span>(<span class="dt">x=</span>shum, <span class="dt">y=</span>..density.., <span class="dt">color =</span> <span class="st">&#39;Specific Humidity&#39;</span>), <span class="dt">size=</span><span class="dv">3</span>, <span class="dt">adjust =</span> <span class="dv">1</span>, <span class="dt">fill=</span><span class="st">&quot;lightblue&quot;</span>, <span class="dt">alpha =</span> <span class="fl">0.5</span>) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb352-4" data-line-number="4"><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Specific Humidity&quot;</span>) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb352-5" data-line-number="5"><span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Gaussian Specific Humidity Densities 2010&quot;</span>) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb352-6" data-line-number="6"><span class="st">  </span><span class="kw">scale_color_manual</span>(<span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&#39;Specific Humidity&#39;</span> =<span class="st"> &#39;firebrick&#39;</span>))</a></code></pre></div>
-<p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-124-2.png" width="60%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb352"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb352-1" data-line-number="1"><span class="kw">library</span>(ncdf4)</a>
+<a class="sourceLine" id="cb352-2" data-line-number="2">y =<span class="st"> </span><span class="dv">2010</span></a>
+<a class="sourceLine" id="cb352-3" data-line-number="3">nc_file =<span class="st"> </span><span class="kw">nc_open</span>(<span class="kw">paste0</span>(<span class="st">&quot;/Users/james/Documents/Github/geog473-673/datasets/WCr_1hr.&quot;</span>, y,<span class="st">&quot;.nc&quot;</span>))</a>
+<a class="sourceLine" id="cb352-4" data-line-number="4"><span class="co"># what does the nc file look like </span></a>
+<a class="sourceLine" id="cb352-5" data-line-number="5">var_names =<span class="st"> </span><span class="kw">names</span>(nc_file<span class="op">$</span>var)</a>
+<a class="sourceLine" id="cb352-6" data-line-number="6">wcr_data =<span class="st"> </span><span class="kw">list</span>()</a>
+<a class="sourceLine" id="cb352-7" data-line-number="7">dim &lt;-<span class="st"> </span>nc_file<span class="op">$</span>dim</a>
+<a class="sourceLine" id="cb352-8" data-line-number="8"><span class="cf">for</span> (v <span class="cf">in</span> <span class="kw">seq_along</span>(var_names)){</a>
+<a class="sourceLine" id="cb352-9" data-line-number="9">  wcr_data[[v]] =<span class="st"> </span><span class="kw">ncvar_get</span>(nc_file, <span class="dt">varid =</span> var_names[v])</a>
+<a class="sourceLine" id="cb352-10" data-line-number="10">}</a>
+<a class="sourceLine" id="cb352-11" data-line-number="11">wcreek_df =<span class="st"> </span><span class="kw">data.frame</span>(wcr_data)</a>
+<a class="sourceLine" id="cb352-12" data-line-number="12"><span class="kw">colnames</span>(wcreek_df) =<span class="st"> </span>var_names</a>
+<a class="sourceLine" id="cb352-13" data-line-number="13"><span class="co"># create a new short_names vector that matches the order of the actual names</span></a>
+<a class="sourceLine" id="cb352-14" data-line-number="14">short_names =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;tair&quot;</span>, <span class="st">&quot;tmax&quot;</span>, <span class="st">&quot;tmin&quot;</span>, <span class="st">&quot;lwave&quot;</span>, <span class="st">&quot;pres&quot;</span>, <span class="st">&quot;swave&quot;</span>, <span class="st">&quot;ewind&quot;</span>, <span class="st">&quot;nwind&quot;</span>, <span class="st">&quot;shum&quot;</span>, <span class="st">&quot;prec&quot;</span>)</a>
+<a class="sourceLine" id="cb352-15" data-line-number="15"><span class="co"># rename the column names to our new short name vector</span></a>
+<a class="sourceLine" id="cb352-16" data-line-number="16"><span class="kw">colnames</span>(wcreek_df) =<span class="st"> </span>short_names</a>
+<a class="sourceLine" id="cb352-17" data-line-number="17">date.seq =<span class="st"> </span><span class="kw">seq</span>(<span class="kw">as.POSIXct</span>(<span class="kw">paste0</span>(y,<span class="st">&quot;-01-01 00:00:00&quot;</span>)), <span class="kw">as.POSIXct</span>(<span class="kw">paste0</span>(y,<span class="st">&quot;-12-31 23:00:00&quot;</span>)), <span class="dt">by=</span><span class="st">&quot;hour&quot;</span>)</a>
+<a class="sourceLine" id="cb352-18" data-line-number="18">wcreek_df[<span class="st">&#39;datetime&#39;</span>] =<span class="st"> </span>date.seq</a>
+<a class="sourceLine" id="cb352-19" data-line-number="19"></a>
+<a class="sourceLine" id="cb352-20" data-line-number="20"><span class="co"># Plot a ggplot point plot of willow creek 2010 shortwave radiation</span></a>
+<a class="sourceLine" id="cb352-21" data-line-number="21"><span class="kw">ggplot</span>(wcreek_df) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb352-22" data-line-number="22"><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">data =</span> wcreek_df, <span class="kw">aes</span>(<span class="dt">y=</span>swave, <span class="dt">x=</span>datetime, <span class="dt">color =</span> <span class="st">&#39;Shortwave Radiation&#39;</span>), <span class="dt">size=</span><span class="fl">0.5</span>, <span class="dt">alpha =</span> <span class="fl">0.5</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb352-23" data-line-number="23"><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Date&quot;</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb352-24" data-line-number="24"><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Shortwave Radiaiton (W/m2&quot;</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb352-25" data-line-number="25"><span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Willow Creek Shortwave Radiation 2010&quot;</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb352-26" data-line-number="26"><span class="st">  </span><span class="kw">scale_color_manual</span>(<span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&#39;Shortwave Radiation&#39;</span> =<span class="st"> &#39;firebrick&#39;</span>))</a></code></pre></div>
+<p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-125-1.png" width="60%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb353"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb353-1" data-line-number="1"><span class="co"># plot a ggplot density plot of the specific humidity</span></a>
+<a class="sourceLine" id="cb353-2" data-line-number="2"><span class="kw">ggplot</span>(wcreek_df) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb353-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_density</span>(<span class="dt">data =</span> wcreek_df, <span class="kw">aes</span>(<span class="dt">x=</span>shum, <span class="dt">y=</span>..density.., <span class="dt">color =</span> <span class="st">&#39;Specific Humidity&#39;</span>), <span class="dt">size=</span><span class="dv">3</span>, <span class="dt">adjust =</span> <span class="dv">1</span>, <span class="dt">fill=</span><span class="st">&quot;lightblue&quot;</span>, <span class="dt">alpha =</span> <span class="fl">0.5</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb353-4" data-line-number="4"><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Specific Humidity&quot;</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb353-5" data-line-number="5"><span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Gaussian Specific Humidity Densities 2010&quot;</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb353-6" data-line-number="6"><span class="st">  </span><span class="kw">scale_color_manual</span>(<span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&#39;Specific Humidity&#39;</span> =<span class="st"> &#39;firebrick&#39;</span>))</a></code></pre></div>
+<p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-125-2.png" width="60%" style="display: block; margin: auto;" /></p>
 <p>Let’s break down the <code>geom_density</code> plot above. First, we create a <code>ggplot</code> <em>window</em> of <code>wcreek_df</code> dataframe. Then, we call the the <code>geom_density</code> function and declared <code>data</code> argument as <code>wcreek_df</code>. Then, we specified the <code>aes</code> (aesthetics) function within the <code>geom_density</code> function. In the <code>aes</code>, we declared the x axis - <code>specific humidity</code> - and the y axis - <code>..density..</code> - which is necessary for the plot to know that’s the axis to place the density on. The final piece to the <code>aes()</code> argument is the color. Notice that we also set the color here to “Specific Humidity”. This is not a color in R. Rather, it’s a reference to the color we declare down below with <code>scale_color_manual</code>. In other words, we state below that the color of “Specific Humidity” is firebrick within the <code>scale_color_manual</code> function. Still within the <code>geom_density</code> function, we set the <code>size</code> of the <code>density</code> line, set the <code>adjust</code> which is ggplots term for bandwidth, declared a fill color to <code>fill</code> in the density area and gave that fill color an <code>alpha</code> of 0.5 to make it semi-transparent. Xlabel and title we’ve already covered. Finally I set a manual color label and shape of the label for specific humidity.</p>
 </div>
 <div id="assignment-5" class="section level2">
@@ -553,7 +555,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ol>
 <p>Your final plots should look something like these…</p>
 <pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
-<p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-125-1.png" width="672" /><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-125-2.png" width="672" /></p>
+<p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-126-1.png" width="672" style="display: block; margin: auto;" /><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-126-2.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="extra-credit---2-points-1" class="section level2">
 <h2><span class="header-section-number">12.3</span> Extra Credit - 2 Points</h2>

@@ -4,12 +4,16 @@ So far, the examples of R scripts we've shown have been general purpose scripts.
 
 A scientific R Script might look like this:
 
-```{r, message=FALSE, warning=FALSE}
+```{r, message=FALSE, warning=FALSE, fig.align="center", out.width="60%"}
 # James Simkins
 # Load libraries
 library(ncdf4)
 library(fields)
+
+# open netcdf file
 ncFile <- ncdf4::nc_open("~/Documents/Github/geog473-673/datasets/OR_ABI-L2-SSTF-M3_G16_s20192081300453_e20192081400161_c20192081406297.nc")
+
+# extract SST - sea surface temperature 
 sstK <- ncdf4::ncvar_get(nc=ncFile, varid="SST")
 lat <- ncdf4::ncvar_get(nc=ncFile, varid="latitude")
 lon <- ncdf4::ncvar_get(nc=ncFile, varid="longitude")
@@ -129,7 +133,7 @@ summary(as.vector(sstC))
 
 Now we see that our summary looks good (even though we're looking at a matrix in celsius now). So all that's left to do is plot this up...
 
-```{r, message=FALSE, warning=FALSE}
+```{r, message=FALSE, warning=FALSE, fig.align="center", out.width="60%"}
 # James Simkins
 # Load libraries
 library(ncdf4)
@@ -158,12 +162,12 @@ Now we plot this up using the `image.plot()` function from the `fields` library.
 
 1) Go to https://github.com/jsimkins2/geog473-673/tree/master/datasets
 2) Download 'OR_ABI-L2-SSTF-M3_G16_s20192081300453_e20192081400161_c20192081406297.nc'
-3) Make simple plot of the 'DQF' (Data Quality Flag) variable
+3) Make simple plot of the `DQF` (Data Quality Flag) variable
 
--Hint: You may have to use 'install.packages' in your console first 
+-Hint: You may have to use `install.packages()` to install pacakages you may not have yet on your machine.
 
 Aim for something like this:
-```{r, echo=FALSE}
+```{r, echo=FALSE, fig.align="center", out.width="60%"}
 library(ncdf4)
 library(fields)
 ncFile <- ncdf4::nc_open("~/Documents/Github/geog473-673/datasets/OR_ABI-L2-SSTF-M3_G16_s20192081300453_e20192081400161_c20192081406297.nc")

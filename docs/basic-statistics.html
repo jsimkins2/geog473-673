@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>11 Basic Statistics | R Programming for Geospatial Sciences</title>
+  <title>11 Basic Statistics | R for Geospatial Sciences</title>
   <meta name="description" content="Advanced R" />
   <meta name="generator" content="bookdown 0.20.6 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="11 Basic Statistics | R Programming for Geospatial Sciences" />
+  <meta property="og:title" content="11 Basic Statistics | R for Geospatial Sciences" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="11 Basic Statistics | R Programming for Geospatial Sciences" />
+  <meta name="twitter:title" content="11 Basic Statistics | R for Geospatial Sciences" />
   
   <meta name="twitter:description" content="Advanced R" />
   
@@ -24,7 +24,7 @@
 <meta name="author" content="James Simkins" />
 
 
-<meta name="date" content="2021-01-25" />
+<meta name="date" content="2021-01-26" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -152,11 +152,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">R for Geospatial Sciences</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="1" data-path="preface.html"><a href="preface.html"><i class="fa fa-check"></i><b>1</b> Preface</a><ul>
-<li class="chapter" data-level="1.1" data-path="preface.html"><a href="preface.html#course-github"><i class="fa fa-check"></i><b>1.1</b> Course Github</a></li>
-<li class="chapter" data-level="1.2" data-path="preface.html"><a href="preface.html#syllabus"><i class="fa fa-check"></i><b>1.2</b> Syllabus</a></li>
-<li class="chapter" data-level="1.3" data-path="preface.html"><a href="preface.html#phase-1"><i class="fa fa-check"></i><b>1.3</b> Phase 1</a></li>
-<li class="chapter" data-level="1.4" data-path="preface.html"><a href="preface.html#phase-2-spring-geog473-673-1-credit-agenda"><i class="fa fa-check"></i><b>1.4</b> Phase 2: Spring GEOG473-673 1-Credit Agenda</a></li>
+<li class="chapter" data-level="1" data-path="r-for-geospatial-sciences.html"><a href="r-for-geospatial-sciences.html"><i class="fa fa-check"></i><b>1</b> R for Geospatial Sciences</a><ul>
+<li class="chapter" data-level="1.1" data-path="r-for-geospatial-sciences.html"><a href="r-for-geospatial-sciences.html#welcome"><i class="fa fa-check"></i><b>1.1</b> Welcome</a></li>
+<li class="chapter" data-level="1.2" data-path="r-for-geospatial-sciences.html"><a href="r-for-geospatial-sciences.html#course-github"><i class="fa fa-check"></i><b>1.2</b> Course Github</a></li>
+<li class="chapter" data-level="1.3" data-path="r-for-geospatial-sciences.html"><a href="r-for-geospatial-sciences.html#syllabus"><i class="fa fa-check"></i><b>1.3</b> Syllabus</a></li>
+<li class="chapter" data-level="1.4" data-path="r-for-geospatial-sciences.html"><a href="r-for-geospatial-sciences.html#phase-1"><i class="fa fa-check"></i><b>1.4</b> Phase 1</a></li>
+<li class="chapter" data-level="1.5" data-path="r-for-geospatial-sciences.html"><a href="r-for-geospatial-sciences.html#phase-2"><i class="fa fa-check"></i><b>1.5</b> Phase 2</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html"><i class="fa fa-check"></i><b>2</b> Getting Started with R</a><ul>
 <li class="chapter" data-level="2.1" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#why-is-there-such-a-buzz-around-r"><i class="fa fa-check"></i><b>2.1</b> Why is there such a buzz around R?</a></li>
@@ -330,7 +331,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">R Programming for Geospatial Sciences</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">R for Geospatial Sciences</a>
           </h1>
         </div>
 
@@ -623,7 +624,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb298"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb298-1" data-line-number="1"><span class="co"># air temperature ~ datetime - remember, the tilde (~) here can be thought of as &#39;versus&#39; or &#39;against&#39;.</span></a>
 <a class="sourceLine" id="cb298-2" data-line-number="2"><span class="co"># So this plot is tair versus datetime </span></a>
 <a class="sourceLine" id="cb298-3" data-line-number="3"><span class="kw">plot</span>(tair <span class="op">~</span><span class="st"> </span>datetime, <span class="dt">data =</span> jan2jun, <span class="dt">pch =</span> <span class="dv">20</span>, <span class="dt">col=</span><span class="st">&quot;blue&quot;</span>)</a></code></pre></div>
-<p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-109-1.png" width="60%" style="display: block; margin: auto;" /></p>
+<p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-110-1.png" width="60%" style="display: block; margin: auto;" /></p>
 <div class="sourceCode" id="cb299"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb299-1" data-line-number="1"><span class="co"># use the lm function to fit a trendline to the data </span></a>
 <a class="sourceLine" id="cb299-2" data-line-number="2">fit &lt;-<span class="st"> </span><span class="kw">lm</span>(tair <span class="op">~</span><span class="st"> </span>datetime, <span class="dt">data =</span> jan2jun)</a>
 <a class="sourceLine" id="cb299-3" data-line-number="3"><span class="kw">summary</span>(fit)</a></code></pre></div>
@@ -656,7 +657,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb303-6" data-line-number="6"><span class="kw">grid</span>(<span class="ot">NA</span>,<span class="ot">NULL</span>, <span class="dt">lty=</span> <span class="dv">4</span>) <span class="co"># NA first for no y axis grid lines, null second to ignore the default x axis linetype</span></a>
 <a class="sourceLine" id="cb303-7" data-line-number="7"><span class="kw">abline</span>(fit, <span class="dt">col=</span> <span class="st">&#39;black&#39;</span>, <span class="dt">lty=</span> <span class="dv">4</span>, <span class="dt">lwd=</span> <span class="dv">2</span>)</a>
 <a class="sourceLine" id="cb303-8" data-line-number="8"><span class="kw">legend</span>(<span class="st">&quot;topleft&quot;</span>, <span class="dt">legend=</span><span class="kw">c</span>(<span class="st">&quot;lm(fit)&quot;</span>), <span class="dt">col=</span> <span class="dv">2</span>, <span class="dt">lty=</span> <span class="dv">4</span>, <span class="dt">bg=</span> <span class="st">&quot;gray85&quot;</span>, <span class="dt">box.lty=</span><span class="dv">0</span>)</a></code></pre></div>
-<p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-109-2.png" width="60%" style="display: block; margin: auto;" /></p>
+<p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-110-2.png" width="60%" style="display: block; margin: auto;" /></p>
 <p>Just as we suspected, the temperature increases from January to June. So, we have an idea of the trend now, but what about the frequency of recorded temperatures? Are some temperatures more likely to occur than others in this dataset? Histograms are a good way to check the distribution and answer these questions. Then, we’ll overlay the expected probability distribution function given the standard deviation and mean values of the <code>jan2jun</code> dataset using the <code>dnorm</code> function.</p>
 <p>Let’s add this to a histogram of the data.</p>
 <div class="sourceCode" id="cb304"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb304-1" data-line-number="1"><span class="co"># plot a histogram of jan2jun air temperature and add a normal distribution over it. </span></a>
@@ -667,7 +668,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb304-6" data-line-number="6">y &lt;-<span class="st"> </span><span class="kw">dnorm</span>(<span class="dt">x=</span>temp_bins, <span class="dt">mean=</span><span class="kw">mean</span>(jan2jun<span class="op">$</span>tair), <span class="dt">sd=</span><span class="kw">sd</span>(jan2jun<span class="op">$</span>tair))</a>
 <a class="sourceLine" id="cb304-7" data-line-number="7"><span class="co"># add lines of the normal dist to the histogram</span></a>
 <a class="sourceLine" id="cb304-8" data-line-number="8"><span class="kw">lines</span>(temp_bins, y, <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>, <span class="dt">lwd=</span><span class="dv">2</span>, <span class="dt">lty=</span><span class="dv">2</span>)</a></code></pre></div>
-<p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-110-1.png" width="60%" style="display: block; margin: auto;" /></p>
+<p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-111-1.png" width="60%" style="display: block; margin: auto;" /></p>
 <p>Generally speaking, a normal distribution does a reasonable job capturing the actual data points. We see that there is a positive trend in the dataset and that the normal PDF underestimates warmer temperatures. Density plots are another plotting method that can show the distribution of data. Density plots can be thought of as plots of smoothed histograms. The smoothness is controlled by a bandwidth parameter that is analogous to the histogram binwidth. Let’s create a density plot the <code>jan2jun</code> air temperature.</p>
 <div class="sourceCode" id="cb305"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb305-1" data-line-number="1"><span class="co"># calculate the density </span></a>
 <a class="sourceLine" id="cb305-2" data-line-number="2">d =<span class="st"> </span><span class="kw">density</span>(jan2jun<span class="op">$</span>tair, <span class="dt">bw =</span> <span class="fl">0.5</span>)</a>
@@ -675,7 +676,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb305-4" data-line-number="4"><span class="kw">plot</span>(d, <span class="dt">xlab =</span> <span class="st">&quot;Air Temperature (Kelvin)&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;Density&quot;</span>, <span class="dt">main=</span><span class="st">&quot;Air Temperature Density&quot;</span>, <span class="dt">col=</span><span class="st">&quot;black&quot;</span>, <span class="dt">lwd=</span><span class="dv">2</span>)</a>
 <a class="sourceLine" id="cb305-5" data-line-number="5"><span class="co"># fill in the space below the density distribution instead of leaving it white</span></a>
 <a class="sourceLine" id="cb305-6" data-line-number="6"><span class="kw">polygon</span>(d, <span class="dt">col=</span><span class="st">&quot;coral&quot;</span>, <span class="dt">border=</span><span class="st">&quot;blue&quot;</span>)</a></code></pre></div>
-<p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-111-1.png" width="60%" style="display: block; margin: auto;" /></p>
+<p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-112-1.png" width="60%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="finding-a-best-fit-distribution" class="section level3">
 <h3><span class="header-section-number">11.2.4</span> Finding a Best-Fit Distribution</h3>
@@ -689,10 +690,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##     area, select</code></pre>
 <pre><code>## Loading required package: survival</code></pre>
 <div class="sourceCode" id="cb311"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb311-1" data-line-number="1"><span class="kw">plotdist</span>(jan2jun<span class="op">$</span>tair, <span class="dt">histo =</span> <span class="ot">TRUE</span>, <span class="dt">demp =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
-<p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-112-1.png" width="60%" style="display: block; margin: auto;" /></p>
+<p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-113-1.png" width="60%" style="display: block; margin: auto;" /></p>
 <p>In the previous section, we fit our histogram of Air Temperature with a normal distribution. Was this a good selection? We can use the <code>descdist</code> function to plot a Cullen and Frey Graph. This graph provides analysis for which distribution (normal, uniform, exponential, etc.) best fits our data. Basically, we just look to see which theoretical distribution is closest to our observation point.</p>
 <div class="sourceCode" id="cb312"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb312-1" data-line-number="1"><span class="kw">descdist</span>(jan2jun<span class="op">$</span>tair)</a></code></pre></div>
-<p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-113-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-114-1.png" width="672" style="display: block; margin: auto;" /></p>
 <pre><code>## summary statistics
 ## ------
 ## min:  248.4165   max:  304.0025 
@@ -722,7 +723,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb316-4" data-line-number="4"><span class="kw">cdfcomp</span> (<span class="kw">list</span>(fit_u, fit_n, fit_g), <span class="dt">legendtext =</span> plot.legend)</a>
 <a class="sourceLine" id="cb316-5" data-line-number="5"><span class="kw">qqcomp</span>  (<span class="kw">list</span>(fit_u, fit_n, fit_g), <span class="dt">legendtext =</span> plot.legend)</a>
 <a class="sourceLine" id="cb316-6" data-line-number="6"><span class="kw">ppcomp</span>  (<span class="kw">list</span>(fit_u, fit_n, fit_g), <span class="dt">legendtext =</span> plot.legend)</a></code></pre></div>
-<p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-114-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-115-1.png" width="960" style="display: block; margin: auto;" /></p>
 <p>Some of the statistics shown in this section are beyond the scope of this course but this package is important to know of.</p>
 </div>
 <div id="correlation-plots" class="section level3">
@@ -761,7 +762,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb321-6" data-line-number="6">         <span class="dt">tl.col =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">tl.srt =</span> <span class="dv">90</span>, <span class="co"># Text label color and rotation</span></a>
 <a class="sourceLine" id="cb321-7" data-line-number="7">         <span class="co"># Combine with significance</span></a>
 <a class="sourceLine" id="cb321-8" data-line-number="8">         <span class="dt">sig.level =</span> <span class="fl">0.05</span>, <span class="dt">insig =</span> <span class="st">&quot;blank&quot;</span>)</a></code></pre></div>
-<p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-115-1.png" width="960" /></p>
+<p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-116-1.png" width="768" style="display: block; margin: auto;" /></p>
 <p>Do these correlations make sense? Let’s take two variables that are highly correlated - temperature and shortwave radiation (sunlight). Our correalation is .36 for these two variables - this is a slight correlation. Why isn’t the correlation higher? Advection - that is air being transported from other locations via wind.</p>
 </div>
 </div>
