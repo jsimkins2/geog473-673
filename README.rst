@@ -1,6 +1,6 @@
 GEOG 473/673: Advanced R for Spatial Analysis and Visualization
 ============================================================
- Pearson 203 – MW 8:40 – 9:55
+ Online Meeting via Zoom – MW 9am-10am
 
 Phase 1: Spatial Analysis & Visualization in R - 02/15/2021 - 04/16/2021 – 2cr
 
