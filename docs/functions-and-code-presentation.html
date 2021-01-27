@@ -200,7 +200,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.2" data-path="basic-r-scripts.html"><a href="basic-r-scripts.html#cars---motor-trends-magazine-data"><i class="fa fa-check"></i><b>5.2</b> Cars - Motor Trends Magazine Data</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="scientific-r-scripts.html"><a href="scientific-r-scripts.html"><i class="fa fa-check"></i><b>6</b> Scientific R Scripts</a><ul>
-<li class="chapter" data-level="6.1" data-path="scientific-r-scripts.html"><a href="scientific-r-scripts.html#script-breakdown"><i class="fa fa-check"></i><b>6.1</b> Script Breakdown</a></li>
+<li class="chapter" data-level="6.1" data-path="scientific-r-scripts.html"><a href="scientific-r-scripts.html#script-breakdown"><i class="fa fa-check"></i><b>6.1</b> Script Breakdown</a><ul>
+<li class="chapter" data-level="6.1.1" data-path="scientific-r-scripts.html"><a href="scientific-r-scripts.html#installing-packages"><i class="fa fa-check"></i><b>6.1.1</b> Installing Packages</a></li>
+<li class="chapter" data-level="6.1.2" data-path="scientific-r-scripts.html"><a href="scientific-r-scripts.html#reading-the-data"><i class="fa fa-check"></i><b>6.1.2</b> Reading the Data</a></li>
+<li class="chapter" data-level="6.1.3" data-path="scientific-r-scripts.html"><a href="scientific-r-scripts.html#basic-quality-control"><i class="fa fa-check"></i><b>6.1.3</b> Basic Quality Control</a></li>
+<li class="chapter" data-level="6.1.4" data-path="scientific-r-scripts.html"><a href="scientific-r-scripts.html#plotting-the-data"><i class="fa fa-check"></i><b>6.1.4</b> Plotting the Data</a></li>
+</ul></li>
 <li class="chapter" data-level="6.2" data-path="scientific-r-scripts.html"><a href="scientific-r-scripts.html#in-class-exercise"><i class="fa fa-check"></i><b>6.2</b> In Class Exercise</a><ul>
 <li class="chapter" data-level="6.2.1" data-path="scientific-r-scripts.html"><a href="scientific-r-scripts.html#further-explanation-of-datatypes"><i class="fa fa-check"></i><b>6.2.1</b> Further Explanation of DataTypes</a></li>
 </ul></li>
@@ -345,63 +350,63 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="functions" class="section level2">
 <h2><span class="header-section-number">16.1</span> Functions</h2>
 <p>We create functions to speed up and organize code. So far, we’ve only been coding things via scripting and occasionally using for loops. While this is fine, it’s slower than writing functions would be. Writing or creating functions is considered much cleaner and more <em>proper</em>. As a recap, whenever we use the phrase <code>library(ncdf4)</code> we are loading the <code>ncdf4</code> package. Within that package are a number of <code>.R</code> scripts/files that contain functions that someone has been kind enough to write for the world. By using <code>library(ncdf4)</code>, R reads in all of those functions and thus knows what we want when we execute a function like <code>nc_open()</code>. Instead of re-writing the pure function of <code>nc_open()</code> over and over again every time we want to open a netcdf file, we are able to just load the function. Before we get further into <code>ncdf4</code>, let’s write some R code to square a sequence of values.</p>
-<div class="sourceCode" id="cb497"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb497-1" data-line-number="1"><span class="co"># square a sequence of values with start of 5 and stop of 10</span></a>
-<a class="sourceLine" id="cb497-2" data-line-number="2">arg1 =<span class="st"> </span><span class="dv">1</span></a>
-<a class="sourceLine" id="cb497-3" data-line-number="3">arg2 =<span class="st"> </span><span class="dv">5</span></a>
-<a class="sourceLine" id="cb497-4" data-line-number="4">my.seq =<span class="st"> </span><span class="kw">seq</span>(arg1, arg2, <span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb497-5" data-line-number="5">my.seq.squared =<span class="st"> </span>my.seq <span class="op">**</span><span class="st"> </span><span class="dv">2</span></a>
-<a class="sourceLine" id="cb497-6" data-line-number="6">my.seq.squared</a></code></pre></div>
+<div class="sourceCode" id="cb499"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb499-1" data-line-number="1"><span class="co"># square a sequence of values with start of 5 and stop of 10</span></a>
+<a class="sourceLine" id="cb499-2" data-line-number="2">arg1 =<span class="st"> </span><span class="dv">1</span></a>
+<a class="sourceLine" id="cb499-3" data-line-number="3">arg2 =<span class="st"> </span><span class="dv">5</span></a>
+<a class="sourceLine" id="cb499-4" data-line-number="4">my.seq =<span class="st"> </span><span class="kw">seq</span>(arg1, arg2, <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb499-5" data-line-number="5">my.seq.squared =<span class="st"> </span>my.seq <span class="op">**</span><span class="st"> </span><span class="dv">2</span></a>
+<a class="sourceLine" id="cb499-6" data-line-number="6">my.seq.squared</a></code></pre></div>
 <pre><code>## [1]  1  4  9 16 25</code></pre>
 <p>This code is straight-forward and light. Let’s now assume, however, that we want to run this code on multiple sets of start and stop values. If we turn the code above into a function, this is streamlined.</p>
-<div class="sourceCode" id="cb499"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb499-1" data-line-number="1"><span class="co"># create a function called seq_squared</span></a>
-<a class="sourceLine" id="cb499-2" data-line-number="2">seq_squared =<span class="st"> </span><span class="cf">function</span>(arg1, arg2){</a>
-<a class="sourceLine" id="cb499-3" data-line-number="3">  my.seq =<span class="st"> </span><span class="kw">seq</span>(arg1, arg2, <span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb499-4" data-line-number="4">  my.seq.squared =<span class="st"> </span>my.seq <span class="op">**</span><span class="st"> </span><span class="dv">2</span></a>
-<a class="sourceLine" id="cb499-5" data-line-number="5">  <span class="kw">return</span>(my.seq.squared)</a>
-<a class="sourceLine" id="cb499-6" data-line-number="6">}</a>
-<a class="sourceLine" id="cb499-7" data-line-number="7"></a>
-<a class="sourceLine" id="cb499-8" data-line-number="8"><span class="kw">seq_squared</span>(<span class="dt">arg1 =</span> <span class="dv">5</span>, <span class="dt">arg2 =</span> <span class="dv">10</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb501"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb501-1" data-line-number="1"><span class="co"># create a function called seq_squared</span></a>
+<a class="sourceLine" id="cb501-2" data-line-number="2">seq_squared =<span class="st"> </span><span class="cf">function</span>(arg1, arg2){</a>
+<a class="sourceLine" id="cb501-3" data-line-number="3">  my.seq =<span class="st"> </span><span class="kw">seq</span>(arg1, arg2, <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb501-4" data-line-number="4">  my.seq.squared =<span class="st"> </span>my.seq <span class="op">**</span><span class="st"> </span><span class="dv">2</span></a>
+<a class="sourceLine" id="cb501-5" data-line-number="5">  <span class="kw">return</span>(my.seq.squared)</a>
+<a class="sourceLine" id="cb501-6" data-line-number="6">}</a>
+<a class="sourceLine" id="cb501-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb501-8" data-line-number="8"><span class="kw">seq_squared</span>(<span class="dt">arg1 =</span> <span class="dv">5</span>, <span class="dt">arg2 =</span> <span class="dv">10</span>)</a></code></pre></div>
 <pre><code>## [1]  25  36  49  64  81 100</code></pre>
 <p>Above we have a function that takes in start and stop values of a sequence, uses these values to make a sequence, and returns the squares of each of these values. We create a new <code>function</code> in R using the <code>function</code> R call and name it <code>seq_squared</code>. When we write a function of our own, we can add in our own arguments as we see fit. In this case, we create arguments named <code>arg1</code> and <code>arg2</code>. These arguments are used to create <code>my.seq</code> which is a sequence within our <code>xfunc</code> function. We create a <code>my.seq.squared</code> variable which is a vector of <code>my.seq</code> values squared. Ultimately, <code>my.seq.squared</code> is the output of our function. It’s what we include in our <code>return</code> statement. Every function requires something to be returned, and <code>my.seq.squared</code> is the output of our <code>seq_squared</code>.</p>
 </div>
 <div id="netcdf-processing-function" class="section level2">
 <h2><span class="header-section-number">16.2</span> NetCDF Processing Function</h2>
 <p>Loading in all of the weather data from Willow Creek, WI is cumbersome. Let’s write a function that reads in the data and converts everything to a dataframe for us.</p>
-<div class="sourceCode" id="cb501"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb501-1" data-line-number="1"><span class="kw">library</span>(ncdf4)</a>
-<a class="sourceLine" id="cb501-2" data-line-number="2">read.wcr =<span class="st"> </span><span class="cf">function</span>(fname) {</a>
-<a class="sourceLine" id="cb501-3" data-line-number="3">  fullname =<span class="st"> </span><span class="kw">strsplit</span>(fname, <span class="st">&quot;/&quot;</span>)</a>
-<a class="sourceLine" id="cb501-4" data-line-number="4">  dataset_str =<span class="st"> </span>fullname[[<span class="dv">1</span>]][<span class="kw">length</span>(fullname[[<span class="dv">1</span>]])]</a>
-<a class="sourceLine" id="cb501-5" data-line-number="5">  datname =<span class="st"> </span><span class="kw">strsplit</span>(dataset_str, <span class="st">&quot;_&quot;</span>)[[<span class="dv">1</span>]][<span class="dv">1</span>]</a>
-<a class="sourceLine" id="cb501-6" data-line-number="6">  data.year =<span class="st"> </span><span class="kw">substr</span>(dataset_str, <span class="kw">nchar</span>(dataset_str)<span class="op">-</span><span class="dv">6</span>, <span class="kw">nchar</span>(dataset_str)<span class="op">-</span><span class="dv">3</span>)</a>
-<a class="sourceLine" id="cb501-7" data-line-number="7">  data.date =<span class="st"> </span><span class="kw">seq</span>(<span class="dt">from=</span><span class="kw">as.POSIXct</span>(<span class="kw">paste0</span>(data.year,<span class="st">&quot;-1-1 0:00&quot;</span>, <span class="dt">tz=</span><span class="st">&quot;UTC&quot;</span>)),<span class="dt">to=</span><span class="kw">as.POSIXct</span>(<span class="kw">paste0</span>(data.year,<span class="st">&quot;-12-31 23:00&quot;</span>, <span class="dt">tz=</span><span class="st">&quot;UTC&quot;</span>)),<span class="dt">by=</span><span class="st">&quot;hour&quot;</span>)</a>
-<a class="sourceLine" id="cb501-8" data-line-number="8">  vars.info &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">CF.name =</span> <span class="kw">c</span>(<span class="st">&quot;date&quot;</span>, <span class="st">&quot;air_temperature&quot;</span>, <span class="st">&quot;precipitation_flux&quot;</span>, <span class="st">&quot;surface_downwelling_shortwave_flux_in_air&quot;</span>,</a>
-<a class="sourceLine" id="cb501-9" data-line-number="9">                                      <span class="st">&quot;specific_humidity&quot;</span>, <span class="st">&quot;surface_downwelling_longwave_flux_in_air&quot;</span>, <span class="st">&quot;air_pressure&quot;</span>,</a>
-<a class="sourceLine" id="cb501-10" data-line-number="10">                                      <span class="st">&quot;eastward_wind&quot;</span>, <span class="st">&quot;northward_wind&quot;</span>, <span class="st">&quot;wind_speed&quot;</span>))</a>
-<a class="sourceLine" id="cb501-11" data-line-number="11">  df &lt;-<span class="st"> </span><span class="kw">list</span>()</a>
-<a class="sourceLine" id="cb501-12" data-line-number="12">  tem &lt;-<span class="st"> </span>ncdf4<span class="op">::</span><span class="kw">nc_open</span>(fname)</a>
-<a class="sourceLine" id="cb501-13" data-line-number="13">  dim &lt;-<span class="st"> </span>tem<span class="op">$</span>dim</a>
-<a class="sourceLine" id="cb501-14" data-line-number="14">  <span class="cf">for</span> (j <span class="cf">in</span> <span class="kw">seq_along</span>(vars.info<span class="op">$</span>CF.name)) {</a>
-<a class="sourceLine" id="cb501-15" data-line-number="15">    <span class="cf">if</span> (<span class="kw">exists</span>(<span class="kw">as.character</span>(vars.info<span class="op">$</span>CF.name[j]), tem<span class="op">$</span>var)) {</a>
-<a class="sourceLine" id="cb501-16" data-line-number="16">      df[[j]] &lt;-<span class="st"> </span>ncdf4<span class="op">::</span><span class="kw">ncvar_get</span>(tem, <span class="kw">as.character</span>(vars.info<span class="op">$</span>CF.name[j]))</a>
-<a class="sourceLine" id="cb501-17" data-line-number="17">    } <span class="cf">else</span> {</a>
-<a class="sourceLine" id="cb501-18" data-line-number="18">      df[[j]] =<span class="st"> </span><span class="ot">NA</span></a>
-<a class="sourceLine" id="cb501-19" data-line-number="19">    }</a>
-<a class="sourceLine" id="cb501-20" data-line-number="20">  }</a>
-<a class="sourceLine" id="cb501-21" data-line-number="21">  <span class="kw">names</span>(df) &lt;-<span class="st"> </span>vars.info<span class="op">$</span>CF.name</a>
-<a class="sourceLine" id="cb501-22" data-line-number="22">  df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(df)</a>
-<a class="sourceLine" id="cb501-23" data-line-number="23">  <span class="kw">nc_close</span>(tem)</a>
-<a class="sourceLine" id="cb501-24" data-line-number="24">  <span class="cf">if</span>(<span class="kw">all</span>(<span class="kw">is.na</span>(df<span class="op">$</span>date))){</a>
-<a class="sourceLine" id="cb501-25" data-line-number="25">    df<span class="op">$</span>date =<span class="st"> </span>data.date</a>
-<a class="sourceLine" id="cb501-26" data-line-number="26">  }</a>
-<a class="sourceLine" id="cb501-27" data-line-number="27">  <span class="kw">return</span>(df)</a>
-<a class="sourceLine" id="cb501-28" data-line-number="28">}</a></code></pre></div>
+<div class="sourceCode" id="cb503"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb503-1" data-line-number="1"><span class="kw">library</span>(ncdf4)</a>
+<a class="sourceLine" id="cb503-2" data-line-number="2">read.wcr =<span class="st"> </span><span class="cf">function</span>(fname) {</a>
+<a class="sourceLine" id="cb503-3" data-line-number="3">  fullname =<span class="st"> </span><span class="kw">strsplit</span>(fname, <span class="st">&quot;/&quot;</span>)</a>
+<a class="sourceLine" id="cb503-4" data-line-number="4">  dataset_str =<span class="st"> </span>fullname[[<span class="dv">1</span>]][<span class="kw">length</span>(fullname[[<span class="dv">1</span>]])]</a>
+<a class="sourceLine" id="cb503-5" data-line-number="5">  datname =<span class="st"> </span><span class="kw">strsplit</span>(dataset_str, <span class="st">&quot;_&quot;</span>)[[<span class="dv">1</span>]][<span class="dv">1</span>]</a>
+<a class="sourceLine" id="cb503-6" data-line-number="6">  data.year =<span class="st"> </span><span class="kw">substr</span>(dataset_str, <span class="kw">nchar</span>(dataset_str)<span class="op">-</span><span class="dv">6</span>, <span class="kw">nchar</span>(dataset_str)<span class="op">-</span><span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb503-7" data-line-number="7">  data.date =<span class="st"> </span><span class="kw">seq</span>(<span class="dt">from=</span><span class="kw">as.POSIXct</span>(<span class="kw">paste0</span>(data.year,<span class="st">&quot;-1-1 0:00&quot;</span>, <span class="dt">tz=</span><span class="st">&quot;UTC&quot;</span>)),<span class="dt">to=</span><span class="kw">as.POSIXct</span>(<span class="kw">paste0</span>(data.year,<span class="st">&quot;-12-31 23:00&quot;</span>, <span class="dt">tz=</span><span class="st">&quot;UTC&quot;</span>)),<span class="dt">by=</span><span class="st">&quot;hour&quot;</span>)</a>
+<a class="sourceLine" id="cb503-8" data-line-number="8">  vars.info &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">CF.name =</span> <span class="kw">c</span>(<span class="st">&quot;date&quot;</span>, <span class="st">&quot;air_temperature&quot;</span>, <span class="st">&quot;precipitation_flux&quot;</span>, <span class="st">&quot;surface_downwelling_shortwave_flux_in_air&quot;</span>,</a>
+<a class="sourceLine" id="cb503-9" data-line-number="9">                                      <span class="st">&quot;specific_humidity&quot;</span>, <span class="st">&quot;surface_downwelling_longwave_flux_in_air&quot;</span>, <span class="st">&quot;air_pressure&quot;</span>,</a>
+<a class="sourceLine" id="cb503-10" data-line-number="10">                                      <span class="st">&quot;eastward_wind&quot;</span>, <span class="st">&quot;northward_wind&quot;</span>, <span class="st">&quot;wind_speed&quot;</span>))</a>
+<a class="sourceLine" id="cb503-11" data-line-number="11">  df &lt;-<span class="st"> </span><span class="kw">list</span>()</a>
+<a class="sourceLine" id="cb503-12" data-line-number="12">  tem &lt;-<span class="st"> </span>ncdf4<span class="op">::</span><span class="kw">nc_open</span>(fname)</a>
+<a class="sourceLine" id="cb503-13" data-line-number="13">  dim &lt;-<span class="st"> </span>tem<span class="op">$</span>dim</a>
+<a class="sourceLine" id="cb503-14" data-line-number="14">  <span class="cf">for</span> (j <span class="cf">in</span> <span class="kw">seq_along</span>(vars.info<span class="op">$</span>CF.name)) {</a>
+<a class="sourceLine" id="cb503-15" data-line-number="15">    <span class="cf">if</span> (<span class="kw">exists</span>(<span class="kw">as.character</span>(vars.info<span class="op">$</span>CF.name[j]), tem<span class="op">$</span>var)) {</a>
+<a class="sourceLine" id="cb503-16" data-line-number="16">      df[[j]] &lt;-<span class="st"> </span>ncdf4<span class="op">::</span><span class="kw">ncvar_get</span>(tem, <span class="kw">as.character</span>(vars.info<span class="op">$</span>CF.name[j]))</a>
+<a class="sourceLine" id="cb503-17" data-line-number="17">    } <span class="cf">else</span> {</a>
+<a class="sourceLine" id="cb503-18" data-line-number="18">      df[[j]] =<span class="st"> </span><span class="ot">NA</span></a>
+<a class="sourceLine" id="cb503-19" data-line-number="19">    }</a>
+<a class="sourceLine" id="cb503-20" data-line-number="20">  }</a>
+<a class="sourceLine" id="cb503-21" data-line-number="21">  <span class="kw">names</span>(df) &lt;-<span class="st"> </span>vars.info<span class="op">$</span>CF.name</a>
+<a class="sourceLine" id="cb503-22" data-line-number="22">  df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(df)</a>
+<a class="sourceLine" id="cb503-23" data-line-number="23">  <span class="kw">nc_close</span>(tem)</a>
+<a class="sourceLine" id="cb503-24" data-line-number="24">  <span class="cf">if</span>(<span class="kw">all</span>(<span class="kw">is.na</span>(df<span class="op">$</span>date))){</a>
+<a class="sourceLine" id="cb503-25" data-line-number="25">    df<span class="op">$</span>date =<span class="st"> </span>data.date</a>
+<a class="sourceLine" id="cb503-26" data-line-number="26">  }</a>
+<a class="sourceLine" id="cb503-27" data-line-number="27">  <span class="kw">return</span>(df)</a>
+<a class="sourceLine" id="cb503-28" data-line-number="28">}</a></code></pre></div>
 <p>In the function above, we’ve refactored code that we previously wrote to read in a Willow Creek netCDF file. <code>read.wcr</code> is our function name, the <code>function()</code> command tells R we’re declaring a function. <code>fname</code> is one of the arguments that the function takes. For example, the function what we use for opening netCDF files - <code>nc_open()</code> has the following arguments…</p>
 <p><code>nc_open( filename, write=FALSE, readunlim=TRUE, verbose=FALSE,      auto_GMT=TRUE, suppress_dimvals=FALSE )</code></p>
 <p>The function we’ve coded above only takes the filename, but if our routine was more complex we could add more arguments in. Once the argument is taken in, we <strong>generalize</strong> naming schemes that are unimportant. Notice how we use object names like <code>tem</code> for example. This is short for temporary, and is set up to be overwritten if we were to use this function within a for loop to open multiple files.</p>
 <p>Finally, focus in on the <code>return(df)</code> line - <code>return</code> is what we get out of a function. Now, let’s actually use the <code>read.wcr()</code> function we wrote above.</p>
-<div class="sourceCode" id="cb502"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb502-1" data-line-number="1">wcr_df =<span class="st"> </span><span class="kw">read.wcr</span>(<span class="dt">fname =</span> <span class="st">&quot;~/Documents/Github/geog473-673/datasets/WCr_1hr.2010.nc&quot;</span>)</a>
-<a class="sourceLine" id="cb502-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb502-3" data-line-number="3"><span class="kw">summary</span>(wcr_df)</a></code></pre></div>
+<div class="sourceCode" id="cb504"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb504-1" data-line-number="1">wcr_df =<span class="st"> </span><span class="kw">read.wcr</span>(<span class="dt">fname =</span> <span class="st">&quot;~/Documents/Github/geog473-673/datasets/WCr_1hr.2010.nc&quot;</span>)</a>
+<a class="sourceLine" id="cb504-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb504-3" data-line-number="3"><span class="kw">summary</span>(wcr_df)</a></code></pre></div>
 <pre><code>##       date                     air_temperature precipitation_flux 
 ##  Min.   :2010-01-01 00:00:00   Min.   :248.4   Min.   :0.000e+00  
 ##  1st Qu.:2010-04-02 06:45:00   1st Qu.:270.5   1st Qu.:0.000e+00  
@@ -435,25 +440,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="functions-in-for-loops" class="section level2">
 <h2><span class="header-section-number">16.3</span> Functions in For Loops</h2>
-<div class="sourceCode" id="cb504"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb504-1" data-line-number="1"><span class="co"># create a sequence of years for the years we have data</span></a>
-<a class="sourceLine" id="cb504-2" data-line-number="2">yearSeq =<span class="st"> </span><span class="kw">seq</span>(<span class="dv">2010</span>,<span class="dv">2012</span>)</a>
-<a class="sourceLine" id="cb504-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb504-4" data-line-number="4"><span class="co"># begin the for loop to open each year of data</span></a>
-<a class="sourceLine" id="cb504-5" data-line-number="5"><span class="cf">for</span> (y <span class="cf">in</span> yearSeq){</a>
-<a class="sourceLine" id="cb504-6" data-line-number="6">  <span class="co"># use our read.wcr() function and paste in the filename that changes for each year of data</span></a>
-<a class="sourceLine" id="cb504-7" data-line-number="7">  tem_df =<span class="st"> </span><span class="kw">read.wcr</span>(<span class="dt">fname =</span> <span class="kw">paste0</span>(<span class="st">&quot;~/Documents/Github/geog473-673/datasets/WCr_1hr.&quot;</span>,y,<span class="st">&quot;.nc&quot;</span>))</a>
-<a class="sourceLine" id="cb504-8" data-line-number="8">  <span class="co"># != means DOES NOT EQUAL. This statement reads as - if y DOES NOT EQUAL the first year in yearSeq, proceed to use rbind</span></a>
-<a class="sourceLine" id="cb504-9" data-line-number="9">  <span class="co"># otherwise, if y is indeed the first year in yearSeq, we need to initialize wcr_df BEFORE we overwrite tem_df</span></a>
-<a class="sourceLine" id="cb504-10" data-line-number="10">  <span class="cf">if</span> (y <span class="op">!=</span><span class="st"> </span>yearSeq[<span class="dv">1</span>]){</a>
-<a class="sourceLine" id="cb504-11" data-line-number="11">    wcr_df =<span class="st"> </span><span class="kw">rbind</span>(wcr_df, tem_df)</a>
-<a class="sourceLine" id="cb504-12" data-line-number="12">  } <span class="cf">else</span> {</a>
-<a class="sourceLine" id="cb504-13" data-line-number="13">    wcr_df =<span class="st"> </span>tem_df</a>
-<a class="sourceLine" id="cb504-14" data-line-number="14">  }</a>
-<a class="sourceLine" id="cb504-15" data-line-number="15">}</a>
-<a class="sourceLine" id="cb504-16" data-line-number="16"></a>
-<a class="sourceLine" id="cb504-17" data-line-number="17"><span class="kw">length</span>(wcr_df<span class="op">$</span>date)</a></code></pre></div>
+<div class="sourceCode" id="cb506"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb506-1" data-line-number="1"><span class="co"># create a sequence of years for the years we have data</span></a>
+<a class="sourceLine" id="cb506-2" data-line-number="2">yearSeq =<span class="st"> </span><span class="kw">seq</span>(<span class="dv">2010</span>,<span class="dv">2012</span>)</a>
+<a class="sourceLine" id="cb506-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb506-4" data-line-number="4"><span class="co"># begin the for loop to open each year of data</span></a>
+<a class="sourceLine" id="cb506-5" data-line-number="5"><span class="cf">for</span> (y <span class="cf">in</span> yearSeq){</a>
+<a class="sourceLine" id="cb506-6" data-line-number="6">  <span class="co"># use our read.wcr() function and paste in the filename that changes for each year of data</span></a>
+<a class="sourceLine" id="cb506-7" data-line-number="7">  tem_df =<span class="st"> </span><span class="kw">read.wcr</span>(<span class="dt">fname =</span> <span class="kw">paste0</span>(<span class="st">&quot;~/Documents/Github/geog473-673/datasets/WCr_1hr.&quot;</span>,y,<span class="st">&quot;.nc&quot;</span>))</a>
+<a class="sourceLine" id="cb506-8" data-line-number="8">  <span class="co"># != means DOES NOT EQUAL. This statement reads as - if y DOES NOT EQUAL the first year in yearSeq, proceed to use rbind</span></a>
+<a class="sourceLine" id="cb506-9" data-line-number="9">  <span class="co"># otherwise, if y is indeed the first year in yearSeq, we need to initialize wcr_df BEFORE we overwrite tem_df</span></a>
+<a class="sourceLine" id="cb506-10" data-line-number="10">  <span class="cf">if</span> (y <span class="op">!=</span><span class="st"> </span>yearSeq[<span class="dv">1</span>]){</a>
+<a class="sourceLine" id="cb506-11" data-line-number="11">    wcr_df =<span class="st"> </span><span class="kw">rbind</span>(wcr_df, tem_df)</a>
+<a class="sourceLine" id="cb506-12" data-line-number="12">  } <span class="cf">else</span> {</a>
+<a class="sourceLine" id="cb506-13" data-line-number="13">    wcr_df =<span class="st"> </span>tem_df</a>
+<a class="sourceLine" id="cb506-14" data-line-number="14">  }</a>
+<a class="sourceLine" id="cb506-15" data-line-number="15">}</a>
+<a class="sourceLine" id="cb506-16" data-line-number="16"></a>
+<a class="sourceLine" id="cb506-17" data-line-number="17"><span class="kw">length</span>(wcr_df<span class="op">$</span>date)</a></code></pre></div>
 <pre><code>## [1] 26304</code></pre>
-<div class="sourceCode" id="cb506"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb506-1" data-line-number="1"><span class="kw">summary</span>(wcr_df)</a></code></pre></div>
+<div class="sourceCode" id="cb508"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb508-1" data-line-number="1"><span class="kw">summary</span>(wcr_df)</a></code></pre></div>
 <pre><code>##       date                     air_temperature precipitation_flux 
 ##  Min.   :2010-01-01 00:00:00   Min.   :245.0   Min.   :0.000e+00  
 ##  1st Qu.:2010-10-02 00:45:00   1st Qu.:270.4   1st Qu.:0.000e+00  
@@ -506,12 +511,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Thus, for our <code>my.seq.squared</code> function above, it would be coded like this in RMarkdown.</li>
 </ul>
 <p><strong>```{r}</strong></p>
-<div class="sourceCode" id="cb508"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb508-1" data-line-number="1"><span class="co"># create a function called seq_squared</span></a>
-<a class="sourceLine" id="cb508-2" data-line-number="2">seq_squared =<span class="st"> </span><span class="cf">function</span>(arg1, arg2){</a>
-<a class="sourceLine" id="cb508-3" data-line-number="3">  my.seq =<span class="st"> </span><span class="kw">seq</span>(arg1, arg2, <span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb508-4" data-line-number="4">  my.seq.squared =<span class="st"> </span>my.seq <span class="op">**</span><span class="st"> </span><span class="dv">2</span></a>
-<a class="sourceLine" id="cb508-5" data-line-number="5">  <span class="kw">return</span>(my.seq.squared)</a>
-<a class="sourceLine" id="cb508-6" data-line-number="6">}</a></code></pre></div>
+<div class="sourceCode" id="cb510"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb510-1" data-line-number="1"><span class="co"># create a function called seq_squared</span></a>
+<a class="sourceLine" id="cb510-2" data-line-number="2">seq_squared =<span class="st"> </span><span class="cf">function</span>(arg1, arg2){</a>
+<a class="sourceLine" id="cb510-3" data-line-number="3">  my.seq =<span class="st"> </span><span class="kw">seq</span>(arg1, arg2, <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb510-4" data-line-number="4">  my.seq.squared =<span class="st"> </span>my.seq <span class="op">**</span><span class="st"> </span><span class="dv">2</span></a>
+<a class="sourceLine" id="cb510-5" data-line-number="5">  <span class="kw">return</span>(my.seq.squared)</a>
+<a class="sourceLine" id="cb510-6" data-line-number="6">}</a></code></pre></div>
 <p><strong>```</strong></p>
 <p>In our example here, R code is keyed in the R Markdown document like so.</p>
 <p><img src="images/rmd4.png" width="60%" style="display: block; margin: auto;" /></p>

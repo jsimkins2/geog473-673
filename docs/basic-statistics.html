@@ -200,7 +200,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.2" data-path="basic-r-scripts.html"><a href="basic-r-scripts.html#cars---motor-trends-magazine-data"><i class="fa fa-check"></i><b>5.2</b> Cars - Motor Trends Magazine Data</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="scientific-r-scripts.html"><a href="scientific-r-scripts.html"><i class="fa fa-check"></i><b>6</b> Scientific R Scripts</a><ul>
-<li class="chapter" data-level="6.1" data-path="scientific-r-scripts.html"><a href="scientific-r-scripts.html#script-breakdown"><i class="fa fa-check"></i><b>6.1</b> Script Breakdown</a></li>
+<li class="chapter" data-level="6.1" data-path="scientific-r-scripts.html"><a href="scientific-r-scripts.html#script-breakdown"><i class="fa fa-check"></i><b>6.1</b> Script Breakdown</a><ul>
+<li class="chapter" data-level="6.1.1" data-path="scientific-r-scripts.html"><a href="scientific-r-scripts.html#installing-packages"><i class="fa fa-check"></i><b>6.1.1</b> Installing Packages</a></li>
+<li class="chapter" data-level="6.1.2" data-path="scientific-r-scripts.html"><a href="scientific-r-scripts.html#reading-the-data"><i class="fa fa-check"></i><b>6.1.2</b> Reading the Data</a></li>
+<li class="chapter" data-level="6.1.3" data-path="scientific-r-scripts.html"><a href="scientific-r-scripts.html#basic-quality-control"><i class="fa fa-check"></i><b>6.1.3</b> Basic Quality Control</a></li>
+<li class="chapter" data-level="6.1.4" data-path="scientific-r-scripts.html"><a href="scientific-r-scripts.html#plotting-the-data"><i class="fa fa-check"></i><b>6.1.4</b> Plotting the Data</a></li>
+</ul></li>
 <li class="chapter" data-level="6.2" data-path="scientific-r-scripts.html"><a href="scientific-r-scripts.html#in-class-exercise"><i class="fa fa-check"></i><b>6.2</b> In Class Exercise</a><ul>
 <li class="chapter" data-level="6.2.1" data-path="scientific-r-scripts.html"><a href="scientific-r-scripts.html#further-explanation-of-datatypes"><i class="fa fa-check"></i><b>6.2.1</b> Further Explanation of DataTypes</a></li>
 </ul></li>
@@ -492,11 +497,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>R is famous for it’s easy-to-use statistics features and once you get the hang of it you’ll never want to touch Microsoft Excel again. Despite the fact that these stats functions seem pretty fancy to me, I call them basic functions because R has so much to offer to statisticians. In this tutorial, we examine meteorological observations that were recorded in Willow Creek Wisconsin, USA. There are 3 years of Willow Creek data - WCr_1hr.2010.nc, WCr_1hr.2011.nc, WCr_1hr.2012.nc. Let’s start with the 2010 dataset.</p>
 <div id="load-willow-creek-data" class="section level3">
 <h3><span class="header-section-number">11.2.1</span> Load Willow Creek data</h3>
-<div class="sourceCode" id="cb285"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb285-1" data-line-number="1"><span class="kw">library</span>(ncdf4)</a>
-<a class="sourceLine" id="cb285-2" data-line-number="2"><span class="co"># open the netcdf file of Willow Creek, Wisconsin meteorology data</span></a>
-<a class="sourceLine" id="cb285-3" data-line-number="3">nc_file =<span class="st"> </span><span class="kw">nc_open</span>(<span class="st">&quot;/Users/james/Documents/Github/geog473-673/datasets/WCr_1hr.2010.nc&quot;</span>)</a>
-<a class="sourceLine" id="cb285-4" data-line-number="4"><span class="co"># what does the nc file look like </span></a>
-<a class="sourceLine" id="cb285-5" data-line-number="5">nc_file</a></code></pre></div>
+<div class="sourceCode" id="cb286"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb286-1" data-line-number="1"><span class="kw">library</span>(ncdf4)</a>
+<a class="sourceLine" id="cb286-2" data-line-number="2"><span class="co"># open the netcdf file of Willow Creek, Wisconsin meteorology data</span></a>
+<a class="sourceLine" id="cb286-3" data-line-number="3">nc_file =<span class="st"> </span><span class="kw">nc_open</span>(<span class="st">&quot;/Users/james/Documents/Github/geog473-673/datasets/WCr_1hr.2010.nc&quot;</span>)</a>
+<a class="sourceLine" id="cb286-4" data-line-number="4"><span class="co"># what does the nc file look like </span></a>
+<a class="sourceLine" id="cb286-5" data-line-number="5">nc_file</a></code></pre></div>
 <pre><code>## File /Users/james/Documents/Github/geog473-673/datasets/WCr_1hr.2010.nc (NC_FORMAT_CLASSIC):
 ## 
 ##      10 variables (excluding dimension variables):
@@ -541,8 +546,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##         time  Size:8760   *** is unlimited ***
 ##             units: sec
 ##             long_name: time</code></pre>
-<div class="sourceCode" id="cb287"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb287-1" data-line-number="1"><span class="co"># ok, still a lot of info...let&#39;s list the names of the variables</span></a>
-<a class="sourceLine" id="cb287-2" data-line-number="2"><span class="kw">names</span>(nc_file<span class="op">$</span>var)</a></code></pre></div>
+<div class="sourceCode" id="cb288"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb288-1" data-line-number="1"><span class="co"># ok, still a lot of info...let&#39;s list the names of the variables</span></a>
+<a class="sourceLine" id="cb288-2" data-line-number="2"><span class="kw">names</span>(nc_file<span class="op">$</span>var)</a></code></pre></div>
 <pre><code>##  [1] &quot;air_temperature&quot;                          
 ##  [2] &quot;air_temperature_max&quot;                      
 ##  [3] &quot;air_temperature_min&quot;                      
@@ -553,24 +558,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  [8] &quot;northward_wind&quot;                           
 ##  [9] &quot;specific_humidity&quot;                        
 ## [10] &quot;precipitation_flux&quot;</code></pre>
-<div class="sourceCode" id="cb289"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb289-1" data-line-number="1"><span class="co"># alright, now we have some names, so let&#39;s put the variables into a new dataframe separate from the nc_file</span></a>
-<a class="sourceLine" id="cb289-2" data-line-number="2">var_names =<span class="st"> </span><span class="kw">names</span>(nc_file<span class="op">$</span>var)</a>
-<a class="sourceLine" id="cb289-3" data-line-number="3">willow_creek_<span class="dv">2010</span> =<span class="st"> </span><span class="kw">list</span>()</a>
-<a class="sourceLine" id="cb289-4" data-line-number="4">dim &lt;-<span class="st"> </span>nc_file<span class="op">$</span>dim</a>
-<a class="sourceLine" id="cb289-5" data-line-number="5"><span class="cf">for</span> (v <span class="cf">in</span> <span class="kw">seq_along</span>(var_names)){</a>
-<a class="sourceLine" id="cb289-6" data-line-number="6">  willow_creek_<span class="dv">2010</span>[[v]] =<span class="st"> </span><span class="kw">ncvar_get</span>(nc_file, <span class="dt">varid =</span> var_names[v])</a>
-<a class="sourceLine" id="cb289-7" data-line-number="7">}</a>
-<a class="sourceLine" id="cb289-8" data-line-number="8"><span class="co"># convert the list into a dataframe</span></a>
-<a class="sourceLine" id="cb289-9" data-line-number="9">wcreek_df =<span class="st"> </span><span class="kw">data.frame</span>(willow_creek_<span class="dv">2010</span>)</a>
-<a class="sourceLine" id="cb289-10" data-line-number="10"><span class="co"># tell the dataframe what the column names are</span></a>
-<a class="sourceLine" id="cb289-11" data-line-number="11"><span class="kw">colnames</span>(wcreek_df) =<span class="st"> </span>var_names</a>
-<a class="sourceLine" id="cb289-12" data-line-number="12"></a>
-<a class="sourceLine" id="cb289-13" data-line-number="13"><span class="co"># let&#39;s rename the variables to make them shorter - note that these short names MUST be in the same order as the longer names</span></a>
-<a class="sourceLine" id="cb289-14" data-line-number="14">short_names =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;tair&quot;</span>, <span class="st">&quot;tmax&quot;</span>, <span class="st">&quot;tmin&quot;</span>, <span class="st">&quot;lwave&quot;</span>, <span class="st">&quot;pres&quot;</span>, <span class="st">&quot;swave&quot;</span>, <span class="st">&quot;ewind&quot;</span>, <span class="st">&quot;nwind&quot;</span>, <span class="st">&quot;shum&quot;</span>, <span class="st">&quot;prec&quot;</span>)</a>
-<a class="sourceLine" id="cb289-15" data-line-number="15"><span class="co"># rename the column names to our new short name vector</span></a>
-<a class="sourceLine" id="cb289-16" data-line-number="16"><span class="kw">colnames</span>(wcreek_df) =<span class="st"> </span>short_names</a>
-<a class="sourceLine" id="cb289-17" data-line-number="17"><span class="co"># print the first few lines</span></a>
-<a class="sourceLine" id="cb289-18" data-line-number="18"><span class="kw">head</span>(wcreek_df)</a></code></pre></div>
+<div class="sourceCode" id="cb290"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb290-1" data-line-number="1"><span class="co"># alright, now we have some names, so let&#39;s put the variables into a new dataframe separate from the nc_file</span></a>
+<a class="sourceLine" id="cb290-2" data-line-number="2">var_names =<span class="st"> </span><span class="kw">names</span>(nc_file<span class="op">$</span>var)</a>
+<a class="sourceLine" id="cb290-3" data-line-number="3">willow_creek_<span class="dv">2010</span> =<span class="st"> </span><span class="kw">list</span>()</a>
+<a class="sourceLine" id="cb290-4" data-line-number="4">dim &lt;-<span class="st"> </span>nc_file<span class="op">$</span>dim</a>
+<a class="sourceLine" id="cb290-5" data-line-number="5"><span class="cf">for</span> (v <span class="cf">in</span> <span class="kw">seq_along</span>(var_names)){</a>
+<a class="sourceLine" id="cb290-6" data-line-number="6">  willow_creek_<span class="dv">2010</span>[[v]] =<span class="st"> </span><span class="kw">ncvar_get</span>(nc_file, <span class="dt">varid =</span> var_names[v])</a>
+<a class="sourceLine" id="cb290-7" data-line-number="7">}</a>
+<a class="sourceLine" id="cb290-8" data-line-number="8"><span class="co"># convert the list into a dataframe</span></a>
+<a class="sourceLine" id="cb290-9" data-line-number="9">wcreek_df =<span class="st"> </span><span class="kw">data.frame</span>(willow_creek_<span class="dv">2010</span>)</a>
+<a class="sourceLine" id="cb290-10" data-line-number="10"><span class="co"># tell the dataframe what the column names are</span></a>
+<a class="sourceLine" id="cb290-11" data-line-number="11"><span class="kw">colnames</span>(wcreek_df) =<span class="st"> </span>var_names</a>
+<a class="sourceLine" id="cb290-12" data-line-number="12"></a>
+<a class="sourceLine" id="cb290-13" data-line-number="13"><span class="co"># let&#39;s rename the variables to make them shorter - note that these short names MUST be in the same order as the longer names</span></a>
+<a class="sourceLine" id="cb290-14" data-line-number="14">short_names =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;tair&quot;</span>, <span class="st">&quot;tmax&quot;</span>, <span class="st">&quot;tmin&quot;</span>, <span class="st">&quot;lwave&quot;</span>, <span class="st">&quot;pres&quot;</span>, <span class="st">&quot;swave&quot;</span>, <span class="st">&quot;ewind&quot;</span>, <span class="st">&quot;nwind&quot;</span>, <span class="st">&quot;shum&quot;</span>, <span class="st">&quot;prec&quot;</span>)</a>
+<a class="sourceLine" id="cb290-15" data-line-number="15"><span class="co"># rename the column names to our new short name vector</span></a>
+<a class="sourceLine" id="cb290-16" data-line-number="16"><span class="kw">colnames</span>(wcreek_df) =<span class="st"> </span>short_names</a>
+<a class="sourceLine" id="cb290-17" data-line-number="17"><span class="co"># print the first few lines</span></a>
+<a class="sourceLine" id="cb290-18" data-line-number="18"><span class="kw">head</span>(wcreek_df)</a></code></pre></div>
 <pre><code>##       tair    tmax    tmin    lwave    pres swave    ewind     nwind
 ## 1 260.1135 260.137 260.090 237.6100 95704.5     0 1.522976 -1.462524
 ## 2 260.0315 260.044 260.019 241.6900 95735.5     0 1.624952 -1.563508
@@ -586,19 +591,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 5 0.001142952    0
 ## 6 0.001133232    0</code></pre>
 <p>Our data has been read in and the variables have been renamed for our convenience. A major note here is that the replacement names <strong>must</strong> be in the same order as the variable names. Now, we turn our attnetion to the time component of this data. This is a time series dataset of weather variables so we’ll need a time variable to keep us organized. Here’s how we can create one…</p>
-<div class="sourceCode" id="cb291"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb291-1" data-line-number="1"><span class="co">### TIME </span><span class="al">###</span></a>
-<a class="sourceLine" id="cb291-2" data-line-number="2"><span class="co"># what are the units of time</span></a>
-<a class="sourceLine" id="cb291-3" data-line-number="3">dim<span class="op">$</span>time<span class="op">$</span>units</a></code></pre></div>
+<div class="sourceCode" id="cb292"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb292-1" data-line-number="1"><span class="co">### TIME </span><span class="al">###</span></a>
+<a class="sourceLine" id="cb292-2" data-line-number="2"><span class="co"># what are the units of time</span></a>
+<a class="sourceLine" id="cb292-3" data-line-number="3">dim<span class="op">$</span>time<span class="op">$</span>units</a></code></pre></div>
 <pre><code>## [1] &quot;sec&quot;</code></pre>
-<div class="sourceCode" id="cb293"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb293-1" data-line-number="1"><span class="co"># how are the time values spaced</span></a>
-<a class="sourceLine" id="cb293-2" data-line-number="2">dim<span class="op">$</span>time<span class="op">$</span>vals[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>]</a></code></pre></div>
+<div class="sourceCode" id="cb294"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb294-1" data-line-number="1"><span class="co"># how are the time values spaced</span></a>
+<a class="sourceLine" id="cb294-2" data-line-number="2">dim<span class="op">$</span>time<span class="op">$</span>vals[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>]</a></code></pre></div>
 <pre><code>##  [1]  3600  7200 10800 14400 18000 21600 25200 28800 32400 36000</code></pre>
-<div class="sourceCode" id="cb295"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb295-1" data-line-number="1"><span class="co"># we can back out that this data is hourly data just from knowing the units are seconds and time between</span></a>
-<a class="sourceLine" id="cb295-2" data-line-number="2"><span class="co"># each recorded value is 3600 (3600 seconds == 1 hour)</span></a>
-<a class="sourceLine" id="cb295-3" data-line-number="3"><span class="co">#### Add a datetime column ####</span></a>
-<a class="sourceLine" id="cb295-4" data-line-number="4">date.seq =<span class="st"> </span><span class="kw">seq</span>(<span class="kw">as.POSIXct</span>(<span class="st">&quot;2010-01-01 00:00:00&quot;</span>), <span class="kw">as.POSIXct</span>(<span class="st">&quot;2010-12-31 23:00:00&quot;</span>), <span class="dt">by=</span><span class="st">&quot;hour&quot;</span>)</a>
-<a class="sourceLine" id="cb295-5" data-line-number="5">wcreek_df[<span class="st">&#39;datetime&#39;</span>] =<span class="st"> </span>date.seq</a>
-<a class="sourceLine" id="cb295-6" data-line-number="6">wcreek_df<span class="op">$</span>datetime[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>]</a></code></pre></div>
+<div class="sourceCode" id="cb296"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb296-1" data-line-number="1"><span class="co"># we can back out that this data is hourly data just from knowing the units are seconds and time between</span></a>
+<a class="sourceLine" id="cb296-2" data-line-number="2"><span class="co"># each recorded value is 3600 (3600 seconds == 1 hour)</span></a>
+<a class="sourceLine" id="cb296-3" data-line-number="3"><span class="co">#### Add a datetime column ####</span></a>
+<a class="sourceLine" id="cb296-4" data-line-number="4">date.seq =<span class="st"> </span><span class="kw">seq</span>(<span class="kw">as.POSIXct</span>(<span class="st">&quot;2010-01-01 00:00:00&quot;</span>), <span class="kw">as.POSIXct</span>(<span class="st">&quot;2010-12-31 23:00:00&quot;</span>), <span class="dt">by=</span><span class="st">&quot;hour&quot;</span>)</a>
+<a class="sourceLine" id="cb296-5" data-line-number="5">wcreek_df[<span class="st">&#39;datetime&#39;</span>] =<span class="st"> </span>date.seq</a>
+<a class="sourceLine" id="cb296-6" data-line-number="6">wcreek_df<span class="op">$</span>datetime[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>]</a></code></pre></div>
 <pre><code>##  [1] &quot;2010-01-01 00:00:00 EST&quot; &quot;2010-01-01 01:00:00 EST&quot;
 ##  [3] &quot;2010-01-01 02:00:00 EST&quot; &quot;2010-01-01 03:00:00 EST&quot;
 ##  [5] &quot;2010-01-01 04:00:00 EST&quot; &quot;2010-01-01 05:00:00 EST&quot;
@@ -610,24 +615,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">11.2.2</span> Subsetting Data</h3>
 <p>In certain cases, our dataset may be too large. For example, our dataset contains 1 year of data. How can we subset our dataset from January 1 to June 30?</p>
 <p>We can use the <code>which</code> function to find out which row a particular datetime is located. In other words, the <code>which</code> function returns the dates index position. In order for this to work, <strong>the datetime format we use must match the datetime format of the dataset</strong>. In our case, the datetime is YYYY-mm-dd, so we need to search with that format. After we have our indices, we can subset the <code>wcreek_df</code> dataset using <code>wcreek_df[rows,columns]</code> subsetting rules.</p>
-<div class="sourceCode" id="cb297"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb297-1" data-line-number="1"><span class="co"># use YYYY-mm-dd to return which datettime index has a value of 2010-01-01</span></a>
-<a class="sourceLine" id="cb297-2" data-line-number="2">start_ind =<span class="st"> </span><span class="kw">which</span>(wcreek_df<span class="op">$</span>datetime <span class="op">==</span><span class="st"> &quot;2010-01-01&quot;</span>)</a>
-<a class="sourceLine" id="cb297-3" data-line-number="3"><span class="co"># use YYYY-mm-dd to return which datettime index has a value of 2010-06-30</span></a>
-<a class="sourceLine" id="cb297-4" data-line-number="4">end_ind =<span class="st"> </span><span class="kw">which</span>(wcreek_df<span class="op">$</span>datetime <span class="op">==</span><span class="st"> &quot;2010-06-30&quot;</span>)</a>
-<a class="sourceLine" id="cb297-5" data-line-number="5"><span class="co"># Index our wcree_df dataframe using the indices gathered above. We want all columns so column section stays blank</span></a>
-<a class="sourceLine" id="cb297-6" data-line-number="6">jan2jun =<span class="st"> </span>wcreek_df[start_ind<span class="op">:</span>end_ind,]</a></code></pre></div>
+<div class="sourceCode" id="cb298"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb298-1" data-line-number="1"><span class="co"># use YYYY-mm-dd to return which datettime index has a value of 2010-01-01</span></a>
+<a class="sourceLine" id="cb298-2" data-line-number="2">start_ind =<span class="st"> </span><span class="kw">which</span>(wcreek_df<span class="op">$</span>datetime <span class="op">==</span><span class="st"> &quot;2010-01-01&quot;</span>)</a>
+<a class="sourceLine" id="cb298-3" data-line-number="3"><span class="co"># use YYYY-mm-dd to return which datettime index has a value of 2010-06-30</span></a>
+<a class="sourceLine" id="cb298-4" data-line-number="4">end_ind =<span class="st"> </span><span class="kw">which</span>(wcreek_df<span class="op">$</span>datetime <span class="op">==</span><span class="st"> &quot;2010-06-30&quot;</span>)</a>
+<a class="sourceLine" id="cb298-5" data-line-number="5"><span class="co"># Index our wcree_df dataframe using the indices gathered above. We want all columns so column section stays blank</span></a>
+<a class="sourceLine" id="cb298-6" data-line-number="6">jan2jun =<span class="st"> </span>wcreek_df[start_ind<span class="op">:</span>end_ind,]</a></code></pre></div>
 <p>Note that there is also a <code>subset</code> function which is handy, but unreliable. Sometimes this function produces unintended consequences so the above method is the preferred for subsetting data.</p>
 </div>
 <div id="trends-and-distributions" class="section level3">
 <h3><span class="header-section-number">11.2.3</span> Trends and Distributions</h3>
 <p>Our dataset has been subset from January 1 to June 30. In the Northern Hemisphere, we would expect air temperature to increase from January to June. Let’s examine this and fit a trendline to the data.</p>
-<div class="sourceCode" id="cb298"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb298-1" data-line-number="1"><span class="co"># air temperature ~ datetime - remember, the tilde (~) here can be thought of as &#39;versus&#39; or &#39;against&#39;.</span></a>
-<a class="sourceLine" id="cb298-2" data-line-number="2"><span class="co"># So this plot is tair versus datetime </span></a>
-<a class="sourceLine" id="cb298-3" data-line-number="3"><span class="kw">plot</span>(tair <span class="op">~</span><span class="st"> </span>datetime, <span class="dt">data =</span> jan2jun, <span class="dt">pch =</span> <span class="dv">20</span>, <span class="dt">col=</span><span class="st">&quot;blue&quot;</span>)</a></code></pre></div>
-<p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-110-1.png" width="60%" style="display: block; margin: auto;" /></p>
-<div class="sourceCode" id="cb299"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb299-1" data-line-number="1"><span class="co"># use the lm function to fit a trendline to the data </span></a>
-<a class="sourceLine" id="cb299-2" data-line-number="2">fit &lt;-<span class="st"> </span><span class="kw">lm</span>(tair <span class="op">~</span><span class="st"> </span>datetime, <span class="dt">data =</span> jan2jun)</a>
-<a class="sourceLine" id="cb299-3" data-line-number="3"><span class="kw">summary</span>(fit)</a></code></pre></div>
+<div class="sourceCode" id="cb299"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb299-1" data-line-number="1"><span class="co"># air temperature ~ datetime - remember, the tilde (~) here can be thought of as &#39;versus&#39; or &#39;against&#39;.</span></a>
+<a class="sourceLine" id="cb299-2" data-line-number="2"><span class="co"># So this plot is tair versus datetime </span></a>
+<a class="sourceLine" id="cb299-3" data-line-number="3"><span class="kw">plot</span>(tair <span class="op">~</span><span class="st"> </span>datetime, <span class="dt">data =</span> jan2jun, <span class="dt">pch =</span> <span class="dv">20</span>, <span class="dt">col=</span><span class="st">&quot;blue&quot;</span>)</a></code></pre></div>
+<p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-111-1.png" width="60%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb300"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb300-1" data-line-number="1"><span class="co"># use the lm function to fit a trendline to the data </span></a>
+<a class="sourceLine" id="cb300-2" data-line-number="2">fit &lt;-<span class="st"> </span><span class="kw">lm</span>(tair <span class="op">~</span><span class="st"> </span>datetime, <span class="dt">data =</span> jan2jun)</a>
+<a class="sourceLine" id="cb300-3" data-line-number="3"><span class="kw">summary</span>(fit)</a></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = tair ~ datetime, data = jan2jun)
@@ -646,42 +651,42 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## Residual standard error: 5.683 on 4318 degrees of freedom
 ## Multiple R-squared:  0.7493, Adjusted R-squared:  0.7493 
 ## F-statistic: 1.291e+04 on 1 and 4318 DF,  p-value: &lt; 2.2e-16</code></pre>
-<div class="sourceCode" id="cb301"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb301-1" data-line-number="1"><span class="kw">coef</span>(fit)</a></code></pre></div>
+<div class="sourceCode" id="cb302"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb302-1" data-line-number="1"><span class="kw">coef</span>(fit)</a></code></pre></div>
 <pre><code>##   (Intercept)      datetime 
 ## -2.501181e+03  2.187997e-06</code></pre>
-<div class="sourceCode" id="cb303"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb303-1" data-line-number="1"><span class="kw">plot</span>(tair <span class="op">~</span><span class="st"> </span>datetime, <span class="dt">data =</span> jan2jun,</a>
-<a class="sourceLine" id="cb303-2" data-line-number="2">  <span class="dt">main=</span> <span class="st">&quot;tair vs. datetime&quot;</span>,</a>
-<a class="sourceLine" id="cb303-3" data-line-number="3">  <span class="dt">ylab=</span> <span class="st">&quot;Air Temperature ( Kelvin )&quot;</span>,</a>
-<a class="sourceLine" id="cb303-4" data-line-number="4">  <span class="dt">xlab=</span> <span class="st">&quot;Datetime&quot;</span>,</a>
-<a class="sourceLine" id="cb303-5" data-line-number="5">  <span class="dt">pch=</span> <span class="dv">19</span>, <span class="dt">col=</span> <span class="st">&#39;blue&#39;</span>)</a>
-<a class="sourceLine" id="cb303-6" data-line-number="6"><span class="kw">grid</span>(<span class="ot">NA</span>,<span class="ot">NULL</span>, <span class="dt">lty=</span> <span class="dv">4</span>) <span class="co"># NA first for no y axis grid lines, null second to ignore the default x axis linetype</span></a>
-<a class="sourceLine" id="cb303-7" data-line-number="7"><span class="kw">abline</span>(fit, <span class="dt">col=</span> <span class="st">&#39;black&#39;</span>, <span class="dt">lty=</span> <span class="dv">4</span>, <span class="dt">lwd=</span> <span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb303-8" data-line-number="8"><span class="kw">legend</span>(<span class="st">&quot;topleft&quot;</span>, <span class="dt">legend=</span><span class="kw">c</span>(<span class="st">&quot;lm(fit)&quot;</span>), <span class="dt">col=</span> <span class="dv">2</span>, <span class="dt">lty=</span> <span class="dv">4</span>, <span class="dt">bg=</span> <span class="st">&quot;gray85&quot;</span>, <span class="dt">box.lty=</span><span class="dv">0</span>)</a></code></pre></div>
-<p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-110-2.png" width="60%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb304"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb304-1" data-line-number="1"><span class="kw">plot</span>(tair <span class="op">~</span><span class="st"> </span>datetime, <span class="dt">data =</span> jan2jun,</a>
+<a class="sourceLine" id="cb304-2" data-line-number="2">  <span class="dt">main=</span> <span class="st">&quot;tair vs. datetime&quot;</span>,</a>
+<a class="sourceLine" id="cb304-3" data-line-number="3">  <span class="dt">ylab=</span> <span class="st">&quot;Air Temperature ( Kelvin )&quot;</span>,</a>
+<a class="sourceLine" id="cb304-4" data-line-number="4">  <span class="dt">xlab=</span> <span class="st">&quot;Datetime&quot;</span>,</a>
+<a class="sourceLine" id="cb304-5" data-line-number="5">  <span class="dt">pch=</span> <span class="dv">19</span>, <span class="dt">col=</span> <span class="st">&#39;blue&#39;</span>)</a>
+<a class="sourceLine" id="cb304-6" data-line-number="6"><span class="kw">grid</span>(<span class="ot">NA</span>,<span class="ot">NULL</span>, <span class="dt">lty=</span> <span class="dv">4</span>) <span class="co"># NA first for no y axis grid lines, null second to ignore the default x axis linetype</span></a>
+<a class="sourceLine" id="cb304-7" data-line-number="7"><span class="kw">abline</span>(fit, <span class="dt">col=</span> <span class="st">&#39;black&#39;</span>, <span class="dt">lty=</span> <span class="dv">4</span>, <span class="dt">lwd=</span> <span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb304-8" data-line-number="8"><span class="kw">legend</span>(<span class="st">&quot;topleft&quot;</span>, <span class="dt">legend=</span><span class="kw">c</span>(<span class="st">&quot;lm(fit)&quot;</span>), <span class="dt">col=</span> <span class="dv">2</span>, <span class="dt">lty=</span> <span class="dv">4</span>, <span class="dt">bg=</span> <span class="st">&quot;gray85&quot;</span>, <span class="dt">box.lty=</span><span class="dv">0</span>)</a></code></pre></div>
+<p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-111-2.png" width="60%" style="display: block; margin: auto;" /></p>
 <p>Just as we suspected, the temperature increases from January to June. So, we have an idea of the trend now, but what about the frequency of recorded temperatures? Are some temperatures more likely to occur than others in this dataset? Histograms are a good way to check the distribution and answer these questions. Then, we’ll overlay the expected probability distribution function given the standard deviation and mean values of the <code>jan2jun</code> dataset using the <code>dnorm</code> function.</p>
 <p>Let’s add this to a histogram of the data.</p>
-<div class="sourceCode" id="cb304"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb304-1" data-line-number="1"><span class="co"># plot a histogram of jan2jun air temperature and add a normal distribution over it. </span></a>
-<a class="sourceLine" id="cb304-2" data-line-number="2"><span class="kw">hist</span>(jan2jun<span class="op">$</span>tair, <span class="dt">freq =</span> <span class="ot">FALSE</span>, <span class="dt">main=</span> <span class="st">&quot;Willow Creek Air Temp - Jan 1 to June 30, 2010&quot;</span>, <span class="dt">xlab =</span> <span class="st">&quot;Temperature (Kelvin)&quot;</span>)</a>
-<a class="sourceLine" id="cb304-3" data-line-number="3"><span class="co"># create a sequence covering the x axis of our histogram</span></a>
-<a class="sourceLine" id="cb304-4" data-line-number="4">temp_bins &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dv">240</span>, <span class="dv">310</span>, <span class="dt">length.out=</span><span class="dv">100</span>)</a>
-<a class="sourceLine" id="cb304-5" data-line-number="5"><span class="co"># calculate the normal PDF of tair</span></a>
-<a class="sourceLine" id="cb304-6" data-line-number="6">y &lt;-<span class="st"> </span><span class="kw">dnorm</span>(<span class="dt">x=</span>temp_bins, <span class="dt">mean=</span><span class="kw">mean</span>(jan2jun<span class="op">$</span>tair), <span class="dt">sd=</span><span class="kw">sd</span>(jan2jun<span class="op">$</span>tair))</a>
-<a class="sourceLine" id="cb304-7" data-line-number="7"><span class="co"># add lines of the normal dist to the histogram</span></a>
-<a class="sourceLine" id="cb304-8" data-line-number="8"><span class="kw">lines</span>(temp_bins, y, <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>, <span class="dt">lwd=</span><span class="dv">2</span>, <span class="dt">lty=</span><span class="dv">2</span>)</a></code></pre></div>
-<p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-111-1.png" width="60%" style="display: block; margin: auto;" /></p>
-<p>Generally speaking, a normal distribution does a reasonable job capturing the actual data points. We see that there is a positive trend in the dataset and that the normal PDF underestimates warmer temperatures. Density plots are another plotting method that can show the distribution of data. Density plots can be thought of as plots of smoothed histograms. The smoothness is controlled by a bandwidth parameter that is analogous to the histogram binwidth. Let’s create a density plot the <code>jan2jun</code> air temperature.</p>
-<div class="sourceCode" id="cb305"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb305-1" data-line-number="1"><span class="co"># calculate the density </span></a>
-<a class="sourceLine" id="cb305-2" data-line-number="2">d =<span class="st"> </span><span class="kw">density</span>(jan2jun<span class="op">$</span>tair, <span class="dt">bw =</span> <span class="fl">0.5</span>)</a>
-<a class="sourceLine" id="cb305-3" data-line-number="3"><span class="co"># plot the density of tair</span></a>
-<a class="sourceLine" id="cb305-4" data-line-number="4"><span class="kw">plot</span>(d, <span class="dt">xlab =</span> <span class="st">&quot;Air Temperature (Kelvin)&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;Density&quot;</span>, <span class="dt">main=</span><span class="st">&quot;Air Temperature Density&quot;</span>, <span class="dt">col=</span><span class="st">&quot;black&quot;</span>, <span class="dt">lwd=</span><span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb305-5" data-line-number="5"><span class="co"># fill in the space below the density distribution instead of leaving it white</span></a>
-<a class="sourceLine" id="cb305-6" data-line-number="6"><span class="kw">polygon</span>(d, <span class="dt">col=</span><span class="st">&quot;coral&quot;</span>, <span class="dt">border=</span><span class="st">&quot;blue&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb305"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb305-1" data-line-number="1"><span class="co"># plot a histogram of jan2jun air temperature and add a normal distribution over it. </span></a>
+<a class="sourceLine" id="cb305-2" data-line-number="2"><span class="kw">hist</span>(jan2jun<span class="op">$</span>tair, <span class="dt">freq =</span> <span class="ot">FALSE</span>, <span class="dt">main=</span> <span class="st">&quot;Willow Creek Air Temp - Jan 1 to June 30, 2010&quot;</span>, <span class="dt">xlab =</span> <span class="st">&quot;Temperature (Kelvin)&quot;</span>)</a>
+<a class="sourceLine" id="cb305-3" data-line-number="3"><span class="co"># create a sequence covering the x axis of our histogram</span></a>
+<a class="sourceLine" id="cb305-4" data-line-number="4">temp_bins &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dv">240</span>, <span class="dv">310</span>, <span class="dt">length.out=</span><span class="dv">100</span>)</a>
+<a class="sourceLine" id="cb305-5" data-line-number="5"><span class="co"># calculate the normal PDF of tair</span></a>
+<a class="sourceLine" id="cb305-6" data-line-number="6">y &lt;-<span class="st"> </span><span class="kw">dnorm</span>(<span class="dt">x=</span>temp_bins, <span class="dt">mean=</span><span class="kw">mean</span>(jan2jun<span class="op">$</span>tair), <span class="dt">sd=</span><span class="kw">sd</span>(jan2jun<span class="op">$</span>tair))</a>
+<a class="sourceLine" id="cb305-7" data-line-number="7"><span class="co"># add lines of the normal dist to the histogram</span></a>
+<a class="sourceLine" id="cb305-8" data-line-number="8"><span class="kw">lines</span>(temp_bins, y, <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>, <span class="dt">lwd=</span><span class="dv">2</span>, <span class="dt">lty=</span><span class="dv">2</span>)</a></code></pre></div>
 <p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-112-1.png" width="60%" style="display: block; margin: auto;" /></p>
+<p>Generally speaking, a normal distribution does a reasonable job capturing the actual data points. We see that there is a positive trend in the dataset and that the normal PDF underestimates warmer temperatures. Density plots are another plotting method that can show the distribution of data. Density plots can be thought of as plots of smoothed histograms. The smoothness is controlled by a bandwidth parameter that is analogous to the histogram binwidth. Let’s create a density plot the <code>jan2jun</code> air temperature.</p>
+<div class="sourceCode" id="cb306"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb306-1" data-line-number="1"><span class="co"># calculate the density </span></a>
+<a class="sourceLine" id="cb306-2" data-line-number="2">d =<span class="st"> </span><span class="kw">density</span>(jan2jun<span class="op">$</span>tair, <span class="dt">bw =</span> <span class="fl">0.5</span>)</a>
+<a class="sourceLine" id="cb306-3" data-line-number="3"><span class="co"># plot the density of tair</span></a>
+<a class="sourceLine" id="cb306-4" data-line-number="4"><span class="kw">plot</span>(d, <span class="dt">xlab =</span> <span class="st">&quot;Air Temperature (Kelvin)&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;Density&quot;</span>, <span class="dt">main=</span><span class="st">&quot;Air Temperature Density&quot;</span>, <span class="dt">col=</span><span class="st">&quot;black&quot;</span>, <span class="dt">lwd=</span><span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb306-5" data-line-number="5"><span class="co"># fill in the space below the density distribution instead of leaving it white</span></a>
+<a class="sourceLine" id="cb306-6" data-line-number="6"><span class="kw">polygon</span>(d, <span class="dt">col=</span><span class="st">&quot;coral&quot;</span>, <span class="dt">border=</span><span class="st">&quot;blue&quot;</span>)</a></code></pre></div>
+<p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-113-1.png" width="60%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="finding-a-best-fit-distribution" class="section level3">
 <h3><span class="header-section-number">11.2.4</span> Finding a Best-Fit Distribution</h3>
 <p>The <code>fitdistrplus</code> package is excellent for performing statistical analysis tests and fitting distributions. We can use this package to tell us which distribution fits a particular set of data best. One useful function to perform quick histograms with empirical fits and cumulative distributions is the <code>plotdist</code> function.</p>
-<div class="sourceCode" id="cb306"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb306-1" data-line-number="1"><span class="kw">library</span>(fitdistrplus)</a></code></pre></div>
+<div class="sourceCode" id="cb307"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb307-1" data-line-number="1"><span class="kw">library</span>(fitdistrplus)</a></code></pre></div>
 <pre><code>## Loading required package: MASS</code></pre>
 <pre><code>## 
 ## Attaching package: &#39;MASS&#39;</code></pre>
@@ -689,11 +694,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 
 ##     area, select</code></pre>
 <pre><code>## Loading required package: survival</code></pre>
-<div class="sourceCode" id="cb311"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb311-1" data-line-number="1"><span class="kw">plotdist</span>(jan2jun<span class="op">$</span>tair, <span class="dt">histo =</span> <span class="ot">TRUE</span>, <span class="dt">demp =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
-<p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-113-1.png" width="60%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb312"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb312-1" data-line-number="1"><span class="kw">plotdist</span>(jan2jun<span class="op">$</span>tair, <span class="dt">histo =</span> <span class="ot">TRUE</span>, <span class="dt">demp =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-114-1.png" width="60%" style="display: block; margin: auto;" /></p>
 <p>In the previous section, we fit our histogram of Air Temperature with a normal distribution. Was this a good selection? We can use the <code>descdist</code> function to plot a Cullen and Frey Graph. This graph provides analysis for which distribution (normal, uniform, exponential, etc.) best fits our data. Basically, we just look to see which theoretical distribution is closest to our observation point.</p>
-<div class="sourceCode" id="cb312"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb312-1" data-line-number="1"><span class="kw">descdist</span>(jan2jun<span class="op">$</span>tair)</a></code></pre></div>
-<p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-114-1.png" width="672" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb313"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb313-1" data-line-number="1"><span class="kw">descdist</span>(jan2jun<span class="op">$</span>tair)</a></code></pre></div>
+<p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-115-1.png" width="672" style="display: block; margin: auto;" /></p>
 <pre><code>## summary statistics
 ## ------
 ## min:  248.4165   max:  304.0025 
@@ -703,10 +708,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## estimated skewness:  -0.176518 
 ## estimated kurtosis:  2.190581</code></pre>
 <p>Uniform, normal, and gamma distributions are the 3 closest to our air temperature data. Let’s fit each of these distributions to the empirical data and create a density plot (<code>denscomp</code>), a cumulative density function plot (<code>cdfcomp</code>), a Q-Q plot (<code>qqcomp</code>), and a P-P plot (<code>ppcomp</code>) for these distributions.</p>
-<div class="sourceCode" id="cb314"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb314-1" data-line-number="1">fit_u  &lt;-<span class="st"> </span><span class="kw">fitdist</span>(jan2jun<span class="op">$</span>tair, <span class="st">&quot;unif&quot;</span>)</a>
-<a class="sourceLine" id="cb314-2" data-line-number="2">fit_n  &lt;-<span class="st"> </span><span class="kw">fitdist</span>(jan2jun<span class="op">$</span>tair, <span class="st">&quot;norm&quot;</span>)</a>
-<a class="sourceLine" id="cb314-3" data-line-number="3">fit_g &lt;-<span class="st"> </span><span class="kw">fitdist</span>(jan2jun<span class="op">$</span>tair, <span class="st">&quot;gamma&quot;</span>)</a>
-<a class="sourceLine" id="cb314-4" data-line-number="4"><span class="kw">summary</span>(fit_g)</a></code></pre></div>
+<div class="sourceCode" id="cb315"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb315-1" data-line-number="1">fit_u  &lt;-<span class="st"> </span><span class="kw">fitdist</span>(jan2jun<span class="op">$</span>tair, <span class="st">&quot;unif&quot;</span>)</a>
+<a class="sourceLine" id="cb315-2" data-line-number="2">fit_n  &lt;-<span class="st"> </span><span class="kw">fitdist</span>(jan2jun<span class="op">$</span>tair, <span class="st">&quot;norm&quot;</span>)</a>
+<a class="sourceLine" id="cb315-3" data-line-number="3">fit_g &lt;-<span class="st"> </span><span class="kw">fitdist</span>(jan2jun<span class="op">$</span>tair, <span class="st">&quot;gamma&quot;</span>)</a>
+<a class="sourceLine" id="cb315-4" data-line-number="4"><span class="kw">summary</span>(fit_g)</a></code></pre></div>
 <pre><code>## Fitting of the distribution &#39; gamma &#39; by maximum likelihood 
 ## Parameters : 
 ##         estimate  Std. Error
@@ -717,29 +722,29 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##           shape      rate
 ## shape 1.0000000 0.9995799
 ## rate  0.9995799 1.0000000</code></pre>
-<div class="sourceCode" id="cb316"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb316-1" data-line-number="1"><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</a>
-<a class="sourceLine" id="cb316-2" data-line-number="2">plot.legend &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;uniform&quot;</span>, <span class="st">&quot;normal&quot;</span>, <span class="st">&quot;gamma&quot;</span>)</a>
-<a class="sourceLine" id="cb316-3" data-line-number="3"><span class="kw">denscomp</span>(<span class="kw">list</span>(fit_u, fit_n, fit_g), <span class="dt">legendtext =</span> plot.legend)</a>
-<a class="sourceLine" id="cb316-4" data-line-number="4"><span class="kw">cdfcomp</span> (<span class="kw">list</span>(fit_u, fit_n, fit_g), <span class="dt">legendtext =</span> plot.legend)</a>
-<a class="sourceLine" id="cb316-5" data-line-number="5"><span class="kw">qqcomp</span>  (<span class="kw">list</span>(fit_u, fit_n, fit_g), <span class="dt">legendtext =</span> plot.legend)</a>
-<a class="sourceLine" id="cb316-6" data-line-number="6"><span class="kw">ppcomp</span>  (<span class="kw">list</span>(fit_u, fit_n, fit_g), <span class="dt">legendtext =</span> plot.legend)</a></code></pre></div>
-<p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-115-1.png" width="960" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb317"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb317-1" data-line-number="1"><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</a>
+<a class="sourceLine" id="cb317-2" data-line-number="2">plot.legend &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;uniform&quot;</span>, <span class="st">&quot;normal&quot;</span>, <span class="st">&quot;gamma&quot;</span>)</a>
+<a class="sourceLine" id="cb317-3" data-line-number="3"><span class="kw">denscomp</span>(<span class="kw">list</span>(fit_u, fit_n, fit_g), <span class="dt">legendtext =</span> plot.legend)</a>
+<a class="sourceLine" id="cb317-4" data-line-number="4"><span class="kw">cdfcomp</span> (<span class="kw">list</span>(fit_u, fit_n, fit_g), <span class="dt">legendtext =</span> plot.legend)</a>
+<a class="sourceLine" id="cb317-5" data-line-number="5"><span class="kw">qqcomp</span>  (<span class="kw">list</span>(fit_u, fit_n, fit_g), <span class="dt">legendtext =</span> plot.legend)</a>
+<a class="sourceLine" id="cb317-6" data-line-number="6"><span class="kw">ppcomp</span>  (<span class="kw">list</span>(fit_u, fit_n, fit_g), <span class="dt">legendtext =</span> plot.legend)</a></code></pre></div>
+<p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-116-1.png" width="960" style="display: block; margin: auto;" /></p>
 <p>Some of the statistics shown in this section are beyond the scope of this course but this package is important to know of.</p>
 </div>
 <div id="correlation-plots" class="section level3">
 <h3><span class="header-section-number">11.2.5</span> Correlation Plots</h3>
 <p>Correlation plots show correlation coefficients across variables. For example, we expect shortwave radiation and temperature to have high a high correlation coefficient because generally speaking when the a lot of sunlight is received at the surface, temperature increases. There’s a handy package called <code>corrplot</code> that caluclates correlation coefficients quickly and intuitively. If you don’t have the package installed, you’ll need to use - <code>install.packages(&quot;corrplot&quot;)</code>.</p>
 <p>For the correlation plot, we’re going to use the full year dataset, <code>wcreek_df</code>, rather than the <code>jan2jun</code> dataset. When we calculate correlations, the more data we have the better. We’re also going to calculate residual values - that is the distance between actual data and the trendline. It’s another way to express error. When we have a large dataset like this with many scatter points, it’s difficult to nail down a specific trendline that may capture the dataset the best. Different trendlines may represent the data in similar ways. Residuals measure the diffence between a particular trendline and the data point.</p>
-<div class="sourceCode" id="cb317"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb317-1" data-line-number="1"><span class="kw">library</span>(corrplot)</a></code></pre></div>
+<div class="sourceCode" id="cb318"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb318-1" data-line-number="1"><span class="kw">library</span>(corrplot)</a></code></pre></div>
 <pre><code>## corrplot 0.84 loaded</code></pre>
-<div class="sourceCode" id="cb319"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb319-1" data-line-number="1"><span class="co"># create a duplicate of the wcreek_df - remove the datetime variable from this</span></a>
-<a class="sourceLine" id="cb319-2" data-line-number="2">wcreek_nodate =<span class="st"> </span>wcreek_df</a>
-<a class="sourceLine" id="cb319-3" data-line-number="3"><span class="co"># we need to remove the datetime so our dataset is full of numeric values only - no datetime values or characters</span></a>
-<a class="sourceLine" id="cb319-4" data-line-number="4">wcreek_nodate<span class="op">$</span>datetime =<span class="st"> </span><span class="ot">NULL</span></a>
-<a class="sourceLine" id="cb319-5" data-line-number="5"></a>
-<a class="sourceLine" id="cb319-6" data-line-number="6"><span class="co"># awesome, now let&#39;s calculate the correlation coefficients</span></a>
-<a class="sourceLine" id="cb319-7" data-line-number="7">cor_wcreek =<span class="st"> </span><span class="kw">cor</span>(wcreek_nodate)</a>
-<a class="sourceLine" id="cb319-8" data-line-number="8"><span class="kw">head</span>(cor_wcreek)</a></code></pre></div>
+<div class="sourceCode" id="cb320"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb320-1" data-line-number="1"><span class="co"># create a duplicate of the wcreek_df - remove the datetime variable from this</span></a>
+<a class="sourceLine" id="cb320-2" data-line-number="2">wcreek_nodate =<span class="st"> </span>wcreek_df</a>
+<a class="sourceLine" id="cb320-3" data-line-number="3"><span class="co"># we need to remove the datetime so our dataset is full of numeric values only - no datetime values or characters</span></a>
+<a class="sourceLine" id="cb320-4" data-line-number="4">wcreek_nodate<span class="op">$</span>datetime =<span class="st"> </span><span class="ot">NULL</span></a>
+<a class="sourceLine" id="cb320-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb320-6" data-line-number="6"><span class="co"># awesome, now let&#39;s calculate the correlation coefficients</span></a>
+<a class="sourceLine" id="cb320-7" data-line-number="7">cor_wcreek =<span class="st"> </span><span class="kw">cor</span>(wcreek_nodate)</a>
+<a class="sourceLine" id="cb320-8" data-line-number="8"><span class="kw">head</span>(cor_wcreek)</a></code></pre></div>
 <pre><code>##             tair       tmax       tmin      lwave        pres      swave
 ## tair   1.0000000  0.9998053  0.9998039  0.8200776 -0.16229303 0.35668470
 ## tmax   0.9998053  1.0000000  0.9992183  0.8177929 -0.16085314 0.35552272
@@ -754,15 +759,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## lwave -0.29876208  0.09322482  0.8416941  0.14016558
 ## pres   0.22972978  0.03904779 -0.1628097 -0.09972888
 ## swave -0.07181433 -0.11448984  0.2681873 -0.02659980</code></pre>
-<div class="sourceCode" id="cb321"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb321-1" data-line-number="1"><span class="co"># now let&#39;s calculate the residuals of the correlations with a 95% confidence interval</span></a>
-<a class="sourceLine" id="cb321-2" data-line-number="2">residuals_<span class="dv">1</span> &lt;-<span class="st"> </span><span class="kw">cor.mtest</span>(wcreek_nodate, <span class="dt">conf.level =</span> <span class="fl">.95</span>)</a>
-<a class="sourceLine" id="cb321-3" data-line-number="3"><span class="co"># now let&#39;s plot this up. </span></a>
-<a class="sourceLine" id="cb321-4" data-line-number="4"><span class="kw">corrplot</span>(cor_wcreek, <span class="dt">p.mat =</span> residuals_<span class="dv">1</span><span class="op">$</span>p, <span class="dt">method =</span> <span class="st">&#39;color&#39;</span>, <span class="dt">number.cex =</span> <span class="fl">.7</span>, <span class="dt">type =</span> <span class="st">&#39;lower&#39;</span>,</a>
-<a class="sourceLine" id="cb321-5" data-line-number="5">         <span class="dt">addCoef.col =</span> <span class="st">&quot;black&quot;</span>, <span class="co"># Add coefficient of correlation</span></a>
-<a class="sourceLine" id="cb321-6" data-line-number="6">         <span class="dt">tl.col =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">tl.srt =</span> <span class="dv">90</span>, <span class="co"># Text label color and rotation</span></a>
-<a class="sourceLine" id="cb321-7" data-line-number="7">         <span class="co"># Combine with significance</span></a>
-<a class="sourceLine" id="cb321-8" data-line-number="8">         <span class="dt">sig.level =</span> <span class="fl">0.05</span>, <span class="dt">insig =</span> <span class="st">&quot;blank&quot;</span>)</a></code></pre></div>
-<p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-116-1.png" width="768" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb322"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb322-1" data-line-number="1"><span class="co"># now let&#39;s calculate the residuals of the correlations with a 95% confidence interval</span></a>
+<a class="sourceLine" id="cb322-2" data-line-number="2">residuals_<span class="dv">1</span> &lt;-<span class="st"> </span><span class="kw">cor.mtest</span>(wcreek_nodate, <span class="dt">conf.level =</span> <span class="fl">.95</span>)</a>
+<a class="sourceLine" id="cb322-3" data-line-number="3"><span class="co"># now let&#39;s plot this up. </span></a>
+<a class="sourceLine" id="cb322-4" data-line-number="4"><span class="kw">corrplot</span>(cor_wcreek, <span class="dt">p.mat =</span> residuals_<span class="dv">1</span><span class="op">$</span>p, <span class="dt">method =</span> <span class="st">&#39;color&#39;</span>, <span class="dt">number.cex =</span> <span class="fl">.7</span>, <span class="dt">type =</span> <span class="st">&#39;lower&#39;</span>,</a>
+<a class="sourceLine" id="cb322-5" data-line-number="5">         <span class="dt">addCoef.col =</span> <span class="st">&quot;black&quot;</span>, <span class="co"># Add coefficient of correlation</span></a>
+<a class="sourceLine" id="cb322-6" data-line-number="6">         <span class="dt">tl.col =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">tl.srt =</span> <span class="dv">90</span>, <span class="co"># Text label color and rotation</span></a>
+<a class="sourceLine" id="cb322-7" data-line-number="7">         <span class="co"># Combine with significance</span></a>
+<a class="sourceLine" id="cb322-8" data-line-number="8">         <span class="dt">sig.level =</span> <span class="fl">0.05</span>, <span class="dt">insig =</span> <span class="st">&quot;blank&quot;</span>)</a></code></pre></div>
+<p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-117-1.png" width="768" style="display: block; margin: auto;" /></p>
 <p>Do these correlations make sense? Let’s take two variables that are highly correlated - temperature and shortwave radiation (sunlight). Our correalation is .36 for these two variables - this is a slight correlation. Why isn’t the correlation higher? Advection - that is air being transported from other locations via wind.</p>
 </div>
 </div>

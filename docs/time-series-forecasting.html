@@ -200,7 +200,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.2" data-path="basic-r-scripts.html"><a href="basic-r-scripts.html#cars---motor-trends-magazine-data"><i class="fa fa-check"></i><b>5.2</b> Cars - Motor Trends Magazine Data</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="scientific-r-scripts.html"><a href="scientific-r-scripts.html"><i class="fa fa-check"></i><b>6</b> Scientific R Scripts</a><ul>
-<li class="chapter" data-level="6.1" data-path="scientific-r-scripts.html"><a href="scientific-r-scripts.html#script-breakdown"><i class="fa fa-check"></i><b>6.1</b> Script Breakdown</a></li>
+<li class="chapter" data-level="6.1" data-path="scientific-r-scripts.html"><a href="scientific-r-scripts.html#script-breakdown"><i class="fa fa-check"></i><b>6.1</b> Script Breakdown</a><ul>
+<li class="chapter" data-level="6.1.1" data-path="scientific-r-scripts.html"><a href="scientific-r-scripts.html#installing-packages"><i class="fa fa-check"></i><b>6.1.1</b> Installing Packages</a></li>
+<li class="chapter" data-level="6.1.2" data-path="scientific-r-scripts.html"><a href="scientific-r-scripts.html#reading-the-data"><i class="fa fa-check"></i><b>6.1.2</b> Reading the Data</a></li>
+<li class="chapter" data-level="6.1.3" data-path="scientific-r-scripts.html"><a href="scientific-r-scripts.html#basic-quality-control"><i class="fa fa-check"></i><b>6.1.3</b> Basic Quality Control</a></li>
+<li class="chapter" data-level="6.1.4" data-path="scientific-r-scripts.html"><a href="scientific-r-scripts.html#plotting-the-data"><i class="fa fa-check"></i><b>6.1.4</b> Plotting the Data</a></li>
+</ul></li>
 <li class="chapter" data-level="6.2" data-path="scientific-r-scripts.html"><a href="scientific-r-scripts.html#in-class-exercise"><i class="fa fa-check"></i><b>6.2</b> In Class Exercise</a><ul>
 <li class="chapter" data-level="6.2.1" data-path="scientific-r-scripts.html"><a href="scientific-r-scripts.html#further-explanation-of-datatypes"><i class="fa fa-check"></i><b>6.2.1</b> Further Explanation of DataTypes</a></li>
 </ul></li>
@@ -346,54 +351,54 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="load-the-packages-and-data" class="section level2">
 <h2><span class="header-section-number">18.1</span> Load the Packages and Data</h2>
 <p>Let’s use the <code>read.wcr</code> function that we previously created to load in our dataset.</p>
-<div class="sourceCode" id="cb509"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb509-1" data-line-number="1"><span class="kw">library</span>(ncdf4)</a>
-<a class="sourceLine" id="cb509-2" data-line-number="2">read.wcr =<span class="st"> </span><span class="cf">function</span>(fname) {</a>
-<a class="sourceLine" id="cb509-3" data-line-number="3">  fullname =<span class="st"> </span><span class="kw">strsplit</span>(fname, <span class="st">&quot;/&quot;</span>)</a>
-<a class="sourceLine" id="cb509-4" data-line-number="4">  dataset_str =<span class="st"> </span>fullname[[<span class="dv">1</span>]][<span class="kw">length</span>(fullname[[<span class="dv">1</span>]])]</a>
-<a class="sourceLine" id="cb509-5" data-line-number="5">  datname =<span class="st"> </span><span class="kw">strsplit</span>(dataset_str, <span class="st">&quot;_&quot;</span>)[[<span class="dv">1</span>]][<span class="dv">1</span>]</a>
-<a class="sourceLine" id="cb509-6" data-line-number="6">  data.year =<span class="st"> </span><span class="kw">substr</span>(dataset_str, <span class="kw">nchar</span>(dataset_str)<span class="op">-</span><span class="dv">6</span>, <span class="kw">nchar</span>(dataset_str)<span class="op">-</span><span class="dv">3</span>)</a>
-<a class="sourceLine" id="cb509-7" data-line-number="7">  data.date =<span class="st"> </span><span class="kw">seq</span>(<span class="dt">from=</span><span class="kw">as.POSIXct</span>(<span class="kw">paste0</span>(data.year,<span class="st">&quot;-1-1 0:00&quot;</span>, <span class="dt">tz=</span><span class="st">&quot;UTC&quot;</span>)),<span class="dt">to=</span><span class="kw">as.POSIXct</span>(<span class="kw">paste0</span>(data.year,<span class="st">&quot;-12-31 23:00&quot;</span>, <span class="dt">tz=</span><span class="st">&quot;UTC&quot;</span>)),<span class="dt">by=</span><span class="st">&quot;hour&quot;</span>)</a>
-<a class="sourceLine" id="cb509-8" data-line-number="8">  vars.info &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">CF.name =</span> <span class="kw">c</span>(<span class="st">&quot;date&quot;</span>, <span class="st">&quot;air_temperature&quot;</span>, <span class="st">&quot;precipitation_flux&quot;</span>, <span class="st">&quot;surface_downwelling_shortwave_flux_in_air&quot;</span>,</a>
-<a class="sourceLine" id="cb509-9" data-line-number="9">                                      <span class="st">&quot;specific_humidity&quot;</span>, <span class="st">&quot;surface_downwelling_longwave_flux_in_air&quot;</span>, <span class="st">&quot;air_pressure&quot;</span>,</a>
-<a class="sourceLine" id="cb509-10" data-line-number="10">                                      <span class="st">&quot;eastward_wind&quot;</span>, <span class="st">&quot;northward_wind&quot;</span>, <span class="st">&quot;wind_speed&quot;</span>))</a>
-<a class="sourceLine" id="cb509-11" data-line-number="11">  df &lt;-<span class="st"> </span><span class="kw">list</span>()</a>
-<a class="sourceLine" id="cb509-12" data-line-number="12">  tem &lt;-<span class="st"> </span>ncdf4<span class="op">::</span><span class="kw">nc_open</span>(fname)</a>
-<a class="sourceLine" id="cb509-13" data-line-number="13">  dim &lt;-<span class="st"> </span>tem<span class="op">$</span>dim</a>
-<a class="sourceLine" id="cb509-14" data-line-number="14">  <span class="cf">for</span> (j <span class="cf">in</span> <span class="kw">seq_along</span>(vars.info<span class="op">$</span>CF.name)) {</a>
-<a class="sourceLine" id="cb509-15" data-line-number="15">    <span class="cf">if</span> (<span class="kw">exists</span>(<span class="kw">as.character</span>(vars.info<span class="op">$</span>CF.name[j]), tem<span class="op">$</span>var)) {</a>
-<a class="sourceLine" id="cb509-16" data-line-number="16">      df[[j]] &lt;-<span class="st"> </span>ncdf4<span class="op">::</span><span class="kw">ncvar_get</span>(tem, <span class="kw">as.character</span>(vars.info<span class="op">$</span>CF.name[j]))</a>
-<a class="sourceLine" id="cb509-17" data-line-number="17">    } <span class="cf">else</span> {</a>
-<a class="sourceLine" id="cb509-18" data-line-number="18">      df[[j]] =<span class="st"> </span><span class="ot">NA</span></a>
-<a class="sourceLine" id="cb509-19" data-line-number="19">    }</a>
-<a class="sourceLine" id="cb509-20" data-line-number="20">  }</a>
-<a class="sourceLine" id="cb509-21" data-line-number="21">  <span class="kw">names</span>(df) &lt;-<span class="st"> </span>vars.info<span class="op">$</span>CF.name</a>
-<a class="sourceLine" id="cb509-22" data-line-number="22">  df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(df)</a>
-<a class="sourceLine" id="cb509-23" data-line-number="23">  <span class="kw">nc_close</span>(tem)</a>
-<a class="sourceLine" id="cb509-24" data-line-number="24">  <span class="cf">if</span>(<span class="kw">all</span>(<span class="kw">is.na</span>(df<span class="op">$</span>date))){</a>
-<a class="sourceLine" id="cb509-25" data-line-number="25">    df<span class="op">$</span>date =<span class="st"> </span>data.date</a>
-<a class="sourceLine" id="cb509-26" data-line-number="26">  }</a>
-<a class="sourceLine" id="cb509-27" data-line-number="27">  <span class="kw">return</span>(df)</a>
-<a class="sourceLine" id="cb509-28" data-line-number="28">}</a></code></pre></div>
+<div class="sourceCode" id="cb511"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb511-1" data-line-number="1"><span class="kw">library</span>(ncdf4)</a>
+<a class="sourceLine" id="cb511-2" data-line-number="2">read.wcr =<span class="st"> </span><span class="cf">function</span>(fname) {</a>
+<a class="sourceLine" id="cb511-3" data-line-number="3">  fullname =<span class="st"> </span><span class="kw">strsplit</span>(fname, <span class="st">&quot;/&quot;</span>)</a>
+<a class="sourceLine" id="cb511-4" data-line-number="4">  dataset_str =<span class="st"> </span>fullname[[<span class="dv">1</span>]][<span class="kw">length</span>(fullname[[<span class="dv">1</span>]])]</a>
+<a class="sourceLine" id="cb511-5" data-line-number="5">  datname =<span class="st"> </span><span class="kw">strsplit</span>(dataset_str, <span class="st">&quot;_&quot;</span>)[[<span class="dv">1</span>]][<span class="dv">1</span>]</a>
+<a class="sourceLine" id="cb511-6" data-line-number="6">  data.year =<span class="st"> </span><span class="kw">substr</span>(dataset_str, <span class="kw">nchar</span>(dataset_str)<span class="op">-</span><span class="dv">6</span>, <span class="kw">nchar</span>(dataset_str)<span class="op">-</span><span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb511-7" data-line-number="7">  data.date =<span class="st"> </span><span class="kw">seq</span>(<span class="dt">from=</span><span class="kw">as.POSIXct</span>(<span class="kw">paste0</span>(data.year,<span class="st">&quot;-1-1 0:00&quot;</span>, <span class="dt">tz=</span><span class="st">&quot;UTC&quot;</span>)),<span class="dt">to=</span><span class="kw">as.POSIXct</span>(<span class="kw">paste0</span>(data.year,<span class="st">&quot;-12-31 23:00&quot;</span>, <span class="dt">tz=</span><span class="st">&quot;UTC&quot;</span>)),<span class="dt">by=</span><span class="st">&quot;hour&quot;</span>)</a>
+<a class="sourceLine" id="cb511-8" data-line-number="8">  vars.info &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">CF.name =</span> <span class="kw">c</span>(<span class="st">&quot;date&quot;</span>, <span class="st">&quot;air_temperature&quot;</span>, <span class="st">&quot;precipitation_flux&quot;</span>, <span class="st">&quot;surface_downwelling_shortwave_flux_in_air&quot;</span>,</a>
+<a class="sourceLine" id="cb511-9" data-line-number="9">                                      <span class="st">&quot;specific_humidity&quot;</span>, <span class="st">&quot;surface_downwelling_longwave_flux_in_air&quot;</span>, <span class="st">&quot;air_pressure&quot;</span>,</a>
+<a class="sourceLine" id="cb511-10" data-line-number="10">                                      <span class="st">&quot;eastward_wind&quot;</span>, <span class="st">&quot;northward_wind&quot;</span>, <span class="st">&quot;wind_speed&quot;</span>))</a>
+<a class="sourceLine" id="cb511-11" data-line-number="11">  df &lt;-<span class="st"> </span><span class="kw">list</span>()</a>
+<a class="sourceLine" id="cb511-12" data-line-number="12">  tem &lt;-<span class="st"> </span>ncdf4<span class="op">::</span><span class="kw">nc_open</span>(fname)</a>
+<a class="sourceLine" id="cb511-13" data-line-number="13">  dim &lt;-<span class="st"> </span>tem<span class="op">$</span>dim</a>
+<a class="sourceLine" id="cb511-14" data-line-number="14">  <span class="cf">for</span> (j <span class="cf">in</span> <span class="kw">seq_along</span>(vars.info<span class="op">$</span>CF.name)) {</a>
+<a class="sourceLine" id="cb511-15" data-line-number="15">    <span class="cf">if</span> (<span class="kw">exists</span>(<span class="kw">as.character</span>(vars.info<span class="op">$</span>CF.name[j]), tem<span class="op">$</span>var)) {</a>
+<a class="sourceLine" id="cb511-16" data-line-number="16">      df[[j]] &lt;-<span class="st"> </span>ncdf4<span class="op">::</span><span class="kw">ncvar_get</span>(tem, <span class="kw">as.character</span>(vars.info<span class="op">$</span>CF.name[j]))</a>
+<a class="sourceLine" id="cb511-17" data-line-number="17">    } <span class="cf">else</span> {</a>
+<a class="sourceLine" id="cb511-18" data-line-number="18">      df[[j]] =<span class="st"> </span><span class="ot">NA</span></a>
+<a class="sourceLine" id="cb511-19" data-line-number="19">    }</a>
+<a class="sourceLine" id="cb511-20" data-line-number="20">  }</a>
+<a class="sourceLine" id="cb511-21" data-line-number="21">  <span class="kw">names</span>(df) &lt;-<span class="st"> </span>vars.info<span class="op">$</span>CF.name</a>
+<a class="sourceLine" id="cb511-22" data-line-number="22">  df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(df)</a>
+<a class="sourceLine" id="cb511-23" data-line-number="23">  <span class="kw">nc_close</span>(tem)</a>
+<a class="sourceLine" id="cb511-24" data-line-number="24">  <span class="cf">if</span>(<span class="kw">all</span>(<span class="kw">is.na</span>(df<span class="op">$</span>date))){</a>
+<a class="sourceLine" id="cb511-25" data-line-number="25">    df<span class="op">$</span>date =<span class="st"> </span>data.date</a>
+<a class="sourceLine" id="cb511-26" data-line-number="26">  }</a>
+<a class="sourceLine" id="cb511-27" data-line-number="27">  <span class="kw">return</span>(df)</a>
+<a class="sourceLine" id="cb511-28" data-line-number="28">}</a></code></pre></div>
 <p>Now, let’s throw the <code>read.wcr</code> function into a loop so we can read in the data for each year.</p>
-<div class="sourceCode" id="cb510"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb510-1" data-line-number="1"><span class="co"># create a sequence of years for the years we have data</span></a>
-<a class="sourceLine" id="cb510-2" data-line-number="2">yearSeq =<span class="st"> </span><span class="kw">seq</span>(<span class="dv">2010</span>,<span class="dv">2012</span>)</a>
-<a class="sourceLine" id="cb510-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb510-4" data-line-number="4"><span class="co"># begin the for loop to open each year of data</span></a>
-<a class="sourceLine" id="cb510-5" data-line-number="5"><span class="cf">for</span> (y <span class="cf">in</span> yearSeq){</a>
-<a class="sourceLine" id="cb510-6" data-line-number="6">  <span class="co"># use our read.wcr() function and paste in the filename that changes for each year of data</span></a>
-<a class="sourceLine" id="cb510-7" data-line-number="7">  tem_df =<span class="st"> </span><span class="kw">read.wcr</span>(<span class="dt">fname =</span> <span class="kw">paste0</span>(<span class="st">&quot;~/Documents/Github/geog473-673/datasets/WCr_1hr.&quot;</span>,y,<span class="st">&quot;.nc&quot;</span>))</a>
-<a class="sourceLine" id="cb510-8" data-line-number="8">  <span class="co"># != means DOES NOT EQUAL. This statement reads as - if y DOES NOT EQUAL the first year in yearSeq, proceed to use rbind</span></a>
-<a class="sourceLine" id="cb510-9" data-line-number="9">  <span class="co"># otherwise, if y is indeed the first year in yearSeq, we need to initialize wcr_df BEFORE we overwrite tem_df</span></a>
-<a class="sourceLine" id="cb510-10" data-line-number="10">  <span class="cf">if</span> (y <span class="op">!=</span><span class="st"> </span>yearSeq[<span class="dv">1</span>]){</a>
-<a class="sourceLine" id="cb510-11" data-line-number="11">    wcr_df =<span class="st"> </span><span class="kw">rbind</span>(wcr_df, tem_df)</a>
-<a class="sourceLine" id="cb510-12" data-line-number="12">  } <span class="cf">else</span> {</a>
-<a class="sourceLine" id="cb510-13" data-line-number="13">    wcr_df =<span class="st"> </span>tem_df</a>
-<a class="sourceLine" id="cb510-14" data-line-number="14">  }</a>
-<a class="sourceLine" id="cb510-15" data-line-number="15">}</a>
-<a class="sourceLine" id="cb510-16" data-line-number="16"></a>
-<a class="sourceLine" id="cb510-17" data-line-number="17"><span class="kw">length</span>(wcr_df<span class="op">$</span>date)</a></code></pre></div>
+<div class="sourceCode" id="cb512"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb512-1" data-line-number="1"><span class="co"># create a sequence of years for the years we have data</span></a>
+<a class="sourceLine" id="cb512-2" data-line-number="2">yearSeq =<span class="st"> </span><span class="kw">seq</span>(<span class="dv">2010</span>,<span class="dv">2012</span>)</a>
+<a class="sourceLine" id="cb512-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb512-4" data-line-number="4"><span class="co"># begin the for loop to open each year of data</span></a>
+<a class="sourceLine" id="cb512-5" data-line-number="5"><span class="cf">for</span> (y <span class="cf">in</span> yearSeq){</a>
+<a class="sourceLine" id="cb512-6" data-line-number="6">  <span class="co"># use our read.wcr() function and paste in the filename that changes for each year of data</span></a>
+<a class="sourceLine" id="cb512-7" data-line-number="7">  tem_df =<span class="st"> </span><span class="kw">read.wcr</span>(<span class="dt">fname =</span> <span class="kw">paste0</span>(<span class="st">&quot;~/Documents/Github/geog473-673/datasets/WCr_1hr.&quot;</span>,y,<span class="st">&quot;.nc&quot;</span>))</a>
+<a class="sourceLine" id="cb512-8" data-line-number="8">  <span class="co"># != means DOES NOT EQUAL. This statement reads as - if y DOES NOT EQUAL the first year in yearSeq, proceed to use rbind</span></a>
+<a class="sourceLine" id="cb512-9" data-line-number="9">  <span class="co"># otherwise, if y is indeed the first year in yearSeq, we need to initialize wcr_df BEFORE we overwrite tem_df</span></a>
+<a class="sourceLine" id="cb512-10" data-line-number="10">  <span class="cf">if</span> (y <span class="op">!=</span><span class="st"> </span>yearSeq[<span class="dv">1</span>]){</a>
+<a class="sourceLine" id="cb512-11" data-line-number="11">    wcr_df =<span class="st"> </span><span class="kw">rbind</span>(wcr_df, tem_df)</a>
+<a class="sourceLine" id="cb512-12" data-line-number="12">  } <span class="cf">else</span> {</a>
+<a class="sourceLine" id="cb512-13" data-line-number="13">    wcr_df =<span class="st"> </span>tem_df</a>
+<a class="sourceLine" id="cb512-14" data-line-number="14">  }</a>
+<a class="sourceLine" id="cb512-15" data-line-number="15">}</a>
+<a class="sourceLine" id="cb512-16" data-line-number="16"></a>
+<a class="sourceLine" id="cb512-17" data-line-number="17"><span class="kw">length</span>(wcr_df<span class="op">$</span>date)</a></code></pre></div>
 <pre><code>## [1] 26304</code></pre>
-<div class="sourceCode" id="cb512"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb512-1" data-line-number="1"><span class="kw">head</span>(wcr_df)</a></code></pre></div>
+<div class="sourceCode" id="cb514"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb514-1" data-line-number="1"><span class="kw">head</span>(wcr_df)</a></code></pre></div>
 <pre><code>##                  date air_temperature precipitation_flux
 ## 1 2010-01-01 00:00:00        260.1135                  0
 ## 2 2010-01-01 01:00:00        260.0315                  0
@@ -423,63 +428,63 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 5      -1.460475         NA
 ## 6      -1.667144         NA</code></pre>
 <p>Our data has been read in. Let’s convert the Air Temperature units from degrees Kelvin to degrees Fahrenheit. Then, let’s plot our time series.</p>
-<div class="sourceCode" id="cb514"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb514-1" data-line-number="1"><span class="kw">library</span>(ggplot2)</a>
-<a class="sourceLine" id="cb514-2" data-line-number="2"><span class="kw">library</span>(lubridate)</a>
-<a class="sourceLine" id="cb514-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb514-4" data-line-number="4"><span class="co"># convert the data to Fahrenheit</span></a>
-<a class="sourceLine" id="cb514-5" data-line-number="5">wcr_df<span class="op">$</span>air_temperature =<span class="st"> </span>(wcr_df<span class="op">$</span>air_temperature <span class="op">-</span><span class="st"> </span><span class="fl">273.15</span>) <span class="op">*</span><span class="st"> </span>(<span class="dv">9</span><span class="op">/</span><span class="dv">5</span>) <span class="op">+</span><span class="st"> </span><span class="dv">32</span></a>
-<a class="sourceLine" id="cb514-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb514-7" data-line-number="7"><span class="kw">ggplot</span>(<span class="dt">data =</span> wcr_df, <span class="kw">aes</span>(<span class="dt">x =</span> date, <span class="dt">y =</span> air_temperature)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb514-8" data-line-number="8"><span class="st">    </span><span class="kw">geom_rect</span>(<span class="dt">xmin =</span> <span class="kw">as.POSIXct</span>(<span class="st">&quot;2010-01-01&quot;</span>),</a>
-<a class="sourceLine" id="cb514-9" data-line-number="9">              <span class="dt">xmax =</span> <span class="kw">as.POSIXct</span>(<span class="st">&quot;2012-06-01&quot;</span>),</a>
-<a class="sourceLine" id="cb514-10" data-line-number="10">              <span class="dt">ymin =</span> <span class="dv">-10</span>, <span class="dt">ymax =</span> <span class="dv">100</span>,</a>
-<a class="sourceLine" id="cb514-11" data-line-number="11">              <span class="dt">fill =</span> <span class="st">&quot;lightblue&quot;</span>, <span class="dt">alpha =</span> <span class="fl">0.1</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb514-12" data-line-number="12"><span class="st">    </span><span class="kw">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="dt">x =</span> <span class="kw">as.POSIXct</span>(<span class="st">&quot;2011-01-01&quot;</span>) , <span class="dt">y =</span> <span class="dv">80</span>,</a>
-<a class="sourceLine" id="cb514-13" data-line-number="13">             <span class="dt">color =</span> <span class="st">&quot;blue&quot;</span>, <span class="dt">label =</span> <span class="st">&quot;Train Region&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb514-14" data-line-number="14"><span class="st">    </span><span class="kw">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="dt">x =</span> <span class="kw">as.POSIXct</span>(<span class="st">&quot;2012-12-01&quot;</span>), <span class="dt">y =</span> <span class="dv">80</span>,</a>
-<a class="sourceLine" id="cb514-15" data-line-number="15">             <span class="dt">color =</span> <span class="st">&quot;coral&quot;</span>, <span class="dt">label =</span> <span class="st">&quot;Test Region&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb514-16" data-line-number="16"><span class="st">    </span><span class="kw">geom_point</span>(<span class="dt">size=</span><span class="fl">0.5</span>, <span class="dt">alpha =</span> <span class="fl">0.5</span>, <span class="dt">color =</span> <span class="st">&quot;black&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb514-17" data-line-number="17"><span class="st">    </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Willow Creek Hourly Air Temperature - 2010-2013&quot;</span>,<span class="dt">y =</span> <span class="st">&quot;Air Temperature (F)&quot;</span>, <span class="dt">x =</span> <span class="st">&quot;&quot;</span>)</a></code></pre></div>
-<p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-206-1.png" width="50%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb516"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb516-1" data-line-number="1"><span class="kw">library</span>(ggplot2)</a>
+<a class="sourceLine" id="cb516-2" data-line-number="2"><span class="kw">library</span>(lubridate)</a>
+<a class="sourceLine" id="cb516-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb516-4" data-line-number="4"><span class="co"># convert the data to Fahrenheit</span></a>
+<a class="sourceLine" id="cb516-5" data-line-number="5">wcr_df<span class="op">$</span>air_temperature =<span class="st"> </span>(wcr_df<span class="op">$</span>air_temperature <span class="op">-</span><span class="st"> </span><span class="fl">273.15</span>) <span class="op">*</span><span class="st"> </span>(<span class="dv">9</span><span class="op">/</span><span class="dv">5</span>) <span class="op">+</span><span class="st"> </span><span class="dv">32</span></a>
+<a class="sourceLine" id="cb516-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb516-7" data-line-number="7"><span class="kw">ggplot</span>(<span class="dt">data =</span> wcr_df, <span class="kw">aes</span>(<span class="dt">x =</span> date, <span class="dt">y =</span> air_temperature)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb516-8" data-line-number="8"><span class="st">    </span><span class="kw">geom_rect</span>(<span class="dt">xmin =</span> <span class="kw">as.POSIXct</span>(<span class="st">&quot;2010-01-01&quot;</span>),</a>
+<a class="sourceLine" id="cb516-9" data-line-number="9">              <span class="dt">xmax =</span> <span class="kw">as.POSIXct</span>(<span class="st">&quot;2012-06-01&quot;</span>),</a>
+<a class="sourceLine" id="cb516-10" data-line-number="10">              <span class="dt">ymin =</span> <span class="dv">-10</span>, <span class="dt">ymax =</span> <span class="dv">100</span>,</a>
+<a class="sourceLine" id="cb516-11" data-line-number="11">              <span class="dt">fill =</span> <span class="st">&quot;lightblue&quot;</span>, <span class="dt">alpha =</span> <span class="fl">0.1</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb516-12" data-line-number="12"><span class="st">    </span><span class="kw">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="dt">x =</span> <span class="kw">as.POSIXct</span>(<span class="st">&quot;2011-01-01&quot;</span>) , <span class="dt">y =</span> <span class="dv">80</span>,</a>
+<a class="sourceLine" id="cb516-13" data-line-number="13">             <span class="dt">color =</span> <span class="st">&quot;blue&quot;</span>, <span class="dt">label =</span> <span class="st">&quot;Train Region&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb516-14" data-line-number="14"><span class="st">    </span><span class="kw">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="dt">x =</span> <span class="kw">as.POSIXct</span>(<span class="st">&quot;2012-12-01&quot;</span>), <span class="dt">y =</span> <span class="dv">80</span>,</a>
+<a class="sourceLine" id="cb516-15" data-line-number="15">             <span class="dt">color =</span> <span class="st">&quot;coral&quot;</span>, <span class="dt">label =</span> <span class="st">&quot;Test Region&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb516-16" data-line-number="16"><span class="st">    </span><span class="kw">geom_point</span>(<span class="dt">size=</span><span class="fl">0.5</span>, <span class="dt">alpha =</span> <span class="fl">0.5</span>, <span class="dt">color =</span> <span class="st">&quot;black&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb516-17" data-line-number="17"><span class="st">    </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Willow Creek Hourly Air Temperature - 2010-2013&quot;</span>,<span class="dt">y =</span> <span class="st">&quot;Air Temperature (F)&quot;</span>, <span class="dt">x =</span> <span class="st">&quot;&quot;</span>)</a></code></pre></div>
+<p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-207-1.png" width="50%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="aggregate-data" class="section level2">
 <h2><span class="header-section-number">18.2</span> Aggregate Data</h2>
 <p>Let’s <em>aggregate</em> our dataset from an hourly resolution to a <strong>daily resolution</strong>. This can be done using the <code>xts</code> (a time series library) library which has a convenient function called <code>apply.daily()</code> that averages the default resolution data to a daily resolution. This will enhance speed but also decrease accuracy as we are removing data. In real practice and with proper computer resources we would rather stick with our original hourly resolution.</p>
-<div class="sourceCode" id="cb515"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb515-1" data-line-number="1"><span class="kw">library</span>(xts)</a>
-<a class="sourceLine" id="cb515-2" data-line-number="2"><span class="kw">library</span>(zoo)</a>
-<a class="sourceLine" id="cb515-3" data-line-number="3"><span class="co"># create time series data frame based on our datetime </span></a>
-<a class="sourceLine" id="cb515-4" data-line-number="4">xt =<span class="st"> </span><span class="kw">xts</span>(wcr_df, <span class="dt">order.by =</span> wcr_df<span class="op">$</span>date)</a>
-<a class="sourceLine" id="cb515-5" data-line-number="5"><span class="co"># aggregate to daily resolution</span></a>
-<a class="sourceLine" id="cb515-6" data-line-number="6">daily =<span class="st"> </span>xts<span class="op">::</span><span class="kw">apply.daily</span>(xt,mean)</a>
-<a class="sourceLine" id="cb515-7" data-line-number="7"><span class="co"># recreate the date variable which has been deemed as the index of our daily dataframe - while it is the index, it&#39;s easier to use if it&#39;s a variable.</span></a>
-<a class="sourceLine" id="cb515-8" data-line-number="8">daily =<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">date=</span><span class="kw">index</span>(daily), <span class="kw">coredata</span>(daily))</a>
-<a class="sourceLine" id="cb515-9" data-line-number="9"><span class="co"># remove artifact of daily aggregation</span></a>
-<a class="sourceLine" id="cb515-10" data-line-number="10">daily<span class="op">$</span>date<span class="fl">.1</span> =<span class="st"> </span><span class="ot">NULL</span></a>
-<a class="sourceLine" id="cb515-11" data-line-number="11"><span class="co"># plot the new daily air temperature</span></a>
-<a class="sourceLine" id="cb515-12" data-line-number="12"><span class="kw">ggplot</span>(<span class="dt">data =</span> daily, <span class="kw">aes</span>(<span class="dt">x =</span> date, <span class="dt">y =</span> air_temperature)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb515-13" data-line-number="13"><span class="st">    </span><span class="kw">geom_rect</span>(<span class="dt">xmin =</span> <span class="kw">as.POSIXct</span>(<span class="st">&quot;2010-01-01&quot;</span>),</a>
-<a class="sourceLine" id="cb515-14" data-line-number="14">              <span class="dt">xmax =</span> <span class="kw">as.POSIXct</span>(<span class="st">&quot;2012-06-01&quot;</span>),</a>
-<a class="sourceLine" id="cb515-15" data-line-number="15">              <span class="dt">ymin =</span> <span class="dv">-10</span>, <span class="dt">ymax =</span> <span class="dv">85</span>,</a>
-<a class="sourceLine" id="cb515-16" data-line-number="16">              <span class="dt">fill =</span> <span class="st">&quot;lightblue&quot;</span>, <span class="dt">alpha =</span> <span class="fl">0.1</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb515-17" data-line-number="17"><span class="st">    </span><span class="kw">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="dt">x =</span> <span class="kw">as.POSIXct</span>(<span class="st">&quot;2011-01-01&quot;</span>) , <span class="dt">y =</span> <span class="dv">70</span>,</a>
-<a class="sourceLine" id="cb515-18" data-line-number="18">             <span class="dt">color =</span> <span class="st">&quot;blue&quot;</span>, <span class="dt">label =</span> <span class="st">&quot;Train Region&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb515-19" data-line-number="19"><span class="st">    </span><span class="kw">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="dt">x =</span> <span class="kw">as.POSIXct</span>(<span class="st">&quot;2012-12-01&quot;</span>), <span class="dt">y =</span> <span class="dv">70</span>,</a>
-<a class="sourceLine" id="cb515-20" data-line-number="20">             <span class="dt">color =</span> <span class="st">&quot;coral&quot;</span>, <span class="dt">label =</span> <span class="st">&quot;Test Region&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb515-21" data-line-number="21"><span class="st">    </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="fl">0.5</span>, <span class="dt">color =</span> <span class="st">&quot;black&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb515-22" data-line-number="22"><span class="st">    </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Willow Creek Daily Air Temperature - 2010-2013&quot;</span>,<span class="dt">y =</span> <span class="st">&quot;Air Temperature (F)&quot;</span>, <span class="dt">x =</span> <span class="st">&quot;&quot;</span>)</a></code></pre></div>
-<p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-207-1.png" width="50%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb517"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb517-1" data-line-number="1"><span class="kw">library</span>(xts)</a>
+<a class="sourceLine" id="cb517-2" data-line-number="2"><span class="kw">library</span>(zoo)</a>
+<a class="sourceLine" id="cb517-3" data-line-number="3"><span class="co"># create time series data frame based on our datetime </span></a>
+<a class="sourceLine" id="cb517-4" data-line-number="4">xt =<span class="st"> </span><span class="kw">xts</span>(wcr_df, <span class="dt">order.by =</span> wcr_df<span class="op">$</span>date)</a>
+<a class="sourceLine" id="cb517-5" data-line-number="5"><span class="co"># aggregate to daily resolution</span></a>
+<a class="sourceLine" id="cb517-6" data-line-number="6">daily =<span class="st"> </span>xts<span class="op">::</span><span class="kw">apply.daily</span>(xt,mean)</a>
+<a class="sourceLine" id="cb517-7" data-line-number="7"><span class="co"># recreate the date variable which has been deemed as the index of our daily dataframe - while it is the index, it&#39;s easier to use if it&#39;s a variable.</span></a>
+<a class="sourceLine" id="cb517-8" data-line-number="8">daily =<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">date=</span><span class="kw">index</span>(daily), <span class="kw">coredata</span>(daily))</a>
+<a class="sourceLine" id="cb517-9" data-line-number="9"><span class="co"># remove artifact of daily aggregation</span></a>
+<a class="sourceLine" id="cb517-10" data-line-number="10">daily<span class="op">$</span>date<span class="fl">.1</span> =<span class="st"> </span><span class="ot">NULL</span></a>
+<a class="sourceLine" id="cb517-11" data-line-number="11"><span class="co"># plot the new daily air temperature</span></a>
+<a class="sourceLine" id="cb517-12" data-line-number="12"><span class="kw">ggplot</span>(<span class="dt">data =</span> daily, <span class="kw">aes</span>(<span class="dt">x =</span> date, <span class="dt">y =</span> air_temperature)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb517-13" data-line-number="13"><span class="st">    </span><span class="kw">geom_rect</span>(<span class="dt">xmin =</span> <span class="kw">as.POSIXct</span>(<span class="st">&quot;2010-01-01&quot;</span>),</a>
+<a class="sourceLine" id="cb517-14" data-line-number="14">              <span class="dt">xmax =</span> <span class="kw">as.POSIXct</span>(<span class="st">&quot;2012-06-01&quot;</span>),</a>
+<a class="sourceLine" id="cb517-15" data-line-number="15">              <span class="dt">ymin =</span> <span class="dv">-10</span>, <span class="dt">ymax =</span> <span class="dv">85</span>,</a>
+<a class="sourceLine" id="cb517-16" data-line-number="16">              <span class="dt">fill =</span> <span class="st">&quot;lightblue&quot;</span>, <span class="dt">alpha =</span> <span class="fl">0.1</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb517-17" data-line-number="17"><span class="st">    </span><span class="kw">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="dt">x =</span> <span class="kw">as.POSIXct</span>(<span class="st">&quot;2011-01-01&quot;</span>) , <span class="dt">y =</span> <span class="dv">70</span>,</a>
+<a class="sourceLine" id="cb517-18" data-line-number="18">             <span class="dt">color =</span> <span class="st">&quot;blue&quot;</span>, <span class="dt">label =</span> <span class="st">&quot;Train Region&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb517-19" data-line-number="19"><span class="st">    </span><span class="kw">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="dt">x =</span> <span class="kw">as.POSIXct</span>(<span class="st">&quot;2012-12-01&quot;</span>), <span class="dt">y =</span> <span class="dv">70</span>,</a>
+<a class="sourceLine" id="cb517-20" data-line-number="20">             <span class="dt">color =</span> <span class="st">&quot;coral&quot;</span>, <span class="dt">label =</span> <span class="st">&quot;Test Region&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb517-21" data-line-number="21"><span class="st">    </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="fl">0.5</span>, <span class="dt">color =</span> <span class="st">&quot;black&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb517-22" data-line-number="22"><span class="st">    </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Willow Creek Daily Air Temperature - 2010-2013&quot;</span>,<span class="dt">y =</span> <span class="st">&quot;Air Temperature (F)&quot;</span>, <span class="dt">x =</span> <span class="st">&quot;&quot;</span>)</a></code></pre></div>
+<p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-208-1.png" width="50%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="prepping-the-model" class="section level2">
 <h2><span class="header-section-number">18.3</span> Prepping the Model</h2>
 <p>Now that we have our data in daily resolution, we can split our dataset into 2; a test dataset, and a train dataset. When we build a linear regression model for a time series dataset, we select a training period and a testing period. For our case, we’re going to train the dataset with data from 2010-01-01 to 2012-05-31. In other words, we’re using 5/6ths of our dataset to train the model. Then, we’ll use the remaining 1/6th (2012-06-01 to 2013-01-01) to test the model to see how well it predicts the temperature using linear regression.</p>
-<div class="sourceCode" id="cb516"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb516-1" data-line-number="1">train =<span class="st"> </span>daily[<span class="dv">1</span><span class="op">:</span><span class="kw">which</span>(daily<span class="op">$</span>date <span class="op">==</span><span class="st"> </span><span class="kw">as.POSIXct</span>(<span class="st">&quot;2012-05-31 23:00:00 EDT&quot;</span>)),]</a>
-<a class="sourceLine" id="cb516-2" data-line-number="2">test =<span class="st"> </span>daily[<span class="kw">which</span>(daily<span class="op">$</span>date <span class="op">==</span><span class="st"> </span><span class="kw">as.POSIXct</span>(<span class="st">&quot;2012-06-01 23:00:00 EDT&quot;</span>))<span class="op">:</span><span class="kw">length</span>(daily<span class="op">$</span>date),]</a>
-<a class="sourceLine" id="cb516-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb516-4" data-line-number="4">train =<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">date =</span> train<span class="op">$</span>date, <span class="dt">air_temperature =</span>  train<span class="op">$</span>air_temperature)</a>
-<a class="sourceLine" id="cb516-5" data-line-number="5">test =<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">date =</span> test<span class="op">$</span>date, <span class="dt">air_temperature =</span>  test<span class="op">$</span>air_temperature)</a>
-<a class="sourceLine" id="cb516-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb516-7" data-line-number="7"><span class="co"># print out the results of our split</span></a>
-<a class="sourceLine" id="cb516-8" data-line-number="8"><span class="kw">head</span>(train)</a></code></pre></div>
+<div class="sourceCode" id="cb518"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb518-1" data-line-number="1">train =<span class="st"> </span>daily[<span class="dv">1</span><span class="op">:</span><span class="kw">which</span>(daily<span class="op">$</span>date <span class="op">==</span><span class="st"> </span><span class="kw">as.POSIXct</span>(<span class="st">&quot;2012-05-31 23:00:00 EDT&quot;</span>)),]</a>
+<a class="sourceLine" id="cb518-2" data-line-number="2">test =<span class="st"> </span>daily[<span class="kw">which</span>(daily<span class="op">$</span>date <span class="op">==</span><span class="st"> </span><span class="kw">as.POSIXct</span>(<span class="st">&quot;2012-06-01 23:00:00 EDT&quot;</span>))<span class="op">:</span><span class="kw">length</span>(daily<span class="op">$</span>date),]</a>
+<a class="sourceLine" id="cb518-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb518-4" data-line-number="4">train =<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">date =</span> train<span class="op">$</span>date, <span class="dt">air_temperature =</span>  train<span class="op">$</span>air_temperature)</a>
+<a class="sourceLine" id="cb518-5" data-line-number="5">test =<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">date =</span> test<span class="op">$</span>date, <span class="dt">air_temperature =</span>  test<span class="op">$</span>air_temperature)</a>
+<a class="sourceLine" id="cb518-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb518-7" data-line-number="7"><span class="co"># print out the results of our split</span></a>
+<a class="sourceLine" id="cb518-8" data-line-number="8"><span class="kw">head</span>(train)</a></code></pre></div>
 <pre><code>##                  date air_temperature
 ## 1 2010-01-01 23:00:00        4.352076
 ## 2 2010-01-02 23:00:00       -4.916312
@@ -487,7 +492,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 4 2010-01-04 23:00:00        9.920745
 ## 5 2010-01-05 23:00:00       11.206665
 ## 6 2010-01-06 23:00:00       12.708645</code></pre>
-<div class="sourceCode" id="cb518"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb518-1" data-line-number="1"><span class="kw">head</span>(test)</a></code></pre></div>
+<div class="sourceCode" id="cb520"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb520-1" data-line-number="1"><span class="kw">head</span>(test)</a></code></pre></div>
 <pre><code>##                  date air_temperature
 ## 1 2012-06-01 23:00:00        54.73873
 ## 2 2012-06-02 23:00:00        59.44044
@@ -496,13 +501,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 5 2012-06-05 23:00:00        61.49611
 ## 6 2012-06-06 23:00:00        62.09221</code></pre>
 <p>We have our test and train datasets, but now we must prepare these datasets for the linear regression model. Remember, we are trying to train the model using the train dataset and use that model to accurately predict the temperature values of the test dataset. We’ll need to provide the model with some information regarding the number of variables that go into the model.</p>
-<div class="sourceCode" id="cb520"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb520-1" data-line-number="1"><span class="kw">library</span>(timetk)</a>
-<a class="sourceLine" id="cb520-2" data-line-number="2"><span class="kw">library</span>(recipes)</a>
-<a class="sourceLine" id="cb520-3" data-line-number="3"><span class="co"># create a recipe for the air temperature variable</span></a>
-<a class="sourceLine" id="cb520-4" data-line-number="4">rec_train =<span class="st"> </span><span class="kw">recipe</span>(air_temperature <span class="op">~</span><span class="st"> </span>., <span class="dt">data =</span> train)</a>
-<a class="sourceLine" id="cb520-5" data-line-number="5">recipe_ts =<span class="st"> </span><span class="kw">step_timeseries_signature</span>(<span class="dt">recipe =</span> rec_train, <span class="st">&quot;date&quot;</span>) </a>
-<a class="sourceLine" id="cb520-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb520-7" data-line-number="7">recipe_ts</a></code></pre></div>
+<div class="sourceCode" id="cb522"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb522-1" data-line-number="1"><span class="kw">library</span>(timetk)</a>
+<a class="sourceLine" id="cb522-2" data-line-number="2"><span class="kw">library</span>(recipes)</a>
+<a class="sourceLine" id="cb522-3" data-line-number="3"><span class="co"># create a recipe for the air temperature variable</span></a>
+<a class="sourceLine" id="cb522-4" data-line-number="4">rec_train =<span class="st"> </span><span class="kw">recipe</span>(air_temperature <span class="op">~</span><span class="st"> </span>., <span class="dt">data =</span> train)</a>
+<a class="sourceLine" id="cb522-5" data-line-number="5">recipe_ts =<span class="st"> </span><span class="kw">step_timeseries_signature</span>(<span class="dt">recipe =</span> rec_train, <span class="st">&quot;date&quot;</span>) </a>
+<a class="sourceLine" id="cb522-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb522-7" data-line-number="7">recipe_ts</a></code></pre></div>
 <pre><code>## Data Recipe
 ## 
 ## Inputs:
@@ -515,20 +520,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 
 ## Timeseries signature features from &quot;date&quot;</code></pre>
 <p>We only have 1 predictor (day of year) and 1 outcome variable (air temperature). When we initiate a linear regression model for a time series, the model will add extra columns (second, minute, hour, day of year, week of year, weekday, etc.) to the training dataset. Remember, we’re creating a <em>recipe</em> that holds instructions for the actual model. We can add recipe instructions on whether to evaluate the interaction of these columns and Air Temperature or not. We’ll remove seconds, minutes, hours since we are at a daily resolution. These instructions are used on the training dataframe while it’s training the particular model but does not impact the actual dataframe itself.</p>
-<div class="sourceCode" id="cb522"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb522-1" data-line-number="1">recipe_spec =<span class="st"> </span>recipe_ts</a>
-<a class="sourceLine" id="cb522-2" data-line-number="2"><span class="co"># when we run the model, extra dat values will be added automatically - so let&#39;s remove our default date column when teh model is run - note this does not change the dataframe</span></a>
-<a class="sourceLine" id="cb522-3" data-line-number="3">recipe_spec =<span class="st"> </span><span class="kw">step_rm</span>(recipe_spec, date)</a>
-<a class="sourceLine" id="cb522-4" data-line-number="4"><span class="co"># some other variables will be added in automatically as well, let&#39;s remove the ones that aren&#39;t imoprtant. </span></a>
-<a class="sourceLine" id="cb522-5" data-line-number="5">recipe_spec =<span class="st"> </span><span class="kw">step_rm</span>(recipe_spec, <span class="kw">contains</span>(<span class="st">&quot;iso&quot;</span>), </a>
-<a class="sourceLine" id="cb522-6" data-line-number="6">            <span class="kw">contains</span>(<span class="st">&quot;second&quot;</span>), <span class="kw">contains</span>(<span class="st">&quot;minute&quot;</span>), <span class="kw">contains</span>(<span class="st">&quot;hour&quot;</span>),</a>
-<a class="sourceLine" id="cb522-7" data-line-number="7">            <span class="kw">contains</span>(<span class="st">&quot;am.pm&quot;</span>), <span class="kw">contains</span>(<span class="st">&quot;xts&quot;</span>))</a>
-<a class="sourceLine" id="cb522-8" data-line-number="8"><span class="co"># create new columns based on the interaction of these variables</span></a>
-<a class="sourceLine" id="cb522-9" data-line-number="9">recipe_spec =<span class="st"> </span><span class="kw">step_interact</span>(recipe_spec, <span class="op">~</span><span class="st"> </span>date_month.lbl <span class="op">*</span><span class="st"> </span>date_day)</a>
-<a class="sourceLine" id="cb522-10" data-line-number="10">recipe_spec =<span class="st"> </span><span class="kw">step_interact</span>(recipe_spec, <span class="op">~</span><span class="st"> </span>date_month.lbl <span class="op">*</span><span class="st"> </span>date_mweek)</a>
-<a class="sourceLine" id="cb522-11" data-line-number="11">recipe_spec =<span class="st"> </span><span class="kw">step_interact</span>(recipe_spec, <span class="op">~</span><span class="st"> </span>date_month.lbl <span class="op">*</span><span class="st"> </span>date_wday.lbl <span class="op">*</span><span class="st"> </span>date_yday)</a>
-<a class="sourceLine" id="cb522-12" data-line-number="12">recipe_spec_final =<span class="st"> </span><span class="kw">step_dummy</span>(recipe_spec, <span class="kw">contains</span>(<span class="st">&quot;lbl&quot;</span>), <span class="dt">one_hot =</span> <span class="ot">TRUE</span>) </a>
-<a class="sourceLine" id="cb522-13" data-line-number="13"></a>
-<a class="sourceLine" id="cb522-14" data-line-number="14">recipe_spec_final</a></code></pre></div>
+<div class="sourceCode" id="cb524"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb524-1" data-line-number="1">recipe_spec =<span class="st"> </span>recipe_ts</a>
+<a class="sourceLine" id="cb524-2" data-line-number="2"><span class="co"># when we run the model, extra dat values will be added automatically - so let&#39;s remove our default date column when teh model is run - note this does not change the dataframe</span></a>
+<a class="sourceLine" id="cb524-3" data-line-number="3">recipe_spec =<span class="st"> </span><span class="kw">step_rm</span>(recipe_spec, date)</a>
+<a class="sourceLine" id="cb524-4" data-line-number="4"><span class="co"># some other variables will be added in automatically as well, let&#39;s remove the ones that aren&#39;t imoprtant. </span></a>
+<a class="sourceLine" id="cb524-5" data-line-number="5">recipe_spec =<span class="st"> </span><span class="kw">step_rm</span>(recipe_spec, <span class="kw">contains</span>(<span class="st">&quot;iso&quot;</span>), </a>
+<a class="sourceLine" id="cb524-6" data-line-number="6">            <span class="kw">contains</span>(<span class="st">&quot;second&quot;</span>), <span class="kw">contains</span>(<span class="st">&quot;minute&quot;</span>), <span class="kw">contains</span>(<span class="st">&quot;hour&quot;</span>),</a>
+<a class="sourceLine" id="cb524-7" data-line-number="7">            <span class="kw">contains</span>(<span class="st">&quot;am.pm&quot;</span>), <span class="kw">contains</span>(<span class="st">&quot;xts&quot;</span>))</a>
+<a class="sourceLine" id="cb524-8" data-line-number="8"><span class="co"># create new columns based on the interaction of these variables</span></a>
+<a class="sourceLine" id="cb524-9" data-line-number="9">recipe_spec =<span class="st"> </span><span class="kw">step_interact</span>(recipe_spec, <span class="op">~</span><span class="st"> </span>date_month.lbl <span class="op">*</span><span class="st"> </span>date_day)</a>
+<a class="sourceLine" id="cb524-10" data-line-number="10">recipe_spec =<span class="st"> </span><span class="kw">step_interact</span>(recipe_spec, <span class="op">~</span><span class="st"> </span>date_month.lbl <span class="op">*</span><span class="st"> </span>date_mweek)</a>
+<a class="sourceLine" id="cb524-11" data-line-number="11">recipe_spec =<span class="st"> </span><span class="kw">step_interact</span>(recipe_spec, <span class="op">~</span><span class="st"> </span>date_month.lbl <span class="op">*</span><span class="st"> </span>date_wday.lbl <span class="op">*</span><span class="st"> </span>date_yday)</a>
+<a class="sourceLine" id="cb524-12" data-line-number="12">recipe_spec_final =<span class="st"> </span><span class="kw">step_dummy</span>(recipe_spec, <span class="kw">contains</span>(<span class="st">&quot;lbl&quot;</span>), <span class="dt">one_hot =</span> <span class="ot">TRUE</span>) </a>
+<a class="sourceLine" id="cb524-13" data-line-number="13"></a>
+<a class="sourceLine" id="cb524-14" data-line-number="14">recipe_spec_final</a></code></pre></div>
 <pre><code>## Data Recipe
 ## 
 ## Inputs:
@@ -550,16 +555,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="running-the-model" class="section level2">
 <h2><span class="header-section-number">18.4</span> Running the Model</h2>
-<div class="sourceCode" id="cb524"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb524-1" data-line-number="1"><span class="kw">library</span>(workflows)</a>
-<a class="sourceLine" id="cb524-2" data-line-number="2"><span class="kw">library</span>(parsnip)</a>
-<a class="sourceLine" id="cb524-3" data-line-number="3"><span class="kw">library</span>(recipes)</a>
-<a class="sourceLine" id="cb524-4" data-line-number="4"><span class="kw">library</span>(yardstick)</a>
-<a class="sourceLine" id="cb524-5" data-line-number="5"><span class="kw">library</span>(glmnet)</a>
-<a class="sourceLine" id="cb524-6" data-line-number="6"><span class="kw">library</span>(tidyverse)</a>
-<a class="sourceLine" id="cb524-7" data-line-number="7"></a>
-<a class="sourceLine" id="cb524-8" data-line-number="8"><span class="co"># initiate the model with a penalty of 2 and no mixture - these parameters can be changed for more variability</span></a>
-<a class="sourceLine" id="cb524-9" data-line-number="9">model_spec_glmnet &lt;-<span class="st"> </span>parsnip<span class="op">::</span><span class="kw">linear_reg</span>(<span class="dt">mode =</span> <span class="st">&quot;regression&quot;</span>, <span class="dt">penalty =</span> <span class="dv">2</span>, <span class="dt">mixture =</span> <span class="dv">0</span>)</a>
-<a class="sourceLine" id="cb524-10" data-line-number="10"><span class="kw">set_engine</span>(model_spec_glmnet, <span class="st">&quot;glmnet&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb526"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb526-1" data-line-number="1"><span class="kw">library</span>(workflows)</a>
+<a class="sourceLine" id="cb526-2" data-line-number="2"><span class="kw">library</span>(parsnip)</a>
+<a class="sourceLine" id="cb526-3" data-line-number="3"><span class="kw">library</span>(recipes)</a>
+<a class="sourceLine" id="cb526-4" data-line-number="4"><span class="kw">library</span>(yardstick)</a>
+<a class="sourceLine" id="cb526-5" data-line-number="5"><span class="kw">library</span>(glmnet)</a>
+<a class="sourceLine" id="cb526-6" data-line-number="6"><span class="kw">library</span>(tidyverse)</a>
+<a class="sourceLine" id="cb526-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb526-8" data-line-number="8"><span class="co"># initiate the model with a penalty of 2 and no mixture - these parameters can be changed for more variability</span></a>
+<a class="sourceLine" id="cb526-9" data-line-number="9">model_spec_glmnet &lt;-<span class="st"> </span>parsnip<span class="op">::</span><span class="kw">linear_reg</span>(<span class="dt">mode =</span> <span class="st">&quot;regression&quot;</span>, <span class="dt">penalty =</span> <span class="dv">2</span>, <span class="dt">mixture =</span> <span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb526-10" data-line-number="10"><span class="kw">set_engine</span>(model_spec_glmnet, <span class="st">&quot;glmnet&quot;</span>)</a></code></pre></div>
 <pre><code>## Linear Regression Model Specification (regression)
 ## 
 ## Main Arguments:
@@ -567,10 +572,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##   mixture = 0
 ## 
 ## Computational engine: glmnet</code></pre>
-<div class="sourceCode" id="cb526"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb526-1" data-line-number="1"><span class="co"># add our recipe to the workflow, then add the model to the workflow</span></a>
-<a class="sourceLine" id="cb526-2" data-line-number="2">workflow_glmnet =<span class="st"> </span><span class="kw">add_recipe</span>(<span class="kw">workflow</span>(), recipe_spec_final)</a>
-<a class="sourceLine" id="cb526-3" data-line-number="3">workflow_glmnet =<span class="st"> </span><span class="kw">add_model</span>(workflow_glmnet, model_spec_glmnet)</a>
-<a class="sourceLine" id="cb526-4" data-line-number="4">workflow_glmnet</a></code></pre></div>
+<div class="sourceCode" id="cb528"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb528-1" data-line-number="1"><span class="co"># add our recipe to the workflow, then add the model to the workflow</span></a>
+<a class="sourceLine" id="cb528-2" data-line-number="2">workflow_glmnet =<span class="st"> </span><span class="kw">add_recipe</span>(<span class="kw">workflow</span>(), recipe_spec_final)</a>
+<a class="sourceLine" id="cb528-3" data-line-number="3">workflow_glmnet =<span class="st"> </span><span class="kw">add_model</span>(workflow_glmnet, model_spec_glmnet)</a>
+<a class="sourceLine" id="cb528-4" data-line-number="4">workflow_glmnet</a></code></pre></div>
 <pre><code>## ══ Workflow ═════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════
 ## Preprocessor: Recipe
 ## Model: linear_reg()
@@ -592,14 +597,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## Main Arguments:
 ##   penalty = 2
 ##   mixture = 0</code></pre>
-<div class="sourceCode" id="cb528"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb528-1" data-line-number="1"><span class="co"># tune the model based on the training data</span></a>
-<a class="sourceLine" id="cb528-2" data-line-number="2">workflow_trained &lt;-<span class="st"> </span>workflow_glmnet</a>
-<a class="sourceLine" id="cb528-3" data-line-number="3">workflow_trained =<span class="st"> </span><span class="kw">fit</span>(workflow_glmnet, <span class="dt">data =</span> train)</a>
-<a class="sourceLine" id="cb528-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb528-5" data-line-number="5"><span class="co"># predict the test air temperature based on our model</span></a>
-<a class="sourceLine" id="cb528-6" data-line-number="6">prediction_tbl =<span class="st"> </span><span class="kw">predict</span>(workflow_trained, test)</a>
-<a class="sourceLine" id="cb528-7" data-line-number="7">prediction_tbl =<span class="st"> </span><span class="kw">bind_cols</span>(prediction_tbl, test) </a>
-<a class="sourceLine" id="cb528-8" data-line-number="8">prediction_tbl</a></code></pre></div>
+<div class="sourceCode" id="cb530"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb530-1" data-line-number="1"><span class="co"># tune the model based on the training data</span></a>
+<a class="sourceLine" id="cb530-2" data-line-number="2">workflow_trained &lt;-<span class="st"> </span>workflow_glmnet</a>
+<a class="sourceLine" id="cb530-3" data-line-number="3">workflow_trained =<span class="st"> </span><span class="kw">fit</span>(workflow_glmnet, <span class="dt">data =</span> train)</a>
+<a class="sourceLine" id="cb530-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb530-5" data-line-number="5"><span class="co"># predict the test air temperature based on our model</span></a>
+<a class="sourceLine" id="cb530-6" data-line-number="6">prediction_tbl =<span class="st"> </span><span class="kw">predict</span>(workflow_trained, test)</a>
+<a class="sourceLine" id="cb530-7" data-line-number="7">prediction_tbl =<span class="st"> </span><span class="kw">bind_cols</span>(prediction_tbl, test) </a>
+<a class="sourceLine" id="cb530-8" data-line-number="8">prediction_tbl</a></code></pre></div>
 <pre><code>## # A tibble: 214 x 3
 ##    .pred date                air_temperature
 ##    &lt;dbl&gt; &lt;dttm&gt;                        &lt;dbl&gt;
@@ -614,57 +619,57 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  9  69.6 2012-06-09 23:00:00            74.9
 ## 10  65.3 2012-06-10 23:00:00            73.8
 ## # … with 204 more rows</code></pre>
-<div class="sourceCode" id="cb530"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb530-1" data-line-number="1"><span class="co"># plot our modeled test air temperature against the actual test air temperature</span></a>
-<a class="sourceLine" id="cb530-2" data-line-number="2"><span class="kw">ggplot</span>(<span class="dt">data =</span> daily, <span class="kw">aes</span>(<span class="dt">x =</span> date, <span class="dt">y =</span> air_temperature)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb530-3" data-line-number="3"><span class="st">    </span><span class="kw">geom_rect</span>(<span class="dt">xmin =</span> <span class="kw">as.POSIXct</span>(<span class="st">&quot;2010-01-01&quot;</span>),</a>
-<a class="sourceLine" id="cb530-4" data-line-number="4">              <span class="dt">xmax =</span> <span class="kw">as.POSIXct</span>(<span class="st">&quot;2012-06-01&quot;</span>),</a>
-<a class="sourceLine" id="cb530-5" data-line-number="5">              <span class="dt">ymin =</span> <span class="dv">-10</span>, <span class="dt">ymax =</span> <span class="dv">85</span>,</a>
-<a class="sourceLine" id="cb530-6" data-line-number="6">              <span class="dt">fill =</span> <span class="st">&quot;lightblue&quot;</span>, <span class="dt">alpha =</span> <span class="fl">0.01</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb530-7" data-line-number="7"><span class="st">    </span><span class="kw">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="dt">x =</span> <span class="kw">as.POSIXct</span>(<span class="st">&quot;2011-01-01&quot;</span>) , <span class="dt">y =</span> <span class="dv">75</span>,</a>
-<a class="sourceLine" id="cb530-8" data-line-number="8">             <span class="dt">color =</span> <span class="st">&quot;blue&quot;</span>, <span class="dt">label =</span> <span class="st">&quot;Train Region&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb530-9" data-line-number="9"><span class="st">    </span><span class="kw">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="dt">x =</span> <span class="kw">as.POSIXct</span>(<span class="st">&quot;2012-12-01&quot;</span>), <span class="dt">y =</span> <span class="dv">75</span>,</a>
-<a class="sourceLine" id="cb530-10" data-line-number="10">             <span class="dt">color =</span> <span class="st">&quot;coral&quot;</span>, <span class="dt">label =</span> <span class="st">&quot;Test Region&quot;</span>) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb530-11" data-line-number="11"><span class="st">   </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="fl">0.5</span>, <span class="dt">color =</span> <span class="st">&quot;black&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb530-12" data-line-number="12"><span class="st">    </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">x =</span> date, <span class="dt">y =</span> .pred), <span class="dt">data =</span> prediction_tbl, </a>
-<a class="sourceLine" id="cb530-13" data-line-number="13">               <span class="dt">alpha =</span> <span class="fl">0.5</span>, <span class="dt">color =</span>  <span class="st">&quot;darkblue&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb530-14" data-line-number="14"><span class="st">    </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;GLM: Out-Of-Sample Forecast&quot;</span>)</a></code></pre></div>
-<p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-211-1.png" width="50%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb532"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb532-1" data-line-number="1"><span class="co"># plot our modeled test air temperature against the actual test air temperature</span></a>
+<a class="sourceLine" id="cb532-2" data-line-number="2"><span class="kw">ggplot</span>(<span class="dt">data =</span> daily, <span class="kw">aes</span>(<span class="dt">x =</span> date, <span class="dt">y =</span> air_temperature)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb532-3" data-line-number="3"><span class="st">    </span><span class="kw">geom_rect</span>(<span class="dt">xmin =</span> <span class="kw">as.POSIXct</span>(<span class="st">&quot;2010-01-01&quot;</span>),</a>
+<a class="sourceLine" id="cb532-4" data-line-number="4">              <span class="dt">xmax =</span> <span class="kw">as.POSIXct</span>(<span class="st">&quot;2012-06-01&quot;</span>),</a>
+<a class="sourceLine" id="cb532-5" data-line-number="5">              <span class="dt">ymin =</span> <span class="dv">-10</span>, <span class="dt">ymax =</span> <span class="dv">85</span>,</a>
+<a class="sourceLine" id="cb532-6" data-line-number="6">              <span class="dt">fill =</span> <span class="st">&quot;lightblue&quot;</span>, <span class="dt">alpha =</span> <span class="fl">0.01</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb532-7" data-line-number="7"><span class="st">    </span><span class="kw">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="dt">x =</span> <span class="kw">as.POSIXct</span>(<span class="st">&quot;2011-01-01&quot;</span>) , <span class="dt">y =</span> <span class="dv">75</span>,</a>
+<a class="sourceLine" id="cb532-8" data-line-number="8">             <span class="dt">color =</span> <span class="st">&quot;blue&quot;</span>, <span class="dt">label =</span> <span class="st">&quot;Train Region&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb532-9" data-line-number="9"><span class="st">    </span><span class="kw">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="dt">x =</span> <span class="kw">as.POSIXct</span>(<span class="st">&quot;2012-12-01&quot;</span>), <span class="dt">y =</span> <span class="dv">75</span>,</a>
+<a class="sourceLine" id="cb532-10" data-line-number="10">             <span class="dt">color =</span> <span class="st">&quot;coral&quot;</span>, <span class="dt">label =</span> <span class="st">&quot;Test Region&quot;</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb532-11" data-line-number="11"><span class="st">   </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="fl">0.5</span>, <span class="dt">color =</span> <span class="st">&quot;black&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb532-12" data-line-number="12"><span class="st">    </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">x =</span> date, <span class="dt">y =</span> .pred), <span class="dt">data =</span> prediction_tbl, </a>
+<a class="sourceLine" id="cb532-13" data-line-number="13">               <span class="dt">alpha =</span> <span class="fl">0.5</span>, <span class="dt">color =</span>  <span class="st">&quot;darkblue&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb532-14" data-line-number="14"><span class="st">    </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;GLM: Out-Of-Sample Forecast&quot;</span>)</a></code></pre></div>
+<p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-212-1.png" width="50%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="validation-and-accuracy" class="section level2">
 <h2><span class="header-section-number">18.5</span> Validation and Accuracy</h2>
 <p>The plot seems to show that the model predicted the test air temperature fairly well, but let’s evaluate the metrics the see how it does based on the statistics. Then, let’s plot the residuals - the difference between the actual test air temperature and the predicted air temperature.</p>
-<div class="sourceCode" id="cb531"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb531-1" data-line-number="1"><span class="co"># calculate the metrics of test air temperature vs. predicted air temperature</span></a>
-<a class="sourceLine" id="cb531-2" data-line-number="2"><span class="kw">metrics</span>(prediction_tbl, air_temperature, .pred)</a></code></pre></div>
+<div class="sourceCode" id="cb533"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb533-1" data-line-number="1"><span class="co"># calculate the metrics of test air temperature vs. predicted air temperature</span></a>
+<a class="sourceLine" id="cb533-2" data-line-number="2"><span class="kw">metrics</span>(prediction_tbl, air_temperature, .pred)</a></code></pre></div>
 <pre><code>## # A tibble: 3 x 3
 ##   .metric .estimator .estimate
 ##   &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
 ## 1 rmse    standard      11.2  
 ## 2 rsq     standard       0.778
 ## 3 mae     standard       8.89</code></pre>
-<div class="sourceCode" id="cb533"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb533-1" data-line-number="1"><span class="co"># plot the residuals</span></a>
-<a class="sourceLine" id="cb533-2" data-line-number="2"><span class="kw">ggplot</span>(<span class="dt">data =</span> prediction_tbl, <span class="kw">aes</span>(<span class="dt">x =</span> date, <span class="dt">y =</span> air_temperature <span class="op">-</span><span class="st"> </span>.pred)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb533-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_hline</span>(<span class="dt">yintercept =</span> <span class="dv">0</span>, <span class="dt">color =</span> <span class="st">&quot;black&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb533-4" data-line-number="4"><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">color =</span> <span class="st">&quot;blue&quot;</span>, <span class="dt">alpha =</span> <span class="fl">0.5</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb533-5" data-line-number="5"><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">span =</span> <span class="fl">0.05</span>, <span class="dt">color =</span> <span class="st">&quot;red&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb533-6" data-line-number="6"><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">span =</span> <span class="fl">1.00</span>, <span class="dt">se =</span> <span class="ot">FALSE</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb533-7" data-line-number="7"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;GLM Model Residuals, Out-of-Sample&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Air Temperature: Actual - Predicted&quot;</span>,  <span class="dt">x =</span> <span class="st">&quot;&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb533-8" data-line-number="8"><span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">limits =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">5</span>, <span class="dv">5</span>))</a></code></pre></div>
-<p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-212-1.png" width="50%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb535"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb535-1" data-line-number="1"><span class="co"># plot the residuals</span></a>
+<a class="sourceLine" id="cb535-2" data-line-number="2"><span class="kw">ggplot</span>(<span class="dt">data =</span> prediction_tbl, <span class="kw">aes</span>(<span class="dt">x =</span> date, <span class="dt">y =</span> air_temperature <span class="op">-</span><span class="st"> </span>.pred)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb535-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_hline</span>(<span class="dt">yintercept =</span> <span class="dv">0</span>, <span class="dt">color =</span> <span class="st">&quot;black&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb535-4" data-line-number="4"><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">color =</span> <span class="st">&quot;blue&quot;</span>, <span class="dt">alpha =</span> <span class="fl">0.5</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb535-5" data-line-number="5"><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">span =</span> <span class="fl">0.05</span>, <span class="dt">color =</span> <span class="st">&quot;red&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb535-6" data-line-number="6"><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">span =</span> <span class="fl">1.00</span>, <span class="dt">se =</span> <span class="ot">FALSE</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb535-7" data-line-number="7"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;GLM Model Residuals, Out-of-Sample&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Air Temperature: Actual - Predicted&quot;</span>,  <span class="dt">x =</span> <span class="st">&quot;&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb535-8" data-line-number="8"><span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">limits =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">5</span>, <span class="dv">5</span>))</a></code></pre></div>
+<p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-213-1.png" width="50%" style="display: block; margin: auto;" /></p>
 <p>Remember, we don’t want to overfit our model and make it too accurate! Overfitting of our model to the training dataset can create unrealistic outcomes with unrealistic regularity. Temperatures are variable!</p>
 </div>
 <div id="future-forecasting" class="section level2">
 <h2><span class="header-section-number">18.6</span> Future Forecasting</h2>
 <p>The residuals show the model performed fairly well. Now, can we forecast the temperature into the future? We’ll follow the same procedure as before but now we’ll create extra time series values and fill those using the model we’ve built</p>
-<div class="sourceCode" id="cb534"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb534-1" data-line-number="1"><span class="co"># Extract daily index</span></a>
-<a class="sourceLine" id="cb534-2" data-line-number="2">idx &lt;-<span class="st"> </span><span class="kw">tk_index</span>(daily)</a>
-<a class="sourceLine" id="cb534-3" data-line-number="3"><span class="co"># Get time series summary from index</span></a>
-<a class="sourceLine" id="cb534-4" data-line-number="4">daily_summary &lt;-<span class="st"> </span><span class="kw">tk_get_timeseries_summary</span>(idx)</a>
-<a class="sourceLine" id="cb534-5" data-line-number="5"></a>
-<a class="sourceLine" id="cb534-6" data-line-number="6"><span class="co"># add 180 days to the model </span></a>
-<a class="sourceLine" id="cb534-7" data-line-number="7">idx_future &lt;-<span class="st"> </span><span class="kw">tk_make_future_timeseries</span>(idx, <span class="dt">n_future =</span> <span class="dv">180</span>)</a>
-<a class="sourceLine" id="cb534-8" data-line-number="8"><span class="co"># create a tibble table </span></a>
-<a class="sourceLine" id="cb534-9" data-line-number="9">future_tbl &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">date =</span> idx_future) </a>
-<a class="sourceLine" id="cb534-10" data-line-number="10"><span class="kw">head</span>(future_tbl)</a></code></pre></div>
+<div class="sourceCode" id="cb536"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb536-1" data-line-number="1"><span class="co"># Extract daily index</span></a>
+<a class="sourceLine" id="cb536-2" data-line-number="2">idx &lt;-<span class="st"> </span><span class="kw">tk_index</span>(daily)</a>
+<a class="sourceLine" id="cb536-3" data-line-number="3"><span class="co"># Get time series summary from index</span></a>
+<a class="sourceLine" id="cb536-4" data-line-number="4">daily_summary &lt;-<span class="st"> </span><span class="kw">tk_get_timeseries_summary</span>(idx)</a>
+<a class="sourceLine" id="cb536-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb536-6" data-line-number="6"><span class="co"># add 180 days to the model </span></a>
+<a class="sourceLine" id="cb536-7" data-line-number="7">idx_future &lt;-<span class="st"> </span><span class="kw">tk_make_future_timeseries</span>(idx, <span class="dt">n_future =</span> <span class="dv">180</span>)</a>
+<a class="sourceLine" id="cb536-8" data-line-number="8"><span class="co"># create a tibble table </span></a>
+<a class="sourceLine" id="cb536-9" data-line-number="9">future_tbl &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">date =</span> idx_future) </a>
+<a class="sourceLine" id="cb536-10" data-line-number="10"><span class="kw">head</span>(future_tbl)</a></code></pre></div>
 <pre><code>## # A tibble: 6 x 1
 ##   date               
 ##   &lt;dttm&gt;             
@@ -674,53 +679,53 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 4 2013-01-04 00:00:00
 ## 5 2013-01-05 00:00:00
 ## 6 2013-01-06 00:00:00</code></pre>
-<div class="sourceCode" id="cb536"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb536-1" data-line-number="1"><span class="co"># run the model using the entire dataset, predict the temperature for the dates of future_tbl, and bind the columns together. </span></a>
-<a class="sourceLine" id="cb536-2" data-line-number="2">future_predictions_tbl =<span class="st"> </span><span class="kw">fit</span>(workflow_glmnet, <span class="dt">data =</span> daily)</a>
-<a class="sourceLine" id="cb536-3" data-line-number="3">future_predictions_tbl =<span class="st"> </span><span class="kw">predict</span>(future_predictions_tbl, future_tbl)</a>
-<a class="sourceLine" id="cb536-4" data-line-number="4">future_predictions_tbl =<span class="st"> </span><span class="kw">bind_cols</span>(future_predictions_tbl, future_tbl)</a>
-<a class="sourceLine" id="cb536-5" data-line-number="5"></a>
-<a class="sourceLine" id="cb536-6" data-line-number="6"><span class="co"># plot the future forecasted temperature</span></a>
-<a class="sourceLine" id="cb536-7" data-line-number="7"><span class="kw">ggplot</span>(<span class="dt">data =</span> daily, <span class="kw">aes</span>(<span class="dt">x =</span> date, <span class="dt">y =</span> air_temperature)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb536-8" data-line-number="8"><span class="st">    </span><span class="kw">geom_rect</span>(<span class="dt">xmin =</span> <span class="kw">as.POSIXct</span>(<span class="st">&quot;2010-01-01&quot;</span>),</a>
-<a class="sourceLine" id="cb536-9" data-line-number="9">              <span class="dt">xmax =</span> <span class="kw">as.POSIXct</span>(<span class="st">&quot;2012-06-01&quot;</span>),</a>
-<a class="sourceLine" id="cb536-10" data-line-number="10">              <span class="dt">ymin =</span> <span class="dv">-10</span>, <span class="dt">ymax =</span> <span class="dv">85</span>,</a>
-<a class="sourceLine" id="cb536-11" data-line-number="11">              <span class="dt">fill =</span> <span class="st">&quot;lightblue&quot;</span>, <span class="dt">alpha =</span> <span class="fl">0.01</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb536-12" data-line-number="12"><span class="st">    </span><span class="kw">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="dt">x =</span> <span class="kw">as.POSIXct</span>(<span class="st">&quot;2011-01-01&quot;</span>) , <span class="dt">y =</span> <span class="dv">75</span>,</a>
-<a class="sourceLine" id="cb536-13" data-line-number="13">             <span class="dt">color =</span> <span class="st">&quot;blue&quot;</span>, <span class="dt">label =</span> <span class="st">&quot;Train Region&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb536-14" data-line-number="14"><span class="st">    </span><span class="kw">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="dt">x =</span> <span class="kw">as.POSIXct</span>(<span class="st">&quot;2012-12-01&quot;</span>), <span class="dt">y =</span> <span class="dv">75</span>,</a>
-<a class="sourceLine" id="cb536-15" data-line-number="15">             <span class="dt">color =</span> <span class="st">&quot;coral&quot;</span>, <span class="dt">label =</span> <span class="st">&quot;Test Region&quot;</span>) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb536-16" data-line-number="16"><span class="st">   </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="fl">0.5</span>, <span class="dt">color =</span> <span class="st">&quot;black&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb536-17" data-line-number="17"><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">as.POSIXct</span>(date), <span class="dt">y =</span> .pred), <span class="dt">data =</span> future_predictions_tbl,</a>
-<a class="sourceLine" id="cb536-18" data-line-number="18">               <span class="dt">alpha =</span> <span class="fl">0.5</span>, <span class="dt">color =</span> <span class="st">&quot;dodgerblue1&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb536-19" data-line-number="19"><span class="st">    </span><span class="kw">geom_smooth</span>(<span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">as.POSIXct</span>(date), <span class="dt">y =</span> .pred), <span class="dt">data =</span> future_predictions_tbl,</a>
-<a class="sourceLine" id="cb536-20" data-line-number="20">                <span class="dt">method =</span> <span class="st">&#39;loess&#39;</span>, <span class="dt">color =</span> <span class="st">&quot;dodgerblue4&quot;</span>) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb536-21" data-line-number="21"><span class="st">    </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Willow Creek Air Temperature: 6-Month Forecast&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Air Temperature (F)&quot;</span>, <span class="dt">x =</span> <span class="st">&quot;&quot;</span>)</a></code></pre></div>
-<p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-213-1.png" width="50%" style="display: block; margin: auto;" /></p>
-<p>Let’s add in some error regions. We’ll calculate the spread of the 95th percentile and the 80th percentile confidence intervals. 95% of the area under a normal curve lies within roughly 1.96 standard deviations of the mean, and due to the central limit theorem, this number is therefore used in the construction of approximate 95% confidence intervals. For 80%, the are under a normal curve lies within roughly 1.28 standard deviations. We’ll use these values to create our prediction error thresholds.</p>
-<div class="sourceCode" id="cb537"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb537-1" data-line-number="1"><span class="co"># Calculate standard deviation of residuals (actual temp subtracted from residuals)</span></a>
-<a class="sourceLine" id="cb537-2" data-line-number="2">test_resid_sd &lt;-<span class="st"> </span><span class="kw">summarize</span>(prediction_tbl, <span class="dt">stdev =</span> <span class="kw">sd</span>(air_temperature<span class="op">-</span><span class="st"> </span>.pred))</a>
-<a class="sourceLine" id="cb537-3" data-line-number="3"><span class="co"># create lo.95 and other variables for the error areas</span></a>
-<a class="sourceLine" id="cb537-4" data-line-number="4">future_predictions_tbl &lt;-<span class="st"> </span><span class="kw">mutate</span>(future_predictions_tbl, </a>
-<a class="sourceLine" id="cb537-5" data-line-number="5">        <span class="dt">lo.95 =</span> .pred <span class="op">-</span><span class="st"> </span><span class="fl">1.96</span> <span class="op">*</span><span class="st"> </span>test_resid_sd<span class="op">$</span>stdev,</a>
-<a class="sourceLine" id="cb537-6" data-line-number="6">        <span class="dt">lo.80 =</span> .pred <span class="op">-</span><span class="st"> </span><span class="fl">1.28</span> <span class="op">*</span><span class="st"> </span>test_resid_sd<span class="op">$</span>stdev,</a>
-<a class="sourceLine" id="cb537-7" data-line-number="7">        <span class="dt">hi.80 =</span> .pred <span class="op">+</span><span class="st"> </span><span class="fl">1.28</span> <span class="op">*</span><span class="st"> </span>test_resid_sd<span class="op">$</span>stdev,</a>
-<a class="sourceLine" id="cb537-8" data-line-number="8">        <span class="dt">hi.95 =</span> .pred <span class="op">+</span><span class="st"> </span><span class="fl">1.96</span> <span class="op">*</span><span class="st"> </span>test_resid_sd<span class="op">$</span>stdev)</a>
-<a class="sourceLine" id="cb537-9" data-line-number="9"></a>
-<a class="sourceLine" id="cb537-10" data-line-number="10"><span class="co"># plot the error areas</span></a>
-<a class="sourceLine" id="cb537-11" data-line-number="11"><span class="kw">ggplot</span>(<span class="dt">data =</span> daily, <span class="kw">aes</span>(<span class="dt">x =</span> date, <span class="dt">y =</span> air_temperature)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb537-12" data-line-number="12"><span class="st">    </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="fl">0.5</span>, <span class="dt">color =</span> <span class="st">&quot;black&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb537-13" data-line-number="13"><span class="st">    </span><span class="kw">geom_ribbon</span>(<span class="kw">aes</span>(<span class="dt">y =</span> .pred, <span class="dt">x =</span> <span class="kw">as.POSIXct</span>(date),<span class="dt">ymin =</span> lo<span class="fl">.95</span>, <span class="dt">ymax =</span> hi<span class="fl">.95</span>), </a>
-<a class="sourceLine" id="cb537-14" data-line-number="14">                <span class="dt">data =</span> future_predictions_tbl, </a>
-<a class="sourceLine" id="cb537-15" data-line-number="15">                <span class="dt">fill =</span> <span class="st">&quot;#D5DBFF&quot;</span>, <span class="dt">color =</span> <span class="ot">NA</span>, <span class="dt">size =</span> <span class="dv">0</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb537-16" data-line-number="16"><span class="st">    </span><span class="kw">geom_ribbon</span>(<span class="kw">aes</span>(<span class="dt">y =</span> .pred, <span class="dt">x =</span> <span class="kw">as.POSIXct</span>(date),<span class="dt">ymin =</span> lo<span class="fl">.80</span>, <span class="dt">ymax =</span> hi<span class="fl">.80</span>, <span class="dt">fill =</span> key), </a>
-<a class="sourceLine" id="cb537-17" data-line-number="17">                <span class="dt">data =</span> future_predictions_tbl,</a>
-<a class="sourceLine" id="cb537-18" data-line-number="18">                <span class="dt">fill =</span> <span class="st">&quot;#596DD5&quot;</span>, <span class="dt">color =</span> <span class="ot">NA</span>, <span class="dt">size =</span> <span class="dv">0</span>, <span class="dt">alpha =</span> <span class="fl">0.8</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb537-19" data-line-number="19"><span class="st">    </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">as.POSIXct</span>(date), <span class="dt">y =</span> .pred), <span class="dt">data =</span> future_predictions_tbl,</a>
-<a class="sourceLine" id="cb537-20" data-line-number="20">               <span class="dt">alpha =</span> <span class="fl">0.5</span>, <span class="dt">color =</span> <span class="st">&quot;red&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb537-21" data-line-number="21"><span class="st">    </span><span class="kw">geom_smooth</span>(<span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">as.POSIXct</span>(date), <span class="dt">y =</span> .pred), <span class="dt">data =</span> future_predictions_tbl,</a>
-<a class="sourceLine" id="cb537-22" data-line-number="22">                <span class="dt">method =</span> <span class="st">&#39;loess&#39;</span>, <span class="dt">color =</span> <span class="st">&quot;white&quot;</span>)<span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb537-23" data-line-number="23"><span class="st">    </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Willow Creek Daily Air Temperature: 6 Month Forecast&quot;</span>,<span class="dt">y =</span> <span class="st">&quot;Air Temperature (F)&quot;</span>, <span class="dt">x =</span> <span class="st">&quot;&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb538"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb538-1" data-line-number="1"><span class="co"># run the model using the entire dataset, predict the temperature for the dates of future_tbl, and bind the columns together. </span></a>
+<a class="sourceLine" id="cb538-2" data-line-number="2">future_predictions_tbl =<span class="st"> </span><span class="kw">fit</span>(workflow_glmnet, <span class="dt">data =</span> daily)</a>
+<a class="sourceLine" id="cb538-3" data-line-number="3">future_predictions_tbl =<span class="st"> </span><span class="kw">predict</span>(future_predictions_tbl, future_tbl)</a>
+<a class="sourceLine" id="cb538-4" data-line-number="4">future_predictions_tbl =<span class="st"> </span><span class="kw">bind_cols</span>(future_predictions_tbl, future_tbl)</a>
+<a class="sourceLine" id="cb538-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb538-6" data-line-number="6"><span class="co"># plot the future forecasted temperature</span></a>
+<a class="sourceLine" id="cb538-7" data-line-number="7"><span class="kw">ggplot</span>(<span class="dt">data =</span> daily, <span class="kw">aes</span>(<span class="dt">x =</span> date, <span class="dt">y =</span> air_temperature)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb538-8" data-line-number="8"><span class="st">    </span><span class="kw">geom_rect</span>(<span class="dt">xmin =</span> <span class="kw">as.POSIXct</span>(<span class="st">&quot;2010-01-01&quot;</span>),</a>
+<a class="sourceLine" id="cb538-9" data-line-number="9">              <span class="dt">xmax =</span> <span class="kw">as.POSIXct</span>(<span class="st">&quot;2012-06-01&quot;</span>),</a>
+<a class="sourceLine" id="cb538-10" data-line-number="10">              <span class="dt">ymin =</span> <span class="dv">-10</span>, <span class="dt">ymax =</span> <span class="dv">85</span>,</a>
+<a class="sourceLine" id="cb538-11" data-line-number="11">              <span class="dt">fill =</span> <span class="st">&quot;lightblue&quot;</span>, <span class="dt">alpha =</span> <span class="fl">0.01</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb538-12" data-line-number="12"><span class="st">    </span><span class="kw">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="dt">x =</span> <span class="kw">as.POSIXct</span>(<span class="st">&quot;2011-01-01&quot;</span>) , <span class="dt">y =</span> <span class="dv">75</span>,</a>
+<a class="sourceLine" id="cb538-13" data-line-number="13">             <span class="dt">color =</span> <span class="st">&quot;blue&quot;</span>, <span class="dt">label =</span> <span class="st">&quot;Train Region&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb538-14" data-line-number="14"><span class="st">    </span><span class="kw">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="dt">x =</span> <span class="kw">as.POSIXct</span>(<span class="st">&quot;2012-12-01&quot;</span>), <span class="dt">y =</span> <span class="dv">75</span>,</a>
+<a class="sourceLine" id="cb538-15" data-line-number="15">             <span class="dt">color =</span> <span class="st">&quot;coral&quot;</span>, <span class="dt">label =</span> <span class="st">&quot;Test Region&quot;</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb538-16" data-line-number="16"><span class="st">   </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="fl">0.5</span>, <span class="dt">color =</span> <span class="st">&quot;black&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb538-17" data-line-number="17"><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">as.POSIXct</span>(date), <span class="dt">y =</span> .pred), <span class="dt">data =</span> future_predictions_tbl,</a>
+<a class="sourceLine" id="cb538-18" data-line-number="18">               <span class="dt">alpha =</span> <span class="fl">0.5</span>, <span class="dt">color =</span> <span class="st">&quot;dodgerblue1&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb538-19" data-line-number="19"><span class="st">    </span><span class="kw">geom_smooth</span>(<span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">as.POSIXct</span>(date), <span class="dt">y =</span> .pred), <span class="dt">data =</span> future_predictions_tbl,</a>
+<a class="sourceLine" id="cb538-20" data-line-number="20">                <span class="dt">method =</span> <span class="st">&#39;loess&#39;</span>, <span class="dt">color =</span> <span class="st">&quot;dodgerblue4&quot;</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb538-21" data-line-number="21"><span class="st">    </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Willow Creek Air Temperature: 6-Month Forecast&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Air Temperature (F)&quot;</span>, <span class="dt">x =</span> <span class="st">&quot;&quot;</span>)</a></code></pre></div>
 <p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-214-1.png" width="50%" style="display: block; margin: auto;" /></p>
+<p>Let’s add in some error regions. We’ll calculate the spread of the 95th percentile and the 80th percentile confidence intervals. 95% of the area under a normal curve lies within roughly 1.96 standard deviations of the mean, and due to the central limit theorem, this number is therefore used in the construction of approximate 95% confidence intervals. For 80%, the are under a normal curve lies within roughly 1.28 standard deviations. We’ll use these values to create our prediction error thresholds.</p>
+<div class="sourceCode" id="cb539"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb539-1" data-line-number="1"><span class="co"># Calculate standard deviation of residuals (actual temp subtracted from residuals)</span></a>
+<a class="sourceLine" id="cb539-2" data-line-number="2">test_resid_sd &lt;-<span class="st"> </span><span class="kw">summarize</span>(prediction_tbl, <span class="dt">stdev =</span> <span class="kw">sd</span>(air_temperature<span class="op">-</span><span class="st"> </span>.pred))</a>
+<a class="sourceLine" id="cb539-3" data-line-number="3"><span class="co"># create lo.95 and other variables for the error areas</span></a>
+<a class="sourceLine" id="cb539-4" data-line-number="4">future_predictions_tbl &lt;-<span class="st"> </span><span class="kw">mutate</span>(future_predictions_tbl, </a>
+<a class="sourceLine" id="cb539-5" data-line-number="5">        <span class="dt">lo.95 =</span> .pred <span class="op">-</span><span class="st"> </span><span class="fl">1.96</span> <span class="op">*</span><span class="st"> </span>test_resid_sd<span class="op">$</span>stdev,</a>
+<a class="sourceLine" id="cb539-6" data-line-number="6">        <span class="dt">lo.80 =</span> .pred <span class="op">-</span><span class="st"> </span><span class="fl">1.28</span> <span class="op">*</span><span class="st"> </span>test_resid_sd<span class="op">$</span>stdev,</a>
+<a class="sourceLine" id="cb539-7" data-line-number="7">        <span class="dt">hi.80 =</span> .pred <span class="op">+</span><span class="st"> </span><span class="fl">1.28</span> <span class="op">*</span><span class="st"> </span>test_resid_sd<span class="op">$</span>stdev,</a>
+<a class="sourceLine" id="cb539-8" data-line-number="8">        <span class="dt">hi.95 =</span> .pred <span class="op">+</span><span class="st"> </span><span class="fl">1.96</span> <span class="op">*</span><span class="st"> </span>test_resid_sd<span class="op">$</span>stdev)</a>
+<a class="sourceLine" id="cb539-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb539-10" data-line-number="10"><span class="co"># plot the error areas</span></a>
+<a class="sourceLine" id="cb539-11" data-line-number="11"><span class="kw">ggplot</span>(<span class="dt">data =</span> daily, <span class="kw">aes</span>(<span class="dt">x =</span> date, <span class="dt">y =</span> air_temperature)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb539-12" data-line-number="12"><span class="st">    </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="fl">0.5</span>, <span class="dt">color =</span> <span class="st">&quot;black&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb539-13" data-line-number="13"><span class="st">    </span><span class="kw">geom_ribbon</span>(<span class="kw">aes</span>(<span class="dt">y =</span> .pred, <span class="dt">x =</span> <span class="kw">as.POSIXct</span>(date),<span class="dt">ymin =</span> lo<span class="fl">.95</span>, <span class="dt">ymax =</span> hi<span class="fl">.95</span>), </a>
+<a class="sourceLine" id="cb539-14" data-line-number="14">                <span class="dt">data =</span> future_predictions_tbl, </a>
+<a class="sourceLine" id="cb539-15" data-line-number="15">                <span class="dt">fill =</span> <span class="st">&quot;#D5DBFF&quot;</span>, <span class="dt">color =</span> <span class="ot">NA</span>, <span class="dt">size =</span> <span class="dv">0</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb539-16" data-line-number="16"><span class="st">    </span><span class="kw">geom_ribbon</span>(<span class="kw">aes</span>(<span class="dt">y =</span> .pred, <span class="dt">x =</span> <span class="kw">as.POSIXct</span>(date),<span class="dt">ymin =</span> lo<span class="fl">.80</span>, <span class="dt">ymax =</span> hi<span class="fl">.80</span>, <span class="dt">fill =</span> key), </a>
+<a class="sourceLine" id="cb539-17" data-line-number="17">                <span class="dt">data =</span> future_predictions_tbl,</a>
+<a class="sourceLine" id="cb539-18" data-line-number="18">                <span class="dt">fill =</span> <span class="st">&quot;#596DD5&quot;</span>, <span class="dt">color =</span> <span class="ot">NA</span>, <span class="dt">size =</span> <span class="dv">0</span>, <span class="dt">alpha =</span> <span class="fl">0.8</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb539-19" data-line-number="19"><span class="st">    </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">as.POSIXct</span>(date), <span class="dt">y =</span> .pred), <span class="dt">data =</span> future_predictions_tbl,</a>
+<a class="sourceLine" id="cb539-20" data-line-number="20">               <span class="dt">alpha =</span> <span class="fl">0.5</span>, <span class="dt">color =</span> <span class="st">&quot;red&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb539-21" data-line-number="21"><span class="st">    </span><span class="kw">geom_smooth</span>(<span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">as.POSIXct</span>(date), <span class="dt">y =</span> .pred), <span class="dt">data =</span> future_predictions_tbl,</a>
+<a class="sourceLine" id="cb539-22" data-line-number="22">                <span class="dt">method =</span> <span class="st">&#39;loess&#39;</span>, <span class="dt">color =</span> <span class="st">&quot;white&quot;</span>)<span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb539-23" data-line-number="23"><span class="st">    </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Willow Creek Daily Air Temperature: 6 Month Forecast&quot;</span>,<span class="dt">y =</span> <span class="st">&quot;Air Temperature (F)&quot;</span>, <span class="dt">x =</span> <span class="st">&quot;&quot;</span>)</a></code></pre></div>
+<p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-215-1.png" width="50%" style="display: block; margin: auto;" /></p>
 <p>Remember, no forecast is ever perfect!</p>
 </div>
 <div id="assignment-10" class="section level2">

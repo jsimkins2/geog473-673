@@ -42,6 +42,10 @@ saving-your-plot
 cars---motor-trends-magazine-data
 scientific-r-scripts
 script-breakdown
+installing-packages
+reading-the-data
+basic-quality-control
+plotting-the-data
 in-class-exercise
 further-explanation-of-datatypes
 time-series-data

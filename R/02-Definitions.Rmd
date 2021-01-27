@@ -32,6 +32,7 @@ Read through these now to get familiar and refer back to these whenever you need
 | class | `class(tv_data)` | Tells us what R is recognizing something as |
 | concatenate (`c`) | c("a", "b", "c") |  A quick utility for concatenating strings together |
 | filepath | "/Users/james/Downloads/" |  The location on your computer where a file is stored. A filepath with a leading slash (akak "/" ) is also referred to as root. Root is the furthest back you can go on your computer. Think of a filepath like this - "/Earth/UnitedStates/Delaware/Newark/" |
+| `install.packages()`| `install.packages("ggplot2")` | R base function for installing packages | 
 
 [Additional examples can be found here](https://www.tutorialspoint.com/r/index.htm)
 

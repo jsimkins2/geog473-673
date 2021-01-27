@@ -1,32 +1,38 @@
 # Scientific R Scripts
 
-So far, the examples of R scripts we've shown have been general purpose scripts. For this week, we're going to cover an example where we want to plot sea surface temperature from a given netCDF file. A netCDF file (network Common Data Format) is an advanced filetype that is incredibly efficient at storing data and heavily used in physical sciences. Within each file, metadata (time, latitude info, longitude info, projection, etc.), and variables (sea surface temperature, latitude points, longitude points, chlorophyll, etc.) can be found. The netCDF file we'll be looking at in this example is **OR_ABI-L2-SSTF-M3_G16_s20192081300453_e20192081400161_c20192081406297.nc**. This is a data file from the GOES-16 (Geostationary Operational Environmental Satellite) satellite that shows a snapshot of the Northwest Atlantic Ocean and Eastern Seaboard. So we have the data, but what does it look like?
+So far, the examples of R scripts we've shown have been general purpose scripts. For this week, we're going to cover an example where we want to plot sea surface temperature from a given netCDF file. A netCDF file (network Common Data Format) is an advanced filetype that is incredibly efficient at storing data and heavily used in physical sciences. Within each file, metadata (time, latitude info, longitude info, projection, etc.), and variables (sea surface temperature, latitude points, longitude points, chlorophyll, etc.) can be found. The netCDF file we'll be looking at in this example is **OR_ABI-L2-SSTF-M3_G16_s20192081300453_e20192081400161_c20192081406297.nc**. This is a data file from the GOES-16 (Geostationary Operational Environmental Satellite) satellite that shows a snapshot of the Northwest Atlantic Ocean and Eastern Seaboard. It's an ugly name, but we'll see that this complex file can be easily interpreted in R. 
 
 A scientific R Script might look like this:
 
 ```{r, message=FALSE, warning=FALSE, fig.align="center", out.width="60%"}
 # James Simkins
+
 # Load libraries
 library(ncdf4)
 library(fields)
 
-# open netcdf file
+# open our ugly looking netcdf file
 ncFile <- ncdf4::nc_open("~/Documents/Github/geog473-673/datasets/OR_ABI-L2-SSTF-M3_G16_s20192081300453_e20192081400161_c20192081406297.nc")
 
-# extract SST - sea surface temperature 
+# extract SST - sea surface temperature , extract latitude, and extract longitude
 sstK <- ncdf4::ncvar_get(nc=ncFile, varid="SST")
 lat <- ncdf4::ncvar_get(nc=ncFile, varid="latitude")
 lon <- ncdf4::ncvar_get(nc=ncFile, varid="longitude")
+
 # convert sst from Kelvin to Celsius
 sstC <- sstK - 273.15
+
 # remove values below 0C
 sstC[sstC < 0] = NA
-# Plot the matrix
+
+# Plot the sstC object
 fields::image.plot(x=lon, y=lat, z=sstC, legend.lab="Celsius")
 title("GOES-R SST Product 7/25/2019 19:00 UTC")
 ```
 
 ## Script Breakdown
+
+Let's slowly proceed through the script written above and build it as we go along. First and foremost of most scripts is loading the libraries we'll be using functions from. 
 
 ```{r, message=FALSE, warning=FALSE}
 # Load libraries
@@ -36,6 +42,20 @@ library(fields)
 
 In R, we need to call on packages/libraries that we want to load in. As a reminder, packages are the toolbox we want to bring into R and the functions inside each package are the tools within that specific toolbox. The `library()` base function loads packages. After we load a package, R will know what we mean when we call on a function from that package. 
 
+### Installing Packages
+
+If you just installed R for the first time, odds are you do not have `ncdf4` or `field` libraries installed. If you need to install them, here's how to use the `install.packages()` function to do so. Copy the text below and paste in your R console.
+
+```{r, eval=FALSE}
+# install the ncdf4 package
+install.packages("ncdf4")
+
+# install the fields package
+install.packages("fields")
+```
+
+
+### Reading the Data
 ```{r, message=FALSE, warning=FALSE}
 # Load libraries
 library(ncdf4)
@@ -81,7 +101,7 @@ class(sstK)
 
 Class is a useful function that is loaded with the base library everytime you fire up R. It tells us what type of object we have. Now that we know this is a matrix, we can subtract 0 Celsius, or 273.15 Kelvin. When we have a matrix in R and perform any math on it, it does that math on each and every matrix value.
 
-#Quick and Dirty Quality Control
+### Basic Quality Control
 
 There are bad values that crept into the dataset and we need to convert all of them to `NaN` (aka Not A Number...also known as `NA` (Not Available) in R). How do we know there are bad values in this dataset?
 
@@ -131,6 +151,7 @@ sstC[sstC < 0] = NA
 summary(as.vector(sstC))
 ```
 
+### Plotting the Data
 Now we see that our summary looks good (even though we're looking at a matrix in celsius now). So all that's left to do is plot this up...
 
 ```{r, message=FALSE, warning=FALSE, fig.align="center", out.width="60%"}
