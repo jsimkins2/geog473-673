@@ -1,71 +1,90 @@
-GEOG 473/673: Open-sourced Environmental Computing
+GEOG 473/673: Advanced R for Spatial Analysis and Visualization
 ============================================================
-  Online Meeting – MW 9am – 10am
+ Pearson 203 – MW 8:40 – 9:55
 
-  Phase 1: Environmental Computing with R -  9/1/2020 to 10/1/2019 – 1cr
+Phase 1: Spatial Analysis & Visualization in R - 02/15/2021 - 04/16/2021 – 2cr
 
-  Phase 2: Spatial Computing with Python – 10/2/2020 to 12/10/2020 – 2cr
+Phase 2: Machine Learning in R – 4/19/2021 to 5/18/2021 – 1cr
 
-The objective of GEOG 473/673 Open-sourced Environmental Computing is for advanced undergraduate and graduate students to gain practical experience with R & Python, two industry-leading open-sourced programming languages. Both of these languages are used to assemble, read, and manage large geospatial and environmental datasets by academics, government scientists, and private industry. Each of these programming languages offer a plethora of free packages that allow a user to work with big spatial data in an analytical manner without paying a dime. The demand for students knowledgeable in R & Python is continuing to grow. It’s important to note that this is an Introduction to R (or Python), NOT an introduction to programming. This challenging, fast-paced course is intended for students that already have at least basic programming experience.
+
+The objective of the Spring installment of GEOG 473/673 is to expand on the topics covered in the Fall version of GEOG 473/673 (Intro to R, sections 2-9 of this book). The course will be split into 2 phases. The first phase is a 2-credit course focused on using advanced tools within the R programming language (sections 10-16 of this book). The goal of this phase is for students to gain practical experience with challenging R topics that can be used for generating publication quality material. The second phase is a 1-credit course focused on introducing machine learning practices and implementing these via R (sections 17-19 of this book). Machine Learning is a growing practice in data science and can be useful for geospatial sciences. Students will apply R programming knowledge and gain confidence in machine learning techniques and application with R. This challenging, fast-paced course is intended for students that already have programming experience with R or Python.
+
 
 Course Website:
   https://jsimkins2.github.io/geog473-673/
 
-Syllabus:
-  https://github.com/jsimkins2/geog473-673/blob/master/documents/fall_geog473_673_syllabus.pdf
+Course Textbook:
+  https://jsimkins2.github.io/geog473-673/r-for-geospatial-sciences.html
 
-Datasets:  
+Syllabus:
+  https://github.com/jsimkins2/geog473-673/blob/master/documents/spring_geog473_673_syllabus.pdf
+
+Datasets:
   https://github.com/jsimkins2/geog473-673/tree/master/datasets
 
 
+GEOG 473/673: Course Notebooks
+============================================================
 
-Python Phase of GEOG 473/673: Course Notebooks
+Advanced R - Phase 1 of GEOG 473/673: Course Notebooks
 ----------------
 
-Installing Packages via Anaconda
+Week 1 - Welcome to Advanced R!
+
+ https://jsimkins2.github.io/geog473-673/plot-customization.html
+
+Week 2 - Basic Statistics Plotting
+
+ https://jsimkins2.github.io/geog473-673/basic-statistics.html
+
+Week 3 - ggplot2 Tutorial
+
+ https://jsimkins2.github.io/geog473-673/plotting-with-ggplot2.html
+
+Week 4 - Spatial ggplot2
+
+ https://jsimkins2.github.io/geog473-673/spatial-plots-with-ggplot2.html
+
+Week 5 - Plotting Shapefiles
+
+ https://jsimkins2.github.io/geog473-673/shapefiles.html
+
+Week 6 - Data Extraction
+
+ https://jsimkins2.github.io/geog473-673/remote-data-extraction.html
+
+Week 7 - Functions and Presentations
+
+ https://jsimkins2.github.io/geog473-673/functions-and-code-presentation.html
+
+Advanced R Project
+
+ https://github.com/jsimkins2/geog473-673/blob/master/documents/AdvancedR_finalproject.pdf
+
+
+Machine Learning in R - Phase 2 of GEOG473/673: Course Notebooks
+----------------
+
+Week 1 - Intro to Machine Learning
+
+ https://jsimkins2.github.io/geog473-673/machine-learning-with-r.html
  
- https://github.com/jsimkins2/geog473-673/blob/master/Python/installing_packages.ipynb
- https://www.youtube.com/watch?v=OFc8zEB5Y0E
+Weeks 2 & 3 - Time Series Forecasting
 
-Week 1 - Introduction to Python
-  
- https://github.com/jsimkins2/geog473-673/blob/master/Python/Introduction_to_Python.ipynb
- https://www.youtube.com/watch?v=OFc8zEB5Y0E
-
-Week 2 - Important Python Modules
-
- https://github.com/jsimkins2/geog473-673/blob/master/Python/Introduction_to_Numpy.ipynb
- https://www.youtube.com/watch?v=QuanXH3NQ64
+ https://jsimkins2.github.io/geog473-673/time-series-forecasting.html
  
- https://github.com/jsimkins2/geog473-673/blob/master/Python/Introduction_to_Matplotlib.ipynb
- https://www.youtube.com/watch?v=0aY4t7dtBQg
+Weeks 4 & 5 - Random Forest Modeling
 
-Week 3 - Xarray
+ https://jsimkins2.github.io/geog473-673/random-forest-modeling.html
+ 
+ 
+ 
+ 
 
- https://github.com/jsimkins2/geog473-673/blob/master/Python/Xarray_tutorial.ipynb
- https://www.youtube.com/watch?v=tLjsNXc1yJk
 
-Week 4 - Pandas
 
- https://github.com/jsimkins2/geog473-673/blob/master/Python/Pandas_tutorial.ipynb
- https://youtu.be/ypWrslOahSg
 
-Week 5 - Cartopy
 
- https://github.com/jsimkins2/geog473-673/blob/master/Python/Cartopy_tutorial.ipynb
- https://youtu.be/WwdmGw4Lca0
 
-Week 6 - MetPy
 
- https://github.com/jsimkins2/geog473-673/blob/master/Python/Metpy_tutorial.ipynb
- https://youtu.be/kKg3WMxYZaQ
-
-Week 7 - SciPy & Oceanography
-
- https://github.com/jsimkins2/geog473-673/blob/master/Python/SciPy_Oceanography.ipynb
- https://youtu.be/N4nRTL80fAE
-
-Final Project
-
- https://github.com/jsimkins2/geog473-673/blob/master/documents/Python_Final_Project.pdf
 
