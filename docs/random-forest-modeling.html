@@ -400,21 +400,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="prepare-the-data" class="section level2">
 <h2><span class="header-section-number">19.1</span> Prepare the Data</h2>
 <p>The <code>Bejaia_ForestFires.csv</code> dataset is located in the course datasets folder. Let’s open it and plot the Forest Fire presence/absence (the <code>Class</code> variable).</p>
-<div class="sourceCode" id="cb538"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb538-1" data-line-number="1"><span class="kw">library</span>(ggplot2)</a>
-<a class="sourceLine" id="cb538-2" data-line-number="2"><span class="kw">library</span>(tibble)</a>
-<a class="sourceLine" id="cb538-3" data-line-number="3">ff_data =<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;/Users/james/Documents/Github/geog473-673/datasets/Bejaia_ForestFires.csv&quot;</span>)</a>
-<a class="sourceLine" id="cb538-4" data-line-number="4">ff_data =<span class="st"> </span><span class="kw">as.tibble</span>(ff_data)</a>
-<a class="sourceLine" id="cb538-5" data-line-number="5"><span class="co"># response variable used for classification</span></a>
-<a class="sourceLine" id="cb538-6" data-line-number="6"><span class="kw">ggplot</span>(ff_data, <span class="kw">aes</span>(<span class="dt">x =</span> Class, <span class="dt">fill =</span> Class)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb538-7" data-line-number="7"><span class="st">  </span><span class="kw">geom_bar</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb539"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb539-1" data-line-number="1"><span class="kw">library</span>(ggplot2)</a>
+<a class="sourceLine" id="cb539-2" data-line-number="2"><span class="kw">library</span>(tibble)</a>
+<a class="sourceLine" id="cb539-3" data-line-number="3">ff_data =<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;/Users/james/Documents/Github/geog473-673/datasets/Bejaia_ForestFires.csv&quot;</span>)</a>
+<a class="sourceLine" id="cb539-4" data-line-number="4">ff_data =<span class="st"> </span><span class="kw">as.tibble</span>(ff_data)</a>
+<a class="sourceLine" id="cb539-5" data-line-number="5"><span class="co"># response variable used for classification</span></a>
+<a class="sourceLine" id="cb539-6" data-line-number="6"><span class="kw">ggplot</span>(ff_data, <span class="kw">aes</span>(<span class="dt">x =</span> Class, <span class="dt">fill =</span> Class)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb539-7" data-line-number="7"><span class="st">  </span><span class="kw">geom_bar</span>()</a></code></pre></div>
 <p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-220-1.png" width="50%" style="display: block; margin: auto;" /></p>
 <p>Now, let’s use the <code>gather</code> function from the <code>tidyverse</code> to evaluate each variable against the Class (aka Fire or No Fire). Once we have our <code>gathered</code> data frame, let’s show a density plot for each variable.</p>
-<div class="sourceCode" id="cb539"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb539-1" data-line-number="1"><span class="kw">library</span>(tidyverse)</a>
-<a class="sourceLine" id="cb539-2" data-line-number="2">gathered =<span class="st"> </span><span class="kw">gather</span>(ff_data, x, y, day<span class="op">:</span>FWI)</a>
-<a class="sourceLine" id="cb539-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb539-4" data-line-number="4"><span class="kw">ggplot</span>(<span class="dt">data =</span> gathered, <span class="kw">aes</span>(<span class="dt">x =</span> y, <span class="dt">color =</span> Class, <span class="dt">fill =</span> Class)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb539-5" data-line-number="5"><span class="st">    </span><span class="kw">geom_density</span>(<span class="dt">alpha =</span> <span class="fl">0.3</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb539-6" data-line-number="6"><span class="st">    </span><span class="kw">facet_wrap</span>( <span class="op">~</span><span class="st"> </span>x, <span class="dt">scales =</span> <span class="st">&quot;free&quot;</span>, <span class="dt">ncol =</span> <span class="dv">3</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb540"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb540-1" data-line-number="1"><span class="kw">library</span>(tidyverse)</a>
+<a class="sourceLine" id="cb540-2" data-line-number="2">gathered =<span class="st"> </span><span class="kw">gather</span>(ff_data, x, y, day<span class="op">:</span>FWI)</a>
+<a class="sourceLine" id="cb540-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb540-4" data-line-number="4"><span class="kw">ggplot</span>(<span class="dt">data =</span> gathered, <span class="kw">aes</span>(<span class="dt">x =</span> y, <span class="dt">color =</span> Class, <span class="dt">fill =</span> Class)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb540-5" data-line-number="5"><span class="st">    </span><span class="kw">geom_density</span>(<span class="dt">alpha =</span> <span class="fl">0.3</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb540-6" data-line-number="6"><span class="st">    </span><span class="kw">facet_wrap</span>( <span class="op">~</span><span class="st"> </span>x, <span class="dt">scales =</span> <span class="st">&quot;free&quot;</span>, <span class="dt">ncol =</span> <span class="dv">3</span>)</a></code></pre></div>
 <p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-221-1.png" width="80%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="dimensionality-reduction" class="section level2">
@@ -423,11 +423,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="principal-component-analysis" class="section level3">
 <h3><span class="header-section-number">19.2.1</span> Principal Component Analysis</h3>
 <p>Principal Component Analysis (PCA) is a popular statistical method that uses correlations and covariances between variables to reduce data that contains <em>many</em> variables. PCA projects the data with fewer dimensions (aka the principal components) using linear combinations across the dataset variables. The dimensions (principal components) are ordered from most explained variance to least explained variance (of the original variables). Principal component analysis can also reveal important features of the data such as outliers and departures from a multinormal distribution. First, we’ll need to cut out the Fire Weather Indices of our dataset. These are calculated based on environmental conditions and are used to help predict forest fires. We’re going to remove these and attempt to create new methods for predicting whether there will be a forest fire or not.</p>
-<div class="sourceCode" id="cb540"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb540-1" data-line-number="1"><span class="kw">library</span>(ellipse)</a>
-<a class="sourceLine" id="cb540-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb540-3" data-line-number="3"><span class="co"># create dataframe with only weather variables - turn Class variable into a factor then turn it into numeric so we can run prcomp</span></a>
-<a class="sourceLine" id="cb540-4" data-line-number="4">cutdata =<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">Temperature =</span> ff_data<span class="op">$</span>Temperature, <span class="dt">Rain =</span> ff_data<span class="op">$</span>Rain, <span class="dt">RH =</span> ff_data<span class="op">$</span>RH, <span class="dt">Ws =</span> ff_data<span class="op">$</span>Ws, <span class="dt">Class =</span> <span class="kw">as.numeric</span>(<span class="kw">as.factor</span>(ff_data<span class="op">$</span>Class)))</a>
-<a class="sourceLine" id="cb540-5" data-line-number="5"><span class="kw">head</span>(cutdata)</a></code></pre></div>
+<div class="sourceCode" id="cb541"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb541-1" data-line-number="1"><span class="kw">library</span>(ellipse)</a>
+<a class="sourceLine" id="cb541-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb541-3" data-line-number="3"><span class="co"># create dataframe with only weather variables - turn Class variable into a factor then turn it into numeric so we can run prcomp</span></a>
+<a class="sourceLine" id="cb541-4" data-line-number="4">cutdata =<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">Temperature =</span> ff_data<span class="op">$</span>Temperature, <span class="dt">Rain =</span> ff_data<span class="op">$</span>Rain, <span class="dt">RH =</span> ff_data<span class="op">$</span>RH, <span class="dt">Ws =</span> ff_data<span class="op">$</span>Ws, <span class="dt">Class =</span> <span class="kw">as.numeric</span>(<span class="kw">as.factor</span>(ff_data<span class="op">$</span>Class)))</a>
+<a class="sourceLine" id="cb541-5" data-line-number="5"><span class="kw">head</span>(cutdata)</a></code></pre></div>
 <pre><code>##   Temperature Rain RH Ws Class
 ## 1          29  0.0 57 18     2
 ## 2          29  1.3 61 13     2
@@ -435,9 +435,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 4          25  2.5 89 13     2
 ## 5          27  0.0 77 16     2
 ## 6          31  0.0 67 14     1</code></pre>
-<div class="sourceCode" id="cb542"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb542-1" data-line-number="1"><span class="co"># perform pca using prcomp and extract scores </span></a>
-<a class="sourceLine" id="cb542-2" data-line-number="2">pcaOutput &lt;-<span class="st"> </span><span class="kw">prcomp</span>(<span class="kw">as.matrix</span>(cutdata), <span class="dt">scale =</span> <span class="ot">TRUE</span>, <span class="dt">center =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb542-3" data-line-number="3">pcaOutput</a></code></pre></div>
+<div class="sourceCode" id="cb543"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb543-1" data-line-number="1"><span class="co"># perform pca using prcomp and extract scores </span></a>
+<a class="sourceLine" id="cb543-2" data-line-number="2">pcaOutput &lt;-<span class="st"> </span><span class="kw">prcomp</span>(<span class="kw">as.matrix</span>(cutdata), <span class="dt">scale =</span> <span class="ot">TRUE</span>, <span class="dt">center =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb543-3" data-line-number="3">pcaOutput</a></code></pre></div>
 <pre><code>## Standard deviations (1, .., p=5):
 ## [1] 1.5839583 0.9756049 0.8161873 0.7594599 0.5443622
 ## 
@@ -448,59 +448,59 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## RH          -0.4889724  0.1941107  0.6351261 -0.05239005 -0.56311381
 ## Ws          -0.2986886 -0.8190447  0.1429360  0.45867885  0.09557101
 ## Class       -0.4238282  0.3916610 -0.5194607  0.61443158 -0.14002013</code></pre>
-<div class="sourceCode" id="cb544"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb544-1" data-line-number="1"><span class="co"># create separate dataframe</span></a>
-<a class="sourceLine" id="cb544-2" data-line-number="2">pcaOutput2 &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(pcaOutput<span class="op">$</span>x)</a>
-<a class="sourceLine" id="cb544-3" data-line-number="3">  </a>
-<a class="sourceLine" id="cb544-4" data-line-number="4"><span class="co"># add Class as variable for the groups</span></a>
-<a class="sourceLine" id="cb544-5" data-line-number="5">pcaOutput2<span class="op">$</span>groups &lt;-<span class="st"> </span>ff_data<span class="op">$</span>Class </a>
-<a class="sourceLine" id="cb544-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb544-7" data-line-number="7"><span class="co"># calculate centroids of PC1 and PC2</span></a>
-<a class="sourceLine" id="cb544-8" data-line-number="8">centroids &lt;-<span class="st"> </span><span class="kw">aggregate</span>(<span class="kw">cbind</span>(PC1, PC2) <span class="op">~</span><span class="st"> </span>groups, pcaOutput2, mean)</a>
-<a class="sourceLine" id="cb544-9" data-line-number="9"></a>
-<a class="sourceLine" id="cb544-10" data-line-number="10"><span class="co"># calculate 95% confidence ellipsoids so we can plot these polygons over ggplot</span></a>
-<a class="sourceLine" id="cb544-11" data-line-number="11">conf.rgn  &lt;-<span class="st"> </span><span class="kw">do.call</span>(rbind, <span class="kw">lapply</span>(<span class="kw">unique</span>(pcaOutput2<span class="op">$</span>groups), <span class="cf">function</span>(t)</a>
-<a class="sourceLine" id="cb544-12" data-line-number="12">  <span class="kw">data.frame</span>(<span class="dt">groups =</span> <span class="kw">as.character</span>(t),</a>
-<a class="sourceLine" id="cb544-13" data-line-number="13">             <span class="kw">ellipse</span>(<span class="kw">cov</span>(pcaOutput2[pcaOutput2<span class="op">$</span>groups <span class="op">==</span><span class="st"> </span>t, <span class="dv">1</span><span class="op">:</span><span class="dv">2</span>]),</a>
-<a class="sourceLine" id="cb544-14" data-line-number="14">                   <span class="dt">centre =</span> <span class="kw">as.matrix</span>(centroids[centroids<span class="op">$</span>groups <span class="op">==</span><span class="st"> </span>t, <span class="dv">2</span><span class="op">:</span><span class="dv">3</span>]),</a>
-<a class="sourceLine" id="cb544-15" data-line-number="15">                   <span class="dt">level =</span> <span class="fl">0.95</span>),</a>
-<a class="sourceLine" id="cb544-16" data-line-number="16">             <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>)))</a>
-<a class="sourceLine" id="cb544-17" data-line-number="17"></a>
-<a class="sourceLine" id="cb544-18" data-line-number="18"><span class="co"># Plot PC1 and PC2</span></a>
-<a class="sourceLine" id="cb544-19" data-line-number="19"><span class="kw">ggplot</span>(<span class="dt">data =</span> pcaOutput2, <span class="kw">aes</span>(<span class="dt">x =</span> PC1, <span class="dt">y =</span> PC2, <span class="dt">group =</span> <span class="kw">as.factor</span>(groups), <span class="dt">color =</span> <span class="kw">as.factor</span>(groups))) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb544-20" data-line-number="20"><span class="st">    </span><span class="kw">geom_polygon</span>(<span class="dt">data =</span> conf.rgn, <span class="kw">aes</span>(<span class="dt">fill =</span> groups), <span class="dt">alpha =</span> <span class="fl">0.2</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb544-21" data-line-number="21"><span class="st">    </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="dv">2</span>, <span class="dt">alpha =</span> <span class="fl">0.6</span>) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb544-22" data-line-number="22"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Principal Component Analysis of Bejaia Forest Fires: PC1 and PC2&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb545"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb545-1" data-line-number="1"><span class="co"># create separate dataframe</span></a>
+<a class="sourceLine" id="cb545-2" data-line-number="2">pcaOutput2 &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(pcaOutput<span class="op">$</span>x)</a>
+<a class="sourceLine" id="cb545-3" data-line-number="3">  </a>
+<a class="sourceLine" id="cb545-4" data-line-number="4"><span class="co"># add Class as variable for the groups</span></a>
+<a class="sourceLine" id="cb545-5" data-line-number="5">pcaOutput2<span class="op">$</span>groups &lt;-<span class="st"> </span>ff_data<span class="op">$</span>Class </a>
+<a class="sourceLine" id="cb545-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb545-7" data-line-number="7"><span class="co"># calculate centroids of PC1 and PC2</span></a>
+<a class="sourceLine" id="cb545-8" data-line-number="8">centroids &lt;-<span class="st"> </span><span class="kw">aggregate</span>(<span class="kw">cbind</span>(PC1, PC2) <span class="op">~</span><span class="st"> </span>groups, pcaOutput2, mean)</a>
+<a class="sourceLine" id="cb545-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb545-10" data-line-number="10"><span class="co"># calculate 95% confidence ellipsoids so we can plot these polygons over ggplot</span></a>
+<a class="sourceLine" id="cb545-11" data-line-number="11">conf.rgn  &lt;-<span class="st"> </span><span class="kw">do.call</span>(rbind, <span class="kw">lapply</span>(<span class="kw">unique</span>(pcaOutput2<span class="op">$</span>groups), <span class="cf">function</span>(t)</a>
+<a class="sourceLine" id="cb545-12" data-line-number="12">  <span class="kw">data.frame</span>(<span class="dt">groups =</span> <span class="kw">as.character</span>(t),</a>
+<a class="sourceLine" id="cb545-13" data-line-number="13">             <span class="kw">ellipse</span>(<span class="kw">cov</span>(pcaOutput2[pcaOutput2<span class="op">$</span>groups <span class="op">==</span><span class="st"> </span>t, <span class="dv">1</span><span class="op">:</span><span class="dv">2</span>]),</a>
+<a class="sourceLine" id="cb545-14" data-line-number="14">                   <span class="dt">centre =</span> <span class="kw">as.matrix</span>(centroids[centroids<span class="op">$</span>groups <span class="op">==</span><span class="st"> </span>t, <span class="dv">2</span><span class="op">:</span><span class="dv">3</span>]),</a>
+<a class="sourceLine" id="cb545-15" data-line-number="15">                   <span class="dt">level =</span> <span class="fl">0.95</span>),</a>
+<a class="sourceLine" id="cb545-16" data-line-number="16">             <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>)))</a>
+<a class="sourceLine" id="cb545-17" data-line-number="17"></a>
+<a class="sourceLine" id="cb545-18" data-line-number="18"><span class="co"># Plot PC1 and PC2</span></a>
+<a class="sourceLine" id="cb545-19" data-line-number="19"><span class="kw">ggplot</span>(<span class="dt">data =</span> pcaOutput2, <span class="kw">aes</span>(<span class="dt">x =</span> PC1, <span class="dt">y =</span> PC2, <span class="dt">group =</span> <span class="kw">as.factor</span>(groups), <span class="dt">color =</span> <span class="kw">as.factor</span>(groups))) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb545-20" data-line-number="20"><span class="st">    </span><span class="kw">geom_polygon</span>(<span class="dt">data =</span> conf.rgn, <span class="kw">aes</span>(<span class="dt">fill =</span> groups), <span class="dt">alpha =</span> <span class="fl">0.2</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb545-21" data-line-number="21"><span class="st">    </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="dv">2</span>, <span class="dt">alpha =</span> <span class="fl">0.6</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb545-22" data-line-number="22"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Principal Component Analysis of Bejaia Forest Fires: PC1 and PC2&quot;</span>)</a></code></pre></div>
 <p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-222-1.png" width="50%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="t-sne-dimensionality-reduction" class="section level3">
 <h3><span class="header-section-number">19.2.2</span> t-SNE Dimensionality Reduction</h3>
 <p>TSNE Dimensionality Reduction removes redundant information and preserves high impact information within a dataset. TSNE is similar to PCA with the main difference being that TSNE retains nonlinear variance. First, we’ll calculate a proximity matrix of our <code>ff_data</code> dataframe using the <code>dist</code> function. This function will calculate the relative distances (euclidean) between the rows of the dataset. Then, we’ll use the <code>tsne</code> function from the <code>tsne</code> package.</p>
-<div class="sourceCode" id="cb545"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb545-1" data-line-number="1"><span class="kw">library</span>(tsne)</a>
-<a class="sourceLine" id="cb545-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb545-3" data-line-number="3">sne_data =<span class="st"> </span><span class="kw">dist</span>(ff_data)</a>
-<a class="sourceLine" id="cb545-4" data-line-number="4">sne_data =<span class="st"> </span><span class="kw">tsne</span>(sne_data)</a>
-<a class="sourceLine" id="cb545-5" data-line-number="5">sne_data =<span class="st"> </span><span class="kw">as.data.frame</span>(sne_data)</a>
-<a class="sourceLine" id="cb545-6" data-line-number="6">sne_data<span class="op">$</span>Class =<span class="st"> </span>ff_data<span class="op">$</span>Class</a>
-<a class="sourceLine" id="cb545-7" data-line-number="7"></a>
-<a class="sourceLine" id="cb545-8" data-line-number="8"><span class="kw">ggplot</span>(<span class="dt">data =</span> sne_data, <span class="kw">aes</span>(<span class="dt">x =</span> V1, <span class="dt">y =</span> V2, <span class="dt">color =</span> Class)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb545-9" data-line-number="9"><span class="st">    </span><span class="kw">geom_point</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb546"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb546-1" data-line-number="1"><span class="kw">library</span>(tsne)</a>
+<a class="sourceLine" id="cb546-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb546-3" data-line-number="3">sne_data =<span class="st"> </span><span class="kw">dist</span>(ff_data)</a>
+<a class="sourceLine" id="cb546-4" data-line-number="4">sne_data =<span class="st"> </span><span class="kw">tsne</span>(sne_data)</a>
+<a class="sourceLine" id="cb546-5" data-line-number="5">sne_data =<span class="st"> </span><span class="kw">as.data.frame</span>(sne_data)</a>
+<a class="sourceLine" id="cb546-6" data-line-number="6">sne_data<span class="op">$</span>Class =<span class="st"> </span>ff_data<span class="op">$</span>Class</a>
+<a class="sourceLine" id="cb546-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb546-8" data-line-number="8"><span class="kw">ggplot</span>(<span class="dt">data =</span> sne_data, <span class="kw">aes</span>(<span class="dt">x =</span> V1, <span class="dt">y =</span> V2, <span class="dt">color =</span> Class)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb546-9" data-line-number="9"><span class="st">    </span><span class="kw">geom_point</span>()</a></code></pre></div>
 <p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-223-1.png" width="50%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="multidimensional-scaling" class="section level3">
 <h3><span class="header-section-number">19.2.3</span> Multidimensional Scaling</h3>
 <p>Multidimensional scaling (MDS) is a technique that creates a map displaying the relative positions of a number of objects, given only a table of the distances between them. It flows similarly to TSNE in R but instead of using <code>tsne</code> we’ll be using <code>cmdscale</code> to perform classical multidimensional scaling based on the proximity matrix.</p>
-<div class="sourceCode" id="cb546"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb546-1" data-line-number="1"><span class="co"># create proximity matrix</span></a>
-<a class="sourceLine" id="cb546-2" data-line-number="2">prox =<span class="st"> </span><span class="kw">dist</span>(ff_data)</a>
-<a class="sourceLine" id="cb546-3" data-line-number="3"><span class="co"># perform mds</span></a>
-<a class="sourceLine" id="cb546-4" data-line-number="4">m_scale =<span class="st"> </span><span class="kw">cmdscale</span>(prox)</a>
-<a class="sourceLine" id="cb546-5" data-line-number="5">m_scale =<span class="st"> </span><span class="kw">as.data.frame</span>(m_scale)</a>
-<a class="sourceLine" id="cb546-6" data-line-number="6"><span class="co"># add the class variable back in</span></a>
-<a class="sourceLine" id="cb546-7" data-line-number="7">m_scale<span class="op">$</span>Class =<span class="st"> </span>ff_data<span class="op">$</span>Class</a>
-<a class="sourceLine" id="cb546-8" data-line-number="8"></a>
-<a class="sourceLine" id="cb546-9" data-line-number="9"><span class="co"># plot</span></a>
-<a class="sourceLine" id="cb546-10" data-line-number="10"><span class="kw">ggplot</span>(<span class="dt">data =</span> m_scale,<span class="kw">aes</span>(<span class="dt">x =</span> V1, <span class="dt">y =</span> V2, <span class="dt">color =</span> Class)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb546-11" data-line-number="11"><span class="st">    </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb546-12" data-line-number="12"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&#39;Multidimensional Scaling of Bejaia Forest Fire Data&#39;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb547"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb547-1" data-line-number="1"><span class="co"># create proximity matrix</span></a>
+<a class="sourceLine" id="cb547-2" data-line-number="2">prox =<span class="st"> </span><span class="kw">dist</span>(ff_data)</a>
+<a class="sourceLine" id="cb547-3" data-line-number="3"><span class="co"># perform mds</span></a>
+<a class="sourceLine" id="cb547-4" data-line-number="4">m_scale =<span class="st"> </span><span class="kw">cmdscale</span>(prox)</a>
+<a class="sourceLine" id="cb547-5" data-line-number="5">m_scale =<span class="st"> </span><span class="kw">as.data.frame</span>(m_scale)</a>
+<a class="sourceLine" id="cb547-6" data-line-number="6"><span class="co"># add the class variable back in</span></a>
+<a class="sourceLine" id="cb547-7" data-line-number="7">m_scale<span class="op">$</span>Class =<span class="st"> </span>ff_data<span class="op">$</span>Class</a>
+<a class="sourceLine" id="cb547-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb547-9" data-line-number="9"><span class="co"># plot</span></a>
+<a class="sourceLine" id="cb547-10" data-line-number="10"><span class="kw">ggplot</span>(<span class="dt">data =</span> m_scale,<span class="kw">aes</span>(<span class="dt">x =</span> V1, <span class="dt">y =</span> V2, <span class="dt">color =</span> Class)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb547-11" data-line-number="11"><span class="st">    </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb547-12" data-line-number="12"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&#39;Multidimensional Scaling of Bejaia Forest Fire Data&#39;</span>)</a></code></pre></div>
 <p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-224-1.png" width="50%" style="display: block; margin: auto;" /></p>
 </div>
 </div>
@@ -510,72 +510,72 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="decision-trees" class="section level3">
 <h3><span class="header-section-number">19.3.1</span> Decision Trees</h3>
 <p>Classification in R can be done using the <code>rpart</code> and <code>rpart.plot</code> packages. These can be used to calculate and show decision trees (aka classification trees) for a given scenario. In our case, we’ll calculate and plot the decision tree for whether or not there is a forest fire. Before we proceed, when we calculate random values going into a model in R, it’s good practice to use the <code>set.seed()</code> function. The <code>set.seed()</code> function sets the starting number used to generate a sequence of random numbers – it ensures that you get the same result if you start with that same seed each time you run the same process.</p>
-<div class="sourceCode" id="cb547"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb547-1" data-line-number="1"><span class="kw">library</span>(rpart)</a>
-<a class="sourceLine" id="cb547-2" data-line-number="2"><span class="kw">library</span>(rpart.plot)</a>
-<a class="sourceLine" id="cb547-3" data-line-number="3"><span class="kw">library</span>(caret)</a>
-<a class="sourceLine" id="cb547-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb547-5" data-line-number="5"><span class="co"># cut the data but htis time preserve &#39;Fire&#39; and &#39;No Fire&#39; characters of the ff_data$Class</span></a>
-<a class="sourceLine" id="cb547-6" data-line-number="6">cutdata =<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">Temperature =</span> ff_data<span class="op">$</span>Temperature, <span class="dt">Rain =</span> ff_data<span class="op">$</span>Rain, <span class="dt">RH =</span> ff_data<span class="op">$</span>RH, <span class="dt">Ws =</span> ff_data<span class="op">$</span>Ws, <span class="dt">Class =</span> ff_data<span class="op">$</span>Class)</a>
-<a class="sourceLine" id="cb547-7" data-line-number="7">cutdata<span class="op">$</span>Class =<span class="st"> </span><span class="kw">as.factor</span>(cutdata<span class="op">$</span>Class)</a>
-<a class="sourceLine" id="cb547-8" data-line-number="8"></a>
-<a class="sourceLine" id="cb547-9" data-line-number="9"><span class="co"># now that it&#39;s a factor, we need to redefine the levels again</span></a>
-<a class="sourceLine" id="cb547-10" data-line-number="10"><span class="kw">levels</span>(cutdata<span class="op">$</span>Class) =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Fire&quot;</span>, <span class="st">&quot;No Fire&quot;</span>)</a>
-<a class="sourceLine" id="cb547-11" data-line-number="11"></a>
-<a class="sourceLine" id="cb547-12" data-line-number="12"><span class="co"># set the seed</span></a>
-<a class="sourceLine" id="cb547-13" data-line-number="13"><span class="kw">set.seed</span>(<span class="dv">42</span>)</a>
-<a class="sourceLine" id="cb547-14" data-line-number="14"><span class="co"># calculate the rpart model</span></a>
-<a class="sourceLine" id="cb547-15" data-line-number="15">fit &lt;-<span class="st"> </span><span class="kw">rpart</span>(Class <span class="op">~</span><span class="st"> </span>.,</a>
-<a class="sourceLine" id="cb547-16" data-line-number="16">            <span class="dt">data =</span> cutdata,</a>
-<a class="sourceLine" id="cb547-17" data-line-number="17">            <span class="dt">method =</span> <span class="st">&quot;class&quot;</span>,</a>
-<a class="sourceLine" id="cb547-18" data-line-number="18">            <span class="dt">control =</span> <span class="kw">rpart.control</span>(<span class="dt">xval =</span> <span class="dv">10</span>, </a>
-<a class="sourceLine" id="cb547-19" data-line-number="19">                                    <span class="dt">minbucket =</span> <span class="dv">2</span>, </a>
-<a class="sourceLine" id="cb547-20" data-line-number="20">                                    <span class="dt">cp =</span> <span class="dv">0</span>), </a>
-<a class="sourceLine" id="cb547-21" data-line-number="21">             <span class="dt">parms =</span> <span class="kw">list</span>(<span class="dt">split =</span> <span class="st">&quot;information&quot;</span>))</a>
-<a class="sourceLine" id="cb547-22" data-line-number="22"></a>
-<a class="sourceLine" id="cb547-23" data-line-number="23"><span class="co"># plot the fit!</span></a>
-<a class="sourceLine" id="cb547-24" data-line-number="24"><span class="kw">rpart.plot</span>(fit, <span class="dt">extra =</span> <span class="dv">100</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb548"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb548-1" data-line-number="1"><span class="kw">library</span>(rpart)</a>
+<a class="sourceLine" id="cb548-2" data-line-number="2"><span class="kw">library</span>(rpart.plot)</a>
+<a class="sourceLine" id="cb548-3" data-line-number="3"><span class="kw">library</span>(caret)</a>
+<a class="sourceLine" id="cb548-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb548-5" data-line-number="5"><span class="co"># cut the data but htis time preserve &#39;Fire&#39; and &#39;No Fire&#39; characters of the ff_data$Class</span></a>
+<a class="sourceLine" id="cb548-6" data-line-number="6">cutdata =<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">Temperature =</span> ff_data<span class="op">$</span>Temperature, <span class="dt">Rain =</span> ff_data<span class="op">$</span>Rain, <span class="dt">RH =</span> ff_data<span class="op">$</span>RH, <span class="dt">Ws =</span> ff_data<span class="op">$</span>Ws, <span class="dt">Class =</span> ff_data<span class="op">$</span>Class)</a>
+<a class="sourceLine" id="cb548-7" data-line-number="7">cutdata<span class="op">$</span>Class =<span class="st"> </span><span class="kw">as.factor</span>(cutdata<span class="op">$</span>Class)</a>
+<a class="sourceLine" id="cb548-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb548-9" data-line-number="9"><span class="co"># now that it&#39;s a factor, we need to redefine the levels again</span></a>
+<a class="sourceLine" id="cb548-10" data-line-number="10"><span class="kw">levels</span>(cutdata<span class="op">$</span>Class) =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Fire&quot;</span>, <span class="st">&quot;No Fire&quot;</span>)</a>
+<a class="sourceLine" id="cb548-11" data-line-number="11"></a>
+<a class="sourceLine" id="cb548-12" data-line-number="12"><span class="co"># set the seed</span></a>
+<a class="sourceLine" id="cb548-13" data-line-number="13"><span class="kw">set.seed</span>(<span class="dv">42</span>)</a>
+<a class="sourceLine" id="cb548-14" data-line-number="14"><span class="co"># calculate the rpart model</span></a>
+<a class="sourceLine" id="cb548-15" data-line-number="15">fit &lt;-<span class="st"> </span><span class="kw">rpart</span>(Class <span class="op">~</span><span class="st"> </span>.,</a>
+<a class="sourceLine" id="cb548-16" data-line-number="16">            <span class="dt">data =</span> cutdata,</a>
+<a class="sourceLine" id="cb548-17" data-line-number="17">            <span class="dt">method =</span> <span class="st">&quot;class&quot;</span>,</a>
+<a class="sourceLine" id="cb548-18" data-line-number="18">            <span class="dt">control =</span> <span class="kw">rpart.control</span>(<span class="dt">xval =</span> <span class="dv">10</span>, </a>
+<a class="sourceLine" id="cb548-19" data-line-number="19">                                    <span class="dt">minbucket =</span> <span class="dv">2</span>, </a>
+<a class="sourceLine" id="cb548-20" data-line-number="20">                                    <span class="dt">cp =</span> <span class="dv">0</span>), </a>
+<a class="sourceLine" id="cb548-21" data-line-number="21">             <span class="dt">parms =</span> <span class="kw">list</span>(<span class="dt">split =</span> <span class="st">&quot;information&quot;</span>))</a>
+<a class="sourceLine" id="cb548-22" data-line-number="22"></a>
+<a class="sourceLine" id="cb548-23" data-line-number="23"><span class="co"># plot the fit!</span></a>
+<a class="sourceLine" id="cb548-24" data-line-number="24"><span class="kw">rpart.plot</span>(fit, <span class="dt">extra =</span> <span class="dv">100</span>)</a></code></pre></div>
 <p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-225-1.png" width="50%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="data-partition" class="section level3">
 <h3><span class="header-section-number">19.3.2</span> Data Partition</h3>
 <p>The goal of this exercise is to predict the presence/absence of a forest fire given environmental conditions. We’ll need to provide the model with a training dataset to learn from and a test dataset to test itself against. This can be done using <code>createDataPartition</code> from the <code>caret</code> package. Then, let’s calculate a correlation matrix using <code>corrplot</code>.</p>
-<div class="sourceCode" id="cb548"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb548-1" data-line-number="1"><span class="co"># set the seed</span></a>
-<a class="sourceLine" id="cb548-2" data-line-number="2"><span class="kw">set.seed</span>(<span class="dv">42</span>)</a>
-<a class="sourceLine" id="cb548-3" data-line-number="3"><span class="co"># create test and train datasets</span></a>
-<a class="sourceLine" id="cb548-4" data-line-number="4">index &lt;-<span class="st"> </span><span class="kw">createDataPartition</span>(<span class="kw">as.factor</span>(cutdata<span class="op">$</span>Class), <span class="dt">p =</span> <span class="fl">0.7</span>, <span class="dt">list =</span> <span class="ot">FALSE</span>)</a>
-<a class="sourceLine" id="cb548-5" data-line-number="5">train_data &lt;-<span class="st"> </span>cutdata[index, ]</a>
-<a class="sourceLine" id="cb548-6" data-line-number="6">test_data  &lt;-<span class="st"> </span>cutdata[<span class="op">-</span>index, ]</a>
-<a class="sourceLine" id="cb548-7" data-line-number="7"></a>
-<a class="sourceLine" id="cb548-8" data-line-number="8"><span class="kw">library</span>(corrplot)</a>
-<a class="sourceLine" id="cb548-9" data-line-number="9"></a>
-<a class="sourceLine" id="cb548-10" data-line-number="10"><span class="co"># calculate correlation matrix</span></a>
-<a class="sourceLine" id="cb548-11" data-line-number="11">num_train_data =<span class="st"> </span>train_data</a>
-<a class="sourceLine" id="cb548-12" data-line-number="12">num_train_data<span class="op">$</span>Class =<span class="st"> </span><span class="kw">as.numeric</span>(num_train_data<span class="op">$</span>Class)</a>
-<a class="sourceLine" id="cb548-13" data-line-number="13">corMatMy &lt;-<span class="st"> </span><span class="kw">cor</span>(num_train_data)</a>
-<a class="sourceLine" id="cb548-14" data-line-number="14"><span class="kw">corrplot</span>(corMatMy, <span class="dt">order =</span> <span class="st">&quot;hclust&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb549"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb549-1" data-line-number="1"><span class="co"># set the seed</span></a>
+<a class="sourceLine" id="cb549-2" data-line-number="2"><span class="kw">set.seed</span>(<span class="dv">42</span>)</a>
+<a class="sourceLine" id="cb549-3" data-line-number="3"><span class="co"># create test and train datasets</span></a>
+<a class="sourceLine" id="cb549-4" data-line-number="4">index &lt;-<span class="st"> </span><span class="kw">createDataPartition</span>(<span class="kw">as.factor</span>(cutdata<span class="op">$</span>Class), <span class="dt">p =</span> <span class="fl">0.7</span>, <span class="dt">list =</span> <span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb549-5" data-line-number="5">train_data &lt;-<span class="st"> </span>cutdata[index, ]</a>
+<a class="sourceLine" id="cb549-6" data-line-number="6">test_data  &lt;-<span class="st"> </span>cutdata[<span class="op">-</span>index, ]</a>
+<a class="sourceLine" id="cb549-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb549-8" data-line-number="8"><span class="kw">library</span>(corrplot)</a>
+<a class="sourceLine" id="cb549-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb549-10" data-line-number="10"><span class="co"># calculate correlation matrix</span></a>
+<a class="sourceLine" id="cb549-11" data-line-number="11">num_train_data =<span class="st"> </span>train_data</a>
+<a class="sourceLine" id="cb549-12" data-line-number="12">num_train_data<span class="op">$</span>Class =<span class="st"> </span><span class="kw">as.numeric</span>(num_train_data<span class="op">$</span>Class)</a>
+<a class="sourceLine" id="cb549-13" data-line-number="13">corMatMy &lt;-<span class="st"> </span><span class="kw">cor</span>(num_train_data)</a>
+<a class="sourceLine" id="cb549-14" data-line-number="14"><span class="kw">corrplot</span>(corMatMy, <span class="dt">order =</span> <span class="st">&quot;hclust&quot;</span>)</a></code></pre></div>
 <p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-226-1.png" width="50%" style="display: block; margin: auto;" /></p>
-<div class="sourceCode" id="cb549"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb549-1" data-line-number="1">highlyCor &lt;-<span class="st"> </span><span class="kw">colnames</span>(train_data)[<span class="kw">findCorrelation</span>(corMatMy, <span class="dt">cutoff =</span> <span class="fl">0.7</span>, <span class="dt">verbose =</span> <span class="ot">TRUE</span>)]</a></code></pre></div>
+<div class="sourceCode" id="cb550"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb550-1" data-line-number="1">highlyCor &lt;-<span class="st"> </span><span class="kw">colnames</span>(train_data)[<span class="kw">findCorrelation</span>(corMatMy, <span class="dt">cutoff =</span> <span class="fl">0.7</span>, <span class="dt">verbose =</span> <span class="ot">TRUE</span>)]</a></code></pre></div>
 <pre><code>## All correlations &lt;= 0.7</code></pre>
 </div>
 <div id="training-the-model" class="section level3">
 <h3><span class="header-section-number">19.3.3</span> Training the Model</h3>
 <p>Now, let’s use our training dataset to train a model using random forest methods. Remember, we’re training our model to predict the <code>Class</code> variable (i.e. Fire vs No Fire) based on the other variables (temperature, relative humidity, etc.)</p>
-<div class="sourceCode" id="cb551"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb551-1" data-line-number="1"><span class="co"># set the seed</span></a>
-<a class="sourceLine" id="cb551-2" data-line-number="2"><span class="kw">set.seed</span>(<span class="dv">42</span>)</a>
-<a class="sourceLine" id="cb551-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb551-4" data-line-number="4"><span class="co"># create the model</span></a>
-<a class="sourceLine" id="cb551-5" data-line-number="5">model_rf &lt;-<span class="st"> </span>caret<span class="op">::</span><span class="kw">train</span>(Class <span class="op">~</span><span class="st"> </span>.,</a>
-<a class="sourceLine" id="cb551-6" data-line-number="6">                         <span class="dt">data =</span> train_data,</a>
-<a class="sourceLine" id="cb551-7" data-line-number="7">                         <span class="dt">method =</span> <span class="st">&quot;rf&quot;</span>,</a>
-<a class="sourceLine" id="cb551-8" data-line-number="8">                         <span class="dt">preProcess =</span> <span class="kw">c</span>(<span class="st">&quot;scale&quot;</span>, <span class="st">&quot;center&quot;</span>),</a>
-<a class="sourceLine" id="cb551-9" data-line-number="9">                         <span class="dt">trControl =</span> <span class="kw">trainControl</span>(<span class="dt">method =</span> <span class="st">&quot;repeatedcv&quot;</span>, </a>
-<a class="sourceLine" id="cb551-10" data-line-number="10">                                                  <span class="dt">number =</span> <span class="dv">5</span>, </a>
-<a class="sourceLine" id="cb551-11" data-line-number="11">                                                  <span class="dt">repeats =</span> <span class="dv">3</span>, </a>
-<a class="sourceLine" id="cb551-12" data-line-number="12">                                                  <span class="dt">savePredictions =</span> <span class="ot">TRUE</span>, </a>
-<a class="sourceLine" id="cb551-13" data-line-number="13">                                                  <span class="dt">verboseIter =</span> <span class="ot">FALSE</span>))</a>
-<a class="sourceLine" id="cb551-14" data-line-number="14"></a>
-<a class="sourceLine" id="cb551-15" data-line-number="15"><span class="co"># print the random forest model output </span></a>
-<a class="sourceLine" id="cb551-16" data-line-number="16">model_rf</a></code></pre></div>
+<div class="sourceCode" id="cb552"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb552-1" data-line-number="1"><span class="co"># set the seed</span></a>
+<a class="sourceLine" id="cb552-2" data-line-number="2"><span class="kw">set.seed</span>(<span class="dv">42</span>)</a>
+<a class="sourceLine" id="cb552-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb552-4" data-line-number="4"><span class="co"># create the model</span></a>
+<a class="sourceLine" id="cb552-5" data-line-number="5">model_rf &lt;-<span class="st"> </span>caret<span class="op">::</span><span class="kw">train</span>(Class <span class="op">~</span><span class="st"> </span>.,</a>
+<a class="sourceLine" id="cb552-6" data-line-number="6">                         <span class="dt">data =</span> train_data,</a>
+<a class="sourceLine" id="cb552-7" data-line-number="7">                         <span class="dt">method =</span> <span class="st">&quot;rf&quot;</span>,</a>
+<a class="sourceLine" id="cb552-8" data-line-number="8">                         <span class="dt">preProcess =</span> <span class="kw">c</span>(<span class="st">&quot;scale&quot;</span>, <span class="st">&quot;center&quot;</span>),</a>
+<a class="sourceLine" id="cb552-9" data-line-number="9">                         <span class="dt">trControl =</span> <span class="kw">trainControl</span>(<span class="dt">method =</span> <span class="st">&quot;repeatedcv&quot;</span>, </a>
+<a class="sourceLine" id="cb552-10" data-line-number="10">                                                  <span class="dt">number =</span> <span class="dv">5</span>, </a>
+<a class="sourceLine" id="cb552-11" data-line-number="11">                                                  <span class="dt">repeats =</span> <span class="dv">3</span>, </a>
+<a class="sourceLine" id="cb552-12" data-line-number="12">                                                  <span class="dt">savePredictions =</span> <span class="ot">TRUE</span>, </a>
+<a class="sourceLine" id="cb552-13" data-line-number="13">                                                  <span class="dt">verboseIter =</span> <span class="ot">FALSE</span>))</a>
+<a class="sourceLine" id="cb552-14" data-line-number="14"></a>
+<a class="sourceLine" id="cb552-15" data-line-number="15"><span class="co"># print the random forest model output </span></a>
+<a class="sourceLine" id="cb552-16" data-line-number="16">model_rf</a></code></pre></div>
 <pre><code>## Random Forest 
 ## 
 ## 87 samples
@@ -594,22 +594,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 
 ## Accuracy was used to select the optimal model using the largest value.
 ## The final value used for the model was mtry = 4.</code></pre>
-<div class="sourceCode" id="cb553"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb553-1" data-line-number="1"><span class="co"># print out the confusion matrix </span></a>
-<a class="sourceLine" id="cb553-2" data-line-number="2">model_rf<span class="op">$</span>finalModel<span class="op">$</span>confusion</a></code></pre></div>
+<div class="sourceCode" id="cb554"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb554-1" data-line-number="1"><span class="co"># print out the confusion matrix </span></a>
+<a class="sourceLine" id="cb554-2" data-line-number="2">model_rf<span class="op">$</span>finalModel<span class="op">$</span>confusion</a></code></pre></div>
 <pre><code>##         Fire No Fire class.error
 ## Fire      34       8   0.1904762
 ## No Fire    8      37   0.1777778</code></pre>
-<div class="sourceCode" id="cb555"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb555-1" data-line-number="1"><span class="co"># plot variable importance of the model</span></a>
-<a class="sourceLine" id="cb555-2" data-line-number="2">importance &lt;-<span class="st"> </span><span class="kw">varImp</span>(model_rf, <span class="dt">scale =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb555-3" data-line-number="3"><span class="kw">plot</span>(importance)</a></code></pre></div>
+<div class="sourceCode" id="cb556"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb556-1" data-line-number="1"><span class="co"># plot variable importance of the model</span></a>
+<a class="sourceLine" id="cb556-2" data-line-number="2">importance &lt;-<span class="st"> </span><span class="kw">varImp</span>(model_rf, <span class="dt">scale =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb556-3" data-line-number="3"><span class="kw">plot</span>(importance)</a></code></pre></div>
 <p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-227-1.png" width="50%" style="display: block; margin: auto;" /></p>
 <p>Rain is the most important variable for the presence/absence of forest fires. Relative Humidity and Temperature carry importance but not as much as Rain. Wind Speed doesn’t seem to be all that important.</p>
 </div>
 <div id="testing-the-model" class="section level3">
 <h3><span class="header-section-number">19.3.4</span> Testing the Model</h3>
 <p>In order to test our Random Forest model, <code>model_rf</code>, we’ll need to use a confusion matrix. A Confusion matrix is a matrix used for evaluating the performance of a classification model. The matrix compares the actual target values (the testing data class) with those predicted by <code>model_rf</code>. This gives us a holistic view of how well our random forest model is performing and shows what kinds of errors it is making. After we get some statistics from the confusino matrix, well need to run the model using the <code>predict</code> function on the <code>test_data</code>.</p>
-<div class="sourceCode" id="cb556"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb556-1" data-line-number="1"><span class="co"># Calculate the confusion matrix</span></a>
-<a class="sourceLine" id="cb556-2" data-line-number="2"><span class="kw">confusionMatrix</span>(<span class="kw">predict</span>(model_rf, test_data), <span class="kw">as.factor</span>(test_data<span class="op">$</span>Class))</a></code></pre></div>
+<div class="sourceCode" id="cb557"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb557-1" data-line-number="1"><span class="co"># Calculate the confusion matrix</span></a>
+<a class="sourceLine" id="cb557-2" data-line-number="2"><span class="kw">confusionMatrix</span>(<span class="kw">predict</span>(model_rf, test_data), <span class="kw">as.factor</span>(test_data<span class="op">$</span>Class))</a></code></pre></div>
 <pre><code>## Confusion Matrix and Statistics
 ## 
 ##           Reference
@@ -637,53 +637,53 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##                                          
 ##        &#39;Positive&#39; Class : Fire           
 ## </code></pre>
-<div class="sourceCode" id="cb558"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb558-1" data-line-number="1"><span class="co"># Predict the model </span></a>
-<a class="sourceLine" id="cb558-2" data-line-number="2">results &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">actual =</span> test_data<span class="op">$</span>Class,</a>
-<a class="sourceLine" id="cb558-3" data-line-number="3">                      <span class="kw">predict</span>(model_rf, test_data, <span class="dt">type =</span> <span class="st">&quot;prob&quot;</span>))</a>
-<a class="sourceLine" id="cb558-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb558-5" data-line-number="5"><span class="co"># rename the variables/columns</span></a>
-<a class="sourceLine" id="cb558-6" data-line-number="6"><span class="kw">names</span>(results) =<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;actual&#39;</span>, <span class="st">&#39;Fire&#39;</span>, <span class="st">&#39;No.Fire&#39;</span>)</a>
-<a class="sourceLine" id="cb558-7" data-line-number="7"></a>
-<a class="sourceLine" id="cb558-8" data-line-number="8"><span class="co"># declare fire vs no fire based on probabilities</span></a>
-<a class="sourceLine" id="cb558-9" data-line-number="9">results<span class="op">$</span>prediction &lt;-<span class="st"> </span><span class="kw">ifelse</span>(results<span class="op">$</span>Fire <span class="op">&gt;</span><span class="st"> </span><span class="fl">0.5</span>, <span class="st">&quot;Fire&quot;</span>,</a>
-<a class="sourceLine" id="cb558-10" data-line-number="10">                             <span class="kw">ifelse</span>(results<span class="op">$</span>No.Fire <span class="op">&gt;</span><span class="st"> </span><span class="fl">0.5</span>, <span class="st">&quot;No Fire&quot;</span>, <span class="ot">NA</span>))</a>
-<a class="sourceLine" id="cb558-11" data-line-number="11"></a>
-<a class="sourceLine" id="cb558-12" data-line-number="12"><span class="co"># declare whether the model was right or wrong (true or false)</span></a>
-<a class="sourceLine" id="cb558-13" data-line-number="13">results<span class="op">$</span>correct &lt;-<span class="st"> </span><span class="kw">ifelse</span>(results<span class="op">$</span>actual <span class="op">==</span><span class="st"> </span>results<span class="op">$</span>prediction, <span class="ot">TRUE</span>, <span class="ot">FALSE</span>)</a>
-<a class="sourceLine" id="cb558-14" data-line-number="14"></a>
-<a class="sourceLine" id="cb558-15" data-line-number="15"><span class="co"># plot the results</span></a>
-<a class="sourceLine" id="cb558-16" data-line-number="16"><span class="kw">ggplot</span>(results, <span class="kw">aes</span>(<span class="dt">x =</span> prediction, <span class="dt">fill =</span> correct)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb558-17" data-line-number="17"><span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">position =</span> <span class="st">&quot;dodge&quot;</span>) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb558-18" data-line-number="18"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Random Forest Performance&quot;</span>, <span class="dt">xlab =</span> <span class="st">&quot;Prediction&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb559"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb559-1" data-line-number="1"><span class="co"># Predict the model </span></a>
+<a class="sourceLine" id="cb559-2" data-line-number="2">results &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">actual =</span> test_data<span class="op">$</span>Class,</a>
+<a class="sourceLine" id="cb559-3" data-line-number="3">                      <span class="kw">predict</span>(model_rf, test_data, <span class="dt">type =</span> <span class="st">&quot;prob&quot;</span>))</a>
+<a class="sourceLine" id="cb559-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb559-5" data-line-number="5"><span class="co"># rename the variables/columns</span></a>
+<a class="sourceLine" id="cb559-6" data-line-number="6"><span class="kw">names</span>(results) =<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;actual&#39;</span>, <span class="st">&#39;Fire&#39;</span>, <span class="st">&#39;No.Fire&#39;</span>)</a>
+<a class="sourceLine" id="cb559-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb559-8" data-line-number="8"><span class="co"># declare fire vs no fire based on probabilities</span></a>
+<a class="sourceLine" id="cb559-9" data-line-number="9">results<span class="op">$</span>prediction &lt;-<span class="st"> </span><span class="kw">ifelse</span>(results<span class="op">$</span>Fire <span class="op">&gt;</span><span class="st"> </span><span class="fl">0.5</span>, <span class="st">&quot;Fire&quot;</span>,</a>
+<a class="sourceLine" id="cb559-10" data-line-number="10">                             <span class="kw">ifelse</span>(results<span class="op">$</span>No.Fire <span class="op">&gt;</span><span class="st"> </span><span class="fl">0.5</span>, <span class="st">&quot;No Fire&quot;</span>, <span class="ot">NA</span>))</a>
+<a class="sourceLine" id="cb559-11" data-line-number="11"></a>
+<a class="sourceLine" id="cb559-12" data-line-number="12"><span class="co"># declare whether the model was right or wrong (true or false)</span></a>
+<a class="sourceLine" id="cb559-13" data-line-number="13">results<span class="op">$</span>correct &lt;-<span class="st"> </span><span class="kw">ifelse</span>(results<span class="op">$</span>actual <span class="op">==</span><span class="st"> </span>results<span class="op">$</span>prediction, <span class="ot">TRUE</span>, <span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb559-14" data-line-number="14"></a>
+<a class="sourceLine" id="cb559-15" data-line-number="15"><span class="co"># plot the results</span></a>
+<a class="sourceLine" id="cb559-16" data-line-number="16"><span class="kw">ggplot</span>(results, <span class="kw">aes</span>(<span class="dt">x =</span> prediction, <span class="dt">fill =</span> correct)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb559-17" data-line-number="17"><span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">position =</span> <span class="st">&quot;dodge&quot;</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb559-18" data-line-number="18"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Random Forest Performance&quot;</span>, <span class="dt">xlab =</span> <span class="st">&quot;Prediction&quot;</span>)</a></code></pre></div>
 <p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-228-1.png" width="50%" style="display: block; margin: auto;" /></p>
-<div class="sourceCode" id="cb559"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb559-1" data-line-number="1"><span class="co"># plot thhe results using geom_jitter</span></a>
-<a class="sourceLine" id="cb559-2" data-line-number="2"><span class="kw">ggplot</span>(results, <span class="kw">aes</span>(<span class="dt">x =</span> prediction, <span class="dt">y =</span> Fire, <span class="dt">color =</span> correct, <span class="dt">shape =</span> correct)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb559-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_jitter</span>(<span class="dt">size =</span> <span class="dv">3</span>, <span class="dt">alpha =</span> <span class="fl">0.9</span>) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb559-4" data-line-number="4"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Random Forest Performance&quot;</span>, <span class="dt">xlab =</span> <span class="st">&quot;Prediction&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb560"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb560-1" data-line-number="1"><span class="co"># plot thhe results using geom_jitter</span></a>
+<a class="sourceLine" id="cb560-2" data-line-number="2"><span class="kw">ggplot</span>(results, <span class="kw">aes</span>(<span class="dt">x =</span> prediction, <span class="dt">y =</span> Fire, <span class="dt">color =</span> correct, <span class="dt">shape =</span> correct)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb560-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_jitter</span>(<span class="dt">size =</span> <span class="dv">3</span>, <span class="dt">alpha =</span> <span class="fl">0.9</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb560-4" data-line-number="4"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Random Forest Performance&quot;</span>, <span class="dt">xlab =</span> <span class="st">&quot;Prediction&quot;</span>)</a></code></pre></div>
 <p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-228-2.png" width="50%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="hyperparameter-tuning" class="section level3">
 <h3><span class="header-section-number">19.3.5</span> Hyperparameter Tuning</h3>
 <p>Models like the random forest model we constructed above are built based on the predictor variables. Model parameters are constructed <em>based</em> on these variables, although hyperparameters are not model parameters and they cannot be directly trained from the data. Model parameters are learned during training when we optimize a loss function. Sometimes, the construction of the architecture (i.e. format of a decision tree) may not be optimal. The act of finding the optimal model archicture is called hyperparameter tuning. We can tune our model by applying a <code>tuneGrid</code> argument with the <code>caret::train()</code> function. Our <code>tuneGrid</code> will be defined by <code>mtry</code> : The number of variables randomly sampled as candidates at each split.</p>
-<div class="sourceCode" id="cb560"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb560-1" data-line-number="1"><span class="co"># plot the original model</span></a>
-<a class="sourceLine" id="cb560-2" data-line-number="2"><span class="kw">plot</span>(model_rf)</a></code></pre></div>
+<div class="sourceCode" id="cb561"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb561-1" data-line-number="1"><span class="co"># plot the original model</span></a>
+<a class="sourceLine" id="cb561-2" data-line-number="2"><span class="kw">plot</span>(model_rf)</a></code></pre></div>
 <p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-229-1.png" width="50%" style="display: block; margin: auto;" /></p>
-<div class="sourceCode" id="cb561"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb561-1" data-line-number="1"><span class="co"># create hyperparameter grid</span></a>
-<a class="sourceLine" id="cb561-2" data-line-number="2"><span class="kw">set.seed</span>(<span class="dv">42</span>)</a>
-<a class="sourceLine" id="cb561-3" data-line-number="3">grid &lt;-<span class="st"> </span><span class="kw">expand.grid</span>(<span class="dt">mtry =</span> <span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>))</a>
-<a class="sourceLine" id="cb561-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb561-5" data-line-number="5">model_rf_tune_man &lt;-<span class="st"> </span>caret<span class="op">::</span><span class="kw">train</span>(Class <span class="op">~</span><span class="st"> </span>.,</a>
-<a class="sourceLine" id="cb561-6" data-line-number="6">                         <span class="dt">data =</span> train_data,</a>
-<a class="sourceLine" id="cb561-7" data-line-number="7">                         <span class="dt">method =</span> <span class="st">&quot;rf&quot;</span>,</a>
-<a class="sourceLine" id="cb561-8" data-line-number="8">                         <span class="dt">preProcess =</span> <span class="kw">c</span>(<span class="st">&quot;scale&quot;</span>, <span class="st">&quot;center&quot;</span>),</a>
-<a class="sourceLine" id="cb561-9" data-line-number="9">                         <span class="dt">trControl =</span> <span class="kw">trainControl</span>(<span class="dt">method =</span> <span class="st">&quot;repeatedcv&quot;</span>, </a>
-<a class="sourceLine" id="cb561-10" data-line-number="10">                                                  <span class="dt">number =</span> <span class="dv">10</span>, </a>
-<a class="sourceLine" id="cb561-11" data-line-number="11">                                                  <span class="dt">repeats =</span> <span class="dv">10</span>, </a>
-<a class="sourceLine" id="cb561-12" data-line-number="12">                                                  <span class="dt">savePredictions =</span> <span class="ot">TRUE</span>, </a>
-<a class="sourceLine" id="cb561-13" data-line-number="13">                                                  <span class="dt">verboseIter =</span> <span class="ot">FALSE</span>),</a>
-<a class="sourceLine" id="cb561-14" data-line-number="14">                         <span class="dt">tuneGrid =</span> grid)</a>
-<a class="sourceLine" id="cb561-15" data-line-number="15"></a>
-<a class="sourceLine" id="cb561-16" data-line-number="16">model_rf_tune_man</a></code></pre></div>
+<div class="sourceCode" id="cb562"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb562-1" data-line-number="1"><span class="co"># create hyperparameter grid</span></a>
+<a class="sourceLine" id="cb562-2" data-line-number="2"><span class="kw">set.seed</span>(<span class="dv">42</span>)</a>
+<a class="sourceLine" id="cb562-3" data-line-number="3">grid &lt;-<span class="st"> </span><span class="kw">expand.grid</span>(<span class="dt">mtry =</span> <span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>))</a>
+<a class="sourceLine" id="cb562-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb562-5" data-line-number="5">model_rf_tune_man &lt;-<span class="st"> </span>caret<span class="op">::</span><span class="kw">train</span>(Class <span class="op">~</span><span class="st"> </span>.,</a>
+<a class="sourceLine" id="cb562-6" data-line-number="6">                         <span class="dt">data =</span> train_data,</a>
+<a class="sourceLine" id="cb562-7" data-line-number="7">                         <span class="dt">method =</span> <span class="st">&quot;rf&quot;</span>,</a>
+<a class="sourceLine" id="cb562-8" data-line-number="8">                         <span class="dt">preProcess =</span> <span class="kw">c</span>(<span class="st">&quot;scale&quot;</span>, <span class="st">&quot;center&quot;</span>),</a>
+<a class="sourceLine" id="cb562-9" data-line-number="9">                         <span class="dt">trControl =</span> <span class="kw">trainControl</span>(<span class="dt">method =</span> <span class="st">&quot;repeatedcv&quot;</span>, </a>
+<a class="sourceLine" id="cb562-10" data-line-number="10">                                                  <span class="dt">number =</span> <span class="dv">10</span>, </a>
+<a class="sourceLine" id="cb562-11" data-line-number="11">                                                  <span class="dt">repeats =</span> <span class="dv">10</span>, </a>
+<a class="sourceLine" id="cb562-12" data-line-number="12">                                                  <span class="dt">savePredictions =</span> <span class="ot">TRUE</span>, </a>
+<a class="sourceLine" id="cb562-13" data-line-number="13">                                                  <span class="dt">verboseIter =</span> <span class="ot">FALSE</span>),</a>
+<a class="sourceLine" id="cb562-14" data-line-number="14">                         <span class="dt">tuneGrid =</span> grid)</a>
+<a class="sourceLine" id="cb562-15" data-line-number="15"></a>
+<a class="sourceLine" id="cb562-16" data-line-number="16">model_rf_tune_man</a></code></pre></div>
 <pre><code>## Random Forest 
 ## 
 ## 87 samples
@@ -709,22 +709,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 
 ## Accuracy was used to select the optimal model using the largest value.
 ## The final value used for the model was mtry = 1.</code></pre>
-<div class="sourceCode" id="cb563"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb563-1" data-line-number="1"><span class="kw">plot</span>(model_rf_tune_man)</a></code></pre></div>
+<div class="sourceCode" id="cb564"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb564-1" data-line-number="1"><span class="kw">plot</span>(model_rf_tune_man)</a></code></pre></div>
 <p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-229-2.png" width="50%" style="display: block; margin: auto;" /></p>
 <p>Notice hoe many more predictors we get. Our dataset is not the best example for this practice because our dataset only has a handful of predictors. However, The search of the <code>tuneGrid</code> function above is not random by default. Let’s perform a random search of the tuning parmaeters and provide a <code>tuneLength</code> - An integer denoting the amount of granularity in the tuning parameter grid.</p>
-<div class="sourceCode" id="cb564"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb564-1" data-line-number="1">model_rf_tune_auto &lt;-<span class="st"> </span>caret<span class="op">::</span><span class="kw">train</span>(Class <span class="op">~</span><span class="st"> </span>.,</a>
-<a class="sourceLine" id="cb564-2" data-line-number="2">                         <span class="dt">data =</span> train_data,</a>
-<a class="sourceLine" id="cb564-3" data-line-number="3">                         <span class="dt">method =</span> <span class="st">&quot;rf&quot;</span>,</a>
-<a class="sourceLine" id="cb564-4" data-line-number="4">                         <span class="dt">preProcess =</span> <span class="kw">c</span>(<span class="st">&quot;scale&quot;</span>, <span class="st">&quot;center&quot;</span>),</a>
-<a class="sourceLine" id="cb564-5" data-line-number="5">                         <span class="dt">trControl =</span> <span class="kw">trainControl</span>(<span class="dt">method =</span> <span class="st">&quot;repeatedcv&quot;</span>, </a>
-<a class="sourceLine" id="cb564-6" data-line-number="6">                                                  <span class="dt">number =</span> <span class="dv">10</span>, </a>
-<a class="sourceLine" id="cb564-7" data-line-number="7">                                                  <span class="dt">repeats =</span> <span class="dv">10</span>, </a>
-<a class="sourceLine" id="cb564-8" data-line-number="8">                                                  <span class="dt">savePredictions =</span> <span class="ot">TRUE</span>, </a>
-<a class="sourceLine" id="cb564-9" data-line-number="9">                                                  <span class="dt">verboseIter =</span> <span class="ot">FALSE</span>,</a>
-<a class="sourceLine" id="cb564-10" data-line-number="10">                                                  <span class="dt">search =</span> <span class="st">&quot;random&quot;</span>),</a>
-<a class="sourceLine" id="cb564-11" data-line-number="11">                         <span class="dt">tuneGrid =</span> grid,</a>
-<a class="sourceLine" id="cb564-12" data-line-number="12">                         <span class="dt">tuneLength =</span> <span class="dv">15</span>)</a>
-<a class="sourceLine" id="cb564-13" data-line-number="13">model_rf_tune_auto</a></code></pre></div>
+<div class="sourceCode" id="cb565"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb565-1" data-line-number="1">model_rf_tune_auto &lt;-<span class="st"> </span>caret<span class="op">::</span><span class="kw">train</span>(Class <span class="op">~</span><span class="st"> </span>.,</a>
+<a class="sourceLine" id="cb565-2" data-line-number="2">                         <span class="dt">data =</span> train_data,</a>
+<a class="sourceLine" id="cb565-3" data-line-number="3">                         <span class="dt">method =</span> <span class="st">&quot;rf&quot;</span>,</a>
+<a class="sourceLine" id="cb565-4" data-line-number="4">                         <span class="dt">preProcess =</span> <span class="kw">c</span>(<span class="st">&quot;scale&quot;</span>, <span class="st">&quot;center&quot;</span>),</a>
+<a class="sourceLine" id="cb565-5" data-line-number="5">                         <span class="dt">trControl =</span> <span class="kw">trainControl</span>(<span class="dt">method =</span> <span class="st">&quot;repeatedcv&quot;</span>, </a>
+<a class="sourceLine" id="cb565-6" data-line-number="6">                                                  <span class="dt">number =</span> <span class="dv">10</span>, </a>
+<a class="sourceLine" id="cb565-7" data-line-number="7">                                                  <span class="dt">repeats =</span> <span class="dv">10</span>, </a>
+<a class="sourceLine" id="cb565-8" data-line-number="8">                                                  <span class="dt">savePredictions =</span> <span class="ot">TRUE</span>, </a>
+<a class="sourceLine" id="cb565-9" data-line-number="9">                                                  <span class="dt">verboseIter =</span> <span class="ot">FALSE</span>,</a>
+<a class="sourceLine" id="cb565-10" data-line-number="10">                                                  <span class="dt">search =</span> <span class="st">&quot;random&quot;</span>),</a>
+<a class="sourceLine" id="cb565-11" data-line-number="11">                         <span class="dt">tuneGrid =</span> grid,</a>
+<a class="sourceLine" id="cb565-12" data-line-number="12">                         <span class="dt">tuneLength =</span> <span class="dv">15</span>)</a>
+<a class="sourceLine" id="cb565-13" data-line-number="13">model_rf_tune_auto</a></code></pre></div>
 <pre><code>## Random Forest 
 ## 
 ## 87 samples
@@ -750,7 +750,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 
 ## Accuracy was used to select the optimal model using the largest value.
 ## The final value used for the model was mtry = 1.</code></pre>
-<div class="sourceCode" id="cb566"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb566-1" data-line-number="1"><span class="kw">plot</span>(model_rf_tune_auto)</a></code></pre></div>
+<div class="sourceCode" id="cb567"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb567-1" data-line-number="1"><span class="kw">plot</span>(model_rf_tune_auto)</a></code></pre></div>
 <p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-230-1.png" width="50%" style="display: block; margin: auto;" /></p>
 <p>As we see above, random forest models can quickly become complex due to the fact that there’s uncertainty in any classification prediction. A particular model can require tuning as seen above. Once again, this practice is much more useful for a dataset with more predictors but it’s important to show how it can be done here.</p>
 </div>
