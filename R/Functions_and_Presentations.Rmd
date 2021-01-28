@@ -168,12 +168,12 @@ Et Voila! A professional looking RMarkdown PDF that makes your R code easier to 
 
 ## Assignment
 
-Create a function that extracts and plots a spatial dataset given a time range. Follow the steps below:
+Create a function that extracts and plots a spatial dataset given a time. Follow the steps below:
 
 1) Choose an online dataset like we did last week.
-2) Create a function that extracts the data given a time range, creates a data frame and plots the dataset. 
-3) Include arguments within the function such as time range, spatial extents, etc. 
+2) Create a function that extracts the data given a time or time range, creates a data frame and plots the dataset. 
+3) Include arguments within the function such as time. 
 4) Create an RMarkdown PDF that details how the function works.
 5) Include an example of the function working to plot the given dataset 
-6) Submit resulting PDF to Canvas week 7 assignment
+6) **Submit resulting PDF to UD Canvas week 7 assignment**
 

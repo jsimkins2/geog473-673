@@ -99,8 +99,15 @@ saving-a-shapefile
 assignment-7
 remote-data-extraction
 thredds
+opening-a-channel-to-the-database
+indexing
+downloading-the-selected-data
 erddap
+rerddap
 finding-the-data-you-want
+tabledap
+griddap
+custom-erddap-url
 assignment-8
 extra-credit---2-points-3
 functions-and-code-presentation

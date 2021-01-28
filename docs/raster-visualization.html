@@ -275,9 +275,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="14.5" data-path="shapefiles.html"><a href="shapefiles.html#assignment-7"><i class="fa fa-check"></i><b>14.5</b> Assignment</a></li>
 </ul></li>
 <li class="chapter" data-level="15" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html"><i class="fa fa-check"></i><b>15</b> Remote Data Extraction</a><ul>
-<li class="chapter" data-level="15.1" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#thredds"><i class="fa fa-check"></i><b>15.1</b> THREDDS</a></li>
+<li class="chapter" data-level="15.1" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#thredds"><i class="fa fa-check"></i><b>15.1</b> THREDDS</a><ul>
+<li class="chapter" data-level="15.1.1" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#opening-a-channel-to-the-database"><i class="fa fa-check"></i><b>15.1.1</b> Opening a Channel to the Database</a></li>
+<li class="chapter" data-level="15.1.2" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#indexing"><i class="fa fa-check"></i><b>15.1.2</b> Indexing</a></li>
+<li class="chapter" data-level="15.1.3" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#downloading-the-selected-data"><i class="fa fa-check"></i><b>15.1.3</b> Downloading the Selected Data</a></li>
+</ul></li>
 <li class="chapter" data-level="15.2" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#erddap"><i class="fa fa-check"></i><b>15.2</b> ERDDAP</a><ul>
-<li class="chapter" data-level="15.2.1" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#finding-the-data-you-want"><i class="fa fa-check"></i><b>15.2.1</b> Finding the Data You Want</a></li>
+<li class="chapter" data-level="15.2.1" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#rerddap"><i class="fa fa-check"></i><b>15.2.1</b> <code>rerddap</code></a></li>
+<li class="chapter" data-level="15.2.2" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#finding-the-data-you-want"><i class="fa fa-check"></i><b>15.2.2</b> Finding the Data You Want</a></li>
+<li class="chapter" data-level="15.2.3" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#tabledap"><i class="fa fa-check"></i><b>15.2.3</b> Tabledap</a></li>
+<li class="chapter" data-level="15.2.4" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#griddap"><i class="fa fa-check"></i><b>15.2.4</b> Griddap</a></li>
+<li class="chapter" data-level="15.2.5" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#custom-erddap-url"><i class="fa fa-check"></i><b>15.2.5</b> Custom ERDDAP URL</a></li>
 </ul></li>
 <li class="chapter" data-level="15.3" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#assignment-8"><i class="fa fa-check"></i><b>15.3</b> Assignment</a><ul>
 <li class="chapter" data-level="15.3.1" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#extra-credit---2-points-3"><i class="fa fa-check"></i><b>15.3.1</b> Extra Credit - 2 Points</a></li>
@@ -467,7 +475,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## resolution : 0.0003599712, 0.0005027652  (x, y)
 ## extent     : 0, 1, 0, 1  (xmin, xmax, ymin, ymax)
 ## crs        : NA 
-## source     : /private/var/folders/6m/1b7gn_m93g9380p1jxvm2_700000gr/T/RtmpauWRqi/raster/r_tmp_2021-01-28_095340_19340_04107.grd 
+## source     : /private/var/folders/6m/1b7gn_m93g9380p1jxvm2_700000gr/T/RtmpPkMqQy/raster/r_tmp_2021-01-28_131922_24479_04953.grd 
 ## names      : layer 
 ## values     : 5.344696, 34.9397  (min, max)</code></pre>
 <div class="sourceCode" id="cb197"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb197-1" data-line-number="1"><span class="co"># notice that the extent and crs information are wrong/not included so let&#39;s fix this</span></a>
@@ -485,7 +493,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## resolution : 0.01799352, 0.0180909  (x, y)
 ## extent     : -99.99015, -50.00415, 16.00283, 51.98563  (xmin, xmax, ymin, ymax)
 ## crs        : +proj=longlat +datum=WGS84 +no_defs 
-## source     : /private/var/folders/6m/1b7gn_m93g9380p1jxvm2_700000gr/T/RtmpauWRqi/raster/r_tmp_2021-01-28_095340_19340_04107.grd 
+## source     : /private/var/folders/6m/1b7gn_m93g9380p1jxvm2_700000gr/T/RtmpPkMqQy/raster/r_tmp_2021-01-28_131922_24479_04953.grd 
 ## names      : layer 
 ## values     : 5.344696, 34.9397  (min, max)</code></pre>
 <div class="sourceCode" id="cb199"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb199-1" data-line-number="1"><span class="kw">image</span>(sstRast)</a></code></pre></div>

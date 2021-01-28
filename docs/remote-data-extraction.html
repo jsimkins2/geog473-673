@@ -275,9 +275,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="14.5" data-path="shapefiles.html"><a href="shapefiles.html#assignment-7"><i class="fa fa-check"></i><b>14.5</b> Assignment</a></li>
 </ul></li>
 <li class="chapter" data-level="15" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html"><i class="fa fa-check"></i><b>15</b> Remote Data Extraction</a><ul>
-<li class="chapter" data-level="15.1" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#thredds"><i class="fa fa-check"></i><b>15.1</b> THREDDS</a></li>
+<li class="chapter" data-level="15.1" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#thredds"><i class="fa fa-check"></i><b>15.1</b> THREDDS</a><ul>
+<li class="chapter" data-level="15.1.1" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#opening-a-channel-to-the-database"><i class="fa fa-check"></i><b>15.1.1</b> Opening a Channel to the Database</a></li>
+<li class="chapter" data-level="15.1.2" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#indexing"><i class="fa fa-check"></i><b>15.1.2</b> Indexing</a></li>
+<li class="chapter" data-level="15.1.3" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#downloading-the-selected-data"><i class="fa fa-check"></i><b>15.1.3</b> Downloading the Selected Data</a></li>
+</ul></li>
 <li class="chapter" data-level="15.2" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#erddap"><i class="fa fa-check"></i><b>15.2</b> ERDDAP</a><ul>
-<li class="chapter" data-level="15.2.1" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#finding-the-data-you-want"><i class="fa fa-check"></i><b>15.2.1</b> Finding the Data You Want</a></li>
+<li class="chapter" data-level="15.2.1" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#rerddap"><i class="fa fa-check"></i><b>15.2.1</b> <code>rerddap</code></a></li>
+<li class="chapter" data-level="15.2.2" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#finding-the-data-you-want"><i class="fa fa-check"></i><b>15.2.2</b> Finding the Data You Want</a></li>
+<li class="chapter" data-level="15.2.3" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#tabledap"><i class="fa fa-check"></i><b>15.2.3</b> Tabledap</a></li>
+<li class="chapter" data-level="15.2.4" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#griddap"><i class="fa fa-check"></i><b>15.2.4</b> Griddap</a></li>
+<li class="chapter" data-level="15.2.5" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#custom-erddap-url"><i class="fa fa-check"></i><b>15.2.5</b> Custom ERDDAP URL</a></li>
 </ul></li>
 <li class="chapter" data-level="15.3" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#assignment-8"><i class="fa fa-check"></i><b>15.3</b> Assignment</a><ul>
 <li class="chapter" data-level="15.3.1" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#extra-credit---2-points-3"><i class="fa fa-check"></i><b>15.3.1</b> Extra Credit - 2 Points</a></li>
@@ -366,11 +374,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Today we’ll use UD’s Satellite Receiving Station THREDDS (#5 on the list). It’s located at this URL - <a href="http://basin.ceoe.udel.edu/thredds/catalog.html" class="uri">http://basin.ceoe.udel.edu/thredds/catalog.html</a></p>
 <p>Here’s what that looks like:
 <img src="images/basin_thredds.png" width="60%" style="display: block; margin: auto;" /></p>
-<p>If we click on <code>GOES-R SST</code>, we see we have some different avenues for data extraction.</p>
-<p><img src="images/basin_goesSST.png" width="60%" style="display: block; margin: auto;" /></p>
+<p>If we click on <code>JPL SST</code>, we see we have some different avenues for data extraction.</p>
+<p><img src="images/basin_jplSST.png" width="60%" style="display: block; margin: auto;" /></p>
 <p>OPeNDAP (Open-source Project for a Network Data Access Protocol) is a great way to subselect the data. Opendap offers html files of the data (BAD IDEA, THIS WILL CRASH YOUR BROWSER) or netCDF files of the data (great idea)</p>
 <p><img src="images/basin_opendap.png" width="60%" style="display: block; margin: auto;" /></p>
 <p>Now you can use this page to download subset datasets, or we can make this really easy and use R to accomplish that task. This is a high temporal resolution dataset, so let’s say we want Delaware Bay data from July 14 - July 16, 2019. All we need to make this happen is the url of the opendap page - <a href="http://basin.ceoe.udel.edu/thredds/dodsC/GOESJPLSST.nc.html" class="uri">http://basin.ceoe.udel.edu/thredds/dodsC/GOESJPLSST.nc.html</a> - and the <code>ncdf4</code> package.</p>
+<div id="opening-a-channel-to-the-database" class="section level3">
+<h3><span class="header-section-number">15.1.1</span> Opening a Channel to the Database</h3>
 <div class="sourceCode" id="cb430"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb430-1" data-line-number="1"><span class="kw">library</span>(ncdf4)</a>
 <a class="sourceLine" id="cb430-2" data-line-number="2">goes.nc =<span class="st"> </span><span class="kw">nc_open</span>(<span class="st">&quot;http://basin.ceoe.udel.edu/thredds/dodsC/GOESJPLSST.nc&quot;</span>)</a>
 <a class="sourceLine" id="cb430-3" data-line-number="3">goes.nc</a></code></pre></div>
@@ -421,7 +431,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##         longitude  Size:2500
 ##             standard_name: longitude
 ##             units: degrees_east
-##         time  Size:26467
+##         time  Size:26471
 ##             standard_name: time
 ##             long_name: EPOCH Time
 ##             units: seconds since 1970-01-01T00:00:00Z
@@ -449,22 +459,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Seconds since 1970-01-01 is referred to as <strong>EPOCH time</strong>. Basically, this datetime is considered the inception of the internet. Computers are very good at storing information in this format and this is why we use this. Let’s take out the last value -</p>
 <div class="sourceCode" id="cb436"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb436-1" data-line-number="1">lastVal =<span class="st"> </span><span class="kw">length</span>(goes.nc<span class="op">$</span>dim<span class="op">$</span>time<span class="op">$</span>vals)</a>
 <a class="sourceLine" id="cb436-2" data-line-number="2">lastVal</a></code></pre></div>
-<pre><code>## [1] 26467</code></pre>
+<pre><code>## [1] 26471</code></pre>
 <div class="sourceCode" id="cb438"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb438-1" data-line-number="1">epoch_val =<span class="st"> </span>goes.nc<span class="op">$</span>dim<span class="op">$</span>time<span class="op">$</span>vals[lastVal]</a></code></pre></div>
 <p>There you go, that’s an EPOCH time value. Let’s convert it to a human timestamp…</p>
 <div class="sourceCode" id="cb439"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb439-1" data-line-number="1">human_time =<span class="st"> </span><span class="kw">as.POSIXct</span>(epoch_val, <span class="dt">origin=</span><span class="st">&quot;1970-01-01&quot;</span>)</a>
 <a class="sourceLine" id="cb439-2" data-line-number="2">human_time</a></code></pre></div>
-<pre><code>## [1] &quot;2021-01-28 10:00:00 EST&quot;</code></pre>
+<pre><code>## [1] &quot;2021-01-28 14:00:00 EST&quot;</code></pre>
 <p><code>as.POSIXct</code> is a datetime package in R. It is a gold standard and you’ll see it as you gain more experience in playing with datetime conversions. You can also use <code>anytime</code> package.</p>
 <div class="sourceCode" id="cb441"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb441-1" data-line-number="1"><span class="kw">library</span>(anytime)</a>
 <a class="sourceLine" id="cb441-2" data-line-number="2"><span class="kw">anytime</span>(epoch_val)</a></code></pre></div>
-<pre><code>## [1] &quot;2021-01-28 10:00:00 EST&quot;</code></pre>
+<pre><code>## [1] &quot;2021-01-28 14:00:00 EST&quot;</code></pre>
 <p>At this point, all we have to do is convert our human dates to EPOCH so we can extract the data. In order to do this all we need to do is convert a datetime object to a numeric. R handles it for us…</p>
 <div class="sourceCode" id="cb443"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb443-1" data-line-number="1">start_time =<span class="st"> &quot;2019-07-14&quot;</span> <span class="co"># year dash month dash day</span></a>
 <a class="sourceLine" id="cb443-2" data-line-number="2">epoch_start_time =<span class="st"> </span><span class="kw">as.numeric</span>(<span class="kw">as.POSIXct</span>(start_time, <span class="dt">format=</span><span class="st">&quot;%Y-%m-%d&quot;</span>)) <span class="co"># %Y-%m-%d is telling the computer the format of our datestring is year dash month dash day</span></a>
 <a class="sourceLine" id="cb443-3" data-line-number="3"></a>
 <a class="sourceLine" id="cb443-4" data-line-number="4">end_time =<span class="st"> &quot;2019-07-16&quot;</span> <span class="co"># year dash month dash day</span></a>
 <a class="sourceLine" id="cb443-5" data-line-number="5">epoch_end_time =<span class="st"> </span><span class="kw">as.numeric</span>(<span class="kw">as.POSIXct</span>(end_time, <span class="dt">format=</span><span class="st">&quot;%Y-%m-%d&quot;</span>)) <span class="co"># %Y-%m-%d is telling the computer the format of our datestring is year dash month dash day</span></a></code></pre></div>
+</div>
+<div id="indexing" class="section level3">
+<h3><span class="header-section-number">15.1.2</span> Indexing</h3>
 <p>We have the time values converted to the format of the dataset, but now we need to find the index - i.e. where that value lies in the dataset. We can find this using this code…</p>
 <p><code>which.min(abs(array - value))</code></p>
 <p>Which reads as -</p>
@@ -527,6 +540,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><strong>Wait just a second</strong>…the southern index is <em>greater than</em> the northern index. Typically, values are stored from least to greatest. However, we’ve seen before that netCDF files can be stored upside-down before. So, instead of counting from our southern latitude to our northern latitude, <strong>we need to count from our northern latitude to our southern latitude</strong>. Here is what the <code>count</code> argument is looking for…</p>
 <p><code>A vector of integers indicating the count of values to read along each dimension (order is X-Y-Z-T). The length of this vector must equal the number of dimensions the variable has. If not specified and the variable does NOT have an unlimited dimension, the entire variable is read. As a special case, the value &quot;-1&quot; indicates that all entries along that dimension should be read.</code></p>
 <p>We tell <code>ncvar_get()</code> where to start it’s longitude, latitude, time and <em>count</em> until we have our lat/lon box and time slices selected. We already have our <code>count</code> values so now we plug them in and run - note this will take a few seconds to run and even longer if you have poor internet connection. This is data being extracted through the internet in real time.</p>
+</div>
+<div id="downloading-the-selected-data" class="section level3">
+<h3><span class="header-section-number">15.1.3</span> Downloading the Selected Data</h3>
 <div class="sourceCode" id="cb470"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb470-1" data-line-number="1"><span class="co"># cool, let&#39;s grab sea_surface_temperature for Delaware Bay</span></a>
 <a class="sourceLine" id="cb470-2" data-line-number="2">sst.c &lt;-<span class="st"> </span><span class="kw">ncvar_get</span>(goes.nc, <span class="st">&quot;sea_surface_temperature&quot;</span>,<span class="dt">start =</span> <span class="kw">c</span>(index_west_lon,index_north_lat,index_start_time), </a>
 <a class="sourceLine" id="cb470-3" data-line-number="3">                   <span class="dt">count =</span> <span class="kw">c</span>(lon_count,lat_count,time_count))</a>
@@ -568,7 +584,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb476-6" data-line-number="6"><span class="st">  </span><span class="kw">borders</span>(<span class="dt">fill=</span><span class="st">&quot;white&quot;</span>, <span class="dt">xlim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">77</span>,<span class="op">-</span><span class="dv">73</span>), <span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">36</span>,<span class="dv">42</span>),<span class="dt">alpha =</span> <span class="fl">0.5</span>) <span class="op">+</span></a>
 <a class="sourceLine" id="cb476-7" data-line-number="7"><span class="st">  </span><span class="kw">coord_quickmap</span>(<span class="dt">xlim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">77</span>,<span class="op">-</span><span class="dv">73</span>), <span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">36</span>,<span class="dv">42</span>),<span class="dt">expand =</span> <span class="ot">FALSE</span>)    </a></code></pre></div>
 <p><img src="R_Geospatial_Sciences_files/figure-html/thredddddsssss%20plotttttttttt-1.png" width="60%" style="display: block; margin: auto;" /></p>
-<p>Boom…There’s the data we wanted and we didn’t have to leave R to get it. We also saved a ton of time and hard drive space.</p>
+<p>There’s the data we wanted and we didn’t have to leave R to get it. We also saved a ton of time and hard drive space.</p>
+</div>
 </div>
 <div id="erddap" class="section level2">
 <h2><span class="header-section-number">15.2</span> ERDDAP</h2>
@@ -585,14 +602,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <p>Let’s check out the UDEL Satellite Receiving Station ERDDAP page - here’s what it looks like</p>
 <p><img src="images/basin_erddap.png" width="60%" style="display: block; margin: auto;" /></p>
-<p>If we click on <code>GOES-R SST</code>, we see we have some different avenues for data extraction.
+<p>Find the <code>Dataset ID</code> named <code>jpl_goesr_sst</code>.
 <img src="images/erddap_datasets.png" width="60%" style="display: block; margin: auto;" /></p>
-<p>OPeNDAP (Open-source Project for a Network Data Access Protocol) is a great way to subselect the data. Opendap offers html files of the data (BAD IDEA, THIS WILL CRASH YOUR BROWSER) or netCDF files of the data (great idea)</p>
+<p>Click the <strong>graph</strong> button along this row.</p>
 <p><img src="images/goesSST_erddap.png" width="60%" style="display: block; margin: auto;" /></p>
-<p>You can use the Data Access Form at the top of the page to select data and download, or we can streamline this and use R to accomplish this easily. In order to do this, we just need the <code>rerddap</code> package.</p>
+<p>You can use the <em>Data Access Form</em> at the top of the page to select data and download, <em>or</em> we can streamline this and use R to accomplish this task. In order to do this, we just need the <code>rerddap</code> package.</p>
+<div id="rerddap" class="section level3">
+<h3><span class="header-section-number">15.2.1</span> <code>rerddap</code></h3>
 <p><code>install.packages(&quot;rerddap&quot;)</code></p>
-<p><code>library(&quot;rerddap&quot;)</code></p>
-<div class="sourceCode" id="cb477"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb477-1" data-line-number="1">?rerddap</a></code></pre></div>
+<div class="sourceCode" id="cb477"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb477-1" data-line-number="1"><span class="kw">library</span>(<span class="st">&quot;rerddap&quot;</span>)</a></code></pre></div>
+<pre><code>## Registered S3 method overwritten by &#39;hoardr&#39;:
+##   method           from
+##   print.cache_info httr</code></pre>
+<div class="sourceCode" id="cb479"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb479-1" data-line-number="1">?rerddap</a></code></pre></div>
 <ul>
 <li>the list of servers <code>rerddap</code> knows about - <code>server()</code></li>
 <li>search an <span style="color:red">ERDDAP</span> server for terms - <code>ed_search(query, page = NULL, page_size = NULL, which = &quot;griddap&quot;, url = eurl(), ...)</code></li>
@@ -602,10 +624,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>extract data from a tabledap dataset - <code>tabledap(x, ..., fields = NULL, distinct = FALSE, orderby = NULL, orderbymax = NULL, orderbymin = NULL, orderbyminmax = NULL, units = NULL, url = eurl(), store = disk(), callopts = list())</code></li>
 </ul>
 <p>Be careful when using the functions <code>ed_search()</code> and <code>ed_datasets()</code>. The default <span style="color:red">ERDDAP</span> has over 9,000 datasets, most of which are grids, so that a list of all the gridded datasets can be quite long. A seemly reasonable search:</p>
+</div>
 <div id="finding-the-data-you-want" class="section level3">
-<h3><span class="header-section-number">15.2.1</span> Finding the Data You Want</h3>
-<p>The first way to find a dataset is to browse the builtin web page for a particular <span style="color:red">ERDDAP</span> server.
-A list of some of the public available <span style="color:red">ERDDAP</span> servers can be obtained from the <code>rerddap</code> command:</p>
+<h3><span class="header-section-number">15.2.2</span> Finding the Data You Want</h3>
+<p>The first way to find a dataset is to browse the built-in web page for a particular <span style="color:red">ERDDAP</span> server.
+A list of some of the publicly available <span style="color:red">ERDDAP</span> servers can be obtained from the <code>rerddap</code> command:</p>
 <pre><code>servers()
 #&gt;                                                                                             name
 #&gt; 1                                                          Marine Domain Awareness (MDA) - Italy
@@ -648,108 +671,58 @@ A list of some of the public available <span style="color:red">ERDDAP</span> ser
 <li>Think about what you are going to do.</li>
 <li>Make the request for the data (<code>rerddap::griddap()</code> or <code>rerddap::tabledap()</code> ).</li>
 </ol>
-<p><code>rerddap::tabledap()</code> - Point datasets, like buoy data or weather station.</p>
-<p>Here is an example of this…</p>
-<div class="sourceCode" id="cb479"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb479-1" data-line-number="1">whichBUOYS &lt;-<span class="st"> </span>rerddap<span class="op">::</span><span class="kw">ed_search</span>(<span class="dt">query =</span> <span class="st">&quot;buoy&quot;</span>)</a></code></pre></div>
-<pre><code>## Registered S3 method overwritten by &#39;hoardr&#39;:
-##   method           from
-##   print.cache_info httr</code></pre>
-<p>NOAA’s National Data Buoy Center (NDBC) collects world-wide data from buoys in the ocean. Let’s browse that dataset by entering this into the R console</p>
+</div>
+<div id="tabledap" class="section level3">
+<h3><span class="header-section-number">15.2.3</span> Tabledap</h3>
+<p><code>rerddap::tabledap()</code> - Useful for downloading <strong>point datasets</strong>, like buoy data or weather station. Here is an example of finding datasets that contain the word <code>buoy</code>…</p>
+<div class="sourceCode" id="cb481"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb481-1" data-line-number="1">whichBUOYS &lt;-<span class="st"> </span>rerddap<span class="op">::</span><span class="kw">ed_search</span>(<span class="dt">query =</span> <span class="st">&quot;buoy&quot;</span>)</a></code></pre></div>
+<p>Although it may not show up in printed search results, within the lower portions of these results is a Dataset ID called <code>cwwcNDBCMet</code>. The <code>rerddap</code> package has referenced this <code>Dataset ID</code> to NOAA’s National Data Buoy Center (NDBC) which collects buoy data from around the world. We can browse this dataset using the <code>browse()</code> function, which takes an argument of a recognized <code>Dataset ID</code>.</p>
 <p><code>rerddap::browse('cwwcNDBCMet')</code></p>
 <p>That’s the ERDDAP site that we’re going to pull data from…</p>
-<div class="sourceCode" id="cb481"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb481-1" data-line-number="1"><span class="kw">library</span>(rerddap)</a>
-<a class="sourceLine" id="cb481-2" data-line-number="2"><span class="kw">library</span>(ggplot2)</a>
-<a class="sourceLine" id="cb481-3" data-line-number="3"><span class="kw">library</span>(mapdata)</a>
-<a class="sourceLine" id="cb481-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb481-5" data-line-number="5"><span class="kw">info</span>(<span class="st">&#39;cwwcNDBCMet&#39;</span>)</a></code></pre></div>
-<pre><code>## &lt;ERDDAP info&gt; cwwcNDBCMet 
-##  Base URL: https://upwell.pfeg.noaa.gov/erddap/ 
-##  Dataset Type: tabledap 
-##  Variables:  
-##      apd: 
-##          Range: 0.0, 95.0 
-##          Units: s 
-##      atmp: 
-##          Range: -153.4, 50.0 
-##          Units: degree_C 
-##      bar: 
-##          Range: 800.7, 1198.8 
-##          Units: hPa 
-##      dewp: 
-##          Range: -99.9, 48.7 
-##          Units: degree_C 
-##      dpd: 
-##          Range: 0.0, 64.0 
-##          Units: s 
-##      gst: 
-##          Range: 0.0, 75.5 
-##          Units: m s-1 
-##      latitude: 
-##          Range: -55.0, 71.758 
-##          Units: degrees_north 
-##      longitude: 
-##          Range: -177.75, 179.001 
-##          Units: degrees_east 
-##      mwd: 
-##          Range: 0, 359 
-##          Units: degrees_true 
-##      ptdy: 
-##          Range: -14.2, 14.0 
-##          Units: hPa 
-##      station: 
-##      tide: 
-##          Range: -9.37, 6.13 
-##          Units: m 
-##      time: 
-##          Range: 4910400.0, 1.61184456E9 
-##          Units: seconds since 1970-01-01T00:00:00Z 
-##      vis: 
-##          Range: 0.0, 66.7 
-##          Units: km 
-##      wd: 
-##          Range: 0, 359 
-##          Units: degrees_true 
-##      wspd: 
-##          Range: 0.0, 96.0 
-##          Units: m s-1 
-##      wspu: 
-##          Range: -98.7, 97.5 
-##          Units: m s-1 
-##      wspv: 
-##          Range: -98.7, 97.5 
-##          Units: m s-1 
-##      wtmp: 
-##          Range: -98.7, 50.0 
-##          Units: degree_C 
-##      wvht: 
-##          Range: 0.0, 92.39 
-##          Units: m</code></pre>
-<div class="sourceCode" id="cb483"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb483-1" data-line-number="1">BuoysInfo &lt;-<span class="st"> </span><span class="kw">info</span>(<span class="st">&#39;cwwcNDBCMet&#39;</span>)</a>
-<a class="sourceLine" id="cb483-2" data-line-number="2">locationBuoys &lt;-<span class="st"> </span><span class="kw">tabledap</span>(BuoysInfo, <span class="dt">distinct =</span> <span class="ot">TRUE</span>, <span class="dt">fields =</span> <span class="kw">c</span>(<span class="st">&quot;station&quot;</span>, <span class="st">&quot;longitude&quot;</span>, <span class="st">&quot;latitude&quot;</span>), <span class="st">&quot;longitude&gt;=-76&quot;</span>, <span class="st">&quot;longitude&lt;=-74&quot;</span>, <span class="st">&quot;latitude&gt;=38&quot;</span>, <span class="st">&quot;latitude&lt;=40&quot;</span>)</a></code></pre></div>
-<pre><code>## info() output passed to x; setting base url to: https://upwell.pfeg.noaa.gov/erddap/</code></pre>
-<div class="sourceCode" id="cb485"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb485-1" data-line-number="1">locationBuoys =<span class="st"> </span>locationBuoys[<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>,]</a>
-<a class="sourceLine" id="cb485-2" data-line-number="2">locationBuoys<span class="op">$</span>latitude &lt;-<span class="st"> </span><span class="kw">as.numeric</span>(locationBuoys<span class="op">$</span>latitude)</a>
-<a class="sourceLine" id="cb485-3" data-line-number="3">locationBuoys<span class="op">$</span>longitude &lt;-<span class="st"> </span><span class="kw">as.numeric</span>(locationBuoys<span class="op">$</span>longitude)</a>
-<a class="sourceLine" id="cb485-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb485-5" data-line-number="5"></a>
-<a class="sourceLine" id="cb485-6" data-line-number="6">xlim &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="op">-</span><span class="dv">76</span>, <span class="dv">-74</span>)</a>
-<a class="sourceLine" id="cb485-7" data-line-number="7">ylim &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">38</span>, <span class="dv">40</span>)</a>
-<a class="sourceLine" id="cb485-8" data-line-number="8">coast &lt;-<span class="st"> </span><span class="kw">map_data</span>(<span class="st">&quot;worldHires&quot;</span>, <span class="dt">ylim =</span> ylim, <span class="dt">xlim =</span> xlim)</a>
-<a class="sourceLine" id="cb485-9" data-line-number="9"></a>
-<a class="sourceLine" id="cb485-10" data-line-number="10"><span class="kw">ggplot</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb485-11" data-line-number="11"><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">data =</span> locationBuoys, <span class="kw">aes</span>(<span class="dt">x =</span> longitude , <span class="dt">y =</span> latitude, <span class="dt">colour =</span> <span class="kw">factor</span>(station) )) <span class="op">+</span></a>
-<a class="sourceLine" id="cb485-12" data-line-number="12"><span class="st">  </span><span class="kw">geom_polygon</span>(<span class="dt">data =</span> coast, <span class="kw">aes</span>(<span class="dt">x =</span> long, <span class="dt">y =</span> lat, <span class="dt">group =</span> group), <span class="dt">fill =</span> <span class="st">&quot;grey80&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb485-13" data-line-number="13"><span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;latitude&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">xlab</span>(<span class="st">&quot;longitude&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb485-14" data-line-number="14"><span class="st">  </span><span class="kw">coord_fixed</span>(<span class="fl">1.3</span>, <span class="dt">xlim =</span> xlim, <span class="dt">ylim =</span> ylim) <span class="op">+</span></a>
-<a class="sourceLine" id="cb485-15" data-line-number="15"><span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Delaware Bay Buoys&quot;</span>)</a></code></pre></div>
-<p><img src="R_Geospatial_Sciences_files/figure-html/breakkkkkiiiiinnnnnnggggggg?????????-1.png" width="60%" style="display: block; margin: auto;" /></p>
-<p><code>rerddap::griddap()</code> - Gridded datasets, like sea surface temperature from GOES-R.</p>
-<div class="sourceCode" id="cb486"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb486-1" data-line-number="1">whichSST &lt;-<span class="st"> </span><span class="kw">ed_search</span>(<span class="dt">query =</span> <span class="st">&quot;SST&quot;</span>)</a></code></pre></div>
-<p>returns about 1000 responses. The more focused query:</p>
-<div class="sourceCode" id="cb487"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb487-1" data-line-number="1">whichSST &lt;-<span class="st"> </span><span class="kw">ed_search</span>(<span class="dt">query =</span> <span class="st">&quot;SST MODIS&quot;</span>)</a></code></pre></div>
-<p>still returns 172 responses. If the simple search doesn’t narrow things enough, look at the advanced search function <code>ed_search_adv()</code>.</p>
-<p>Let’s use this dataset - <a href="https://coastwatch.pfeg.noaa.gov/erddap/griddap/jplMURSST41.html" class="uri">https://coastwatch.pfeg.noaa.gov/erddap/griddap/jplMURSST41.html</a></p>
-<div class="sourceCode" id="cb488"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb488-1" data-line-number="1"><span class="kw">info</span>(<span class="st">&#39;jplMURSST41&#39;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb482"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb482-1" data-line-number="1"><span class="kw">library</span>(rerddap)</a>
+<a class="sourceLine" id="cb482-2" data-line-number="2"><span class="kw">library</span>(ggplot2)</a>
+<a class="sourceLine" id="cb482-3" data-line-number="3"><span class="kw">library</span>(mapdata)</a>
+<a class="sourceLine" id="cb482-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb482-5" data-line-number="5"><span class="co"># obtain the info of this Dataset ID</span></a>
+<a class="sourceLine" id="cb482-6" data-line-number="6"><span class="kw">info</span>(<span class="st">&#39;cwwcNDBCMet&#39;</span>)</a>
+<a class="sourceLine" id="cb482-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb482-8" data-line-number="8"><span class="co"># save the info</span></a>
+<a class="sourceLine" id="cb482-9" data-line-number="9">BuoysInfo &lt;-<span class="st"> </span><span class="kw">info</span>(<span class="st">&#39;cwwcNDBCMet&#39;</span>)</a>
+<a class="sourceLine" id="cb482-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb482-11" data-line-number="11"><span class="co"># use the tabledap function to grab station, latitudes, and longitudes of the buoys within our bounding box</span></a>
+<a class="sourceLine" id="cb482-12" data-line-number="12">locationBuoys &lt;-<span class="st"> </span><span class="kw">tabledap</span>(BuoysInfo, <span class="dt">distinct =</span> <span class="ot">TRUE</span>, <span class="dt">fields =</span> <span class="kw">c</span>(<span class="st">&quot;station&quot;</span>, <span class="st">&quot;longitude&quot;</span>, <span class="st">&quot;latitude&quot;</span>), <span class="st">&quot;longitude&gt;=-76&quot;</span>, <span class="st">&quot;longitude&lt;=-74&quot;</span>, <span class="st">&quot;latitude&gt;=38&quot;</span>, <span class="st">&quot;latitude&lt;=40&quot;</span>)</a>
+<a class="sourceLine" id="cb482-13" data-line-number="13"></a>
+<a class="sourceLine" id="cb482-14" data-line-number="14"><span class="co"># subset to the top 4 buoys</span></a>
+<a class="sourceLine" id="cb482-15" data-line-number="15">locationBuoys =<span class="st"> </span>locationBuoys[<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>,]</a>
+<a class="sourceLine" id="cb482-16" data-line-number="16"></a>
+<a class="sourceLine" id="cb482-17" data-line-number="17"><span class="co"># convert the lat/lons from character to numeric</span></a>
+<a class="sourceLine" id="cb482-18" data-line-number="18">locationBuoys<span class="op">$</span>latitude &lt;-<span class="st"> </span><span class="kw">as.numeric</span>(locationBuoys<span class="op">$</span>latitude)</a>
+<a class="sourceLine" id="cb482-19" data-line-number="19">locationBuoys<span class="op">$</span>longitude &lt;-<span class="st"> </span><span class="kw">as.numeric</span>(locationBuoys<span class="op">$</span>longitude)</a>
+<a class="sourceLine" id="cb482-20" data-line-number="20"></a>
+<a class="sourceLine" id="cb482-21" data-line-number="21"><span class="co"># create our limits aka the bounding geographic box</span></a>
+<a class="sourceLine" id="cb482-22" data-line-number="22">xlim &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="op">-</span><span class="dv">76</span>, <span class="dv">-74</span>)</a>
+<a class="sourceLine" id="cb482-23" data-line-number="23">ylim &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">38</span>, <span class="dv">40</span>)</a>
+<a class="sourceLine" id="cb482-24" data-line-number="24"></a>
+<a class="sourceLine" id="cb482-25" data-line-number="25"><span class="co"># save map data of the bounding box to use in ggplot2</span></a>
+<a class="sourceLine" id="cb482-26" data-line-number="26">coast &lt;-<span class="st"> </span><span class="kw">map_data</span>(<span class="st">&quot;worldHires&quot;</span>, <span class="dt">ylim =</span> ylim, <span class="dt">xlim =</span> xlim)</a>
+<a class="sourceLine" id="cb482-27" data-line-number="27"></a>
+<a class="sourceLine" id="cb482-28" data-line-number="28"><span class="co"># plot with ggplot2</span></a>
+<a class="sourceLine" id="cb482-29" data-line-number="29"><span class="kw">ggplot</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb482-30" data-line-number="30"><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">data =</span> locationBuoys, <span class="kw">aes</span>(<span class="dt">x =</span> longitude , <span class="dt">y =</span> latitude, <span class="dt">colour =</span> <span class="kw">factor</span>(station) )) <span class="op">+</span></a>
+<a class="sourceLine" id="cb482-31" data-line-number="31"><span class="st">  </span><span class="kw">geom_polygon</span>(<span class="dt">data =</span> coast, <span class="kw">aes</span>(<span class="dt">x =</span> long, <span class="dt">y =</span> lat, <span class="dt">group =</span> group), <span class="dt">fill =</span> <span class="st">&quot;grey80&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb482-32" data-line-number="32"><span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;latitude&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">xlab</span>(<span class="st">&quot;longitude&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb482-33" data-line-number="33"><span class="st">  </span><span class="kw">coord_fixed</span>(<span class="fl">1.3</span>, <span class="dt">xlim =</span> xlim, <span class="dt">ylim =</span> ylim) <span class="op">+</span></a>
+<a class="sourceLine" id="cb482-34" data-line-number="34"><span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Delaware Bay Buoys&quot;</span>)</a></code></pre></div>
+<p><img src="images/buoys.png" width="60%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="griddap" class="section level3">
+<h3><span class="header-section-number">15.2.4</span> Griddap</h3>
+<p><code>rerddap::griddap()</code> - Useful for downloading <strong>spatial datasets</strong>, like sea surface temperature for the Atlantic Ocean.</p>
+<div class="sourceCode" id="cb483"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb483-1" data-line-number="1">whichSST &lt;-<span class="st"> </span><span class="kw">ed_search</span>(<span class="dt">query =</span> <span class="st">&quot;SST&quot;</span>)</a></code></pre></div>
+<p>returns about 1000 responses. Let’s use a more focused query search of <code>SST MUR</code> - MUR is a reanlysis sea surface temperature product that has SST data for the entire world.</p>
+<div class="sourceCode" id="cb484"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb484-1" data-line-number="1">whichSST &lt;-<span class="st"> </span><span class="kw">ed_search</span>(<span class="dt">query =</span> <span class="st">&quot;SST MUR&quot;</span>)</a></code></pre></div>
+<p>Awesome - let’s use the dataset_id of <code>jplMURSST41</code> !</p>
+<div class="sourceCode" id="cb485"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb485-1" data-line-number="1"><span class="kw">info</span>(<span class="st">&#39;jplMURSST41&#39;</span>)</a></code></pre></div>
 <pre><code>## &lt;ERDDAP info&gt; jplMURSST41 
 ##  Base URL: https://upwell.pfeg.noaa.gov/erddap/ 
 ##  Dataset Type: griddap 
@@ -766,62 +739,82 @@ A list of some of the public available <span style="color:red">ERDDAP</span> ser
 ##      sea_ice_fraction: 
 ##          Units: 1</code></pre>
 <p>Alright, let’s extract some of this data and plot it. For this, we can use ‘last’ for the latest time instead of plugging in a time string.</p>
-<div class="sourceCode" id="cb490"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb490-1" data-line-number="1"><span class="kw">require</span>(<span class="st">&quot;ggplot2&quot;</span>)</a>
-<a class="sourceLine" id="cb490-2" data-line-number="2"><span class="kw">require</span>(<span class="st">&quot;mapdata&quot;</span>)</a>
-<a class="sourceLine" id="cb490-3" data-line-number="3"><span class="kw">require</span>(<span class="st">&quot;rerddap&quot;</span>)</a>
-<a class="sourceLine" id="cb490-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb490-5" data-line-number="5"><span class="co"># grab the latest MUR SST info</span></a>
-<a class="sourceLine" id="cb490-6" data-line-number="6">sstInfo &lt;-<span class="st"> </span><span class="kw">info</span>(<span class="st">&#39;jplMURSST41&#39;</span>)</a>
-<a class="sourceLine" id="cb490-7" data-line-number="7"><span class="co"># get latest daily sst</span></a>
-<a class="sourceLine" id="cb490-8" data-line-number="8">murSST &lt;-<span class="st"> </span><span class="kw">griddap</span>(sstInfo, <span class="dt">latitude =</span> <span class="kw">c</span>(<span class="dv">30</span>, <span class="dv">45</span>), <span class="dt">longitude =</span> <span class="kw">c</span>(<span class="op">-</span><span class="fl">80.</span>, <span class="dv">-70</span>), <span class="dt">time =</span> <span class="kw">c</span>(<span class="st">&#39;last&#39;</span>,<span class="st">&#39;last&#39;</span>), <span class="dt">fields =</span> <span class="st">&#39;analysed_sst&#39;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb487"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb487-1" data-line-number="1"><span class="kw">require</span>(<span class="st">&quot;ggplot2&quot;</span>)</a>
+<a class="sourceLine" id="cb487-2" data-line-number="2"><span class="kw">require</span>(<span class="st">&quot;mapdata&quot;</span>)</a></code></pre></div>
+<pre><code>## Loading required package: mapdata</code></pre>
+<div class="sourceCode" id="cb489"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb489-1" data-line-number="1"><span class="kw">require</span>(<span class="st">&quot;rerddap&quot;</span>)</a>
+<a class="sourceLine" id="cb489-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb489-3" data-line-number="3"><span class="co"># grab the latest MUR SST info</span></a>
+<a class="sourceLine" id="cb489-4" data-line-number="4">sstInfo &lt;-<span class="st"> </span><span class="kw">info</span>(<span class="st">&#39;jplMURSST41&#39;</span>)</a>
+<a class="sourceLine" id="cb489-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb489-6" data-line-number="6"><span class="co"># get latest daily sst with griddap</span></a>
+<a class="sourceLine" id="cb489-7" data-line-number="7">murSST &lt;-<span class="st"> </span><span class="kw">griddap</span>(sstInfo, <span class="dt">latitude =</span> <span class="kw">c</span>(<span class="dv">30</span>, <span class="dv">45</span>), <span class="dt">longitude =</span> <span class="kw">c</span>(<span class="op">-</span><span class="fl">80.</span>, <span class="dv">-70</span>), <span class="dt">time =</span> <span class="kw">c</span>(<span class="st">&#39;last&#39;</span>,<span class="st">&#39;last&#39;</span>), <span class="dt">fields =</span> <span class="st">&#39;analysed_sst&#39;</span>)</a></code></pre></div>
 <pre><code>## info() output passed to x; setting base url to: https://upwell.pfeg.noaa.gov/erddap/</code></pre>
-<div class="sourceCode" id="cb492"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb492-1" data-line-number="1">mycolor &lt;-<span class="st"> </span>colors<span class="op">$</span>temperature</a>
-<a class="sourceLine" id="cb492-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb492-3" data-line-number="3">w &lt;-<span class="st"> </span><span class="kw">map_data</span>(<span class="st">&quot;worldHires&quot;</span>, <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">30</span>, <span class="dv">45</span>), <span class="dt">xlim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="fl">80.</span>, <span class="dv">-70</span>))</a>
-<a class="sourceLine" id="cb492-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb492-5" data-line-number="5"><span class="kw">ggplot</span>(<span class="dt">data =</span> murSST<span class="op">$</span>data, <span class="kw">aes</span>(<span class="dt">x =</span> lon, <span class="dt">y =</span> lat, <span class="dt">fill =</span> analysed_sst)) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb492-6" data-line-number="6"><span class="st">    </span><span class="kw">geom_polygon</span>(<span class="dt">data =</span> w, <span class="kw">aes</span>(<span class="dt">x =</span> long, <span class="dt">y =</span> lat, <span class="dt">group =</span> group), <span class="dt">fill =</span> <span class="st">&quot;grey80&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb492-7" data-line-number="7"><span class="st">    </span><span class="kw">geom_raster</span>(<span class="dt">interpolate =</span> <span class="ot">FALSE</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb492-8" data-line-number="8"><span class="st">    </span><span class="kw">scale_fill_gradientn</span>(<span class="dt">colours =</span> mycolor, <span class="dt">na.value =</span> <span class="ot">NA</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb492-9" data-line-number="9"><span class="st">    </span><span class="kw">theme_bw</span>() <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;latitude&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">xlab</span>(<span class="st">&quot;longitude&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb492-10" data-line-number="10"><span class="st">    </span><span class="kw">coord_fixed</span>(<span class="fl">1.3</span>, <span class="dt">xlim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">80</span>, <span class="dv">-70</span>),  <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">30</span>, <span class="dv">45</span>)) <span class="op">+</span><span class="st"> </span><span class="kw">ggtitle</span>(<span class="st">&quot;Latest MUR SST&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb491"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb491-1" data-line-number="1"><span class="co"># select colors from rerddap color palettes</span></a>
+<a class="sourceLine" id="cb491-2" data-line-number="2">mycolor &lt;-<span class="st"> </span>colors<span class="op">$</span>temperature</a>
+<a class="sourceLine" id="cb491-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb491-4" data-line-number="4"><span class="co"># grab boundary data from our limits</span></a>
+<a class="sourceLine" id="cb491-5" data-line-number="5">w &lt;-<span class="st"> </span><span class="kw">map_data</span>(<span class="st">&quot;worldHires&quot;</span>, <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">30</span>, <span class="dv">45</span>), <span class="dt">xlim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="fl">80.</span>, <span class="dv">-70</span>))</a>
+<a class="sourceLine" id="cb491-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb491-7" data-line-number="7"><span class="co"># plot</span></a>
+<a class="sourceLine" id="cb491-8" data-line-number="8"><span class="kw">ggplot</span>(<span class="dt">data =</span> murSST<span class="op">$</span>data, <span class="kw">aes</span>(<span class="dt">x =</span> lon, <span class="dt">y =</span> lat, <span class="dt">fill =</span> analysed_sst)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb491-9" data-line-number="9"><span class="st">    </span><span class="kw">geom_polygon</span>(<span class="dt">data =</span> w, <span class="kw">aes</span>(<span class="dt">x =</span> long, <span class="dt">y =</span> lat, <span class="dt">group =</span> group), <span class="dt">fill =</span> <span class="st">&quot;grey80&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb491-10" data-line-number="10"><span class="st">    </span><span class="kw">geom_raster</span>(<span class="dt">interpolate =</span> <span class="ot">FALSE</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb491-11" data-line-number="11"><span class="st">    </span><span class="kw">scale_fill_gradientn</span>(<span class="dt">colours =</span> mycolor, <span class="dt">na.value =</span> <span class="ot">NA</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb491-12" data-line-number="12"><span class="st">    </span><span class="kw">theme_bw</span>() <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;latitude&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">xlab</span>(<span class="st">&quot;longitude&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb491-13" data-line-number="13"><span class="st">    </span><span class="kw">coord_fixed</span>(<span class="fl">1.3</span>, <span class="dt">xlim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">80</span>, <span class="dv">-70</span>),  <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">30</span>, <span class="dv">45</span>)) <span class="op">+</span><span class="st"> </span><span class="kw">ggtitle</span>(<span class="st">&quot;Latest MUR SST&quot;</span>)</a></code></pre></div>
 <p><img src="R_Geospatial_Sciences_files/figure-html/can%20we%20get%20to%20this%20oneeeeeeeeeeeeeeee-1.png" width="60%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="custom-erddap-url" class="section level3">
+<h3><span class="header-section-number">15.2.5</span> Custom ERDDAP URL</h3>
 <p>What if we want to use a custom URL that’s not pre-loaded into <code>rerddap</code> ? Let’s use Ireland’s Marine Institute ERDDAP. Follow these steps:</p>
 <ol style="list-style-type: decimal">
 <li>Go to <a href="http://erddap.marine.ie/erddap/" class="uri">http://erddap.marine.ie/erddap/</a> and select datasets</li>
-<li>Look to the far right column named Dataset ID</li>
-<li>Locate this ID - <code>IMI_NEATL</code></li>
+<li>Look to the far right column named <strong>Dataset ID</strong></li>
+<li>Locate this Dataset ID - <code>IMI_NEATL</code></li>
 <li>Select Graph under ‘Make a Graph’ Column for that Dataset ID</li>
 <li>Look at the variables - see <code>sea_surface_temperature</code></li>
 </ol>
-<div class="sourceCode" id="cb493"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb493-1" data-line-number="1">urlBase &lt;-<span class="st"> &quot;http://erddap.marine.ie/erddap/&quot;</span></a>
-<a class="sourceLine" id="cb493-2" data-line-number="2">parameter &lt;-<span class="st"> &quot;sea_surface_temperature&quot;</span></a>
-<a class="sourceLine" id="cb493-3" data-line-number="3">sstTimes &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;last&quot;</span>, <span class="st">&quot;last&quot;</span>)</a>
-<a class="sourceLine" id="cb493-4" data-line-number="4">sstLats &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">48.00625</span>, <span class="fl">57.50625</span>)</a>
-<a class="sourceLine" id="cb493-5" data-line-number="5">sstLons &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="op">-</span><span class="fl">17.99375</span>, <span class="fl">-1.00625</span>)</a>
-<a class="sourceLine" id="cb493-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb493-7" data-line-number="7">xlim &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="op">-</span><span class="fl">17.99375</span>, <span class="fl">-1.00625</span>)</a>
-<a class="sourceLine" id="cb493-8" data-line-number="8">ylim &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">48.00625</span>, <span class="fl">57.50625</span>)</a>
-<a class="sourceLine" id="cb493-9" data-line-number="9"></a>
-<a class="sourceLine" id="cb493-10" data-line-number="10">dataInfo &lt;-<span class="st"> </span>rerddap<span class="op">::</span><span class="kw">info</span>(<span class="st">&quot;IMI_NEATL&quot;</span>, <span class="dt">url =</span> urlBase)</a>
-<a class="sourceLine" id="cb493-11" data-line-number="11">NAtlsst &lt;-<span class="st"> </span><span class="kw">griddap</span>(dataInfo, <span class="dt">longitude =</span> sstLons, <span class="dt">latitude =</span> sstLats, <span class="dt">time =</span> sstTimes, <span class="dt">fields =</span> parameter, <span class="dt">url =</span> urlBase)</a></code></pre></div>
+<div class="sourceCode" id="cb492"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb492-1" data-line-number="1"><span class="co"># define the base URL </span></a>
+<a class="sourceLine" id="cb492-2" data-line-number="2">urlBase &lt;-<span class="st"> &quot;http://erddap.marine.ie/erddap/&quot;</span></a>
+<a class="sourceLine" id="cb492-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb492-4" data-line-number="4"><span class="co"># select Dataset ID from the URL</span></a>
+<a class="sourceLine" id="cb492-5" data-line-number="5">dataInfo &lt;-<span class="st"> </span>rerddap<span class="op">::</span><span class="kw">info</span>(<span class="st">&quot;IMI_NEATL&quot;</span>, <span class="dt">url =</span> urlBase)</a>
+<a class="sourceLine" id="cb492-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb492-7" data-line-number="7"><span class="co"># define parameters</span></a>
+<a class="sourceLine" id="cb492-8" data-line-number="8">parameter &lt;-<span class="st"> &quot;sea_surface_temperature&quot;</span></a>
+<a class="sourceLine" id="cb492-9" data-line-number="9">sstTimes &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;last&quot;</span>, <span class="st">&quot;last&quot;</span>)</a>
+<a class="sourceLine" id="cb492-10" data-line-number="10">sstLats &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">48.00625</span>, <span class="fl">57.50625</span>)</a>
+<a class="sourceLine" id="cb492-11" data-line-number="11">sstLons &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="op">-</span><span class="fl">17.99375</span>, <span class="fl">-1.00625</span>)</a>
+<a class="sourceLine" id="cb492-12" data-line-number="12"></a>
+<a class="sourceLine" id="cb492-13" data-line-number="13"><span class="co"># define limits</span></a>
+<a class="sourceLine" id="cb492-14" data-line-number="14">xlim &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="op">-</span><span class="fl">17.99375</span>, <span class="fl">-1.00625</span>)</a>
+<a class="sourceLine" id="cb492-15" data-line-number="15">ylim &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">48.00625</span>, <span class="fl">57.50625</span>)</a>
+<a class="sourceLine" id="cb492-16" data-line-number="16"></a>
+<a class="sourceLine" id="cb492-17" data-line-number="17"><span class="co"># use griddap to grab this gridded dataset</span></a>
+<a class="sourceLine" id="cb492-18" data-line-number="18">NAtlsst &lt;-<span class="st"> </span><span class="kw">griddap</span>(dataInfo, <span class="dt">longitude =</span> sstLons, <span class="dt">latitude =</span> sstLats, <span class="dt">time =</span> sstTimes, <span class="dt">fields =</span> parameter, <span class="dt">url =</span> urlBase)</a></code></pre></div>
 <pre><code>## info() output passed to x; setting base url to: http://erddap.marine.ie/erddap/</code></pre>
-<div class="sourceCode" id="cb495"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb495-1" data-line-number="1"><span class="kw">str</span>(NAtlsst<span class="op">$</span>data)</a></code></pre></div>
+<div class="sourceCode" id="cb494"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb494-1" data-line-number="1"><span class="kw">str</span>(NAtlsst<span class="op">$</span>data)</a></code></pre></div>
 <pre><code>## &#39;data.frame&#39;:    1034960 obs. of  4 variables:
 ##  $ time                   : chr  &quot;2021-01-25T00:00:00Z&quot; &quot;2021-01-25T00:00:00Z&quot; &quot;2021-01-25T00:00:00Z&quot; &quot;2021-01-25T00:00:00Z&quot; ...
 ##  $ lat                    : num  48 48 48 48 48 ...
 ##  $ lon                    : num  -18 -18 -18 -18 -17.9 ...
 ##  $ sea_surface_temperature: num  11.9 11.9 11.9 11.9 12.5 ...</code></pre>
-<div class="sourceCode" id="cb497"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb497-1" data-line-number="1">my.col &lt;-<span class="st"> </span>colors<span class="op">$</span>temperature </a>
-<a class="sourceLine" id="cb497-2" data-line-number="2">w &lt;-<span class="st"> </span><span class="kw">map_data</span>(<span class="st">&quot;worldHires&quot;</span>, <span class="dt">ylim =</span> ylim, <span class="dt">xlim =</span> xlim)</a>
-<a class="sourceLine" id="cb497-3" data-line-number="3">myplot &lt;-<span class="st"> </span><span class="kw">ggplot</span>() <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb497-4" data-line-number="4"><span class="st">    </span><span class="kw">geom_raster</span>(<span class="dt">data =</span> NAtlsst<span class="op">$</span>data, <span class="kw">aes</span>(<span class="dt">x =</span> lon, <span class="dt">y =</span> lat, <span class="dt">fill =</span> sea_surface_temperature), <span class="dt">interpolate =</span> <span class="ot">FALSE</span>) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb497-5" data-line-number="5"><span class="st">    </span><span class="kw">geom_polygon</span>(<span class="dt">data =</span> w, <span class="kw">aes</span>(<span class="dt">x =</span> long, <span class="dt">y =</span> lat, <span class="dt">group =</span> group), <span class="dt">fill =</span> <span class="st">&quot;grey80&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb497-6" data-line-number="6"><span class="st">    </span><span class="kw">theme_bw</span>() <span class="op">+</span><span class="st"> </span><span class="kw">scale_fill_gradientn</span>(<span class="dt">colours =</span> my.col, <span class="dt">na.value =</span> <span class="ot">NA</span>, <span class="dt">limits =</span> <span class="kw">c</span>(<span class="dv">5</span>,<span class="dv">15</span>), <span class="dt">name =</span> <span class="st">&quot;Temperature&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb497-7" data-line-number="7"><span class="st">    </span><span class="kw">ylab</span>(<span class="st">&quot;latitude&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">xlab</span>(<span class="st">&quot;longitude&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb497-8" data-line-number="8"><span class="st">    </span><span class="kw">coord_fixed</span>(<span class="fl">1.3</span>, <span class="dt">xlim =</span> xlim, <span class="dt">ylim =</span> ylim, <span class="dt">expand=</span><span class="ot">FALSE</span>) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb497-9" data-line-number="9"><span class="st">    </span><span class="kw">ggtitle</span>(<span class="kw">paste</span>(<span class="st">&quot;Sea Surface Temperature : &quot;</span>, NAtlsst<span class="op">$</span>data<span class="op">$</span>time[<span class="dv">1</span>]))</a>
-<a class="sourceLine" id="cb497-10" data-line-number="10">myplot</a></code></pre></div>
+<div class="sourceCode" id="cb496"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb496-1" data-line-number="1"><span class="co"># select the temperature colorbar from rerrdap</span></a>
+<a class="sourceLine" id="cb496-2" data-line-number="2">my.col &lt;-<span class="st"> </span>colors<span class="op">$</span>temperature </a>
+<a class="sourceLine" id="cb496-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb496-4" data-line-number="4"><span class="co"># grab map data for our domain</span></a>
+<a class="sourceLine" id="cb496-5" data-line-number="5">w &lt;-<span class="st"> </span><span class="kw">map_data</span>(<span class="st">&quot;worldHires&quot;</span>, <span class="dt">ylim =</span> ylim, <span class="dt">xlim =</span> xlim)</a>
+<a class="sourceLine" id="cb496-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb496-7" data-line-number="7"><span class="co">#  plot</span></a>
+<a class="sourceLine" id="cb496-8" data-line-number="8">myplot &lt;-<span class="st"> </span><span class="kw">ggplot</span>() <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb496-9" data-line-number="9"><span class="st">    </span><span class="kw">geom_raster</span>(<span class="dt">data =</span> NAtlsst<span class="op">$</span>data, <span class="kw">aes</span>(<span class="dt">x =</span> lon, <span class="dt">y =</span> lat, <span class="dt">fill =</span> sea_surface_temperature), <span class="dt">interpolate =</span> <span class="ot">FALSE</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb496-10" data-line-number="10"><span class="st">    </span><span class="kw">geom_polygon</span>(<span class="dt">data =</span> w, <span class="kw">aes</span>(<span class="dt">x =</span> long, <span class="dt">y =</span> lat, <span class="dt">group =</span> group), <span class="dt">fill =</span> <span class="st">&quot;grey80&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb496-11" data-line-number="11"><span class="st">    </span><span class="kw">theme_bw</span>() <span class="op">+</span><span class="st"> </span><span class="kw">scale_fill_gradientn</span>(<span class="dt">colours =</span> my.col, <span class="dt">na.value =</span> <span class="ot">NA</span>, <span class="dt">limits =</span> <span class="kw">c</span>(<span class="dv">5</span>,<span class="dv">15</span>), <span class="dt">name =</span> <span class="st">&quot;Temperature&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb496-12" data-line-number="12"><span class="st">    </span><span class="kw">ylab</span>(<span class="st">&quot;latitude&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">xlab</span>(<span class="st">&quot;longitude&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb496-13" data-line-number="13"><span class="st">    </span><span class="kw">coord_fixed</span>(<span class="fl">1.3</span>, <span class="dt">xlim =</span> xlim, <span class="dt">ylim =</span> ylim, <span class="dt">expand=</span><span class="ot">FALSE</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb496-14" data-line-number="14"><span class="st">    </span><span class="kw">ggtitle</span>(<span class="kw">paste</span>(<span class="st">&quot;Sea Surface Temperature : &quot;</span>, NAtlsst<span class="op">$</span>data<span class="op">$</span>time[<span class="dv">1</span>]))</a>
+<a class="sourceLine" id="cb496-15" data-line-number="15">myplot</a></code></pre></div>
 <p><img src="R_Geospatial_Sciences_files/figure-html/datttttttttttaaaaaaaaaaaaaaa-1.png" width="60%" style="display: block; margin: auto;" /></p>
 </div>
 </div>
@@ -831,12 +824,12 @@ A list of some of the public available <span style="color:red">ERDDAP</span> ser
 - R Code/Script
 - Images/Plots</p>
 <ol style="list-style-type: decimal">
-<li><p>Select any dataset from the THREDDS server and create a script that loads in the data and plots it. In your script explain why you chose that dataset, detail each step and describe why it’s happening, Turn in your R script and the Image/Plot you’ve made.</p></li>
-<li><p>Select any dataset from the ERDDAP server and create a script that loads in the data and plots it. In your script explain why you chose that dataset, detail each step and describe why it’s happening, Turn in your R script and the Image/Plot you’ve made.</p></li>
+<li><p>Select any dataset from any THREDDS server. Create a script that loads in desired data (specific lat/lons/time etc.) and plot it. In your script, explain why you chose that dataset, detail each step and describe what is happening. Turn in your <strong>R script and the Images/Plots you’ve made to UD Canvas</strong>.</p></li>
+<li><p>Select any dataset from any ERDDAP server. Create a script that loads in desired data (specific lat/lons/time etc.) and plot it. In your script, explain why you chose that dataset, detail each step and describe what is happening. Turn in your <strong>R script and the Images/Plots you’ve made to UD Canvas</strong>.</p></li>
 </ol>
 <div id="extra-credit---2-points-3" class="section level3">
 <h3><span class="header-section-number">15.3.1</span> Extra Credit - 2 Points</h3>
-<p>Find a dataset that uses TableDap’s instance of ERDDAP. This is a method for storing point data instead of spatial data. Create a routine that downloads and extracts data using the <code>tabledap()</code> function from rerddap</p>
+<p>Find a dataset that uses <code>TableDaps</code> instance of ERDDAP. Create a routine that downloads and extracts data using the <code>tabledap()</code> function from <code>rerddap</code></p>
 
 </div>
 </div>

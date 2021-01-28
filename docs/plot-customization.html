@@ -275,9 +275,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="14.5" data-path="shapefiles.html"><a href="shapefiles.html#assignment-7"><i class="fa fa-check"></i><b>14.5</b> Assignment</a></li>
 </ul></li>
 <li class="chapter" data-level="15" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html"><i class="fa fa-check"></i><b>15</b> Remote Data Extraction</a><ul>
-<li class="chapter" data-level="15.1" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#thredds"><i class="fa fa-check"></i><b>15.1</b> THREDDS</a></li>
+<li class="chapter" data-level="15.1" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#thredds"><i class="fa fa-check"></i><b>15.1</b> THREDDS</a><ul>
+<li class="chapter" data-level="15.1.1" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#opening-a-channel-to-the-database"><i class="fa fa-check"></i><b>15.1.1</b> Opening a Channel to the Database</a></li>
+<li class="chapter" data-level="15.1.2" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#indexing"><i class="fa fa-check"></i><b>15.1.2</b> Indexing</a></li>
+<li class="chapter" data-level="15.1.3" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#downloading-the-selected-data"><i class="fa fa-check"></i><b>15.1.3</b> Downloading the Selected Data</a></li>
+</ul></li>
 <li class="chapter" data-level="15.2" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#erddap"><i class="fa fa-check"></i><b>15.2</b> ERDDAP</a><ul>
-<li class="chapter" data-level="15.2.1" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#finding-the-data-you-want"><i class="fa fa-check"></i><b>15.2.1</b> Finding the Data You Want</a></li>
+<li class="chapter" data-level="15.2.1" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#rerddap"><i class="fa fa-check"></i><b>15.2.1</b> <code>rerddap</code></a></li>
+<li class="chapter" data-level="15.2.2" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#finding-the-data-you-want"><i class="fa fa-check"></i><b>15.2.2</b> Finding the Data You Want</a></li>
+<li class="chapter" data-level="15.2.3" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#tabledap"><i class="fa fa-check"></i><b>15.2.3</b> Tabledap</a></li>
+<li class="chapter" data-level="15.2.4" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#griddap"><i class="fa fa-check"></i><b>15.2.4</b> Griddap</a></li>
+<li class="chapter" data-level="15.2.5" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#custom-erddap-url"><i class="fa fa-check"></i><b>15.2.5</b> Custom ERDDAP URL</a></li>
 </ul></li>
 <li class="chapter" data-level="15.3" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#assignment-8"><i class="fa fa-check"></i><b>15.3</b> Assignment</a><ul>
 <li class="chapter" data-level="15.3.1" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#extra-credit---2-points-3"><i class="fa fa-check"></i><b>15.3.1</b> Extra Credit - 2 Points</a></li>
@@ -509,49 +517,49 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb254-4" data-line-number="4">I</a></code></pre></div>
 <pre><code>## InfStatus
 ##    Infected   Recovered Susceptible 
-##          23          15          12</code></pre>
+##          17          15          18</code></pre>
 <div class="sourceCode" id="cb256"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb256-1" data-line-number="1"><span class="co"># Now let&#39;s make a random sample of 3 genotypes (RR, Rr, and rr)</span></a>
 <a class="sourceLine" id="cb256-2" data-line-number="2">Genotype &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="kw">sample</span>(<span class="kw">c</span>(<span class="st">&quot;RR&quot;</span>, <span class="st">&quot;Rr&quot;</span>, <span class="st">&quot;rr&quot;</span>), <span class="dt">size =</span> <span class="dv">50</span>, <span class="dt">replace =</span> <span class="ot">TRUE</span>))</a>
 <a class="sourceLine" id="cb256-3" data-line-number="3">G &lt;-<span class="st"> </span><span class="kw">table</span>(Genotype)</a>
 <a class="sourceLine" id="cb256-4" data-line-number="4">G</a></code></pre></div>
 <pre><code>## Genotype
 ## rr Rr RR 
-## 20 15 15</code></pre>
+## 16 17 17</code></pre>
 <div class="sourceCode" id="cb258"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb258-1" data-line-number="1"><span class="co">#show genotype and infected status as a table </span></a>
 <a class="sourceLine" id="cb258-2" data-line-number="2"><span class="kw">table</span>(Genotype, InfStatus)</a></code></pre></div>
 <pre><code>##         InfStatus
 ## Genotype Infected Recovered Susceptible
-##       rr        8         7           5
-##       Rr        6         5           4
-##       RR        9         3           3</code></pre>
+##       rr        3         6           7
+##       Rr        8         4           5
+##       RR        6         5           6</code></pre>
 <p>Note - We turned the sample data info a <code>factor</code> to add <code>levels</code> (i.e. categories) of our test data.</p>
 <div class="sourceCode" id="cb260"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb260-1" data-line-number="1"><span class="co"># WITHOUT the factor</span></a>
 <a class="sourceLine" id="cb260-2" data-line-number="2">test &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="kw">c</span>(<span class="st">&quot;Susceptible&quot;</span>, <span class="st">&quot;Infected&quot;</span>, <span class="st">&quot;Recovered&quot;</span>),<span class="dt">size =</span> <span class="dv">50</span>, <span class="dt">replace =</span> <span class="ot">TRUE</span>)</a>
 <a class="sourceLine" id="cb260-3" data-line-number="3">test</a></code></pre></div>
-<pre><code>##  [1] &quot;Recovered&quot;   &quot;Susceptible&quot; &quot;Susceptible&quot; &quot;Susceptible&quot; &quot;Susceptible&quot;
-##  [6] &quot;Recovered&quot;   &quot;Recovered&quot;   &quot;Susceptible&quot; &quot;Susceptible&quot; &quot;Susceptible&quot;
-## [11] &quot;Susceptible&quot; &quot;Recovered&quot;   &quot;Infected&quot;    &quot;Susceptible&quot; &quot;Susceptible&quot;
-## [16] &quot;Recovered&quot;   &quot;Susceptible&quot; &quot;Recovered&quot;   &quot;Infected&quot;    &quot;Susceptible&quot;
-## [21] &quot;Recovered&quot;   &quot;Infected&quot;    &quot;Recovered&quot;   &quot;Susceptible&quot; &quot;Recovered&quot;  
-## [26] &quot;Susceptible&quot; &quot;Susceptible&quot; &quot;Infected&quot;    &quot;Infected&quot;    &quot;Infected&quot;   
-## [31] &quot;Infected&quot;    &quot;Infected&quot;    &quot;Infected&quot;    &quot;Recovered&quot;   &quot;Infected&quot;   
-## [36] &quot;Recovered&quot;   &quot;Susceptible&quot; &quot;Susceptible&quot; &quot;Infected&quot;    &quot;Susceptible&quot;
-## [41] &quot;Recovered&quot;   &quot;Susceptible&quot; &quot;Recovered&quot;   &quot;Susceptible&quot; &quot;Recovered&quot;  
-## [46] &quot;Susceptible&quot; &quot;Susceptible&quot; &quot;Susceptible&quot; &quot;Recovered&quot;   &quot;Susceptible&quot;</code></pre>
+<pre><code>##  [1] &quot;Infected&quot;    &quot;Susceptible&quot; &quot;Infected&quot;    &quot;Susceptible&quot; &quot;Infected&quot;   
+##  [6] &quot;Susceptible&quot; &quot;Recovered&quot;   &quot;Susceptible&quot; &quot;Recovered&quot;   &quot;Infected&quot;   
+## [11] &quot;Susceptible&quot; &quot;Susceptible&quot; &quot;Infected&quot;    &quot;Recovered&quot;   &quot;Infected&quot;   
+## [16] &quot;Recovered&quot;   &quot;Infected&quot;    &quot;Recovered&quot;   &quot;Susceptible&quot; &quot;Recovered&quot;  
+## [21] &quot;Susceptible&quot; &quot;Susceptible&quot; &quot;Recovered&quot;   &quot;Recovered&quot;   &quot;Infected&quot;   
+## [26] &quot;Susceptible&quot; &quot;Infected&quot;    &quot;Infected&quot;    &quot;Susceptible&quot; &quot;Susceptible&quot;
+## [31] &quot;Recovered&quot;   &quot;Recovered&quot;   &quot;Infected&quot;    &quot;Infected&quot;    &quot;Susceptible&quot;
+## [36] &quot;Susceptible&quot; &quot;Susceptible&quot; &quot;Infected&quot;    &quot;Susceptible&quot; &quot;Recovered&quot;  
+## [41] &quot;Infected&quot;    &quot;Susceptible&quot; &quot;Susceptible&quot; &quot;Infected&quot;    &quot;Susceptible&quot;
+## [46] &quot;Infected&quot;    &quot;Recovered&quot;   &quot;Infected&quot;    &quot;Infected&quot;    &quot;Infected&quot;</code></pre>
 <div class="sourceCode" id="cb262"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb262-1" data-line-number="1"><span class="kw">class</span>(test)</a></code></pre></div>
 <pre><code>## [1] &quot;character&quot;</code></pre>
 <div class="sourceCode" id="cb264"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb264-1" data-line-number="1"><span class="co"># Now as a factor</span></a>
 <a class="sourceLine" id="cb264-2" data-line-number="2">test2 &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="kw">sample</span>(<span class="kw">c</span>(<span class="st">&quot;Susceptible&quot;</span>, <span class="st">&quot;Infected&quot;</span>, <span class="st">&quot;Recovered&quot;</span>),<span class="dt">size =</span> <span class="dv">50</span>, <span class="dt">replace =</span> <span class="ot">TRUE</span>))</a>
 <a class="sourceLine" id="cb264-3" data-line-number="3">test2</a></code></pre></div>
-<pre><code>##  [1] Susceptible Infected    Susceptible Susceptible Susceptible Recovered  
-##  [7] Recovered   Recovered   Susceptible Susceptible Recovered   Recovered  
-## [13] Infected    Susceptible Infected    Infected    Susceptible Infected   
-## [19] Recovered   Recovered   Recovered   Susceptible Infected    Recovered  
-## [25] Susceptible Infected    Infected    Infected    Susceptible Recovered  
-## [31] Recovered   Recovered   Infected    Infected    Infected    Infected   
-## [37] Susceptible Recovered   Susceptible Recovered   Recovered   Recovered  
-## [43] Susceptible Infected    Recovered   Recovered   Recovered   Susceptible
-## [49] Susceptible Susceptible
+<pre><code>##  [1] Susceptible Recovered   Infected    Infected    Recovered   Susceptible
+##  [7] Infected    Recovered   Recovered   Susceptible Recovered   Infected   
+## [13] Recovered   Infected    Infected    Susceptible Recovered   Susceptible
+## [19] Infected    Infected    Recovered   Infected    Infected    Infected   
+## [25] Recovered   Infected    Infected    Infected    Recovered   Infected   
+## [31] Susceptible Infected    Infected    Infected    Infected    Infected   
+## [37] Susceptible Susceptible Recovered   Infected    Infected    Recovered  
+## [43] Recovered   Infected    Infected    Recovered   Infected    Susceptible
+## [49] Infected    Recovered  
 ## Levels: Infected Recovered Susceptible</code></pre>
 <div class="sourceCode" id="cb266"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb266-1" data-line-number="1"><span class="kw">class</span>(test2)</a></code></pre></div>
 <pre><code>## [1] &quot;factor&quot;</code></pre>
