@@ -155,14 +155,18 @@ writeOGR(obj = merged.coast, dsn = "/Users/james/Downloads/coast_files/merged.co
 
 ## Assignment
 
-Using the **ne_10m_parks_and_protected_lands** shapefile dataset, map the names of the protected lands (variable is `name`) in the **Pacific Northwest** using the methods listed below. You will need to download all of the contents of the **ne_10m_parks_and_protected_lands** shapefile folder. Below, a bounding lat/lon box of -127 W, -110 E, 40 S, 50 N was used for `tmap` plot and `ggplot` plot. You may use a bounding box of your choice where you see fit. Submit your plots to UD Canvas.
+Recreate the 3 plots below using:
 
 1) `tmap`
 2) `ggplot2`
 3) `mapview`
- 
 
-Create the 3 plots above and make them look as close as possible to the ones below. 
+Using the **ne_10m_parks_and_protected_lands** shapefile dataset, map the names of the protected lands. The file you'll need is called `ne_10m_parks_and_protected_lands_area.shp` and the variable you'll want to plot is called `name`. Plot this in the **Pacific Northwest** using the methods listed below. You will need to download all of the contents of the **ne_10m_parks_and_protected_lands** shapefile folder. Below, a bounding lat/lon box of -127 W, -110 E, 40 S, 50 N was used for `tmap` plot and `ggplot` plot. You may use a bounding box of your choice where you see fit. 
+The plots don't have to be exact, but get as close as you can. **Submit your plots to UD Canvas**.
+
+Hint - here's how I read in the dataset:
+ `m <- readOGR("/Users/james/Documents/Github/geog473-673/datasets/ne_10m_parks_and_protected_lands/ne_10m_parks_and_protected_lands_area.shp")`
+
 
 
 ```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.width=8, fig.height=8, fig.align='center'}

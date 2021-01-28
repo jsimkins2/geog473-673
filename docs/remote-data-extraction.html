@@ -24,7 +24,7 @@
 <meta name="author" content="James Simkins" />
 
 
-<meta name="date" content="2021-01-27" />
+<meta name="date" content="2021-01-28" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -371,9 +371,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>OPeNDAP (Open-source Project for a Network Data Access Protocol) is a great way to subselect the data. Opendap offers html files of the data (BAD IDEA, THIS WILL CRASH YOUR BROWSER) or netCDF files of the data (great idea)</p>
 <p><img src="images/basin_opendap.png" width="60%" style="display: block; margin: auto;" /></p>
 <p>Now you can use this page to download subset datasets, or we can make this really easy and use R to accomplish that task. This is a high temporal resolution dataset, so let’s say we want Delaware Bay data from July 14 - July 16, 2019. All we need to make this happen is the url of the opendap page - <a href="http://basin.ceoe.udel.edu/thredds/dodsC/GOESJPLSST.nc.html" class="uri">http://basin.ceoe.udel.edu/thredds/dodsC/GOESJPLSST.nc.html</a> - and the <code>ncdf4</code> package.</p>
-<div class="sourceCode" id="cb431"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb431-1" data-line-number="1"><span class="kw">library</span>(ncdf4)</a>
-<a class="sourceLine" id="cb431-2" data-line-number="2">goes.nc =<span class="st"> </span><span class="kw">nc_open</span>(<span class="st">&quot;http://basin.ceoe.udel.edu/thredds/dodsC/GOESJPLSST.nc&quot;</span>)</a>
-<a class="sourceLine" id="cb431-3" data-line-number="3">goes.nc</a></code></pre></div>
+<div class="sourceCode" id="cb430"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb430-1" data-line-number="1"><span class="kw">library</span>(ncdf4)</a>
+<a class="sourceLine" id="cb430-2" data-line-number="2">goes.nc =<span class="st"> </span><span class="kw">nc_open</span>(<span class="st">&quot;http://basin.ceoe.udel.edu/thredds/dodsC/GOESJPLSST.nc&quot;</span>)</a>
+<a class="sourceLine" id="cb430-3" data-line-number="3">goes.nc</a></code></pre></div>
 <pre><code>## File http://basin.ceoe.udel.edu/thredds/dodsC/GOESJPLSST.nc (NC_FORMAT_CLASSIC):
 ## 
 ##      8 variables (excluding dimension variables):
@@ -421,7 +421,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##         longitude  Size:2500
 ##             standard_name: longitude
 ##             units: degrees_east
-##         time  Size:26444
+##         time  Size:26467
 ##             standard_name: time
 ##             long_name: EPOCH Time
 ##             units: seconds since 1970-01-01T00:00:00Z
@@ -437,34 +437,34 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##         summary: NOAA/NESDIS/STAR GHRSST GOES16 SST product, fit to UDel ORB lab NW Atlantic extent, reprojected to EPSG:4326.
 ##         acknowledgement: These data were provided by Group for High Resolution Sea Surface Temperature (GHRSST) and the National Oceanic and Atmospheric Administration (NOAA)</code></pre>
 <p>Just with that one line of code, we’ve opened a connection with the GOES-R dataset on the THREDDS server. Printing the netcdf dataset provides some metadata info. Let’s use this metadata and extract the time period / spatial extent that we want.</p>
-<div class="sourceCode" id="cb433"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb433-1" data-line-number="1"><span class="co"># print out the names of the variables in our dataset</span></a>
-<a class="sourceLine" id="cb433-2" data-line-number="2"><span class="kw">names</span>(goes.nc<span class="op">$</span>var)</a></code></pre></div>
+<div class="sourceCode" id="cb432"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb432-1" data-line-number="1"><span class="co"># print out the names of the variables in our dataset</span></a>
+<a class="sourceLine" id="cb432-2" data-line-number="2"><span class="kw">names</span>(goes.nc<span class="op">$</span>var)</a></code></pre></div>
 <pre><code>## [1] &quot;projection&quot;              &quot;sea_surface_temperature&quot;
 ## [3] &quot;quality_level&quot;           &quot;dt_analysis&quot;            
 ## [5] &quot;satellite_zenith_angle&quot;  &quot;sses_bias&quot;              
 ## [7] &quot;sses_standard_deviation&quot; &quot;wind_speed&quot;</code></pre>
-<div class="sourceCode" id="cb435"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb435-1" data-line-number="1"><span class="co"># how is the time stored?</span></a>
-<a class="sourceLine" id="cb435-2" data-line-number="2">goes.nc<span class="op">$</span>dim<span class="op">$</span>time<span class="op">$</span>units</a></code></pre></div>
+<div class="sourceCode" id="cb434"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb434-1" data-line-number="1"><span class="co"># how is the time stored?</span></a>
+<a class="sourceLine" id="cb434-2" data-line-number="2">goes.nc<span class="op">$</span>dim<span class="op">$</span>time<span class="op">$</span>units</a></code></pre></div>
 <pre><code>## [1] &quot;seconds since 1970-01-01T00:00:00Z&quot;</code></pre>
 <p>Seconds since 1970-01-01 is referred to as <strong>EPOCH time</strong>. Basically, this datetime is considered the inception of the internet. Computers are very good at storing information in this format and this is why we use this. Let’s take out the last value -</p>
-<div class="sourceCode" id="cb437"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb437-1" data-line-number="1">lastVal =<span class="st"> </span><span class="kw">length</span>(goes.nc<span class="op">$</span>dim<span class="op">$</span>time<span class="op">$</span>vals)</a>
-<a class="sourceLine" id="cb437-2" data-line-number="2">lastVal</a></code></pre></div>
-<pre><code>## [1] 26444</code></pre>
-<div class="sourceCode" id="cb439"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb439-1" data-line-number="1">epoch_val =<span class="st"> </span>goes.nc<span class="op">$</span>dim<span class="op">$</span>time<span class="op">$</span>vals[lastVal]</a></code></pre></div>
+<div class="sourceCode" id="cb436"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb436-1" data-line-number="1">lastVal =<span class="st"> </span><span class="kw">length</span>(goes.nc<span class="op">$</span>dim<span class="op">$</span>time<span class="op">$</span>vals)</a>
+<a class="sourceLine" id="cb436-2" data-line-number="2">lastVal</a></code></pre></div>
+<pre><code>## [1] 26467</code></pre>
+<div class="sourceCode" id="cb438"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb438-1" data-line-number="1">epoch_val =<span class="st"> </span>goes.nc<span class="op">$</span>dim<span class="op">$</span>time<span class="op">$</span>vals[lastVal]</a></code></pre></div>
 <p>There you go, that’s an EPOCH time value. Let’s convert it to a human timestamp…</p>
-<div class="sourceCode" id="cb440"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb440-1" data-line-number="1">human_time =<span class="st"> </span><span class="kw">as.POSIXct</span>(epoch_val, <span class="dt">origin=</span><span class="st">&quot;1970-01-01&quot;</span>)</a>
-<a class="sourceLine" id="cb440-2" data-line-number="2">human_time</a></code></pre></div>
-<pre><code>## [1] &quot;2021-01-27 11:00:00 EST&quot;</code></pre>
+<div class="sourceCode" id="cb439"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb439-1" data-line-number="1">human_time =<span class="st"> </span><span class="kw">as.POSIXct</span>(epoch_val, <span class="dt">origin=</span><span class="st">&quot;1970-01-01&quot;</span>)</a>
+<a class="sourceLine" id="cb439-2" data-line-number="2">human_time</a></code></pre></div>
+<pre><code>## [1] &quot;2021-01-28 10:00:00 EST&quot;</code></pre>
 <p><code>as.POSIXct</code> is a datetime package in R. It is a gold standard and you’ll see it as you gain more experience in playing with datetime conversions. You can also use <code>anytime</code> package.</p>
-<div class="sourceCode" id="cb442"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb442-1" data-line-number="1"><span class="kw">library</span>(anytime)</a>
-<a class="sourceLine" id="cb442-2" data-line-number="2"><span class="kw">anytime</span>(epoch_val)</a></code></pre></div>
-<pre><code>## [1] &quot;2021-01-27 11:00:00 EST&quot;</code></pre>
+<div class="sourceCode" id="cb441"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb441-1" data-line-number="1"><span class="kw">library</span>(anytime)</a>
+<a class="sourceLine" id="cb441-2" data-line-number="2"><span class="kw">anytime</span>(epoch_val)</a></code></pre></div>
+<pre><code>## [1] &quot;2021-01-28 10:00:00 EST&quot;</code></pre>
 <p>At this point, all we have to do is convert our human dates to EPOCH so we can extract the data. In order to do this all we need to do is convert a datetime object to a numeric. R handles it for us…</p>
-<div class="sourceCode" id="cb444"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb444-1" data-line-number="1">start_time =<span class="st"> &quot;2019-07-14&quot;</span> <span class="co"># year dash month dash day</span></a>
-<a class="sourceLine" id="cb444-2" data-line-number="2">epoch_start_time =<span class="st"> </span><span class="kw">as.numeric</span>(<span class="kw">as.POSIXct</span>(start_time, <span class="dt">format=</span><span class="st">&quot;%Y-%m-%d&quot;</span>)) <span class="co"># %Y-%m-%d is telling the computer the format of our datestring is year dash month dash day</span></a>
-<a class="sourceLine" id="cb444-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb444-4" data-line-number="4">end_time =<span class="st"> &quot;2019-07-16&quot;</span> <span class="co"># year dash month dash day</span></a>
-<a class="sourceLine" id="cb444-5" data-line-number="5">epoch_end_time =<span class="st"> </span><span class="kw">as.numeric</span>(<span class="kw">as.POSIXct</span>(end_time, <span class="dt">format=</span><span class="st">&quot;%Y-%m-%d&quot;</span>)) <span class="co"># %Y-%m-%d is telling the computer the format of our datestring is year dash month dash day</span></a></code></pre></div>
+<div class="sourceCode" id="cb443"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb443-1" data-line-number="1">start_time =<span class="st"> &quot;2019-07-14&quot;</span> <span class="co"># year dash month dash day</span></a>
+<a class="sourceLine" id="cb443-2" data-line-number="2">epoch_start_time =<span class="st"> </span><span class="kw">as.numeric</span>(<span class="kw">as.POSIXct</span>(start_time, <span class="dt">format=</span><span class="st">&quot;%Y-%m-%d&quot;</span>)) <span class="co"># %Y-%m-%d is telling the computer the format of our datestring is year dash month dash day</span></a>
+<a class="sourceLine" id="cb443-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb443-4" data-line-number="4">end_time =<span class="st"> &quot;2019-07-16&quot;</span> <span class="co"># year dash month dash day</span></a>
+<a class="sourceLine" id="cb443-5" data-line-number="5">epoch_end_time =<span class="st"> </span><span class="kw">as.numeric</span>(<span class="kw">as.POSIXct</span>(end_time, <span class="dt">format=</span><span class="st">&quot;%Y-%m-%d&quot;</span>)) <span class="co"># %Y-%m-%d is telling the computer the format of our datestring is year dash month dash day</span></a></code></pre></div>
 <p>We have the time values converted to the format of the dataset, but now we need to find the index - i.e. where that value lies in the dataset. We can find this using this code…</p>
 <p><code>which.min(abs(array - value))</code></p>
 <p>Which reads as -</p>
@@ -472,75 +472,75 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><code>which.min()</code> - which value is the minimum of this array</li>
 <li><code>abs()</code> - absolute value - we take the absolute value because negative numbers confuse the math</li>
 </ul>
-<div class="sourceCode" id="cb445"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb445-1" data-line-number="1">index_start_time =<span class="st"> </span><span class="kw">which.min</span>(<span class="kw">abs</span>(goes.nc<span class="op">$</span>dim<span class="op">$</span>time<span class="op">$</span>vals <span class="op">-</span><span class="st"> </span>epoch_start_time))</a>
-<a class="sourceLine" id="cb445-2" data-line-number="2">index_start_time</a></code></pre></div>
+<div class="sourceCode" id="cb444"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb444-1" data-line-number="1">index_start_time =<span class="st"> </span><span class="kw">which.min</span>(<span class="kw">abs</span>(goes.nc<span class="op">$</span>dim<span class="op">$</span>time<span class="op">$</span>vals <span class="op">-</span><span class="st"> </span>epoch_start_time))</a>
+<a class="sourceLine" id="cb444-2" data-line-number="2">index_start_time</a></code></pre></div>
 <pre><code>## [1] 13384</code></pre>
 <p>That’s the index! This is just a big matching game essentially.</p>
-<div class="sourceCode" id="cb447"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb447-1" data-line-number="1">goes.nc<span class="op">$</span>dim<span class="op">$</span>time<span class="op">$</span>vals[index_start_time]</a></code></pre></div>
+<div class="sourceCode" id="cb446"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb446-1" data-line-number="1">goes.nc<span class="op">$</span>dim<span class="op">$</span>time<span class="op">$</span>vals[index_start_time]</a></code></pre></div>
 <pre><code>## [1] 1563076800</code></pre>
-<div class="sourceCode" id="cb449"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb449-1" data-line-number="1">epoch_start_time</a></code></pre></div>
+<div class="sourceCode" id="cb448"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb448-1" data-line-number="1">epoch_start_time</a></code></pre></div>
 <pre><code>## [1] 1563076800</code></pre>
 <p>Alright, we have our start time index! What about the latitudes and longitudes? We’ll need to find the index of the lat/lon grid we want. Delaware bay is approximately between -77W, -73W, 36N, and 42N.</p>
-<div class="sourceCode" id="cb451"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb451-1" data-line-number="1"><span class="co"># print out a few longitude values - notice that the entire dataset is on this grid right here. </span></a>
-<a class="sourceLine" id="cb451-2" data-line-number="2"><span class="kw">head</span>(goes.nc<span class="op">$</span>dim<span class="op">$</span>lon<span class="op">$</span>vals)</a></code></pre></div>
+<div class="sourceCode" id="cb450"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb450-1" data-line-number="1"><span class="co"># print out a few longitude values - notice that the entire dataset is on this grid right here. </span></a>
+<a class="sourceLine" id="cb450-2" data-line-number="2"><span class="kw">head</span>(goes.nc<span class="op">$</span>dim<span class="op">$</span>lon<span class="op">$</span>vals)</a></code></pre></div>
 <pre><code>## [1] -99.99001 -99.97000 -99.95000 -99.93000 -99.91000 -99.89000</code></pre>
-<div class="sourceCode" id="cb453"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb453-1" data-line-number="1"><span class="co"># notice how we extract those values using indexing - the 100th value </span></a>
-<a class="sourceLine" id="cb453-2" data-line-number="2">goes.nc<span class="op">$</span>dim<span class="op">$</span>lon<span class="op">$</span>vals[<span class="dv">100</span>]</a></code></pre></div>
+<div class="sourceCode" id="cb452"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb452-1" data-line-number="1"><span class="co"># notice how we extract those values using indexing - the 100th value </span></a>
+<a class="sourceLine" id="cb452-2" data-line-number="2">goes.nc<span class="op">$</span>dim<span class="op">$</span>lon<span class="op">$</span>vals[<span class="dv">100</span>]</a></code></pre></div>
 <pre><code>## [1] -98.01</code></pre>
 <p>The 100th <code>lon</code> value is <code>-98.20815</code>. Aka, a <code>lon</code> index of 100 returns <code>-98.20815</code>.</p>
 <p>So…which value is the minimum of the absolute value of the array of values minus the specific value? Let’s plug it in…</p>
-<div class="sourceCode" id="cb455"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb455-1" data-line-number="1">west_lon =<span class="st"> </span><span class="dv">-77</span></a>
-<a class="sourceLine" id="cb455-2" data-line-number="2">index_west_lon =<span class="st"> </span><span class="kw">which.min</span>(<span class="kw">abs</span>(goes.nc<span class="op">$</span>dim<span class="op">$</span>longitude<span class="op">$</span>vals <span class="op">-</span><span class="st"> </span>west_lon))</a>
-<a class="sourceLine" id="cb455-3" data-line-number="3">index_west_lon</a></code></pre></div>
+<div class="sourceCode" id="cb454"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb454-1" data-line-number="1">west_lon =<span class="st"> </span><span class="dv">-77</span></a>
+<a class="sourceLine" id="cb454-2" data-line-number="2">index_west_lon =<span class="st"> </span><span class="kw">which.min</span>(<span class="kw">abs</span>(goes.nc<span class="op">$</span>dim<span class="op">$</span>longitude<span class="op">$</span>vals <span class="op">-</span><span class="st"> </span>west_lon))</a>
+<a class="sourceLine" id="cb454-3" data-line-number="3">index_west_lon</a></code></pre></div>
 <pre><code>## [1] 1151</code></pre>
-<div class="sourceCode" id="cb457"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb457-1" data-line-number="1">goes.nc<span class="op">$</span>dim<span class="op">$</span>longitude<span class="op">$</span>vals[index_west_lon]</a></code></pre></div>
+<div class="sourceCode" id="cb456"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb456-1" data-line-number="1">goes.nc<span class="op">$</span>dim<span class="op">$</span>longitude<span class="op">$</span>vals[index_west_lon]</a></code></pre></div>
 <pre><code>## [1] -76.99001</code></pre>
 <p>So our desired <code>west_lon</code> is <code>-77</code>, and the closest value within our longitude array is <code>-76.99001</code>. Not bad…let’s run the rest.</p>
-<div class="sourceCode" id="cb459"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb459-1" data-line-number="1">east_lon =<span class="st"> </span><span class="dv">-73</span></a>
-<a class="sourceLine" id="cb459-2" data-line-number="2">index_east_lon =<span class="st"> </span><span class="kw">which.min</span>(<span class="kw">abs</span>(goes.nc<span class="op">$</span>dim<span class="op">$</span>longitude<span class="op">$</span>vals <span class="op">-</span><span class="st"> </span>east_lon))</a>
-<a class="sourceLine" id="cb459-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb459-4" data-line-number="4">north_lat =<span class="st"> </span><span class="dv">42</span></a>
-<a class="sourceLine" id="cb459-5" data-line-number="5">index_north_lat =<span class="st"> </span><span class="kw">which.min</span>(<span class="kw">abs</span>(goes.nc<span class="op">$</span>dim<span class="op">$</span>latitude<span class="op">$</span>vals <span class="op">-</span><span class="st"> </span>north_lat))</a>
-<a class="sourceLine" id="cb459-6" data-line-number="6">south_lat =<span class="st"> </span><span class="dv">36</span></a>
-<a class="sourceLine" id="cb459-7" data-line-number="7">index_south_lat =<span class="st"> </span><span class="kw">which.min</span>(<span class="kw">abs</span>(goes.nc<span class="op">$</span>dim<span class="op">$</span>latitude<span class="op">$</span>vals <span class="op">-</span><span class="st"> </span>south_lat))</a></code></pre></div>
+<div class="sourceCode" id="cb458"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb458-1" data-line-number="1">east_lon =<span class="st"> </span><span class="dv">-73</span></a>
+<a class="sourceLine" id="cb458-2" data-line-number="2">index_east_lon =<span class="st"> </span><span class="kw">which.min</span>(<span class="kw">abs</span>(goes.nc<span class="op">$</span>dim<span class="op">$</span>longitude<span class="op">$</span>vals <span class="op">-</span><span class="st"> </span>east_lon))</a>
+<a class="sourceLine" id="cb458-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb458-4" data-line-number="4">north_lat =<span class="st"> </span><span class="dv">42</span></a>
+<a class="sourceLine" id="cb458-5" data-line-number="5">index_north_lat =<span class="st"> </span><span class="kw">which.min</span>(<span class="kw">abs</span>(goes.nc<span class="op">$</span>dim<span class="op">$</span>latitude<span class="op">$</span>vals <span class="op">-</span><span class="st"> </span>north_lat))</a>
+<a class="sourceLine" id="cb458-6" data-line-number="6">south_lat =<span class="st"> </span><span class="dv">36</span></a>
+<a class="sourceLine" id="cb458-7" data-line-number="7">index_south_lat =<span class="st"> </span><span class="kw">which.min</span>(<span class="kw">abs</span>(goes.nc<span class="op">$</span>dim<span class="op">$</span>latitude<span class="op">$</span>vals <span class="op">-</span><span class="st"> </span>south_lat))</a></code></pre></div>
 <p>Everything is indexed! Now we can use these indexes to extract the exact data that we want via <code>ncvar_get</code> from the <code>ncdf4</code> package. We can enter in arguments named <code>start</code> and <code>count</code>. This tells <code>ncvar_get</code> at what space / time to <strong>start</strong> grabbing values. <code>count</code> tells <code>ncvar_get</code> how long to <code>count</code> in space / time. For example, if the resolution of our data is hourly and we start at <code>12:00:00</code> and the count is <code>4</code>, that means we grab data at <code>12:00:00 , 13:00:00 , 14:00:00 , 15:00:00 , 16:00:00</code>. The same goes for <code>lat</code> and <code>lon</code> - the count all depends on <strong>what resolution your data is in</strong>. If you have a spatial dataset at 5 degree resolution, each count will bring in another 5 degree lat/lon value.</p>
 <p>At this point, we know our <code>start</code> values. At this point, we only have end values, not count values…Let’s figure those out</p>
-<div class="sourceCode" id="cb460"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb460-1" data-line-number="1">time_count =<span class="st"> </span><span class="kw">which.min</span>(<span class="kw">abs</span>(goes.nc<span class="op">$</span>dim<span class="op">$</span>time<span class="op">$</span>vals <span class="op">-</span><span class="st"> </span>epoch_end_time)) <span class="op">-</span><span class="st"> </span><span class="kw">which.min</span>(<span class="kw">abs</span>(goes.nc<span class="op">$</span>dim<span class="op">$</span>time<span class="op">$</span>vals <span class="op">-</span><span class="st"> </span>epoch_start_time))</a>
-<a class="sourceLine" id="cb460-2" data-line-number="2">time_count</a></code></pre></div>
+<div class="sourceCode" id="cb459"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb459-1" data-line-number="1">time_count =<span class="st"> </span><span class="kw">which.min</span>(<span class="kw">abs</span>(goes.nc<span class="op">$</span>dim<span class="op">$</span>time<span class="op">$</span>vals <span class="op">-</span><span class="st"> </span>epoch_end_time)) <span class="op">-</span><span class="st"> </span><span class="kw">which.min</span>(<span class="kw">abs</span>(goes.nc<span class="op">$</span>dim<span class="op">$</span>time<span class="op">$</span>vals <span class="op">-</span><span class="st"> </span>epoch_start_time))</a>
+<a class="sourceLine" id="cb459-2" data-line-number="2">time_count</a></code></pre></div>
 <pre><code>## [1] 48</code></pre>
 <p>So, if we count <code>48</code> time values from the start_time of <code>2019-07-14</code>, we’ll arrive at the end_time of <code>2019-07-16</code>. Let’s do the same for our lat/lons.</p>
-<div class="sourceCode" id="cb462"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb462-1" data-line-number="1"><span class="co"># latitude counts</span></a>
-<a class="sourceLine" id="cb462-2" data-line-number="2">lat_count =<span class="st"> </span><span class="kw">abs</span>(index_north_lat <span class="op">-</span><span class="st"> </span>index_south_lat)</a>
-<a class="sourceLine" id="cb462-3" data-line-number="3">lon_count =<span class="st"> </span><span class="kw">abs</span>(index_west_lon <span class="op">-</span><span class="st"> </span>index_east_lon)</a></code></pre></div>
+<div class="sourceCode" id="cb461"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb461-1" data-line-number="1"><span class="co"># latitude counts</span></a>
+<a class="sourceLine" id="cb461-2" data-line-number="2">lat_count =<span class="st"> </span><span class="kw">abs</span>(index_north_lat <span class="op">-</span><span class="st"> </span>index_south_lat)</a>
+<a class="sourceLine" id="cb461-3" data-line-number="3">lon_count =<span class="st"> </span><span class="kw">abs</span>(index_west_lon <span class="op">-</span><span class="st"> </span>index_east_lon)</a></code></pre></div>
 <p>Why do we take the absolute value? Because sometimes data is stored backwards. We don’t care which way it’s stored, we just need a positive number to count up from the starting value. Longitude values are weird because many times they are stored as negative values if they’re west of the meridian. Latitude values are also negative if we go south of the equator.</p>
 <p>Now we have our count values, we can proceed. Remember, here is what the <code>start</code> argument is looking for…via (<code>?ncvar_get</code>)</p>
 <p><code>A vector of indices indicating where to start reading the passed values (beginning at 1). The length of this vector must equal the number of dimensions the variable has. Order is X-Y-Z-T (i.e., the time dimension is last). If not specified, reading starts at the beginning of the file (1,1,1,...).</code></p>
 <p>So x is longitude, y is latitude, and t is time. Whichever value is lower between <code>index_west_lon</code> and <code>index_east_lon</code> is our <code>start</code> value, and vice versa for latitudes.</p>
-<div class="sourceCode" id="cb463"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb463-1" data-line-number="1">index_west_lon</a></code></pre></div>
+<div class="sourceCode" id="cb462"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb462-1" data-line-number="1">index_west_lon</a></code></pre></div>
 <pre><code>## [1] 1151</code></pre>
-<div class="sourceCode" id="cb465"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb465-1" data-line-number="1">index_east_lon</a></code></pre></div>
+<div class="sourceCode" id="cb464"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb464-1" data-line-number="1">index_east_lon</a></code></pre></div>
 <pre><code>## [1] 1351</code></pre>
-<div class="sourceCode" id="cb467"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb467-1" data-line-number="1">index_south_lat</a></code></pre></div>
+<div class="sourceCode" id="cb466"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb466-1" data-line-number="1">index_south_lat</a></code></pre></div>
 <pre><code>## [1] 801</code></pre>
-<div class="sourceCode" id="cb469"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb469-1" data-line-number="1">index_north_lat</a></code></pre></div>
+<div class="sourceCode" id="cb468"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb468-1" data-line-number="1">index_north_lat</a></code></pre></div>
 <pre><code>## [1] 501</code></pre>
 <p><strong>Wait just a second</strong>…the southern index is <em>greater than</em> the northern index. Typically, values are stored from least to greatest. However, we’ve seen before that netCDF files can be stored upside-down before. So, instead of counting from our southern latitude to our northern latitude, <strong>we need to count from our northern latitude to our southern latitude</strong>. Here is what the <code>count</code> argument is looking for…</p>
 <p><code>A vector of integers indicating the count of values to read along each dimension (order is X-Y-Z-T). The length of this vector must equal the number of dimensions the variable has. If not specified and the variable does NOT have an unlimited dimension, the entire variable is read. As a special case, the value &quot;-1&quot; indicates that all entries along that dimension should be read.</code></p>
 <p>We tell <code>ncvar_get()</code> where to start it’s longitude, latitude, time and <em>count</em> until we have our lat/lon box and time slices selected. We already have our <code>count</code> values so now we plug them in and run - note this will take a few seconds to run and even longer if you have poor internet connection. This is data being extracted through the internet in real time.</p>
-<div class="sourceCode" id="cb471"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb471-1" data-line-number="1"><span class="co"># cool, let&#39;s grab sea_surface_temperature for Delaware Bay</span></a>
-<a class="sourceLine" id="cb471-2" data-line-number="2">sst.c &lt;-<span class="st"> </span><span class="kw">ncvar_get</span>(goes.nc, <span class="st">&quot;sea_surface_temperature&quot;</span>,<span class="dt">start =</span> <span class="kw">c</span>(index_west_lon,index_north_lat,index_start_time), </a>
-<a class="sourceLine" id="cb471-3" data-line-number="3">                   <span class="dt">count =</span> <span class="kw">c</span>(lon_count,lat_count,time_count))</a>
-<a class="sourceLine" id="cb471-4" data-line-number="4"><span class="kw">dim</span>(sst.c)</a></code></pre></div>
+<div class="sourceCode" id="cb470"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb470-1" data-line-number="1"><span class="co"># cool, let&#39;s grab sea_surface_temperature for Delaware Bay</span></a>
+<a class="sourceLine" id="cb470-2" data-line-number="2">sst.c &lt;-<span class="st"> </span><span class="kw">ncvar_get</span>(goes.nc, <span class="st">&quot;sea_surface_temperature&quot;</span>,<span class="dt">start =</span> <span class="kw">c</span>(index_west_lon,index_north_lat,index_start_time), </a>
+<a class="sourceLine" id="cb470-3" data-line-number="3">                   <span class="dt">count =</span> <span class="kw">c</span>(lon_count,lat_count,time_count))</a>
+<a class="sourceLine" id="cb470-4" data-line-number="4"><span class="kw">dim</span>(sst.c)</a></code></pre></div>
 <pre><code>## [1] 200 300  48</code></pre>
 <p>And there is the data! It returns the raw data in the format we pulled it in - Lon, Lat, Time. We have a 2 dimensional array (lon x lat) with 48 time slices. Let’s convert one to raster and plot it really quickly.</p>
-<div class="sourceCode" id="cb473"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb473-1" data-line-number="1"><span class="kw">library</span>(maptools) <span class="co"># also loads sp package</span></a>
-<a class="sourceLine" id="cb473-2" data-line-number="2"><span class="kw">library</span>(ncdf4)</a>
-<a class="sourceLine" id="cb473-3" data-line-number="3"><span class="kw">library</span>(raster)</a>
-<a class="sourceLine" id="cb473-4" data-line-number="4"><span class="kw">library</span>(rasterVis)</a>
-<a class="sourceLine" id="cb473-5" data-line-number="5">arr.sst =<span class="st"> </span>sst.c[,,<span class="dv">4</span>]</a>
-<a class="sourceLine" id="cb473-6" data-line-number="6">arr.sst[arr.sst <span class="op">&lt;</span><span class="st"> </span><span class="dv">273</span>] =<span class="st"> </span><span class="ot">NA</span></a>
-<a class="sourceLine" id="cb473-7" data-line-number="7">test.sst =<span class="st"> </span><span class="kw">raster</span>(<span class="dt">x =</span> arr.sst)</a>
-<a class="sourceLine" id="cb473-8" data-line-number="8">test.sst</a></code></pre></div>
+<div class="sourceCode" id="cb472"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb472-1" data-line-number="1"><span class="kw">library</span>(maptools) <span class="co"># also loads sp package</span></a>
+<a class="sourceLine" id="cb472-2" data-line-number="2"><span class="kw">library</span>(ncdf4)</a>
+<a class="sourceLine" id="cb472-3" data-line-number="3"><span class="kw">library</span>(raster)</a>
+<a class="sourceLine" id="cb472-4" data-line-number="4"><span class="kw">library</span>(rasterVis)</a>
+<a class="sourceLine" id="cb472-5" data-line-number="5">arr.sst =<span class="st"> </span>sst.c[,,<span class="dv">4</span>]</a>
+<a class="sourceLine" id="cb472-6" data-line-number="6">arr.sst[arr.sst <span class="op">&lt;</span><span class="st"> </span><span class="dv">273</span>] =<span class="st"> </span><span class="ot">NA</span></a>
+<a class="sourceLine" id="cb472-7" data-line-number="7">test.sst =<span class="st"> </span><span class="kw">raster</span>(<span class="dt">x =</span> arr.sst)</a>
+<a class="sourceLine" id="cb472-8" data-line-number="8">test.sst</a></code></pre></div>
 <pre><code>## class      : RasterLayer 
 ## dimensions : 200, 300, 60000  (nrow, ncol, ncell)
 ## resolution : 0.003333333, 0.005  (x, y)
@@ -550,23 +550,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## names      : layer 
 ## values     : 294.54, 302.97  (min, max)</code></pre>
 <p>What’s missing? Well we just gave it the raw data, we still need to plug in the extents! Also, we will need to plug in the CRS - luckily we know this data is in lat/lon because of how awesome this metadata is!</p>
-<div class="sourceCode" id="cb475"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb475-1" data-line-number="1"><span class="kw">library</span>(ggplot2)</a>
-<a class="sourceLine" id="cb475-2" data-line-number="2"><span class="co"># we need to transpose this dataset just like we did in week 4 of the R intro course</span></a>
-<a class="sourceLine" id="cb475-3" data-line-number="3">test.sst =<span class="st"> </span><span class="kw">t</span>(test.sst)</a>
-<a class="sourceLine" id="cb475-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb475-5" data-line-number="5"><span class="co"># define the projection</span></a>
-<a class="sourceLine" id="cb475-6" data-line-number="6">sst.crs =<span class="st"> </span><span class="kw">ncatt_get</span>(goes.nc, <span class="st">&quot;projection&quot;</span>)</a>
-<a class="sourceLine" id="cb475-7" data-line-number="7"><span class="kw">extent</span>(test.sst) =<span class="st"> </span><span class="kw">c</span>(west_lon, east_lon, south_lat, north_lat)</a>
-<a class="sourceLine" id="cb475-8" data-line-number="8"><span class="kw">crs</span>(test.sst) =<span class="st"> </span>sst.crs<span class="op">$</span>proj4_string</a></code></pre></div>
+<div class="sourceCode" id="cb474"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb474-1" data-line-number="1"><span class="kw">library</span>(ggplot2)</a>
+<a class="sourceLine" id="cb474-2" data-line-number="2"><span class="co"># we need to transpose this dataset just like we did in week 4 of the R intro course</span></a>
+<a class="sourceLine" id="cb474-3" data-line-number="3">test.sst =<span class="st"> </span><span class="kw">t</span>(test.sst)</a>
+<a class="sourceLine" id="cb474-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb474-5" data-line-number="5"><span class="co"># define the projection</span></a>
+<a class="sourceLine" id="cb474-6" data-line-number="6">sst.crs =<span class="st"> </span><span class="kw">ncatt_get</span>(goes.nc, <span class="st">&quot;projection&quot;</span>)</a>
+<a class="sourceLine" id="cb474-7" data-line-number="7"><span class="kw">extent</span>(test.sst) =<span class="st"> </span><span class="kw">c</span>(west_lon, east_lon, south_lat, north_lat)</a>
+<a class="sourceLine" id="cb474-8" data-line-number="8"><span class="kw">crs</span>(test.sst) =<span class="st"> </span>sst.crs<span class="op">$</span>proj4_string</a></code></pre></div>
 <pre><code>## Warning in showSRID(uprojargs, format = &quot;PROJ&quot;, multiline = &quot;NO&quot;): Discarded datum WGS_1984 in CRS definition,
 ##  but +towgs84= values preserved</code></pre>
-<div class="sourceCode" id="cb477"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb477-1" data-line-number="1"><span class="co"># convert raster to dataframe for ggplot</span></a>
-<a class="sourceLine" id="cb477-2" data-line-number="2">df &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(test.sst, <span class="dt">xy =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb477-3" data-line-number="3"><span class="co"># Throw together the usa spatial polygons data frame</span></a>
-<a class="sourceLine" id="cb477-4" data-line-number="4"><span class="kw">ggplot</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb477-5" data-line-number="5"><span class="st">  </span><span class="kw">geom_raster</span>(<span class="dt">data =</span> df , <span class="kw">aes</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> y, <span class="dt">fill =</span> layer)) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb477-6" data-line-number="6"><span class="st">  </span><span class="kw">borders</span>(<span class="dt">fill=</span><span class="st">&quot;white&quot;</span>, <span class="dt">xlim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">77</span>,<span class="op">-</span><span class="dv">73</span>), <span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">36</span>,<span class="dv">42</span>),<span class="dt">alpha =</span> <span class="fl">0.5</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb477-7" data-line-number="7"><span class="st">  </span><span class="kw">coord_quickmap</span>(<span class="dt">xlim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">77</span>,<span class="op">-</span><span class="dv">73</span>), <span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">36</span>,<span class="dv">42</span>),<span class="dt">expand =</span> <span class="ot">FALSE</span>)    </a></code></pre></div>
+<div class="sourceCode" id="cb476"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb476-1" data-line-number="1"><span class="co"># convert raster to dataframe for ggplot</span></a>
+<a class="sourceLine" id="cb476-2" data-line-number="2">df &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(test.sst, <span class="dt">xy =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb476-3" data-line-number="3"><span class="co"># Throw together the usa spatial polygons data frame</span></a>
+<a class="sourceLine" id="cb476-4" data-line-number="4"><span class="kw">ggplot</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb476-5" data-line-number="5"><span class="st">  </span><span class="kw">geom_raster</span>(<span class="dt">data =</span> df , <span class="kw">aes</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> y, <span class="dt">fill =</span> layer)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb476-6" data-line-number="6"><span class="st">  </span><span class="kw">borders</span>(<span class="dt">fill=</span><span class="st">&quot;white&quot;</span>, <span class="dt">xlim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">77</span>,<span class="op">-</span><span class="dv">73</span>), <span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">36</span>,<span class="dv">42</span>),<span class="dt">alpha =</span> <span class="fl">0.5</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb476-7" data-line-number="7"><span class="st">  </span><span class="kw">coord_quickmap</span>(<span class="dt">xlim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">77</span>,<span class="op">-</span><span class="dv">73</span>), <span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">36</span>,<span class="dv">42</span>),<span class="dt">expand =</span> <span class="ot">FALSE</span>)    </a></code></pre></div>
 <p><img src="R_Geospatial_Sciences_files/figure-html/thredddddsssss%20plotttttttttt-1.png" width="60%" style="display: block; margin: auto;" /></p>
 <p>Boom…There’s the data we wanted and we didn’t have to leave R to get it. We also saved a ton of time and hard drive space.</p>
 </div>
@@ -592,7 +592,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>You can use the Data Access Form at the top of the page to select data and download, or we can streamline this and use R to accomplish this easily. In order to do this, we just need the <code>rerddap</code> package.</p>
 <p><code>install.packages(&quot;rerddap&quot;)</code></p>
 <p><code>library(&quot;rerddap&quot;)</code></p>
-<div class="sourceCode" id="cb478"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb478-1" data-line-number="1">?rerddap</a></code></pre></div>
+<div class="sourceCode" id="cb477"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb477-1" data-line-number="1">?rerddap</a></code></pre></div>
 <ul>
 <li>the list of servers <code>rerddap</code> knows about - <code>server()</code></li>
 <li>search an <span style="color:red">ERDDAP</span> server for terms - <code>ed_search(query, page = NULL, page_size = NULL, which = &quot;griddap&quot;, url = eurl(), ...)</code></li>
@@ -650,18 +650,18 @@ A list of some of the public available <span style="color:red">ERDDAP</span> ser
 </ol>
 <p><code>rerddap::tabledap()</code> - Point datasets, like buoy data or weather station.</p>
 <p>Here is an example of this…</p>
-<div class="sourceCode" id="cb480"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb480-1" data-line-number="1">whichBUOYS &lt;-<span class="st"> </span>rerddap<span class="op">::</span><span class="kw">ed_search</span>(<span class="dt">query =</span> <span class="st">&quot;buoy&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb479"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb479-1" data-line-number="1">whichBUOYS &lt;-<span class="st"> </span>rerddap<span class="op">::</span><span class="kw">ed_search</span>(<span class="dt">query =</span> <span class="st">&quot;buoy&quot;</span>)</a></code></pre></div>
 <pre><code>## Registered S3 method overwritten by &#39;hoardr&#39;:
 ##   method           from
 ##   print.cache_info httr</code></pre>
 <p>NOAA’s National Data Buoy Center (NDBC) collects world-wide data from buoys in the ocean. Let’s browse that dataset by entering this into the R console</p>
 <p><code>rerddap::browse('cwwcNDBCMet')</code></p>
 <p>That’s the ERDDAP site that we’re going to pull data from…</p>
-<div class="sourceCode" id="cb482"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb482-1" data-line-number="1"><span class="kw">library</span>(rerddap)</a>
-<a class="sourceLine" id="cb482-2" data-line-number="2"><span class="kw">library</span>(ggplot2)</a>
-<a class="sourceLine" id="cb482-3" data-line-number="3"><span class="kw">library</span>(mapdata)</a>
-<a class="sourceLine" id="cb482-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb482-5" data-line-number="5"><span class="kw">info</span>(<span class="st">&#39;cwwcNDBCMet&#39;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb481"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb481-1" data-line-number="1"><span class="kw">library</span>(rerddap)</a>
+<a class="sourceLine" id="cb481-2" data-line-number="2"><span class="kw">library</span>(ggplot2)</a>
+<a class="sourceLine" id="cb481-3" data-line-number="3"><span class="kw">library</span>(mapdata)</a>
+<a class="sourceLine" id="cb481-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb481-5" data-line-number="5"><span class="kw">info</span>(<span class="st">&#39;cwwcNDBCMet&#39;</span>)</a></code></pre></div>
 <pre><code>## &lt;ERDDAP info&gt; cwwcNDBCMet 
 ##  Base URL: https://upwell.pfeg.noaa.gov/erddap/ 
 ##  Dataset Type: tabledap 
@@ -701,7 +701,7 @@ A list of some of the public available <span style="color:red">ERDDAP</span> ser
 ##          Range: -9.37, 6.13 
 ##          Units: m 
 ##      time: 
-##          Range: 4910400.0, 1.611693E9 
+##          Range: 4910400.0, 1.61184456E9 
 ##          Units: seconds since 1970-01-01T00:00:00Z 
 ##      vis: 
 ##          Range: 0.0, 66.7 
@@ -724,37 +724,37 @@ A list of some of the public available <span style="color:red">ERDDAP</span> ser
 ##      wvht: 
 ##          Range: 0.0, 92.39 
 ##          Units: m</code></pre>
-<div class="sourceCode" id="cb484"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb484-1" data-line-number="1">BuoysInfo &lt;-<span class="st"> </span><span class="kw">info</span>(<span class="st">&#39;cwwcNDBCMet&#39;</span>)</a>
-<a class="sourceLine" id="cb484-2" data-line-number="2">locationBuoys &lt;-<span class="st"> </span><span class="kw">tabledap</span>(BuoysInfo, <span class="dt">distinct =</span> <span class="ot">TRUE</span>, <span class="dt">fields =</span> <span class="kw">c</span>(<span class="st">&quot;station&quot;</span>, <span class="st">&quot;longitude&quot;</span>, <span class="st">&quot;latitude&quot;</span>), <span class="st">&quot;longitude&gt;=-76&quot;</span>, <span class="st">&quot;longitude&lt;=-74&quot;</span>, <span class="st">&quot;latitude&gt;=38&quot;</span>, <span class="st">&quot;latitude&lt;=40&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb483"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb483-1" data-line-number="1">BuoysInfo &lt;-<span class="st"> </span><span class="kw">info</span>(<span class="st">&#39;cwwcNDBCMet&#39;</span>)</a>
+<a class="sourceLine" id="cb483-2" data-line-number="2">locationBuoys &lt;-<span class="st"> </span><span class="kw">tabledap</span>(BuoysInfo, <span class="dt">distinct =</span> <span class="ot">TRUE</span>, <span class="dt">fields =</span> <span class="kw">c</span>(<span class="st">&quot;station&quot;</span>, <span class="st">&quot;longitude&quot;</span>, <span class="st">&quot;latitude&quot;</span>), <span class="st">&quot;longitude&gt;=-76&quot;</span>, <span class="st">&quot;longitude&lt;=-74&quot;</span>, <span class="st">&quot;latitude&gt;=38&quot;</span>, <span class="st">&quot;latitude&lt;=40&quot;</span>)</a></code></pre></div>
 <pre><code>## info() output passed to x; setting base url to: https://upwell.pfeg.noaa.gov/erddap/</code></pre>
-<div class="sourceCode" id="cb486"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb486-1" data-line-number="1">locationBuoys =<span class="st"> </span>locationBuoys[<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>,]</a>
-<a class="sourceLine" id="cb486-2" data-line-number="2">locationBuoys<span class="op">$</span>latitude &lt;-<span class="st"> </span><span class="kw">as.numeric</span>(locationBuoys<span class="op">$</span>latitude)</a>
-<a class="sourceLine" id="cb486-3" data-line-number="3">locationBuoys<span class="op">$</span>longitude &lt;-<span class="st"> </span><span class="kw">as.numeric</span>(locationBuoys<span class="op">$</span>longitude)</a>
-<a class="sourceLine" id="cb486-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb486-5" data-line-number="5"></a>
-<a class="sourceLine" id="cb486-6" data-line-number="6">xlim &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="op">-</span><span class="dv">76</span>, <span class="dv">-74</span>)</a>
-<a class="sourceLine" id="cb486-7" data-line-number="7">ylim &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">38</span>, <span class="dv">40</span>)</a>
-<a class="sourceLine" id="cb486-8" data-line-number="8">coast &lt;-<span class="st"> </span><span class="kw">map_data</span>(<span class="st">&quot;worldHires&quot;</span>, <span class="dt">ylim =</span> ylim, <span class="dt">xlim =</span> xlim)</a>
-<a class="sourceLine" id="cb486-9" data-line-number="9"></a>
-<a class="sourceLine" id="cb486-10" data-line-number="10"><span class="kw">ggplot</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb486-11" data-line-number="11"><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">data =</span> locationBuoys, <span class="kw">aes</span>(<span class="dt">x =</span> longitude , <span class="dt">y =</span> latitude, <span class="dt">colour =</span> <span class="kw">factor</span>(station) )) <span class="op">+</span></a>
-<a class="sourceLine" id="cb486-12" data-line-number="12"><span class="st">  </span><span class="kw">geom_polygon</span>(<span class="dt">data =</span> coast, <span class="kw">aes</span>(<span class="dt">x =</span> long, <span class="dt">y =</span> lat, <span class="dt">group =</span> group), <span class="dt">fill =</span> <span class="st">&quot;grey80&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb486-13" data-line-number="13"><span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;latitude&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">xlab</span>(<span class="st">&quot;longitude&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb486-14" data-line-number="14"><span class="st">  </span><span class="kw">coord_fixed</span>(<span class="fl">1.3</span>, <span class="dt">xlim =</span> xlim, <span class="dt">ylim =</span> ylim) <span class="op">+</span></a>
-<a class="sourceLine" id="cb486-15" data-line-number="15"><span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Delaware Bay Buoys&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb485"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb485-1" data-line-number="1">locationBuoys =<span class="st"> </span>locationBuoys[<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>,]</a>
+<a class="sourceLine" id="cb485-2" data-line-number="2">locationBuoys<span class="op">$</span>latitude &lt;-<span class="st"> </span><span class="kw">as.numeric</span>(locationBuoys<span class="op">$</span>latitude)</a>
+<a class="sourceLine" id="cb485-3" data-line-number="3">locationBuoys<span class="op">$</span>longitude &lt;-<span class="st"> </span><span class="kw">as.numeric</span>(locationBuoys<span class="op">$</span>longitude)</a>
+<a class="sourceLine" id="cb485-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb485-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb485-6" data-line-number="6">xlim &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="op">-</span><span class="dv">76</span>, <span class="dv">-74</span>)</a>
+<a class="sourceLine" id="cb485-7" data-line-number="7">ylim &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">38</span>, <span class="dv">40</span>)</a>
+<a class="sourceLine" id="cb485-8" data-line-number="8">coast &lt;-<span class="st"> </span><span class="kw">map_data</span>(<span class="st">&quot;worldHires&quot;</span>, <span class="dt">ylim =</span> ylim, <span class="dt">xlim =</span> xlim)</a>
+<a class="sourceLine" id="cb485-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb485-10" data-line-number="10"><span class="kw">ggplot</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb485-11" data-line-number="11"><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">data =</span> locationBuoys, <span class="kw">aes</span>(<span class="dt">x =</span> longitude , <span class="dt">y =</span> latitude, <span class="dt">colour =</span> <span class="kw">factor</span>(station) )) <span class="op">+</span></a>
+<a class="sourceLine" id="cb485-12" data-line-number="12"><span class="st">  </span><span class="kw">geom_polygon</span>(<span class="dt">data =</span> coast, <span class="kw">aes</span>(<span class="dt">x =</span> long, <span class="dt">y =</span> lat, <span class="dt">group =</span> group), <span class="dt">fill =</span> <span class="st">&quot;grey80&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb485-13" data-line-number="13"><span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;latitude&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">xlab</span>(<span class="st">&quot;longitude&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb485-14" data-line-number="14"><span class="st">  </span><span class="kw">coord_fixed</span>(<span class="fl">1.3</span>, <span class="dt">xlim =</span> xlim, <span class="dt">ylim =</span> ylim) <span class="op">+</span></a>
+<a class="sourceLine" id="cb485-15" data-line-number="15"><span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Delaware Bay Buoys&quot;</span>)</a></code></pre></div>
 <p><img src="R_Geospatial_Sciences_files/figure-html/breakkkkkiiiiinnnnnnggggggg?????????-1.png" width="60%" style="display: block; margin: auto;" /></p>
 <p><code>rerddap::griddap()</code> - Gridded datasets, like sea surface temperature from GOES-R.</p>
-<div class="sourceCode" id="cb487"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb487-1" data-line-number="1">whichSST &lt;-<span class="st"> </span><span class="kw">ed_search</span>(<span class="dt">query =</span> <span class="st">&quot;SST&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb486"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb486-1" data-line-number="1">whichSST &lt;-<span class="st"> </span><span class="kw">ed_search</span>(<span class="dt">query =</span> <span class="st">&quot;SST&quot;</span>)</a></code></pre></div>
 <p>returns about 1000 responses. The more focused query:</p>
-<div class="sourceCode" id="cb488"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb488-1" data-line-number="1">whichSST &lt;-<span class="st"> </span><span class="kw">ed_search</span>(<span class="dt">query =</span> <span class="st">&quot;SST MODIS&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb487"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb487-1" data-line-number="1">whichSST &lt;-<span class="st"> </span><span class="kw">ed_search</span>(<span class="dt">query =</span> <span class="st">&quot;SST MODIS&quot;</span>)</a></code></pre></div>
 <p>still returns 172 responses. If the simple search doesn’t narrow things enough, look at the advanced search function <code>ed_search_adv()</code>.</p>
 <p>Let’s use this dataset - <a href="https://coastwatch.pfeg.noaa.gov/erddap/griddap/jplMURSST41.html" class="uri">https://coastwatch.pfeg.noaa.gov/erddap/griddap/jplMURSST41.html</a></p>
-<div class="sourceCode" id="cb489"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb489-1" data-line-number="1"><span class="kw">info</span>(<span class="st">&#39;jplMURSST41&#39;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb488"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb488-1" data-line-number="1"><span class="kw">info</span>(<span class="st">&#39;jplMURSST41&#39;</span>)</a></code></pre></div>
 <pre><code>## &lt;ERDDAP info&gt; jplMURSST41 
 ##  Base URL: https://upwell.pfeg.noaa.gov/erddap/ 
 ##  Dataset Type: griddap 
 ##  Dimensions (range):  
-##      time: (2002-06-01T09:00:00Z, 2021-01-26T09:00:00Z) 
+##      time: (2002-06-01T09:00:00Z, 2021-01-27T09:00:00Z) 
 ##      latitude: (-89.99, 89.99) 
 ##      longitude: (-179.99, 180.0) 
 ##  Variables:  
@@ -766,25 +766,25 @@ A list of some of the public available <span style="color:red">ERDDAP</span> ser
 ##      sea_ice_fraction: 
 ##          Units: 1</code></pre>
 <p>Alright, let’s extract some of this data and plot it. For this, we can use ‘last’ for the latest time instead of plugging in a time string.</p>
-<div class="sourceCode" id="cb491"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb491-1" data-line-number="1"><span class="kw">require</span>(<span class="st">&quot;ggplot2&quot;</span>)</a>
-<a class="sourceLine" id="cb491-2" data-line-number="2"><span class="kw">require</span>(<span class="st">&quot;mapdata&quot;</span>)</a>
-<a class="sourceLine" id="cb491-3" data-line-number="3"><span class="kw">require</span>(<span class="st">&quot;rerddap&quot;</span>)</a>
-<a class="sourceLine" id="cb491-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb491-5" data-line-number="5"><span class="co"># grab the latest MUR SST info</span></a>
-<a class="sourceLine" id="cb491-6" data-line-number="6">sstInfo &lt;-<span class="st"> </span><span class="kw">info</span>(<span class="st">&#39;jplMURSST41&#39;</span>)</a>
-<a class="sourceLine" id="cb491-7" data-line-number="7"><span class="co"># get latest daily sst</span></a>
-<a class="sourceLine" id="cb491-8" data-line-number="8">murSST &lt;-<span class="st"> </span><span class="kw">griddap</span>(sstInfo, <span class="dt">latitude =</span> <span class="kw">c</span>(<span class="dv">30</span>, <span class="dv">45</span>), <span class="dt">longitude =</span> <span class="kw">c</span>(<span class="op">-</span><span class="fl">80.</span>, <span class="dv">-70</span>), <span class="dt">time =</span> <span class="kw">c</span>(<span class="st">&#39;last&#39;</span>,<span class="st">&#39;last&#39;</span>), <span class="dt">fields =</span> <span class="st">&#39;analysed_sst&#39;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb490"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb490-1" data-line-number="1"><span class="kw">require</span>(<span class="st">&quot;ggplot2&quot;</span>)</a>
+<a class="sourceLine" id="cb490-2" data-line-number="2"><span class="kw">require</span>(<span class="st">&quot;mapdata&quot;</span>)</a>
+<a class="sourceLine" id="cb490-3" data-line-number="3"><span class="kw">require</span>(<span class="st">&quot;rerddap&quot;</span>)</a>
+<a class="sourceLine" id="cb490-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb490-5" data-line-number="5"><span class="co"># grab the latest MUR SST info</span></a>
+<a class="sourceLine" id="cb490-6" data-line-number="6">sstInfo &lt;-<span class="st"> </span><span class="kw">info</span>(<span class="st">&#39;jplMURSST41&#39;</span>)</a>
+<a class="sourceLine" id="cb490-7" data-line-number="7"><span class="co"># get latest daily sst</span></a>
+<a class="sourceLine" id="cb490-8" data-line-number="8">murSST &lt;-<span class="st"> </span><span class="kw">griddap</span>(sstInfo, <span class="dt">latitude =</span> <span class="kw">c</span>(<span class="dv">30</span>, <span class="dv">45</span>), <span class="dt">longitude =</span> <span class="kw">c</span>(<span class="op">-</span><span class="fl">80.</span>, <span class="dv">-70</span>), <span class="dt">time =</span> <span class="kw">c</span>(<span class="st">&#39;last&#39;</span>,<span class="st">&#39;last&#39;</span>), <span class="dt">fields =</span> <span class="st">&#39;analysed_sst&#39;</span>)</a></code></pre></div>
 <pre><code>## info() output passed to x; setting base url to: https://upwell.pfeg.noaa.gov/erddap/</code></pre>
-<div class="sourceCode" id="cb493"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb493-1" data-line-number="1">mycolor &lt;-<span class="st"> </span>colors<span class="op">$</span>temperature</a>
-<a class="sourceLine" id="cb493-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb493-3" data-line-number="3">w &lt;-<span class="st"> </span><span class="kw">map_data</span>(<span class="st">&quot;worldHires&quot;</span>, <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">30</span>, <span class="dv">45</span>), <span class="dt">xlim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="fl">80.</span>, <span class="dv">-70</span>))</a>
-<a class="sourceLine" id="cb493-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb493-5" data-line-number="5"><span class="kw">ggplot</span>(<span class="dt">data =</span> murSST<span class="op">$</span>data, <span class="kw">aes</span>(<span class="dt">x =</span> lon, <span class="dt">y =</span> lat, <span class="dt">fill =</span> analysed_sst)) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb493-6" data-line-number="6"><span class="st">    </span><span class="kw">geom_polygon</span>(<span class="dt">data =</span> w, <span class="kw">aes</span>(<span class="dt">x =</span> long, <span class="dt">y =</span> lat, <span class="dt">group =</span> group), <span class="dt">fill =</span> <span class="st">&quot;grey80&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb493-7" data-line-number="7"><span class="st">    </span><span class="kw">geom_raster</span>(<span class="dt">interpolate =</span> <span class="ot">FALSE</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb493-8" data-line-number="8"><span class="st">    </span><span class="kw">scale_fill_gradientn</span>(<span class="dt">colours =</span> mycolor, <span class="dt">na.value =</span> <span class="ot">NA</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb493-9" data-line-number="9"><span class="st">    </span><span class="kw">theme_bw</span>() <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;latitude&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">xlab</span>(<span class="st">&quot;longitude&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb493-10" data-line-number="10"><span class="st">    </span><span class="kw">coord_fixed</span>(<span class="fl">1.3</span>, <span class="dt">xlim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">80</span>, <span class="dv">-70</span>),  <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">30</span>, <span class="dv">45</span>)) <span class="op">+</span><span class="st"> </span><span class="kw">ggtitle</span>(<span class="st">&quot;Latest MUR SST&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb492"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb492-1" data-line-number="1">mycolor &lt;-<span class="st"> </span>colors<span class="op">$</span>temperature</a>
+<a class="sourceLine" id="cb492-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb492-3" data-line-number="3">w &lt;-<span class="st"> </span><span class="kw">map_data</span>(<span class="st">&quot;worldHires&quot;</span>, <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">30</span>, <span class="dv">45</span>), <span class="dt">xlim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="fl">80.</span>, <span class="dv">-70</span>))</a>
+<a class="sourceLine" id="cb492-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb492-5" data-line-number="5"><span class="kw">ggplot</span>(<span class="dt">data =</span> murSST<span class="op">$</span>data, <span class="kw">aes</span>(<span class="dt">x =</span> lon, <span class="dt">y =</span> lat, <span class="dt">fill =</span> analysed_sst)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb492-6" data-line-number="6"><span class="st">    </span><span class="kw">geom_polygon</span>(<span class="dt">data =</span> w, <span class="kw">aes</span>(<span class="dt">x =</span> long, <span class="dt">y =</span> lat, <span class="dt">group =</span> group), <span class="dt">fill =</span> <span class="st">&quot;grey80&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb492-7" data-line-number="7"><span class="st">    </span><span class="kw">geom_raster</span>(<span class="dt">interpolate =</span> <span class="ot">FALSE</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb492-8" data-line-number="8"><span class="st">    </span><span class="kw">scale_fill_gradientn</span>(<span class="dt">colours =</span> mycolor, <span class="dt">na.value =</span> <span class="ot">NA</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb492-9" data-line-number="9"><span class="st">    </span><span class="kw">theme_bw</span>() <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;latitude&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">xlab</span>(<span class="st">&quot;longitude&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb492-10" data-line-number="10"><span class="st">    </span><span class="kw">coord_fixed</span>(<span class="fl">1.3</span>, <span class="dt">xlim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">80</span>, <span class="dv">-70</span>),  <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">30</span>, <span class="dv">45</span>)) <span class="op">+</span><span class="st"> </span><span class="kw">ggtitle</span>(<span class="st">&quot;Latest MUR SST&quot;</span>)</a></code></pre></div>
 <p><img src="R_Geospatial_Sciences_files/figure-html/can%20we%20get%20to%20this%20oneeeeeeeeeeeeeeee-1.png" width="60%" style="display: block; margin: auto;" /></p>
 <p>What if we want to use a custom URL that’s not pre-loaded into <code>rerddap</code> ? Let’s use Ireland’s Marine Institute ERDDAP. Follow these steps:</p>
 <ol style="list-style-type: decimal">
@@ -794,34 +794,34 @@ A list of some of the public available <span style="color:red">ERDDAP</span> ser
 <li>Select Graph under ‘Make a Graph’ Column for that Dataset ID</li>
 <li>Look at the variables - see <code>sea_surface_temperature</code></li>
 </ol>
-<div class="sourceCode" id="cb494"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb494-1" data-line-number="1">urlBase &lt;-<span class="st"> &quot;http://erddap.marine.ie/erddap/&quot;</span></a>
-<a class="sourceLine" id="cb494-2" data-line-number="2">parameter &lt;-<span class="st"> &quot;sea_surface_temperature&quot;</span></a>
-<a class="sourceLine" id="cb494-3" data-line-number="3">sstTimes &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;last&quot;</span>, <span class="st">&quot;last&quot;</span>)</a>
-<a class="sourceLine" id="cb494-4" data-line-number="4">sstLats &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">48.00625</span>, <span class="fl">57.50625</span>)</a>
-<a class="sourceLine" id="cb494-5" data-line-number="5">sstLons &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="op">-</span><span class="fl">17.99375</span>, <span class="fl">-1.00625</span>)</a>
-<a class="sourceLine" id="cb494-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb494-7" data-line-number="7">xlim &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="op">-</span><span class="fl">17.99375</span>, <span class="fl">-1.00625</span>)</a>
-<a class="sourceLine" id="cb494-8" data-line-number="8">ylim &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">48.00625</span>, <span class="fl">57.50625</span>)</a>
-<a class="sourceLine" id="cb494-9" data-line-number="9"></a>
-<a class="sourceLine" id="cb494-10" data-line-number="10">dataInfo &lt;-<span class="st"> </span>rerddap<span class="op">::</span><span class="kw">info</span>(<span class="st">&quot;IMI_NEATL&quot;</span>, <span class="dt">url =</span> urlBase)</a>
-<a class="sourceLine" id="cb494-11" data-line-number="11">NAtlsst &lt;-<span class="st"> </span><span class="kw">griddap</span>(dataInfo, <span class="dt">longitude =</span> sstLons, <span class="dt">latitude =</span> sstLats, <span class="dt">time =</span> sstTimes, <span class="dt">fields =</span> parameter, <span class="dt">url =</span> urlBase)</a></code></pre></div>
+<div class="sourceCode" id="cb493"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb493-1" data-line-number="1">urlBase &lt;-<span class="st"> &quot;http://erddap.marine.ie/erddap/&quot;</span></a>
+<a class="sourceLine" id="cb493-2" data-line-number="2">parameter &lt;-<span class="st"> &quot;sea_surface_temperature&quot;</span></a>
+<a class="sourceLine" id="cb493-3" data-line-number="3">sstTimes &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;last&quot;</span>, <span class="st">&quot;last&quot;</span>)</a>
+<a class="sourceLine" id="cb493-4" data-line-number="4">sstLats &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">48.00625</span>, <span class="fl">57.50625</span>)</a>
+<a class="sourceLine" id="cb493-5" data-line-number="5">sstLons &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="op">-</span><span class="fl">17.99375</span>, <span class="fl">-1.00625</span>)</a>
+<a class="sourceLine" id="cb493-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb493-7" data-line-number="7">xlim &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="op">-</span><span class="fl">17.99375</span>, <span class="fl">-1.00625</span>)</a>
+<a class="sourceLine" id="cb493-8" data-line-number="8">ylim &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">48.00625</span>, <span class="fl">57.50625</span>)</a>
+<a class="sourceLine" id="cb493-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb493-10" data-line-number="10">dataInfo &lt;-<span class="st"> </span>rerddap<span class="op">::</span><span class="kw">info</span>(<span class="st">&quot;IMI_NEATL&quot;</span>, <span class="dt">url =</span> urlBase)</a>
+<a class="sourceLine" id="cb493-11" data-line-number="11">NAtlsst &lt;-<span class="st"> </span><span class="kw">griddap</span>(dataInfo, <span class="dt">longitude =</span> sstLons, <span class="dt">latitude =</span> sstLats, <span class="dt">time =</span> sstTimes, <span class="dt">fields =</span> parameter, <span class="dt">url =</span> urlBase)</a></code></pre></div>
 <pre><code>## info() output passed to x; setting base url to: http://erddap.marine.ie/erddap/</code></pre>
-<div class="sourceCode" id="cb496"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb496-1" data-line-number="1"><span class="kw">str</span>(NAtlsst<span class="op">$</span>data)</a></code></pre></div>
+<div class="sourceCode" id="cb495"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb495-1" data-line-number="1"><span class="kw">str</span>(NAtlsst<span class="op">$</span>data)</a></code></pre></div>
 <pre><code>## &#39;data.frame&#39;:    1034960 obs. of  4 variables:
 ##  $ time                   : chr  &quot;2021-01-25T00:00:00Z&quot; &quot;2021-01-25T00:00:00Z&quot; &quot;2021-01-25T00:00:00Z&quot; &quot;2021-01-25T00:00:00Z&quot; ...
 ##  $ lat                    : num  48 48 48 48 48 ...
 ##  $ lon                    : num  -18 -18 -18 -18 -17.9 ...
 ##  $ sea_surface_temperature: num  11.9 11.9 11.9 11.9 12.5 ...</code></pre>
-<div class="sourceCode" id="cb498"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb498-1" data-line-number="1">my.col &lt;-<span class="st"> </span>colors<span class="op">$</span>temperature </a>
-<a class="sourceLine" id="cb498-2" data-line-number="2">w &lt;-<span class="st"> </span><span class="kw">map_data</span>(<span class="st">&quot;worldHires&quot;</span>, <span class="dt">ylim =</span> ylim, <span class="dt">xlim =</span> xlim)</a>
-<a class="sourceLine" id="cb498-3" data-line-number="3">myplot &lt;-<span class="st"> </span><span class="kw">ggplot</span>() <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb498-4" data-line-number="4"><span class="st">    </span><span class="kw">geom_raster</span>(<span class="dt">data =</span> NAtlsst<span class="op">$</span>data, <span class="kw">aes</span>(<span class="dt">x =</span> lon, <span class="dt">y =</span> lat, <span class="dt">fill =</span> sea_surface_temperature), <span class="dt">interpolate =</span> <span class="ot">FALSE</span>) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb498-5" data-line-number="5"><span class="st">    </span><span class="kw">geom_polygon</span>(<span class="dt">data =</span> w, <span class="kw">aes</span>(<span class="dt">x =</span> long, <span class="dt">y =</span> lat, <span class="dt">group =</span> group), <span class="dt">fill =</span> <span class="st">&quot;grey80&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb498-6" data-line-number="6"><span class="st">    </span><span class="kw">theme_bw</span>() <span class="op">+</span><span class="st"> </span><span class="kw">scale_fill_gradientn</span>(<span class="dt">colours =</span> my.col, <span class="dt">na.value =</span> <span class="ot">NA</span>, <span class="dt">limits =</span> <span class="kw">c</span>(<span class="dv">5</span>,<span class="dv">15</span>), <span class="dt">name =</span> <span class="st">&quot;Temperature&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb498-7" data-line-number="7"><span class="st">    </span><span class="kw">ylab</span>(<span class="st">&quot;latitude&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">xlab</span>(<span class="st">&quot;longitude&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb498-8" data-line-number="8"><span class="st">    </span><span class="kw">coord_fixed</span>(<span class="fl">1.3</span>, <span class="dt">xlim =</span> xlim, <span class="dt">ylim =</span> ylim, <span class="dt">expand=</span><span class="ot">FALSE</span>) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb498-9" data-line-number="9"><span class="st">    </span><span class="kw">ggtitle</span>(<span class="kw">paste</span>(<span class="st">&quot;Sea Surface Temperature : &quot;</span>, NAtlsst<span class="op">$</span>data<span class="op">$</span>time[<span class="dv">1</span>]))</a>
-<a class="sourceLine" id="cb498-10" data-line-number="10">myplot</a></code></pre></div>
+<div class="sourceCode" id="cb497"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb497-1" data-line-number="1">my.col &lt;-<span class="st"> </span>colors<span class="op">$</span>temperature </a>
+<a class="sourceLine" id="cb497-2" data-line-number="2">w &lt;-<span class="st"> </span><span class="kw">map_data</span>(<span class="st">&quot;worldHires&quot;</span>, <span class="dt">ylim =</span> ylim, <span class="dt">xlim =</span> xlim)</a>
+<a class="sourceLine" id="cb497-3" data-line-number="3">myplot &lt;-<span class="st"> </span><span class="kw">ggplot</span>() <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb497-4" data-line-number="4"><span class="st">    </span><span class="kw">geom_raster</span>(<span class="dt">data =</span> NAtlsst<span class="op">$</span>data, <span class="kw">aes</span>(<span class="dt">x =</span> lon, <span class="dt">y =</span> lat, <span class="dt">fill =</span> sea_surface_temperature), <span class="dt">interpolate =</span> <span class="ot">FALSE</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb497-5" data-line-number="5"><span class="st">    </span><span class="kw">geom_polygon</span>(<span class="dt">data =</span> w, <span class="kw">aes</span>(<span class="dt">x =</span> long, <span class="dt">y =</span> lat, <span class="dt">group =</span> group), <span class="dt">fill =</span> <span class="st">&quot;grey80&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb497-6" data-line-number="6"><span class="st">    </span><span class="kw">theme_bw</span>() <span class="op">+</span><span class="st"> </span><span class="kw">scale_fill_gradientn</span>(<span class="dt">colours =</span> my.col, <span class="dt">na.value =</span> <span class="ot">NA</span>, <span class="dt">limits =</span> <span class="kw">c</span>(<span class="dv">5</span>,<span class="dv">15</span>), <span class="dt">name =</span> <span class="st">&quot;Temperature&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb497-7" data-line-number="7"><span class="st">    </span><span class="kw">ylab</span>(<span class="st">&quot;latitude&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">xlab</span>(<span class="st">&quot;longitude&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb497-8" data-line-number="8"><span class="st">    </span><span class="kw">coord_fixed</span>(<span class="fl">1.3</span>, <span class="dt">xlim =</span> xlim, <span class="dt">ylim =</span> ylim, <span class="dt">expand=</span><span class="ot">FALSE</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb497-9" data-line-number="9"><span class="st">    </span><span class="kw">ggtitle</span>(<span class="kw">paste</span>(<span class="st">&quot;Sea Surface Temperature : &quot;</span>, NAtlsst<span class="op">$</span>data<span class="op">$</span>time[<span class="dv">1</span>]))</a>
+<a class="sourceLine" id="cb497-10" data-line-number="10">myplot</a></code></pre></div>
 <p><img src="R_Geospatial_Sciences_files/figure-html/datttttttttttaaaaaaaaaaaaaaa-1.png" width="60%" style="display: block; margin: auto;" /></p>
 </div>
 </div>

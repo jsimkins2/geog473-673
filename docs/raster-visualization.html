@@ -24,7 +24,7 @@
 <meta name="author" content="James Simkins" />
 
 
-<meta name="date" content="2021-01-27" />
+<meta name="date" content="2021-01-28" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -366,7 +366,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb178-2" data-line-number="2">person &lt;-<span class="st">&quot;Grover&quot;</span></a>
 <a class="sourceLine" id="cb178-3" data-line-number="3">action &lt;-<span class="st">&quot;flying&quot;</span></a>
 <a class="sourceLine" id="cb178-4" data-line-number="4"><span class="kw">message</span>(<span class="kw">sprintf</span>(<span class="st">&quot;On %s I realized %s was...</span><span class="ch">\n</span><span class="st">%s by the street&quot;</span>, <span class="kw">Sys.Date</span>(), person, action))</a></code></pre></div>
-<pre><code>## On 2021-01-27 I realized Grover was...
+<pre><code>## On 2021-01-28 I realized Grover was...
 ## flying by the street</code></pre>
 <div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb180-1" data-line-number="1"><span class="co"># Notice that paste() is limiting because the separating character is not always present between</span></a>
 <a class="sourceLine" id="cb180-2" data-line-number="2"><span class="co"># each string you&#39;re concatenating</span></a>
@@ -467,7 +467,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## resolution : 0.0003599712, 0.0005027652  (x, y)
 ## extent     : 0, 1, 0, 1  (xmin, xmax, ymin, ymax)
 ## crs        : NA 
-## source     : memory
+## source     : /private/var/folders/6m/1b7gn_m93g9380p1jxvm2_700000gr/T/RtmpauWRqi/raster/r_tmp_2021-01-28_095340_19340_04107.grd 
 ## names      : layer 
 ## values     : 5.344696, 34.9397  (min, max)</code></pre>
 <div class="sourceCode" id="cb197"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb197-1" data-line-number="1"><span class="co"># notice that the extent and crs information are wrong/not included so let&#39;s fix this</span></a>
@@ -485,7 +485,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## resolution : 0.01799352, 0.0180909  (x, y)
 ## extent     : -99.99015, -50.00415, 16.00283, 51.98563  (xmin, xmax, ymin, ymax)
 ## crs        : +proj=longlat +datum=WGS84 +no_defs 
-## source     : memory
+## source     : /private/var/folders/6m/1b7gn_m93g9380p1jxvm2_700000gr/T/RtmpauWRqi/raster/r_tmp_2021-01-28_095340_19340_04107.grd 
 ## names      : layer 
 ## values     : 5.344696, 34.9397  (min, max)</code></pre>
 <div class="sourceCode" id="cb199"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb199-1" data-line-number="1"><span class="kw">image</span>(sstRast)</a></code></pre></div>
