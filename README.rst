@@ -28,38 +28,48 @@ GEOG 473/673: Course Notebooks
 
 Advanced R - Phase 1 of GEOG 473/673: Course Notebooks
 ----------------
-
-Week 1 - Welcome to Advanced R!
+Welcome Video
+ https://youtu.be/H3GzOLGUP7A
+ 
+Week 1 - Plot Customization
 
  https://jsimkins2.github.io/geog473-673/plot-customization.html
+ Video Lecture: https://youtu.be/KQxzRCzikJU
 
-Week 2 - Basic Statistics Plotting
+Week 2 - Basic Statistics 
 
  https://jsimkins2.github.io/geog473-673/basic-statistics.html
+ Video Lecture: https://youtu.be/wEI0KApqWak
 
 Week 3 - ggplot2 Tutorial
 
  https://jsimkins2.github.io/geog473-673/plotting-with-ggplot2.html
+ Video Lecture: https://youtu.be/45SkenXgEJ8
 
 Week 4 - Spatial ggplot2
 
  https://jsimkins2.github.io/geog473-673/spatial-plots-with-ggplot2.html
+ Video Lecture: https://youtu.be/Ik36PeMZ3SY
 
 Week 5 - Plotting Shapefiles
 
  https://jsimkins2.github.io/geog473-673/shapefiles.html
+ Video Lecture: https://youtu.be/0Qt1vPcddss
 
 Week 6 - Data Extraction
 
  https://jsimkins2.github.io/geog473-673/remote-data-extraction.html
+ Video Lecture: https://youtu.be/CIp1q6l4uZ8
 
 Week 7 - Functions and Presentations
 
  https://jsimkins2.github.io/geog473-673/functions-and-code-presentation.html
+ Video Lecture: https://youtu.be/pY6CoNm5qwA
 
 Advanced R Project
 
  https://github.com/jsimkins2/geog473-673/blob/master/documents/AdvancedR_finalproject.pdf
+ Video Lecture: https://youtu.be/t8QfldJG_vM
 
 
 Machine Learning in R - Phase 2 of GEOG473/673: Course Notebooks
@@ -68,14 +78,17 @@ Machine Learning in R - Phase 2 of GEOG473/673: Course Notebooks
 Week 1 - Intro to Machine Learning
 
  https://jsimkins2.github.io/geog473-673/machine-learning-with-r.html
+ Video Lecture: https://youtu.be/vj5Sc9Fz_b0
  
 Weeks 2 & 3 - Time Series Forecasting
 
  https://jsimkins2.github.io/geog473-673/time-series-forecasting.html
+ Video Lecture: https://youtu.be/mL5CVdmjZes
  
 Weeks 4 & 5 - Random Forest Modeling
 
  https://jsimkins2.github.io/geog473-673/random-forest-modeling.html
+ Video Lecture: https://youtu.be/Ptd2NXdtHl4
  
  
  
