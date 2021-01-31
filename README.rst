@@ -43,28 +43,28 @@ Week 2 - Basic Statistics
 
 Week 3 - ggplot2 Tutorial
 
- https://jsimkins2.github.io/geog473-673/plotting-with-ggplot2.html
- |Video Lecture: https://youtu.be/45SkenXgEJ8
+ https://jsimkins2.github.io/geog473-673/plotting-with-ggplot2.html | 
+ Video Lecture: https://youtu.be/45SkenXgEJ8
 
 Week 4 - Spatial ggplot2
 
- https://jsimkins2.github.io/geog473-673/spatial-plots-with-ggplot2.html
- |Video Lecture: https://youtu.be/Ik36PeMZ3SY
+ https://jsimkins2.github.io/geog473-673/spatial-plots-with-ggplot2.html | 
+ Video Lecture: https://youtu.be/Ik36PeMZ3SY
 
 Week 5 - Plotting Shapefiles
 
  https://jsimkins2.github.io/geog473-673/shapefiles.html
- |Video Lecture: https://youtu.be/0Qt1vPcddss
+ | Video Lecture: https://youtu.be/0Qt1vPcddss
 
 Week 6 - Data Extraction
 
  https://jsimkins2.github.io/geog473-673/remote-data-extraction.html
- |Video Lecture: https://youtu.be/CIp1q6l4uZ8
+ | Video Lecture: https://youtu.be/CIp1q6l4uZ8
 
 Week 7 - Functions and Presentations
 
  https://jsimkins2.github.io/geog473-673/functions-and-code-presentation.html
- |Video Lecture: https://youtu.be/pY6CoNm5qwA
+ | Video Lecture: https://youtu.be/pY6CoNm5qwA
 
 Advanced R Project
 
