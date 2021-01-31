@@ -73,7 +73,7 @@ Week 7 - Functions and Presentations
  
  Video Lecture: https://youtu.be/pY6CoNm5qwA  
 
-Advanced R Project
+Weeks 8 & 9 - Advanced R Project
 
  https://github.com/jsimkins2/geog473-673/blob/master/documents/AdvancedR_finalproject.pdf
  
