@@ -40,37 +40,44 @@ Week 1 - Plot Customization
 Week 2 - Basic Statistics 
 
  https://jsimkins2.github.io/geog473-673/basic-statistics.html
- https://youtu.be/wEI0KApqWak
+ 
+ Video Lecture: https://youtu.be/wEI0KApqWak
 
 Week 3 - ggplot2 Tutorial
 
  https://jsimkins2.github.io/geog473-673/plotting-with-ggplot2.html
- https://youtu.be/45SkenXgEJ8
+ 
+ Video Lecture: https://youtu.be/45SkenXgEJ8
 
 Week 4 - Spatial ggplot2
 
  https://jsimkins2.github.io/geog473-673/spatial-plots-with-ggplot2.html
- https://youtu.be/Ik36PeMZ3SY
+ 
+ Video Lecture: https://youtu.be/Ik36PeMZ3SY
 
 Week 5 - Plotting Shapefiles
 
- https://jsimkins2.github.io/geog473-673/shapefiles.html  
- https://youtu.be/0Qt1vPcddss
+ https://jsimkins2.github.io/geog473-673/shapefiles.html 
+ 
+ Video Lecture: https://youtu.be/0Qt1vPcddss
 
- Week 6 - Data Extraction
+Week 6 - Data Extraction
 
- https://jsimkins2.github.io/geog473-673/remote-data-extraction.html  
- https://youtu.be/CIp1q6l4uZ8
+ https://jsimkins2.github.io/geog473-673/remote-data-extraction.html
+ 
+ Video Lecture: https://youtu.be/CIp1q6l4uZ8
 
 Week 7 - Functions and Presentations
 
- https://jsimkins2.github.io/geog473-673/functions-and-code-presentation.html  
- https://youtu.be/pY6CoNm5qwA  
+ https://jsimkins2.github.io/geog473-673/functions-and-code-presentation.html
+ 
+ Video Lecture: https://youtu.be/pY6CoNm5qwA  
 
 Advanced R Project
 
  https://github.com/jsimkins2/geog473-673/blob/master/documents/AdvancedR_finalproject.pdf
- https://youtu.be/t8QfldJG_vM
+ 
+ Video Lecture: https://youtu.be/t8QfldJG_vM
 
 
 Machine Learning in R - Phase 2 of GEOG473/673: Course Notebooks
@@ -79,17 +86,20 @@ Machine Learning in R - Phase 2 of GEOG473/673: Course Notebooks
 Week 1 - Intro to Machine Learning
 
  https://jsimkins2.github.io/geog473-673/machine-learning-with-r.html
- https://youtu.be/vj5Sc9Fz_b0
+ 
+ Video Lecture: https://youtu.be/vj5Sc9Fz_b0
  
 Weeks 2 & 3 - Time Series Forecasting
 
  https://jsimkins2.github.io/geog473-673/time-series-forecasting.html
- https://youtu.be/mL5CVdmjZes
+ 
+ Video Lecture: https://youtu.be/mL5CVdmjZes
  
 Weeks 4 & 5 - Random Forest Modeling
 
  https://jsimkins2.github.io/geog473-673/random-forest-modeling.html
- https://youtu.be/Ptd2NXdtHl4
+ 
+ Video Lecture: https://youtu.be/Ptd2NXdtHl4
  
  
  
