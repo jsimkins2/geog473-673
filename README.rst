@@ -64,7 +64,7 @@ Video Lecture: https://youtu.be/0Qt1vPcddss
 Week 7 - Functions and Presentations
 
  https://jsimkins2.github.io/geog473-673/functions-and-code-presentation.html  
- Video Lecture: https://youtu.be/pY6CoNm5qwA
+ Video Lecture: https://youtu.be/pY6CoNm5qwA  
 
 Advanced R Project
 
