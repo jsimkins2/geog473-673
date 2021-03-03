@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>11 Basic Statistics | R for Geospatial Sciences</title>
+  <title>10 Basic Statistics | R for Geospatial Sciences</title>
   <meta name="description" content="Advanced R" />
   <meta name="generator" content="bookdown 0.20.6 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="11 Basic Statistics | R for Geospatial Sciences" />
+  <meta property="og:title" content="10 Basic Statistics | R for Geospatial Sciences" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="11 Basic Statistics | R for Geospatial Sciences" />
+  <meta name="twitter:title" content="10 Basic Statistics | R for Geospatial Sciences" />
   
   <meta name="twitter:description" content="Advanced R" />
   
@@ -24,7 +24,7 @@
 <meta name="author" content="James Simkins" />
 
 
-<meta name="date" content="2021-01-28" />
+<meta name="date" content="2021-03-03" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,6 +33,7 @@
   
 <link rel="prev" href="plot-customization.html"/>
 <link rel="next" href="plotting-with-ggplot2.html"/>
+<script src="libs/header-attrs-2.3.8/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -74,25 +75,26 @@
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -101,9 +103,9 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {  }
+  {   }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -152,14 +154,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">R for Geospatial Sciences</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="1" data-path="r-for-geospatial-sciences.html"><a href="r-for-geospatial-sciences.html"><i class="fa fa-check"></i><b>1</b> R for Geospatial Sciences</a><ul>
+<li class="chapter" data-level="1" data-path="r-for-geospatial-sciences.html"><a href="r-for-geospatial-sciences.html"><i class="fa fa-check"></i><b>1</b> R for Geospatial Sciences</a>
+<ul>
 <li class="chapter" data-level="1.1" data-path="r-for-geospatial-sciences.html"><a href="r-for-geospatial-sciences.html#welcome"><i class="fa fa-check"></i><b>1.1</b> Welcome</a></li>
 <li class="chapter" data-level="1.2" data-path="r-for-geospatial-sciences.html"><a href="r-for-geospatial-sciences.html#course-github"><i class="fa fa-check"></i><b>1.2</b> Course Github</a></li>
 <li class="chapter" data-level="1.3" data-path="r-for-geospatial-sciences.html"><a href="r-for-geospatial-sciences.html#syllabus"><i class="fa fa-check"></i><b>1.3</b> Syllabus</a></li>
 <li class="chapter" data-level="1.4" data-path="r-for-geospatial-sciences.html"><a href="r-for-geospatial-sciences.html#phase-1"><i class="fa fa-check"></i><b>1.4</b> Phase 1</a></li>
 <li class="chapter" data-level="1.5" data-path="r-for-geospatial-sciences.html"><a href="r-for-geospatial-sciences.html#phase-2"><i class="fa fa-check"></i><b>1.5</b> Phase 2</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html"><i class="fa fa-check"></i><b>2</b> Getting Started with R</a><ul>
+<li class="chapter" data-level="2" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html"><i class="fa fa-check"></i><b>2</b> Getting Started with R</a>
+<ul>
 <li class="chapter" data-level="2.1" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#why-is-there-such-a-buzz-around-r"><i class="fa fa-check"></i><b>2.1</b> Why is there such a buzz around R?</a></li>
 <li class="chapter" data-level="2.2" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#reasons-to-love-r"><i class="fa fa-check"></i><b>2.2</b> Reasons to love R</a></li>
 <li class="chapter" data-level="2.3" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#downloading-guide"><i class="fa fa-check"></i><b>2.3</b> Downloading Guide</a></li>
@@ -170,12 +174,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.8" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#open-rstudio"><i class="fa fa-check"></i><b>2.8</b> Open RStudio</a></li>
 <li class="chapter" data-level="2.9" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#r-studio-layout"><i class="fa fa-check"></i><b>2.9</b> R Studio Layout</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="definitions-rules.html"><a href="definitions-rules.html"><i class="fa fa-check"></i><b>3</b> Definitions &amp; Rules</a><ul>
+<li class="chapter" data-level="3" data-path="definitions-rules.html"><a href="definitions-rules.html"><i class="fa fa-check"></i><b>3</b> Definitions &amp; Rules</a>
+<ul>
 <li class="chapter" data-level="3.1" data-path="definitions-rules.html"><a href="definitions-rules.html#important-r-programming-definitions"><i class="fa fa-check"></i><b>3.1</b> Important R Programming Definitions</a></li>
 <li class="chapter" data-level="3.2" data-path="definitions-rules.html"><a href="definitions-rules.html#rules"><i class="fa fa-check"></i><b>3.2</b> Rules</a></li>
 <li class="chapter" data-level="3.3" data-path="definitions-rules.html"><a href="definitions-rules.html#general-recommendations"><i class="fa fa-check"></i><b>3.3</b> General Recommendations</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="r-coding-fundamentals.html"><a href="r-coding-fundamentals.html"><i class="fa fa-check"></i><b>4</b> R Coding Fundamentals</a><ul>
+<li class="chapter" data-level="4" data-path="r-coding-fundamentals.html"><a href="r-coding-fundamentals.html"><i class="fa fa-check"></i><b>4</b> R Coding Fundamentals</a>
+<ul>
 <li class="chapter" data-level="4.1" data-path="r-coding-fundamentals.html"><a href="r-coding-fundamentals.html#entering-input"><i class="fa fa-check"></i><b>4.1</b> Entering Input</a></li>
 <li class="chapter" data-level="4.2" data-path="r-coding-fundamentals.html"><a href="r-coding-fundamentals.html#running-code"><i class="fa fa-check"></i><b>4.2</b> Running Code</a></li>
 <li class="chapter" data-level="4.3" data-path="r-coding-fundamentals.html"><a href="r-coding-fundamentals.html#evaluation"><i class="fa fa-check"></i><b>4.3</b> Evaluation</a></li>
@@ -193,144 +199,171 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.15" data-path="r-coding-fundamentals.html"><a href="r-coding-fundamentals.html#names"><i class="fa fa-check"></i><b>4.15</b> Names</a></li>
 <li class="chapter" data-level="4.16" data-path="r-coding-fundamentals.html"><a href="r-coding-fundamentals.html#summary"><i class="fa fa-check"></i><b>4.16</b> Summary</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="basic-r-scripts.html"><a href="basic-r-scripts.html"><i class="fa fa-check"></i><b>5</b> Basic R Scripts</a><ul>
-<li class="chapter" data-level="5.1" data-path="basic-r-scripts.html"><a href="basic-r-scripts.html#global-carbon-dioxide-concentrations"><i class="fa fa-check"></i><b>5.1</b> Global Carbon-Dioxide Concentrations</a><ul>
+<li class="chapter" data-level="5" data-path="basic-r-scripts.html"><a href="basic-r-scripts.html"><i class="fa fa-check"></i><b>5</b> Basic R Scripts</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="basic-r-scripts.html"><a href="basic-r-scripts.html#global-carbon-dioxide-concentrations"><i class="fa fa-check"></i><b>5.1</b> Global Carbon-Dioxide Concentrations</a>
+<ul>
 <li class="chapter" data-level="5.1.1" data-path="basic-r-scripts.html"><a href="basic-r-scripts.html#saving-your-plot"><i class="fa fa-check"></i><b>5.1.1</b> Saving your plot</a></li>
 </ul></li>
 <li class="chapter" data-level="5.2" data-path="basic-r-scripts.html"><a href="basic-r-scripts.html#cars---motor-trends-magazine-data"><i class="fa fa-check"></i><b>5.2</b> Cars - Motor Trends Magazine Data</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="scientific-r-scripts.html"><a href="scientific-r-scripts.html"><i class="fa fa-check"></i><b>6</b> Scientific R Scripts</a><ul>
-<li class="chapter" data-level="6.1" data-path="scientific-r-scripts.html"><a href="scientific-r-scripts.html#script-breakdown"><i class="fa fa-check"></i><b>6.1</b> Script Breakdown</a><ul>
+<li class="chapter" data-level="6" data-path="scientific-r-scripts.html"><a href="scientific-r-scripts.html"><i class="fa fa-check"></i><b>6</b> Scientific R Scripts</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="scientific-r-scripts.html"><a href="scientific-r-scripts.html#script-breakdown"><i class="fa fa-check"></i><b>6.1</b> Script Breakdown</a>
+<ul>
 <li class="chapter" data-level="6.1.1" data-path="scientific-r-scripts.html"><a href="scientific-r-scripts.html#installing-packages"><i class="fa fa-check"></i><b>6.1.1</b> Installing Packages</a></li>
 <li class="chapter" data-level="6.1.2" data-path="scientific-r-scripts.html"><a href="scientific-r-scripts.html#reading-the-data"><i class="fa fa-check"></i><b>6.1.2</b> Reading the Data</a></li>
 <li class="chapter" data-level="6.1.3" data-path="scientific-r-scripts.html"><a href="scientific-r-scripts.html#basic-quality-control"><i class="fa fa-check"></i><b>6.1.3</b> Basic Quality Control</a></li>
 <li class="chapter" data-level="6.1.4" data-path="scientific-r-scripts.html"><a href="scientific-r-scripts.html#plotting-the-data"><i class="fa fa-check"></i><b>6.1.4</b> Plotting the Data</a></li>
 </ul></li>
-<li class="chapter" data-level="6.2" data-path="scientific-r-scripts.html"><a href="scientific-r-scripts.html#in-class-exercise"><i class="fa fa-check"></i><b>6.2</b> In Class Exercise</a><ul>
+<li class="chapter" data-level="6.2" data-path="scientific-r-scripts.html"><a href="scientific-r-scripts.html#in-class-exercise"><i class="fa fa-check"></i><b>6.2</b> In Class Exercise</a>
+<ul>
 <li class="chapter" data-level="6.2.1" data-path="scientific-r-scripts.html"><a href="scientific-r-scripts.html#further-explanation-of-datatypes"><i class="fa fa-check"></i><b>6.2.1</b> Further Explanation of DataTypes</a></li>
 </ul></li>
+<li class="chapter" data-level="6.3" data-path="scientific-r-scripts.html"><a href="scientific-r-scripts.html#deos-data"><i class="fa fa-check"></i><b>6.3</b> DEOS Data</a></li>
+<li class="chapter" data-level="6.4" data-path="scientific-r-scripts.html"><a href="scientific-r-scripts.html#assignment"><i class="fa fa-check"></i><b>6.4</b> Assignment</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="time-series-data.html"><a href="time-series-data.html"><i class="fa fa-check"></i><b>7</b> Time Series Data</a><ul>
-<li class="chapter" data-level="7.1" data-path="time-series-data.html"><a href="time-series-data.html#for-loops"><i class="fa fa-check"></i><b>7.1</b> For Loops</a></li>
-<li class="chapter" data-level="7.2" data-path="time-series-data.html"><a href="time-series-data.html#deos-data"><i class="fa fa-check"></i><b>7.2</b> DEOS Data</a></li>
-<li class="chapter" data-level="7.3" data-path="time-series-data.html"><a href="time-series-data.html#assignment"><i class="fa fa-check"></i><b>7.3</b> Assignment</a></li>
+<li class="chapter" data-level="7" data-path="raster-visualization.html"><a href="raster-visualization.html"><i class="fa fa-check"></i><b>7</b> Raster Visualization</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="raster-visualization.html"><a href="raster-visualization.html#paste0"><i class="fa fa-check"></i><b>7.1</b> <code>Paste0()</code></a></li>
+<li class="chapter" data-level="7.2" data-path="raster-visualization.html"><a href="raster-visualization.html#rasters"><i class="fa fa-check"></i><b>7.2</b> Rasters</a></li>
+<li class="chapter" data-level="7.3" data-path="raster-visualization.html"><a href="raster-visualization.html#assignment-1"><i class="fa fa-check"></i><b>7.3</b> Assignment</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="raster-visualization.html"><a href="raster-visualization.html"><i class="fa fa-check"></i><b>8</b> Raster Visualization</a><ul>
-<li class="chapter" data-level="8.1" data-path="raster-visualization.html"><a href="raster-visualization.html#paste0"><i class="fa fa-check"></i><b>8.1</b> <code>Paste0()</code></a></li>
-<li class="chapter" data-level="8.2" data-path="raster-visualization.html"><a href="raster-visualization.html#rasters"><i class="fa fa-check"></i><b>8.2</b> Rasters</a></li>
-<li class="chapter" data-level="8.3" data-path="raster-visualization.html"><a href="raster-visualization.html#assignment-1"><i class="fa fa-check"></i><b>8.3</b> Assignment</a></li>
+<li class="chapter" data-level="8" data-path="reprojecting-writing-rasters.html"><a href="reprojecting-writing-rasters.html"><i class="fa fa-check"></i><b>8</b> Reprojecting &amp; Writing Rasters</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="reprojecting-writing-rasters.html"><a href="reprojecting-writing-rasters.html#indexing-data"><i class="fa fa-check"></i><b>8.1</b> Indexing Data</a></li>
+<li class="chapter" data-level="8.2" data-path="reprojecting-writing-rasters.html"><a href="reprojecting-writing-rasters.html#resampling-and-reprojecting"><i class="fa fa-check"></i><b>8.2</b> Resampling and Reprojecting</a></li>
+<li class="chapter" data-level="8.3" data-path="reprojecting-writing-rasters.html"><a href="reprojecting-writing-rasters.html#pngs"><i class="fa fa-check"></i><b>8.3</b> PNGs</a></li>
+<li class="chapter" data-level="8.4" data-path="reprojecting-writing-rasters.html"><a href="reprojecting-writing-rasters.html#writing-rasters"><i class="fa fa-check"></i><b>8.4</b> Writing Rasters</a></li>
+<li class="chapter" data-level="8.5" data-path="reprojecting-writing-rasters.html"><a href="reprojecting-writing-rasters.html#assignment-2"><i class="fa fa-check"></i><b>8.5</b> Assignment</a></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="reprojecting-writing-rasters.html"><a href="reprojecting-writing-rasters.html"><i class="fa fa-check"></i><b>9</b> Reprojecting &amp; Writing Rasters</a><ul>
-<li class="chapter" data-level="9.1" data-path="reprojecting-writing-rasters.html"><a href="reprojecting-writing-rasters.html#indexing-data"><i class="fa fa-check"></i><b>9.1</b> Indexing Data</a></li>
-<li class="chapter" data-level="9.2" data-path="reprojecting-writing-rasters.html"><a href="reprojecting-writing-rasters.html#resampling-and-reprojecting"><i class="fa fa-check"></i><b>9.2</b> Resampling and Reprojecting</a></li>
-<li class="chapter" data-level="9.3" data-path="reprojecting-writing-rasters.html"><a href="reprojecting-writing-rasters.html#pngs"><i class="fa fa-check"></i><b>9.3</b> PNGs</a></li>
-<li class="chapter" data-level="9.4" data-path="reprojecting-writing-rasters.html"><a href="reprojecting-writing-rasters.html#writing-rasters"><i class="fa fa-check"></i><b>9.4</b> Writing Rasters</a></li>
-<li class="chapter" data-level="9.5" data-path="reprojecting-writing-rasters.html"><a href="reprojecting-writing-rasters.html#assignment-2"><i class="fa fa-check"></i><b>9.5</b> Assignment</a></li>
+<li class="chapter" data-level="9" data-path="plot-customization.html"><a href="plot-customization.html"><i class="fa fa-check"></i><b>9</b> Plot Customization</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="plot-customization.html"><a href="plot-customization.html#expanding-on-basic-plots-in-r"><i class="fa fa-check"></i><b>9.1</b> Expanding on Basic Plots in R</a>
+<ul>
+<li class="chapter" data-level="9.1.1" data-path="plot-customization.html"><a href="plot-customization.html#adding-to-a-plot"><i class="fa fa-check"></i><b>9.1.1</b> Adding to a Plot</a></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="plot-customization.html"><a href="plot-customization.html"><i class="fa fa-check"></i><b>10</b> Plot Customization</a><ul>
-<li class="chapter" data-level="10.1" data-path="plot-customization.html"><a href="plot-customization.html#expanding-on-basic-plots-in-r"><i class="fa fa-check"></i><b>10.1</b> Expanding on Basic Plots in R</a><ul>
-<li class="chapter" data-level="10.1.1" data-path="plot-customization.html"><a href="plot-customization.html#adding-to-a-plot"><i class="fa fa-check"></i><b>10.1.1</b> Adding to a Plot</a></li>
+<li class="chapter" data-level="9.2" data-path="plot-customization.html"><a href="plot-customization.html#barplots-boxplots-pie-charts"><i class="fa fa-check"></i><b>9.2</b> Barplots, Boxplots, Pie Charts</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="plot-customization.html"><a href="plot-customization.html#combining-plots"><i class="fa fa-check"></i><b>9.2.1</b> Combining Plots</a></li>
 </ul></li>
-<li class="chapter" data-level="10.2" data-path="plot-customization.html"><a href="plot-customization.html#barplots-boxplots-pie-charts"><i class="fa fa-check"></i><b>10.2</b> Barplots, Boxplots, Pie Charts</a><ul>
-<li class="chapter" data-level="10.2.1" data-path="plot-customization.html"><a href="plot-customization.html#combining-plots"><i class="fa fa-check"></i><b>10.2.1</b> Combining Plots</a></li>
+<li class="chapter" data-level="9.3" data-path="plot-customization.html"><a href="plot-customization.html#tree-data"><i class="fa fa-check"></i><b>9.3</b> Tree Data</a>
+<ul>
+<li class="chapter" data-level="9.3.1" data-path="plot-customization.html"><a href="plot-customization.html#loading-the-dataset"><i class="fa fa-check"></i><b>9.3.1</b> Loading the Dataset</a></li>
 </ul></li>
-<li class="chapter" data-level="10.3" data-path="plot-customization.html"><a href="plot-customization.html#tree-data"><i class="fa fa-check"></i><b>10.3</b> Tree Data</a><ul>
-<li class="chapter" data-level="10.3.1" data-path="plot-customization.html"><a href="plot-customization.html#loading-the-dataset"><i class="fa fa-check"></i><b>10.3.1</b> Loading the Dataset</a></li>
+<li class="chapter" data-level="9.4" data-path="plot-customization.html"><a href="plot-customization.html#assignment-3"><i class="fa fa-check"></i><b>9.4</b> Assignment:</a></li>
 </ul></li>
-<li class="chapter" data-level="10.4" data-path="plot-customization.html"><a href="plot-customization.html#assignment-3"><i class="fa fa-check"></i><b>10.4</b> Assignment:</a></li>
+<li class="chapter" data-level="10" data-path="basic-statistics.html"><a href="basic-statistics.html"><i class="fa fa-check"></i><b>10</b> Basic Statistics</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="basic-statistics.html"><a href="basic-statistics.html#statistical-function-dictionary"><i class="fa fa-check"></i><b>10.1</b> Statistical Function Dictionary</a></li>
+<li class="chapter" data-level="10.2" data-path="basic-statistics.html"><a href="basic-statistics.html#basic-statistics-in-r"><i class="fa fa-check"></i><b>10.2</b> Basic Statistics in R</a>
+<ul>
+<li class="chapter" data-level="10.2.1" data-path="basic-statistics.html"><a href="basic-statistics.html#load-willow-creek-data"><i class="fa fa-check"></i><b>10.2.1</b> Load Willow Creek data</a></li>
+<li class="chapter" data-level="10.2.2" data-path="basic-statistics.html"><a href="basic-statistics.html#subsetting-data"><i class="fa fa-check"></i><b>10.2.2</b> Subsetting Data</a></li>
+<li class="chapter" data-level="10.2.3" data-path="basic-statistics.html"><a href="basic-statistics.html#trends-and-distributions"><i class="fa fa-check"></i><b>10.2.3</b> Trends and Distributions</a></li>
+<li class="chapter" data-level="10.2.4" data-path="basic-statistics.html"><a href="basic-statistics.html#finding-a-best-fit-distribution"><i class="fa fa-check"></i><b>10.2.4</b> Finding a Best-Fit Distribution</a></li>
+<li class="chapter" data-level="10.2.5" data-path="basic-statistics.html"><a href="basic-statistics.html#correlation-plots"><i class="fa fa-check"></i><b>10.2.5</b> Correlation Plots</a></li>
 </ul></li>
-<li class="chapter" data-level="11" data-path="basic-statistics.html"><a href="basic-statistics.html"><i class="fa fa-check"></i><b>11</b> Basic Statistics</a><ul>
-<li class="chapter" data-level="11.1" data-path="basic-statistics.html"><a href="basic-statistics.html#statistical-function-dictionary"><i class="fa fa-check"></i><b>11.1</b> Statistical Function Dictionary</a></li>
-<li class="chapter" data-level="11.2" data-path="basic-statistics.html"><a href="basic-statistics.html#basic-statistics-in-r"><i class="fa fa-check"></i><b>11.2</b> Basic Statistics in R</a><ul>
-<li class="chapter" data-level="11.2.1" data-path="basic-statistics.html"><a href="basic-statistics.html#load-willow-creek-data"><i class="fa fa-check"></i><b>11.2.1</b> Load Willow Creek data</a></li>
-<li class="chapter" data-level="11.2.2" data-path="basic-statistics.html"><a href="basic-statistics.html#subsetting-data"><i class="fa fa-check"></i><b>11.2.2</b> Subsetting Data</a></li>
-<li class="chapter" data-level="11.2.3" data-path="basic-statistics.html"><a href="basic-statistics.html#trends-and-distributions"><i class="fa fa-check"></i><b>11.2.3</b> Trends and Distributions</a></li>
-<li class="chapter" data-level="11.2.4" data-path="basic-statistics.html"><a href="basic-statistics.html#finding-a-best-fit-distribution"><i class="fa fa-check"></i><b>11.2.4</b> Finding a Best-Fit Distribution</a></li>
-<li class="chapter" data-level="11.2.5" data-path="basic-statistics.html"><a href="basic-statistics.html#correlation-plots"><i class="fa fa-check"></i><b>11.2.5</b> Correlation Plots</a></li>
-</ul></li>
-<li class="chapter" data-level="11.3" data-path="basic-statistics.html"><a href="basic-statistics.html#assignment-4"><i class="fa fa-check"></i><b>11.3</b> Assignment</a><ul>
-<li class="chapter" data-level="11.3.1" data-path="basic-statistics.html"><a href="basic-statistics.html#extra-credit---2-points"><i class="fa fa-check"></i><b>11.3.1</b> Extra Credit - 2 points</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="12" data-path="plotting-with-ggplot2.html"><a href="plotting-with-ggplot2.html"><i class="fa fa-check"></i><b>12</b> Plotting with <code>ggplot2</code></a><ul>
-<li class="chapter" data-level="12.1" data-path="plotting-with-ggplot2.html"><a href="plotting-with-ggplot2.html#ggplot2-with-willow-creek-meteorological-data"><i class="fa fa-check"></i><b>12.1</b> ggplot2 with Willow Creek Meteorological Data</a></li>
-<li class="chapter" data-level="12.2" data-path="plotting-with-ggplot2.html"><a href="plotting-with-ggplot2.html#assignment-5"><i class="fa fa-check"></i><b>12.2</b> Assignment:</a></li>
-<li class="chapter" data-level="12.3" data-path="plotting-with-ggplot2.html"><a href="plotting-with-ggplot2.html#extra-credit---2-points-1"><i class="fa fa-check"></i><b>12.3</b> Extra Credit - 2 Points</a></li>
-</ul></li>
-<li class="chapter" data-level="13" data-path="spatial-plots-with-ggplot2.html"><a href="spatial-plots-with-ggplot2.html"><i class="fa fa-check"></i><b>13</b> Spatial Plots with <code>ggplot2</code></a><ul>
-<li class="chapter" data-level="13.1" data-path="spatial-plots-with-ggplot2.html"><a href="spatial-plots-with-ggplot2.html#simple-features"><i class="fa fa-check"></i><b>13.1</b> Simple Features</a></li>
-<li class="chapter" data-level="13.2" data-path="spatial-plots-with-ggplot2.html"><a href="spatial-plots-with-ggplot2.html#sea-surface-temperature-ggplot"><i class="fa fa-check"></i><b>13.2</b> Sea Surface Temperature ggplot</a></li>
-<li class="chapter" data-level="13.3" data-path="spatial-plots-with-ggplot2.html"><a href="spatial-plots-with-ggplot2.html#r-color-brewer-palettes"><i class="fa fa-check"></i><b>13.3</b> R Color Brewer Palettes</a><ul>
-<li class="chapter" data-level="13.3.1" data-path="spatial-plots-with-ggplot2.html"><a href="spatial-plots-with-ggplot2.html#multi-plot-ggplot"><i class="fa fa-check"></i><b>13.3.1</b> Multi Plot ggplot</a></li>
-</ul></li>
-<li class="chapter" data-level="13.4" data-path="spatial-plots-with-ggplot2.html"><a href="spatial-plots-with-ggplot2.html#assignment-6"><i class="fa fa-check"></i><b>13.4</b> Assignment</a><ul>
-<li class="chapter" data-level="13.4.1" data-path="spatial-plots-with-ggplot2.html"><a href="spatial-plots-with-ggplot2.html#extra-credit---2-points-2"><i class="fa fa-check"></i><b>13.4.1</b> Extra Credit - 2 Points</a></li>
+<li class="chapter" data-level="10.3" data-path="basic-statistics.html"><a href="basic-statistics.html#assignment-4"><i class="fa fa-check"></i><b>10.3</b> Assignment</a>
+<ul>
+<li class="chapter" data-level="10.3.1" data-path="basic-statistics.html"><a href="basic-statistics.html#extra-credit---2-points"><i class="fa fa-check"></i><b>10.3.1</b> Extra Credit - 2 points</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="14" data-path="shapefiles.html"><a href="shapefiles.html"><i class="fa fa-check"></i><b>14</b> Shapefiles</a><ul>
-<li class="chapter" data-level="14.1" data-path="shapefiles.html"><a href="shapefiles.html#reading-in-shapefiles"><i class="fa fa-check"></i><b>14.1</b> Reading in Shapefiles</a></li>
-<li class="chapter" data-level="14.2" data-path="shapefiles.html"><a href="shapefiles.html#combining-shapefiles-with-data"><i class="fa fa-check"></i><b>14.2</b> Combining Shapefiles with Data</a></li>
-<li class="chapter" data-level="14.3" data-path="shapefiles.html"><a href="shapefiles.html#visualizing-the-shapefiles-data"><i class="fa fa-check"></i><b>14.3</b> Visualizing the Shapefiles &amp; Data</a></li>
-<li class="chapter" data-level="14.4" data-path="shapefiles.html"><a href="shapefiles.html#saving-a-shapefile"><i class="fa fa-check"></i><b>14.4</b> Saving a shapefile</a></li>
-<li class="chapter" data-level="14.5" data-path="shapefiles.html"><a href="shapefiles.html#assignment-7"><i class="fa fa-check"></i><b>14.5</b> Assignment</a></li>
+<li class="chapter" data-level="11" data-path="plotting-with-ggplot2.html"><a href="plotting-with-ggplot2.html"><i class="fa fa-check"></i><b>11</b> Plotting with <code>ggplot2</code></a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="plotting-with-ggplot2.html"><a href="plotting-with-ggplot2.html#ggplot2-with-willow-creek-meteorological-data"><i class="fa fa-check"></i><b>11.1</b> ggplot2 with Willow Creek Meteorological Data</a></li>
+<li class="chapter" data-level="11.2" data-path="plotting-with-ggplot2.html"><a href="plotting-with-ggplot2.html#assignment-5"><i class="fa fa-check"></i><b>11.2</b> Assignment:</a></li>
+<li class="chapter" data-level="11.3" data-path="plotting-with-ggplot2.html"><a href="plotting-with-ggplot2.html#extra-credit---2-points-1"><i class="fa fa-check"></i><b>11.3</b> Extra Credit - 2 Points</a></li>
 </ul></li>
-<li class="chapter" data-level="15" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html"><i class="fa fa-check"></i><b>15</b> Remote Data Extraction</a><ul>
-<li class="chapter" data-level="15.1" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#thredds"><i class="fa fa-check"></i><b>15.1</b> THREDDS</a><ul>
-<li class="chapter" data-level="15.1.1" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#opening-a-channel-to-the-database"><i class="fa fa-check"></i><b>15.1.1</b> Opening a Channel to the Database</a></li>
-<li class="chapter" data-level="15.1.2" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#indexing"><i class="fa fa-check"></i><b>15.1.2</b> Indexing</a></li>
-<li class="chapter" data-level="15.1.3" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#downloading-the-selected-data"><i class="fa fa-check"></i><b>15.1.3</b> Downloading the Selected Data</a></li>
+<li class="chapter" data-level="12" data-path="spatial-plots-with-ggplot2.html"><a href="spatial-plots-with-ggplot2.html"><i class="fa fa-check"></i><b>12</b> Spatial Plots with <code>ggplot2</code></a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="spatial-plots-with-ggplot2.html"><a href="spatial-plots-with-ggplot2.html#simple-features"><i class="fa fa-check"></i><b>12.1</b> Simple Features</a></li>
+<li class="chapter" data-level="12.2" data-path="spatial-plots-with-ggplot2.html"><a href="spatial-plots-with-ggplot2.html#sea-surface-temperature-ggplot"><i class="fa fa-check"></i><b>12.2</b> Sea Surface Temperature ggplot</a></li>
+<li class="chapter" data-level="12.3" data-path="spatial-plots-with-ggplot2.html"><a href="spatial-plots-with-ggplot2.html#r-color-brewer-palettes"><i class="fa fa-check"></i><b>12.3</b> R Color Brewer Palettes</a>
+<ul>
+<li class="chapter" data-level="12.3.1" data-path="spatial-plots-with-ggplot2.html"><a href="spatial-plots-with-ggplot2.html#multi-plot-ggplot"><i class="fa fa-check"></i><b>12.3.1</b> Multi Plot ggplot</a></li>
 </ul></li>
-<li class="chapter" data-level="15.2" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#erddap"><i class="fa fa-check"></i><b>15.2</b> ERDDAP</a><ul>
-<li class="chapter" data-level="15.2.1" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#rerddap"><i class="fa fa-check"></i><b>15.2.1</b> <code>rerddap</code></a></li>
-<li class="chapter" data-level="15.2.2" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#finding-the-data-you-want"><i class="fa fa-check"></i><b>15.2.2</b> Finding the Data You Want</a></li>
-<li class="chapter" data-level="15.2.3" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#tabledap"><i class="fa fa-check"></i><b>15.2.3</b> Tabledap</a></li>
-<li class="chapter" data-level="15.2.4" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#griddap"><i class="fa fa-check"></i><b>15.2.4</b> Griddap</a></li>
-<li class="chapter" data-level="15.2.5" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#custom-erddap-url"><i class="fa fa-check"></i><b>15.2.5</b> Custom ERDDAP URL</a></li>
-</ul></li>
-<li class="chapter" data-level="15.3" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#assignment-8"><i class="fa fa-check"></i><b>15.3</b> Assignment</a><ul>
-<li class="chapter" data-level="15.3.1" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#extra-credit---2-points-3"><i class="fa fa-check"></i><b>15.3.1</b> Extra Credit - 2 Points</a></li>
+<li class="chapter" data-level="12.4" data-path="spatial-plots-with-ggplot2.html"><a href="spatial-plots-with-ggplot2.html#assignment-6"><i class="fa fa-check"></i><b>12.4</b> Assignment</a>
+<ul>
+<li class="chapter" data-level="12.4.1" data-path="spatial-plots-with-ggplot2.html"><a href="spatial-plots-with-ggplot2.html#extra-credit---2-points-2"><i class="fa fa-check"></i><b>12.4.1</b> Extra Credit - 2 Points</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="16" data-path="functions-and-code-presentation.html"><a href="functions-and-code-presentation.html"><i class="fa fa-check"></i><b>16</b> Functions and Code Presentation</a><ul>
-<li class="chapter" data-level="16.1" data-path="functions-and-code-presentation.html"><a href="functions-and-code-presentation.html#functions"><i class="fa fa-check"></i><b>16.1</b> Functions</a></li>
-<li class="chapter" data-level="16.2" data-path="functions-and-code-presentation.html"><a href="functions-and-code-presentation.html#netcdf-processing-function"><i class="fa fa-check"></i><b>16.2</b> NetCDF Processing Function</a></li>
-<li class="chapter" data-level="16.3" data-path="functions-and-code-presentation.html"><a href="functions-and-code-presentation.html#functions-in-for-loops"><i class="fa fa-check"></i><b>16.3</b> Functions in For Loops</a></li>
-<li class="chapter" data-level="16.4" data-path="functions-and-code-presentation.html"><a href="functions-and-code-presentation.html#rmarkdown"><i class="fa fa-check"></i><b>16.4</b> RMarkdown</a></li>
-<li class="chapter" data-level="16.5" data-path="functions-and-code-presentation.html"><a href="functions-and-code-presentation.html#assignment-9"><i class="fa fa-check"></i><b>16.5</b> Assignment</a></li>
+<li class="chapter" data-level="13" data-path="shapefiles.html"><a href="shapefiles.html"><i class="fa fa-check"></i><b>13</b> Shapefiles</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="shapefiles.html"><a href="shapefiles.html#reading-in-shapefiles"><i class="fa fa-check"></i><b>13.1</b> Reading in Shapefiles</a></li>
+<li class="chapter" data-level="13.2" data-path="shapefiles.html"><a href="shapefiles.html#combining-shapefiles-with-data"><i class="fa fa-check"></i><b>13.2</b> Combining Shapefiles with Data</a></li>
+<li class="chapter" data-level="13.3" data-path="shapefiles.html"><a href="shapefiles.html#visualizing-the-shapefiles-data"><i class="fa fa-check"></i><b>13.3</b> Visualizing the Shapefiles &amp; Data</a></li>
+<li class="chapter" data-level="13.4" data-path="shapefiles.html"><a href="shapefiles.html#saving-a-shapefile"><i class="fa fa-check"></i><b>13.4</b> Saving a shapefile</a></li>
+<li class="chapter" data-level="13.5" data-path="shapefiles.html"><a href="shapefiles.html#assignment-7"><i class="fa fa-check"></i><b>13.5</b> Assignment</a></li>
 </ul></li>
-<li class="chapter" data-level="17" data-path="machine-learning-with-r.html"><a href="machine-learning-with-r.html"><i class="fa fa-check"></i><b>17</b> Machine Learning with R</a><ul>
-<li class="chapter" data-level="17.1" data-path="machine-learning-with-r.html"><a href="machine-learning-with-r.html#machine-learning-terms"><i class="fa fa-check"></i><b>17.1</b> Machine Learning Terms</a></li>
-<li class="chapter" data-level="17.2" data-path="machine-learning-with-r.html"><a href="machine-learning-with-r.html#classical-machine-learning"><i class="fa fa-check"></i><b>17.2</b> Classical Machine Learning</a><ul>
-<li class="chapter" data-level="17.2.1" data-path="machine-learning-with-r.html"><a href="machine-learning-with-r.html#supervised-learning"><i class="fa fa-check"></i><b>17.2.1</b> Supervised Learning</a></li>
-<li class="chapter" data-level="17.2.2" data-path="machine-learning-with-r.html"><a href="machine-learning-with-r.html#unsupervised-learning"><i class="fa fa-check"></i><b>17.2.2</b> Unsupervised Learning</a></li>
-<li class="chapter" data-level="17.2.3" data-path="machine-learning-with-r.html"><a href="machine-learning-with-r.html#neural-networks"><i class="fa fa-check"></i><b>17.2.3</b> Neural Networks</a></li>
-<li class="chapter" data-level="17.2.4" data-path="machine-learning-with-r.html"><a href="machine-learning-with-r.html#reinforcement-learning"><i class="fa fa-check"></i><b>17.2.4</b> Reinforcement Learning</a></li>
+<li class="chapter" data-level="14" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html"><i class="fa fa-check"></i><b>14</b> Remote Data Extraction</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#thredds"><i class="fa fa-check"></i><b>14.1</b> THREDDS</a>
+<ul>
+<li class="chapter" data-level="14.1.1" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#opening-a-channel-to-the-database"><i class="fa fa-check"></i><b>14.1.1</b> Opening a Channel to the Database</a></li>
+<li class="chapter" data-level="14.1.2" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#indexing"><i class="fa fa-check"></i><b>14.1.2</b> Indexing</a></li>
+<li class="chapter" data-level="14.1.3" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#downloading-the-selected-data"><i class="fa fa-check"></i><b>14.1.3</b> Downloading the Selected Data</a></li>
+</ul></li>
+<li class="chapter" data-level="14.2" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#erddap"><i class="fa fa-check"></i><b>14.2</b> ERDDAP</a>
+<ul>
+<li class="chapter" data-level="14.2.1" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#rerddap"><i class="fa fa-check"></i><b>14.2.1</b> <code>rerddap</code></a></li>
+<li class="chapter" data-level="14.2.2" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#finding-the-data-you-want"><i class="fa fa-check"></i><b>14.2.2</b> Finding the Data You Want</a></li>
+<li class="chapter" data-level="14.2.3" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#tabledap"><i class="fa fa-check"></i><b>14.2.3</b> Tabledap</a></li>
+<li class="chapter" data-level="14.2.4" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#griddap"><i class="fa fa-check"></i><b>14.2.4</b> Griddap</a></li>
+<li class="chapter" data-level="14.2.5" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#custom-erddap-url"><i class="fa fa-check"></i><b>14.2.5</b> Custom ERDDAP URL</a></li>
+</ul></li>
+<li class="chapter" data-level="14.3" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#assignment-8"><i class="fa fa-check"></i><b>14.3</b> Assignment</a>
+<ul>
+<li class="chapter" data-level="14.3.1" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#extra-credit---2-points-3"><i class="fa fa-check"></i><b>14.3.1</b> Extra Credit - 2 Points</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="18" data-path="time-series-forecasting.html"><a href="time-series-forecasting.html"><i class="fa fa-check"></i><b>18</b> Time Series Forecasting</a><ul>
-<li class="chapter" data-level="18.1" data-path="time-series-forecasting.html"><a href="time-series-forecasting.html#load-the-packages-and-data"><i class="fa fa-check"></i><b>18.1</b> Load the Packages and Data</a></li>
-<li class="chapter" data-level="18.2" data-path="time-series-forecasting.html"><a href="time-series-forecasting.html#aggregate-data"><i class="fa fa-check"></i><b>18.2</b> Aggregate Data</a></li>
-<li class="chapter" data-level="18.3" data-path="time-series-forecasting.html"><a href="time-series-forecasting.html#prepping-the-model"><i class="fa fa-check"></i><b>18.3</b> Prepping the Model</a></li>
-<li class="chapter" data-level="18.4" data-path="time-series-forecasting.html"><a href="time-series-forecasting.html#running-the-model"><i class="fa fa-check"></i><b>18.4</b> Running the Model</a></li>
-<li class="chapter" data-level="18.5" data-path="time-series-forecasting.html"><a href="time-series-forecasting.html#validation-and-accuracy"><i class="fa fa-check"></i><b>18.5</b> Validation and Accuracy</a></li>
-<li class="chapter" data-level="18.6" data-path="time-series-forecasting.html"><a href="time-series-forecasting.html#future-forecasting"><i class="fa fa-check"></i><b>18.6</b> Future Forecasting</a></li>
-<li class="chapter" data-level="18.7" data-path="time-series-forecasting.html"><a href="time-series-forecasting.html#assignment-10"><i class="fa fa-check"></i><b>18.7</b> Assignment</a></li>
+<li class="chapter" data-level="15" data-path="functions-and-code-presentation.html"><a href="functions-and-code-presentation.html"><i class="fa fa-check"></i><b>15</b> Functions and Code Presentation</a>
+<ul>
+<li class="chapter" data-level="15.1" data-path="functions-and-code-presentation.html"><a href="functions-and-code-presentation.html#functions"><i class="fa fa-check"></i><b>15.1</b> Functions</a></li>
+<li class="chapter" data-level="15.2" data-path="functions-and-code-presentation.html"><a href="functions-and-code-presentation.html#netcdf-processing-function"><i class="fa fa-check"></i><b>15.2</b> NetCDF Processing Function</a></li>
+<li class="chapter" data-level="15.3" data-path="functions-and-code-presentation.html"><a href="functions-and-code-presentation.html#functions-in-for-loops"><i class="fa fa-check"></i><b>15.3</b> Functions in For Loops</a></li>
+<li class="chapter" data-level="15.4" data-path="functions-and-code-presentation.html"><a href="functions-and-code-presentation.html#rmarkdown"><i class="fa fa-check"></i><b>15.4</b> RMarkdown</a></li>
+<li class="chapter" data-level="15.5" data-path="functions-and-code-presentation.html"><a href="functions-and-code-presentation.html#assignment-9"><i class="fa fa-check"></i><b>15.5</b> Assignment</a></li>
 </ul></li>
-<li class="chapter" data-level="19" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html"><i class="fa fa-check"></i><b>19</b> Random Forest Modeling</a><ul>
-<li class="chapter" data-level="19.1" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#prepare-the-data"><i class="fa fa-check"></i><b>19.1</b> Prepare the Data</a></li>
-<li class="chapter" data-level="19.2" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#dimensionality-reduction"><i class="fa fa-check"></i><b>19.2</b> Dimensionality Reduction</a><ul>
-<li class="chapter" data-level="19.2.1" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#principal-component-analysis"><i class="fa fa-check"></i><b>19.2.1</b> Principal Component Analysis</a></li>
-<li class="chapter" data-level="19.2.2" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#t-sne-dimensionality-reduction"><i class="fa fa-check"></i><b>19.2.2</b> t-SNE Dimensionality Reduction</a></li>
-<li class="chapter" data-level="19.2.3" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#multidimensional-scaling"><i class="fa fa-check"></i><b>19.2.3</b> Multidimensional Scaling</a></li>
+<li class="chapter" data-level="16" data-path="machine-learning-with-r.html"><a href="machine-learning-with-r.html"><i class="fa fa-check"></i><b>16</b> Machine Learning with R</a>
+<ul>
+<li class="chapter" data-level="16.1" data-path="machine-learning-with-r.html"><a href="machine-learning-with-r.html#machine-learning-terms"><i class="fa fa-check"></i><b>16.1</b> Machine Learning Terms</a></li>
+<li class="chapter" data-level="16.2" data-path="machine-learning-with-r.html"><a href="machine-learning-with-r.html#classical-machine-learning"><i class="fa fa-check"></i><b>16.2</b> Classical Machine Learning</a>
+<ul>
+<li class="chapter" data-level="16.2.1" data-path="machine-learning-with-r.html"><a href="machine-learning-with-r.html#supervised-learning"><i class="fa fa-check"></i><b>16.2.1</b> Supervised Learning</a></li>
+<li class="chapter" data-level="16.2.2" data-path="machine-learning-with-r.html"><a href="machine-learning-with-r.html#unsupervised-learning"><i class="fa fa-check"></i><b>16.2.2</b> Unsupervised Learning</a></li>
+<li class="chapter" data-level="16.2.3" data-path="machine-learning-with-r.html"><a href="machine-learning-with-r.html#neural-networks"><i class="fa fa-check"></i><b>16.2.3</b> Neural Networks</a></li>
+<li class="chapter" data-level="16.2.4" data-path="machine-learning-with-r.html"><a href="machine-learning-with-r.html#reinforcement-learning"><i class="fa fa-check"></i><b>16.2.4</b> Reinforcement Learning</a></li>
 </ul></li>
-<li class="chapter" data-level="19.3" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#random-forests"><i class="fa fa-check"></i><b>19.3</b> Random Forests</a><ul>
-<li class="chapter" data-level="19.3.1" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#decision-trees"><i class="fa fa-check"></i><b>19.3.1</b> Decision Trees</a></li>
-<li class="chapter" data-level="19.3.2" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#data-partition"><i class="fa fa-check"></i><b>19.3.2</b> Data Partition</a></li>
-<li class="chapter" data-level="19.3.3" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#training-the-model"><i class="fa fa-check"></i><b>19.3.3</b> Training the Model</a></li>
-<li class="chapter" data-level="19.3.4" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#testing-the-model"><i class="fa fa-check"></i><b>19.3.4</b> Testing the Model</a></li>
-<li class="chapter" data-level="19.3.5" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#hyperparameter-tuning"><i class="fa fa-check"></i><b>19.3.5</b> Hyperparameter Tuning</a></li>
 </ul></li>
-<li class="chapter" data-level="19.4" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#assignment-11"><i class="fa fa-check"></i><b>19.4</b> Assignment</a></li>
+<li class="chapter" data-level="17" data-path="time-series-forecasting.html"><a href="time-series-forecasting.html"><i class="fa fa-check"></i><b>17</b> Time Series Forecasting</a>
+<ul>
+<li class="chapter" data-level="17.1" data-path="time-series-forecasting.html"><a href="time-series-forecasting.html#load-the-packages-and-data"><i class="fa fa-check"></i><b>17.1</b> Load the Packages and Data</a></li>
+<li class="chapter" data-level="17.2" data-path="time-series-forecasting.html"><a href="time-series-forecasting.html#aggregate-data"><i class="fa fa-check"></i><b>17.2</b> Aggregate Data</a></li>
+<li class="chapter" data-level="17.3" data-path="time-series-forecasting.html"><a href="time-series-forecasting.html#prepping-the-model"><i class="fa fa-check"></i><b>17.3</b> Prepping the Model</a></li>
+<li class="chapter" data-level="17.4" data-path="time-series-forecasting.html"><a href="time-series-forecasting.html#running-the-model"><i class="fa fa-check"></i><b>17.4</b> Running the Model</a></li>
+<li class="chapter" data-level="17.5" data-path="time-series-forecasting.html"><a href="time-series-forecasting.html#validation-and-accuracy"><i class="fa fa-check"></i><b>17.5</b> Validation and Accuracy</a></li>
+<li class="chapter" data-level="17.6" data-path="time-series-forecasting.html"><a href="time-series-forecasting.html#future-forecasting"><i class="fa fa-check"></i><b>17.6</b> Future Forecasting</a></li>
+<li class="chapter" data-level="17.7" data-path="time-series-forecasting.html"><a href="time-series-forecasting.html#assignment-10"><i class="fa fa-check"></i><b>17.7</b> Assignment</a></li>
+</ul></li>
+<li class="chapter" data-level="18" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html"><i class="fa fa-check"></i><b>18</b> Random Forest Modeling</a>
+<ul>
+<li class="chapter" data-level="18.1" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#prepare-the-data"><i class="fa fa-check"></i><b>18.1</b> Prepare the Data</a></li>
+<li class="chapter" data-level="18.2" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#dimensionality-reduction"><i class="fa fa-check"></i><b>18.2</b> Dimensionality Reduction</a>
+<ul>
+<li class="chapter" data-level="18.2.1" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#principal-component-analysis"><i class="fa fa-check"></i><b>18.2.1</b> Principal Component Analysis</a></li>
+<li class="chapter" data-level="18.2.2" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#t-sne-dimensionality-reduction"><i class="fa fa-check"></i><b>18.2.2</b> t-SNE Dimensionality Reduction</a></li>
+<li class="chapter" data-level="18.2.3" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#multidimensional-scaling"><i class="fa fa-check"></i><b>18.2.3</b> Multidimensional Scaling</a></li>
+</ul></li>
+<li class="chapter" data-level="18.3" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#random-forests"><i class="fa fa-check"></i><b>18.3</b> Random Forests</a>
+<ul>
+<li class="chapter" data-level="18.3.1" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#decision-trees"><i class="fa fa-check"></i><b>18.3.1</b> Decision Trees</a></li>
+<li class="chapter" data-level="18.3.2" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#data-partition"><i class="fa fa-check"></i><b>18.3.2</b> Data Partition</a></li>
+<li class="chapter" data-level="18.3.3" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#training-the-model"><i class="fa fa-check"></i><b>18.3.3</b> Training the Model</a></li>
+<li class="chapter" data-level="18.3.4" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#testing-the-model"><i class="fa fa-check"></i><b>18.3.4</b> Testing the Model</a></li>
+<li class="chapter" data-level="18.3.5" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#hyperparameter-tuning"><i class="fa fa-check"></i><b>18.3.5</b> Hyperparameter Tuning</a></li>
+</ul></li>
+<li class="chapter" data-level="18.4" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#assignment-11"><i class="fa fa-check"></i><b>18.4</b> Assignment</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/jsimkins2" target="blank">James Simkins</a></li>
@@ -352,11 +385,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="basic-statistics" class="section level1">
-<h1><span class="header-section-number">11</span> Basic Statistics</h1>
+<div id="basic-statistics" class="section level1" number="10">
+<h1><span class="header-section-number">10</span> Basic Statistics</h1>
 <p>This week we’ll be diving into some basic statistical procedures. R started out as THE statistical programming language. It spread like wildfire for it’s performance and efficiency at crunching numbers. It’s early success as a statistical programming langugae attracted the early developers who really made R into the do-it-all language we’re using today. First, I’ll throw in the useful definitions list at the top of this tutorial just for ease of access. Second, we’ll dive into a recap of for loops and how they’re structured. Then we’ll show off some of R’s great statistics functions and how to add them to a plot. Finally, we’ll have an assignment where we cover some of</p>
-<div id="statistical-function-dictionary" class="section level2">
-<h2><span class="header-section-number">11.1</span> Statistical Function Dictionary</h2>
+<div id="statistical-function-dictionary" class="section level2" number="10.1">
+<h2><span class="header-section-number">10.1</span> Statistical Function Dictionary</h2>
 <table>
 <colgroup>
 <col width="20%" />
@@ -500,16 +533,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tbody>
 </table>
 </div>
-<div id="basic-statistics-in-r" class="section level2">
-<h2><span class="header-section-number">11.2</span> Basic Statistics in R</h2>
+<div id="basic-statistics-in-r" class="section level2" number="10.2">
+<h2><span class="header-section-number">10.2</span> Basic Statistics in R</h2>
 <p>R is famous for it’s easy-to-use statistics features and once you get the hang of it you’ll never want to touch Microsoft Excel again. Despite the fact that these stats functions seem pretty fancy to me, I call them basic functions because R has so much to offer to statisticians. In this tutorial, we examine meteorological observations that were recorded in Willow Creek Wisconsin, USA. There are 3 years of Willow Creek data - WCr_1hr.2010.nc, WCr_1hr.2011.nc, WCr_1hr.2012.nc. Let’s start with the 2010 dataset.</p>
-<div id="load-willow-creek-data" class="section level3">
-<h3><span class="header-section-number">11.2.1</span> Load Willow Creek data</h3>
-<div class="sourceCode" id="cb286"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb286-1" data-line-number="1"><span class="kw">library</span>(ncdf4)</a>
-<a class="sourceLine" id="cb286-2" data-line-number="2"><span class="co"># open the netcdf file of Willow Creek, Wisconsin meteorology data</span></a>
-<a class="sourceLine" id="cb286-3" data-line-number="3">nc_file =<span class="st"> </span><span class="kw">nc_open</span>(<span class="st">&quot;/Users/james/Documents/Github/geog473-673/datasets/WCr_1hr.2010.nc&quot;</span>)</a>
-<a class="sourceLine" id="cb286-4" data-line-number="4"><span class="co"># what does the nc file look like </span></a>
-<a class="sourceLine" id="cb286-5" data-line-number="5">nc_file</a></code></pre></div>
+<div id="load-willow-creek-data" class="section level3" number="10.2.1">
+<h3><span class="header-section-number">10.2.1</span> Load Willow Creek data</h3>
+<div class="sourceCode" id="cb286"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb286-1"><a href="basic-statistics.html#cb286-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ncdf4)</span>
+<span id="cb286-2"><a href="basic-statistics.html#cb286-2" aria-hidden="true" tabindex="-1"></a><span class="co"># open the netcdf file of Willow Creek, Wisconsin meteorology data</span></span>
+<span id="cb286-3"><a href="basic-statistics.html#cb286-3" aria-hidden="true" tabindex="-1"></a>nc_file <span class="ot">=</span> <span class="fu">nc_open</span>(<span class="st">&quot;/Users/james/Documents/Github/geog473-673/datasets/WCr_1hr.2010.nc&quot;</span>)</span>
+<span id="cb286-4"><a href="basic-statistics.html#cb286-4" aria-hidden="true" tabindex="-1"></a><span class="co"># what does the nc file look like </span></span>
+<span id="cb286-5"><a href="basic-statistics.html#cb286-5" aria-hidden="true" tabindex="-1"></a>nc_file</span></code></pre></div>
 <pre><code>## File /Users/james/Documents/Github/geog473-673/datasets/WCr_1hr.2010.nc (NC_FORMAT_CLASSIC):
 ## 
 ##      10 variables (excluding dimension variables):
@@ -554,8 +587,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##         time  Size:8760   *** is unlimited ***
 ##             units: sec
 ##             long_name: time</code></pre>
-<div class="sourceCode" id="cb288"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb288-1" data-line-number="1"><span class="co"># ok, still a lot of info...let&#39;s list the names of the variables</span></a>
-<a class="sourceLine" id="cb288-2" data-line-number="2"><span class="kw">names</span>(nc_file<span class="op">$</span>var)</a></code></pre></div>
+<div class="sourceCode" id="cb288"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb288-1"><a href="basic-statistics.html#cb288-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ok, still a lot of info...let&#39;s list the names of the variables</span></span>
+<span id="cb288-2"><a href="basic-statistics.html#cb288-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(nc_file<span class="sc">$</span>var)</span></code></pre></div>
 <pre><code>##  [1] &quot;air_temperature&quot;                          
 ##  [2] &quot;air_temperature_max&quot;                      
 ##  [3] &quot;air_temperature_min&quot;                      
@@ -566,24 +599,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  [8] &quot;northward_wind&quot;                           
 ##  [9] &quot;specific_humidity&quot;                        
 ## [10] &quot;precipitation_flux&quot;</code></pre>
-<div class="sourceCode" id="cb290"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb290-1" data-line-number="1"><span class="co"># alright, now we have some names, so let&#39;s put the variables into a new dataframe separate from the nc_file</span></a>
-<a class="sourceLine" id="cb290-2" data-line-number="2">var_names =<span class="st"> </span><span class="kw">names</span>(nc_file<span class="op">$</span>var)</a>
-<a class="sourceLine" id="cb290-3" data-line-number="3">willow_creek_<span class="dv">2010</span> =<span class="st"> </span><span class="kw">list</span>()</a>
-<a class="sourceLine" id="cb290-4" data-line-number="4">dim &lt;-<span class="st"> </span>nc_file<span class="op">$</span>dim</a>
-<a class="sourceLine" id="cb290-5" data-line-number="5"><span class="cf">for</span> (v <span class="cf">in</span> <span class="kw">seq_along</span>(var_names)){</a>
-<a class="sourceLine" id="cb290-6" data-line-number="6">  willow_creek_<span class="dv">2010</span>[[v]] =<span class="st"> </span><span class="kw">ncvar_get</span>(nc_file, <span class="dt">varid =</span> var_names[v])</a>
-<a class="sourceLine" id="cb290-7" data-line-number="7">}</a>
-<a class="sourceLine" id="cb290-8" data-line-number="8"><span class="co"># convert the list into a dataframe</span></a>
-<a class="sourceLine" id="cb290-9" data-line-number="9">wcreek_df =<span class="st"> </span><span class="kw">data.frame</span>(willow_creek_<span class="dv">2010</span>)</a>
-<a class="sourceLine" id="cb290-10" data-line-number="10"><span class="co"># tell the dataframe what the column names are</span></a>
-<a class="sourceLine" id="cb290-11" data-line-number="11"><span class="kw">colnames</span>(wcreek_df) =<span class="st"> </span>var_names</a>
-<a class="sourceLine" id="cb290-12" data-line-number="12"></a>
-<a class="sourceLine" id="cb290-13" data-line-number="13"><span class="co"># let&#39;s rename the variables to make them shorter - note that these short names MUST be in the same order as the longer names</span></a>
-<a class="sourceLine" id="cb290-14" data-line-number="14">short_names =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;tair&quot;</span>, <span class="st">&quot;tmax&quot;</span>, <span class="st">&quot;tmin&quot;</span>, <span class="st">&quot;lwave&quot;</span>, <span class="st">&quot;pres&quot;</span>, <span class="st">&quot;swave&quot;</span>, <span class="st">&quot;ewind&quot;</span>, <span class="st">&quot;nwind&quot;</span>, <span class="st">&quot;shum&quot;</span>, <span class="st">&quot;prec&quot;</span>)</a>
-<a class="sourceLine" id="cb290-15" data-line-number="15"><span class="co"># rename the column names to our new short name vector</span></a>
-<a class="sourceLine" id="cb290-16" data-line-number="16"><span class="kw">colnames</span>(wcreek_df) =<span class="st"> </span>short_names</a>
-<a class="sourceLine" id="cb290-17" data-line-number="17"><span class="co"># print the first few lines</span></a>
-<a class="sourceLine" id="cb290-18" data-line-number="18"><span class="kw">head</span>(wcreek_df)</a></code></pre></div>
+<div class="sourceCode" id="cb290"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb290-1"><a href="basic-statistics.html#cb290-1" aria-hidden="true" tabindex="-1"></a><span class="co"># alright, now we have some names, so let&#39;s put the variables into a new dataframe separate from the nc_file</span></span>
+<span id="cb290-2"><a href="basic-statistics.html#cb290-2" aria-hidden="true" tabindex="-1"></a>var_names <span class="ot">=</span> <span class="fu">names</span>(nc_file<span class="sc">$</span>var)</span>
+<span id="cb290-3"><a href="basic-statistics.html#cb290-3" aria-hidden="true" tabindex="-1"></a>willow_creek_2010 <span class="ot">=</span> <span class="fu">list</span>()</span>
+<span id="cb290-4"><a href="basic-statistics.html#cb290-4" aria-hidden="true" tabindex="-1"></a>dim <span class="ot">&lt;-</span> nc_file<span class="sc">$</span>dim</span>
+<span id="cb290-5"><a href="basic-statistics.html#cb290-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (v <span class="cf">in</span> <span class="fu">seq_along</span>(var_names)){</span>
+<span id="cb290-6"><a href="basic-statistics.html#cb290-6" aria-hidden="true" tabindex="-1"></a>  willow_creek_2010[[v]] <span class="ot">=</span> <span class="fu">ncvar_get</span>(nc_file, <span class="at">varid =</span> var_names[v])</span>
+<span id="cb290-7"><a href="basic-statistics.html#cb290-7" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb290-8"><a href="basic-statistics.html#cb290-8" aria-hidden="true" tabindex="-1"></a><span class="co"># convert the list into a dataframe</span></span>
+<span id="cb290-9"><a href="basic-statistics.html#cb290-9" aria-hidden="true" tabindex="-1"></a>wcreek_df <span class="ot">=</span> <span class="fu">data.frame</span>(willow_creek_2010)</span>
+<span id="cb290-10"><a href="basic-statistics.html#cb290-10" aria-hidden="true" tabindex="-1"></a><span class="co"># tell the dataframe what the column names are</span></span>
+<span id="cb290-11"><a href="basic-statistics.html#cb290-11" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(wcreek_df) <span class="ot">=</span> var_names</span>
+<span id="cb290-12"><a href="basic-statistics.html#cb290-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb290-13"><a href="basic-statistics.html#cb290-13" aria-hidden="true" tabindex="-1"></a><span class="co"># let&#39;s rename the variables to make them shorter - note that these short names MUST be in the same order as the longer names</span></span>
+<span id="cb290-14"><a href="basic-statistics.html#cb290-14" aria-hidden="true" tabindex="-1"></a>short_names <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;tair&quot;</span>, <span class="st">&quot;tmax&quot;</span>, <span class="st">&quot;tmin&quot;</span>, <span class="st">&quot;lwave&quot;</span>, <span class="st">&quot;pres&quot;</span>, <span class="st">&quot;swave&quot;</span>, <span class="st">&quot;ewind&quot;</span>, <span class="st">&quot;nwind&quot;</span>, <span class="st">&quot;shum&quot;</span>, <span class="st">&quot;prec&quot;</span>)</span>
+<span id="cb290-15"><a href="basic-statistics.html#cb290-15" aria-hidden="true" tabindex="-1"></a><span class="co"># rename the column names to our new short name vector</span></span>
+<span id="cb290-16"><a href="basic-statistics.html#cb290-16" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(wcreek_df) <span class="ot">=</span> short_names</span>
+<span id="cb290-17"><a href="basic-statistics.html#cb290-17" aria-hidden="true" tabindex="-1"></a><span class="co"># print the first few lines</span></span>
+<span id="cb290-18"><a href="basic-statistics.html#cb290-18" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(wcreek_df)</span></code></pre></div>
 <pre><code>##       tair    tmax    tmin    lwave    pres swave    ewind     nwind
 ## 1 260.1135 260.137 260.090 237.6100 95704.5     0 1.522976 -1.462524
 ## 2 260.0315 260.044 260.019 241.6900 95735.5     0 1.624952 -1.563508
@@ -599,19 +632,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 5 0.001142952    0
 ## 6 0.001133232    0</code></pre>
 <p>Our data has been read in and the variables have been renamed for our convenience. A major note here is that the replacement names <strong>must</strong> be in the same order as the variable names. Now, we turn our attnetion to the time component of this data. This is a time series dataset of weather variables so we’ll need a time variable to keep us organized. Here’s how we can create one…</p>
-<div class="sourceCode" id="cb292"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb292-1" data-line-number="1"><span class="co">### TIME </span><span class="al">###</span></a>
-<a class="sourceLine" id="cb292-2" data-line-number="2"><span class="co"># what are the units of time</span></a>
-<a class="sourceLine" id="cb292-3" data-line-number="3">dim<span class="op">$</span>time<span class="op">$</span>units</a></code></pre></div>
+<div class="sourceCode" id="cb292"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb292-1"><a href="basic-statistics.html#cb292-1" aria-hidden="true" tabindex="-1"></a><span class="do">### TIME </span><span class="al">###</span></span>
+<span id="cb292-2"><a href="basic-statistics.html#cb292-2" aria-hidden="true" tabindex="-1"></a><span class="co"># what are the units of time</span></span>
+<span id="cb292-3"><a href="basic-statistics.html#cb292-3" aria-hidden="true" tabindex="-1"></a>dim<span class="sc">$</span>time<span class="sc">$</span>units</span></code></pre></div>
 <pre><code>## [1] &quot;sec&quot;</code></pre>
-<div class="sourceCode" id="cb294"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb294-1" data-line-number="1"><span class="co"># how are the time values spaced</span></a>
-<a class="sourceLine" id="cb294-2" data-line-number="2">dim<span class="op">$</span>time<span class="op">$</span>vals[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>]</a></code></pre></div>
+<div class="sourceCode" id="cb294"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb294-1"><a href="basic-statistics.html#cb294-1" aria-hidden="true" tabindex="-1"></a><span class="co"># how are the time values spaced</span></span>
+<span id="cb294-2"><a href="basic-statistics.html#cb294-2" aria-hidden="true" tabindex="-1"></a>dim<span class="sc">$</span>time<span class="sc">$</span>vals[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>]</span></code></pre></div>
 <pre><code>##  [1]  3600  7200 10800 14400 18000 21600 25200 28800 32400 36000</code></pre>
-<div class="sourceCode" id="cb296"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb296-1" data-line-number="1"><span class="co"># we can back out that this data is hourly data just from knowing the units are seconds and time between</span></a>
-<a class="sourceLine" id="cb296-2" data-line-number="2"><span class="co"># each recorded value is 3600 (3600 seconds == 1 hour)</span></a>
-<a class="sourceLine" id="cb296-3" data-line-number="3"><span class="co">#### Add a datetime column ####</span></a>
-<a class="sourceLine" id="cb296-4" data-line-number="4">date.seq =<span class="st"> </span><span class="kw">seq</span>(<span class="kw">as.POSIXct</span>(<span class="st">&quot;2010-01-01 00:00:00&quot;</span>), <span class="kw">as.POSIXct</span>(<span class="st">&quot;2010-12-31 23:00:00&quot;</span>), <span class="dt">by=</span><span class="st">&quot;hour&quot;</span>)</a>
-<a class="sourceLine" id="cb296-5" data-line-number="5">wcreek_df[<span class="st">&#39;datetime&#39;</span>] =<span class="st"> </span>date.seq</a>
-<a class="sourceLine" id="cb296-6" data-line-number="6">wcreek_df<span class="op">$</span>datetime[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>]</a></code></pre></div>
+<div class="sourceCode" id="cb296"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb296-1"><a href="basic-statistics.html#cb296-1" aria-hidden="true" tabindex="-1"></a><span class="co"># we can back out that this data is hourly data just from knowing the units are seconds and time between</span></span>
+<span id="cb296-2"><a href="basic-statistics.html#cb296-2" aria-hidden="true" tabindex="-1"></a><span class="co"># each recorded value is 3600 (3600 seconds == 1 hour)</span></span>
+<span id="cb296-3"><a href="basic-statistics.html#cb296-3" aria-hidden="true" tabindex="-1"></a><span class="do">#### Add a datetime column ####</span></span>
+<span id="cb296-4"><a href="basic-statistics.html#cb296-4" aria-hidden="true" tabindex="-1"></a>date.seq <span class="ot">=</span> <span class="fu">seq</span>(<span class="fu">as.POSIXct</span>(<span class="st">&quot;2010-01-01 00:00:00&quot;</span>), <span class="fu">as.POSIXct</span>(<span class="st">&quot;2010-12-31 23:00:00&quot;</span>), <span class="at">by=</span><span class="st">&quot;hour&quot;</span>)</span>
+<span id="cb296-5"><a href="basic-statistics.html#cb296-5" aria-hidden="true" tabindex="-1"></a>wcreek_df[<span class="st">&#39;datetime&#39;</span>] <span class="ot">=</span> date.seq</span>
+<span id="cb296-6"><a href="basic-statistics.html#cb296-6" aria-hidden="true" tabindex="-1"></a>wcreek_df<span class="sc">$</span>datetime[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>]</span></code></pre></div>
 <pre><code>##  [1] &quot;2010-01-01 00:00:00 EST&quot; &quot;2010-01-01 01:00:00 EST&quot;
 ##  [3] &quot;2010-01-01 02:00:00 EST&quot; &quot;2010-01-01 03:00:00 EST&quot;
 ##  [5] &quot;2010-01-01 04:00:00 EST&quot; &quot;2010-01-01 05:00:00 EST&quot;
@@ -619,28 +652,28 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  [9] &quot;2010-01-01 08:00:00 EST&quot; &quot;2010-01-01 09:00:00 EST&quot;</code></pre>
 <p>The data is loaded, organized, and ready for statistical analysis.</p>
 </div>
-<div id="subsetting-data" class="section level3">
-<h3><span class="header-section-number">11.2.2</span> Subsetting Data</h3>
+<div id="subsetting-data" class="section level3" number="10.2.2">
+<h3><span class="header-section-number">10.2.2</span> Subsetting Data</h3>
 <p>In certain cases, our dataset may be too large. For example, our dataset contains 1 year of data. How can we subset our dataset from January 1 to June 30?</p>
 <p>We can use the <code>which</code> function to find out which row a particular datetime is located. In other words, the <code>which</code> function returns the dates index position. In order for this to work, <strong>the datetime format we use must match the datetime format of the dataset</strong>. In our case, the datetime is YYYY-mm-dd, so we need to search with that format. After we have our indices, we can subset the <code>wcreek_df</code> dataset using <code>wcreek_df[rows,columns]</code> subsetting rules.</p>
-<div class="sourceCode" id="cb298"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb298-1" data-line-number="1"><span class="co"># use YYYY-mm-dd to return which datettime index has a value of 2010-01-01</span></a>
-<a class="sourceLine" id="cb298-2" data-line-number="2">start_ind =<span class="st"> </span><span class="kw">which</span>(wcreek_df<span class="op">$</span>datetime <span class="op">==</span><span class="st"> &quot;2010-01-01&quot;</span>)</a>
-<a class="sourceLine" id="cb298-3" data-line-number="3"><span class="co"># use YYYY-mm-dd to return which datettime index has a value of 2010-06-30</span></a>
-<a class="sourceLine" id="cb298-4" data-line-number="4">end_ind =<span class="st"> </span><span class="kw">which</span>(wcreek_df<span class="op">$</span>datetime <span class="op">==</span><span class="st"> &quot;2010-06-30&quot;</span>)</a>
-<a class="sourceLine" id="cb298-5" data-line-number="5"><span class="co"># Index our wcree_df dataframe using the indices gathered above. We want all columns so column section stays blank</span></a>
-<a class="sourceLine" id="cb298-6" data-line-number="6">jan2jun =<span class="st"> </span>wcreek_df[start_ind<span class="op">:</span>end_ind,]</a></code></pre></div>
+<div class="sourceCode" id="cb298"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb298-1"><a href="basic-statistics.html#cb298-1" aria-hidden="true" tabindex="-1"></a><span class="co"># use YYYY-mm-dd to return which datettime index has a value of 2010-01-01</span></span>
+<span id="cb298-2"><a href="basic-statistics.html#cb298-2" aria-hidden="true" tabindex="-1"></a>start_ind <span class="ot">=</span> <span class="fu">which</span>(wcreek_df<span class="sc">$</span>datetime <span class="sc">==</span> <span class="st">&quot;2010-01-01&quot;</span>)</span>
+<span id="cb298-3"><a href="basic-statistics.html#cb298-3" aria-hidden="true" tabindex="-1"></a><span class="co"># use YYYY-mm-dd to return which datettime index has a value of 2010-06-30</span></span>
+<span id="cb298-4"><a href="basic-statistics.html#cb298-4" aria-hidden="true" tabindex="-1"></a>end_ind <span class="ot">=</span> <span class="fu">which</span>(wcreek_df<span class="sc">$</span>datetime <span class="sc">==</span> <span class="st">&quot;2010-06-30&quot;</span>)</span>
+<span id="cb298-5"><a href="basic-statistics.html#cb298-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Index our wcree_df dataframe using the indices gathered above. We want all columns so column section stays blank</span></span>
+<span id="cb298-6"><a href="basic-statistics.html#cb298-6" aria-hidden="true" tabindex="-1"></a>jan2jun <span class="ot">=</span> wcreek_df[start_ind<span class="sc">:</span>end_ind,]</span></code></pre></div>
 <p>Note that there is also a <code>subset</code> function which is handy, but unreliable. Sometimes this function produces unintended consequences so the above method is the preferred for subsetting data.</p>
 </div>
-<div id="trends-and-distributions" class="section level3">
-<h3><span class="header-section-number">11.2.3</span> Trends and Distributions</h3>
+<div id="trends-and-distributions" class="section level3" number="10.2.3">
+<h3><span class="header-section-number">10.2.3</span> Trends and Distributions</h3>
 <p>Our dataset has been subset from January 1 to June 30. In the Northern Hemisphere, we would expect air temperature to increase from January to June. Let’s examine this and fit a trendline to the data.</p>
-<div class="sourceCode" id="cb299"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb299-1" data-line-number="1"><span class="co"># air temperature ~ datetime - remember, the tilde (~) here can be thought of as &#39;versus&#39; or &#39;against&#39;.</span></a>
-<a class="sourceLine" id="cb299-2" data-line-number="2"><span class="co"># So this plot is tair versus datetime </span></a>
-<a class="sourceLine" id="cb299-3" data-line-number="3"><span class="kw">plot</span>(tair <span class="op">~</span><span class="st"> </span>datetime, <span class="dt">data =</span> jan2jun, <span class="dt">pch =</span> <span class="dv">20</span>, <span class="dt">col=</span><span class="st">&quot;blue&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb299"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb299-1"><a href="basic-statistics.html#cb299-1" aria-hidden="true" tabindex="-1"></a><span class="co"># air temperature ~ datetime - remember, the tilde (~) here can be thought of as &#39;versus&#39; or &#39;against&#39;.</span></span>
+<span id="cb299-2"><a href="basic-statistics.html#cb299-2" aria-hidden="true" tabindex="-1"></a><span class="co"># So this plot is tair versus datetime </span></span>
+<span id="cb299-3"><a href="basic-statistics.html#cb299-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(tair <span class="sc">~</span> datetime, <span class="at">data =</span> jan2jun, <span class="at">pch =</span> <span class="dv">20</span>, <span class="at">col=</span><span class="st">&quot;blue&quot;</span>)</span></code></pre></div>
 <p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-111-1.png" width="60%" style="display: block; margin: auto;" /></p>
-<div class="sourceCode" id="cb300"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb300-1" data-line-number="1"><span class="co"># use the lm function to fit a trendline to the data </span></a>
-<a class="sourceLine" id="cb300-2" data-line-number="2">fit &lt;-<span class="st"> </span><span class="kw">lm</span>(tair <span class="op">~</span><span class="st"> </span>datetime, <span class="dt">data =</span> jan2jun)</a>
-<a class="sourceLine" id="cb300-3" data-line-number="3"><span class="kw">summary</span>(fit)</a></code></pre></div>
+<div class="sourceCode" id="cb300"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb300-1"><a href="basic-statistics.html#cb300-1" aria-hidden="true" tabindex="-1"></a><span class="co"># use the lm function to fit a trendline to the data </span></span>
+<span id="cb300-2"><a href="basic-statistics.html#cb300-2" aria-hidden="true" tabindex="-1"></a>fit <span class="ot">&lt;-</span> <span class="fu">lm</span>(tair <span class="sc">~</span> datetime, <span class="at">data =</span> jan2jun)</span>
+<span id="cb300-3"><a href="basic-statistics.html#cb300-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fit)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = tair ~ datetime, data = jan2jun)
@@ -659,42 +692,42 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## Residual standard error: 5.683 on 4318 degrees of freedom
 ## Multiple R-squared:  0.7493, Adjusted R-squared:  0.7493 
 ## F-statistic: 1.291e+04 on 1 and 4318 DF,  p-value: &lt; 2.2e-16</code></pre>
-<div class="sourceCode" id="cb302"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb302-1" data-line-number="1"><span class="kw">coef</span>(fit)</a></code></pre></div>
+<div class="sourceCode" id="cb302"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb302-1"><a href="basic-statistics.html#cb302-1" aria-hidden="true" tabindex="-1"></a><span class="fu">coef</span>(fit)</span></code></pre></div>
 <pre><code>##   (Intercept)      datetime 
 ## -2.501181e+03  2.187997e-06</code></pre>
-<div class="sourceCode" id="cb304"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb304-1" data-line-number="1"><span class="kw">plot</span>(tair <span class="op">~</span><span class="st"> </span>datetime, <span class="dt">data =</span> jan2jun,</a>
-<a class="sourceLine" id="cb304-2" data-line-number="2">  <span class="dt">main=</span> <span class="st">&quot;tair vs. datetime&quot;</span>,</a>
-<a class="sourceLine" id="cb304-3" data-line-number="3">  <span class="dt">ylab=</span> <span class="st">&quot;Air Temperature ( Kelvin )&quot;</span>,</a>
-<a class="sourceLine" id="cb304-4" data-line-number="4">  <span class="dt">xlab=</span> <span class="st">&quot;Datetime&quot;</span>,</a>
-<a class="sourceLine" id="cb304-5" data-line-number="5">  <span class="dt">pch=</span> <span class="dv">19</span>, <span class="dt">col=</span> <span class="st">&#39;blue&#39;</span>)</a>
-<a class="sourceLine" id="cb304-6" data-line-number="6"><span class="kw">grid</span>(<span class="ot">NA</span>,<span class="ot">NULL</span>, <span class="dt">lty=</span> <span class="dv">4</span>) <span class="co"># NA first for no y axis grid lines, null second to ignore the default x axis linetype</span></a>
-<a class="sourceLine" id="cb304-7" data-line-number="7"><span class="kw">abline</span>(fit, <span class="dt">col=</span> <span class="st">&#39;black&#39;</span>, <span class="dt">lty=</span> <span class="dv">4</span>, <span class="dt">lwd=</span> <span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb304-8" data-line-number="8"><span class="kw">legend</span>(<span class="st">&quot;topleft&quot;</span>, <span class="dt">legend=</span><span class="kw">c</span>(<span class="st">&quot;lm(fit)&quot;</span>), <span class="dt">col=</span> <span class="dv">2</span>, <span class="dt">lty=</span> <span class="dv">4</span>, <span class="dt">bg=</span> <span class="st">&quot;gray85&quot;</span>, <span class="dt">box.lty=</span><span class="dv">0</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb304"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb304-1"><a href="basic-statistics.html#cb304-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(tair <span class="sc">~</span> datetime, <span class="at">data =</span> jan2jun,</span>
+<span id="cb304-2"><a href="basic-statistics.html#cb304-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">main=</span> <span class="st">&quot;tair vs. datetime&quot;</span>,</span>
+<span id="cb304-3"><a href="basic-statistics.html#cb304-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">ylab=</span> <span class="st">&quot;Air Temperature ( Kelvin )&quot;</span>,</span>
+<span id="cb304-4"><a href="basic-statistics.html#cb304-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">xlab=</span> <span class="st">&quot;Datetime&quot;</span>,</span>
+<span id="cb304-5"><a href="basic-statistics.html#cb304-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">pch=</span> <span class="dv">19</span>, <span class="at">col=</span> <span class="st">&#39;blue&#39;</span>)</span>
+<span id="cb304-6"><a href="basic-statistics.html#cb304-6" aria-hidden="true" tabindex="-1"></a><span class="fu">grid</span>(<span class="cn">NA</span>,<span class="cn">NULL</span>, <span class="at">lty=</span> <span class="dv">4</span>) <span class="co"># NA first for no y axis grid lines, null second to ignore the default x axis linetype</span></span>
+<span id="cb304-7"><a href="basic-statistics.html#cb304-7" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(fit, <span class="at">col=</span> <span class="st">&#39;black&#39;</span>, <span class="at">lty=</span> <span class="dv">4</span>, <span class="at">lwd=</span> <span class="dv">2</span>)</span>
+<span id="cb304-8"><a href="basic-statistics.html#cb304-8" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">&quot;topleft&quot;</span>, <span class="at">legend=</span><span class="fu">c</span>(<span class="st">&quot;lm(fit)&quot;</span>), <span class="at">col=</span> <span class="dv">2</span>, <span class="at">lty=</span> <span class="dv">4</span>, <span class="at">bg=</span> <span class="st">&quot;gray85&quot;</span>, <span class="at">box.lty=</span><span class="dv">0</span>)</span></code></pre></div>
 <p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-111-2.png" width="60%" style="display: block; margin: auto;" /></p>
 <p>Just as we suspected, the temperature increases from January to June. So, we have an idea of the trend now, but what about the frequency of recorded temperatures? Are some temperatures more likely to occur than others in this dataset? Histograms are a good way to check the distribution and answer these questions. Then, we’ll overlay the expected probability distribution function given the standard deviation and mean values of the <code>jan2jun</code> dataset using the <code>dnorm</code> function.</p>
 <p>Let’s add this to a histogram of the data.</p>
-<div class="sourceCode" id="cb305"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb305-1" data-line-number="1"><span class="co"># plot a histogram of jan2jun air temperature and add a normal distribution over it. </span></a>
-<a class="sourceLine" id="cb305-2" data-line-number="2"><span class="kw">hist</span>(jan2jun<span class="op">$</span>tair, <span class="dt">freq =</span> <span class="ot">FALSE</span>, <span class="dt">main=</span> <span class="st">&quot;Willow Creek Air Temp - Jan 1 to June 30, 2010&quot;</span>, <span class="dt">xlab =</span> <span class="st">&quot;Temperature (Kelvin)&quot;</span>)</a>
-<a class="sourceLine" id="cb305-3" data-line-number="3"><span class="co"># create a sequence covering the x axis of our histogram</span></a>
-<a class="sourceLine" id="cb305-4" data-line-number="4">temp_bins &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dv">240</span>, <span class="dv">310</span>, <span class="dt">length.out=</span><span class="dv">100</span>)</a>
-<a class="sourceLine" id="cb305-5" data-line-number="5"><span class="co"># calculate the normal PDF of tair</span></a>
-<a class="sourceLine" id="cb305-6" data-line-number="6">y &lt;-<span class="st"> </span><span class="kw">dnorm</span>(<span class="dt">x=</span>temp_bins, <span class="dt">mean=</span><span class="kw">mean</span>(jan2jun<span class="op">$</span>tair), <span class="dt">sd=</span><span class="kw">sd</span>(jan2jun<span class="op">$</span>tair))</a>
-<a class="sourceLine" id="cb305-7" data-line-number="7"><span class="co"># add lines of the normal dist to the histogram</span></a>
-<a class="sourceLine" id="cb305-8" data-line-number="8"><span class="kw">lines</span>(temp_bins, y, <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>, <span class="dt">lwd=</span><span class="dv">2</span>, <span class="dt">lty=</span><span class="dv">2</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb305"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb305-1"><a href="basic-statistics.html#cb305-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot a histogram of jan2jun air temperature and add a normal distribution over it. </span></span>
+<span id="cb305-2"><a href="basic-statistics.html#cb305-2" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(jan2jun<span class="sc">$</span>tair, <span class="at">freq =</span> <span class="cn">FALSE</span>, <span class="at">main=</span> <span class="st">&quot;Willow Creek Air Temp - Jan 1 to June 30, 2010&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;Temperature (Kelvin)&quot;</span>)</span>
+<span id="cb305-3"><a href="basic-statistics.html#cb305-3" aria-hidden="true" tabindex="-1"></a><span class="co"># create a sequence covering the x axis of our histogram</span></span>
+<span id="cb305-4"><a href="basic-statistics.html#cb305-4" aria-hidden="true" tabindex="-1"></a>temp_bins <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">240</span>, <span class="dv">310</span>, <span class="at">length.out=</span><span class="dv">100</span>)</span>
+<span id="cb305-5"><a href="basic-statistics.html#cb305-5" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate the normal PDF of tair</span></span>
+<span id="cb305-6"><a href="basic-statistics.html#cb305-6" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">dnorm</span>(<span class="at">x=</span>temp_bins, <span class="at">mean=</span><span class="fu">mean</span>(jan2jun<span class="sc">$</span>tair), <span class="at">sd=</span><span class="fu">sd</span>(jan2jun<span class="sc">$</span>tair))</span>
+<span id="cb305-7"><a href="basic-statistics.html#cb305-7" aria-hidden="true" tabindex="-1"></a><span class="co"># add lines of the normal dist to the histogram</span></span>
+<span id="cb305-8"><a href="basic-statistics.html#cb305-8" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(temp_bins, y, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>, <span class="at">lwd=</span><span class="dv">2</span>, <span class="at">lty=</span><span class="dv">2</span>)</span></code></pre></div>
 <p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-112-1.png" width="60%" style="display: block; margin: auto;" /></p>
 <p>Generally speaking, a normal distribution does a reasonable job capturing the actual data points. We see that there is a positive trend in the dataset and that the normal PDF underestimates warmer temperatures. Density plots are another plotting method that can show the distribution of data. Density plots can be thought of as plots of smoothed histograms. The smoothness is controlled by a bandwidth parameter that is analogous to the histogram binwidth. Let’s create a density plot the <code>jan2jun</code> air temperature.</p>
-<div class="sourceCode" id="cb306"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb306-1" data-line-number="1"><span class="co"># calculate the density </span></a>
-<a class="sourceLine" id="cb306-2" data-line-number="2">d =<span class="st"> </span><span class="kw">density</span>(jan2jun<span class="op">$</span>tair, <span class="dt">bw =</span> <span class="fl">0.5</span>)</a>
-<a class="sourceLine" id="cb306-3" data-line-number="3"><span class="co"># plot the density of tair</span></a>
-<a class="sourceLine" id="cb306-4" data-line-number="4"><span class="kw">plot</span>(d, <span class="dt">xlab =</span> <span class="st">&quot;Air Temperature (Kelvin)&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;Density&quot;</span>, <span class="dt">main=</span><span class="st">&quot;Air Temperature Density&quot;</span>, <span class="dt">col=</span><span class="st">&quot;black&quot;</span>, <span class="dt">lwd=</span><span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb306-5" data-line-number="5"><span class="co"># fill in the space below the density distribution instead of leaving it white</span></a>
-<a class="sourceLine" id="cb306-6" data-line-number="6"><span class="kw">polygon</span>(d, <span class="dt">col=</span><span class="st">&quot;coral&quot;</span>, <span class="dt">border=</span><span class="st">&quot;blue&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb306"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb306-1"><a href="basic-statistics.html#cb306-1" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate the density </span></span>
+<span id="cb306-2"><a href="basic-statistics.html#cb306-2" aria-hidden="true" tabindex="-1"></a>d <span class="ot">=</span> <span class="fu">density</span>(jan2jun<span class="sc">$</span>tair, <span class="at">bw =</span> <span class="fl">0.5</span>)</span>
+<span id="cb306-3"><a href="basic-statistics.html#cb306-3" aria-hidden="true" tabindex="-1"></a><span class="co"># plot the density of tair</span></span>
+<span id="cb306-4"><a href="basic-statistics.html#cb306-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(d, <span class="at">xlab =</span> <span class="st">&quot;Air Temperature (Kelvin)&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Density&quot;</span>, <span class="at">main=</span><span class="st">&quot;Air Temperature Density&quot;</span>, <span class="at">col=</span><span class="st">&quot;black&quot;</span>, <span class="at">lwd=</span><span class="dv">2</span>)</span>
+<span id="cb306-5"><a href="basic-statistics.html#cb306-5" aria-hidden="true" tabindex="-1"></a><span class="co"># fill in the space below the density distribution instead of leaving it white</span></span>
+<span id="cb306-6"><a href="basic-statistics.html#cb306-6" aria-hidden="true" tabindex="-1"></a><span class="fu">polygon</span>(d, <span class="at">col=</span><span class="st">&quot;coral&quot;</span>, <span class="at">border=</span><span class="st">&quot;blue&quot;</span>)</span></code></pre></div>
 <p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-113-1.png" width="60%" style="display: block; margin: auto;" /></p>
 </div>
-<div id="finding-a-best-fit-distribution" class="section level3">
-<h3><span class="header-section-number">11.2.4</span> Finding a Best-Fit Distribution</h3>
+<div id="finding-a-best-fit-distribution" class="section level3" number="10.2.4">
+<h3><span class="header-section-number">10.2.4</span> Finding a Best-Fit Distribution</h3>
 <p>The <code>fitdistrplus</code> package is excellent for performing statistical analysis tests and fitting distributions. We can use this package to tell us which distribution fits a particular set of data best. One useful function to perform quick histograms with empirical fits and cumulative distributions is the <code>plotdist</code> function.</p>
-<div class="sourceCode" id="cb307"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb307-1" data-line-number="1"><span class="kw">library</span>(fitdistrplus)</a></code></pre></div>
+<div class="sourceCode" id="cb307"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb307-1"><a href="basic-statistics.html#cb307-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(fitdistrplus)</span></code></pre></div>
 <pre><code>## Loading required package: MASS</code></pre>
 <pre><code>## 
 ## Attaching package: &#39;MASS&#39;</code></pre>
@@ -702,10 +735,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 
 ##     area, select</code></pre>
 <pre><code>## Loading required package: survival</code></pre>
-<div class="sourceCode" id="cb312"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb312-1" data-line-number="1"><span class="kw">plotdist</span>(jan2jun<span class="op">$</span>tair, <span class="dt">histo =</span> <span class="ot">TRUE</span>, <span class="dt">demp =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb312"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb312-1"><a href="basic-statistics.html#cb312-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plotdist</span>(jan2jun<span class="sc">$</span>tair, <span class="at">histo =</span> <span class="cn">TRUE</span>, <span class="at">demp =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-114-1.png" width="60%" style="display: block; margin: auto;" /></p>
 <p>In the previous section, we fit our histogram of Air Temperature with a normal distribution. Was this a good selection? We can use the <code>descdist</code> function to plot a Cullen and Frey Graph. This graph provides analysis for which distribution (normal, uniform, exponential, etc.) best fits our data. Basically, we just look to see which theoretical distribution is closest to our observation point.</p>
-<div class="sourceCode" id="cb313"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb313-1" data-line-number="1"><span class="kw">descdist</span>(jan2jun<span class="op">$</span>tair)</a></code></pre></div>
+<div class="sourceCode" id="cb313"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb313-1"><a href="basic-statistics.html#cb313-1" aria-hidden="true" tabindex="-1"></a><span class="fu">descdist</span>(jan2jun<span class="sc">$</span>tair)</span></code></pre></div>
 <p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-115-1.png" width="672" style="display: block; margin: auto;" /></p>
 <pre><code>## summary statistics
 ## ------
@@ -716,10 +749,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## estimated skewness:  -0.176518 
 ## estimated kurtosis:  2.190581</code></pre>
 <p>Uniform, normal, and gamma distributions are the 3 closest to our air temperature data. Let’s fit each of these distributions to the empirical data and create a density plot (<code>denscomp</code>), a cumulative density function plot (<code>cdfcomp</code>), a Q-Q plot (<code>qqcomp</code>), and a P-P plot (<code>ppcomp</code>) for these distributions.</p>
-<div class="sourceCode" id="cb315"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb315-1" data-line-number="1">fit_u  &lt;-<span class="st"> </span><span class="kw">fitdist</span>(jan2jun<span class="op">$</span>tair, <span class="st">&quot;unif&quot;</span>)</a>
-<a class="sourceLine" id="cb315-2" data-line-number="2">fit_n  &lt;-<span class="st"> </span><span class="kw">fitdist</span>(jan2jun<span class="op">$</span>tair, <span class="st">&quot;norm&quot;</span>)</a>
-<a class="sourceLine" id="cb315-3" data-line-number="3">fit_g &lt;-<span class="st"> </span><span class="kw">fitdist</span>(jan2jun<span class="op">$</span>tair, <span class="st">&quot;gamma&quot;</span>)</a>
-<a class="sourceLine" id="cb315-4" data-line-number="4"><span class="kw">summary</span>(fit_g)</a></code></pre></div>
+<div class="sourceCode" id="cb315"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb315-1"><a href="basic-statistics.html#cb315-1" aria-hidden="true" tabindex="-1"></a>fit_u  <span class="ot">&lt;-</span> <span class="fu">fitdist</span>(jan2jun<span class="sc">$</span>tair, <span class="st">&quot;unif&quot;</span>)</span>
+<span id="cb315-2"><a href="basic-statistics.html#cb315-2" aria-hidden="true" tabindex="-1"></a>fit_n  <span class="ot">&lt;-</span> <span class="fu">fitdist</span>(jan2jun<span class="sc">$</span>tair, <span class="st">&quot;norm&quot;</span>)</span>
+<span id="cb315-3"><a href="basic-statistics.html#cb315-3" aria-hidden="true" tabindex="-1"></a>fit_g <span class="ot">&lt;-</span> <span class="fu">fitdist</span>(jan2jun<span class="sc">$</span>tair, <span class="st">&quot;gamma&quot;</span>)</span>
+<span id="cb315-4"><a href="basic-statistics.html#cb315-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fit_g)</span></code></pre></div>
 <pre><code>## Fitting of the distribution &#39; gamma &#39; by maximum likelihood 
 ## Parameters : 
 ##         estimate  Std. Error
@@ -730,29 +763,29 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##           shape      rate
 ## shape 1.0000000 0.9995799
 ## rate  0.9995799 1.0000000</code></pre>
-<div class="sourceCode" id="cb317"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb317-1" data-line-number="1"><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</a>
-<a class="sourceLine" id="cb317-2" data-line-number="2">plot.legend &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;uniform&quot;</span>, <span class="st">&quot;normal&quot;</span>, <span class="st">&quot;gamma&quot;</span>)</a>
-<a class="sourceLine" id="cb317-3" data-line-number="3"><span class="kw">denscomp</span>(<span class="kw">list</span>(fit_u, fit_n, fit_g), <span class="dt">legendtext =</span> plot.legend)</a>
-<a class="sourceLine" id="cb317-4" data-line-number="4"><span class="kw">cdfcomp</span> (<span class="kw">list</span>(fit_u, fit_n, fit_g), <span class="dt">legendtext =</span> plot.legend)</a>
-<a class="sourceLine" id="cb317-5" data-line-number="5"><span class="kw">qqcomp</span>  (<span class="kw">list</span>(fit_u, fit_n, fit_g), <span class="dt">legendtext =</span> plot.legend)</a>
-<a class="sourceLine" id="cb317-6" data-line-number="6"><span class="kw">ppcomp</span>  (<span class="kw">list</span>(fit_u, fit_n, fit_g), <span class="dt">legendtext =</span> plot.legend)</a></code></pre></div>
+<div class="sourceCode" id="cb317"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb317-1"><a href="basic-statistics.html#cb317-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</span>
+<span id="cb317-2"><a href="basic-statistics.html#cb317-2" aria-hidden="true" tabindex="-1"></a>plot.legend <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;uniform&quot;</span>, <span class="st">&quot;normal&quot;</span>, <span class="st">&quot;gamma&quot;</span>)</span>
+<span id="cb317-3"><a href="basic-statistics.html#cb317-3" aria-hidden="true" tabindex="-1"></a><span class="fu">denscomp</span>(<span class="fu">list</span>(fit_u, fit_n, fit_g), <span class="at">legendtext =</span> plot.legend)</span>
+<span id="cb317-4"><a href="basic-statistics.html#cb317-4" aria-hidden="true" tabindex="-1"></a><span class="fu">cdfcomp</span> (<span class="fu">list</span>(fit_u, fit_n, fit_g), <span class="at">legendtext =</span> plot.legend)</span>
+<span id="cb317-5"><a href="basic-statistics.html#cb317-5" aria-hidden="true" tabindex="-1"></a><span class="fu">qqcomp</span>  (<span class="fu">list</span>(fit_u, fit_n, fit_g), <span class="at">legendtext =</span> plot.legend)</span>
+<span id="cb317-6"><a href="basic-statistics.html#cb317-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ppcomp</span>  (<span class="fu">list</span>(fit_u, fit_n, fit_g), <span class="at">legendtext =</span> plot.legend)</span></code></pre></div>
 <p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-116-1.png" width="960" style="display: block; margin: auto;" /></p>
 <p>Some of the statistics shown in this section are beyond the scope of this course but this package is important to know of.</p>
 </div>
-<div id="correlation-plots" class="section level3">
-<h3><span class="header-section-number">11.2.5</span> Correlation Plots</h3>
-<p>Correlation plots show correlation coefficients across variables. For example, we expect shortwave radiation and temperature to have high a high correlation coefficient because generally speaking when the a lot of sunlight is received at the surface, temperature increases. There’s a handy package called <code>corrplot</code> that caluclates correlation coefficients quickly and intuitively. If you don’t have the package installed, you’ll need to use - <code>install.packages(&quot;corrplot&quot;)</code>.</p>
+<div id="correlation-plots" class="section level3" number="10.2.5">
+<h3><span class="header-section-number">10.2.5</span> Correlation Plots</h3>
+<p>Correlation plots show correlation coefficients across variables. For example, we expect shortwave radiation and temperature to have high a high correlation coefficient because generally speaking when the a lot of sunlight is received at the surface, temperature increases. There’s a handy package called <code>corrplot</code> that caluclates correlation coefficients quickly and intuitively. If you don’t have the package installed, you’ll need to use - <code>install.packages("corrplot")</code>.</p>
 <p>For the correlation plot, we’re going to use the full year dataset, <code>wcreek_df</code>, rather than the <code>jan2jun</code> dataset. When we calculate correlations, the more data we have the better. We’re also going to calculate residual values - that is the distance between actual data and the trendline. It’s another way to express error. When we have a large dataset like this with many scatter points, it’s difficult to nail down a specific trendline that may capture the dataset the best. Different trendlines may represent the data in similar ways. Residuals measure the diffence between a particular trendline and the data point.</p>
-<div class="sourceCode" id="cb318"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb318-1" data-line-number="1"><span class="kw">library</span>(corrplot)</a></code></pre></div>
+<div class="sourceCode" id="cb318"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb318-1"><a href="basic-statistics.html#cb318-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(corrplot)</span></code></pre></div>
 <pre><code>## corrplot 0.84 loaded</code></pre>
-<div class="sourceCode" id="cb320"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb320-1" data-line-number="1"><span class="co"># create a duplicate of the wcreek_df - remove the datetime variable from this</span></a>
-<a class="sourceLine" id="cb320-2" data-line-number="2">wcreek_nodate =<span class="st"> </span>wcreek_df</a>
-<a class="sourceLine" id="cb320-3" data-line-number="3"><span class="co"># we need to remove the datetime so our dataset is full of numeric values only - no datetime values or characters</span></a>
-<a class="sourceLine" id="cb320-4" data-line-number="4">wcreek_nodate<span class="op">$</span>datetime =<span class="st"> </span><span class="ot">NULL</span></a>
-<a class="sourceLine" id="cb320-5" data-line-number="5"></a>
-<a class="sourceLine" id="cb320-6" data-line-number="6"><span class="co"># awesome, now let&#39;s calculate the correlation coefficients</span></a>
-<a class="sourceLine" id="cb320-7" data-line-number="7">cor_wcreek =<span class="st"> </span><span class="kw">cor</span>(wcreek_nodate)</a>
-<a class="sourceLine" id="cb320-8" data-line-number="8"><span class="kw">head</span>(cor_wcreek)</a></code></pre></div>
+<div class="sourceCode" id="cb320"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb320-1"><a href="basic-statistics.html#cb320-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create a duplicate of the wcreek_df - remove the datetime variable from this</span></span>
+<span id="cb320-2"><a href="basic-statistics.html#cb320-2" aria-hidden="true" tabindex="-1"></a>wcreek_nodate <span class="ot">=</span> wcreek_df</span>
+<span id="cb320-3"><a href="basic-statistics.html#cb320-3" aria-hidden="true" tabindex="-1"></a><span class="co"># we need to remove the datetime so our dataset is full of numeric values only - no datetime values or characters</span></span>
+<span id="cb320-4"><a href="basic-statistics.html#cb320-4" aria-hidden="true" tabindex="-1"></a>wcreek_nodate<span class="sc">$</span>datetime <span class="ot">=</span> <span class="cn">NULL</span></span>
+<span id="cb320-5"><a href="basic-statistics.html#cb320-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb320-6"><a href="basic-statistics.html#cb320-6" aria-hidden="true" tabindex="-1"></a><span class="co"># awesome, now let&#39;s calculate the correlation coefficients</span></span>
+<span id="cb320-7"><a href="basic-statistics.html#cb320-7" aria-hidden="true" tabindex="-1"></a>cor_wcreek <span class="ot">=</span> <span class="fu">cor</span>(wcreek_nodate)</span>
+<span id="cb320-8"><a href="basic-statistics.html#cb320-8" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(cor_wcreek)</span></code></pre></div>
 <pre><code>##             tair       tmax       tmin      lwave        pres      swave
 ## tair   1.0000000  0.9998053  0.9998039  0.8200776 -0.16229303 0.35668470
 ## tmax   0.9998053  1.0000000  0.9992183  0.8177929 -0.16085314 0.35552272
@@ -767,20 +800,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## lwave -0.29876208  0.09322482  0.8416941  0.14016558
 ## pres   0.22972978  0.03904779 -0.1628097 -0.09972888
 ## swave -0.07181433 -0.11448984  0.2681873 -0.02659980</code></pre>
-<div class="sourceCode" id="cb322"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb322-1" data-line-number="1"><span class="co"># now let&#39;s calculate the residuals of the correlations with a 95% confidence interval</span></a>
-<a class="sourceLine" id="cb322-2" data-line-number="2">residuals_<span class="dv">1</span> &lt;-<span class="st"> </span><span class="kw">cor.mtest</span>(wcreek_nodate, <span class="dt">conf.level =</span> <span class="fl">.95</span>)</a>
-<a class="sourceLine" id="cb322-3" data-line-number="3"><span class="co"># now let&#39;s plot this up. </span></a>
-<a class="sourceLine" id="cb322-4" data-line-number="4"><span class="kw">corrplot</span>(cor_wcreek, <span class="dt">p.mat =</span> residuals_<span class="dv">1</span><span class="op">$</span>p, <span class="dt">method =</span> <span class="st">&#39;color&#39;</span>, <span class="dt">number.cex =</span> <span class="fl">.7</span>, <span class="dt">type =</span> <span class="st">&#39;lower&#39;</span>,</a>
-<a class="sourceLine" id="cb322-5" data-line-number="5">         <span class="dt">addCoef.col =</span> <span class="st">&quot;black&quot;</span>, <span class="co"># Add coefficient of correlation</span></a>
-<a class="sourceLine" id="cb322-6" data-line-number="6">         <span class="dt">tl.col =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">tl.srt =</span> <span class="dv">90</span>, <span class="co"># Text label color and rotation</span></a>
-<a class="sourceLine" id="cb322-7" data-line-number="7">         <span class="co"># Combine with significance</span></a>
-<a class="sourceLine" id="cb322-8" data-line-number="8">         <span class="dt">sig.level =</span> <span class="fl">0.05</span>, <span class="dt">insig =</span> <span class="st">&quot;blank&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb322"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb322-1"><a href="basic-statistics.html#cb322-1" aria-hidden="true" tabindex="-1"></a><span class="co"># now let&#39;s calculate the residuals of the correlations with a 95% confidence interval</span></span>
+<span id="cb322-2"><a href="basic-statistics.html#cb322-2" aria-hidden="true" tabindex="-1"></a>residuals_1 <span class="ot">&lt;-</span> <span class="fu">cor.mtest</span>(wcreek_nodate, <span class="at">conf.level =</span> .<span class="dv">95</span>)</span>
+<span id="cb322-3"><a href="basic-statistics.html#cb322-3" aria-hidden="true" tabindex="-1"></a><span class="co"># now let&#39;s plot this up. </span></span>
+<span id="cb322-4"><a href="basic-statistics.html#cb322-4" aria-hidden="true" tabindex="-1"></a><span class="fu">corrplot</span>(cor_wcreek, <span class="at">p.mat =</span> residuals_1<span class="sc">$</span>p, <span class="at">method =</span> <span class="st">&#39;color&#39;</span>, <span class="at">number.cex =</span> .<span class="dv">7</span>, <span class="at">type =</span> <span class="st">&#39;lower&#39;</span>,</span>
+<span id="cb322-5"><a href="basic-statistics.html#cb322-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">addCoef.col =</span> <span class="st">&quot;black&quot;</span>, <span class="co"># Add coefficient of correlation</span></span>
+<span id="cb322-6"><a href="basic-statistics.html#cb322-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">tl.col =</span> <span class="st">&quot;black&quot;</span>, <span class="at">tl.srt =</span> <span class="dv">90</span>, <span class="co"># Text label color and rotation</span></span>
+<span id="cb322-7"><a href="basic-statistics.html#cb322-7" aria-hidden="true" tabindex="-1"></a>         <span class="co"># Combine with significance</span></span>
+<span id="cb322-8"><a href="basic-statistics.html#cb322-8" aria-hidden="true" tabindex="-1"></a>         <span class="at">sig.level =</span> <span class="fl">0.05</span>, <span class="at">insig =</span> <span class="st">&quot;blank&quot;</span>)</span></code></pre></div>
 <p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-117-1.png" width="768" style="display: block; margin: auto;" /></p>
 <p>Do these correlations make sense? Let’s take two variables that are highly correlated - temperature and shortwave radiation (sunlight). Our correalation is .36 for these two variables - this is a slight correlation. Why isn’t the correlation higher? Advection - that is air being transported from other locations via wind.</p>
 </div>
 </div>
-<div id="assignment-4" class="section level2">
-<h2><span class="header-section-number">11.3</span> Assignment</h2>
+<div id="assignment-4" class="section level2" number="10.3">
+<h2><span class="header-section-number">10.3</span> Assignment</h2>
 <p>Using the <code>WCr_1hr.2012.nc</code> dataset found in the datasets folder, create a document (word, pdf, notepad, etc.) answering these questions with accompanied figures (no code).</p>
 <ol style="list-style-type: decimal">
 <li>Subset the data between July 1 and Dec 31.</li>
@@ -789,8 +822,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Create a correlation plot of your willow creek 2012 dataset. How does it compare to the 2010 dataset in the tutorial?</li>
 </ol>
 <p>Save your plots created in #2, #3, #4, attach them to a document and answer the questions. Submit this document to Canvas.</p>
-<div id="extra-credit---2-points" class="section level3">
-<h3><span class="header-section-number">11.3.1</span> Extra Credit - 2 points</h3>
+<div id="extra-credit---2-points" class="section level3" number="10.3.1">
+<h3><span class="header-section-number">10.3.1</span> Extra Credit - 2 points</h3>
 <p>Using the WCr_1hr.2010.nc, WCr_1hr.2011.nc and WCr_1hr.2012.nc found in the datasets folder, complete the following</p>
 <ol style="list-style-type: decimal">
 <li>Fuse together the 3 datasets into one continuous dataframe.</li>

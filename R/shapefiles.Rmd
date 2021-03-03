@@ -21,6 +21,7 @@ library(ggplot2)
 library(ggmap)
 library(scales)
 library(viridis)
+library(raster)
 
 # Use the readOGR function from the rgdal package to open a shapefile & constituents
 coast.shp <- readOGR("/Users/james/Documents/Github/geog473-673/datasets/cfms_shapefiles/cfms_watersheds.shp")
@@ -99,7 +100,23 @@ tm_shape(merged.coast) +
   tm_polygons(col='maxpred', title = "Projected Water Levels", palette = "Blues") + tm_style("classic") + tm_scale_bar(position = c("left", "bottom")) 
 ```
 
-We automatically queried a Blues color palette with automatic breaks with the `tm_shape` and `tm_polygons` functions. Notice how similar this functionality is to `ggplot2`. Let's turn our attention to `ggplot2` at this time. Before we use this package, we will need to convert our `SpatialPolygonsDataFrame` to a `sf` dataframe. For this, we can use the `st_as_sf` function which converts a foreign object to an `sf` object.
+We automatically queried a Blues color palette with automatic breaks with the `tm_shape` and `tm_polygons` functions. Notice how similar this functionality is to `ggplot2`. What if we want to specify a bounding box or "zoom in" ? The default bounding box is the extent of the original dataset. Let's look at the extent using the `raster` package's function, `extent()`. 
+
+```{r}
+extent(merged.coast)
+```
+
+Remember, we are NOT in a lat/lon coordinate system. These values are not in units of degrees lat/lon, but rather meters from equator/meridian. Thus, our bounding box must be specified with these coordinates in mind.
+
+```{r, out.width="60%", fig.align="center"}
+library(tmap)
+tm_shape(merged.coast, bbox=c(xmin=170917, xmax=224900.7 , ymin=75865.21 , ymax=190353.1)) + 
+  tm_polygons(col='maxpred', title = "Projected Water Levels", palette = "Blues") + tm_style("classic") + tm_scale_bar(position = c("left", "bottom")) 
+```
+
+If our projection was a lat/lon projection in units of degrees, we could just plug in degrees lat/lon into our `bbox` argument. 
+
+Let's turn our attention to `ggplot2` at this time. Before we use this package, we will need to convert our `SpatialPolygonsDataFrame` to a `sf` dataframe. For this, we can use the `st_as_sf` function which converts a foreign object to an `sf` object.
 
 
 ```{r, out.width="60%", fig.align="center"}

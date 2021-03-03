@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>10 Plot Customization | R for Geospatial Sciences</title>
+  <title>9 Plot Customization | R for Geospatial Sciences</title>
   <meta name="description" content="Advanced R" />
   <meta name="generator" content="bookdown 0.20.6 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="10 Plot Customization | R for Geospatial Sciences" />
+  <meta property="og:title" content="9 Plot Customization | R for Geospatial Sciences" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="10 Plot Customization | R for Geospatial Sciences" />
+  <meta name="twitter:title" content="9 Plot Customization | R for Geospatial Sciences" />
   
   <meta name="twitter:description" content="Advanced R" />
   
@@ -24,7 +24,7 @@
 <meta name="author" content="James Simkins" />
 
 
-<meta name="date" content="2021-01-28" />
+<meta name="date" content="2021-03-03" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,6 +33,7 @@
   
 <link rel="prev" href="reprojecting-writing-rasters.html"/>
 <link rel="next" href="basic-statistics.html"/>
+<script src="libs/header-attrs-2.3.8/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -74,25 +75,26 @@
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -101,9 +103,9 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {  }
+  {   }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -152,14 +154,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">R for Geospatial Sciences</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="1" data-path="r-for-geospatial-sciences.html"><a href="r-for-geospatial-sciences.html"><i class="fa fa-check"></i><b>1</b> R for Geospatial Sciences</a><ul>
+<li class="chapter" data-level="1" data-path="r-for-geospatial-sciences.html"><a href="r-for-geospatial-sciences.html"><i class="fa fa-check"></i><b>1</b> R for Geospatial Sciences</a>
+<ul>
 <li class="chapter" data-level="1.1" data-path="r-for-geospatial-sciences.html"><a href="r-for-geospatial-sciences.html#welcome"><i class="fa fa-check"></i><b>1.1</b> Welcome</a></li>
 <li class="chapter" data-level="1.2" data-path="r-for-geospatial-sciences.html"><a href="r-for-geospatial-sciences.html#course-github"><i class="fa fa-check"></i><b>1.2</b> Course Github</a></li>
 <li class="chapter" data-level="1.3" data-path="r-for-geospatial-sciences.html"><a href="r-for-geospatial-sciences.html#syllabus"><i class="fa fa-check"></i><b>1.3</b> Syllabus</a></li>
 <li class="chapter" data-level="1.4" data-path="r-for-geospatial-sciences.html"><a href="r-for-geospatial-sciences.html#phase-1"><i class="fa fa-check"></i><b>1.4</b> Phase 1</a></li>
 <li class="chapter" data-level="1.5" data-path="r-for-geospatial-sciences.html"><a href="r-for-geospatial-sciences.html#phase-2"><i class="fa fa-check"></i><b>1.5</b> Phase 2</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html"><i class="fa fa-check"></i><b>2</b> Getting Started with R</a><ul>
+<li class="chapter" data-level="2" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html"><i class="fa fa-check"></i><b>2</b> Getting Started with R</a>
+<ul>
 <li class="chapter" data-level="2.1" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#why-is-there-such-a-buzz-around-r"><i class="fa fa-check"></i><b>2.1</b> Why is there such a buzz around R?</a></li>
 <li class="chapter" data-level="2.2" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#reasons-to-love-r"><i class="fa fa-check"></i><b>2.2</b> Reasons to love R</a></li>
 <li class="chapter" data-level="2.3" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#downloading-guide"><i class="fa fa-check"></i><b>2.3</b> Downloading Guide</a></li>
@@ -170,12 +174,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.8" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#open-rstudio"><i class="fa fa-check"></i><b>2.8</b> Open RStudio</a></li>
 <li class="chapter" data-level="2.9" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#r-studio-layout"><i class="fa fa-check"></i><b>2.9</b> R Studio Layout</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="definitions-rules.html"><a href="definitions-rules.html"><i class="fa fa-check"></i><b>3</b> Definitions &amp; Rules</a><ul>
+<li class="chapter" data-level="3" data-path="definitions-rules.html"><a href="definitions-rules.html"><i class="fa fa-check"></i><b>3</b> Definitions &amp; Rules</a>
+<ul>
 <li class="chapter" data-level="3.1" data-path="definitions-rules.html"><a href="definitions-rules.html#important-r-programming-definitions"><i class="fa fa-check"></i><b>3.1</b> Important R Programming Definitions</a></li>
 <li class="chapter" data-level="3.2" data-path="definitions-rules.html"><a href="definitions-rules.html#rules"><i class="fa fa-check"></i><b>3.2</b> Rules</a></li>
 <li class="chapter" data-level="3.3" data-path="definitions-rules.html"><a href="definitions-rules.html#general-recommendations"><i class="fa fa-check"></i><b>3.3</b> General Recommendations</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="r-coding-fundamentals.html"><a href="r-coding-fundamentals.html"><i class="fa fa-check"></i><b>4</b> R Coding Fundamentals</a><ul>
+<li class="chapter" data-level="4" data-path="r-coding-fundamentals.html"><a href="r-coding-fundamentals.html"><i class="fa fa-check"></i><b>4</b> R Coding Fundamentals</a>
+<ul>
 <li class="chapter" data-level="4.1" data-path="r-coding-fundamentals.html"><a href="r-coding-fundamentals.html#entering-input"><i class="fa fa-check"></i><b>4.1</b> Entering Input</a></li>
 <li class="chapter" data-level="4.2" data-path="r-coding-fundamentals.html"><a href="r-coding-fundamentals.html#running-code"><i class="fa fa-check"></i><b>4.2</b> Running Code</a></li>
 <li class="chapter" data-level="4.3" data-path="r-coding-fundamentals.html"><a href="r-coding-fundamentals.html#evaluation"><i class="fa fa-check"></i><b>4.3</b> Evaluation</a></li>
@@ -193,144 +199,171 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.15" data-path="r-coding-fundamentals.html"><a href="r-coding-fundamentals.html#names"><i class="fa fa-check"></i><b>4.15</b> Names</a></li>
 <li class="chapter" data-level="4.16" data-path="r-coding-fundamentals.html"><a href="r-coding-fundamentals.html#summary"><i class="fa fa-check"></i><b>4.16</b> Summary</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="basic-r-scripts.html"><a href="basic-r-scripts.html"><i class="fa fa-check"></i><b>5</b> Basic R Scripts</a><ul>
-<li class="chapter" data-level="5.1" data-path="basic-r-scripts.html"><a href="basic-r-scripts.html#global-carbon-dioxide-concentrations"><i class="fa fa-check"></i><b>5.1</b> Global Carbon-Dioxide Concentrations</a><ul>
+<li class="chapter" data-level="5" data-path="basic-r-scripts.html"><a href="basic-r-scripts.html"><i class="fa fa-check"></i><b>5</b> Basic R Scripts</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="basic-r-scripts.html"><a href="basic-r-scripts.html#global-carbon-dioxide-concentrations"><i class="fa fa-check"></i><b>5.1</b> Global Carbon-Dioxide Concentrations</a>
+<ul>
 <li class="chapter" data-level="5.1.1" data-path="basic-r-scripts.html"><a href="basic-r-scripts.html#saving-your-plot"><i class="fa fa-check"></i><b>5.1.1</b> Saving your plot</a></li>
 </ul></li>
 <li class="chapter" data-level="5.2" data-path="basic-r-scripts.html"><a href="basic-r-scripts.html#cars---motor-trends-magazine-data"><i class="fa fa-check"></i><b>5.2</b> Cars - Motor Trends Magazine Data</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="scientific-r-scripts.html"><a href="scientific-r-scripts.html"><i class="fa fa-check"></i><b>6</b> Scientific R Scripts</a><ul>
-<li class="chapter" data-level="6.1" data-path="scientific-r-scripts.html"><a href="scientific-r-scripts.html#script-breakdown"><i class="fa fa-check"></i><b>6.1</b> Script Breakdown</a><ul>
+<li class="chapter" data-level="6" data-path="scientific-r-scripts.html"><a href="scientific-r-scripts.html"><i class="fa fa-check"></i><b>6</b> Scientific R Scripts</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="scientific-r-scripts.html"><a href="scientific-r-scripts.html#script-breakdown"><i class="fa fa-check"></i><b>6.1</b> Script Breakdown</a>
+<ul>
 <li class="chapter" data-level="6.1.1" data-path="scientific-r-scripts.html"><a href="scientific-r-scripts.html#installing-packages"><i class="fa fa-check"></i><b>6.1.1</b> Installing Packages</a></li>
 <li class="chapter" data-level="6.1.2" data-path="scientific-r-scripts.html"><a href="scientific-r-scripts.html#reading-the-data"><i class="fa fa-check"></i><b>6.1.2</b> Reading the Data</a></li>
 <li class="chapter" data-level="6.1.3" data-path="scientific-r-scripts.html"><a href="scientific-r-scripts.html#basic-quality-control"><i class="fa fa-check"></i><b>6.1.3</b> Basic Quality Control</a></li>
 <li class="chapter" data-level="6.1.4" data-path="scientific-r-scripts.html"><a href="scientific-r-scripts.html#plotting-the-data"><i class="fa fa-check"></i><b>6.1.4</b> Plotting the Data</a></li>
 </ul></li>
-<li class="chapter" data-level="6.2" data-path="scientific-r-scripts.html"><a href="scientific-r-scripts.html#in-class-exercise"><i class="fa fa-check"></i><b>6.2</b> In Class Exercise</a><ul>
+<li class="chapter" data-level="6.2" data-path="scientific-r-scripts.html"><a href="scientific-r-scripts.html#in-class-exercise"><i class="fa fa-check"></i><b>6.2</b> In Class Exercise</a>
+<ul>
 <li class="chapter" data-level="6.2.1" data-path="scientific-r-scripts.html"><a href="scientific-r-scripts.html#further-explanation-of-datatypes"><i class="fa fa-check"></i><b>6.2.1</b> Further Explanation of DataTypes</a></li>
 </ul></li>
+<li class="chapter" data-level="6.3" data-path="scientific-r-scripts.html"><a href="scientific-r-scripts.html#deos-data"><i class="fa fa-check"></i><b>6.3</b> DEOS Data</a></li>
+<li class="chapter" data-level="6.4" data-path="scientific-r-scripts.html"><a href="scientific-r-scripts.html#assignment"><i class="fa fa-check"></i><b>6.4</b> Assignment</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="time-series-data.html"><a href="time-series-data.html"><i class="fa fa-check"></i><b>7</b> Time Series Data</a><ul>
-<li class="chapter" data-level="7.1" data-path="time-series-data.html"><a href="time-series-data.html#for-loops"><i class="fa fa-check"></i><b>7.1</b> For Loops</a></li>
-<li class="chapter" data-level="7.2" data-path="time-series-data.html"><a href="time-series-data.html#deos-data"><i class="fa fa-check"></i><b>7.2</b> DEOS Data</a></li>
-<li class="chapter" data-level="7.3" data-path="time-series-data.html"><a href="time-series-data.html#assignment"><i class="fa fa-check"></i><b>7.3</b> Assignment</a></li>
+<li class="chapter" data-level="7" data-path="raster-visualization.html"><a href="raster-visualization.html"><i class="fa fa-check"></i><b>7</b> Raster Visualization</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="raster-visualization.html"><a href="raster-visualization.html#paste0"><i class="fa fa-check"></i><b>7.1</b> <code>Paste0()</code></a></li>
+<li class="chapter" data-level="7.2" data-path="raster-visualization.html"><a href="raster-visualization.html#rasters"><i class="fa fa-check"></i><b>7.2</b> Rasters</a></li>
+<li class="chapter" data-level="7.3" data-path="raster-visualization.html"><a href="raster-visualization.html#assignment-1"><i class="fa fa-check"></i><b>7.3</b> Assignment</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="raster-visualization.html"><a href="raster-visualization.html"><i class="fa fa-check"></i><b>8</b> Raster Visualization</a><ul>
-<li class="chapter" data-level="8.1" data-path="raster-visualization.html"><a href="raster-visualization.html#paste0"><i class="fa fa-check"></i><b>8.1</b> <code>Paste0()</code></a></li>
-<li class="chapter" data-level="8.2" data-path="raster-visualization.html"><a href="raster-visualization.html#rasters"><i class="fa fa-check"></i><b>8.2</b> Rasters</a></li>
-<li class="chapter" data-level="8.3" data-path="raster-visualization.html"><a href="raster-visualization.html#assignment-1"><i class="fa fa-check"></i><b>8.3</b> Assignment</a></li>
+<li class="chapter" data-level="8" data-path="reprojecting-writing-rasters.html"><a href="reprojecting-writing-rasters.html"><i class="fa fa-check"></i><b>8</b> Reprojecting &amp; Writing Rasters</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="reprojecting-writing-rasters.html"><a href="reprojecting-writing-rasters.html#indexing-data"><i class="fa fa-check"></i><b>8.1</b> Indexing Data</a></li>
+<li class="chapter" data-level="8.2" data-path="reprojecting-writing-rasters.html"><a href="reprojecting-writing-rasters.html#resampling-and-reprojecting"><i class="fa fa-check"></i><b>8.2</b> Resampling and Reprojecting</a></li>
+<li class="chapter" data-level="8.3" data-path="reprojecting-writing-rasters.html"><a href="reprojecting-writing-rasters.html#pngs"><i class="fa fa-check"></i><b>8.3</b> PNGs</a></li>
+<li class="chapter" data-level="8.4" data-path="reprojecting-writing-rasters.html"><a href="reprojecting-writing-rasters.html#writing-rasters"><i class="fa fa-check"></i><b>8.4</b> Writing Rasters</a></li>
+<li class="chapter" data-level="8.5" data-path="reprojecting-writing-rasters.html"><a href="reprojecting-writing-rasters.html#assignment-2"><i class="fa fa-check"></i><b>8.5</b> Assignment</a></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="reprojecting-writing-rasters.html"><a href="reprojecting-writing-rasters.html"><i class="fa fa-check"></i><b>9</b> Reprojecting &amp; Writing Rasters</a><ul>
-<li class="chapter" data-level="9.1" data-path="reprojecting-writing-rasters.html"><a href="reprojecting-writing-rasters.html#indexing-data"><i class="fa fa-check"></i><b>9.1</b> Indexing Data</a></li>
-<li class="chapter" data-level="9.2" data-path="reprojecting-writing-rasters.html"><a href="reprojecting-writing-rasters.html#resampling-and-reprojecting"><i class="fa fa-check"></i><b>9.2</b> Resampling and Reprojecting</a></li>
-<li class="chapter" data-level="9.3" data-path="reprojecting-writing-rasters.html"><a href="reprojecting-writing-rasters.html#pngs"><i class="fa fa-check"></i><b>9.3</b> PNGs</a></li>
-<li class="chapter" data-level="9.4" data-path="reprojecting-writing-rasters.html"><a href="reprojecting-writing-rasters.html#writing-rasters"><i class="fa fa-check"></i><b>9.4</b> Writing Rasters</a></li>
-<li class="chapter" data-level="9.5" data-path="reprojecting-writing-rasters.html"><a href="reprojecting-writing-rasters.html#assignment-2"><i class="fa fa-check"></i><b>9.5</b> Assignment</a></li>
+<li class="chapter" data-level="9" data-path="plot-customization.html"><a href="plot-customization.html"><i class="fa fa-check"></i><b>9</b> Plot Customization</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="plot-customization.html"><a href="plot-customization.html#expanding-on-basic-plots-in-r"><i class="fa fa-check"></i><b>9.1</b> Expanding on Basic Plots in R</a>
+<ul>
+<li class="chapter" data-level="9.1.1" data-path="plot-customization.html"><a href="plot-customization.html#adding-to-a-plot"><i class="fa fa-check"></i><b>9.1.1</b> Adding to a Plot</a></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="plot-customization.html"><a href="plot-customization.html"><i class="fa fa-check"></i><b>10</b> Plot Customization</a><ul>
-<li class="chapter" data-level="10.1" data-path="plot-customization.html"><a href="plot-customization.html#expanding-on-basic-plots-in-r"><i class="fa fa-check"></i><b>10.1</b> Expanding on Basic Plots in R</a><ul>
-<li class="chapter" data-level="10.1.1" data-path="plot-customization.html"><a href="plot-customization.html#adding-to-a-plot"><i class="fa fa-check"></i><b>10.1.1</b> Adding to a Plot</a></li>
+<li class="chapter" data-level="9.2" data-path="plot-customization.html"><a href="plot-customization.html#barplots-boxplots-pie-charts"><i class="fa fa-check"></i><b>9.2</b> Barplots, Boxplots, Pie Charts</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="plot-customization.html"><a href="plot-customization.html#combining-plots"><i class="fa fa-check"></i><b>9.2.1</b> Combining Plots</a></li>
 </ul></li>
-<li class="chapter" data-level="10.2" data-path="plot-customization.html"><a href="plot-customization.html#barplots-boxplots-pie-charts"><i class="fa fa-check"></i><b>10.2</b> Barplots, Boxplots, Pie Charts</a><ul>
-<li class="chapter" data-level="10.2.1" data-path="plot-customization.html"><a href="plot-customization.html#combining-plots"><i class="fa fa-check"></i><b>10.2.1</b> Combining Plots</a></li>
+<li class="chapter" data-level="9.3" data-path="plot-customization.html"><a href="plot-customization.html#tree-data"><i class="fa fa-check"></i><b>9.3</b> Tree Data</a>
+<ul>
+<li class="chapter" data-level="9.3.1" data-path="plot-customization.html"><a href="plot-customization.html#loading-the-dataset"><i class="fa fa-check"></i><b>9.3.1</b> Loading the Dataset</a></li>
 </ul></li>
-<li class="chapter" data-level="10.3" data-path="plot-customization.html"><a href="plot-customization.html#tree-data"><i class="fa fa-check"></i><b>10.3</b> Tree Data</a><ul>
-<li class="chapter" data-level="10.3.1" data-path="plot-customization.html"><a href="plot-customization.html#loading-the-dataset"><i class="fa fa-check"></i><b>10.3.1</b> Loading the Dataset</a></li>
+<li class="chapter" data-level="9.4" data-path="plot-customization.html"><a href="plot-customization.html#assignment-3"><i class="fa fa-check"></i><b>9.4</b> Assignment:</a></li>
 </ul></li>
-<li class="chapter" data-level="10.4" data-path="plot-customization.html"><a href="plot-customization.html#assignment-3"><i class="fa fa-check"></i><b>10.4</b> Assignment:</a></li>
+<li class="chapter" data-level="10" data-path="basic-statistics.html"><a href="basic-statistics.html"><i class="fa fa-check"></i><b>10</b> Basic Statistics</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="basic-statistics.html"><a href="basic-statistics.html#statistical-function-dictionary"><i class="fa fa-check"></i><b>10.1</b> Statistical Function Dictionary</a></li>
+<li class="chapter" data-level="10.2" data-path="basic-statistics.html"><a href="basic-statistics.html#basic-statistics-in-r"><i class="fa fa-check"></i><b>10.2</b> Basic Statistics in R</a>
+<ul>
+<li class="chapter" data-level="10.2.1" data-path="basic-statistics.html"><a href="basic-statistics.html#load-willow-creek-data"><i class="fa fa-check"></i><b>10.2.1</b> Load Willow Creek data</a></li>
+<li class="chapter" data-level="10.2.2" data-path="basic-statistics.html"><a href="basic-statistics.html#subsetting-data"><i class="fa fa-check"></i><b>10.2.2</b> Subsetting Data</a></li>
+<li class="chapter" data-level="10.2.3" data-path="basic-statistics.html"><a href="basic-statistics.html#trends-and-distributions"><i class="fa fa-check"></i><b>10.2.3</b> Trends and Distributions</a></li>
+<li class="chapter" data-level="10.2.4" data-path="basic-statistics.html"><a href="basic-statistics.html#finding-a-best-fit-distribution"><i class="fa fa-check"></i><b>10.2.4</b> Finding a Best-Fit Distribution</a></li>
+<li class="chapter" data-level="10.2.5" data-path="basic-statistics.html"><a href="basic-statistics.html#correlation-plots"><i class="fa fa-check"></i><b>10.2.5</b> Correlation Plots</a></li>
 </ul></li>
-<li class="chapter" data-level="11" data-path="basic-statistics.html"><a href="basic-statistics.html"><i class="fa fa-check"></i><b>11</b> Basic Statistics</a><ul>
-<li class="chapter" data-level="11.1" data-path="basic-statistics.html"><a href="basic-statistics.html#statistical-function-dictionary"><i class="fa fa-check"></i><b>11.1</b> Statistical Function Dictionary</a></li>
-<li class="chapter" data-level="11.2" data-path="basic-statistics.html"><a href="basic-statistics.html#basic-statistics-in-r"><i class="fa fa-check"></i><b>11.2</b> Basic Statistics in R</a><ul>
-<li class="chapter" data-level="11.2.1" data-path="basic-statistics.html"><a href="basic-statistics.html#load-willow-creek-data"><i class="fa fa-check"></i><b>11.2.1</b> Load Willow Creek data</a></li>
-<li class="chapter" data-level="11.2.2" data-path="basic-statistics.html"><a href="basic-statistics.html#subsetting-data"><i class="fa fa-check"></i><b>11.2.2</b> Subsetting Data</a></li>
-<li class="chapter" data-level="11.2.3" data-path="basic-statistics.html"><a href="basic-statistics.html#trends-and-distributions"><i class="fa fa-check"></i><b>11.2.3</b> Trends and Distributions</a></li>
-<li class="chapter" data-level="11.2.4" data-path="basic-statistics.html"><a href="basic-statistics.html#finding-a-best-fit-distribution"><i class="fa fa-check"></i><b>11.2.4</b> Finding a Best-Fit Distribution</a></li>
-<li class="chapter" data-level="11.2.5" data-path="basic-statistics.html"><a href="basic-statistics.html#correlation-plots"><i class="fa fa-check"></i><b>11.2.5</b> Correlation Plots</a></li>
-</ul></li>
-<li class="chapter" data-level="11.3" data-path="basic-statistics.html"><a href="basic-statistics.html#assignment-4"><i class="fa fa-check"></i><b>11.3</b> Assignment</a><ul>
-<li class="chapter" data-level="11.3.1" data-path="basic-statistics.html"><a href="basic-statistics.html#extra-credit---2-points"><i class="fa fa-check"></i><b>11.3.1</b> Extra Credit - 2 points</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="12" data-path="plotting-with-ggplot2.html"><a href="plotting-with-ggplot2.html"><i class="fa fa-check"></i><b>12</b> Plotting with <code>ggplot2</code></a><ul>
-<li class="chapter" data-level="12.1" data-path="plotting-with-ggplot2.html"><a href="plotting-with-ggplot2.html#ggplot2-with-willow-creek-meteorological-data"><i class="fa fa-check"></i><b>12.1</b> ggplot2 with Willow Creek Meteorological Data</a></li>
-<li class="chapter" data-level="12.2" data-path="plotting-with-ggplot2.html"><a href="plotting-with-ggplot2.html#assignment-5"><i class="fa fa-check"></i><b>12.2</b> Assignment:</a></li>
-<li class="chapter" data-level="12.3" data-path="plotting-with-ggplot2.html"><a href="plotting-with-ggplot2.html#extra-credit---2-points-1"><i class="fa fa-check"></i><b>12.3</b> Extra Credit - 2 Points</a></li>
-</ul></li>
-<li class="chapter" data-level="13" data-path="spatial-plots-with-ggplot2.html"><a href="spatial-plots-with-ggplot2.html"><i class="fa fa-check"></i><b>13</b> Spatial Plots with <code>ggplot2</code></a><ul>
-<li class="chapter" data-level="13.1" data-path="spatial-plots-with-ggplot2.html"><a href="spatial-plots-with-ggplot2.html#simple-features"><i class="fa fa-check"></i><b>13.1</b> Simple Features</a></li>
-<li class="chapter" data-level="13.2" data-path="spatial-plots-with-ggplot2.html"><a href="spatial-plots-with-ggplot2.html#sea-surface-temperature-ggplot"><i class="fa fa-check"></i><b>13.2</b> Sea Surface Temperature ggplot</a></li>
-<li class="chapter" data-level="13.3" data-path="spatial-plots-with-ggplot2.html"><a href="spatial-plots-with-ggplot2.html#r-color-brewer-palettes"><i class="fa fa-check"></i><b>13.3</b> R Color Brewer Palettes</a><ul>
-<li class="chapter" data-level="13.3.1" data-path="spatial-plots-with-ggplot2.html"><a href="spatial-plots-with-ggplot2.html#multi-plot-ggplot"><i class="fa fa-check"></i><b>13.3.1</b> Multi Plot ggplot</a></li>
-</ul></li>
-<li class="chapter" data-level="13.4" data-path="spatial-plots-with-ggplot2.html"><a href="spatial-plots-with-ggplot2.html#assignment-6"><i class="fa fa-check"></i><b>13.4</b> Assignment</a><ul>
-<li class="chapter" data-level="13.4.1" data-path="spatial-plots-with-ggplot2.html"><a href="spatial-plots-with-ggplot2.html#extra-credit---2-points-2"><i class="fa fa-check"></i><b>13.4.1</b> Extra Credit - 2 Points</a></li>
+<li class="chapter" data-level="10.3" data-path="basic-statistics.html"><a href="basic-statistics.html#assignment-4"><i class="fa fa-check"></i><b>10.3</b> Assignment</a>
+<ul>
+<li class="chapter" data-level="10.3.1" data-path="basic-statistics.html"><a href="basic-statistics.html#extra-credit---2-points"><i class="fa fa-check"></i><b>10.3.1</b> Extra Credit - 2 points</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="14" data-path="shapefiles.html"><a href="shapefiles.html"><i class="fa fa-check"></i><b>14</b> Shapefiles</a><ul>
-<li class="chapter" data-level="14.1" data-path="shapefiles.html"><a href="shapefiles.html#reading-in-shapefiles"><i class="fa fa-check"></i><b>14.1</b> Reading in Shapefiles</a></li>
-<li class="chapter" data-level="14.2" data-path="shapefiles.html"><a href="shapefiles.html#combining-shapefiles-with-data"><i class="fa fa-check"></i><b>14.2</b> Combining Shapefiles with Data</a></li>
-<li class="chapter" data-level="14.3" data-path="shapefiles.html"><a href="shapefiles.html#visualizing-the-shapefiles-data"><i class="fa fa-check"></i><b>14.3</b> Visualizing the Shapefiles &amp; Data</a></li>
-<li class="chapter" data-level="14.4" data-path="shapefiles.html"><a href="shapefiles.html#saving-a-shapefile"><i class="fa fa-check"></i><b>14.4</b> Saving a shapefile</a></li>
-<li class="chapter" data-level="14.5" data-path="shapefiles.html"><a href="shapefiles.html#assignment-7"><i class="fa fa-check"></i><b>14.5</b> Assignment</a></li>
+<li class="chapter" data-level="11" data-path="plotting-with-ggplot2.html"><a href="plotting-with-ggplot2.html"><i class="fa fa-check"></i><b>11</b> Plotting with <code>ggplot2</code></a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="plotting-with-ggplot2.html"><a href="plotting-with-ggplot2.html#ggplot2-with-willow-creek-meteorological-data"><i class="fa fa-check"></i><b>11.1</b> ggplot2 with Willow Creek Meteorological Data</a></li>
+<li class="chapter" data-level="11.2" data-path="plotting-with-ggplot2.html"><a href="plotting-with-ggplot2.html#assignment-5"><i class="fa fa-check"></i><b>11.2</b> Assignment:</a></li>
+<li class="chapter" data-level="11.3" data-path="plotting-with-ggplot2.html"><a href="plotting-with-ggplot2.html#extra-credit---2-points-1"><i class="fa fa-check"></i><b>11.3</b> Extra Credit - 2 Points</a></li>
 </ul></li>
-<li class="chapter" data-level="15" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html"><i class="fa fa-check"></i><b>15</b> Remote Data Extraction</a><ul>
-<li class="chapter" data-level="15.1" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#thredds"><i class="fa fa-check"></i><b>15.1</b> THREDDS</a><ul>
-<li class="chapter" data-level="15.1.1" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#opening-a-channel-to-the-database"><i class="fa fa-check"></i><b>15.1.1</b> Opening a Channel to the Database</a></li>
-<li class="chapter" data-level="15.1.2" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#indexing"><i class="fa fa-check"></i><b>15.1.2</b> Indexing</a></li>
-<li class="chapter" data-level="15.1.3" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#downloading-the-selected-data"><i class="fa fa-check"></i><b>15.1.3</b> Downloading the Selected Data</a></li>
+<li class="chapter" data-level="12" data-path="spatial-plots-with-ggplot2.html"><a href="spatial-plots-with-ggplot2.html"><i class="fa fa-check"></i><b>12</b> Spatial Plots with <code>ggplot2</code></a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="spatial-plots-with-ggplot2.html"><a href="spatial-plots-with-ggplot2.html#simple-features"><i class="fa fa-check"></i><b>12.1</b> Simple Features</a></li>
+<li class="chapter" data-level="12.2" data-path="spatial-plots-with-ggplot2.html"><a href="spatial-plots-with-ggplot2.html#sea-surface-temperature-ggplot"><i class="fa fa-check"></i><b>12.2</b> Sea Surface Temperature ggplot</a></li>
+<li class="chapter" data-level="12.3" data-path="spatial-plots-with-ggplot2.html"><a href="spatial-plots-with-ggplot2.html#r-color-brewer-palettes"><i class="fa fa-check"></i><b>12.3</b> R Color Brewer Palettes</a>
+<ul>
+<li class="chapter" data-level="12.3.1" data-path="spatial-plots-with-ggplot2.html"><a href="spatial-plots-with-ggplot2.html#multi-plot-ggplot"><i class="fa fa-check"></i><b>12.3.1</b> Multi Plot ggplot</a></li>
 </ul></li>
-<li class="chapter" data-level="15.2" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#erddap"><i class="fa fa-check"></i><b>15.2</b> ERDDAP</a><ul>
-<li class="chapter" data-level="15.2.1" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#rerddap"><i class="fa fa-check"></i><b>15.2.1</b> <code>rerddap</code></a></li>
-<li class="chapter" data-level="15.2.2" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#finding-the-data-you-want"><i class="fa fa-check"></i><b>15.2.2</b> Finding the Data You Want</a></li>
-<li class="chapter" data-level="15.2.3" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#tabledap"><i class="fa fa-check"></i><b>15.2.3</b> Tabledap</a></li>
-<li class="chapter" data-level="15.2.4" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#griddap"><i class="fa fa-check"></i><b>15.2.4</b> Griddap</a></li>
-<li class="chapter" data-level="15.2.5" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#custom-erddap-url"><i class="fa fa-check"></i><b>15.2.5</b> Custom ERDDAP URL</a></li>
-</ul></li>
-<li class="chapter" data-level="15.3" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#assignment-8"><i class="fa fa-check"></i><b>15.3</b> Assignment</a><ul>
-<li class="chapter" data-level="15.3.1" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#extra-credit---2-points-3"><i class="fa fa-check"></i><b>15.3.1</b> Extra Credit - 2 Points</a></li>
+<li class="chapter" data-level="12.4" data-path="spatial-plots-with-ggplot2.html"><a href="spatial-plots-with-ggplot2.html#assignment-6"><i class="fa fa-check"></i><b>12.4</b> Assignment</a>
+<ul>
+<li class="chapter" data-level="12.4.1" data-path="spatial-plots-with-ggplot2.html"><a href="spatial-plots-with-ggplot2.html#extra-credit---2-points-2"><i class="fa fa-check"></i><b>12.4.1</b> Extra Credit - 2 Points</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="16" data-path="functions-and-code-presentation.html"><a href="functions-and-code-presentation.html"><i class="fa fa-check"></i><b>16</b> Functions and Code Presentation</a><ul>
-<li class="chapter" data-level="16.1" data-path="functions-and-code-presentation.html"><a href="functions-and-code-presentation.html#functions"><i class="fa fa-check"></i><b>16.1</b> Functions</a></li>
-<li class="chapter" data-level="16.2" data-path="functions-and-code-presentation.html"><a href="functions-and-code-presentation.html#netcdf-processing-function"><i class="fa fa-check"></i><b>16.2</b> NetCDF Processing Function</a></li>
-<li class="chapter" data-level="16.3" data-path="functions-and-code-presentation.html"><a href="functions-and-code-presentation.html#functions-in-for-loops"><i class="fa fa-check"></i><b>16.3</b> Functions in For Loops</a></li>
-<li class="chapter" data-level="16.4" data-path="functions-and-code-presentation.html"><a href="functions-and-code-presentation.html#rmarkdown"><i class="fa fa-check"></i><b>16.4</b> RMarkdown</a></li>
-<li class="chapter" data-level="16.5" data-path="functions-and-code-presentation.html"><a href="functions-and-code-presentation.html#assignment-9"><i class="fa fa-check"></i><b>16.5</b> Assignment</a></li>
+<li class="chapter" data-level="13" data-path="shapefiles.html"><a href="shapefiles.html"><i class="fa fa-check"></i><b>13</b> Shapefiles</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="shapefiles.html"><a href="shapefiles.html#reading-in-shapefiles"><i class="fa fa-check"></i><b>13.1</b> Reading in Shapefiles</a></li>
+<li class="chapter" data-level="13.2" data-path="shapefiles.html"><a href="shapefiles.html#combining-shapefiles-with-data"><i class="fa fa-check"></i><b>13.2</b> Combining Shapefiles with Data</a></li>
+<li class="chapter" data-level="13.3" data-path="shapefiles.html"><a href="shapefiles.html#visualizing-the-shapefiles-data"><i class="fa fa-check"></i><b>13.3</b> Visualizing the Shapefiles &amp; Data</a></li>
+<li class="chapter" data-level="13.4" data-path="shapefiles.html"><a href="shapefiles.html#saving-a-shapefile"><i class="fa fa-check"></i><b>13.4</b> Saving a shapefile</a></li>
+<li class="chapter" data-level="13.5" data-path="shapefiles.html"><a href="shapefiles.html#assignment-7"><i class="fa fa-check"></i><b>13.5</b> Assignment</a></li>
 </ul></li>
-<li class="chapter" data-level="17" data-path="machine-learning-with-r.html"><a href="machine-learning-with-r.html"><i class="fa fa-check"></i><b>17</b> Machine Learning with R</a><ul>
-<li class="chapter" data-level="17.1" data-path="machine-learning-with-r.html"><a href="machine-learning-with-r.html#machine-learning-terms"><i class="fa fa-check"></i><b>17.1</b> Machine Learning Terms</a></li>
-<li class="chapter" data-level="17.2" data-path="machine-learning-with-r.html"><a href="machine-learning-with-r.html#classical-machine-learning"><i class="fa fa-check"></i><b>17.2</b> Classical Machine Learning</a><ul>
-<li class="chapter" data-level="17.2.1" data-path="machine-learning-with-r.html"><a href="machine-learning-with-r.html#supervised-learning"><i class="fa fa-check"></i><b>17.2.1</b> Supervised Learning</a></li>
-<li class="chapter" data-level="17.2.2" data-path="machine-learning-with-r.html"><a href="machine-learning-with-r.html#unsupervised-learning"><i class="fa fa-check"></i><b>17.2.2</b> Unsupervised Learning</a></li>
-<li class="chapter" data-level="17.2.3" data-path="machine-learning-with-r.html"><a href="machine-learning-with-r.html#neural-networks"><i class="fa fa-check"></i><b>17.2.3</b> Neural Networks</a></li>
-<li class="chapter" data-level="17.2.4" data-path="machine-learning-with-r.html"><a href="machine-learning-with-r.html#reinforcement-learning"><i class="fa fa-check"></i><b>17.2.4</b> Reinforcement Learning</a></li>
+<li class="chapter" data-level="14" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html"><i class="fa fa-check"></i><b>14</b> Remote Data Extraction</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#thredds"><i class="fa fa-check"></i><b>14.1</b> THREDDS</a>
+<ul>
+<li class="chapter" data-level="14.1.1" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#opening-a-channel-to-the-database"><i class="fa fa-check"></i><b>14.1.1</b> Opening a Channel to the Database</a></li>
+<li class="chapter" data-level="14.1.2" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#indexing"><i class="fa fa-check"></i><b>14.1.2</b> Indexing</a></li>
+<li class="chapter" data-level="14.1.3" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#downloading-the-selected-data"><i class="fa fa-check"></i><b>14.1.3</b> Downloading the Selected Data</a></li>
+</ul></li>
+<li class="chapter" data-level="14.2" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#erddap"><i class="fa fa-check"></i><b>14.2</b> ERDDAP</a>
+<ul>
+<li class="chapter" data-level="14.2.1" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#rerddap"><i class="fa fa-check"></i><b>14.2.1</b> <code>rerddap</code></a></li>
+<li class="chapter" data-level="14.2.2" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#finding-the-data-you-want"><i class="fa fa-check"></i><b>14.2.2</b> Finding the Data You Want</a></li>
+<li class="chapter" data-level="14.2.3" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#tabledap"><i class="fa fa-check"></i><b>14.2.3</b> Tabledap</a></li>
+<li class="chapter" data-level="14.2.4" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#griddap"><i class="fa fa-check"></i><b>14.2.4</b> Griddap</a></li>
+<li class="chapter" data-level="14.2.5" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#custom-erddap-url"><i class="fa fa-check"></i><b>14.2.5</b> Custom ERDDAP URL</a></li>
+</ul></li>
+<li class="chapter" data-level="14.3" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#assignment-8"><i class="fa fa-check"></i><b>14.3</b> Assignment</a>
+<ul>
+<li class="chapter" data-level="14.3.1" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#extra-credit---2-points-3"><i class="fa fa-check"></i><b>14.3.1</b> Extra Credit - 2 Points</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="18" data-path="time-series-forecasting.html"><a href="time-series-forecasting.html"><i class="fa fa-check"></i><b>18</b> Time Series Forecasting</a><ul>
-<li class="chapter" data-level="18.1" data-path="time-series-forecasting.html"><a href="time-series-forecasting.html#load-the-packages-and-data"><i class="fa fa-check"></i><b>18.1</b> Load the Packages and Data</a></li>
-<li class="chapter" data-level="18.2" data-path="time-series-forecasting.html"><a href="time-series-forecasting.html#aggregate-data"><i class="fa fa-check"></i><b>18.2</b> Aggregate Data</a></li>
-<li class="chapter" data-level="18.3" data-path="time-series-forecasting.html"><a href="time-series-forecasting.html#prepping-the-model"><i class="fa fa-check"></i><b>18.3</b> Prepping the Model</a></li>
-<li class="chapter" data-level="18.4" data-path="time-series-forecasting.html"><a href="time-series-forecasting.html#running-the-model"><i class="fa fa-check"></i><b>18.4</b> Running the Model</a></li>
-<li class="chapter" data-level="18.5" data-path="time-series-forecasting.html"><a href="time-series-forecasting.html#validation-and-accuracy"><i class="fa fa-check"></i><b>18.5</b> Validation and Accuracy</a></li>
-<li class="chapter" data-level="18.6" data-path="time-series-forecasting.html"><a href="time-series-forecasting.html#future-forecasting"><i class="fa fa-check"></i><b>18.6</b> Future Forecasting</a></li>
-<li class="chapter" data-level="18.7" data-path="time-series-forecasting.html"><a href="time-series-forecasting.html#assignment-10"><i class="fa fa-check"></i><b>18.7</b> Assignment</a></li>
+<li class="chapter" data-level="15" data-path="functions-and-code-presentation.html"><a href="functions-and-code-presentation.html"><i class="fa fa-check"></i><b>15</b> Functions and Code Presentation</a>
+<ul>
+<li class="chapter" data-level="15.1" data-path="functions-and-code-presentation.html"><a href="functions-and-code-presentation.html#functions"><i class="fa fa-check"></i><b>15.1</b> Functions</a></li>
+<li class="chapter" data-level="15.2" data-path="functions-and-code-presentation.html"><a href="functions-and-code-presentation.html#netcdf-processing-function"><i class="fa fa-check"></i><b>15.2</b> NetCDF Processing Function</a></li>
+<li class="chapter" data-level="15.3" data-path="functions-and-code-presentation.html"><a href="functions-and-code-presentation.html#functions-in-for-loops"><i class="fa fa-check"></i><b>15.3</b> Functions in For Loops</a></li>
+<li class="chapter" data-level="15.4" data-path="functions-and-code-presentation.html"><a href="functions-and-code-presentation.html#rmarkdown"><i class="fa fa-check"></i><b>15.4</b> RMarkdown</a></li>
+<li class="chapter" data-level="15.5" data-path="functions-and-code-presentation.html"><a href="functions-and-code-presentation.html#assignment-9"><i class="fa fa-check"></i><b>15.5</b> Assignment</a></li>
 </ul></li>
-<li class="chapter" data-level="19" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html"><i class="fa fa-check"></i><b>19</b> Random Forest Modeling</a><ul>
-<li class="chapter" data-level="19.1" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#prepare-the-data"><i class="fa fa-check"></i><b>19.1</b> Prepare the Data</a></li>
-<li class="chapter" data-level="19.2" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#dimensionality-reduction"><i class="fa fa-check"></i><b>19.2</b> Dimensionality Reduction</a><ul>
-<li class="chapter" data-level="19.2.1" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#principal-component-analysis"><i class="fa fa-check"></i><b>19.2.1</b> Principal Component Analysis</a></li>
-<li class="chapter" data-level="19.2.2" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#t-sne-dimensionality-reduction"><i class="fa fa-check"></i><b>19.2.2</b> t-SNE Dimensionality Reduction</a></li>
-<li class="chapter" data-level="19.2.3" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#multidimensional-scaling"><i class="fa fa-check"></i><b>19.2.3</b> Multidimensional Scaling</a></li>
+<li class="chapter" data-level="16" data-path="machine-learning-with-r.html"><a href="machine-learning-with-r.html"><i class="fa fa-check"></i><b>16</b> Machine Learning with R</a>
+<ul>
+<li class="chapter" data-level="16.1" data-path="machine-learning-with-r.html"><a href="machine-learning-with-r.html#machine-learning-terms"><i class="fa fa-check"></i><b>16.1</b> Machine Learning Terms</a></li>
+<li class="chapter" data-level="16.2" data-path="machine-learning-with-r.html"><a href="machine-learning-with-r.html#classical-machine-learning"><i class="fa fa-check"></i><b>16.2</b> Classical Machine Learning</a>
+<ul>
+<li class="chapter" data-level="16.2.1" data-path="machine-learning-with-r.html"><a href="machine-learning-with-r.html#supervised-learning"><i class="fa fa-check"></i><b>16.2.1</b> Supervised Learning</a></li>
+<li class="chapter" data-level="16.2.2" data-path="machine-learning-with-r.html"><a href="machine-learning-with-r.html#unsupervised-learning"><i class="fa fa-check"></i><b>16.2.2</b> Unsupervised Learning</a></li>
+<li class="chapter" data-level="16.2.3" data-path="machine-learning-with-r.html"><a href="machine-learning-with-r.html#neural-networks"><i class="fa fa-check"></i><b>16.2.3</b> Neural Networks</a></li>
+<li class="chapter" data-level="16.2.4" data-path="machine-learning-with-r.html"><a href="machine-learning-with-r.html#reinforcement-learning"><i class="fa fa-check"></i><b>16.2.4</b> Reinforcement Learning</a></li>
 </ul></li>
-<li class="chapter" data-level="19.3" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#random-forests"><i class="fa fa-check"></i><b>19.3</b> Random Forests</a><ul>
-<li class="chapter" data-level="19.3.1" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#decision-trees"><i class="fa fa-check"></i><b>19.3.1</b> Decision Trees</a></li>
-<li class="chapter" data-level="19.3.2" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#data-partition"><i class="fa fa-check"></i><b>19.3.2</b> Data Partition</a></li>
-<li class="chapter" data-level="19.3.3" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#training-the-model"><i class="fa fa-check"></i><b>19.3.3</b> Training the Model</a></li>
-<li class="chapter" data-level="19.3.4" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#testing-the-model"><i class="fa fa-check"></i><b>19.3.4</b> Testing the Model</a></li>
-<li class="chapter" data-level="19.3.5" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#hyperparameter-tuning"><i class="fa fa-check"></i><b>19.3.5</b> Hyperparameter Tuning</a></li>
 </ul></li>
-<li class="chapter" data-level="19.4" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#assignment-11"><i class="fa fa-check"></i><b>19.4</b> Assignment</a></li>
+<li class="chapter" data-level="17" data-path="time-series-forecasting.html"><a href="time-series-forecasting.html"><i class="fa fa-check"></i><b>17</b> Time Series Forecasting</a>
+<ul>
+<li class="chapter" data-level="17.1" data-path="time-series-forecasting.html"><a href="time-series-forecasting.html#load-the-packages-and-data"><i class="fa fa-check"></i><b>17.1</b> Load the Packages and Data</a></li>
+<li class="chapter" data-level="17.2" data-path="time-series-forecasting.html"><a href="time-series-forecasting.html#aggregate-data"><i class="fa fa-check"></i><b>17.2</b> Aggregate Data</a></li>
+<li class="chapter" data-level="17.3" data-path="time-series-forecasting.html"><a href="time-series-forecasting.html#prepping-the-model"><i class="fa fa-check"></i><b>17.3</b> Prepping the Model</a></li>
+<li class="chapter" data-level="17.4" data-path="time-series-forecasting.html"><a href="time-series-forecasting.html#running-the-model"><i class="fa fa-check"></i><b>17.4</b> Running the Model</a></li>
+<li class="chapter" data-level="17.5" data-path="time-series-forecasting.html"><a href="time-series-forecasting.html#validation-and-accuracy"><i class="fa fa-check"></i><b>17.5</b> Validation and Accuracy</a></li>
+<li class="chapter" data-level="17.6" data-path="time-series-forecasting.html"><a href="time-series-forecasting.html#future-forecasting"><i class="fa fa-check"></i><b>17.6</b> Future Forecasting</a></li>
+<li class="chapter" data-level="17.7" data-path="time-series-forecasting.html"><a href="time-series-forecasting.html#assignment-10"><i class="fa fa-check"></i><b>17.7</b> Assignment</a></li>
+</ul></li>
+<li class="chapter" data-level="18" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html"><i class="fa fa-check"></i><b>18</b> Random Forest Modeling</a>
+<ul>
+<li class="chapter" data-level="18.1" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#prepare-the-data"><i class="fa fa-check"></i><b>18.1</b> Prepare the Data</a></li>
+<li class="chapter" data-level="18.2" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#dimensionality-reduction"><i class="fa fa-check"></i><b>18.2</b> Dimensionality Reduction</a>
+<ul>
+<li class="chapter" data-level="18.2.1" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#principal-component-analysis"><i class="fa fa-check"></i><b>18.2.1</b> Principal Component Analysis</a></li>
+<li class="chapter" data-level="18.2.2" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#t-sne-dimensionality-reduction"><i class="fa fa-check"></i><b>18.2.2</b> t-SNE Dimensionality Reduction</a></li>
+<li class="chapter" data-level="18.2.3" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#multidimensional-scaling"><i class="fa fa-check"></i><b>18.2.3</b> Multidimensional Scaling</a></li>
+</ul></li>
+<li class="chapter" data-level="18.3" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#random-forests"><i class="fa fa-check"></i><b>18.3</b> Random Forests</a>
+<ul>
+<li class="chapter" data-level="18.3.1" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#decision-trees"><i class="fa fa-check"></i><b>18.3.1</b> Decision Trees</a></li>
+<li class="chapter" data-level="18.3.2" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#data-partition"><i class="fa fa-check"></i><b>18.3.2</b> Data Partition</a></li>
+<li class="chapter" data-level="18.3.3" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#training-the-model"><i class="fa fa-check"></i><b>18.3.3</b> Training the Model</a></li>
+<li class="chapter" data-level="18.3.4" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#testing-the-model"><i class="fa fa-check"></i><b>18.3.4</b> Testing the Model</a></li>
+<li class="chapter" data-level="18.3.5" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#hyperparameter-tuning"><i class="fa fa-check"></i><b>18.3.5</b> Hyperparameter Tuning</a></li>
+</ul></li>
+<li class="chapter" data-level="18.4" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#assignment-11"><i class="fa fa-check"></i><b>18.4</b> Assignment</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/jsimkins2" target="blank">James Simkins</a></li>
@@ -352,37 +385,37 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="plot-customization" class="section level1">
-<h1><span class="header-section-number">10</span> Plot Customization</h1>
+<div id="plot-customization" class="section level1" number="9">
+<h1><span class="header-section-number">9</span> Plot Customization</h1>
 <p><img src="images/tree_basic_plots.png" width="70%" style="display: block; margin: auto;" /></p>
-<p>R has a plethora of plotting packages, tools, and techniques. Generally speaking, base R graphs aren’t as popular amongst advanced R users as others (e.g. <code>ggplot</code>). That being said, R base graphing offers a variety of styling techniques and unique customization. The base R plotting methods will offer a solid foundation before we learn more about the aforementioned <code>ggplot</code>.</p>
+<p>R has a plethora of plotting packages, tools, and techniques. Generally speaking, base R graphs aren’t as popular amongst advanced R users as others (e.g. <code>ggplot</code>). That being said, R base graphing offers a variety of styling techniques and unique customization. The base R plotting methods will offer a solid foundation before we learn more about the aforementioned <code>ggplot</code>.</p>
 <p>Boxplots, histograms, pie charts, bar charts, and scatter plots are readily available and customizable in the base R plotting package. We can customize and style colors, text, line types, plotting symbols, line thicknesses, symbol size, and much more.</p>
-<div id="expanding-on-basic-plots-in-r" class="section level2">
-<h2><span class="header-section-number">10.1</span> Expanding on Basic Plots in R</h2>
+<div id="expanding-on-basic-plots-in-r" class="section level2" number="9.1">
+<h2><span class="header-section-number">9.1</span> Expanding on Basic Plots in R</h2>
 <p>Variable Assignment &amp; Operations</p>
-<div class="sourceCode" id="cb240"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb240-1" data-line-number="1">x =<span class="st"> </span><span class="dv">7</span></a>
-<a class="sourceLine" id="cb240-2" data-line-number="2">y =<span class="st"> </span><span class="dv">9</span></a>
-<a class="sourceLine" id="cb240-3" data-line-number="3">z &lt;-<span class="st"> </span>y <span class="op">*</span><span class="st"> </span>(x<span class="op">/</span><span class="dv">2</span> <span class="op">+</span><span class="st"> </span><span class="dv">7</span>) <span class="op">+</span><span class="st"> </span><span class="kw">sqrt</span>(y)</a>
-<a class="sourceLine" id="cb240-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb240-5" data-line-number="5"><span class="kw">print</span>(x)</a></code></pre></div>
+<div class="sourceCode" id="cb240"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb240-1"><a href="plot-customization.html#cb240-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">=</span> <span class="dv">7</span></span>
+<span id="cb240-2"><a href="plot-customization.html#cb240-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">=</span> <span class="dv">9</span></span>
+<span id="cb240-3"><a href="plot-customization.html#cb240-3" aria-hidden="true" tabindex="-1"></a>z <span class="ot">&lt;-</span> y <span class="sc">*</span> (x<span class="sc">/</span><span class="dv">2</span> <span class="sc">+</span> <span class="dv">7</span>) <span class="sc">+</span> <span class="fu">sqrt</span>(y)</span>
+<span id="cb240-4"><a href="plot-customization.html#cb240-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb240-5"><a href="plot-customization.html#cb240-5" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(x)</span></code></pre></div>
 <pre><code>## [1] 7</code></pre>
-<div class="sourceCode" id="cb242"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb242-1" data-line-number="1">y</a></code></pre></div>
+<div class="sourceCode" id="cb242"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb242-1"><a href="plot-customization.html#cb242-1" aria-hidden="true" tabindex="-1"></a>y</span></code></pre></div>
 <pre><code>## [1] 9</code></pre>
-<div class="sourceCode" id="cb244"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb244-1" data-line-number="1">z</a></code></pre></div>
+<div class="sourceCode" id="cb244"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb244-1"><a href="plot-customization.html#cb244-1" aria-hidden="true" tabindex="-1"></a>z</span></code></pre></div>
 <pre><code>## [1] 97.5</code></pre>
-<div class="sourceCode" id="cb246"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb246-1" data-line-number="1">X &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">20</span></a>
-<a class="sourceLine" id="cb246-2" data-line-number="2">Y &lt;-<span class="st"> </span>(<span class="dv">1</span> <span class="op">+</span><span class="st"> </span><span class="dv">1</span><span class="op">/</span>X) <span class="op">+</span><span class="st"> </span><span class="dv">2</span></a>
-<a class="sourceLine" id="cb246-3" data-line-number="3">X</a></code></pre></div>
+<div class="sourceCode" id="cb246"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb246-1"><a href="plot-customization.html#cb246-1" aria-hidden="true" tabindex="-1"></a>X <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">20</span></span>
+<span id="cb246-2"><a href="plot-customization.html#cb246-2" aria-hidden="true" tabindex="-1"></a>Y <span class="ot">&lt;-</span> (<span class="dv">1</span> <span class="sc">+</span> <span class="dv">1</span><span class="sc">/</span>X) <span class="sc">+</span> <span class="dv">2</span></span>
+<span id="cb246-3"><a href="plot-customization.html#cb246-3" aria-hidden="true" tabindex="-1"></a>X</span></code></pre></div>
 <pre><code>##  [1]  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20</code></pre>
-<div class="sourceCode" id="cb248"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb248-1" data-line-number="1">Y</a></code></pre></div>
+<div class="sourceCode" id="cb248"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb248-1"><a href="plot-customization.html#cb248-1" aria-hidden="true" tabindex="-1"></a>Y</span></code></pre></div>
 <pre><code>##  [1] 4.000000 3.500000 3.333333 3.250000 3.200000 3.166667 3.142857 3.125000
 ##  [9] 3.111111 3.100000 3.090909 3.083333 3.076923 3.071429 3.066667 3.062500
 ## [17] 3.058824 3.055556 3.052632 3.050000</code></pre>
-<div class="sourceCode" id="cb250"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb250-1" data-line-number="1"><span class="kw">plot</span>(X,Y)</a></code></pre></div>
+<div class="sourceCode" id="cb250"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb250-1"><a href="plot-customization.html#cb250-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(X,Y)</span></code></pre></div>
 <p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-94-1.png" width="60%" style="display: block; margin: auto;" /></p>
 <p>Now let’s add in some extra arguments to the plot function to make it prettier</p>
-<div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb251-1" data-line-number="1"><span class="kw">plot</span>(<span class="dt">x=</span>X,<span class="dt">y=</span>Y, <span class="dt">type =</span> <span class="st">&quot;b&quot;</span>, <span class="dt">pch=</span><span class="kw">c</span>(<span class="dv">24</span>), <span class="dt">col =</span> <span class="st">&#39;blue&#39;</span>, <span class="dt">bg=</span><span class="st">&#39;yellow&#39;</span>, <span class="dt">cex =</span> <span class="fl">1.6</span>, <span class="dt">xlab =</span> <span class="st">&quot;X&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;Y&quot;</span>, </a>
-<a class="sourceLine" id="cb251-2" data-line-number="2">     <span class="dt">col.lab =</span> <span class="st">&quot;orange&quot;</span>, <span class="dt">lwd=</span><span class="fl">1.4</span>, <span class="dt">lty=</span><span class="dv">2</span>, <span class="dt">main =</span> <span class="st">&quot;X vs Y&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb251-1"><a href="plot-customization.html#cb251-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="at">x=</span>X,<span class="at">y=</span>Y, <span class="at">type =</span> <span class="st">&quot;b&quot;</span>, <span class="at">pch=</span><span class="fu">c</span>(<span class="dv">24</span>), <span class="at">col =</span> <span class="st">&#39;blue&#39;</span>, <span class="at">bg=</span><span class="st">&#39;yellow&#39;</span>, <span class="at">cex =</span> <span class="fl">1.6</span>, <span class="at">xlab =</span> <span class="st">&quot;X&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Y&quot;</span>, </span>
+<span id="cb251-2"><a href="plot-customization.html#cb251-2" aria-hidden="true" tabindex="-1"></a>     <span class="at">col.lab =</span> <span class="st">&quot;orange&quot;</span>, <span class="at">lwd=</span><span class="fl">1.4</span>, <span class="at">lty=</span><span class="dv">2</span>, <span class="at">main =</span> <span class="st">&quot;X vs Y&quot;</span>)</span></code></pre></div>
 <p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-95-1.png" width="60%" style="display: block; margin: auto;" /></p>
 <table>
 <thead>
@@ -439,8 +472,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tbody>
 </table>
 <p>For more argument definitions, use the <code>help()</code> function or <code>?</code> function like so - <code>help(plot)</code> or <code>?plot</code>. Multiple options may pop up. This occurs when you have two functions from different packages with the same name. In this case, the <code>plot()</code> function we are using is from the <code>base</code> package.</p>
-<div id="adding-to-a-plot" class="section level3">
-<h3><span class="header-section-number">10.1.1</span> Adding to a Plot</h3>
+<div id="adding-to-a-plot" class="section level3" number="9.1.1">
+<h3><span class="header-section-number">9.1.1</span> Adding to a Plot</h3>
 <p>We can add additional items to a particular plot. Some of these items might be…</p>
 <table>
 <colgroup>
@@ -489,82 +522,82 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tbody>
 </table>
 <p>Let’s use our previous example but go about plotting it a different way to show how it works.</p>
-<div class="sourceCode" id="cb252"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb252-1" data-line-number="1"><span class="co"># plot our X and Y as a line plot</span></a>
-<a class="sourceLine" id="cb252-2" data-line-number="2"><span class="kw">plot</span>(<span class="dt">x=</span>X,<span class="dt">y=</span>Y, <span class="dt">type =</span> <span class="st">&quot;l&quot;</span>, <span class="dt">col=</span><span class="st">&#39;blue&#39;</span>, <span class="dt">xlab =</span> <span class="st">&quot;X&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;Y&quot;</span>,<span class="dt">col.lab =</span> <span class="st">&quot;orange&quot;</span>, <span class="dt">lwd=</span><span class="fl">1.4</span>, <span class="dt">lty=</span><span class="dv">2</span>, <span class="dt">main =</span> <span class="st">&quot;X vs Y&quot;</span>)</a>
-<a class="sourceLine" id="cb252-3" data-line-number="3"><span class="co"># add points to the line via the points function</span></a>
-<a class="sourceLine" id="cb252-4" data-line-number="4"><span class="kw">points</span>(<span class="dt">x=</span>X, <span class="dt">y=</span>Y, <span class="dt">pch=</span><span class="kw">c</span>(<span class="dv">24</span>), <span class="dt">col =</span> <span class="st">&#39;blue&#39;</span>, <span class="dt">bg=</span><span class="st">&#39;yellow&#39;</span>, <span class="dt">cex =</span> <span class="fl">1.6</span>)</a>
-<a class="sourceLine" id="cb252-5" data-line-number="5"><span class="co"># add a vertical line at 3.4 </span></a>
-<a class="sourceLine" id="cb252-6" data-line-number="6"><span class="kw">abline</span>(<span class="dt">v=</span><span class="dv">10</span>)</a>
-<a class="sourceLine" id="cb252-7" data-line-number="7"><span class="co"># add a legend</span></a>
-<a class="sourceLine" id="cb252-8" data-line-number="8"><span class="kw">legend</span>(<span class="dt">x =</span> <span class="st">&quot;topright&quot;</span>, <span class="dt">legend=</span><span class="kw">c</span>(<span class="st">&quot;my points&quot;</span>), <span class="dt">pch=</span><span class="kw">c</span>(<span class="dv">24</span>), <span class="dt">col =</span> <span class="st">&#39;blue&#39;</span>, <span class="dt">pt.bg=</span><span class="st">&#39;yellow&#39;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb252"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb252-1"><a href="plot-customization.html#cb252-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot our X and Y as a line plot</span></span>
+<span id="cb252-2"><a href="plot-customization.html#cb252-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="at">x=</span>X,<span class="at">y=</span>Y, <span class="at">type =</span> <span class="st">&quot;l&quot;</span>, <span class="at">col=</span><span class="st">&#39;blue&#39;</span>, <span class="at">xlab =</span> <span class="st">&quot;X&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Y&quot;</span>,<span class="at">col.lab =</span> <span class="st">&quot;orange&quot;</span>, <span class="at">lwd=</span><span class="fl">1.4</span>, <span class="at">lty=</span><span class="dv">2</span>, <span class="at">main =</span> <span class="st">&quot;X vs Y&quot;</span>)</span>
+<span id="cb252-3"><a href="plot-customization.html#cb252-3" aria-hidden="true" tabindex="-1"></a><span class="co"># add points to the line via the points function</span></span>
+<span id="cb252-4"><a href="plot-customization.html#cb252-4" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(<span class="at">x=</span>X, <span class="at">y=</span>Y, <span class="at">pch=</span><span class="fu">c</span>(<span class="dv">24</span>), <span class="at">col =</span> <span class="st">&#39;blue&#39;</span>, <span class="at">bg=</span><span class="st">&#39;yellow&#39;</span>, <span class="at">cex =</span> <span class="fl">1.6</span>)</span>
+<span id="cb252-5"><a href="plot-customization.html#cb252-5" aria-hidden="true" tabindex="-1"></a><span class="co"># add a vertical line at 3.4 </span></span>
+<span id="cb252-6"><a href="plot-customization.html#cb252-6" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span><span class="dv">10</span>)</span>
+<span id="cb252-7"><a href="plot-customization.html#cb252-7" aria-hidden="true" tabindex="-1"></a><span class="co"># add a legend</span></span>
+<span id="cb252-8"><a href="plot-customization.html#cb252-8" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="at">x =</span> <span class="st">&quot;topright&quot;</span>, <span class="at">legend=</span><span class="fu">c</span>(<span class="st">&quot;my points&quot;</span>), <span class="at">pch=</span><span class="fu">c</span>(<span class="dv">24</span>), <span class="at">col =</span> <span class="st">&#39;blue&#39;</span>, <span class="at">pt.bg=</span><span class="st">&#39;yellow&#39;</span>)</span></code></pre></div>
 <p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-96-1.png" width="60%" style="display: block; margin: auto;" /></p>
 <p>Let’s add in another</p>
-<div class="sourceCode" id="cb253"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb253-1" data-line-number="1"><span class="kw">plot</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">25</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">25</span>, <span class="dt">xlab=</span><span class="st">&quot;&quot;</span>,<span class="dt">ylab=</span><span class="st">&quot;&quot;</span>,<span class="dt">pch=</span><span class="dv">1</span><span class="op">:</span><span class="dv">25</span>,<span class="dt">col=</span><span class="dv">1</span><span class="op">:</span><span class="dv">25</span>,<span class="dt">cex=</span><span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb253-2" data-line-number="2"><span class="kw">grid</span>(<span class="dt">lty=</span><span class="dv">1</span>, <span class="dt">col=</span><span class="st">&quot;gray90&quot;</span>)</a>
-<a class="sourceLine" id="cb253-3" data-line-number="3"><span class="kw">points</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">25</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">25</span>, <span class="dt">xlab=</span><span class="st">&quot;&quot;</span>,<span class="dt">ylab=</span><span class="st">&quot;&quot;</span>,<span class="dt">pch=</span><span class="dv">1</span><span class="op">:</span><span class="dv">25</span>,<span class="dt">col=</span><span class="dv">1</span><span class="op">:</span><span class="dv">25</span>,<span class="dt">cex=</span><span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb253-4" data-line-number="4"><span class="kw">title</span>(<span class="st">&quot;Plotting symbol, line type, &amp; color codes&quot;</span>)</a>
-<a class="sourceLine" id="cb253-5" data-line-number="5"><span class="kw">legend</span>(<span class="st">&quot;topleft&quot;</span>, <span class="dt">legend=</span><span class="dv">1</span><span class="op">:</span><span class="dv">6</span>, <span class="dt">lty=</span><span class="dv">1</span><span class="op">:</span><span class="dv">6</span>, <span class="dt">lwd=</span><span class="fl">1.5</span>, <span class="dt">ncol=</span><span class="dv">2</span>, <span class="dt">bg=</span><span class="st">&quot;gray95&quot;</span>)</a>
-<a class="sourceLine" id="cb253-6" data-line-number="6"><span class="kw">legend</span>(<span class="st">&quot;bottomright&quot;</span>, <span class="dt">legend=</span><span class="dv">1</span><span class="op">:</span><span class="dv">8</span>, <span class="dt">col=</span><span class="dv">1</span><span class="op">:</span><span class="dv">8</span>, <span class="dt">ncol=</span><span class="dv">3</span>, <span class="dt">pch=</span><span class="dv">19</span>, <span class="dt">bg=</span><span class="st">&quot;gray95&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb253"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb253-1"><a href="plot-customization.html#cb253-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">25</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">25</span>, <span class="at">xlab=</span><span class="st">&quot;&quot;</span>,<span class="at">ylab=</span><span class="st">&quot;&quot;</span>,<span class="at">pch=</span><span class="dv">1</span><span class="sc">:</span><span class="dv">25</span>,<span class="at">col=</span><span class="dv">1</span><span class="sc">:</span><span class="dv">25</span>,<span class="at">cex=</span><span class="dv">2</span>)</span>
+<span id="cb253-2"><a href="plot-customization.html#cb253-2" aria-hidden="true" tabindex="-1"></a><span class="fu">grid</span>(<span class="at">lty=</span><span class="dv">1</span>, <span class="at">col=</span><span class="st">&quot;gray90&quot;</span>)</span>
+<span id="cb253-3"><a href="plot-customization.html#cb253-3" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">25</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">25</span>, <span class="at">xlab=</span><span class="st">&quot;&quot;</span>,<span class="at">ylab=</span><span class="st">&quot;&quot;</span>,<span class="at">pch=</span><span class="dv">1</span><span class="sc">:</span><span class="dv">25</span>,<span class="at">col=</span><span class="dv">1</span><span class="sc">:</span><span class="dv">25</span>,<span class="at">cex=</span><span class="dv">2</span>)</span>
+<span id="cb253-4"><a href="plot-customization.html#cb253-4" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span>(<span class="st">&quot;Plotting symbol, line type, &amp; color codes&quot;</span>)</span>
+<span id="cb253-5"><a href="plot-customization.html#cb253-5" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">&quot;topleft&quot;</span>, <span class="at">legend=</span><span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>, <span class="at">lty=</span><span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>, <span class="at">lwd=</span><span class="fl">1.5</span>, <span class="at">ncol=</span><span class="dv">2</span>, <span class="at">bg=</span><span class="st">&quot;gray95&quot;</span>)</span>
+<span id="cb253-6"><a href="plot-customization.html#cb253-6" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">&quot;bottomright&quot;</span>, <span class="at">legend=</span><span class="dv">1</span><span class="sc">:</span><span class="dv">8</span>, <span class="at">col=</span><span class="dv">1</span><span class="sc">:</span><span class="dv">8</span>, <span class="at">ncol=</span><span class="dv">3</span>, <span class="at">pch=</span><span class="dv">19</span>, <span class="at">bg=</span><span class="st">&quot;gray95&quot;</span>)</span></code></pre></div>
 <p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-97-1.png" width="70%" style="display: block; margin: auto;" /></p>
 </div>
 </div>
-<div id="barplots-boxplots-pie-charts" class="section level2">
-<h2><span class="header-section-number">10.2</span> Barplots, Boxplots, Pie Charts</h2>
+<div id="barplots-boxplots-pie-charts" class="section level2" number="9.2">
+<h2><span class="header-section-number">9.2</span> Barplots, Boxplots, Pie Charts</h2>
 <p>We’re going to create a fake dataset of those who are infected by the coronavirus. Let’s do so using the <code>sample()</code> function.</p>
-<div class="sourceCode" id="cb254"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb254-1" data-line-number="1"><span class="co"># Create a random sample of the 3 types - Susceptible, Infected and Recovered</span></a>
-<a class="sourceLine" id="cb254-2" data-line-number="2">InfStatus &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="kw">sample</span>(<span class="kw">c</span>(<span class="st">&quot;Susceptible&quot;</span>, <span class="st">&quot;Infected&quot;</span>, <span class="st">&quot;Recovered&quot;</span>),<span class="dt">size =</span> <span class="dv">50</span>, <span class="dt">replace =</span> <span class="ot">TRUE</span>))</a>
-<a class="sourceLine" id="cb254-3" data-line-number="3">I &lt;-<span class="st"> </span><span class="kw">table</span>(InfStatus)</a>
-<a class="sourceLine" id="cb254-4" data-line-number="4">I</a></code></pre></div>
+<div class="sourceCode" id="cb254"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb254-1"><a href="plot-customization.html#cb254-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a random sample of the 3 types - Susceptible, Infected and Recovered</span></span>
+<span id="cb254-2"><a href="plot-customization.html#cb254-2" aria-hidden="true" tabindex="-1"></a>InfStatus <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">&quot;Susceptible&quot;</span>, <span class="st">&quot;Infected&quot;</span>, <span class="st">&quot;Recovered&quot;</span>),<span class="at">size =</span> <span class="dv">50</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb254-3"><a href="plot-customization.html#cb254-3" aria-hidden="true" tabindex="-1"></a>I <span class="ot">&lt;-</span> <span class="fu">table</span>(InfStatus)</span>
+<span id="cb254-4"><a href="plot-customization.html#cb254-4" aria-hidden="true" tabindex="-1"></a>I</span></code></pre></div>
 <pre><code>## InfStatus
 ##    Infected   Recovered Susceptible 
-##          17          17          16</code></pre>
-<div class="sourceCode" id="cb256"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb256-1" data-line-number="1"><span class="co"># Now let&#39;s make a random sample of 3 genotypes (RR, Rr, and rr)</span></a>
-<a class="sourceLine" id="cb256-2" data-line-number="2">Genotype &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="kw">sample</span>(<span class="kw">c</span>(<span class="st">&quot;RR&quot;</span>, <span class="st">&quot;Rr&quot;</span>, <span class="st">&quot;rr&quot;</span>), <span class="dt">size =</span> <span class="dv">50</span>, <span class="dt">replace =</span> <span class="ot">TRUE</span>))</a>
-<a class="sourceLine" id="cb256-3" data-line-number="3">G &lt;-<span class="st"> </span><span class="kw">table</span>(Genotype)</a>
-<a class="sourceLine" id="cb256-4" data-line-number="4">G</a></code></pre></div>
+##          18          16          16</code></pre>
+<div class="sourceCode" id="cb256"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb256-1"><a href="plot-customization.html#cb256-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Now let&#39;s make a random sample of 3 genotypes (RR, Rr, and rr)</span></span>
+<span id="cb256-2"><a href="plot-customization.html#cb256-2" aria-hidden="true" tabindex="-1"></a>Genotype <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">&quot;RR&quot;</span>, <span class="st">&quot;Rr&quot;</span>, <span class="st">&quot;rr&quot;</span>), <span class="at">size =</span> <span class="dv">50</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb256-3"><a href="plot-customization.html#cb256-3" aria-hidden="true" tabindex="-1"></a>G <span class="ot">&lt;-</span> <span class="fu">table</span>(Genotype)</span>
+<span id="cb256-4"><a href="plot-customization.html#cb256-4" aria-hidden="true" tabindex="-1"></a>G</span></code></pre></div>
 <pre><code>## Genotype
 ## rr Rr RR 
-## 14 21 15</code></pre>
-<div class="sourceCode" id="cb258"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb258-1" data-line-number="1"><span class="co">#show genotype and infected status as a table </span></a>
-<a class="sourceLine" id="cb258-2" data-line-number="2"><span class="kw">table</span>(Genotype, InfStatus)</a></code></pre></div>
+## 18 14 18</code></pre>
+<div class="sourceCode" id="cb258"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb258-1"><a href="plot-customization.html#cb258-1" aria-hidden="true" tabindex="-1"></a><span class="co">#show genotype and infected status as a table </span></span>
+<span id="cb258-2"><a href="plot-customization.html#cb258-2" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(Genotype, InfStatus)</span></code></pre></div>
 <pre><code>##         InfStatus
 ## Genotype Infected Recovered Susceptible
-##       rr        5         5           4
-##       Rr        8         8           5
-##       RR        4         4           7</code></pre>
+##       rr        7         6           5
+##       Rr        4         3           7
+##       RR        7         7           4</code></pre>
 <p>Note - We turned the sample data info a <code>factor</code> to add <code>levels</code> (i.e. categories) of our test data.</p>
-<div class="sourceCode" id="cb260"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb260-1" data-line-number="1"><span class="co"># WITHOUT the factor</span></a>
-<a class="sourceLine" id="cb260-2" data-line-number="2">test &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="kw">c</span>(<span class="st">&quot;Susceptible&quot;</span>, <span class="st">&quot;Infected&quot;</span>, <span class="st">&quot;Recovered&quot;</span>),<span class="dt">size =</span> <span class="dv">50</span>, <span class="dt">replace =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb260-3" data-line-number="3">test</a></code></pre></div>
-<pre><code>##  [1] &quot;Infected&quot;    &quot;Infected&quot;    &quot;Susceptible&quot; &quot;Susceptible&quot; &quot;Susceptible&quot;
-##  [6] &quot;Susceptible&quot; &quot;Susceptible&quot; &quot;Recovered&quot;   &quot;Recovered&quot;   &quot;Susceptible&quot;
-## [11] &quot;Susceptible&quot; &quot;Susceptible&quot; &quot;Susceptible&quot; &quot;Recovered&quot;   &quot;Infected&quot;   
-## [16] &quot;Recovered&quot;   &quot;Susceptible&quot; &quot;Recovered&quot;   &quot;Infected&quot;    &quot;Recovered&quot;  
-## [21] &quot;Infected&quot;    &quot;Recovered&quot;   &quot;Susceptible&quot; &quot;Recovered&quot;   &quot;Susceptible&quot;
+<div class="sourceCode" id="cb260"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb260-1"><a href="plot-customization.html#cb260-1" aria-hidden="true" tabindex="-1"></a><span class="co"># WITHOUT the factor</span></span>
+<span id="cb260-2"><a href="plot-customization.html#cb260-2" aria-hidden="true" tabindex="-1"></a>test <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">&quot;Susceptible&quot;</span>, <span class="st">&quot;Infected&quot;</span>, <span class="st">&quot;Recovered&quot;</span>),<span class="at">size =</span> <span class="dv">50</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb260-3"><a href="plot-customization.html#cb260-3" aria-hidden="true" tabindex="-1"></a>test</span></code></pre></div>
+<pre><code>##  [1] &quot;Recovered&quot;   &quot;Infected&quot;    &quot;Infected&quot;    &quot;Infected&quot;    &quot;Recovered&quot;  
+##  [6] &quot;Recovered&quot;   &quot;Recovered&quot;   &quot;Infected&quot;    &quot;Infected&quot;    &quot;Susceptible&quot;
+## [11] &quot;Recovered&quot;   &quot;Infected&quot;    &quot;Infected&quot;    &quot;Recovered&quot;   &quot;Recovered&quot;  
+## [16] &quot;Recovered&quot;   &quot;Infected&quot;    &quot;Infected&quot;    &quot;Recovered&quot;   &quot;Susceptible&quot;
+## [21] &quot;Infected&quot;    &quot;Susceptible&quot; &quot;Susceptible&quot; &quot;Recovered&quot;   &quot;Susceptible&quot;
 ## [26] &quot;Recovered&quot;   &quot;Infected&quot;    &quot;Susceptible&quot; &quot;Recovered&quot;   &quot;Infected&quot;   
-## [31] &quot;Susceptible&quot; &quot;Recovered&quot;   &quot;Recovered&quot;   &quot;Recovered&quot;   &quot;Infected&quot;   
-## [36] &quot;Infected&quot;    &quot;Recovered&quot;   &quot;Susceptible&quot; &quot;Susceptible&quot; &quot;Susceptible&quot;
-## [41] &quot;Infected&quot;    &quot;Recovered&quot;   &quot;Recovered&quot;   &quot;Susceptible&quot; &quot;Susceptible&quot;
-## [46] &quot;Susceptible&quot; &quot;Infected&quot;    &quot;Infected&quot;    &quot;Infected&quot;    &quot;Susceptible&quot;</code></pre>
-<div class="sourceCode" id="cb262"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb262-1" data-line-number="1"><span class="kw">class</span>(test)</a></code></pre></div>
+## [31] &quot;Susceptible&quot; &quot;Recovered&quot;   &quot;Susceptible&quot; &quot;Susceptible&quot; &quot;Susceptible&quot;
+## [36] &quot;Infected&quot;    &quot;Recovered&quot;   &quot;Infected&quot;    &quot;Infected&quot;    &quot;Recovered&quot;  
+## [41] &quot;Infected&quot;    &quot;Infected&quot;    &quot;Recovered&quot;   &quot;Infected&quot;    &quot;Infected&quot;   
+## [46] &quot;Recovered&quot;   &quot;Recovered&quot;   &quot;Recovered&quot;   &quot;Susceptible&quot; &quot;Susceptible&quot;</code></pre>
+<div class="sourceCode" id="cb262"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb262-1"><a href="plot-customization.html#cb262-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(test)</span></code></pre></div>
 <pre><code>## [1] &quot;character&quot;</code></pre>
-<div class="sourceCode" id="cb264"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb264-1" data-line-number="1"><span class="co"># Now as a factor</span></a>
-<a class="sourceLine" id="cb264-2" data-line-number="2">test2 &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="kw">sample</span>(<span class="kw">c</span>(<span class="st">&quot;Susceptible&quot;</span>, <span class="st">&quot;Infected&quot;</span>, <span class="st">&quot;Recovered&quot;</span>),<span class="dt">size =</span> <span class="dv">50</span>, <span class="dt">replace =</span> <span class="ot">TRUE</span>))</a>
-<a class="sourceLine" id="cb264-3" data-line-number="3">test2</a></code></pre></div>
-<pre><code>##  [1] Infected    Susceptible Susceptible Infected    Recovered   Infected   
-##  [7] Recovered   Infected    Infected    Recovered   Recovered   Susceptible
-## [13] Recovered   Susceptible Susceptible Susceptible Recovered   Susceptible
-## [19] Susceptible Infected    Infected    Susceptible Recovered   Infected   
-## [25] Susceptible Recovered   Recovered   Recovered   Susceptible Recovered  
-## [31] Susceptible Susceptible Recovered   Recovered   Recovered   Susceptible
-## [37] Susceptible Infected    Infected    Susceptible Infected    Infected   
-## [43] Recovered   Infected    Infected    Susceptible Infected    Infected   
-## [49] Susceptible Susceptible
+<div class="sourceCode" id="cb264"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb264-1"><a href="plot-customization.html#cb264-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Now as a factor</span></span>
+<span id="cb264-2"><a href="plot-customization.html#cb264-2" aria-hidden="true" tabindex="-1"></a>test2 <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">&quot;Susceptible&quot;</span>, <span class="st">&quot;Infected&quot;</span>, <span class="st">&quot;Recovered&quot;</span>),<span class="at">size =</span> <span class="dv">50</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb264-3"><a href="plot-customization.html#cb264-3" aria-hidden="true" tabindex="-1"></a>test2</span></code></pre></div>
+<pre><code>##  [1] Susceptible Susceptible Susceptible Susceptible Infected    Recovered  
+##  [7] Infected    Infected    Recovered   Susceptible Recovered   Recovered  
+## [13] Recovered   Recovered   Recovered   Susceptible Susceptible Susceptible
+## [19] Recovered   Infected    Infected    Susceptible Recovered   Susceptible
+## [25] Recovered   Susceptible Infected    Infected    Susceptible Infected   
+## [31] Susceptible Susceptible Infected    Susceptible Recovered   Infected   
+## [37] Infected    Infected    Infected    Recovered   Recovered   Infected   
+## [43] Recovered   Infected    Infected    Infected    Infected    Recovered  
+## [49] Infected    Susceptible
 ## Levels: Infected Recovered Susceptible</code></pre>
-<div class="sourceCode" id="cb266"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb266-1" data-line-number="1"><span class="kw">class</span>(test2)</a></code></pre></div>
+<div class="sourceCode" id="cb266"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb266-1"><a href="plot-customization.html#cb266-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(test2)</span></code></pre></div>
 <pre><code>## [1] &quot;factor&quot;</code></pre>
-<div id="combining-plots" class="section level3">
-<h3><span class="header-section-number">10.2.1</span> Combining Plots</h3>
+<div id="combining-plots" class="section level3" number="9.2.1">
+<h3><span class="header-section-number">9.2.1</span> Combining Plots</h3>
 <p>R makes it easy to combine multiple plots into one overall graph, using either the <code>par()</code> function. With the <code>par()</code> function, you can include the option <code>mfrow=c(nrows, ncols)</code> to create a matrix of <code>nrows</code> x <code>ncols</code> plots that are filled in by row. The Additionally, we can control text size with <code>cex</code> - a number indicating the amount by which plotting text and symbols should be scaled relative to the default. 1=default, 1.5 is 50% larger, 0.5 is 50% smaller, etc. Here’s some more descriptions.</p>
 <table>
 <colgroup>
@@ -617,28 +650,28 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tbody>
 </table>
 <p>We can always list the <code>par</code> settings by entering <code>par()</code> in the console. Let’s use these par settings with our test data created above.</p>
-<div class="sourceCode" id="cb268"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb268-1" data-line-number="1"><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">2</span>), <span class="dt">mar=</span><span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">1</span>), <span class="dt">oma=</span><span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">3</span>, <span class="dv">0</span>), <span class="dt">bg =</span> <span class="st">&quot;white&quot;</span>) <span class="co">## create plot array of 2 row x 2 columns</span></a>
-<a class="sourceLine" id="cb268-2" data-line-number="2"><span class="kw">plot</span>(InfStatus, <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">27</span>)) <span class="co"># basic plot with y limit set as a range</span></a>
-<a class="sourceLine" id="cb268-3" data-line-number="3"><span class="kw">box</span>() <span class="co"># adds a box around the plot coded before this line</span></a>
-<a class="sourceLine" id="cb268-4" data-line-number="4"><span class="kw">barplot</span>(<span class="kw">table</span>(Genotype, InfStatus), <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">13</span>), <span class="dt">beside =</span> <span class="ot">TRUE</span>, <span class="dt">col =</span> <span class="kw">c</span>(<span class="st">&quot;seagreen4&quot;</span>, <span class="st">&quot;coral&quot;</span>, <span class="st">&quot;dodgerblue2&quot;</span>)) <span class="co"># barplot</span></a>
-<a class="sourceLine" id="cb268-5" data-line-number="5"><span class="kw">box</span>() <span class="co"># adds a box around the plot coded before this line</span></a>
-<a class="sourceLine" id="cb268-6" data-line-number="6"><span class="kw">legend</span>(<span class="st">&quot;topright&quot;</span>, <span class="kw">c</span>(<span class="st">&quot;RR&quot;</span>, <span class="st">&quot;Rr&quot;</span>, <span class="st">&quot;rr&quot;</span>), <span class="dt">fill =</span> <span class="kw">c</span>(<span class="st">&quot;seagreen4&quot;</span>, <span class="st">&quot;coral&quot;</span>, <span class="st">&quot;dodgerblue2&quot;</span>), <span class="dt">ncol =</span> <span class="dv">1</span>, <span class="dt">cex =</span> <span class="fl">0.75</span>) <span class="co"># legend for the previous plot, which in this case is the barplot</span></a>
-<a class="sourceLine" id="cb268-7" data-line-number="7"><span class="kw">boxplot</span>(<span class="kw">rnorm</span>(<span class="dv">50</span>, <span class="dt">mean =</span> <span class="dv">15</span>, <span class="dt">sd =</span> <span class="dv">3</span>) <span class="op">~</span><span class="st"> </span>Genotype,  <span class="dt">col =</span> <span class="kw">c</span>(<span class="st">&quot;seagreen4&quot;</span>, <span class="st">&quot;coral&quot;</span>, <span class="st">&quot;dodgerblue2&quot;</span>)) <span class="co"># boxplot</span></a>
-<a class="sourceLine" id="cb268-8" data-line-number="8"><span class="kw">pie</span>(G, <span class="dt">col =</span> <span class="kw">c</span>(<span class="st">&quot;seagreen4&quot;</span>, <span class="st">&quot;coral&quot;</span>, <span class="st">&quot;dodgerblue2&quot;</span>)) <span class="co"># pie plot</span></a>
-<a class="sourceLine" id="cb268-9" data-line-number="9"><span class="kw">mtext</span>(<span class="st">&quot;Basic R Plots with Test Genotype Data&quot;</span>, <span class="dt">outer =</span> <span class="ot">TRUE</span>, <span class="dt">cex =</span> <span class="fl">1.5</span>, <span class="dt">font =</span> <span class="dv">2</span>) <span class="co"># main title</span></a></code></pre></div>
+<div class="sourceCode" id="cb268"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb268-1"><a href="plot-customization.html#cb268-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>), <span class="at">mar=</span><span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">1</span>), <span class="at">oma=</span><span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">3</span>, <span class="dv">0</span>), <span class="at">bg =</span> <span class="st">&quot;white&quot;</span>) <span class="do">## create plot array of 2 row x 2 columns</span></span>
+<span id="cb268-2"><a href="plot-customization.html#cb268-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(InfStatus, <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">27</span>)) <span class="co"># basic plot with y limit set as a range</span></span>
+<span id="cb268-3"><a href="plot-customization.html#cb268-3" aria-hidden="true" tabindex="-1"></a><span class="fu">box</span>() <span class="co"># adds a box around the plot coded before this line</span></span>
+<span id="cb268-4"><a href="plot-customization.html#cb268-4" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(<span class="fu">table</span>(Genotype, InfStatus), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">13</span>), <span class="at">beside =</span> <span class="cn">TRUE</span>, <span class="at">col =</span> <span class="fu">c</span>(<span class="st">&quot;seagreen4&quot;</span>, <span class="st">&quot;coral&quot;</span>, <span class="st">&quot;dodgerblue2&quot;</span>)) <span class="co"># barplot</span></span>
+<span id="cb268-5"><a href="plot-customization.html#cb268-5" aria-hidden="true" tabindex="-1"></a><span class="fu">box</span>() <span class="co"># adds a box around the plot coded before this line</span></span>
+<span id="cb268-6"><a href="plot-customization.html#cb268-6" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">&quot;topright&quot;</span>, <span class="fu">c</span>(<span class="st">&quot;RR&quot;</span>, <span class="st">&quot;Rr&quot;</span>, <span class="st">&quot;rr&quot;</span>), <span class="at">fill =</span> <span class="fu">c</span>(<span class="st">&quot;seagreen4&quot;</span>, <span class="st">&quot;coral&quot;</span>, <span class="st">&quot;dodgerblue2&quot;</span>), <span class="at">ncol =</span> <span class="dv">1</span>, <span class="at">cex =</span> <span class="fl">0.75</span>) <span class="co"># legend for the previous plot, which in this case is the barplot</span></span>
+<span id="cb268-7"><a href="plot-customization.html#cb268-7" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(<span class="fu">rnorm</span>(<span class="dv">50</span>, <span class="at">mean =</span> <span class="dv">15</span>, <span class="at">sd =</span> <span class="dv">3</span>) <span class="sc">~</span> Genotype,  <span class="at">col =</span> <span class="fu">c</span>(<span class="st">&quot;seagreen4&quot;</span>, <span class="st">&quot;coral&quot;</span>, <span class="st">&quot;dodgerblue2&quot;</span>)) <span class="co"># boxplot</span></span>
+<span id="cb268-8"><a href="plot-customization.html#cb268-8" aria-hidden="true" tabindex="-1"></a><span class="fu">pie</span>(G, <span class="at">col =</span> <span class="fu">c</span>(<span class="st">&quot;seagreen4&quot;</span>, <span class="st">&quot;coral&quot;</span>, <span class="st">&quot;dodgerblue2&quot;</span>)) <span class="co"># pie plot</span></span>
+<span id="cb268-9"><a href="plot-customization.html#cb268-9" aria-hidden="true" tabindex="-1"></a><span class="fu">mtext</span>(<span class="st">&quot;Basic R Plots with Test Genotype Data&quot;</span>, <span class="at">outer =</span> <span class="cn">TRUE</span>, <span class="at">cex =</span> <span class="fl">1.5</span>, <span class="at">font =</span> <span class="dv">2</span>) <span class="co"># main title</span></span></code></pre></div>
 <p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-100-1.png" width="60%" style="display: block; margin: auto;" /></p>
 </div>
 </div>
-<div id="tree-data" class="section level2">
-<h2><span class="header-section-number">10.3</span> Tree Data</h2>
+<div id="tree-data" class="section level2" number="9.3">
+<h2><span class="header-section-number">9.3</span> Tree Data</h2>
 <p>We’re going to download the <code>TreeData.csv</code> file from the <a href="%22https://github.com/jsimkins2/geog473-673/tree/master/datasets/%22">course github</a> using a direct method. We can use the <code>download.file()</code> function to do this.</p>
-<p><code>download.file(url = &quot;https://github.com/jsimkins2/geog473-673/tree/master/datasets/TreeData.csv&quot;, destfile = &quot;/Users/james/Downloads/TreeData.csv&quot; , mode='wb')</code></p>
+<p><code>download.file(url = "https://github.com/jsimkins2/geog473-673/tree/master/datasets/TreeData.csv", destfile = "/Users/james/Downloads/TreeData.csv" , mode='wb')</code></p>
 <p>The <code>url</code> argument is the direct url of the file we wish to download. <code>destfile</code> is the destination file path + name - note that this is <em>my relative path</em> and that yours will look different. <code>mode</code> describes the method with whcih to write the file (<code>wb</code> can be used in most cases).</p>
-<div id="loading-the-dataset" class="section level3">
-<h3><span class="header-section-number">10.3.1</span> Loading the Dataset</h3>
-<div class="sourceCode" id="cb269"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb269-1" data-line-number="1"><span class="co"># Our file location is our destfile argument above. For me, it&#39;s /Users/james/Downloads/TreeData.csv</span></a>
-<a class="sourceLine" id="cb269-2" data-line-number="2">treedat &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;/Users/james/Documents/Github/geog473-673/datasets/TreeData.csv&quot;</span>)</a>
-<a class="sourceLine" id="cb269-3" data-line-number="3">treedat</a></code></pre></div>
+<div id="loading-the-dataset" class="section level3" number="9.3.1">
+<h3><span class="header-section-number">9.3.1</span> Loading the Dataset</h3>
+<div class="sourceCode" id="cb269"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb269-1"><a href="plot-customization.html#cb269-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Our file location is our destfile argument above. For me, it&#39;s /Users/james/Downloads/TreeData.csv</span></span>
+<span id="cb269-2"><a href="plot-customization.html#cb269-2" aria-hidden="true" tabindex="-1"></a>treedat <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;/Users/james/Documents/Github/geog473-673/datasets/TreeData.csv&quot;</span>)</span>
+<span id="cb269-3"><a href="plot-customization.html#cb269-3" aria-hidden="true" tabindex="-1"></a>treedat</span></code></pre></div>
 <pre><code>##    tree  spp season Infected  dbh SapDepth BarkThick NobarkArea Heartwood
 ## 1     1 PICO Summer      Yes 42.2      8.4       0.3     1359.2     483.1
 ## 2     2 ABLA   Fall      Yes 13.4      2.0       0.4      124.7      58.1
@@ -684,10 +717,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><code>treedat</code> is a data frame. As a reminder, a data frame is essentially a 2-dimensional array that contains a <em>combination</em> of vectors (columns of data) that are of the class; integer, numeric, character. This is <em>different</em> from a matrix which can only contain <em>1 type</em> of data. In this case, we have some tree data that includes species of tree, season the data was collected, diameter of the tree, bark thickness, area of no bark, heartwood diameter, and sapwood diameter.</p>
 <p><img src="images/wood_diff.png" width="60%" style="display: block; margin: auto;" /></p>
 <p>Let’s manipulate this dataframe to make it easier to work wtih.</p>
-<div class="sourceCode" id="cb271"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb271-1" data-line-number="1"><span class="co"># let&#39;s set the rownames equal to the tree column</span></a>
-<a class="sourceLine" id="cb271-2" data-line-number="2">treedat &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;/Users/james/Documents/Github/geog473-673/datasets/TreeData.csv&quot;</span>,<span class="dt">row.names=</span><span class="st">&#39;tree&#39;</span>)</a>
-<a class="sourceLine" id="cb271-3" data-line-number="3"><span class="co"># print treedat</span></a>
-<a class="sourceLine" id="cb271-4" data-line-number="4">treedat</a></code></pre></div>
+<div class="sourceCode" id="cb271"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb271-1"><a href="plot-customization.html#cb271-1" aria-hidden="true" tabindex="-1"></a><span class="co"># let&#39;s set the rownames equal to the tree column</span></span>
+<span id="cb271-2"><a href="plot-customization.html#cb271-2" aria-hidden="true" tabindex="-1"></a>treedat <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;/Users/james/Documents/Github/geog473-673/datasets/TreeData.csv&quot;</span>,<span class="at">row.names=</span><span class="st">&#39;tree&#39;</span>)</span>
+<span id="cb271-3"><a href="plot-customization.html#cb271-3" aria-hidden="true" tabindex="-1"></a><span class="co"># print treedat</span></span>
+<span id="cb271-4"><a href="plot-customization.html#cb271-4" aria-hidden="true" tabindex="-1"></a>treedat</span></code></pre></div>
 <pre><code>##     spp season Infected  dbh SapDepth BarkThick NobarkArea Heartwood SapArea
 ## 1  PICO Summer      Yes 42.2      8.4       0.3     1359.2     483.1   876.1
 ## 2  ABLA   Fall      Yes 13.4      2.0       0.4      124.7      58.1    66.6
@@ -709,20 +742,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 18 PIFL Summer      Yes 21.5      5.1       0.6      323.7      80.1   243.5
 ## 19 PIFL Spring       No 13.4      2.2       0.5      120.8      50.3    70.5
 ## 20 PIFL   Fall      Yes 16.2      3.5       0.5      181.5      52.8   128.6</code></pre>
-<div class="sourceCode" id="cb273"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb273-1" data-line-number="1"><span class="co"># look at the data frame variable names </span></a>
-<a class="sourceLine" id="cb273-2" data-line-number="2"><span class="kw">names</span>(treedat)</a></code></pre></div>
+<div class="sourceCode" id="cb273"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb273-1"><a href="plot-customization.html#cb273-1" aria-hidden="true" tabindex="-1"></a><span class="co"># look at the data frame variable names </span></span>
+<span id="cb273-2"><a href="plot-customization.html#cb273-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(treedat)</span></code></pre></div>
 <pre><code>## [1] &quot;spp&quot;        &quot;season&quot;     &quot;Infected&quot;   &quot;dbh&quot;        &quot;SapDepth&quot;  
 ## [6] &quot;BarkThick&quot;  &quot;NobarkArea&quot; &quot;Heartwood&quot;  &quot;SapArea&quot;</code></pre>
-<div class="sourceCode" id="cb275"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb275-1" data-line-number="1"><span class="co"># print the dbh variable</span></a>
-<a class="sourceLine" id="cb275-2" data-line-number="2">treedat<span class="op">$</span>dbh</a></code></pre></div>
+<div class="sourceCode" id="cb275"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb275-1"><a href="plot-customization.html#cb275-1" aria-hidden="true" tabindex="-1"></a><span class="co"># print the dbh variable</span></span>
+<span id="cb275-2"><a href="plot-customization.html#cb275-2" aria-hidden="true" tabindex="-1"></a>treedat<span class="sc">$</span>dbh</span></code></pre></div>
 <pre><code>##  [1] 42.2 13.4 13.1 15.0 14.2 20.0  9.1  9.2 27.3 11.2 18.0  9.0 15.4 24.1 24.2
 ## [16] 14.4 13.1 21.5 13.4 16.2</code></pre>
-<div class="sourceCode" id="cb277"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb277-1" data-line-number="1"><span class="co"># rename the dbh variable, but first let&#39;s be sure our index of the dbh variable is correct</span></a>
-<a class="sourceLine" id="cb277-2" data-line-number="2"><span class="kw">colnames</span>(treedat)[<span class="dv">4</span>]</a></code></pre></div>
+<div class="sourceCode" id="cb277"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb277-1"><a href="plot-customization.html#cb277-1" aria-hidden="true" tabindex="-1"></a><span class="co"># rename the dbh variable, but first let&#39;s be sure our index of the dbh variable is correct</span></span>
+<span id="cb277-2"><a href="plot-customization.html#cb277-2" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(treedat)[<span class="dv">4</span>]</span></code></pre></div>
 <pre><code>## [1] &quot;dbh&quot;</code></pre>
-<div class="sourceCode" id="cb279"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb279-1" data-line-number="1"><span class="co"># yep, dbh is the index number 4 </span></a>
-<a class="sourceLine" id="cb279-2" data-line-number="2"><span class="kw">colnames</span>(treedat)[<span class="dv">4</span>] =<span class="st"> &quot;tree.diameter&quot;</span></a>
-<a class="sourceLine" id="cb279-3" data-line-number="3">treedat</a></code></pre></div>
+<div class="sourceCode" id="cb279"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb279-1"><a href="plot-customization.html#cb279-1" aria-hidden="true" tabindex="-1"></a><span class="co"># yep, dbh is the index number 4 </span></span>
+<span id="cb279-2"><a href="plot-customization.html#cb279-2" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(treedat)[<span class="dv">4</span>] <span class="ot">=</span> <span class="st">&quot;tree.diameter&quot;</span></span>
+<span id="cb279-3"><a href="plot-customization.html#cb279-3" aria-hidden="true" tabindex="-1"></a>treedat</span></code></pre></div>
 <pre><code>##     spp season Infected tree.diameter SapDepth BarkThick NobarkArea Heartwood
 ## 1  PICO Summer      Yes          42.2      8.4       0.3     1359.2     483.1
 ## 2  ABLA   Fall      Yes          13.4      2.0       0.4      124.7      58.1
@@ -766,37 +799,37 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 19    70.5
 ## 20   128.6</code></pre>
 <p>Now that our data is curated, let’s create a figure with 2 plots in the window; plot 1 will be a histogram of bark thickness and plot 2 will be a boxplot of sapdepth by species.</p>
-<div class="sourceCode" id="cb281"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb281-1" data-line-number="1"><span class="co"># Now let&#39;s do some plotting </span></a>
-<a class="sourceLine" id="cb281-2" data-line-number="2"><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>)) <span class="co">## create plot array of 1 row x 2 columns</span></a>
-<a class="sourceLine" id="cb281-3" data-line-number="3"><span class="kw">par</span>(<span class="dt">cex.axis=</span><span class="fl">0.8</span>) <span class="co">## shrinks the name size of the x axes. If we don&#39;t do this, not all the names in the boxplot show up</span></a>
-<a class="sourceLine" id="cb281-4" data-line-number="4"><span class="kw">par</span>(<span class="dt">cex.main=</span><span class="fl">0.7</span>) <span class="co">## shrinks the name size of the titles. If we don&#39;t do this, the titles don&#39;t fit in the window</span></a>
-<a class="sourceLine" id="cb281-5" data-line-number="5"><span class="co"># Use the his() function to plot a histogram </span></a>
-<a class="sourceLine" id="cb281-6" data-line-number="6"><span class="kw">hist</span>(treedat<span class="op">$</span>BarkThick, <span class="dt">xlab=</span> <span class="st">&quot;Bark Thickness (cm)&quot;</span>, <span class="dt">main=</span> <span class="st">&quot;Histogram: Bark Thickness&quot;</span>, <span class="dt">col=</span> <span class="st">&quot;darkgreen&quot;</span>)</a>
-<a class="sourceLine" id="cb281-7" data-line-number="7"><span class="kw">boxplot</span>(SapDepth <span class="op">~</span><span class="st"> </span>spp, <span class="dt">data=</span> treedat, <span class="dt">ylab=</span> <span class="st">&quot;SapDepth&quot;</span>, <span class="dt">col=</span> <span class="st">&quot;darkslateblue&quot;</span>, <span class="dt">main=</span> <span class="st">&quot;Boxplot: Sapwood Depth by Species&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb281"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb281-1"><a href="plot-customization.html#cb281-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Now let&#39;s do some plotting </span></span>
+<span id="cb281-2"><a href="plot-customization.html#cb281-2" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>)) <span class="do">## create plot array of 1 row x 2 columns</span></span>
+<span id="cb281-3"><a href="plot-customization.html#cb281-3" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">cex.axis=</span><span class="fl">0.8</span>) <span class="do">## shrinks the name size of the x axes. If we don&#39;t do this, not all the names in the boxplot show up</span></span>
+<span id="cb281-4"><a href="plot-customization.html#cb281-4" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">cex.main=</span><span class="fl">0.7</span>) <span class="do">## shrinks the name size of the titles. If we don&#39;t do this, the titles don&#39;t fit in the window</span></span>
+<span id="cb281-5"><a href="plot-customization.html#cb281-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Use the his() function to plot a histogram </span></span>
+<span id="cb281-6"><a href="plot-customization.html#cb281-6" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(treedat<span class="sc">$</span>BarkThick, <span class="at">xlab=</span> <span class="st">&quot;Bark Thickness (cm)&quot;</span>, <span class="at">main=</span> <span class="st">&quot;Histogram: Bark Thickness&quot;</span>, <span class="at">col=</span> <span class="st">&quot;darkgreen&quot;</span>)</span>
+<span id="cb281-7"><a href="plot-customization.html#cb281-7" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(SapDepth <span class="sc">~</span> spp, <span class="at">data=</span> treedat, <span class="at">ylab=</span> <span class="st">&quot;SapDepth&quot;</span>, <span class="at">col=</span> <span class="st">&quot;darkslateblue&quot;</span>, <span class="at">main=</span> <span class="st">&quot;Boxplot: Sapwood Depth by Species&quot;</span>)</span></code></pre></div>
 <p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-104-1.png" width="60%" style="display: block; margin: auto;" /></p>
 <p>First we notice that with the <code>par()</code> function, we can declare arguments in different lines so long as we call the <code>par()</code> function again. <code>hist()</code> is the histogram function; <code>boxplot()</code> is the boxplot function. The <code>boxplot()</code> function using a slightly different syntax for plotting in the form of <code>y ~ x</code>, or <strong>y versus x</strong>. <code>hist()</code>, on the other hand, can only plot numerical values. For categorical data, such as our tree species column, must be plotted with <code>barplot()</code> and the <code>table()</code> function.</p>
-<div class="sourceCode" id="cb282"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb282-1" data-line-number="1"><span class="co"># print the table function output of treedat$spp - notice the categorical help from the table function</span></a>
-<a class="sourceLine" id="cb282-2" data-line-number="2"><span class="kw">table</span>(treedat<span class="op">$</span>spp)</a></code></pre></div>
+<div class="sourceCode" id="cb282"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb282-1"><a href="plot-customization.html#cb282-1" aria-hidden="true" tabindex="-1"></a><span class="co"># print the table function output of treedat$spp - notice the categorical help from the table function</span></span>
+<span id="cb282-2"><a href="plot-customization.html#cb282-2" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(treedat<span class="sc">$</span>spp)</span></code></pre></div>
 <pre><code>## 
 ## ABLA PICO PIFL POTR 
 ##    5    5    5    5</code></pre>
-<div class="sourceCode" id="cb284"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb284-1" data-line-number="1"><span class="co"># plot this categorical data using barplot() function</span></a>
-<a class="sourceLine" id="cb284-2" data-line-number="2"><span class="kw">barplot</span>(<span class="kw">table</span>(treedat<span class="op">$</span>spp))</a></code></pre></div>
+<div class="sourceCode" id="cb284"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb284-1"><a href="plot-customization.html#cb284-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot this categorical data using barplot() function</span></span>
+<span id="cb284-2"><a href="plot-customization.html#cb284-2" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(<span class="fu">table</span>(treedat<span class="sc">$</span>spp))</span></code></pre></div>
 <p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-105-1.png" width="60%" style="display: block; margin: auto;" /></p>
-<div class="sourceCode" id="cb285"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb285-1" data-line-number="1"><span class="co"># customize the barplot function</span></a>
-<a class="sourceLine" id="cb285-2" data-line-number="2"><span class="kw">barplot</span>(<span class="kw">table</span>(treedat<span class="op">$</span>spp), <span class="dt">main=</span><span class="st">&quot;SPP Count Barplot&quot;</span>,</a>
-<a class="sourceLine" id="cb285-3" data-line-number="3"><span class="dt">xlab=</span><span class="st">&quot;SPP&quot;</span>,</a>
-<a class="sourceLine" id="cb285-4" data-line-number="4"><span class="dt">ylab=</span><span class="st">&quot;Count&quot;</span>,</a>
-<a class="sourceLine" id="cb285-5" data-line-number="5"><span class="dt">border=</span><span class="st">&quot;red&quot;</span>,</a>
-<a class="sourceLine" id="cb285-6" data-line-number="6"><span class="dt">col=</span><span class="st">&quot;blue&quot;</span>,</a>
-<a class="sourceLine" id="cb285-7" data-line-number="7"><span class="dt">density=</span><span class="dv">10</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb285"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb285-1"><a href="plot-customization.html#cb285-1" aria-hidden="true" tabindex="-1"></a><span class="co"># customize the barplot function</span></span>
+<span id="cb285-2"><a href="plot-customization.html#cb285-2" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(<span class="fu">table</span>(treedat<span class="sc">$</span>spp), <span class="at">main=</span><span class="st">&quot;SPP Count Barplot&quot;</span>,</span>
+<span id="cb285-3"><a href="plot-customization.html#cb285-3" aria-hidden="true" tabindex="-1"></a><span class="at">xlab=</span><span class="st">&quot;SPP&quot;</span>,</span>
+<span id="cb285-4"><a href="plot-customization.html#cb285-4" aria-hidden="true" tabindex="-1"></a><span class="at">ylab=</span><span class="st">&quot;Count&quot;</span>,</span>
+<span id="cb285-5"><a href="plot-customization.html#cb285-5" aria-hidden="true" tabindex="-1"></a><span class="at">border=</span><span class="st">&quot;red&quot;</span>,</span>
+<span id="cb285-6"><a href="plot-customization.html#cb285-6" aria-hidden="true" tabindex="-1"></a><span class="at">col=</span><span class="st">&quot;blue&quot;</span>,</span>
+<span id="cb285-7"><a href="plot-customization.html#cb285-7" aria-hidden="true" tabindex="-1"></a><span class="at">density=</span><span class="dv">10</span>)</span></code></pre></div>
 <p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-105-2.png" width="60%" style="display: block; margin: auto;" /></p>
 </div>
 </div>
-<div id="assignment-3" class="section level2">
-<h2><span class="header-section-number">10.4</span> Assignment:</h2>
+<div id="assignment-3" class="section level2" number="9.4">
+<h2><span class="header-section-number">9.4</span> Assignment:</h2>
 <ol style="list-style-type: decimal">
-<li>Create the plot below using a sequence of X values where Y is the <code>log</code> of the X values. For the line type, use <code>type = &quot;b&quot;</code> to obtain lines and points. Use a <code>pch</code> of 21, <code>cex</code> of 1.5, and colors of your choosing.</li>
+<li>Create the plot below using a sequence of X values where Y is the <code>log</code> of the X values. For the line type, use <code>type = "b"</code> to obtain lines and points. Use a <code>pch</code> of 21, <code>cex</code> of 1.5, and colors of your choosing.</li>
 </ol>
 <p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-106-1.png" width="60%" style="display: block; margin: auto;" /></p>
 <p>Using the <code>TreeData.csv</code> from the course dataset folder, complete the following:</p>

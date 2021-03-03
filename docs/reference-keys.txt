@@ -48,8 +48,6 @@ basic-quality-control
 plotting-the-data
 in-class-exercise
 further-explanation-of-datatypes
-time-series-data
-for-loops
 deos-data
 assignment
 raster-visualization

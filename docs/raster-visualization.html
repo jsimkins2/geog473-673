@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>8 Raster Visualization | R for Geospatial Sciences</title>
+  <title>7 Raster Visualization | R for Geospatial Sciences</title>
   <meta name="description" content="Advanced R" />
   <meta name="generator" content="bookdown 0.20.6 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="8 Raster Visualization | R for Geospatial Sciences" />
+  <meta property="og:title" content="7 Raster Visualization | R for Geospatial Sciences" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="8 Raster Visualization | R for Geospatial Sciences" />
+  <meta name="twitter:title" content="7 Raster Visualization | R for Geospatial Sciences" />
   
   <meta name="twitter:description" content="Advanced R" />
   
@@ -24,15 +24,16 @@
 <meta name="author" content="James Simkins" />
 
 
-<meta name="date" content="2021-01-28" />
+<meta name="date" content="2021-03-03" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="time-series-data.html"/>
+<link rel="prev" href="scientific-r-scripts.html"/>
 <link rel="next" href="reprojecting-writing-rasters.html"/>
+<script src="libs/header-attrs-2.3.8/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -74,25 +75,26 @@
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -101,9 +103,9 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {  }
+  {   }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -152,14 +154,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">R for Geospatial Sciences</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="1" data-path="r-for-geospatial-sciences.html"><a href="r-for-geospatial-sciences.html"><i class="fa fa-check"></i><b>1</b> R for Geospatial Sciences</a><ul>
+<li class="chapter" data-level="1" data-path="r-for-geospatial-sciences.html"><a href="r-for-geospatial-sciences.html"><i class="fa fa-check"></i><b>1</b> R for Geospatial Sciences</a>
+<ul>
 <li class="chapter" data-level="1.1" data-path="r-for-geospatial-sciences.html"><a href="r-for-geospatial-sciences.html#welcome"><i class="fa fa-check"></i><b>1.1</b> Welcome</a></li>
 <li class="chapter" data-level="1.2" data-path="r-for-geospatial-sciences.html"><a href="r-for-geospatial-sciences.html#course-github"><i class="fa fa-check"></i><b>1.2</b> Course Github</a></li>
 <li class="chapter" data-level="1.3" data-path="r-for-geospatial-sciences.html"><a href="r-for-geospatial-sciences.html#syllabus"><i class="fa fa-check"></i><b>1.3</b> Syllabus</a></li>
 <li class="chapter" data-level="1.4" data-path="r-for-geospatial-sciences.html"><a href="r-for-geospatial-sciences.html#phase-1"><i class="fa fa-check"></i><b>1.4</b> Phase 1</a></li>
 <li class="chapter" data-level="1.5" data-path="r-for-geospatial-sciences.html"><a href="r-for-geospatial-sciences.html#phase-2"><i class="fa fa-check"></i><b>1.5</b> Phase 2</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html"><i class="fa fa-check"></i><b>2</b> Getting Started with R</a><ul>
+<li class="chapter" data-level="2" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html"><i class="fa fa-check"></i><b>2</b> Getting Started with R</a>
+<ul>
 <li class="chapter" data-level="2.1" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#why-is-there-such-a-buzz-around-r"><i class="fa fa-check"></i><b>2.1</b> Why is there such a buzz around R?</a></li>
 <li class="chapter" data-level="2.2" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#reasons-to-love-r"><i class="fa fa-check"></i><b>2.2</b> Reasons to love R</a></li>
 <li class="chapter" data-level="2.3" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#downloading-guide"><i class="fa fa-check"></i><b>2.3</b> Downloading Guide</a></li>
@@ -170,12 +174,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.8" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#open-rstudio"><i class="fa fa-check"></i><b>2.8</b> Open RStudio</a></li>
 <li class="chapter" data-level="2.9" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#r-studio-layout"><i class="fa fa-check"></i><b>2.9</b> R Studio Layout</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="definitions-rules.html"><a href="definitions-rules.html"><i class="fa fa-check"></i><b>3</b> Definitions &amp; Rules</a><ul>
+<li class="chapter" data-level="3" data-path="definitions-rules.html"><a href="definitions-rules.html"><i class="fa fa-check"></i><b>3</b> Definitions &amp; Rules</a>
+<ul>
 <li class="chapter" data-level="3.1" data-path="definitions-rules.html"><a href="definitions-rules.html#important-r-programming-definitions"><i class="fa fa-check"></i><b>3.1</b> Important R Programming Definitions</a></li>
 <li class="chapter" data-level="3.2" data-path="definitions-rules.html"><a href="definitions-rules.html#rules"><i class="fa fa-check"></i><b>3.2</b> Rules</a></li>
 <li class="chapter" data-level="3.3" data-path="definitions-rules.html"><a href="definitions-rules.html#general-recommendations"><i class="fa fa-check"></i><b>3.3</b> General Recommendations</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="r-coding-fundamentals.html"><a href="r-coding-fundamentals.html"><i class="fa fa-check"></i><b>4</b> R Coding Fundamentals</a><ul>
+<li class="chapter" data-level="4" data-path="r-coding-fundamentals.html"><a href="r-coding-fundamentals.html"><i class="fa fa-check"></i><b>4</b> R Coding Fundamentals</a>
+<ul>
 <li class="chapter" data-level="4.1" data-path="r-coding-fundamentals.html"><a href="r-coding-fundamentals.html#entering-input"><i class="fa fa-check"></i><b>4.1</b> Entering Input</a></li>
 <li class="chapter" data-level="4.2" data-path="r-coding-fundamentals.html"><a href="r-coding-fundamentals.html#running-code"><i class="fa fa-check"></i><b>4.2</b> Running Code</a></li>
 <li class="chapter" data-level="4.3" data-path="r-coding-fundamentals.html"><a href="r-coding-fundamentals.html#evaluation"><i class="fa fa-check"></i><b>4.3</b> Evaluation</a></li>
@@ -193,144 +199,171 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.15" data-path="r-coding-fundamentals.html"><a href="r-coding-fundamentals.html#names"><i class="fa fa-check"></i><b>4.15</b> Names</a></li>
 <li class="chapter" data-level="4.16" data-path="r-coding-fundamentals.html"><a href="r-coding-fundamentals.html#summary"><i class="fa fa-check"></i><b>4.16</b> Summary</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="basic-r-scripts.html"><a href="basic-r-scripts.html"><i class="fa fa-check"></i><b>5</b> Basic R Scripts</a><ul>
-<li class="chapter" data-level="5.1" data-path="basic-r-scripts.html"><a href="basic-r-scripts.html#global-carbon-dioxide-concentrations"><i class="fa fa-check"></i><b>5.1</b> Global Carbon-Dioxide Concentrations</a><ul>
+<li class="chapter" data-level="5" data-path="basic-r-scripts.html"><a href="basic-r-scripts.html"><i class="fa fa-check"></i><b>5</b> Basic R Scripts</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="basic-r-scripts.html"><a href="basic-r-scripts.html#global-carbon-dioxide-concentrations"><i class="fa fa-check"></i><b>5.1</b> Global Carbon-Dioxide Concentrations</a>
+<ul>
 <li class="chapter" data-level="5.1.1" data-path="basic-r-scripts.html"><a href="basic-r-scripts.html#saving-your-plot"><i class="fa fa-check"></i><b>5.1.1</b> Saving your plot</a></li>
 </ul></li>
 <li class="chapter" data-level="5.2" data-path="basic-r-scripts.html"><a href="basic-r-scripts.html#cars---motor-trends-magazine-data"><i class="fa fa-check"></i><b>5.2</b> Cars - Motor Trends Magazine Data</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="scientific-r-scripts.html"><a href="scientific-r-scripts.html"><i class="fa fa-check"></i><b>6</b> Scientific R Scripts</a><ul>
-<li class="chapter" data-level="6.1" data-path="scientific-r-scripts.html"><a href="scientific-r-scripts.html#script-breakdown"><i class="fa fa-check"></i><b>6.1</b> Script Breakdown</a><ul>
+<li class="chapter" data-level="6" data-path="scientific-r-scripts.html"><a href="scientific-r-scripts.html"><i class="fa fa-check"></i><b>6</b> Scientific R Scripts</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="scientific-r-scripts.html"><a href="scientific-r-scripts.html#script-breakdown"><i class="fa fa-check"></i><b>6.1</b> Script Breakdown</a>
+<ul>
 <li class="chapter" data-level="6.1.1" data-path="scientific-r-scripts.html"><a href="scientific-r-scripts.html#installing-packages"><i class="fa fa-check"></i><b>6.1.1</b> Installing Packages</a></li>
 <li class="chapter" data-level="6.1.2" data-path="scientific-r-scripts.html"><a href="scientific-r-scripts.html#reading-the-data"><i class="fa fa-check"></i><b>6.1.2</b> Reading the Data</a></li>
 <li class="chapter" data-level="6.1.3" data-path="scientific-r-scripts.html"><a href="scientific-r-scripts.html#basic-quality-control"><i class="fa fa-check"></i><b>6.1.3</b> Basic Quality Control</a></li>
 <li class="chapter" data-level="6.1.4" data-path="scientific-r-scripts.html"><a href="scientific-r-scripts.html#plotting-the-data"><i class="fa fa-check"></i><b>6.1.4</b> Plotting the Data</a></li>
 </ul></li>
-<li class="chapter" data-level="6.2" data-path="scientific-r-scripts.html"><a href="scientific-r-scripts.html#in-class-exercise"><i class="fa fa-check"></i><b>6.2</b> In Class Exercise</a><ul>
+<li class="chapter" data-level="6.2" data-path="scientific-r-scripts.html"><a href="scientific-r-scripts.html#in-class-exercise"><i class="fa fa-check"></i><b>6.2</b> In Class Exercise</a>
+<ul>
 <li class="chapter" data-level="6.2.1" data-path="scientific-r-scripts.html"><a href="scientific-r-scripts.html#further-explanation-of-datatypes"><i class="fa fa-check"></i><b>6.2.1</b> Further Explanation of DataTypes</a></li>
 </ul></li>
+<li class="chapter" data-level="6.3" data-path="scientific-r-scripts.html"><a href="scientific-r-scripts.html#deos-data"><i class="fa fa-check"></i><b>6.3</b> DEOS Data</a></li>
+<li class="chapter" data-level="6.4" data-path="scientific-r-scripts.html"><a href="scientific-r-scripts.html#assignment"><i class="fa fa-check"></i><b>6.4</b> Assignment</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="time-series-data.html"><a href="time-series-data.html"><i class="fa fa-check"></i><b>7</b> Time Series Data</a><ul>
-<li class="chapter" data-level="7.1" data-path="time-series-data.html"><a href="time-series-data.html#for-loops"><i class="fa fa-check"></i><b>7.1</b> For Loops</a></li>
-<li class="chapter" data-level="7.2" data-path="time-series-data.html"><a href="time-series-data.html#deos-data"><i class="fa fa-check"></i><b>7.2</b> DEOS Data</a></li>
-<li class="chapter" data-level="7.3" data-path="time-series-data.html"><a href="time-series-data.html#assignment"><i class="fa fa-check"></i><b>7.3</b> Assignment</a></li>
+<li class="chapter" data-level="7" data-path="raster-visualization.html"><a href="raster-visualization.html"><i class="fa fa-check"></i><b>7</b> Raster Visualization</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="raster-visualization.html"><a href="raster-visualization.html#paste0"><i class="fa fa-check"></i><b>7.1</b> <code>Paste0()</code></a></li>
+<li class="chapter" data-level="7.2" data-path="raster-visualization.html"><a href="raster-visualization.html#rasters"><i class="fa fa-check"></i><b>7.2</b> Rasters</a></li>
+<li class="chapter" data-level="7.3" data-path="raster-visualization.html"><a href="raster-visualization.html#assignment-1"><i class="fa fa-check"></i><b>7.3</b> Assignment</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="raster-visualization.html"><a href="raster-visualization.html"><i class="fa fa-check"></i><b>8</b> Raster Visualization</a><ul>
-<li class="chapter" data-level="8.1" data-path="raster-visualization.html"><a href="raster-visualization.html#paste0"><i class="fa fa-check"></i><b>8.1</b> <code>Paste0()</code></a></li>
-<li class="chapter" data-level="8.2" data-path="raster-visualization.html"><a href="raster-visualization.html#rasters"><i class="fa fa-check"></i><b>8.2</b> Rasters</a></li>
-<li class="chapter" data-level="8.3" data-path="raster-visualization.html"><a href="raster-visualization.html#assignment-1"><i class="fa fa-check"></i><b>8.3</b> Assignment</a></li>
+<li class="chapter" data-level="8" data-path="reprojecting-writing-rasters.html"><a href="reprojecting-writing-rasters.html"><i class="fa fa-check"></i><b>8</b> Reprojecting &amp; Writing Rasters</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="reprojecting-writing-rasters.html"><a href="reprojecting-writing-rasters.html#indexing-data"><i class="fa fa-check"></i><b>8.1</b> Indexing Data</a></li>
+<li class="chapter" data-level="8.2" data-path="reprojecting-writing-rasters.html"><a href="reprojecting-writing-rasters.html#resampling-and-reprojecting"><i class="fa fa-check"></i><b>8.2</b> Resampling and Reprojecting</a></li>
+<li class="chapter" data-level="8.3" data-path="reprojecting-writing-rasters.html"><a href="reprojecting-writing-rasters.html#pngs"><i class="fa fa-check"></i><b>8.3</b> PNGs</a></li>
+<li class="chapter" data-level="8.4" data-path="reprojecting-writing-rasters.html"><a href="reprojecting-writing-rasters.html#writing-rasters"><i class="fa fa-check"></i><b>8.4</b> Writing Rasters</a></li>
+<li class="chapter" data-level="8.5" data-path="reprojecting-writing-rasters.html"><a href="reprojecting-writing-rasters.html#assignment-2"><i class="fa fa-check"></i><b>8.5</b> Assignment</a></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="reprojecting-writing-rasters.html"><a href="reprojecting-writing-rasters.html"><i class="fa fa-check"></i><b>9</b> Reprojecting &amp; Writing Rasters</a><ul>
-<li class="chapter" data-level="9.1" data-path="reprojecting-writing-rasters.html"><a href="reprojecting-writing-rasters.html#indexing-data"><i class="fa fa-check"></i><b>9.1</b> Indexing Data</a></li>
-<li class="chapter" data-level="9.2" data-path="reprojecting-writing-rasters.html"><a href="reprojecting-writing-rasters.html#resampling-and-reprojecting"><i class="fa fa-check"></i><b>9.2</b> Resampling and Reprojecting</a></li>
-<li class="chapter" data-level="9.3" data-path="reprojecting-writing-rasters.html"><a href="reprojecting-writing-rasters.html#pngs"><i class="fa fa-check"></i><b>9.3</b> PNGs</a></li>
-<li class="chapter" data-level="9.4" data-path="reprojecting-writing-rasters.html"><a href="reprojecting-writing-rasters.html#writing-rasters"><i class="fa fa-check"></i><b>9.4</b> Writing Rasters</a></li>
-<li class="chapter" data-level="9.5" data-path="reprojecting-writing-rasters.html"><a href="reprojecting-writing-rasters.html#assignment-2"><i class="fa fa-check"></i><b>9.5</b> Assignment</a></li>
+<li class="chapter" data-level="9" data-path="plot-customization.html"><a href="plot-customization.html"><i class="fa fa-check"></i><b>9</b> Plot Customization</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="plot-customization.html"><a href="plot-customization.html#expanding-on-basic-plots-in-r"><i class="fa fa-check"></i><b>9.1</b> Expanding on Basic Plots in R</a>
+<ul>
+<li class="chapter" data-level="9.1.1" data-path="plot-customization.html"><a href="plot-customization.html#adding-to-a-plot"><i class="fa fa-check"></i><b>9.1.1</b> Adding to a Plot</a></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="plot-customization.html"><a href="plot-customization.html"><i class="fa fa-check"></i><b>10</b> Plot Customization</a><ul>
-<li class="chapter" data-level="10.1" data-path="plot-customization.html"><a href="plot-customization.html#expanding-on-basic-plots-in-r"><i class="fa fa-check"></i><b>10.1</b> Expanding on Basic Plots in R</a><ul>
-<li class="chapter" data-level="10.1.1" data-path="plot-customization.html"><a href="plot-customization.html#adding-to-a-plot"><i class="fa fa-check"></i><b>10.1.1</b> Adding to a Plot</a></li>
+<li class="chapter" data-level="9.2" data-path="plot-customization.html"><a href="plot-customization.html#barplots-boxplots-pie-charts"><i class="fa fa-check"></i><b>9.2</b> Barplots, Boxplots, Pie Charts</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="plot-customization.html"><a href="plot-customization.html#combining-plots"><i class="fa fa-check"></i><b>9.2.1</b> Combining Plots</a></li>
 </ul></li>
-<li class="chapter" data-level="10.2" data-path="plot-customization.html"><a href="plot-customization.html#barplots-boxplots-pie-charts"><i class="fa fa-check"></i><b>10.2</b> Barplots, Boxplots, Pie Charts</a><ul>
-<li class="chapter" data-level="10.2.1" data-path="plot-customization.html"><a href="plot-customization.html#combining-plots"><i class="fa fa-check"></i><b>10.2.1</b> Combining Plots</a></li>
+<li class="chapter" data-level="9.3" data-path="plot-customization.html"><a href="plot-customization.html#tree-data"><i class="fa fa-check"></i><b>9.3</b> Tree Data</a>
+<ul>
+<li class="chapter" data-level="9.3.1" data-path="plot-customization.html"><a href="plot-customization.html#loading-the-dataset"><i class="fa fa-check"></i><b>9.3.1</b> Loading the Dataset</a></li>
 </ul></li>
-<li class="chapter" data-level="10.3" data-path="plot-customization.html"><a href="plot-customization.html#tree-data"><i class="fa fa-check"></i><b>10.3</b> Tree Data</a><ul>
-<li class="chapter" data-level="10.3.1" data-path="plot-customization.html"><a href="plot-customization.html#loading-the-dataset"><i class="fa fa-check"></i><b>10.3.1</b> Loading the Dataset</a></li>
+<li class="chapter" data-level="9.4" data-path="plot-customization.html"><a href="plot-customization.html#assignment-3"><i class="fa fa-check"></i><b>9.4</b> Assignment:</a></li>
 </ul></li>
-<li class="chapter" data-level="10.4" data-path="plot-customization.html"><a href="plot-customization.html#assignment-3"><i class="fa fa-check"></i><b>10.4</b> Assignment:</a></li>
+<li class="chapter" data-level="10" data-path="basic-statistics.html"><a href="basic-statistics.html"><i class="fa fa-check"></i><b>10</b> Basic Statistics</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="basic-statistics.html"><a href="basic-statistics.html#statistical-function-dictionary"><i class="fa fa-check"></i><b>10.1</b> Statistical Function Dictionary</a></li>
+<li class="chapter" data-level="10.2" data-path="basic-statistics.html"><a href="basic-statistics.html#basic-statistics-in-r"><i class="fa fa-check"></i><b>10.2</b> Basic Statistics in R</a>
+<ul>
+<li class="chapter" data-level="10.2.1" data-path="basic-statistics.html"><a href="basic-statistics.html#load-willow-creek-data"><i class="fa fa-check"></i><b>10.2.1</b> Load Willow Creek data</a></li>
+<li class="chapter" data-level="10.2.2" data-path="basic-statistics.html"><a href="basic-statistics.html#subsetting-data"><i class="fa fa-check"></i><b>10.2.2</b> Subsetting Data</a></li>
+<li class="chapter" data-level="10.2.3" data-path="basic-statistics.html"><a href="basic-statistics.html#trends-and-distributions"><i class="fa fa-check"></i><b>10.2.3</b> Trends and Distributions</a></li>
+<li class="chapter" data-level="10.2.4" data-path="basic-statistics.html"><a href="basic-statistics.html#finding-a-best-fit-distribution"><i class="fa fa-check"></i><b>10.2.4</b> Finding a Best-Fit Distribution</a></li>
+<li class="chapter" data-level="10.2.5" data-path="basic-statistics.html"><a href="basic-statistics.html#correlation-plots"><i class="fa fa-check"></i><b>10.2.5</b> Correlation Plots</a></li>
 </ul></li>
-<li class="chapter" data-level="11" data-path="basic-statistics.html"><a href="basic-statistics.html"><i class="fa fa-check"></i><b>11</b> Basic Statistics</a><ul>
-<li class="chapter" data-level="11.1" data-path="basic-statistics.html"><a href="basic-statistics.html#statistical-function-dictionary"><i class="fa fa-check"></i><b>11.1</b> Statistical Function Dictionary</a></li>
-<li class="chapter" data-level="11.2" data-path="basic-statistics.html"><a href="basic-statistics.html#basic-statistics-in-r"><i class="fa fa-check"></i><b>11.2</b> Basic Statistics in R</a><ul>
-<li class="chapter" data-level="11.2.1" data-path="basic-statistics.html"><a href="basic-statistics.html#load-willow-creek-data"><i class="fa fa-check"></i><b>11.2.1</b> Load Willow Creek data</a></li>
-<li class="chapter" data-level="11.2.2" data-path="basic-statistics.html"><a href="basic-statistics.html#subsetting-data"><i class="fa fa-check"></i><b>11.2.2</b> Subsetting Data</a></li>
-<li class="chapter" data-level="11.2.3" data-path="basic-statistics.html"><a href="basic-statistics.html#trends-and-distributions"><i class="fa fa-check"></i><b>11.2.3</b> Trends and Distributions</a></li>
-<li class="chapter" data-level="11.2.4" data-path="basic-statistics.html"><a href="basic-statistics.html#finding-a-best-fit-distribution"><i class="fa fa-check"></i><b>11.2.4</b> Finding a Best-Fit Distribution</a></li>
-<li class="chapter" data-level="11.2.5" data-path="basic-statistics.html"><a href="basic-statistics.html#correlation-plots"><i class="fa fa-check"></i><b>11.2.5</b> Correlation Plots</a></li>
-</ul></li>
-<li class="chapter" data-level="11.3" data-path="basic-statistics.html"><a href="basic-statistics.html#assignment-4"><i class="fa fa-check"></i><b>11.3</b> Assignment</a><ul>
-<li class="chapter" data-level="11.3.1" data-path="basic-statistics.html"><a href="basic-statistics.html#extra-credit---2-points"><i class="fa fa-check"></i><b>11.3.1</b> Extra Credit - 2 points</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="12" data-path="plotting-with-ggplot2.html"><a href="plotting-with-ggplot2.html"><i class="fa fa-check"></i><b>12</b> Plotting with <code>ggplot2</code></a><ul>
-<li class="chapter" data-level="12.1" data-path="plotting-with-ggplot2.html"><a href="plotting-with-ggplot2.html#ggplot2-with-willow-creek-meteorological-data"><i class="fa fa-check"></i><b>12.1</b> ggplot2 with Willow Creek Meteorological Data</a></li>
-<li class="chapter" data-level="12.2" data-path="plotting-with-ggplot2.html"><a href="plotting-with-ggplot2.html#assignment-5"><i class="fa fa-check"></i><b>12.2</b> Assignment:</a></li>
-<li class="chapter" data-level="12.3" data-path="plotting-with-ggplot2.html"><a href="plotting-with-ggplot2.html#extra-credit---2-points-1"><i class="fa fa-check"></i><b>12.3</b> Extra Credit - 2 Points</a></li>
-</ul></li>
-<li class="chapter" data-level="13" data-path="spatial-plots-with-ggplot2.html"><a href="spatial-plots-with-ggplot2.html"><i class="fa fa-check"></i><b>13</b> Spatial Plots with <code>ggplot2</code></a><ul>
-<li class="chapter" data-level="13.1" data-path="spatial-plots-with-ggplot2.html"><a href="spatial-plots-with-ggplot2.html#simple-features"><i class="fa fa-check"></i><b>13.1</b> Simple Features</a></li>
-<li class="chapter" data-level="13.2" data-path="spatial-plots-with-ggplot2.html"><a href="spatial-plots-with-ggplot2.html#sea-surface-temperature-ggplot"><i class="fa fa-check"></i><b>13.2</b> Sea Surface Temperature ggplot</a></li>
-<li class="chapter" data-level="13.3" data-path="spatial-plots-with-ggplot2.html"><a href="spatial-plots-with-ggplot2.html#r-color-brewer-palettes"><i class="fa fa-check"></i><b>13.3</b> R Color Brewer Palettes</a><ul>
-<li class="chapter" data-level="13.3.1" data-path="spatial-plots-with-ggplot2.html"><a href="spatial-plots-with-ggplot2.html#multi-plot-ggplot"><i class="fa fa-check"></i><b>13.3.1</b> Multi Plot ggplot</a></li>
-</ul></li>
-<li class="chapter" data-level="13.4" data-path="spatial-plots-with-ggplot2.html"><a href="spatial-plots-with-ggplot2.html#assignment-6"><i class="fa fa-check"></i><b>13.4</b> Assignment</a><ul>
-<li class="chapter" data-level="13.4.1" data-path="spatial-plots-with-ggplot2.html"><a href="spatial-plots-with-ggplot2.html#extra-credit---2-points-2"><i class="fa fa-check"></i><b>13.4.1</b> Extra Credit - 2 Points</a></li>
+<li class="chapter" data-level="10.3" data-path="basic-statistics.html"><a href="basic-statistics.html#assignment-4"><i class="fa fa-check"></i><b>10.3</b> Assignment</a>
+<ul>
+<li class="chapter" data-level="10.3.1" data-path="basic-statistics.html"><a href="basic-statistics.html#extra-credit---2-points"><i class="fa fa-check"></i><b>10.3.1</b> Extra Credit - 2 points</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="14" data-path="shapefiles.html"><a href="shapefiles.html"><i class="fa fa-check"></i><b>14</b> Shapefiles</a><ul>
-<li class="chapter" data-level="14.1" data-path="shapefiles.html"><a href="shapefiles.html#reading-in-shapefiles"><i class="fa fa-check"></i><b>14.1</b> Reading in Shapefiles</a></li>
-<li class="chapter" data-level="14.2" data-path="shapefiles.html"><a href="shapefiles.html#combining-shapefiles-with-data"><i class="fa fa-check"></i><b>14.2</b> Combining Shapefiles with Data</a></li>
-<li class="chapter" data-level="14.3" data-path="shapefiles.html"><a href="shapefiles.html#visualizing-the-shapefiles-data"><i class="fa fa-check"></i><b>14.3</b> Visualizing the Shapefiles &amp; Data</a></li>
-<li class="chapter" data-level="14.4" data-path="shapefiles.html"><a href="shapefiles.html#saving-a-shapefile"><i class="fa fa-check"></i><b>14.4</b> Saving a shapefile</a></li>
-<li class="chapter" data-level="14.5" data-path="shapefiles.html"><a href="shapefiles.html#assignment-7"><i class="fa fa-check"></i><b>14.5</b> Assignment</a></li>
+<li class="chapter" data-level="11" data-path="plotting-with-ggplot2.html"><a href="plotting-with-ggplot2.html"><i class="fa fa-check"></i><b>11</b> Plotting with <code>ggplot2</code></a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="plotting-with-ggplot2.html"><a href="plotting-with-ggplot2.html#ggplot2-with-willow-creek-meteorological-data"><i class="fa fa-check"></i><b>11.1</b> ggplot2 with Willow Creek Meteorological Data</a></li>
+<li class="chapter" data-level="11.2" data-path="plotting-with-ggplot2.html"><a href="plotting-with-ggplot2.html#assignment-5"><i class="fa fa-check"></i><b>11.2</b> Assignment:</a></li>
+<li class="chapter" data-level="11.3" data-path="plotting-with-ggplot2.html"><a href="plotting-with-ggplot2.html#extra-credit---2-points-1"><i class="fa fa-check"></i><b>11.3</b> Extra Credit - 2 Points</a></li>
 </ul></li>
-<li class="chapter" data-level="15" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html"><i class="fa fa-check"></i><b>15</b> Remote Data Extraction</a><ul>
-<li class="chapter" data-level="15.1" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#thredds"><i class="fa fa-check"></i><b>15.1</b> THREDDS</a><ul>
-<li class="chapter" data-level="15.1.1" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#opening-a-channel-to-the-database"><i class="fa fa-check"></i><b>15.1.1</b> Opening a Channel to the Database</a></li>
-<li class="chapter" data-level="15.1.2" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#indexing"><i class="fa fa-check"></i><b>15.1.2</b> Indexing</a></li>
-<li class="chapter" data-level="15.1.3" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#downloading-the-selected-data"><i class="fa fa-check"></i><b>15.1.3</b> Downloading the Selected Data</a></li>
+<li class="chapter" data-level="12" data-path="spatial-plots-with-ggplot2.html"><a href="spatial-plots-with-ggplot2.html"><i class="fa fa-check"></i><b>12</b> Spatial Plots with <code>ggplot2</code></a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="spatial-plots-with-ggplot2.html"><a href="spatial-plots-with-ggplot2.html#simple-features"><i class="fa fa-check"></i><b>12.1</b> Simple Features</a></li>
+<li class="chapter" data-level="12.2" data-path="spatial-plots-with-ggplot2.html"><a href="spatial-plots-with-ggplot2.html#sea-surface-temperature-ggplot"><i class="fa fa-check"></i><b>12.2</b> Sea Surface Temperature ggplot</a></li>
+<li class="chapter" data-level="12.3" data-path="spatial-plots-with-ggplot2.html"><a href="spatial-plots-with-ggplot2.html#r-color-brewer-palettes"><i class="fa fa-check"></i><b>12.3</b> R Color Brewer Palettes</a>
+<ul>
+<li class="chapter" data-level="12.3.1" data-path="spatial-plots-with-ggplot2.html"><a href="spatial-plots-with-ggplot2.html#multi-plot-ggplot"><i class="fa fa-check"></i><b>12.3.1</b> Multi Plot ggplot</a></li>
 </ul></li>
-<li class="chapter" data-level="15.2" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#erddap"><i class="fa fa-check"></i><b>15.2</b> ERDDAP</a><ul>
-<li class="chapter" data-level="15.2.1" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#rerddap"><i class="fa fa-check"></i><b>15.2.1</b> <code>rerddap</code></a></li>
-<li class="chapter" data-level="15.2.2" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#finding-the-data-you-want"><i class="fa fa-check"></i><b>15.2.2</b> Finding the Data You Want</a></li>
-<li class="chapter" data-level="15.2.3" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#tabledap"><i class="fa fa-check"></i><b>15.2.3</b> Tabledap</a></li>
-<li class="chapter" data-level="15.2.4" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#griddap"><i class="fa fa-check"></i><b>15.2.4</b> Griddap</a></li>
-<li class="chapter" data-level="15.2.5" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#custom-erddap-url"><i class="fa fa-check"></i><b>15.2.5</b> Custom ERDDAP URL</a></li>
-</ul></li>
-<li class="chapter" data-level="15.3" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#assignment-8"><i class="fa fa-check"></i><b>15.3</b> Assignment</a><ul>
-<li class="chapter" data-level="15.3.1" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#extra-credit---2-points-3"><i class="fa fa-check"></i><b>15.3.1</b> Extra Credit - 2 Points</a></li>
+<li class="chapter" data-level="12.4" data-path="spatial-plots-with-ggplot2.html"><a href="spatial-plots-with-ggplot2.html#assignment-6"><i class="fa fa-check"></i><b>12.4</b> Assignment</a>
+<ul>
+<li class="chapter" data-level="12.4.1" data-path="spatial-plots-with-ggplot2.html"><a href="spatial-plots-with-ggplot2.html#extra-credit---2-points-2"><i class="fa fa-check"></i><b>12.4.1</b> Extra Credit - 2 Points</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="16" data-path="functions-and-code-presentation.html"><a href="functions-and-code-presentation.html"><i class="fa fa-check"></i><b>16</b> Functions and Code Presentation</a><ul>
-<li class="chapter" data-level="16.1" data-path="functions-and-code-presentation.html"><a href="functions-and-code-presentation.html#functions"><i class="fa fa-check"></i><b>16.1</b> Functions</a></li>
-<li class="chapter" data-level="16.2" data-path="functions-and-code-presentation.html"><a href="functions-and-code-presentation.html#netcdf-processing-function"><i class="fa fa-check"></i><b>16.2</b> NetCDF Processing Function</a></li>
-<li class="chapter" data-level="16.3" data-path="functions-and-code-presentation.html"><a href="functions-and-code-presentation.html#functions-in-for-loops"><i class="fa fa-check"></i><b>16.3</b> Functions in For Loops</a></li>
-<li class="chapter" data-level="16.4" data-path="functions-and-code-presentation.html"><a href="functions-and-code-presentation.html#rmarkdown"><i class="fa fa-check"></i><b>16.4</b> RMarkdown</a></li>
-<li class="chapter" data-level="16.5" data-path="functions-and-code-presentation.html"><a href="functions-and-code-presentation.html#assignment-9"><i class="fa fa-check"></i><b>16.5</b> Assignment</a></li>
+<li class="chapter" data-level="13" data-path="shapefiles.html"><a href="shapefiles.html"><i class="fa fa-check"></i><b>13</b> Shapefiles</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="shapefiles.html"><a href="shapefiles.html#reading-in-shapefiles"><i class="fa fa-check"></i><b>13.1</b> Reading in Shapefiles</a></li>
+<li class="chapter" data-level="13.2" data-path="shapefiles.html"><a href="shapefiles.html#combining-shapefiles-with-data"><i class="fa fa-check"></i><b>13.2</b> Combining Shapefiles with Data</a></li>
+<li class="chapter" data-level="13.3" data-path="shapefiles.html"><a href="shapefiles.html#visualizing-the-shapefiles-data"><i class="fa fa-check"></i><b>13.3</b> Visualizing the Shapefiles &amp; Data</a></li>
+<li class="chapter" data-level="13.4" data-path="shapefiles.html"><a href="shapefiles.html#saving-a-shapefile"><i class="fa fa-check"></i><b>13.4</b> Saving a shapefile</a></li>
+<li class="chapter" data-level="13.5" data-path="shapefiles.html"><a href="shapefiles.html#assignment-7"><i class="fa fa-check"></i><b>13.5</b> Assignment</a></li>
 </ul></li>
-<li class="chapter" data-level="17" data-path="machine-learning-with-r.html"><a href="machine-learning-with-r.html"><i class="fa fa-check"></i><b>17</b> Machine Learning with R</a><ul>
-<li class="chapter" data-level="17.1" data-path="machine-learning-with-r.html"><a href="machine-learning-with-r.html#machine-learning-terms"><i class="fa fa-check"></i><b>17.1</b> Machine Learning Terms</a></li>
-<li class="chapter" data-level="17.2" data-path="machine-learning-with-r.html"><a href="machine-learning-with-r.html#classical-machine-learning"><i class="fa fa-check"></i><b>17.2</b> Classical Machine Learning</a><ul>
-<li class="chapter" data-level="17.2.1" data-path="machine-learning-with-r.html"><a href="machine-learning-with-r.html#supervised-learning"><i class="fa fa-check"></i><b>17.2.1</b> Supervised Learning</a></li>
-<li class="chapter" data-level="17.2.2" data-path="machine-learning-with-r.html"><a href="machine-learning-with-r.html#unsupervised-learning"><i class="fa fa-check"></i><b>17.2.2</b> Unsupervised Learning</a></li>
-<li class="chapter" data-level="17.2.3" data-path="machine-learning-with-r.html"><a href="machine-learning-with-r.html#neural-networks"><i class="fa fa-check"></i><b>17.2.3</b> Neural Networks</a></li>
-<li class="chapter" data-level="17.2.4" data-path="machine-learning-with-r.html"><a href="machine-learning-with-r.html#reinforcement-learning"><i class="fa fa-check"></i><b>17.2.4</b> Reinforcement Learning</a></li>
+<li class="chapter" data-level="14" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html"><i class="fa fa-check"></i><b>14</b> Remote Data Extraction</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#thredds"><i class="fa fa-check"></i><b>14.1</b> THREDDS</a>
+<ul>
+<li class="chapter" data-level="14.1.1" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#opening-a-channel-to-the-database"><i class="fa fa-check"></i><b>14.1.1</b> Opening a Channel to the Database</a></li>
+<li class="chapter" data-level="14.1.2" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#indexing"><i class="fa fa-check"></i><b>14.1.2</b> Indexing</a></li>
+<li class="chapter" data-level="14.1.3" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#downloading-the-selected-data"><i class="fa fa-check"></i><b>14.1.3</b> Downloading the Selected Data</a></li>
+</ul></li>
+<li class="chapter" data-level="14.2" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#erddap"><i class="fa fa-check"></i><b>14.2</b> ERDDAP</a>
+<ul>
+<li class="chapter" data-level="14.2.1" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#rerddap"><i class="fa fa-check"></i><b>14.2.1</b> <code>rerddap</code></a></li>
+<li class="chapter" data-level="14.2.2" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#finding-the-data-you-want"><i class="fa fa-check"></i><b>14.2.2</b> Finding the Data You Want</a></li>
+<li class="chapter" data-level="14.2.3" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#tabledap"><i class="fa fa-check"></i><b>14.2.3</b> Tabledap</a></li>
+<li class="chapter" data-level="14.2.4" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#griddap"><i class="fa fa-check"></i><b>14.2.4</b> Griddap</a></li>
+<li class="chapter" data-level="14.2.5" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#custom-erddap-url"><i class="fa fa-check"></i><b>14.2.5</b> Custom ERDDAP URL</a></li>
+</ul></li>
+<li class="chapter" data-level="14.3" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#assignment-8"><i class="fa fa-check"></i><b>14.3</b> Assignment</a>
+<ul>
+<li class="chapter" data-level="14.3.1" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#extra-credit---2-points-3"><i class="fa fa-check"></i><b>14.3.1</b> Extra Credit - 2 Points</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="18" data-path="time-series-forecasting.html"><a href="time-series-forecasting.html"><i class="fa fa-check"></i><b>18</b> Time Series Forecasting</a><ul>
-<li class="chapter" data-level="18.1" data-path="time-series-forecasting.html"><a href="time-series-forecasting.html#load-the-packages-and-data"><i class="fa fa-check"></i><b>18.1</b> Load the Packages and Data</a></li>
-<li class="chapter" data-level="18.2" data-path="time-series-forecasting.html"><a href="time-series-forecasting.html#aggregate-data"><i class="fa fa-check"></i><b>18.2</b> Aggregate Data</a></li>
-<li class="chapter" data-level="18.3" data-path="time-series-forecasting.html"><a href="time-series-forecasting.html#prepping-the-model"><i class="fa fa-check"></i><b>18.3</b> Prepping the Model</a></li>
-<li class="chapter" data-level="18.4" data-path="time-series-forecasting.html"><a href="time-series-forecasting.html#running-the-model"><i class="fa fa-check"></i><b>18.4</b> Running the Model</a></li>
-<li class="chapter" data-level="18.5" data-path="time-series-forecasting.html"><a href="time-series-forecasting.html#validation-and-accuracy"><i class="fa fa-check"></i><b>18.5</b> Validation and Accuracy</a></li>
-<li class="chapter" data-level="18.6" data-path="time-series-forecasting.html"><a href="time-series-forecasting.html#future-forecasting"><i class="fa fa-check"></i><b>18.6</b> Future Forecasting</a></li>
-<li class="chapter" data-level="18.7" data-path="time-series-forecasting.html"><a href="time-series-forecasting.html#assignment-10"><i class="fa fa-check"></i><b>18.7</b> Assignment</a></li>
+<li class="chapter" data-level="15" data-path="functions-and-code-presentation.html"><a href="functions-and-code-presentation.html"><i class="fa fa-check"></i><b>15</b> Functions and Code Presentation</a>
+<ul>
+<li class="chapter" data-level="15.1" data-path="functions-and-code-presentation.html"><a href="functions-and-code-presentation.html#functions"><i class="fa fa-check"></i><b>15.1</b> Functions</a></li>
+<li class="chapter" data-level="15.2" data-path="functions-and-code-presentation.html"><a href="functions-and-code-presentation.html#netcdf-processing-function"><i class="fa fa-check"></i><b>15.2</b> NetCDF Processing Function</a></li>
+<li class="chapter" data-level="15.3" data-path="functions-and-code-presentation.html"><a href="functions-and-code-presentation.html#functions-in-for-loops"><i class="fa fa-check"></i><b>15.3</b> Functions in For Loops</a></li>
+<li class="chapter" data-level="15.4" data-path="functions-and-code-presentation.html"><a href="functions-and-code-presentation.html#rmarkdown"><i class="fa fa-check"></i><b>15.4</b> RMarkdown</a></li>
+<li class="chapter" data-level="15.5" data-path="functions-and-code-presentation.html"><a href="functions-and-code-presentation.html#assignment-9"><i class="fa fa-check"></i><b>15.5</b> Assignment</a></li>
 </ul></li>
-<li class="chapter" data-level="19" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html"><i class="fa fa-check"></i><b>19</b> Random Forest Modeling</a><ul>
-<li class="chapter" data-level="19.1" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#prepare-the-data"><i class="fa fa-check"></i><b>19.1</b> Prepare the Data</a></li>
-<li class="chapter" data-level="19.2" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#dimensionality-reduction"><i class="fa fa-check"></i><b>19.2</b> Dimensionality Reduction</a><ul>
-<li class="chapter" data-level="19.2.1" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#principal-component-analysis"><i class="fa fa-check"></i><b>19.2.1</b> Principal Component Analysis</a></li>
-<li class="chapter" data-level="19.2.2" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#t-sne-dimensionality-reduction"><i class="fa fa-check"></i><b>19.2.2</b> t-SNE Dimensionality Reduction</a></li>
-<li class="chapter" data-level="19.2.3" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#multidimensional-scaling"><i class="fa fa-check"></i><b>19.2.3</b> Multidimensional Scaling</a></li>
+<li class="chapter" data-level="16" data-path="machine-learning-with-r.html"><a href="machine-learning-with-r.html"><i class="fa fa-check"></i><b>16</b> Machine Learning with R</a>
+<ul>
+<li class="chapter" data-level="16.1" data-path="machine-learning-with-r.html"><a href="machine-learning-with-r.html#machine-learning-terms"><i class="fa fa-check"></i><b>16.1</b> Machine Learning Terms</a></li>
+<li class="chapter" data-level="16.2" data-path="machine-learning-with-r.html"><a href="machine-learning-with-r.html#classical-machine-learning"><i class="fa fa-check"></i><b>16.2</b> Classical Machine Learning</a>
+<ul>
+<li class="chapter" data-level="16.2.1" data-path="machine-learning-with-r.html"><a href="machine-learning-with-r.html#supervised-learning"><i class="fa fa-check"></i><b>16.2.1</b> Supervised Learning</a></li>
+<li class="chapter" data-level="16.2.2" data-path="machine-learning-with-r.html"><a href="machine-learning-with-r.html#unsupervised-learning"><i class="fa fa-check"></i><b>16.2.2</b> Unsupervised Learning</a></li>
+<li class="chapter" data-level="16.2.3" data-path="machine-learning-with-r.html"><a href="machine-learning-with-r.html#neural-networks"><i class="fa fa-check"></i><b>16.2.3</b> Neural Networks</a></li>
+<li class="chapter" data-level="16.2.4" data-path="machine-learning-with-r.html"><a href="machine-learning-with-r.html#reinforcement-learning"><i class="fa fa-check"></i><b>16.2.4</b> Reinforcement Learning</a></li>
 </ul></li>
-<li class="chapter" data-level="19.3" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#random-forests"><i class="fa fa-check"></i><b>19.3</b> Random Forests</a><ul>
-<li class="chapter" data-level="19.3.1" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#decision-trees"><i class="fa fa-check"></i><b>19.3.1</b> Decision Trees</a></li>
-<li class="chapter" data-level="19.3.2" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#data-partition"><i class="fa fa-check"></i><b>19.3.2</b> Data Partition</a></li>
-<li class="chapter" data-level="19.3.3" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#training-the-model"><i class="fa fa-check"></i><b>19.3.3</b> Training the Model</a></li>
-<li class="chapter" data-level="19.3.4" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#testing-the-model"><i class="fa fa-check"></i><b>19.3.4</b> Testing the Model</a></li>
-<li class="chapter" data-level="19.3.5" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#hyperparameter-tuning"><i class="fa fa-check"></i><b>19.3.5</b> Hyperparameter Tuning</a></li>
 </ul></li>
-<li class="chapter" data-level="19.4" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#assignment-11"><i class="fa fa-check"></i><b>19.4</b> Assignment</a></li>
+<li class="chapter" data-level="17" data-path="time-series-forecasting.html"><a href="time-series-forecasting.html"><i class="fa fa-check"></i><b>17</b> Time Series Forecasting</a>
+<ul>
+<li class="chapter" data-level="17.1" data-path="time-series-forecasting.html"><a href="time-series-forecasting.html#load-the-packages-and-data"><i class="fa fa-check"></i><b>17.1</b> Load the Packages and Data</a></li>
+<li class="chapter" data-level="17.2" data-path="time-series-forecasting.html"><a href="time-series-forecasting.html#aggregate-data"><i class="fa fa-check"></i><b>17.2</b> Aggregate Data</a></li>
+<li class="chapter" data-level="17.3" data-path="time-series-forecasting.html"><a href="time-series-forecasting.html#prepping-the-model"><i class="fa fa-check"></i><b>17.3</b> Prepping the Model</a></li>
+<li class="chapter" data-level="17.4" data-path="time-series-forecasting.html"><a href="time-series-forecasting.html#running-the-model"><i class="fa fa-check"></i><b>17.4</b> Running the Model</a></li>
+<li class="chapter" data-level="17.5" data-path="time-series-forecasting.html"><a href="time-series-forecasting.html#validation-and-accuracy"><i class="fa fa-check"></i><b>17.5</b> Validation and Accuracy</a></li>
+<li class="chapter" data-level="17.6" data-path="time-series-forecasting.html"><a href="time-series-forecasting.html#future-forecasting"><i class="fa fa-check"></i><b>17.6</b> Future Forecasting</a></li>
+<li class="chapter" data-level="17.7" data-path="time-series-forecasting.html"><a href="time-series-forecasting.html#assignment-10"><i class="fa fa-check"></i><b>17.7</b> Assignment</a></li>
+</ul></li>
+<li class="chapter" data-level="18" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html"><i class="fa fa-check"></i><b>18</b> Random Forest Modeling</a>
+<ul>
+<li class="chapter" data-level="18.1" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#prepare-the-data"><i class="fa fa-check"></i><b>18.1</b> Prepare the Data</a></li>
+<li class="chapter" data-level="18.2" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#dimensionality-reduction"><i class="fa fa-check"></i><b>18.2</b> Dimensionality Reduction</a>
+<ul>
+<li class="chapter" data-level="18.2.1" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#principal-component-analysis"><i class="fa fa-check"></i><b>18.2.1</b> Principal Component Analysis</a></li>
+<li class="chapter" data-level="18.2.2" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#t-sne-dimensionality-reduction"><i class="fa fa-check"></i><b>18.2.2</b> t-SNE Dimensionality Reduction</a></li>
+<li class="chapter" data-level="18.2.3" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#multidimensional-scaling"><i class="fa fa-check"></i><b>18.2.3</b> Multidimensional Scaling</a></li>
+</ul></li>
+<li class="chapter" data-level="18.3" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#random-forests"><i class="fa fa-check"></i><b>18.3</b> Random Forests</a>
+<ul>
+<li class="chapter" data-level="18.3.1" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#decision-trees"><i class="fa fa-check"></i><b>18.3.1</b> Decision Trees</a></li>
+<li class="chapter" data-level="18.3.2" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#data-partition"><i class="fa fa-check"></i><b>18.3.2</b> Data Partition</a></li>
+<li class="chapter" data-level="18.3.3" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#training-the-model"><i class="fa fa-check"></i><b>18.3.3</b> Training the Model</a></li>
+<li class="chapter" data-level="18.3.4" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#testing-the-model"><i class="fa fa-check"></i><b>18.3.4</b> Testing the Model</a></li>
+<li class="chapter" data-level="18.3.5" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#hyperparameter-tuning"><i class="fa fa-check"></i><b>18.3.5</b> Hyperparameter Tuning</a></li>
+</ul></li>
+<li class="chapter" data-level="18.4" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#assignment-11"><i class="fa fa-check"></i><b>18.4</b> Assignment</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/jsimkins2" target="blank">James Simkins</a></li>
@@ -352,48 +385,48 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="raster-visualization" class="section level1">
-<h1><span class="header-section-number">8</span> Raster Visualization</h1>
+<div id="raster-visualization" class="section level1" number="7">
+<h1><span class="header-section-number">7</span> Raster Visualization</h1>
 <p>This week we’ll use a different dataset from the GOES-16 satellite to explore new coding practices. We’ll take what we have learned from the example and apply it to a global tree cover dataset. First, let’s cover an important skill - understanding the <code>paste0()</code> function.</p>
-<div id="paste0" class="section level2">
-<h2><span class="header-section-number">8.1</span> <code>Paste0()</code></h2>
+<div id="paste0" class="section level2" number="7.1">
+<h2><span class="header-section-number">7.1</span> <code>Paste0()</code></h2>
 <p>Last week we covered the for loop which is an essential programming skill. We also touched on the <code>paste0()</code> function, but this is incredibly useful and should be expanded upon. <code>paste0()</code> is the sister function of <code>paste()</code>, who’s cousin is <code>sprintf()</code> . It depends on preference, but most coders I know gravitate towards <code>paste0()</code>. Let’s check out all 3.</p>
-<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb170-1" data-line-number="1"><span class="co"># Paste Example 1 - default sep (aka separation) is space</span></a>
-<a class="sourceLine" id="cb170-2" data-line-number="2"><span class="kw">paste</span>(<span class="st">&quot;file&quot;</span>, <span class="st">&quot;number&quot;</span>, <span class="st">&quot;32&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb170-1"><a href="raster-visualization.html#cb170-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Paste Example 1 - default sep (aka separation) is space</span></span>
+<span id="cb170-2"><a href="raster-visualization.html#cb170-2" aria-hidden="true" tabindex="-1"></a><span class="fu">paste</span>(<span class="st">&quot;file&quot;</span>, <span class="st">&quot;number&quot;</span>, <span class="st">&quot;32&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;file number 32&quot;</code></pre>
-<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb172-1" data-line-number="1"><span class="co"># Paste Example 2 - set sep to &quot;_&quot;</span></a>
-<a class="sourceLine" id="cb172-2" data-line-number="2"><span class="kw">paste</span>(<span class="st">&quot;file&quot;</span>, <span class="st">&quot;number&quot;</span>, <span class="st">&quot;32&quot;</span>, <span class="dt">sep =</span> <span class="st">&quot;_&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb172-1"><a href="raster-visualization.html#cb172-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Paste Example 2 - set sep to &quot;_&quot;</span></span>
+<span id="cb172-2"><a href="raster-visualization.html#cb172-2" aria-hidden="true" tabindex="-1"></a><span class="fu">paste</span>(<span class="st">&quot;file&quot;</span>, <span class="st">&quot;number&quot;</span>, <span class="st">&quot;32&quot;</span>, <span class="at">sep =</span> <span class="st">&quot;_&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;file_number_32&quot;</code></pre>
-<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb174-1" data-line-number="1"><span class="co"># Paste0 Example 1 - 0 for 0 separating characters</span></a>
-<a class="sourceLine" id="cb174-2" data-line-number="2"><span class="kw">paste0</span>(<span class="st">&quot;file&quot;</span>, <span class="st">&quot;number&quot;</span>, <span class="st">&quot;32&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb174-1"><a href="raster-visualization.html#cb174-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Paste0 Example 1 - 0 for 0 separating characters</span></span>
+<span id="cb174-2"><a href="raster-visualization.html#cb174-2" aria-hidden="true" tabindex="-1"></a><span class="fu">paste0</span>(<span class="st">&quot;file&quot;</span>, <span class="st">&quot;number&quot;</span>, <span class="st">&quot;32&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;filenumber32&quot;</code></pre>
-<div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb176-1" data-line-number="1"><span class="co"># sprintf example 1</span></a>
-<a class="sourceLine" id="cb176-2" data-line-number="2"><span class="kw">sprintf</span>(<span class="st">&quot;%s %s %s&quot;</span>, <span class="st">&quot;file&quot;</span>, <span class="st">&quot;number&quot;</span>, <span class="st">&quot;32&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb176-1"><a href="raster-visualization.html#cb176-1" aria-hidden="true" tabindex="-1"></a><span class="co"># sprintf example 1</span></span>
+<span id="cb176-2"><a href="raster-visualization.html#cb176-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sprintf</span>(<span class="st">&quot;%s %s %s&quot;</span>, <span class="st">&quot;file&quot;</span>, <span class="st">&quot;number&quot;</span>, <span class="st">&quot;32&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;file number 32&quot;</code></pre>
-<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb178-1" data-line-number="1"><span class="co"># sprintf example 2</span></a>
-<a class="sourceLine" id="cb178-2" data-line-number="2">person &lt;-<span class="st">&quot;Grover&quot;</span></a>
-<a class="sourceLine" id="cb178-3" data-line-number="3">action &lt;-<span class="st">&quot;flying&quot;</span></a>
-<a class="sourceLine" id="cb178-4" data-line-number="4"><span class="kw">message</span>(<span class="kw">sprintf</span>(<span class="st">&quot;On %s I realized %s was...</span><span class="ch">\n</span><span class="st">%s by the street&quot;</span>, <span class="kw">Sys.Date</span>(), person, action))</a></code></pre></div>
-<pre><code>## On 2021-01-28 I realized Grover was...
+<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb178-1"><a href="raster-visualization.html#cb178-1" aria-hidden="true" tabindex="-1"></a><span class="co"># sprintf example 2</span></span>
+<span id="cb178-2"><a href="raster-visualization.html#cb178-2" aria-hidden="true" tabindex="-1"></a>person <span class="ot">&lt;-</span><span class="st">&quot;Grover&quot;</span></span>
+<span id="cb178-3"><a href="raster-visualization.html#cb178-3" aria-hidden="true" tabindex="-1"></a>action <span class="ot">&lt;-</span><span class="st">&quot;flying&quot;</span></span>
+<span id="cb178-4"><a href="raster-visualization.html#cb178-4" aria-hidden="true" tabindex="-1"></a><span class="fu">message</span>(<span class="fu">sprintf</span>(<span class="st">&quot;On %s I realized %s was...</span><span class="sc">\n</span><span class="st">%s by the street&quot;</span>, <span class="fu">Sys.Date</span>(), person, action))</span></code></pre></div>
+<pre><code>## On 2021-03-03 I realized Grover was...
 ## flying by the street</code></pre>
-<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb180-1" data-line-number="1"><span class="co"># Notice that paste() is limiting because the separating character is not always present between</span></a>
-<a class="sourceLine" id="cb180-2" data-line-number="2"><span class="co"># each string you&#39;re concatenating</span></a>
-<a class="sourceLine" id="cb180-3" data-line-number="3"><span class="co"># Let&#39;s use paste0 here</span></a>
-<a class="sourceLine" id="cb180-4" data-line-number="4">fileList &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;filename1&#39;</span>, <span class="st">&#39;filename2&#39;</span>, <span class="st">&#39;filename3&#39;</span>, <span class="st">&#39;filename4&#39;</span>)</a>
-<a class="sourceLine" id="cb180-5" data-line-number="5">dateFolder &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;0813&#39;</span>, <span class="st">&#39;0814&#39;</span>, <span class="st">&#39;0815&#39;</span>, <span class="st">&#39;0816&#39;</span>)</a>
-<a class="sourceLine" id="cb180-6" data-line-number="6">homeDir &lt;-<span class="st"> &quot;~/Documents/&quot;</span></a>
-<a class="sourceLine" id="cb180-7" data-line-number="7">pathList &lt;-<span class="st"> </span><span class="kw">list</span>()</a>
-<a class="sourceLine" id="cb180-8" data-line-number="8"></a>
-<a class="sourceLine" id="cb180-9" data-line-number="9"><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">length</span>(fileList)){</a>
-<a class="sourceLine" id="cb180-10" data-line-number="10">  <span class="kw">print</span>(i)</a>
-<a class="sourceLine" id="cb180-11" data-line-number="11">  tempString &lt;-<span class="st"> </span><span class="kw">paste0</span>(homeDir, dateFolder[i], <span class="st">&#39;/&#39;</span>, fileList[i])</a>
-<a class="sourceLine" id="cb180-12" data-line-number="12">  pathList[i] &lt;-<span class="st"> </span>tempString</a>
-<a class="sourceLine" id="cb180-13" data-line-number="13">}</a></code></pre></div>
+<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb180-1"><a href="raster-visualization.html#cb180-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Notice that paste() is limiting because the separating character is not always present between</span></span>
+<span id="cb180-2"><a href="raster-visualization.html#cb180-2" aria-hidden="true" tabindex="-1"></a><span class="co"># each string you&#39;re concatenating</span></span>
+<span id="cb180-3"><a href="raster-visualization.html#cb180-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Let&#39;s use paste0 here</span></span>
+<span id="cb180-4"><a href="raster-visualization.html#cb180-4" aria-hidden="true" tabindex="-1"></a>fileList <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&#39;filename1&#39;</span>, <span class="st">&#39;filename2&#39;</span>, <span class="st">&#39;filename3&#39;</span>, <span class="st">&#39;filename4&#39;</span>)</span>
+<span id="cb180-5"><a href="raster-visualization.html#cb180-5" aria-hidden="true" tabindex="-1"></a>dateFolder <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&#39;0813&#39;</span>, <span class="st">&#39;0814&#39;</span>, <span class="st">&#39;0815&#39;</span>, <span class="st">&#39;0816&#39;</span>)</span>
+<span id="cb180-6"><a href="raster-visualization.html#cb180-6" aria-hidden="true" tabindex="-1"></a>homeDir <span class="ot">&lt;-</span> <span class="st">&quot;~/Documents/&quot;</span></span>
+<span id="cb180-7"><a href="raster-visualization.html#cb180-7" aria-hidden="true" tabindex="-1"></a>pathList <span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
+<span id="cb180-8"><a href="raster-visualization.html#cb180-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb180-9"><a href="raster-visualization.html#cb180-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(fileList)){</span>
+<span id="cb180-10"><a href="raster-visualization.html#cb180-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(i)</span>
+<span id="cb180-11"><a href="raster-visualization.html#cb180-11" aria-hidden="true" tabindex="-1"></a>  tempString <span class="ot">&lt;-</span> <span class="fu">paste0</span>(homeDir, dateFolder[i], <span class="st">&#39;/&#39;</span>, fileList[i])</span>
+<span id="cb180-12"><a href="raster-visualization.html#cb180-12" aria-hidden="true" tabindex="-1"></a>  pathList[i] <span class="ot">&lt;-</span> tempString</span>
+<span id="cb180-13"><a href="raster-visualization.html#cb180-13" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <pre><code>## [1] 1
 ## [1] 2
 ## [1] 3
 ## [1] 4</code></pre>
-<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb182-1" data-line-number="1">pathList</a></code></pre></div>
+<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb182-1"><a href="raster-visualization.html#cb182-1" aria-hidden="true" tabindex="-1"></a>pathList</span></code></pre></div>
 <pre><code>## [[1]]
 ## [1] &quot;~/Documents/0813/filename1&quot;
 ## 
@@ -405,140 +438,140 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 
 ## [[4]]
 ## [1] &quot;~/Documents/0816/filename4&quot;</code></pre>
-<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb184-1" data-line-number="1">pathList[[<span class="dv">1</span>]]</a></code></pre></div>
+<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb184-1"><a href="raster-visualization.html#cb184-1" aria-hidden="true" tabindex="-1"></a>pathList[[<span class="dv">1</span>]]</span></code></pre></div>
 <pre><code>## [1] &quot;~/Documents/0813/filename1&quot;</code></pre>
-<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb186-1" data-line-number="1"><span class="co"># Now let&#39;s rewrite using sprintf</span></a>
-<a class="sourceLine" id="cb186-2" data-line-number="2">fileList &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;filename1&#39;</span>, <span class="st">&#39;filename2&#39;</span>, <span class="st">&#39;filename3&#39;</span>, <span class="st">&#39;filename4&#39;</span>)</a>
-<a class="sourceLine" id="cb186-3" data-line-number="3">dateFolder &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;0813&#39;</span>, <span class="st">&#39;0814&#39;</span>, <span class="st">&#39;0815&#39;</span>, <span class="st">&#39;0816&#39;</span>)</a>
-<a class="sourceLine" id="cb186-4" data-line-number="4">homeDir &lt;-<span class="st"> &quot;~/Documents/&quot;</span></a>
-<a class="sourceLine" id="cb186-5" data-line-number="5">pathList &lt;-<span class="st"> </span><span class="kw">list</span>()</a>
-<a class="sourceLine" id="cb186-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb186-7" data-line-number="7">pathList &lt;-<span class="st"> </span><span class="kw">sprintf</span>(<span class="st">&quot;%s%s/%s&quot;</span>, homeDir, dateFolder, fileList)</a>
-<a class="sourceLine" id="cb186-8" data-line-number="8"></a>
-<a class="sourceLine" id="cb186-9" data-line-number="9">pathList</a></code></pre></div>
+<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb186-1"><a href="raster-visualization.html#cb186-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Now let&#39;s rewrite using sprintf</span></span>
+<span id="cb186-2"><a href="raster-visualization.html#cb186-2" aria-hidden="true" tabindex="-1"></a>fileList <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&#39;filename1&#39;</span>, <span class="st">&#39;filename2&#39;</span>, <span class="st">&#39;filename3&#39;</span>, <span class="st">&#39;filename4&#39;</span>)</span>
+<span id="cb186-3"><a href="raster-visualization.html#cb186-3" aria-hidden="true" tabindex="-1"></a>dateFolder <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&#39;0813&#39;</span>, <span class="st">&#39;0814&#39;</span>, <span class="st">&#39;0815&#39;</span>, <span class="st">&#39;0816&#39;</span>)</span>
+<span id="cb186-4"><a href="raster-visualization.html#cb186-4" aria-hidden="true" tabindex="-1"></a>homeDir <span class="ot">&lt;-</span> <span class="st">&quot;~/Documents/&quot;</span></span>
+<span id="cb186-5"><a href="raster-visualization.html#cb186-5" aria-hidden="true" tabindex="-1"></a>pathList <span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
+<span id="cb186-6"><a href="raster-visualization.html#cb186-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb186-7"><a href="raster-visualization.html#cb186-7" aria-hidden="true" tabindex="-1"></a>pathList <span class="ot">&lt;-</span> <span class="fu">sprintf</span>(<span class="st">&quot;%s%s/%s&quot;</span>, homeDir, dateFolder, fileList)</span>
+<span id="cb186-8"><a href="raster-visualization.html#cb186-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb186-9"><a href="raster-visualization.html#cb186-9" aria-hidden="true" tabindex="-1"></a>pathList</span></code></pre></div>
 <pre><code>## [1] &quot;~/Documents/0813/filename1&quot; &quot;~/Documents/0814/filename2&quot;
 ## [3] &quot;~/Documents/0815/filename3&quot; &quot;~/Documents/0816/filename4&quot;</code></pre>
-<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb188-1" data-line-number="1">pathList[[<span class="dv">1</span>]]</a></code></pre></div>
+<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb188-1"><a href="raster-visualization.html#cb188-1" aria-hidden="true" tabindex="-1"></a>pathList[[<span class="dv">1</span>]]</span></code></pre></div>
 <pre><code>## [1] &quot;~/Documents/0813/filename1&quot;</code></pre>
-<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb190-1" data-line-number="1"><span class="co">#sprintf is a very useful and quick function for combining various strings into longer strings</span></a>
-<a class="sourceLine" id="cb190-2" data-line-number="2"><span class="co">#but paste0 allows you a little more freedom and is slightly more intuitive</span></a></code></pre></div>
+<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb190-1"><a href="raster-visualization.html#cb190-1" aria-hidden="true" tabindex="-1"></a><span class="co">#sprintf is a very useful and quick function for combining various strings into longer strings</span></span>
+<span id="cb190-2"><a href="raster-visualization.html#cb190-2" aria-hidden="true" tabindex="-1"></a><span class="co">#but paste0 allows you a little more freedom and is slightly more intuitive</span></span></code></pre></div>
 <p>Debug and fix the following code:</p>
-<div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb191-1" data-line-number="1"><span class="co"># Let&#39;s use paste0 here</span></a>
-<a class="sourceLine" id="cb191-2" data-line-number="2">fileList &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;sstData20190912&#39;</span>, <span class="st">&#39;sstData20190913&#39;</span>, <span class="st">&#39;sstData20190914&#39;</span>, <span class="st">&#39;sstData20190915&#39;</span>)</a>
-<a class="sourceLine" id="cb191-3" data-line-number="3">dateFolder &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dv">0912</span>, <span class="dv">0915</span>, <span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb191-4" data-line-number="4">homeDir &lt;-<span class="st"> &quot;~/Documents/&quot;</span></a>
-<a class="sourceLine" id="cb191-5" data-line-number="5">pathList &lt;-<span class="st"> </span><span class="kw">list</span>()</a>
-<a class="sourceLine" id="cb191-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb191-7" data-line-number="7"><span class="cf">for</span> (i <span class="cf">in</span> fileList){</a>
-<a class="sourceLine" id="cb191-8" data-line-number="8">  <span class="kw">print</span>(i)</a>
-<a class="sourceLine" id="cb191-9" data-line-number="9">  tempString &lt;-<span class="st"> </span><span class="kw">paste0</span>(homeDir, dateFolder[i], <span class="st">&#39;/&#39;</span>, i)</a>
-<a class="sourceLine" id="cb191-10" data-line-number="10">  pathList[i] &lt;-<span class="st"> </span>tempString</a>
-<a class="sourceLine" id="cb191-11" data-line-number="11">}</a>
-<a class="sourceLine" id="cb191-12" data-line-number="12"></a>
-<a class="sourceLine" id="cb191-13" data-line-number="13">pathList</a>
-<a class="sourceLine" id="cb191-14" data-line-number="14"></a>
-<a class="sourceLine" id="cb191-15" data-line-number="15">pathList[[<span class="dv">1</span>]]</a></code></pre></div>
+<div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb191-1"><a href="raster-visualization.html#cb191-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Let&#39;s use paste0 here</span></span>
+<span id="cb191-2"><a href="raster-visualization.html#cb191-2" aria-hidden="true" tabindex="-1"></a>fileList <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&#39;sstData20190912&#39;</span>, <span class="st">&#39;sstData20190913&#39;</span>, <span class="st">&#39;sstData20190914&#39;</span>, <span class="st">&#39;sstData20190915&#39;</span>)</span>
+<span id="cb191-3"><a href="raster-visualization.html#cb191-3" aria-hidden="true" tabindex="-1"></a>dateFolder <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0912</span>, <span class="dv">0915</span>, <span class="dv">1</span>)</span>
+<span id="cb191-4"><a href="raster-visualization.html#cb191-4" aria-hidden="true" tabindex="-1"></a>homeDir <span class="ot">&lt;-</span> <span class="st">&quot;~/Documents/&quot;</span></span>
+<span id="cb191-5"><a href="raster-visualization.html#cb191-5" aria-hidden="true" tabindex="-1"></a>pathList <span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
+<span id="cb191-6"><a href="raster-visualization.html#cb191-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb191-7"><a href="raster-visualization.html#cb191-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> fileList){</span>
+<span id="cb191-8"><a href="raster-visualization.html#cb191-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(i)</span>
+<span id="cb191-9"><a href="raster-visualization.html#cb191-9" aria-hidden="true" tabindex="-1"></a>  tempString <span class="ot">&lt;-</span> <span class="fu">paste0</span>(homeDir, dateFolder[i], <span class="st">&#39;/&#39;</span>, i)</span>
+<span id="cb191-10"><a href="raster-visualization.html#cb191-10" aria-hidden="true" tabindex="-1"></a>  pathList[i] <span class="ot">&lt;-</span> tempString</span>
+<span id="cb191-11"><a href="raster-visualization.html#cb191-11" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb191-12"><a href="raster-visualization.html#cb191-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb191-13"><a href="raster-visualization.html#cb191-13" aria-hidden="true" tabindex="-1"></a>pathList</span>
+<span id="cb191-14"><a href="raster-visualization.html#cb191-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb191-15"><a href="raster-visualization.html#cb191-15" aria-hidden="true" tabindex="-1"></a>pathList[[<span class="dv">1</span>]]</span></code></pre></div>
 <p>The final <code>pathList[[1]]</code> should look like this…</p>
-<p><code>&quot;~/Documents/0912/sstData20190912&quot;</code></p>
+<p><code>"~/Documents/0912/sstData20190912"</code></p>
 </div>
-<div id="rasters" class="section level2">
-<h2><span class="header-section-number">8.2</span> Rasters</h2>
+<div id="rasters" class="section level2" number="7.2">
+<h2><span class="header-section-number">7.2</span> Rasters</h2>
 <p>Rasters offer us a 2 dimensional dataset (matrix) of data with geospatial coordinates. Rasters can come in a variety of filetypes including netCDF, GeoTIFF, CSV (if they come in CSV, they’ll be massive - this is an inefficient datatype), etc. We’ll be looking at the GOES-16 Rolling 1 Day average datafile - <strong>GOES_R_ROLLING_1DAY_20190814.nc</strong>. The GOES-16 Satellite records sea surface temperatures every hour. A rolling 1 day is an average of the previous 24 hours of record of sea surface temperature (and this dataset is created by CEMA here at UD).</p>
-<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb192-1" data-line-number="1"><span class="kw">library</span>(maptools)</a>
-<a class="sourceLine" id="cb192-2" data-line-number="2"><span class="kw">library</span>(sp)</a>
-<a class="sourceLine" id="cb192-3" data-line-number="3"><span class="kw">library</span>(ncdf4)</a>
-<a class="sourceLine" id="cb192-4" data-line-number="4"><span class="kw">library</span>(raster)</a>
-<a class="sourceLine" id="cb192-5" data-line-number="5"><span class="kw">library</span>(rasterVis)</a>
-<a class="sourceLine" id="cb192-6" data-line-number="6"><span class="kw">library</span>(RColorBrewer)</a>
-<a class="sourceLine" id="cb192-7" data-line-number="7">ncFile &lt;-<span class="st"> </span><span class="kw">nc_open</span>(<span class="st">&quot;../datasets/GOES_R_ROLLING_1DAY_20190814.nc&quot;</span>)</a>
-<a class="sourceLine" id="cb192-8" data-line-number="8">sstGoes &lt;-<span class="st"> </span><span class="kw">ncvar_get</span>(ncFile, <span class="dt">varid =</span> <span class="st">&quot;sst&quot;</span>)</a>
-<a class="sourceLine" id="cb192-9" data-line-number="9">sstRast &lt;-<span class="st"> </span><span class="kw">raster</span>(sstGoes)</a>
-<a class="sourceLine" id="cb192-10" data-line-number="10"></a>
-<a class="sourceLine" id="cb192-11" data-line-number="11"><span class="co"># plot using quick &#39;image&#39; function from raster</span></a>
-<a class="sourceLine" id="cb192-12" data-line-number="12"><span class="kw">image</span>(sstRast)</a></code></pre></div>
+<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb192-1"><a href="raster-visualization.html#cb192-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(maptools)</span>
+<span id="cb192-2"><a href="raster-visualization.html#cb192-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sp)</span>
+<span id="cb192-3"><a href="raster-visualization.html#cb192-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ncdf4)</span>
+<span id="cb192-4"><a href="raster-visualization.html#cb192-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(raster)</span>
+<span id="cb192-5"><a href="raster-visualization.html#cb192-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rasterVis)</span>
+<span id="cb192-6"><a href="raster-visualization.html#cb192-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RColorBrewer)</span>
+<span id="cb192-7"><a href="raster-visualization.html#cb192-7" aria-hidden="true" tabindex="-1"></a>ncFile <span class="ot">&lt;-</span> <span class="fu">nc_open</span>(<span class="st">&quot;../datasets/GOES_R_ROLLING_1DAY_20190814.nc&quot;</span>)</span>
+<span id="cb192-8"><a href="raster-visualization.html#cb192-8" aria-hidden="true" tabindex="-1"></a>sstGoes <span class="ot">&lt;-</span> <span class="fu">ncvar_get</span>(ncFile, <span class="at">varid =</span> <span class="st">&quot;sst&quot;</span>)</span>
+<span id="cb192-9"><a href="raster-visualization.html#cb192-9" aria-hidden="true" tabindex="-1"></a>sstRast <span class="ot">&lt;-</span> <span class="fu">raster</span>(sstGoes)</span>
+<span id="cb192-10"><a href="raster-visualization.html#cb192-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb192-11"><a href="raster-visualization.html#cb192-11" aria-hidden="true" tabindex="-1"></a><span class="co"># plot using quick &#39;image&#39; function from raster</span></span>
+<span id="cb192-12"><a href="raster-visualization.html#cb192-12" aria-hidden="true" tabindex="-1"></a><span class="fu">image</span>(sstRast)</span></code></pre></div>
 <p><img src="R_Geospatial_Sciences_files/figure-html/raster%20section-1.png" width="60%" style="display: block; margin: auto;" /></p>
-<div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb193-1" data-line-number="1"><span class="co"># netcdf stores data backwards, so to convert it to raster we need to transpose it</span></a>
-<a class="sourceLine" id="cb193-2" data-line-number="2">sstRast &lt;-<span class="st"> </span><span class="kw">t</span>(sstRast)</a>
-<a class="sourceLine" id="cb193-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb193-4" data-line-number="4"><span class="co"># plot using quick &#39;image&#39; function from raster</span></a>
-<a class="sourceLine" id="cb193-5" data-line-number="5"><span class="kw">image</span>(sstRast)</a></code></pre></div>
+<div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb193-1"><a href="raster-visualization.html#cb193-1" aria-hidden="true" tabindex="-1"></a><span class="co"># netcdf stores data backwards, so to convert it to raster we need to transpose it</span></span>
+<span id="cb193-2"><a href="raster-visualization.html#cb193-2" aria-hidden="true" tabindex="-1"></a>sstRast <span class="ot">&lt;-</span> <span class="fu">t</span>(sstRast)</span>
+<span id="cb193-3"><a href="raster-visualization.html#cb193-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb193-4"><a href="raster-visualization.html#cb193-4" aria-hidden="true" tabindex="-1"></a><span class="co"># plot using quick &#39;image&#39; function from raster</span></span>
+<span id="cb193-5"><a href="raster-visualization.html#cb193-5" aria-hidden="true" tabindex="-1"></a><span class="fu">image</span>(sstRast)</span></code></pre></div>
 <p><img src="R_Geospatial_Sciences_files/figure-html/raster%20section-2.png" width="60%" style="display: block; margin: auto;" /></p>
-<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb194-1" data-line-number="1"><span class="co"># now we see that the data is just upside down, so we use the flip() function</span></a>
-<a class="sourceLine" id="cb194-2" data-line-number="2">sstRast &lt;-<span class="st"> </span><span class="kw">flip</span>(sstRast, <span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb194-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb194-4" data-line-number="4"><span class="co"># plot using quick &#39;image&#39; function from raster</span></a>
-<a class="sourceLine" id="cb194-5" data-line-number="5"><span class="kw">image</span>(sstRast)</a></code></pre></div>
+<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb194-1"><a href="raster-visualization.html#cb194-1" aria-hidden="true" tabindex="-1"></a><span class="co"># now we see that the data is just upside down, so we use the flip() function</span></span>
+<span id="cb194-2"><a href="raster-visualization.html#cb194-2" aria-hidden="true" tabindex="-1"></a>sstRast <span class="ot">&lt;-</span> <span class="fu">flip</span>(sstRast, <span class="dv">2</span>)</span>
+<span id="cb194-3"><a href="raster-visualization.html#cb194-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb194-4"><a href="raster-visualization.html#cb194-4" aria-hidden="true" tabindex="-1"></a><span class="co"># plot using quick &#39;image&#39; function from raster</span></span>
+<span id="cb194-5"><a href="raster-visualization.html#cb194-5" aria-hidden="true" tabindex="-1"></a><span class="fu">image</span>(sstRast)</span></code></pre></div>
 <p><img src="R_Geospatial_Sciences_files/figure-html/raster%20section-3.png" width="60%" style="display: block; margin: auto;" /></p>
-<div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb195-1" data-line-number="1">sstRast</a></code></pre></div>
+<div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb195-1"><a href="raster-visualization.html#cb195-1" aria-hidden="true" tabindex="-1"></a>sstRast</span></code></pre></div>
 <pre><code>## class      : RasterLayer 
 ## dimensions : 1989, 2778, 5525442  (nrow, ncol, ncell)
 ## resolution : 0.0003599712, 0.0005027652  (x, y)
 ## extent     : 0, 1, 0, 1  (xmin, xmax, ymin, ymax)
 ## crs        : NA 
-## source     : memory
+## source     : /private/var/folders/6m/1b7gn_m93g9380p1jxvm2_700000gr/T/RtmpwMGFXb/raster/r_tmp_2021-03-03_091606_46713_31308.grd 
 ## names      : layer 
 ## values     : 5.344696, 34.9397  (min, max)</code></pre>
-<div class="sourceCode" id="cb197"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb197-1" data-line-number="1"><span class="co"># notice that the extent and crs information are wrong/not included so let&#39;s fix this</span></a>
-<a class="sourceLine" id="cb197-2" data-line-number="2">lat =<span class="st"> </span><span class="kw">ncvar_get</span>(ncFile, <span class="st">&quot;latitude&quot;</span>)</a>
-<a class="sourceLine" id="cb197-3" data-line-number="3">lon =<span class="st"> </span><span class="kw">ncvar_get</span>(ncFile, <span class="st">&quot;longitude&quot;</span>)</a>
-<a class="sourceLine" id="cb197-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb197-5" data-line-number="5"><span class="co"># define new extents for the raster</span></a>
-<a class="sourceLine" id="cb197-6" data-line-number="6"><span class="kw">extent</span>(sstRast) =<span class="st"> </span><span class="kw">c</span>(<span class="kw">min</span>(lon), <span class="kw">max</span>(lon), <span class="kw">min</span>(lat), <span class="kw">max</span>(lat))</a>
-<a class="sourceLine" id="cb197-7" data-line-number="7"><span class="co"># define the proj4 projection string</span></a>
-<a class="sourceLine" id="cb197-8" data-line-number="8"><span class="kw">crs</span>(sstRast) =<span class="st"> &quot;+proj=longlat +datum=WGS84 +no_defs &quot;</span></a>
-<a class="sourceLine" id="cb197-9" data-line-number="9"></a>
-<a class="sourceLine" id="cb197-10" data-line-number="10">sstRast</a></code></pre></div>
+<div class="sourceCode" id="cb197"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb197-1"><a href="raster-visualization.html#cb197-1" aria-hidden="true" tabindex="-1"></a><span class="co"># notice that the extent and crs information are wrong/not included so let&#39;s fix this</span></span>
+<span id="cb197-2"><a href="raster-visualization.html#cb197-2" aria-hidden="true" tabindex="-1"></a>lat <span class="ot">=</span> <span class="fu">ncvar_get</span>(ncFile, <span class="st">&quot;latitude&quot;</span>)</span>
+<span id="cb197-3"><a href="raster-visualization.html#cb197-3" aria-hidden="true" tabindex="-1"></a>lon <span class="ot">=</span> <span class="fu">ncvar_get</span>(ncFile, <span class="st">&quot;longitude&quot;</span>)</span>
+<span id="cb197-4"><a href="raster-visualization.html#cb197-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb197-5"><a href="raster-visualization.html#cb197-5" aria-hidden="true" tabindex="-1"></a><span class="co"># define new extents for the raster</span></span>
+<span id="cb197-6"><a href="raster-visualization.html#cb197-6" aria-hidden="true" tabindex="-1"></a><span class="fu">extent</span>(sstRast) <span class="ot">=</span> <span class="fu">c</span>(<span class="fu">min</span>(lon), <span class="fu">max</span>(lon), <span class="fu">min</span>(lat), <span class="fu">max</span>(lat))</span>
+<span id="cb197-7"><a href="raster-visualization.html#cb197-7" aria-hidden="true" tabindex="-1"></a><span class="co"># define the proj4 projection string</span></span>
+<span id="cb197-8"><a href="raster-visualization.html#cb197-8" aria-hidden="true" tabindex="-1"></a><span class="fu">crs</span>(sstRast) <span class="ot">=</span> <span class="st">&quot;+proj=longlat +datum=WGS84 +no_defs &quot;</span></span>
+<span id="cb197-9"><a href="raster-visualization.html#cb197-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb197-10"><a href="raster-visualization.html#cb197-10" aria-hidden="true" tabindex="-1"></a>sstRast</span></code></pre></div>
 <pre><code>## class      : RasterLayer 
 ## dimensions : 1989, 2778, 5525442  (nrow, ncol, ncell)
 ## resolution : 0.01799352, 0.0180909  (x, y)
 ## extent     : -99.99015, -50.00415, 16.00283, 51.98563  (xmin, xmax, ymin, ymax)
 ## crs        : +proj=longlat +datum=WGS84 +no_defs 
-## source     : memory
+## source     : /private/var/folders/6m/1b7gn_m93g9380p1jxvm2_700000gr/T/RtmpwMGFXb/raster/r_tmp_2021-03-03_091606_46713_31308.grd 
 ## names      : layer 
 ## values     : 5.344696, 34.9397  (min, max)</code></pre>
-<div class="sourceCode" id="cb199"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb199-1" data-line-number="1"><span class="kw">image</span>(sstRast)</a></code></pre></div>
+<div class="sourceCode" id="cb199"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb199-1"><a href="raster-visualization.html#cb199-1" aria-hidden="true" tabindex="-1"></a><span class="fu">image</span>(sstRast)</span></code></pre></div>
 <p><img src="R_Geospatial_Sciences_files/figure-html/raster%20section-4.png" width="60%" style="display: block; margin: auto;" /></p>
-<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb200-1" data-line-number="1"><span class="co"># levelplot the sstRast - levelplot is from rasterVis package</span></a>
-<a class="sourceLine" id="cb200-2" data-line-number="2"><span class="kw">levelplot</span>(sstRast)</a></code></pre></div>
+<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb200-1"><a href="raster-visualization.html#cb200-1" aria-hidden="true" tabindex="-1"></a><span class="co"># levelplot the sstRast - levelplot is from rasterVis package</span></span>
+<span id="cb200-2"><a href="raster-visualization.html#cb200-2" aria-hidden="true" tabindex="-1"></a><span class="fu">levelplot</span>(sstRast)</span></code></pre></div>
 <p><img src="R_Geospatial_Sciences_files/figure-html/raster%20section-5.png" width="60%" style="display: block; margin: auto;" /></p>
-<div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb201-1" data-line-number="1"><span class="co"># USA shapefiles via the getData function</span></a>
-<a class="sourceLine" id="cb201-2" data-line-number="2">usa &lt;-<span class="st"> </span><span class="kw">getData</span>(<span class="st">&#39;GADM&#39;</span>, <span class="dt">country =</span> <span class="st">&#39;USA&#39;</span>, <span class="dt">level =</span> <span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb201-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb201-4" data-line-number="4"><span class="co"># Throw together the usa spatial polygons data frame</span></a>
-<a class="sourceLine" id="cb201-5" data-line-number="5">plt &lt;-<span class="st"> </span><span class="kw">levelplot</span>(sstRast, <span class="dt">margin=</span>F, <span class="dt">par.settings=</span>BuRdTheme,</a>
-<a class="sourceLine" id="cb201-6" data-line-number="6">       <span class="dt">main=</span><span class="st">&quot;GOES-R Rolling SST 08/14&quot;</span>)</a>
-<a class="sourceLine" id="cb201-7" data-line-number="7">plt <span class="op">+</span><span class="st"> </span><span class="kw">layer</span>(<span class="kw">sp.polygons</span>(usa, <span class="dt">col=</span><span class="st">&#39;black&#39;</span>,<span class="dt">fill=</span><span class="st">&#39;grey&#39;</span>, <span class="dt">lwd=</span><span class="fl">0.4</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb201-1"><a href="raster-visualization.html#cb201-1" aria-hidden="true" tabindex="-1"></a><span class="co"># USA shapefiles via the getData function</span></span>
+<span id="cb201-2"><a href="raster-visualization.html#cb201-2" aria-hidden="true" tabindex="-1"></a>usa <span class="ot">&lt;-</span> <span class="fu">getData</span>(<span class="st">&#39;GADM&#39;</span>, <span class="at">country =</span> <span class="st">&#39;USA&#39;</span>, <span class="at">level =</span> <span class="dv">1</span>)</span>
+<span id="cb201-3"><a href="raster-visualization.html#cb201-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb201-4"><a href="raster-visualization.html#cb201-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Throw together the usa spatial polygons data frame</span></span>
+<span id="cb201-5"><a href="raster-visualization.html#cb201-5" aria-hidden="true" tabindex="-1"></a>plt <span class="ot">&lt;-</span> <span class="fu">levelplot</span>(sstRast, <span class="at">margin=</span>F, <span class="at">par.settings=</span>BuRdTheme,</span>
+<span id="cb201-6"><a href="raster-visualization.html#cb201-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">main=</span><span class="st">&quot;GOES-R Rolling SST 08/14&quot;</span>)</span>
+<span id="cb201-7"><a href="raster-visualization.html#cb201-7" aria-hidden="true" tabindex="-1"></a>plt <span class="sc">+</span> <span class="fu">layer</span>(<span class="fu">sp.polygons</span>(usa, <span class="at">col=</span><span class="st">&#39;black&#39;</span>,<span class="at">fill=</span><span class="st">&#39;grey&#39;</span>, <span class="at">lwd=</span><span class="fl">0.4</span>))</span></code></pre></div>
 <p><img src="R_Geospatial_Sciences_files/figure-html/raster%20section-6.png" width="60%" style="display: block; margin: auto;" /></p>
-<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb202-1" data-line-number="1"><span class="co"># Now let&#39;s do the same with geotiff</span></a>
-<a class="sourceLine" id="cb202-2" data-line-number="2">tifFile =<span class="st"> &quot;../datasets/goesSST.tif&quot;</span></a>
-<a class="sourceLine" id="cb202-3" data-line-number="3">sstRast =<span class="st"> </span><span class="kw">raster</span>(tifFile)</a>
-<a class="sourceLine" id="cb202-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb202-5" data-line-number="5"><span class="co"># Quick image using raster&#39;s image plot generator function</span></a>
-<a class="sourceLine" id="cb202-6" data-line-number="6"><span class="kw">image</span>(sstRast)</a></code></pre></div>
+<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb202-1"><a href="raster-visualization.html#cb202-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Now let&#39;s do the same with geotiff</span></span>
+<span id="cb202-2"><a href="raster-visualization.html#cb202-2" aria-hidden="true" tabindex="-1"></a>tifFile <span class="ot">=</span> <span class="st">&quot;../datasets/goesSST.tif&quot;</span></span>
+<span id="cb202-3"><a href="raster-visualization.html#cb202-3" aria-hidden="true" tabindex="-1"></a>sstRast <span class="ot">=</span> <span class="fu">raster</span>(tifFile)</span>
+<span id="cb202-4"><a href="raster-visualization.html#cb202-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb202-5"><a href="raster-visualization.html#cb202-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Quick image using raster&#39;s image plot generator function</span></span>
+<span id="cb202-6"><a href="raster-visualization.html#cb202-6" aria-hidden="true" tabindex="-1"></a><span class="fu">image</span>(sstRast)</span></code></pre></div>
 <p><img src="R_Geospatial_Sciences_files/figure-html/geotiff%20section-1.png" width="60%" style="display: block; margin: auto;" /></p>
-<div class="sourceCode" id="cb203"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb203-1" data-line-number="1"><span class="co"># Now let&#39;s load a base dataset of world maps that R already has stored</span></a>
-<a class="sourceLine" id="cb203-2" data-line-number="2"><span class="kw">data</span>(wrld_simpl)</a>
-<a class="sourceLine" id="cb203-3" data-line-number="3">plt &lt;-<span class="st"> </span><span class="kw">levelplot</span>(sstRast, <span class="dt">margin=</span>F, <span class="dt">par.settings=</span>BuRdTheme,</a>
-<a class="sourceLine" id="cb203-4" data-line-number="4">       <span class="dt">main=</span><span class="st">&quot;GOES-R Rolling SST 08/14&quot;</span>)</a>
-<a class="sourceLine" id="cb203-5" data-line-number="5">plt <span class="op">+</span><span class="st"> </span><span class="kw">layer</span>(<span class="kw">sp.lines</span>(wrld_simpl, <span class="dt">col=</span><span class="st">&#39;black&#39;</span>, <span class="dt">lwd=</span><span class="fl">0.4</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb203"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb203-1"><a href="raster-visualization.html#cb203-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Now let&#39;s load a base dataset of world maps that R already has stored</span></span>
+<span id="cb203-2"><a href="raster-visualization.html#cb203-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(wrld_simpl)</span>
+<span id="cb203-3"><a href="raster-visualization.html#cb203-3" aria-hidden="true" tabindex="-1"></a>plt <span class="ot">&lt;-</span> <span class="fu">levelplot</span>(sstRast, <span class="at">margin=</span>F, <span class="at">par.settings=</span>BuRdTheme,</span>
+<span id="cb203-4"><a href="raster-visualization.html#cb203-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">main=</span><span class="st">&quot;GOES-R Rolling SST 08/14&quot;</span>)</span>
+<span id="cb203-5"><a href="raster-visualization.html#cb203-5" aria-hidden="true" tabindex="-1"></a>plt <span class="sc">+</span> <span class="fu">layer</span>(<span class="fu">sp.lines</span>(wrld_simpl, <span class="at">col=</span><span class="st">&#39;black&#39;</span>, <span class="at">lwd=</span><span class="fl">0.4</span>))</span></code></pre></div>
 <p><img src="R_Geospatial_Sciences_files/figure-html/geotiff%20section-2.png" width="60%" style="display: block; margin: auto;" /></p>
-<div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb204-1" data-line-number="1"><span class="co"># Let&#39;s do the same plot but with a custom shapefile</span></a>
-<a class="sourceLine" id="cb204-2" data-line-number="2"><span class="co"># note that even though we only point the function to the &#39;.shp&#39; file, the &#39;.shx&#39; and &#39;.dbf&#39; need to be in the same folder for this to work. </span></a>
-<a class="sourceLine" id="cb204-3" data-line-number="3">world.shp &lt;-<span class="st"> </span>rgdal<span class="op">::</span><span class="kw">readOGR</span>(<span class="st">&quot;../datasets/world_shpfiles/world.shp&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb204-1"><a href="raster-visualization.html#cb204-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Let&#39;s do the same plot but with a custom shapefile</span></span>
+<span id="cb204-2"><a href="raster-visualization.html#cb204-2" aria-hidden="true" tabindex="-1"></a><span class="co"># note that even though we only point the function to the &#39;.shp&#39; file, the &#39;.shx&#39; and &#39;.dbf&#39; need to be in the same folder for this to work. </span></span>
+<span id="cb204-3"><a href="raster-visualization.html#cb204-3" aria-hidden="true" tabindex="-1"></a>world.shp <span class="ot">&lt;-</span> rgdal<span class="sc">::</span><span class="fu">readOGR</span>(<span class="st">&quot;../datasets/world_shpfiles/world.shp&quot;</span>)</span></code></pre></div>
 <pre><code>## OGR data source with driver: ESRI Shapefile 
 ## Source: &quot;/Users/james/Documents/Github/geog473-673/datasets/world_shpfiles/world.shp&quot;, layer: &quot;world&quot;
 ## with 252 features
 ## It has 2 fields</code></pre>
-<div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb206-1" data-line-number="1"><span class="co"># add custom color theme using brewer.pal from the package RColorBrewer and setting the rasterTheme</span></a>
-<a class="sourceLine" id="cb206-2" data-line-number="2">mapTheme &lt;-<span class="st"> </span><span class="kw">rasterTheme</span>(<span class="dt">region=</span><span class="kw">brewer.pal</span>(<span class="dv">8</span>,<span class="st">&quot;Reds&quot;</span>))</a>
-<a class="sourceLine" id="cb206-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb206-4" data-line-number="4">plt &lt;-<span class="st"> </span><span class="kw">levelplot</span>(sstRast, <span class="dt">margin=</span>F, <span class="dt">par.settings=</span>mapTheme,</a>
-<a class="sourceLine" id="cb206-5" data-line-number="5">       <span class="dt">main=</span><span class="st">&quot;GOES-R Rolling SST 08/14&quot;</span>)</a>
-<a class="sourceLine" id="cb206-6" data-line-number="6">plt <span class="op">+</span><span class="st"> </span><span class="kw">layer</span>(<span class="kw">sp.lines</span>(world.shp, <span class="dt">col=</span><span class="st">&#39;gray&#39;</span>, <span class="dt">lwd=</span><span class="fl">0.4</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb206-1"><a href="raster-visualization.html#cb206-1" aria-hidden="true" tabindex="-1"></a><span class="co"># add custom color theme using brewer.pal from the package RColorBrewer and setting the rasterTheme</span></span>
+<span id="cb206-2"><a href="raster-visualization.html#cb206-2" aria-hidden="true" tabindex="-1"></a>mapTheme <span class="ot">&lt;-</span> <span class="fu">rasterTheme</span>(<span class="at">region=</span><span class="fu">brewer.pal</span>(<span class="dv">8</span>,<span class="st">&quot;Reds&quot;</span>))</span>
+<span id="cb206-3"><a href="raster-visualization.html#cb206-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb206-4"><a href="raster-visualization.html#cb206-4" aria-hidden="true" tabindex="-1"></a>plt <span class="ot">&lt;-</span> <span class="fu">levelplot</span>(sstRast, <span class="at">margin=</span>F, <span class="at">par.settings=</span>mapTheme,</span>
+<span id="cb206-5"><a href="raster-visualization.html#cb206-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">main=</span><span class="st">&quot;GOES-R Rolling SST 08/14&quot;</span>)</span>
+<span id="cb206-6"><a href="raster-visualization.html#cb206-6" aria-hidden="true" tabindex="-1"></a>plt <span class="sc">+</span> <span class="fu">layer</span>(<span class="fu">sp.lines</span>(world.shp, <span class="at">col=</span><span class="st">&#39;gray&#39;</span>, <span class="at">lwd=</span><span class="fl">0.4</span>))</span></code></pre></div>
 <p><img src="R_Geospatial_Sciences_files/figure-html/geotiff%20section-3.png" width="60%" style="display: block; margin: auto;" /></p>
 </div>
-<div id="assignment-1" class="section level2">
-<h2><span class="header-section-number">8.3</span> Assignment</h2>
+<div id="assignment-1" class="section level2" number="7.3">
+<h2><span class="header-section-number">7.3</span> Assignment</h2>
 <ol style="list-style-type: decimal">
 <li><p>Download treecov.nc from the datasets folder</p></li>
 <li><p>Open tree cover % as a variable, remove bad values (<em>i.e. percentages outside of 0 and 100</em>).</p></li>
@@ -558,7 +591,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="time-series-data.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="scientific-r-scripts.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 <a href="reprojecting-writing-rasters.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>

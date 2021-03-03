@@ -24,7 +24,7 @@
 <meta name="author" content="James Simkins" />
 
 
-<meta name="date" content="2021-01-28" />
+<meta name="date" content="2021-03-03" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -32,7 +32,8 @@
   
   
 <link rel="prev" href="basic-r-scripts.html"/>
-<link rel="next" href="time-series-data.html"/>
+<link rel="next" href="raster-visualization.html"/>
+<script src="libs/header-attrs-2.3.8/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -74,25 +75,26 @@
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -101,9 +103,9 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {  }
+  {   }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -152,14 +154,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">R for Geospatial Sciences</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="1" data-path="r-for-geospatial-sciences.html"><a href="r-for-geospatial-sciences.html"><i class="fa fa-check"></i><b>1</b> R for Geospatial Sciences</a><ul>
+<li class="chapter" data-level="1" data-path="r-for-geospatial-sciences.html"><a href="r-for-geospatial-sciences.html"><i class="fa fa-check"></i><b>1</b> R for Geospatial Sciences</a>
+<ul>
 <li class="chapter" data-level="1.1" data-path="r-for-geospatial-sciences.html"><a href="r-for-geospatial-sciences.html#welcome"><i class="fa fa-check"></i><b>1.1</b> Welcome</a></li>
 <li class="chapter" data-level="1.2" data-path="r-for-geospatial-sciences.html"><a href="r-for-geospatial-sciences.html#course-github"><i class="fa fa-check"></i><b>1.2</b> Course Github</a></li>
 <li class="chapter" data-level="1.3" data-path="r-for-geospatial-sciences.html"><a href="r-for-geospatial-sciences.html#syllabus"><i class="fa fa-check"></i><b>1.3</b> Syllabus</a></li>
 <li class="chapter" data-level="1.4" data-path="r-for-geospatial-sciences.html"><a href="r-for-geospatial-sciences.html#phase-1"><i class="fa fa-check"></i><b>1.4</b> Phase 1</a></li>
 <li class="chapter" data-level="1.5" data-path="r-for-geospatial-sciences.html"><a href="r-for-geospatial-sciences.html#phase-2"><i class="fa fa-check"></i><b>1.5</b> Phase 2</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html"><i class="fa fa-check"></i><b>2</b> Getting Started with R</a><ul>
+<li class="chapter" data-level="2" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html"><i class="fa fa-check"></i><b>2</b> Getting Started with R</a>
+<ul>
 <li class="chapter" data-level="2.1" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#why-is-there-such-a-buzz-around-r"><i class="fa fa-check"></i><b>2.1</b> Why is there such a buzz around R?</a></li>
 <li class="chapter" data-level="2.2" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#reasons-to-love-r"><i class="fa fa-check"></i><b>2.2</b> Reasons to love R</a></li>
 <li class="chapter" data-level="2.3" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#downloading-guide"><i class="fa fa-check"></i><b>2.3</b> Downloading Guide</a></li>
@@ -170,12 +174,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.8" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#open-rstudio"><i class="fa fa-check"></i><b>2.8</b> Open RStudio</a></li>
 <li class="chapter" data-level="2.9" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#r-studio-layout"><i class="fa fa-check"></i><b>2.9</b> R Studio Layout</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="definitions-rules.html"><a href="definitions-rules.html"><i class="fa fa-check"></i><b>3</b> Definitions &amp; Rules</a><ul>
+<li class="chapter" data-level="3" data-path="definitions-rules.html"><a href="definitions-rules.html"><i class="fa fa-check"></i><b>3</b> Definitions &amp; Rules</a>
+<ul>
 <li class="chapter" data-level="3.1" data-path="definitions-rules.html"><a href="definitions-rules.html#important-r-programming-definitions"><i class="fa fa-check"></i><b>3.1</b> Important R Programming Definitions</a></li>
 <li class="chapter" data-level="3.2" data-path="definitions-rules.html"><a href="definitions-rules.html#rules"><i class="fa fa-check"></i><b>3.2</b> Rules</a></li>
 <li class="chapter" data-level="3.3" data-path="definitions-rules.html"><a href="definitions-rules.html#general-recommendations"><i class="fa fa-check"></i><b>3.3</b> General Recommendations</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="r-coding-fundamentals.html"><a href="r-coding-fundamentals.html"><i class="fa fa-check"></i><b>4</b> R Coding Fundamentals</a><ul>
+<li class="chapter" data-level="4" data-path="r-coding-fundamentals.html"><a href="r-coding-fundamentals.html"><i class="fa fa-check"></i><b>4</b> R Coding Fundamentals</a>
+<ul>
 <li class="chapter" data-level="4.1" data-path="r-coding-fundamentals.html"><a href="r-coding-fundamentals.html#entering-input"><i class="fa fa-check"></i><b>4.1</b> Entering Input</a></li>
 <li class="chapter" data-level="4.2" data-path="r-coding-fundamentals.html"><a href="r-coding-fundamentals.html#running-code"><i class="fa fa-check"></i><b>4.2</b> Running Code</a></li>
 <li class="chapter" data-level="4.3" data-path="r-coding-fundamentals.html"><a href="r-coding-fundamentals.html#evaluation"><i class="fa fa-check"></i><b>4.3</b> Evaluation</a></li>
@@ -193,144 +199,171 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.15" data-path="r-coding-fundamentals.html"><a href="r-coding-fundamentals.html#names"><i class="fa fa-check"></i><b>4.15</b> Names</a></li>
 <li class="chapter" data-level="4.16" data-path="r-coding-fundamentals.html"><a href="r-coding-fundamentals.html#summary"><i class="fa fa-check"></i><b>4.16</b> Summary</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="basic-r-scripts.html"><a href="basic-r-scripts.html"><i class="fa fa-check"></i><b>5</b> Basic R Scripts</a><ul>
-<li class="chapter" data-level="5.1" data-path="basic-r-scripts.html"><a href="basic-r-scripts.html#global-carbon-dioxide-concentrations"><i class="fa fa-check"></i><b>5.1</b> Global Carbon-Dioxide Concentrations</a><ul>
+<li class="chapter" data-level="5" data-path="basic-r-scripts.html"><a href="basic-r-scripts.html"><i class="fa fa-check"></i><b>5</b> Basic R Scripts</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="basic-r-scripts.html"><a href="basic-r-scripts.html#global-carbon-dioxide-concentrations"><i class="fa fa-check"></i><b>5.1</b> Global Carbon-Dioxide Concentrations</a>
+<ul>
 <li class="chapter" data-level="5.1.1" data-path="basic-r-scripts.html"><a href="basic-r-scripts.html#saving-your-plot"><i class="fa fa-check"></i><b>5.1.1</b> Saving your plot</a></li>
 </ul></li>
 <li class="chapter" data-level="5.2" data-path="basic-r-scripts.html"><a href="basic-r-scripts.html#cars---motor-trends-magazine-data"><i class="fa fa-check"></i><b>5.2</b> Cars - Motor Trends Magazine Data</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="scientific-r-scripts.html"><a href="scientific-r-scripts.html"><i class="fa fa-check"></i><b>6</b> Scientific R Scripts</a><ul>
-<li class="chapter" data-level="6.1" data-path="scientific-r-scripts.html"><a href="scientific-r-scripts.html#script-breakdown"><i class="fa fa-check"></i><b>6.1</b> Script Breakdown</a><ul>
+<li class="chapter" data-level="6" data-path="scientific-r-scripts.html"><a href="scientific-r-scripts.html"><i class="fa fa-check"></i><b>6</b> Scientific R Scripts</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="scientific-r-scripts.html"><a href="scientific-r-scripts.html#script-breakdown"><i class="fa fa-check"></i><b>6.1</b> Script Breakdown</a>
+<ul>
 <li class="chapter" data-level="6.1.1" data-path="scientific-r-scripts.html"><a href="scientific-r-scripts.html#installing-packages"><i class="fa fa-check"></i><b>6.1.1</b> Installing Packages</a></li>
 <li class="chapter" data-level="6.1.2" data-path="scientific-r-scripts.html"><a href="scientific-r-scripts.html#reading-the-data"><i class="fa fa-check"></i><b>6.1.2</b> Reading the Data</a></li>
 <li class="chapter" data-level="6.1.3" data-path="scientific-r-scripts.html"><a href="scientific-r-scripts.html#basic-quality-control"><i class="fa fa-check"></i><b>6.1.3</b> Basic Quality Control</a></li>
 <li class="chapter" data-level="6.1.4" data-path="scientific-r-scripts.html"><a href="scientific-r-scripts.html#plotting-the-data"><i class="fa fa-check"></i><b>6.1.4</b> Plotting the Data</a></li>
 </ul></li>
-<li class="chapter" data-level="6.2" data-path="scientific-r-scripts.html"><a href="scientific-r-scripts.html#in-class-exercise"><i class="fa fa-check"></i><b>6.2</b> In Class Exercise</a><ul>
+<li class="chapter" data-level="6.2" data-path="scientific-r-scripts.html"><a href="scientific-r-scripts.html#in-class-exercise"><i class="fa fa-check"></i><b>6.2</b> In Class Exercise</a>
+<ul>
 <li class="chapter" data-level="6.2.1" data-path="scientific-r-scripts.html"><a href="scientific-r-scripts.html#further-explanation-of-datatypes"><i class="fa fa-check"></i><b>6.2.1</b> Further Explanation of DataTypes</a></li>
 </ul></li>
+<li class="chapter" data-level="6.3" data-path="scientific-r-scripts.html"><a href="scientific-r-scripts.html#deos-data"><i class="fa fa-check"></i><b>6.3</b> DEOS Data</a></li>
+<li class="chapter" data-level="6.4" data-path="scientific-r-scripts.html"><a href="scientific-r-scripts.html#assignment"><i class="fa fa-check"></i><b>6.4</b> Assignment</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="time-series-data.html"><a href="time-series-data.html"><i class="fa fa-check"></i><b>7</b> Time Series Data</a><ul>
-<li class="chapter" data-level="7.1" data-path="time-series-data.html"><a href="time-series-data.html#for-loops"><i class="fa fa-check"></i><b>7.1</b> For Loops</a></li>
-<li class="chapter" data-level="7.2" data-path="time-series-data.html"><a href="time-series-data.html#deos-data"><i class="fa fa-check"></i><b>7.2</b> DEOS Data</a></li>
-<li class="chapter" data-level="7.3" data-path="time-series-data.html"><a href="time-series-data.html#assignment"><i class="fa fa-check"></i><b>7.3</b> Assignment</a></li>
+<li class="chapter" data-level="7" data-path="raster-visualization.html"><a href="raster-visualization.html"><i class="fa fa-check"></i><b>7</b> Raster Visualization</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="raster-visualization.html"><a href="raster-visualization.html#paste0"><i class="fa fa-check"></i><b>7.1</b> <code>Paste0()</code></a></li>
+<li class="chapter" data-level="7.2" data-path="raster-visualization.html"><a href="raster-visualization.html#rasters"><i class="fa fa-check"></i><b>7.2</b> Rasters</a></li>
+<li class="chapter" data-level="7.3" data-path="raster-visualization.html"><a href="raster-visualization.html#assignment-1"><i class="fa fa-check"></i><b>7.3</b> Assignment</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="raster-visualization.html"><a href="raster-visualization.html"><i class="fa fa-check"></i><b>8</b> Raster Visualization</a><ul>
-<li class="chapter" data-level="8.1" data-path="raster-visualization.html"><a href="raster-visualization.html#paste0"><i class="fa fa-check"></i><b>8.1</b> <code>Paste0()</code></a></li>
-<li class="chapter" data-level="8.2" data-path="raster-visualization.html"><a href="raster-visualization.html#rasters"><i class="fa fa-check"></i><b>8.2</b> Rasters</a></li>
-<li class="chapter" data-level="8.3" data-path="raster-visualization.html"><a href="raster-visualization.html#assignment-1"><i class="fa fa-check"></i><b>8.3</b> Assignment</a></li>
+<li class="chapter" data-level="8" data-path="reprojecting-writing-rasters.html"><a href="reprojecting-writing-rasters.html"><i class="fa fa-check"></i><b>8</b> Reprojecting &amp; Writing Rasters</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="reprojecting-writing-rasters.html"><a href="reprojecting-writing-rasters.html#indexing-data"><i class="fa fa-check"></i><b>8.1</b> Indexing Data</a></li>
+<li class="chapter" data-level="8.2" data-path="reprojecting-writing-rasters.html"><a href="reprojecting-writing-rasters.html#resampling-and-reprojecting"><i class="fa fa-check"></i><b>8.2</b> Resampling and Reprojecting</a></li>
+<li class="chapter" data-level="8.3" data-path="reprojecting-writing-rasters.html"><a href="reprojecting-writing-rasters.html#pngs"><i class="fa fa-check"></i><b>8.3</b> PNGs</a></li>
+<li class="chapter" data-level="8.4" data-path="reprojecting-writing-rasters.html"><a href="reprojecting-writing-rasters.html#writing-rasters"><i class="fa fa-check"></i><b>8.4</b> Writing Rasters</a></li>
+<li class="chapter" data-level="8.5" data-path="reprojecting-writing-rasters.html"><a href="reprojecting-writing-rasters.html#assignment-2"><i class="fa fa-check"></i><b>8.5</b> Assignment</a></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="reprojecting-writing-rasters.html"><a href="reprojecting-writing-rasters.html"><i class="fa fa-check"></i><b>9</b> Reprojecting &amp; Writing Rasters</a><ul>
-<li class="chapter" data-level="9.1" data-path="reprojecting-writing-rasters.html"><a href="reprojecting-writing-rasters.html#indexing-data"><i class="fa fa-check"></i><b>9.1</b> Indexing Data</a></li>
-<li class="chapter" data-level="9.2" data-path="reprojecting-writing-rasters.html"><a href="reprojecting-writing-rasters.html#resampling-and-reprojecting"><i class="fa fa-check"></i><b>9.2</b> Resampling and Reprojecting</a></li>
-<li class="chapter" data-level="9.3" data-path="reprojecting-writing-rasters.html"><a href="reprojecting-writing-rasters.html#pngs"><i class="fa fa-check"></i><b>9.3</b> PNGs</a></li>
-<li class="chapter" data-level="9.4" data-path="reprojecting-writing-rasters.html"><a href="reprojecting-writing-rasters.html#writing-rasters"><i class="fa fa-check"></i><b>9.4</b> Writing Rasters</a></li>
-<li class="chapter" data-level="9.5" data-path="reprojecting-writing-rasters.html"><a href="reprojecting-writing-rasters.html#assignment-2"><i class="fa fa-check"></i><b>9.5</b> Assignment</a></li>
+<li class="chapter" data-level="9" data-path="plot-customization.html"><a href="plot-customization.html"><i class="fa fa-check"></i><b>9</b> Plot Customization</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="plot-customization.html"><a href="plot-customization.html#expanding-on-basic-plots-in-r"><i class="fa fa-check"></i><b>9.1</b> Expanding on Basic Plots in R</a>
+<ul>
+<li class="chapter" data-level="9.1.1" data-path="plot-customization.html"><a href="plot-customization.html#adding-to-a-plot"><i class="fa fa-check"></i><b>9.1.1</b> Adding to a Plot</a></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="plot-customization.html"><a href="plot-customization.html"><i class="fa fa-check"></i><b>10</b> Plot Customization</a><ul>
-<li class="chapter" data-level="10.1" data-path="plot-customization.html"><a href="plot-customization.html#expanding-on-basic-plots-in-r"><i class="fa fa-check"></i><b>10.1</b> Expanding on Basic Plots in R</a><ul>
-<li class="chapter" data-level="10.1.1" data-path="plot-customization.html"><a href="plot-customization.html#adding-to-a-plot"><i class="fa fa-check"></i><b>10.1.1</b> Adding to a Plot</a></li>
+<li class="chapter" data-level="9.2" data-path="plot-customization.html"><a href="plot-customization.html#barplots-boxplots-pie-charts"><i class="fa fa-check"></i><b>9.2</b> Barplots, Boxplots, Pie Charts</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="plot-customization.html"><a href="plot-customization.html#combining-plots"><i class="fa fa-check"></i><b>9.2.1</b> Combining Plots</a></li>
 </ul></li>
-<li class="chapter" data-level="10.2" data-path="plot-customization.html"><a href="plot-customization.html#barplots-boxplots-pie-charts"><i class="fa fa-check"></i><b>10.2</b> Barplots, Boxplots, Pie Charts</a><ul>
-<li class="chapter" data-level="10.2.1" data-path="plot-customization.html"><a href="plot-customization.html#combining-plots"><i class="fa fa-check"></i><b>10.2.1</b> Combining Plots</a></li>
+<li class="chapter" data-level="9.3" data-path="plot-customization.html"><a href="plot-customization.html#tree-data"><i class="fa fa-check"></i><b>9.3</b> Tree Data</a>
+<ul>
+<li class="chapter" data-level="9.3.1" data-path="plot-customization.html"><a href="plot-customization.html#loading-the-dataset"><i class="fa fa-check"></i><b>9.3.1</b> Loading the Dataset</a></li>
 </ul></li>
-<li class="chapter" data-level="10.3" data-path="plot-customization.html"><a href="plot-customization.html#tree-data"><i class="fa fa-check"></i><b>10.3</b> Tree Data</a><ul>
-<li class="chapter" data-level="10.3.1" data-path="plot-customization.html"><a href="plot-customization.html#loading-the-dataset"><i class="fa fa-check"></i><b>10.3.1</b> Loading the Dataset</a></li>
+<li class="chapter" data-level="9.4" data-path="plot-customization.html"><a href="plot-customization.html#assignment-3"><i class="fa fa-check"></i><b>9.4</b> Assignment:</a></li>
 </ul></li>
-<li class="chapter" data-level="10.4" data-path="plot-customization.html"><a href="plot-customization.html#assignment-3"><i class="fa fa-check"></i><b>10.4</b> Assignment:</a></li>
+<li class="chapter" data-level="10" data-path="basic-statistics.html"><a href="basic-statistics.html"><i class="fa fa-check"></i><b>10</b> Basic Statistics</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="basic-statistics.html"><a href="basic-statistics.html#statistical-function-dictionary"><i class="fa fa-check"></i><b>10.1</b> Statistical Function Dictionary</a></li>
+<li class="chapter" data-level="10.2" data-path="basic-statistics.html"><a href="basic-statistics.html#basic-statistics-in-r"><i class="fa fa-check"></i><b>10.2</b> Basic Statistics in R</a>
+<ul>
+<li class="chapter" data-level="10.2.1" data-path="basic-statistics.html"><a href="basic-statistics.html#load-willow-creek-data"><i class="fa fa-check"></i><b>10.2.1</b> Load Willow Creek data</a></li>
+<li class="chapter" data-level="10.2.2" data-path="basic-statistics.html"><a href="basic-statistics.html#subsetting-data"><i class="fa fa-check"></i><b>10.2.2</b> Subsetting Data</a></li>
+<li class="chapter" data-level="10.2.3" data-path="basic-statistics.html"><a href="basic-statistics.html#trends-and-distributions"><i class="fa fa-check"></i><b>10.2.3</b> Trends and Distributions</a></li>
+<li class="chapter" data-level="10.2.4" data-path="basic-statistics.html"><a href="basic-statistics.html#finding-a-best-fit-distribution"><i class="fa fa-check"></i><b>10.2.4</b> Finding a Best-Fit Distribution</a></li>
+<li class="chapter" data-level="10.2.5" data-path="basic-statistics.html"><a href="basic-statistics.html#correlation-plots"><i class="fa fa-check"></i><b>10.2.5</b> Correlation Plots</a></li>
 </ul></li>
-<li class="chapter" data-level="11" data-path="basic-statistics.html"><a href="basic-statistics.html"><i class="fa fa-check"></i><b>11</b> Basic Statistics</a><ul>
-<li class="chapter" data-level="11.1" data-path="basic-statistics.html"><a href="basic-statistics.html#statistical-function-dictionary"><i class="fa fa-check"></i><b>11.1</b> Statistical Function Dictionary</a></li>
-<li class="chapter" data-level="11.2" data-path="basic-statistics.html"><a href="basic-statistics.html#basic-statistics-in-r"><i class="fa fa-check"></i><b>11.2</b> Basic Statistics in R</a><ul>
-<li class="chapter" data-level="11.2.1" data-path="basic-statistics.html"><a href="basic-statistics.html#load-willow-creek-data"><i class="fa fa-check"></i><b>11.2.1</b> Load Willow Creek data</a></li>
-<li class="chapter" data-level="11.2.2" data-path="basic-statistics.html"><a href="basic-statistics.html#subsetting-data"><i class="fa fa-check"></i><b>11.2.2</b> Subsetting Data</a></li>
-<li class="chapter" data-level="11.2.3" data-path="basic-statistics.html"><a href="basic-statistics.html#trends-and-distributions"><i class="fa fa-check"></i><b>11.2.3</b> Trends and Distributions</a></li>
-<li class="chapter" data-level="11.2.4" data-path="basic-statistics.html"><a href="basic-statistics.html#finding-a-best-fit-distribution"><i class="fa fa-check"></i><b>11.2.4</b> Finding a Best-Fit Distribution</a></li>
-<li class="chapter" data-level="11.2.5" data-path="basic-statistics.html"><a href="basic-statistics.html#correlation-plots"><i class="fa fa-check"></i><b>11.2.5</b> Correlation Plots</a></li>
-</ul></li>
-<li class="chapter" data-level="11.3" data-path="basic-statistics.html"><a href="basic-statistics.html#assignment-4"><i class="fa fa-check"></i><b>11.3</b> Assignment</a><ul>
-<li class="chapter" data-level="11.3.1" data-path="basic-statistics.html"><a href="basic-statistics.html#extra-credit---2-points"><i class="fa fa-check"></i><b>11.3.1</b> Extra Credit - 2 points</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="12" data-path="plotting-with-ggplot2.html"><a href="plotting-with-ggplot2.html"><i class="fa fa-check"></i><b>12</b> Plotting with <code>ggplot2</code></a><ul>
-<li class="chapter" data-level="12.1" data-path="plotting-with-ggplot2.html"><a href="plotting-with-ggplot2.html#ggplot2-with-willow-creek-meteorological-data"><i class="fa fa-check"></i><b>12.1</b> ggplot2 with Willow Creek Meteorological Data</a></li>
-<li class="chapter" data-level="12.2" data-path="plotting-with-ggplot2.html"><a href="plotting-with-ggplot2.html#assignment-5"><i class="fa fa-check"></i><b>12.2</b> Assignment:</a></li>
-<li class="chapter" data-level="12.3" data-path="plotting-with-ggplot2.html"><a href="plotting-with-ggplot2.html#extra-credit---2-points-1"><i class="fa fa-check"></i><b>12.3</b> Extra Credit - 2 Points</a></li>
-</ul></li>
-<li class="chapter" data-level="13" data-path="spatial-plots-with-ggplot2.html"><a href="spatial-plots-with-ggplot2.html"><i class="fa fa-check"></i><b>13</b> Spatial Plots with <code>ggplot2</code></a><ul>
-<li class="chapter" data-level="13.1" data-path="spatial-plots-with-ggplot2.html"><a href="spatial-plots-with-ggplot2.html#simple-features"><i class="fa fa-check"></i><b>13.1</b> Simple Features</a></li>
-<li class="chapter" data-level="13.2" data-path="spatial-plots-with-ggplot2.html"><a href="spatial-plots-with-ggplot2.html#sea-surface-temperature-ggplot"><i class="fa fa-check"></i><b>13.2</b> Sea Surface Temperature ggplot</a></li>
-<li class="chapter" data-level="13.3" data-path="spatial-plots-with-ggplot2.html"><a href="spatial-plots-with-ggplot2.html#r-color-brewer-palettes"><i class="fa fa-check"></i><b>13.3</b> R Color Brewer Palettes</a><ul>
-<li class="chapter" data-level="13.3.1" data-path="spatial-plots-with-ggplot2.html"><a href="spatial-plots-with-ggplot2.html#multi-plot-ggplot"><i class="fa fa-check"></i><b>13.3.1</b> Multi Plot ggplot</a></li>
-</ul></li>
-<li class="chapter" data-level="13.4" data-path="spatial-plots-with-ggplot2.html"><a href="spatial-plots-with-ggplot2.html#assignment-6"><i class="fa fa-check"></i><b>13.4</b> Assignment</a><ul>
-<li class="chapter" data-level="13.4.1" data-path="spatial-plots-with-ggplot2.html"><a href="spatial-plots-with-ggplot2.html#extra-credit---2-points-2"><i class="fa fa-check"></i><b>13.4.1</b> Extra Credit - 2 Points</a></li>
+<li class="chapter" data-level="10.3" data-path="basic-statistics.html"><a href="basic-statistics.html#assignment-4"><i class="fa fa-check"></i><b>10.3</b> Assignment</a>
+<ul>
+<li class="chapter" data-level="10.3.1" data-path="basic-statistics.html"><a href="basic-statistics.html#extra-credit---2-points"><i class="fa fa-check"></i><b>10.3.1</b> Extra Credit - 2 points</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="14" data-path="shapefiles.html"><a href="shapefiles.html"><i class="fa fa-check"></i><b>14</b> Shapefiles</a><ul>
-<li class="chapter" data-level="14.1" data-path="shapefiles.html"><a href="shapefiles.html#reading-in-shapefiles"><i class="fa fa-check"></i><b>14.1</b> Reading in Shapefiles</a></li>
-<li class="chapter" data-level="14.2" data-path="shapefiles.html"><a href="shapefiles.html#combining-shapefiles-with-data"><i class="fa fa-check"></i><b>14.2</b> Combining Shapefiles with Data</a></li>
-<li class="chapter" data-level="14.3" data-path="shapefiles.html"><a href="shapefiles.html#visualizing-the-shapefiles-data"><i class="fa fa-check"></i><b>14.3</b> Visualizing the Shapefiles &amp; Data</a></li>
-<li class="chapter" data-level="14.4" data-path="shapefiles.html"><a href="shapefiles.html#saving-a-shapefile"><i class="fa fa-check"></i><b>14.4</b> Saving a shapefile</a></li>
-<li class="chapter" data-level="14.5" data-path="shapefiles.html"><a href="shapefiles.html#assignment-7"><i class="fa fa-check"></i><b>14.5</b> Assignment</a></li>
+<li class="chapter" data-level="11" data-path="plotting-with-ggplot2.html"><a href="plotting-with-ggplot2.html"><i class="fa fa-check"></i><b>11</b> Plotting with <code>ggplot2</code></a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="plotting-with-ggplot2.html"><a href="plotting-with-ggplot2.html#ggplot2-with-willow-creek-meteorological-data"><i class="fa fa-check"></i><b>11.1</b> ggplot2 with Willow Creek Meteorological Data</a></li>
+<li class="chapter" data-level="11.2" data-path="plotting-with-ggplot2.html"><a href="plotting-with-ggplot2.html#assignment-5"><i class="fa fa-check"></i><b>11.2</b> Assignment:</a></li>
+<li class="chapter" data-level="11.3" data-path="plotting-with-ggplot2.html"><a href="plotting-with-ggplot2.html#extra-credit---2-points-1"><i class="fa fa-check"></i><b>11.3</b> Extra Credit - 2 Points</a></li>
 </ul></li>
-<li class="chapter" data-level="15" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html"><i class="fa fa-check"></i><b>15</b> Remote Data Extraction</a><ul>
-<li class="chapter" data-level="15.1" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#thredds"><i class="fa fa-check"></i><b>15.1</b> THREDDS</a><ul>
-<li class="chapter" data-level="15.1.1" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#opening-a-channel-to-the-database"><i class="fa fa-check"></i><b>15.1.1</b> Opening a Channel to the Database</a></li>
-<li class="chapter" data-level="15.1.2" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#indexing"><i class="fa fa-check"></i><b>15.1.2</b> Indexing</a></li>
-<li class="chapter" data-level="15.1.3" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#downloading-the-selected-data"><i class="fa fa-check"></i><b>15.1.3</b> Downloading the Selected Data</a></li>
+<li class="chapter" data-level="12" data-path="spatial-plots-with-ggplot2.html"><a href="spatial-plots-with-ggplot2.html"><i class="fa fa-check"></i><b>12</b> Spatial Plots with <code>ggplot2</code></a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="spatial-plots-with-ggplot2.html"><a href="spatial-plots-with-ggplot2.html#simple-features"><i class="fa fa-check"></i><b>12.1</b> Simple Features</a></li>
+<li class="chapter" data-level="12.2" data-path="spatial-plots-with-ggplot2.html"><a href="spatial-plots-with-ggplot2.html#sea-surface-temperature-ggplot"><i class="fa fa-check"></i><b>12.2</b> Sea Surface Temperature ggplot</a></li>
+<li class="chapter" data-level="12.3" data-path="spatial-plots-with-ggplot2.html"><a href="spatial-plots-with-ggplot2.html#r-color-brewer-palettes"><i class="fa fa-check"></i><b>12.3</b> R Color Brewer Palettes</a>
+<ul>
+<li class="chapter" data-level="12.3.1" data-path="spatial-plots-with-ggplot2.html"><a href="spatial-plots-with-ggplot2.html#multi-plot-ggplot"><i class="fa fa-check"></i><b>12.3.1</b> Multi Plot ggplot</a></li>
 </ul></li>
-<li class="chapter" data-level="15.2" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#erddap"><i class="fa fa-check"></i><b>15.2</b> ERDDAP</a><ul>
-<li class="chapter" data-level="15.2.1" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#rerddap"><i class="fa fa-check"></i><b>15.2.1</b> <code>rerddap</code></a></li>
-<li class="chapter" data-level="15.2.2" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#finding-the-data-you-want"><i class="fa fa-check"></i><b>15.2.2</b> Finding the Data You Want</a></li>
-<li class="chapter" data-level="15.2.3" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#tabledap"><i class="fa fa-check"></i><b>15.2.3</b> Tabledap</a></li>
-<li class="chapter" data-level="15.2.4" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#griddap"><i class="fa fa-check"></i><b>15.2.4</b> Griddap</a></li>
-<li class="chapter" data-level="15.2.5" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#custom-erddap-url"><i class="fa fa-check"></i><b>15.2.5</b> Custom ERDDAP URL</a></li>
-</ul></li>
-<li class="chapter" data-level="15.3" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#assignment-8"><i class="fa fa-check"></i><b>15.3</b> Assignment</a><ul>
-<li class="chapter" data-level="15.3.1" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#extra-credit---2-points-3"><i class="fa fa-check"></i><b>15.3.1</b> Extra Credit - 2 Points</a></li>
+<li class="chapter" data-level="12.4" data-path="spatial-plots-with-ggplot2.html"><a href="spatial-plots-with-ggplot2.html#assignment-6"><i class="fa fa-check"></i><b>12.4</b> Assignment</a>
+<ul>
+<li class="chapter" data-level="12.4.1" data-path="spatial-plots-with-ggplot2.html"><a href="spatial-plots-with-ggplot2.html#extra-credit---2-points-2"><i class="fa fa-check"></i><b>12.4.1</b> Extra Credit - 2 Points</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="16" data-path="functions-and-code-presentation.html"><a href="functions-and-code-presentation.html"><i class="fa fa-check"></i><b>16</b> Functions and Code Presentation</a><ul>
-<li class="chapter" data-level="16.1" data-path="functions-and-code-presentation.html"><a href="functions-and-code-presentation.html#functions"><i class="fa fa-check"></i><b>16.1</b> Functions</a></li>
-<li class="chapter" data-level="16.2" data-path="functions-and-code-presentation.html"><a href="functions-and-code-presentation.html#netcdf-processing-function"><i class="fa fa-check"></i><b>16.2</b> NetCDF Processing Function</a></li>
-<li class="chapter" data-level="16.3" data-path="functions-and-code-presentation.html"><a href="functions-and-code-presentation.html#functions-in-for-loops"><i class="fa fa-check"></i><b>16.3</b> Functions in For Loops</a></li>
-<li class="chapter" data-level="16.4" data-path="functions-and-code-presentation.html"><a href="functions-and-code-presentation.html#rmarkdown"><i class="fa fa-check"></i><b>16.4</b> RMarkdown</a></li>
-<li class="chapter" data-level="16.5" data-path="functions-and-code-presentation.html"><a href="functions-and-code-presentation.html#assignment-9"><i class="fa fa-check"></i><b>16.5</b> Assignment</a></li>
+<li class="chapter" data-level="13" data-path="shapefiles.html"><a href="shapefiles.html"><i class="fa fa-check"></i><b>13</b> Shapefiles</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="shapefiles.html"><a href="shapefiles.html#reading-in-shapefiles"><i class="fa fa-check"></i><b>13.1</b> Reading in Shapefiles</a></li>
+<li class="chapter" data-level="13.2" data-path="shapefiles.html"><a href="shapefiles.html#combining-shapefiles-with-data"><i class="fa fa-check"></i><b>13.2</b> Combining Shapefiles with Data</a></li>
+<li class="chapter" data-level="13.3" data-path="shapefiles.html"><a href="shapefiles.html#visualizing-the-shapefiles-data"><i class="fa fa-check"></i><b>13.3</b> Visualizing the Shapefiles &amp; Data</a></li>
+<li class="chapter" data-level="13.4" data-path="shapefiles.html"><a href="shapefiles.html#saving-a-shapefile"><i class="fa fa-check"></i><b>13.4</b> Saving a shapefile</a></li>
+<li class="chapter" data-level="13.5" data-path="shapefiles.html"><a href="shapefiles.html#assignment-7"><i class="fa fa-check"></i><b>13.5</b> Assignment</a></li>
 </ul></li>
-<li class="chapter" data-level="17" data-path="machine-learning-with-r.html"><a href="machine-learning-with-r.html"><i class="fa fa-check"></i><b>17</b> Machine Learning with R</a><ul>
-<li class="chapter" data-level="17.1" data-path="machine-learning-with-r.html"><a href="machine-learning-with-r.html#machine-learning-terms"><i class="fa fa-check"></i><b>17.1</b> Machine Learning Terms</a></li>
-<li class="chapter" data-level="17.2" data-path="machine-learning-with-r.html"><a href="machine-learning-with-r.html#classical-machine-learning"><i class="fa fa-check"></i><b>17.2</b> Classical Machine Learning</a><ul>
-<li class="chapter" data-level="17.2.1" data-path="machine-learning-with-r.html"><a href="machine-learning-with-r.html#supervised-learning"><i class="fa fa-check"></i><b>17.2.1</b> Supervised Learning</a></li>
-<li class="chapter" data-level="17.2.2" data-path="machine-learning-with-r.html"><a href="machine-learning-with-r.html#unsupervised-learning"><i class="fa fa-check"></i><b>17.2.2</b> Unsupervised Learning</a></li>
-<li class="chapter" data-level="17.2.3" data-path="machine-learning-with-r.html"><a href="machine-learning-with-r.html#neural-networks"><i class="fa fa-check"></i><b>17.2.3</b> Neural Networks</a></li>
-<li class="chapter" data-level="17.2.4" data-path="machine-learning-with-r.html"><a href="machine-learning-with-r.html#reinforcement-learning"><i class="fa fa-check"></i><b>17.2.4</b> Reinforcement Learning</a></li>
+<li class="chapter" data-level="14" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html"><i class="fa fa-check"></i><b>14</b> Remote Data Extraction</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#thredds"><i class="fa fa-check"></i><b>14.1</b> THREDDS</a>
+<ul>
+<li class="chapter" data-level="14.1.1" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#opening-a-channel-to-the-database"><i class="fa fa-check"></i><b>14.1.1</b> Opening a Channel to the Database</a></li>
+<li class="chapter" data-level="14.1.2" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#indexing"><i class="fa fa-check"></i><b>14.1.2</b> Indexing</a></li>
+<li class="chapter" data-level="14.1.3" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#downloading-the-selected-data"><i class="fa fa-check"></i><b>14.1.3</b> Downloading the Selected Data</a></li>
+</ul></li>
+<li class="chapter" data-level="14.2" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#erddap"><i class="fa fa-check"></i><b>14.2</b> ERDDAP</a>
+<ul>
+<li class="chapter" data-level="14.2.1" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#rerddap"><i class="fa fa-check"></i><b>14.2.1</b> <code>rerddap</code></a></li>
+<li class="chapter" data-level="14.2.2" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#finding-the-data-you-want"><i class="fa fa-check"></i><b>14.2.2</b> Finding the Data You Want</a></li>
+<li class="chapter" data-level="14.2.3" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#tabledap"><i class="fa fa-check"></i><b>14.2.3</b> Tabledap</a></li>
+<li class="chapter" data-level="14.2.4" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#griddap"><i class="fa fa-check"></i><b>14.2.4</b> Griddap</a></li>
+<li class="chapter" data-level="14.2.5" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#custom-erddap-url"><i class="fa fa-check"></i><b>14.2.5</b> Custom ERDDAP URL</a></li>
+</ul></li>
+<li class="chapter" data-level="14.3" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#assignment-8"><i class="fa fa-check"></i><b>14.3</b> Assignment</a>
+<ul>
+<li class="chapter" data-level="14.3.1" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#extra-credit---2-points-3"><i class="fa fa-check"></i><b>14.3.1</b> Extra Credit - 2 Points</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="18" data-path="time-series-forecasting.html"><a href="time-series-forecasting.html"><i class="fa fa-check"></i><b>18</b> Time Series Forecasting</a><ul>
-<li class="chapter" data-level="18.1" data-path="time-series-forecasting.html"><a href="time-series-forecasting.html#load-the-packages-and-data"><i class="fa fa-check"></i><b>18.1</b> Load the Packages and Data</a></li>
-<li class="chapter" data-level="18.2" data-path="time-series-forecasting.html"><a href="time-series-forecasting.html#aggregate-data"><i class="fa fa-check"></i><b>18.2</b> Aggregate Data</a></li>
-<li class="chapter" data-level="18.3" data-path="time-series-forecasting.html"><a href="time-series-forecasting.html#prepping-the-model"><i class="fa fa-check"></i><b>18.3</b> Prepping the Model</a></li>
-<li class="chapter" data-level="18.4" data-path="time-series-forecasting.html"><a href="time-series-forecasting.html#running-the-model"><i class="fa fa-check"></i><b>18.4</b> Running the Model</a></li>
-<li class="chapter" data-level="18.5" data-path="time-series-forecasting.html"><a href="time-series-forecasting.html#validation-and-accuracy"><i class="fa fa-check"></i><b>18.5</b> Validation and Accuracy</a></li>
-<li class="chapter" data-level="18.6" data-path="time-series-forecasting.html"><a href="time-series-forecasting.html#future-forecasting"><i class="fa fa-check"></i><b>18.6</b> Future Forecasting</a></li>
-<li class="chapter" data-level="18.7" data-path="time-series-forecasting.html"><a href="time-series-forecasting.html#assignment-10"><i class="fa fa-check"></i><b>18.7</b> Assignment</a></li>
+<li class="chapter" data-level="15" data-path="functions-and-code-presentation.html"><a href="functions-and-code-presentation.html"><i class="fa fa-check"></i><b>15</b> Functions and Code Presentation</a>
+<ul>
+<li class="chapter" data-level="15.1" data-path="functions-and-code-presentation.html"><a href="functions-and-code-presentation.html#functions"><i class="fa fa-check"></i><b>15.1</b> Functions</a></li>
+<li class="chapter" data-level="15.2" data-path="functions-and-code-presentation.html"><a href="functions-and-code-presentation.html#netcdf-processing-function"><i class="fa fa-check"></i><b>15.2</b> NetCDF Processing Function</a></li>
+<li class="chapter" data-level="15.3" data-path="functions-and-code-presentation.html"><a href="functions-and-code-presentation.html#functions-in-for-loops"><i class="fa fa-check"></i><b>15.3</b> Functions in For Loops</a></li>
+<li class="chapter" data-level="15.4" data-path="functions-and-code-presentation.html"><a href="functions-and-code-presentation.html#rmarkdown"><i class="fa fa-check"></i><b>15.4</b> RMarkdown</a></li>
+<li class="chapter" data-level="15.5" data-path="functions-and-code-presentation.html"><a href="functions-and-code-presentation.html#assignment-9"><i class="fa fa-check"></i><b>15.5</b> Assignment</a></li>
 </ul></li>
-<li class="chapter" data-level="19" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html"><i class="fa fa-check"></i><b>19</b> Random Forest Modeling</a><ul>
-<li class="chapter" data-level="19.1" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#prepare-the-data"><i class="fa fa-check"></i><b>19.1</b> Prepare the Data</a></li>
-<li class="chapter" data-level="19.2" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#dimensionality-reduction"><i class="fa fa-check"></i><b>19.2</b> Dimensionality Reduction</a><ul>
-<li class="chapter" data-level="19.2.1" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#principal-component-analysis"><i class="fa fa-check"></i><b>19.2.1</b> Principal Component Analysis</a></li>
-<li class="chapter" data-level="19.2.2" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#t-sne-dimensionality-reduction"><i class="fa fa-check"></i><b>19.2.2</b> t-SNE Dimensionality Reduction</a></li>
-<li class="chapter" data-level="19.2.3" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#multidimensional-scaling"><i class="fa fa-check"></i><b>19.2.3</b> Multidimensional Scaling</a></li>
+<li class="chapter" data-level="16" data-path="machine-learning-with-r.html"><a href="machine-learning-with-r.html"><i class="fa fa-check"></i><b>16</b> Machine Learning with R</a>
+<ul>
+<li class="chapter" data-level="16.1" data-path="machine-learning-with-r.html"><a href="machine-learning-with-r.html#machine-learning-terms"><i class="fa fa-check"></i><b>16.1</b> Machine Learning Terms</a></li>
+<li class="chapter" data-level="16.2" data-path="machine-learning-with-r.html"><a href="machine-learning-with-r.html#classical-machine-learning"><i class="fa fa-check"></i><b>16.2</b> Classical Machine Learning</a>
+<ul>
+<li class="chapter" data-level="16.2.1" data-path="machine-learning-with-r.html"><a href="machine-learning-with-r.html#supervised-learning"><i class="fa fa-check"></i><b>16.2.1</b> Supervised Learning</a></li>
+<li class="chapter" data-level="16.2.2" data-path="machine-learning-with-r.html"><a href="machine-learning-with-r.html#unsupervised-learning"><i class="fa fa-check"></i><b>16.2.2</b> Unsupervised Learning</a></li>
+<li class="chapter" data-level="16.2.3" data-path="machine-learning-with-r.html"><a href="machine-learning-with-r.html#neural-networks"><i class="fa fa-check"></i><b>16.2.3</b> Neural Networks</a></li>
+<li class="chapter" data-level="16.2.4" data-path="machine-learning-with-r.html"><a href="machine-learning-with-r.html#reinforcement-learning"><i class="fa fa-check"></i><b>16.2.4</b> Reinforcement Learning</a></li>
 </ul></li>
-<li class="chapter" data-level="19.3" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#random-forests"><i class="fa fa-check"></i><b>19.3</b> Random Forests</a><ul>
-<li class="chapter" data-level="19.3.1" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#decision-trees"><i class="fa fa-check"></i><b>19.3.1</b> Decision Trees</a></li>
-<li class="chapter" data-level="19.3.2" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#data-partition"><i class="fa fa-check"></i><b>19.3.2</b> Data Partition</a></li>
-<li class="chapter" data-level="19.3.3" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#training-the-model"><i class="fa fa-check"></i><b>19.3.3</b> Training the Model</a></li>
-<li class="chapter" data-level="19.3.4" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#testing-the-model"><i class="fa fa-check"></i><b>19.3.4</b> Testing the Model</a></li>
-<li class="chapter" data-level="19.3.5" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#hyperparameter-tuning"><i class="fa fa-check"></i><b>19.3.5</b> Hyperparameter Tuning</a></li>
 </ul></li>
-<li class="chapter" data-level="19.4" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#assignment-11"><i class="fa fa-check"></i><b>19.4</b> Assignment</a></li>
+<li class="chapter" data-level="17" data-path="time-series-forecasting.html"><a href="time-series-forecasting.html"><i class="fa fa-check"></i><b>17</b> Time Series Forecasting</a>
+<ul>
+<li class="chapter" data-level="17.1" data-path="time-series-forecasting.html"><a href="time-series-forecasting.html#load-the-packages-and-data"><i class="fa fa-check"></i><b>17.1</b> Load the Packages and Data</a></li>
+<li class="chapter" data-level="17.2" data-path="time-series-forecasting.html"><a href="time-series-forecasting.html#aggregate-data"><i class="fa fa-check"></i><b>17.2</b> Aggregate Data</a></li>
+<li class="chapter" data-level="17.3" data-path="time-series-forecasting.html"><a href="time-series-forecasting.html#prepping-the-model"><i class="fa fa-check"></i><b>17.3</b> Prepping the Model</a></li>
+<li class="chapter" data-level="17.4" data-path="time-series-forecasting.html"><a href="time-series-forecasting.html#running-the-model"><i class="fa fa-check"></i><b>17.4</b> Running the Model</a></li>
+<li class="chapter" data-level="17.5" data-path="time-series-forecasting.html"><a href="time-series-forecasting.html#validation-and-accuracy"><i class="fa fa-check"></i><b>17.5</b> Validation and Accuracy</a></li>
+<li class="chapter" data-level="17.6" data-path="time-series-forecasting.html"><a href="time-series-forecasting.html#future-forecasting"><i class="fa fa-check"></i><b>17.6</b> Future Forecasting</a></li>
+<li class="chapter" data-level="17.7" data-path="time-series-forecasting.html"><a href="time-series-forecasting.html#assignment-10"><i class="fa fa-check"></i><b>17.7</b> Assignment</a></li>
+</ul></li>
+<li class="chapter" data-level="18" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html"><i class="fa fa-check"></i><b>18</b> Random Forest Modeling</a>
+<ul>
+<li class="chapter" data-level="18.1" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#prepare-the-data"><i class="fa fa-check"></i><b>18.1</b> Prepare the Data</a></li>
+<li class="chapter" data-level="18.2" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#dimensionality-reduction"><i class="fa fa-check"></i><b>18.2</b> Dimensionality Reduction</a>
+<ul>
+<li class="chapter" data-level="18.2.1" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#principal-component-analysis"><i class="fa fa-check"></i><b>18.2.1</b> Principal Component Analysis</a></li>
+<li class="chapter" data-level="18.2.2" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#t-sne-dimensionality-reduction"><i class="fa fa-check"></i><b>18.2.2</b> t-SNE Dimensionality Reduction</a></li>
+<li class="chapter" data-level="18.2.3" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#multidimensional-scaling"><i class="fa fa-check"></i><b>18.2.3</b> Multidimensional Scaling</a></li>
+</ul></li>
+<li class="chapter" data-level="18.3" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#random-forests"><i class="fa fa-check"></i><b>18.3</b> Random Forests</a>
+<ul>
+<li class="chapter" data-level="18.3.1" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#decision-trees"><i class="fa fa-check"></i><b>18.3.1</b> Decision Trees</a></li>
+<li class="chapter" data-level="18.3.2" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#data-partition"><i class="fa fa-check"></i><b>18.3.2</b> Data Partition</a></li>
+<li class="chapter" data-level="18.3.3" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#training-the-model"><i class="fa fa-check"></i><b>18.3.3</b> Training the Model</a></li>
+<li class="chapter" data-level="18.3.4" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#testing-the-model"><i class="fa fa-check"></i><b>18.3.4</b> Testing the Model</a></li>
+<li class="chapter" data-level="18.3.5" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#hyperparameter-tuning"><i class="fa fa-check"></i><b>18.3.5</b> Hyperparameter Tuning</a></li>
+</ul></li>
+<li class="chapter" data-level="18.4" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#assignment-11"><i class="fa fa-check"></i><b>18.4</b> Assignment</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/jsimkins2" target="blank">James Simkins</a></li>
@@ -352,153 +385,153 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="scientific-r-scripts" class="section level1">
+<div id="scientific-r-scripts" class="section level1" number="6">
 <h1><span class="header-section-number">6</span> Scientific R Scripts</h1>
 <p>So far, the examples of R scripts we’ve shown have been general purpose scripts. For this week, we’re going to cover an example where we want to plot sea surface temperature from a given netCDF file. A netCDF file (network Common Data Format) is an advanced filetype that is incredibly efficient at storing data and heavily used in physical sciences. Within each file, metadata (time, latitude info, longitude info, projection, etc.), and variables (sea surface temperature, latitude points, longitude points, chlorophyll, etc.) can be found. The netCDF file we’ll be looking at in this example is <strong>OR_ABI-L2-SSTF-M3_G16_s20192081300453_e20192081400161_c20192081406297.nc</strong>. This is a data file from the GOES-16 (Geostationary Operational Environmental Satellite) satellite that shows a snapshot of the Northwest Atlantic Ocean and Eastern Seaboard. It’s an ugly name, but we’ll see that this complex file can be easily interpreted in R.</p>
 <p>A scientific R Script might look like this:</p>
-<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb132-1" data-line-number="1"><span class="co"># James Simkins</span></a>
-<a class="sourceLine" id="cb132-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb132-3" data-line-number="3"><span class="co"># Load libraries</span></a>
-<a class="sourceLine" id="cb132-4" data-line-number="4"><span class="kw">library</span>(ncdf4)</a>
-<a class="sourceLine" id="cb132-5" data-line-number="5"><span class="kw">library</span>(fields)</a>
-<a class="sourceLine" id="cb132-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb132-7" data-line-number="7"><span class="co"># open our ugly looking netcdf file</span></a>
-<a class="sourceLine" id="cb132-8" data-line-number="8">ncFile &lt;-<span class="st"> </span>ncdf4<span class="op">::</span><span class="kw">nc_open</span>(<span class="st">&quot;~/Documents/Github/geog473-673/datasets/OR_ABI-L2-SSTF-M3_G16_s20192081300453_e20192081400161_c20192081406297.nc&quot;</span>)</a>
-<a class="sourceLine" id="cb132-9" data-line-number="9"></a>
-<a class="sourceLine" id="cb132-10" data-line-number="10"><span class="co"># extract SST - sea surface temperature , extract latitude, and extract longitude</span></a>
-<a class="sourceLine" id="cb132-11" data-line-number="11">sstK &lt;-<span class="st"> </span>ncdf4<span class="op">::</span><span class="kw">ncvar_get</span>(<span class="dt">nc=</span>ncFile, <span class="dt">varid=</span><span class="st">&quot;SST&quot;</span>)</a>
-<a class="sourceLine" id="cb132-12" data-line-number="12">lat &lt;-<span class="st"> </span>ncdf4<span class="op">::</span><span class="kw">ncvar_get</span>(<span class="dt">nc=</span>ncFile, <span class="dt">varid=</span><span class="st">&quot;latitude&quot;</span>)</a>
-<a class="sourceLine" id="cb132-13" data-line-number="13">lon &lt;-<span class="st"> </span>ncdf4<span class="op">::</span><span class="kw">ncvar_get</span>(<span class="dt">nc=</span>ncFile, <span class="dt">varid=</span><span class="st">&quot;longitude&quot;</span>)</a>
-<a class="sourceLine" id="cb132-14" data-line-number="14"></a>
-<a class="sourceLine" id="cb132-15" data-line-number="15"><span class="co"># convert sst from Kelvin to Celsius</span></a>
-<a class="sourceLine" id="cb132-16" data-line-number="16">sstC &lt;-<span class="st"> </span>sstK <span class="op">-</span><span class="st"> </span><span class="fl">273.15</span></a>
-<a class="sourceLine" id="cb132-17" data-line-number="17"></a>
-<a class="sourceLine" id="cb132-18" data-line-number="18"><span class="co"># remove values below 0C</span></a>
-<a class="sourceLine" id="cb132-19" data-line-number="19">sstC[sstC <span class="op">&lt;</span><span class="st"> </span><span class="dv">0</span>] =<span class="st"> </span><span class="ot">NA</span></a>
-<a class="sourceLine" id="cb132-20" data-line-number="20"></a>
-<a class="sourceLine" id="cb132-21" data-line-number="21"><span class="co"># Plot the sstC object</span></a>
-<a class="sourceLine" id="cb132-22" data-line-number="22">fields<span class="op">::</span><span class="kw">image.plot</span>(<span class="dt">x=</span>lon, <span class="dt">y=</span>lat, <span class="dt">z=</span>sstC, <span class="dt">legend.lab=</span><span class="st">&quot;Celsius&quot;</span>)</a>
-<a class="sourceLine" id="cb132-23" data-line-number="23"><span class="kw">title</span>(<span class="st">&quot;GOES-R SST Product 7/25/2019 19:00 UTC&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb132-1"><a href="scientific-r-scripts.html#cb132-1" aria-hidden="true" tabindex="-1"></a><span class="co"># James Simkins</span></span>
+<span id="cb132-2"><a href="scientific-r-scripts.html#cb132-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb132-3"><a href="scientific-r-scripts.html#cb132-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Load libraries</span></span>
+<span id="cb132-4"><a href="scientific-r-scripts.html#cb132-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ncdf4)</span>
+<span id="cb132-5"><a href="scientific-r-scripts.html#cb132-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(fields)</span>
+<span id="cb132-6"><a href="scientific-r-scripts.html#cb132-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb132-7"><a href="scientific-r-scripts.html#cb132-7" aria-hidden="true" tabindex="-1"></a><span class="co"># open our ugly looking netcdf file</span></span>
+<span id="cb132-8"><a href="scientific-r-scripts.html#cb132-8" aria-hidden="true" tabindex="-1"></a>ncFile <span class="ot">&lt;-</span> ncdf4<span class="sc">::</span><span class="fu">nc_open</span>(<span class="st">&quot;~/Documents/Github/geog473-673/datasets/OR_ABI-L2-SSTF-M3_G16_s20192081300453_e20192081400161_c20192081406297.nc&quot;</span>)</span>
+<span id="cb132-9"><a href="scientific-r-scripts.html#cb132-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb132-10"><a href="scientific-r-scripts.html#cb132-10" aria-hidden="true" tabindex="-1"></a><span class="co"># extract SST - sea surface temperature , extract latitude, and extract longitude</span></span>
+<span id="cb132-11"><a href="scientific-r-scripts.html#cb132-11" aria-hidden="true" tabindex="-1"></a>sstK <span class="ot">&lt;-</span> ncdf4<span class="sc">::</span><span class="fu">ncvar_get</span>(<span class="at">nc=</span>ncFile, <span class="at">varid=</span><span class="st">&quot;SST&quot;</span>)</span>
+<span id="cb132-12"><a href="scientific-r-scripts.html#cb132-12" aria-hidden="true" tabindex="-1"></a>lat <span class="ot">&lt;-</span> ncdf4<span class="sc">::</span><span class="fu">ncvar_get</span>(<span class="at">nc=</span>ncFile, <span class="at">varid=</span><span class="st">&quot;latitude&quot;</span>)</span>
+<span id="cb132-13"><a href="scientific-r-scripts.html#cb132-13" aria-hidden="true" tabindex="-1"></a>lon <span class="ot">&lt;-</span> ncdf4<span class="sc">::</span><span class="fu">ncvar_get</span>(<span class="at">nc=</span>ncFile, <span class="at">varid=</span><span class="st">&quot;longitude&quot;</span>)</span>
+<span id="cb132-14"><a href="scientific-r-scripts.html#cb132-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb132-15"><a href="scientific-r-scripts.html#cb132-15" aria-hidden="true" tabindex="-1"></a><span class="co"># convert sst from Kelvin to Celsius</span></span>
+<span id="cb132-16"><a href="scientific-r-scripts.html#cb132-16" aria-hidden="true" tabindex="-1"></a>sstC <span class="ot">&lt;-</span> sstK <span class="sc">-</span> <span class="fl">273.15</span></span>
+<span id="cb132-17"><a href="scientific-r-scripts.html#cb132-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb132-18"><a href="scientific-r-scripts.html#cb132-18" aria-hidden="true" tabindex="-1"></a><span class="co"># remove values below 0C</span></span>
+<span id="cb132-19"><a href="scientific-r-scripts.html#cb132-19" aria-hidden="true" tabindex="-1"></a>sstC[sstC <span class="sc">&lt;</span> <span class="dv">0</span>] <span class="ot">=</span> <span class="cn">NA</span></span>
+<span id="cb132-20"><a href="scientific-r-scripts.html#cb132-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb132-21"><a href="scientific-r-scripts.html#cb132-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the sstC object</span></span>
+<span id="cb132-22"><a href="scientific-r-scripts.html#cb132-22" aria-hidden="true" tabindex="-1"></a>fields<span class="sc">::</span><span class="fu">image.plot</span>(<span class="at">x=</span>lon, <span class="at">y=</span>lat, <span class="at">z=</span>sstC, <span class="at">legend.lab=</span><span class="st">&quot;Celsius&quot;</span>)</span>
+<span id="cb132-23"><a href="scientific-r-scripts.html#cb132-23" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span>(<span class="st">&quot;GOES-R SST Product 7/25/2019 19:00 UTC&quot;</span>)</span></code></pre></div>
 <p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-65-1.png" width="60%" style="display: block; margin: auto;" /></p>
-<div id="script-breakdown" class="section level2">
+<div id="script-breakdown" class="section level2" number="6.1">
 <h2><span class="header-section-number">6.1</span> Script Breakdown</h2>
 <p>Let’s slowly proceed through the script written above and build it as we go along. First and foremost of most scripts is loading the libraries we’ll be using functions from.</p>
-<div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb133-1" data-line-number="1"><span class="co"># Load libraries</span></a>
-<a class="sourceLine" id="cb133-2" data-line-number="2"><span class="kw">library</span>(ncdf4)</a>
-<a class="sourceLine" id="cb133-3" data-line-number="3"><span class="kw">library</span>(fields)</a></code></pre></div>
+<div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb133-1"><a href="scientific-r-scripts.html#cb133-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load libraries</span></span>
+<span id="cb133-2"><a href="scientific-r-scripts.html#cb133-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ncdf4)</span>
+<span id="cb133-3"><a href="scientific-r-scripts.html#cb133-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(fields)</span></code></pre></div>
 <p>In R, we need to call on packages/libraries that we want to load in. As a reminder, packages are the toolbox we want to bring into R and the functions inside each package are the tools within that specific toolbox. The <code>library()</code> base function loads packages. After we load a package, R will know what we mean when we call on a function from that package.</p>
-<div id="installing-packages" class="section level3">
+<div id="installing-packages" class="section level3" number="6.1.1">
 <h3><span class="header-section-number">6.1.1</span> Installing Packages</h3>
 <p>If you just installed R for the first time, odds are you do not have <code>ncdf4</code> or <code>field</code> libraries installed. If you need to install them, here’s how to use the <code>install.packages()</code> function to do so. Copy the text below and paste in your R console.</p>
-<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb134-1" data-line-number="1"><span class="co"># install the ncdf4 package</span></a>
-<a class="sourceLine" id="cb134-2" data-line-number="2"><span class="kw">install.packages</span>(<span class="st">&quot;ncdf4&quot;</span>)</a>
-<a class="sourceLine" id="cb134-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb134-4" data-line-number="4"><span class="co"># install the fields package</span></a>
-<a class="sourceLine" id="cb134-5" data-line-number="5"><span class="kw">install.packages</span>(<span class="st">&quot;fields&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb134-1"><a href="scientific-r-scripts.html#cb134-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install the ncdf4 package</span></span>
+<span id="cb134-2"><a href="scientific-r-scripts.html#cb134-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;ncdf4&quot;</span>)</span>
+<span id="cb134-3"><a href="scientific-r-scripts.html#cb134-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb134-4"><a href="scientific-r-scripts.html#cb134-4" aria-hidden="true" tabindex="-1"></a><span class="co"># install the fields package</span></span>
+<span id="cb134-5"><a href="scientific-r-scripts.html#cb134-5" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;fields&quot;</span>)</span></code></pre></div>
 </div>
-<div id="reading-the-data" class="section level3">
+<div id="reading-the-data" class="section level3" number="6.1.2">
 <h3><span class="header-section-number">6.1.2</span> Reading the Data</h3>
-<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb135-1" data-line-number="1"><span class="co"># Load libraries</span></a>
-<a class="sourceLine" id="cb135-2" data-line-number="2"><span class="kw">library</span>(ncdf4)</a>
-<a class="sourceLine" id="cb135-3" data-line-number="3"><span class="kw">library</span>(fields)</a>
-<a class="sourceLine" id="cb135-4" data-line-number="4"><span class="co">#######################################</span></a>
-<a class="sourceLine" id="cb135-5" data-line-number="5"></a>
-<a class="sourceLine" id="cb135-6" data-line-number="6">ncFile &lt;-<span class="st"> </span>ncdf4<span class="op">::</span><span class="kw">nc_open</span>(<span class="dt">filename=</span><span class="st">&quot;~/Documents/Github/geog473-673/datasets/OR_ABI-L2-SSTF-M3_G16_s20192081300453_e20192081400161_c20192081406297.nc&quot;</span>)</a>
-<a class="sourceLine" id="cb135-7" data-line-number="7">sstK &lt;-<span class="st"> </span>ncdf4<span class="op">::</span><span class="kw">ncvar_get</span>(<span class="dt">nc=</span>ncFile, <span class="dt">varid=</span><span class="st">&quot;SST&quot;</span>)</a>
-<a class="sourceLine" id="cb135-8" data-line-number="8">lat &lt;-<span class="st"> </span>ncdf4<span class="op">::</span><span class="kw">ncvar_get</span>(<span class="dt">nc=</span>ncFile, <span class="dt">varid=</span><span class="st">&quot;latitude&quot;</span>)</a>
-<a class="sourceLine" id="cb135-9" data-line-number="9">lon &lt;-<span class="st"> </span>ncdf4<span class="op">::</span><span class="kw">ncvar_get</span>(<span class="dt">nc=</span>ncFile, <span class="dt">varid=</span><span class="st">&quot;longitude&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb135-1"><a href="scientific-r-scripts.html#cb135-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load libraries</span></span>
+<span id="cb135-2"><a href="scientific-r-scripts.html#cb135-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ncdf4)</span>
+<span id="cb135-3"><a href="scientific-r-scripts.html#cb135-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(fields)</span>
+<span id="cb135-4"><a href="scientific-r-scripts.html#cb135-4" aria-hidden="true" tabindex="-1"></a><span class="do">#######################################</span></span>
+<span id="cb135-5"><a href="scientific-r-scripts.html#cb135-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb135-6"><a href="scientific-r-scripts.html#cb135-6" aria-hidden="true" tabindex="-1"></a>ncFile <span class="ot">&lt;-</span> ncdf4<span class="sc">::</span><span class="fu">nc_open</span>(<span class="at">filename=</span><span class="st">&quot;~/Documents/Github/geog473-673/datasets/OR_ABI-L2-SSTF-M3_G16_s20192081300453_e20192081400161_c20192081406297.nc&quot;</span>)</span>
+<span id="cb135-7"><a href="scientific-r-scripts.html#cb135-7" aria-hidden="true" tabindex="-1"></a>sstK <span class="ot">&lt;-</span> ncdf4<span class="sc">::</span><span class="fu">ncvar_get</span>(<span class="at">nc=</span>ncFile, <span class="at">varid=</span><span class="st">&quot;SST&quot;</span>)</span>
+<span id="cb135-8"><a href="scientific-r-scripts.html#cb135-8" aria-hidden="true" tabindex="-1"></a>lat <span class="ot">&lt;-</span> ncdf4<span class="sc">::</span><span class="fu">ncvar_get</span>(<span class="at">nc=</span>ncFile, <span class="at">varid=</span><span class="st">&quot;latitude&quot;</span>)</span>
+<span id="cb135-9"><a href="scientific-r-scripts.html#cb135-9" aria-hidden="true" tabindex="-1"></a>lon <span class="ot">&lt;-</span> ncdf4<span class="sc">::</span><span class="fu">ncvar_get</span>(<span class="at">nc=</span>ncFile, <span class="at">varid=</span><span class="st">&quot;longitude&quot;</span>)</span></code></pre></div>
 <p>Our object name is <code>ncFile</code> and it holds an opened NetCDF file. We open this file via the <code>nc_open()</code> function that’s within the <code>ncdf4</code> library. Note the <code>ncdf4::nc_open()</code> syntax. Using this syntax, we explicitly tell R we wish to use the <code>nc_open()</code> function within (<code>::</code>) the <code>ncdf4</code> package. This is not necessary after loading the <code>ncdf4</code> package above but is still important ot know.</p>
 <p>Notice we can use either <code>&lt;-</code> or <code>=</code> for objects (like <code>ncFile</code> or <code>sstK</code>) but I MUST use <code>=</code> within the <em>function</em> ‘walls’ (the parantheses).</p>
 <p>We open the netcdf file and then extract what we want out of it using <code>ncvar_get()</code>, which is short for “netcdf variable get”. Confused about how to use <code>ncvar_get()</code>? Try running <code>help(ncvar_get)</code> in your console.</p>
-<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb136-1" data-line-number="1"><span class="co"># Load libraries</span></a>
-<a class="sourceLine" id="cb136-2" data-line-number="2"><span class="kw">library</span>(ncdf4)</a>
-<a class="sourceLine" id="cb136-3" data-line-number="3"><span class="kw">library</span>(fields)</a>
-<a class="sourceLine" id="cb136-4" data-line-number="4">ncFile &lt;-<span class="st"> </span>ncdf4<span class="op">::</span><span class="kw">nc_open</span>(<span class="dt">filename=</span><span class="st">&quot;~/Documents/Github/geog473-673/datasets/OR_ABI-L2-SSTF-M3_G16_s20192081300453_e20192081400161_c20192081406297.nc&quot;</span>)</a>
-<a class="sourceLine" id="cb136-5" data-line-number="5">sstK &lt;-<span class="st"> </span>ncdf4<span class="op">::</span><span class="kw">ncvar_get</span>(<span class="dt">nc=</span>ncFile, <span class="dt">varid=</span><span class="st">&quot;SST&quot;</span>)</a>
-<a class="sourceLine" id="cb136-6" data-line-number="6"><span class="co">#######################################</span></a>
-<a class="sourceLine" id="cb136-7" data-line-number="7"><span class="co"># convert sst from Kelvin to Celsius</span></a>
-<a class="sourceLine" id="cb136-8" data-line-number="8">sstC &lt;-<span class="st"> </span>sstK <span class="op">-</span><span class="st"> </span><span class="fl">273.15</span></a></code></pre></div>
+<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb136-1"><a href="scientific-r-scripts.html#cb136-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load libraries</span></span>
+<span id="cb136-2"><a href="scientific-r-scripts.html#cb136-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ncdf4)</span>
+<span id="cb136-3"><a href="scientific-r-scripts.html#cb136-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(fields)</span>
+<span id="cb136-4"><a href="scientific-r-scripts.html#cb136-4" aria-hidden="true" tabindex="-1"></a>ncFile <span class="ot">&lt;-</span> ncdf4<span class="sc">::</span><span class="fu">nc_open</span>(<span class="at">filename=</span><span class="st">&quot;~/Documents/Github/geog473-673/datasets/OR_ABI-L2-SSTF-M3_G16_s20192081300453_e20192081400161_c20192081406297.nc&quot;</span>)</span>
+<span id="cb136-5"><a href="scientific-r-scripts.html#cb136-5" aria-hidden="true" tabindex="-1"></a>sstK <span class="ot">&lt;-</span> ncdf4<span class="sc">::</span><span class="fu">ncvar_get</span>(<span class="at">nc=</span>ncFile, <span class="at">varid=</span><span class="st">&quot;SST&quot;</span>)</span>
+<span id="cb136-6"><a href="scientific-r-scripts.html#cb136-6" aria-hidden="true" tabindex="-1"></a><span class="do">#######################################</span></span>
+<span id="cb136-7"><a href="scientific-r-scripts.html#cb136-7" aria-hidden="true" tabindex="-1"></a><span class="co"># convert sst from Kelvin to Celsius</span></span>
+<span id="cb136-8"><a href="scientific-r-scripts.html#cb136-8" aria-hidden="true" tabindex="-1"></a>sstC <span class="ot">&lt;-</span> sstK <span class="sc">-</span> <span class="fl">273.15</span></span></code></pre></div>
 <p>The SST variable from the netCDF file was in Kelvin and we want to convert it to Celsius. Right now, sstK is a matrix. How do I know this? Look at your environment, or simply type into your console:</p>
-<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb137-1" data-line-number="1"><span class="co"># Load libraries</span></a>
-<a class="sourceLine" id="cb137-2" data-line-number="2"><span class="kw">library</span>(ncdf4)</a>
-<a class="sourceLine" id="cb137-3" data-line-number="3"><span class="kw">library</span>(fields)</a>
-<a class="sourceLine" id="cb137-4" data-line-number="4">ncFile &lt;-<span class="st"> </span>ncdf4<span class="op">::</span><span class="kw">nc_open</span>(<span class="dt">filename=</span><span class="st">&quot;~/Documents/Github/geog473-673/datasets/OR_ABI-L2-SSTF-M3_G16_s20192081300453_e20192081400161_c20192081406297.nc&quot;</span>)</a>
-<a class="sourceLine" id="cb137-5" data-line-number="5">sstK &lt;-<span class="st"> </span>ncdf4<span class="op">::</span><span class="kw">ncvar_get</span>(<span class="dt">nc=</span>ncFile, <span class="dt">varid=</span><span class="st">&quot;SST&quot;</span>)</a>
-<a class="sourceLine" id="cb137-6" data-line-number="6"><span class="co">#######################################</span></a>
-<a class="sourceLine" id="cb137-7" data-line-number="7"></a>
-<a class="sourceLine" id="cb137-8" data-line-number="8"><span class="kw">class</span>(sstK)</a></code></pre></div>
+<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb137-1"><a href="scientific-r-scripts.html#cb137-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load libraries</span></span>
+<span id="cb137-2"><a href="scientific-r-scripts.html#cb137-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ncdf4)</span>
+<span id="cb137-3"><a href="scientific-r-scripts.html#cb137-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(fields)</span>
+<span id="cb137-4"><a href="scientific-r-scripts.html#cb137-4" aria-hidden="true" tabindex="-1"></a>ncFile <span class="ot">&lt;-</span> ncdf4<span class="sc">::</span><span class="fu">nc_open</span>(<span class="at">filename=</span><span class="st">&quot;~/Documents/Github/geog473-673/datasets/OR_ABI-L2-SSTF-M3_G16_s20192081300453_e20192081400161_c20192081406297.nc&quot;</span>)</span>
+<span id="cb137-5"><a href="scientific-r-scripts.html#cb137-5" aria-hidden="true" tabindex="-1"></a>sstK <span class="ot">&lt;-</span> ncdf4<span class="sc">::</span><span class="fu">ncvar_get</span>(<span class="at">nc=</span>ncFile, <span class="at">varid=</span><span class="st">&quot;SST&quot;</span>)</span>
+<span id="cb137-6"><a href="scientific-r-scripts.html#cb137-6" aria-hidden="true" tabindex="-1"></a><span class="do">#######################################</span></span>
+<span id="cb137-7"><a href="scientific-r-scripts.html#cb137-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb137-8"><a href="scientific-r-scripts.html#cb137-8" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(sstK)</span></code></pre></div>
 <pre><code>## [1] &quot;matrix&quot; &quot;array&quot;</code></pre>
 <p>Class is a useful function that is loaded with the base library everytime you fire up R. It tells us what type of object we have. Now that we know this is a matrix, we can subtract 0 Celsius, or 273.15 Kelvin. When we have a matrix in R and perform any math on it, it does that math on each and every matrix value.</p>
 </div>
-<div id="basic-quality-control" class="section level3">
+<div id="basic-quality-control" class="section level3" number="6.1.3">
 <h3><span class="header-section-number">6.1.3</span> Basic Quality Control</h3>
 <p>There are bad values that crept into the dataset and we need to convert all of them to <code>NaN</code> (aka Not A Number…also known as <code>NA</code> (Not Available) in R). How do we know there are bad values in this dataset?</p>
-<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb139-1" data-line-number="1"><span class="co"># Load libraries</span></a>
-<a class="sourceLine" id="cb139-2" data-line-number="2"><span class="kw">library</span>(ncdf4)</a>
-<a class="sourceLine" id="cb139-3" data-line-number="3"><span class="kw">library</span>(fields)</a>
-<a class="sourceLine" id="cb139-4" data-line-number="4">ncFile &lt;-<span class="st"> </span>ncdf4<span class="op">::</span><span class="kw">nc_open</span>(<span class="dt">filename=</span><span class="st">&quot;~/Documents/Github/geog473-673/datasets/OR_ABI-L2-SSTF-M3_G16_s20192081300453_e20192081400161_c20192081406297.nc&quot;</span>)</a>
-<a class="sourceLine" id="cb139-5" data-line-number="5">sstK &lt;-<span class="st"> </span>ncdf4<span class="op">::</span><span class="kw">ncvar_get</span>(<span class="dt">nc=</span>ncFile, <span class="dt">varid=</span><span class="st">&quot;SST&quot;</span>)</a>
-<a class="sourceLine" id="cb139-6" data-line-number="6"><span class="co">#######################################</span></a>
-<a class="sourceLine" id="cb139-7" data-line-number="7"></a>
-<a class="sourceLine" id="cb139-8" data-line-number="8"><span class="kw">summary</span>(<span class="kw">as.vector</span>(sstK))</a></code></pre></div>
+<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb139-1"><a href="scientific-r-scripts.html#cb139-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load libraries</span></span>
+<span id="cb139-2"><a href="scientific-r-scripts.html#cb139-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ncdf4)</span>
+<span id="cb139-3"><a href="scientific-r-scripts.html#cb139-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(fields)</span>
+<span id="cb139-4"><a href="scientific-r-scripts.html#cb139-4" aria-hidden="true" tabindex="-1"></a>ncFile <span class="ot">&lt;-</span> ncdf4<span class="sc">::</span><span class="fu">nc_open</span>(<span class="at">filename=</span><span class="st">&quot;~/Documents/Github/geog473-673/datasets/OR_ABI-L2-SSTF-M3_G16_s20192081300453_e20192081400161_c20192081406297.nc&quot;</span>)</span>
+<span id="cb139-5"><a href="scientific-r-scripts.html#cb139-5" aria-hidden="true" tabindex="-1"></a>sstK <span class="ot">&lt;-</span> ncdf4<span class="sc">::</span><span class="fu">ncvar_get</span>(<span class="at">nc=</span>ncFile, <span class="at">varid=</span><span class="st">&quot;SST&quot;</span>)</span>
+<span id="cb139-6"><a href="scientific-r-scripts.html#cb139-6" aria-hidden="true" tabindex="-1"></a><span class="do">#######################################</span></span>
+<span id="cb139-7"><a href="scientific-r-scripts.html#cb139-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb139-8"><a href="scientific-r-scripts.html#cb139-8" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">as.vector</span>(sstK))</span></code></pre></div>
 <pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA&#39;s 
 ##  -999.0   286.9   300.0   278.2   302.0   310.0 2175822</code></pre>
 <p><code>summary()</code> is another great base function. In order to use it on a matrix, we need to convert it to a vector - summary can’t do 2 dimensional objects like matrices, it needs a one dimensional vector of numbers. Notice the <code>Min</code> in the summary output. -999? No way is that a valid Kelvin value, especially since we subtract another 273.15 to this number to make the the Celsius matrix. So clearly we have some bad data that we need to convert to <code>NA</code>’s. We do this by…</p>
-<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb141-1" data-line-number="1"><span class="kw">library</span>(ncdf4)</a>
-<a class="sourceLine" id="cb141-2" data-line-number="2"><span class="kw">library</span>(fields)</a>
-<a class="sourceLine" id="cb141-3" data-line-number="3">ncFile &lt;-<span class="st"> </span>ncdf4<span class="op">::</span><span class="kw">nc_open</span>(<span class="st">&quot;~/Documents/Github/geog473-673/datasets/OR_ABI-L2-SSTF-M3_G16_s20192081300453_e20192081400161_c20192081406297.nc&quot;</span>)</a>
-<a class="sourceLine" id="cb141-4" data-line-number="4">sstK &lt;-<span class="st"> </span>ncdf4<span class="op">::</span><span class="kw">ncvar_get</span>(<span class="dt">nc=</span>ncFile, <span class="dt">varid=</span><span class="st">&quot;SST&quot;</span>)</a>
-<a class="sourceLine" id="cb141-5" data-line-number="5">lat &lt;-<span class="st"> </span>ncdf4<span class="op">::</span><span class="kw">ncvar_get</span>(<span class="dt">nc=</span>ncFile, <span class="dt">varid=</span><span class="st">&quot;latitude&quot;</span>)</a>
-<a class="sourceLine" id="cb141-6" data-line-number="6">lon &lt;-<span class="st"> </span>ncdf4<span class="op">::</span><span class="kw">ncvar_get</span>(<span class="dt">nc=</span>ncFile, <span class="dt">varid=</span><span class="st">&quot;longitude&quot;</span>)</a>
-<a class="sourceLine" id="cb141-7" data-line-number="7"><span class="co"># convert sst from Kelvin to Celsius</span></a>
-<a class="sourceLine" id="cb141-8" data-line-number="8">sstC &lt;-<span class="st"> </span>sstK <span class="op">-</span><span class="st"> </span><span class="fl">273.15</span></a>
-<a class="sourceLine" id="cb141-9" data-line-number="9"><span class="co">#######################################</span></a>
-<a class="sourceLine" id="cb141-10" data-line-number="10"></a>
-<a class="sourceLine" id="cb141-11" data-line-number="11"><span class="co"># remove values below 0C</span></a>
-<a class="sourceLine" id="cb141-12" data-line-number="12">sstC[sstC <span class="op">&lt;</span><span class="st"> </span><span class="dv">0</span>] =<span class="st"> </span><span class="ot">NA</span></a></code></pre></div>
+<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb141-1"><a href="scientific-r-scripts.html#cb141-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ncdf4)</span>
+<span id="cb141-2"><a href="scientific-r-scripts.html#cb141-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(fields)</span>
+<span id="cb141-3"><a href="scientific-r-scripts.html#cb141-3" aria-hidden="true" tabindex="-1"></a>ncFile <span class="ot">&lt;-</span> ncdf4<span class="sc">::</span><span class="fu">nc_open</span>(<span class="st">&quot;~/Documents/Github/geog473-673/datasets/OR_ABI-L2-SSTF-M3_G16_s20192081300453_e20192081400161_c20192081406297.nc&quot;</span>)</span>
+<span id="cb141-4"><a href="scientific-r-scripts.html#cb141-4" aria-hidden="true" tabindex="-1"></a>sstK <span class="ot">&lt;-</span> ncdf4<span class="sc">::</span><span class="fu">ncvar_get</span>(<span class="at">nc=</span>ncFile, <span class="at">varid=</span><span class="st">&quot;SST&quot;</span>)</span>
+<span id="cb141-5"><a href="scientific-r-scripts.html#cb141-5" aria-hidden="true" tabindex="-1"></a>lat <span class="ot">&lt;-</span> ncdf4<span class="sc">::</span><span class="fu">ncvar_get</span>(<span class="at">nc=</span>ncFile, <span class="at">varid=</span><span class="st">&quot;latitude&quot;</span>)</span>
+<span id="cb141-6"><a href="scientific-r-scripts.html#cb141-6" aria-hidden="true" tabindex="-1"></a>lon <span class="ot">&lt;-</span> ncdf4<span class="sc">::</span><span class="fu">ncvar_get</span>(<span class="at">nc=</span>ncFile, <span class="at">varid=</span><span class="st">&quot;longitude&quot;</span>)</span>
+<span id="cb141-7"><a href="scientific-r-scripts.html#cb141-7" aria-hidden="true" tabindex="-1"></a><span class="co"># convert sst from Kelvin to Celsius</span></span>
+<span id="cb141-8"><a href="scientific-r-scripts.html#cb141-8" aria-hidden="true" tabindex="-1"></a>sstC <span class="ot">&lt;-</span> sstK <span class="sc">-</span> <span class="fl">273.15</span></span>
+<span id="cb141-9"><a href="scientific-r-scripts.html#cb141-9" aria-hidden="true" tabindex="-1"></a><span class="do">#######################################</span></span>
+<span id="cb141-10"><a href="scientific-r-scripts.html#cb141-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb141-11"><a href="scientific-r-scripts.html#cb141-11" aria-hidden="true" tabindex="-1"></a><span class="co"># remove values below 0C</span></span>
+<span id="cb141-12"><a href="scientific-r-scripts.html#cb141-12" aria-hidden="true" tabindex="-1"></a>sstC[sstC <span class="sc">&lt;</span> <span class="dv">0</span>] <span class="ot">=</span> <span class="cn">NA</span></span></code></pre></div>
 <p>This line reads as: <code>sstC</code> where <code>sstC</code> is less than <code>0</code> equals <code>NA</code>. The brackets here can be thought of as the ‘condition’, that is what you’re looking to change. This is called a vector operation, which we will get more into later but these are important becuase it’s far faster to do this than a for loop.</p>
-<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb142-1" data-line-number="1"><span class="kw">library</span>(ncdf4)</a>
-<a class="sourceLine" id="cb142-2" data-line-number="2"><span class="kw">library</span>(fields)</a>
-<a class="sourceLine" id="cb142-3" data-line-number="3">ncFile &lt;-<span class="st"> </span>ncdf4<span class="op">::</span><span class="kw">nc_open</span>(<span class="st">&quot;~/Documents/Github/geog473-673/datasets/OR_ABI-L2-SSTF-M3_G16_s20192081300453_e20192081400161_c20192081406297.nc&quot;</span>)</a>
-<a class="sourceLine" id="cb142-4" data-line-number="4">sstK &lt;-<span class="st"> </span>ncdf4<span class="op">::</span><span class="kw">ncvar_get</span>(<span class="dt">nc=</span>ncFile, <span class="dt">varid=</span><span class="st">&quot;SST&quot;</span>)</a>
-<a class="sourceLine" id="cb142-5" data-line-number="5">lat &lt;-<span class="st"> </span>ncdf4<span class="op">::</span><span class="kw">ncvar_get</span>(<span class="dt">nc=</span>ncFile, <span class="dt">varid=</span><span class="st">&quot;latitude&quot;</span>)</a>
-<a class="sourceLine" id="cb142-6" data-line-number="6">lon &lt;-<span class="st"> </span>ncdf4<span class="op">::</span><span class="kw">ncvar_get</span>(<span class="dt">nc=</span>ncFile, <span class="dt">varid=</span><span class="st">&quot;longitude&quot;</span>)</a>
-<a class="sourceLine" id="cb142-7" data-line-number="7"><span class="co"># convert sst from Kelvin to Celsius</span></a>
-<a class="sourceLine" id="cb142-8" data-line-number="8">sstC &lt;-<span class="st"> </span>sstK <span class="op">-</span><span class="st"> </span><span class="fl">273.15</span></a>
-<a class="sourceLine" id="cb142-9" data-line-number="9"><span class="co"># remove values below 0C</span></a>
-<a class="sourceLine" id="cb142-10" data-line-number="10"><span class="co">#######################################</span></a>
-<a class="sourceLine" id="cb142-11" data-line-number="11"></a>
-<a class="sourceLine" id="cb142-12" data-line-number="12">sstC[sstC <span class="op">&lt;</span><span class="st"> </span><span class="dv">0</span>] =<span class="st"> </span><span class="ot">NA</span></a>
-<a class="sourceLine" id="cb142-13" data-line-number="13"><span class="kw">summary</span>(<span class="kw">as.vector</span>(sstC))</a></code></pre></div>
+<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb142-1"><a href="scientific-r-scripts.html#cb142-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ncdf4)</span>
+<span id="cb142-2"><a href="scientific-r-scripts.html#cb142-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(fields)</span>
+<span id="cb142-3"><a href="scientific-r-scripts.html#cb142-3" aria-hidden="true" tabindex="-1"></a>ncFile <span class="ot">&lt;-</span> ncdf4<span class="sc">::</span><span class="fu">nc_open</span>(<span class="st">&quot;~/Documents/Github/geog473-673/datasets/OR_ABI-L2-SSTF-M3_G16_s20192081300453_e20192081400161_c20192081406297.nc&quot;</span>)</span>
+<span id="cb142-4"><a href="scientific-r-scripts.html#cb142-4" aria-hidden="true" tabindex="-1"></a>sstK <span class="ot">&lt;-</span> ncdf4<span class="sc">::</span><span class="fu">ncvar_get</span>(<span class="at">nc=</span>ncFile, <span class="at">varid=</span><span class="st">&quot;SST&quot;</span>)</span>
+<span id="cb142-5"><a href="scientific-r-scripts.html#cb142-5" aria-hidden="true" tabindex="-1"></a>lat <span class="ot">&lt;-</span> ncdf4<span class="sc">::</span><span class="fu">ncvar_get</span>(<span class="at">nc=</span>ncFile, <span class="at">varid=</span><span class="st">&quot;latitude&quot;</span>)</span>
+<span id="cb142-6"><a href="scientific-r-scripts.html#cb142-6" aria-hidden="true" tabindex="-1"></a>lon <span class="ot">&lt;-</span> ncdf4<span class="sc">::</span><span class="fu">ncvar_get</span>(<span class="at">nc=</span>ncFile, <span class="at">varid=</span><span class="st">&quot;longitude&quot;</span>)</span>
+<span id="cb142-7"><a href="scientific-r-scripts.html#cb142-7" aria-hidden="true" tabindex="-1"></a><span class="co"># convert sst from Kelvin to Celsius</span></span>
+<span id="cb142-8"><a href="scientific-r-scripts.html#cb142-8" aria-hidden="true" tabindex="-1"></a>sstC <span class="ot">&lt;-</span> sstK <span class="sc">-</span> <span class="fl">273.15</span></span>
+<span id="cb142-9"><a href="scientific-r-scripts.html#cb142-9" aria-hidden="true" tabindex="-1"></a><span class="co"># remove values below 0C</span></span>
+<span id="cb142-10"><a href="scientific-r-scripts.html#cb142-10" aria-hidden="true" tabindex="-1"></a><span class="do">#######################################</span></span>
+<span id="cb142-11"><a href="scientific-r-scripts.html#cb142-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb142-12"><a href="scientific-r-scripts.html#cb142-12" aria-hidden="true" tabindex="-1"></a>sstC[sstC <span class="sc">&lt;</span> <span class="dv">0</span>] <span class="ot">=</span> <span class="cn">NA</span></span>
+<span id="cb142-13"><a href="scientific-r-scripts.html#cb142-13" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">as.vector</span>(sstC))</span></code></pre></div>
 <pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA&#39;s 
 ##     0.0    19.8    27.6    24.1    29.0    36.8 2679819</code></pre>
 </div>
-<div id="plotting-the-data" class="section level3">
+<div id="plotting-the-data" class="section level3" number="6.1.4">
 <h3><span class="header-section-number">6.1.4</span> Plotting the Data</h3>
 <p>Now we see that our summary looks good (even though we’re looking at a matrix in celsius now). So all that’s left to do is plot this up…</p>
-<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb144-1" data-line-number="1"><span class="co"># James Simkins</span></a>
-<a class="sourceLine" id="cb144-2" data-line-number="2"><span class="co"># Load libraries</span></a>
-<a class="sourceLine" id="cb144-3" data-line-number="3"><span class="kw">library</span>(ncdf4)</a>
-<a class="sourceLine" id="cb144-4" data-line-number="4"><span class="kw">library</span>(fields)</a>
-<a class="sourceLine" id="cb144-5" data-line-number="5">ncFile &lt;-<span class="st"> </span>ncdf4<span class="op">::</span><span class="kw">nc_open</span>(<span class="st">&quot;~/Documents/Github/geog473-673/datasets/OR_ABI-L2-SSTF-M3_G16_s20192081300453_e20192081400161_c20192081406297.nc&quot;</span>)</a>
-<a class="sourceLine" id="cb144-6" data-line-number="6">sstK &lt;-<span class="st"> </span>ncdf4<span class="op">::</span><span class="kw">ncvar_get</span>(<span class="dt">nc=</span>ncFile, <span class="dt">varid=</span><span class="st">&quot;SST&quot;</span>)</a>
-<a class="sourceLine" id="cb144-7" data-line-number="7">lat &lt;-<span class="st"> </span>ncdf4<span class="op">::</span><span class="kw">ncvar_get</span>(<span class="dt">nc=</span>ncFile, <span class="dt">varid=</span><span class="st">&quot;latitude&quot;</span>)</a>
-<a class="sourceLine" id="cb144-8" data-line-number="8">lon &lt;-<span class="st"> </span>ncdf4<span class="op">::</span><span class="kw">ncvar_get</span>(<span class="dt">nc=</span>ncFile, <span class="dt">varid=</span><span class="st">&quot;longitude&quot;</span>)</a>
-<a class="sourceLine" id="cb144-9" data-line-number="9"></a>
-<a class="sourceLine" id="cb144-10" data-line-number="10"><span class="co"># convert sst from Kelvin to Celsius</span></a>
-<a class="sourceLine" id="cb144-11" data-line-number="11">sstC &lt;-<span class="st"> </span>sstK <span class="op">-</span><span class="st"> </span><span class="fl">273.15</span></a>
-<a class="sourceLine" id="cb144-12" data-line-number="12"><span class="co"># remove values below 0C</span></a>
-<a class="sourceLine" id="cb144-13" data-line-number="13">sstC[sstC <span class="op">&lt;</span><span class="st"> </span><span class="dv">0</span>] =<span class="st"> </span><span class="ot">NA</span></a>
-<a class="sourceLine" id="cb144-14" data-line-number="14"></a>
-<a class="sourceLine" id="cb144-15" data-line-number="15"><span class="co">#######################################</span></a>
-<a class="sourceLine" id="cb144-16" data-line-number="16"><span class="co"># Plot the matrix</span></a>
-<a class="sourceLine" id="cb144-17" data-line-number="17">fields<span class="op">::</span><span class="kw">image.plot</span>(<span class="dt">x=</span>lon, <span class="dt">y=</span>lat, <span class="dt">z=</span>sstC, <span class="dt">legend.lab=</span><span class="st">&quot;Celsius&quot;</span>)</a>
-<a class="sourceLine" id="cb144-18" data-line-number="18"><span class="kw">title</span>(<span class="st">&quot;GOES-R SST Product 7/25/2019 19:00 UTC&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb144-1"><a href="scientific-r-scripts.html#cb144-1" aria-hidden="true" tabindex="-1"></a><span class="co"># James Simkins</span></span>
+<span id="cb144-2"><a href="scientific-r-scripts.html#cb144-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Load libraries</span></span>
+<span id="cb144-3"><a href="scientific-r-scripts.html#cb144-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ncdf4)</span>
+<span id="cb144-4"><a href="scientific-r-scripts.html#cb144-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(fields)</span>
+<span id="cb144-5"><a href="scientific-r-scripts.html#cb144-5" aria-hidden="true" tabindex="-1"></a>ncFile <span class="ot">&lt;-</span> ncdf4<span class="sc">::</span><span class="fu">nc_open</span>(<span class="st">&quot;~/Documents/Github/geog473-673/datasets/OR_ABI-L2-SSTF-M3_G16_s20192081300453_e20192081400161_c20192081406297.nc&quot;</span>)</span>
+<span id="cb144-6"><a href="scientific-r-scripts.html#cb144-6" aria-hidden="true" tabindex="-1"></a>sstK <span class="ot">&lt;-</span> ncdf4<span class="sc">::</span><span class="fu">ncvar_get</span>(<span class="at">nc=</span>ncFile, <span class="at">varid=</span><span class="st">&quot;SST&quot;</span>)</span>
+<span id="cb144-7"><a href="scientific-r-scripts.html#cb144-7" aria-hidden="true" tabindex="-1"></a>lat <span class="ot">&lt;-</span> ncdf4<span class="sc">::</span><span class="fu">ncvar_get</span>(<span class="at">nc=</span>ncFile, <span class="at">varid=</span><span class="st">&quot;latitude&quot;</span>)</span>
+<span id="cb144-8"><a href="scientific-r-scripts.html#cb144-8" aria-hidden="true" tabindex="-1"></a>lon <span class="ot">&lt;-</span> ncdf4<span class="sc">::</span><span class="fu">ncvar_get</span>(<span class="at">nc=</span>ncFile, <span class="at">varid=</span><span class="st">&quot;longitude&quot;</span>)</span>
+<span id="cb144-9"><a href="scientific-r-scripts.html#cb144-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb144-10"><a href="scientific-r-scripts.html#cb144-10" aria-hidden="true" tabindex="-1"></a><span class="co"># convert sst from Kelvin to Celsius</span></span>
+<span id="cb144-11"><a href="scientific-r-scripts.html#cb144-11" aria-hidden="true" tabindex="-1"></a>sstC <span class="ot">&lt;-</span> sstK <span class="sc">-</span> <span class="fl">273.15</span></span>
+<span id="cb144-12"><a href="scientific-r-scripts.html#cb144-12" aria-hidden="true" tabindex="-1"></a><span class="co"># remove values below 0C</span></span>
+<span id="cb144-13"><a href="scientific-r-scripts.html#cb144-13" aria-hidden="true" tabindex="-1"></a>sstC[sstC <span class="sc">&lt;</span> <span class="dv">0</span>] <span class="ot">=</span> <span class="cn">NA</span></span>
+<span id="cb144-14"><a href="scientific-r-scripts.html#cb144-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb144-15"><a href="scientific-r-scripts.html#cb144-15" aria-hidden="true" tabindex="-1"></a><span class="do">#######################################</span></span>
+<span id="cb144-16"><a href="scientific-r-scripts.html#cb144-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the matrix</span></span>
+<span id="cb144-17"><a href="scientific-r-scripts.html#cb144-17" aria-hidden="true" tabindex="-1"></a>fields<span class="sc">::</span><span class="fu">image.plot</span>(<span class="at">x=</span>lon, <span class="at">y=</span>lat, <span class="at">z=</span>sstC, <span class="at">legend.lab=</span><span class="st">&quot;Celsius&quot;</span>)</span>
+<span id="cb144-18"><a href="scientific-r-scripts.html#cb144-18" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span>(<span class="st">&quot;GOES-R SST Product 7/25/2019 19:00 UTC&quot;</span>)</span></code></pre></div>
 <p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-74-1.png" width="60%" style="display: block; margin: auto;" /></p>
 <p>Now we plot this up using the <code>image.plot()</code> function from the <code>fields</code> library. <code>image.plot()</code> takes the arguments <code>x</code>, <code>y</code>, and <code>z</code>. This is a 2 dimensional dataset of Sea Surface Temperature where the <code>x</code> is <code>longitude</code>, the <code>y</code> is <code>latitude</code>, and what we plot within the box (<code>z</code>) is <code>sstC</code>. Notice that for this kind of plot, the ‘title()’ function is a separate function rather than an argument that goes inside of <code>image.plot()</code>. Remember, if you’re ever confused about something like this just tell R you need ‘help()’.</p>
 </div>
 </div>
-<div id="in-class-exercise" class="section level2">
+<div id="in-class-exercise" class="section level2" number="6.2">
 <h2><span class="header-section-number">6.2</span> In Class Exercise</h2>
 <ol style="list-style-type: decimal">
 <li>Go to <a href="https://github.com/jsimkins2/geog473-673/tree/master/datasets" class="uri">https://github.com/jsimkins2/geog473-673/tree/master/datasets</a></li>
@@ -508,7 +541,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>-Hint: You may have to use <code>install.packages()</code> to install pacakages you may not have yet on your machine.</p>
 <p>Aim for something like this:
 <img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-75-1.png" width="60%" style="display: block; margin: auto;" /></p>
-<div id="further-explanation-of-datatypes" class="section level3">
+<div id="further-explanation-of-datatypes" class="section level3" number="6.2.1">
 <h3><span class="header-section-number">6.2.1</span> Further Explanation of DataTypes</h3>
 <p>If you look into your environment from the in class exercise, you’ll notice under the ‘Data’ tab you have a large matrix of the DQF values. R stores these matrices without the column/row identifier (aka lat &amp; lon). We provide the image.plot() function with the lon &amp; lat arrays becuase it doesn’t know what the x &amp; y coordinates are of the matrix. Notice that the environment tells you the dimensions - the matrix is 2778 x 1989. R is indexed from 1 to the length of the dimension. Here is what I mean:</p>
 <ul>
@@ -520,14 +553,284 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><code>lat[1990]</code> is <code>NA</code></li>
 </ul>
 <p>The above tests are referred to as indexing. The 1st point of the lat array is 16.00283. In R, we index using brackets []. If you want to find more values other than just a single point, the procedure is referred to as indexing/slicing/subsetting.</p>
-<p><code>lat[1:10]</code>
-is
-<code>16.00283 16.02093 16.03903 16.05713 16.07523 16.09333 16.11143 16.12953 16.14763 16.16573</code></p>
-<p>The lat object we’ve been exploring here is an ‘array’.</p>
-<p>An array is a vector with one or more dimensions. So, an array with one dimension is (almost) the same as a vector. An array with two dimensions is (almost) the same as a matrix. An array with three or more dimensions is an n-dimensional array.</p>
-<p>A vector is what is called an array in all other programming languages except R — a collection of cells with a fixed size where all cells hold the same type (integers or characters or reals or whatever).</p>
+<pre class="lat[1:10]```"><code>is
+``` 16.00283 16.02093 16.03903 16.05713 16.07523 16.09333 16.11143 16.12953 16.14763 16.16573```
 
+The lat object we&#39;ve been exploring here is an &#39;array&#39;. 
+
+An array is a vector with one or more dimensions. So, an array with one dimension is (almost) the same as a vector. An array with two dimensions is (almost) the same as a matrix. An array with three or more dimensions is an n-dimensional array.
+
+A vector is what is called an array in all other programming languages except R — a collection of cells with a fixed size where all cells hold the same type (integers or characters or reals or whatever).
+
+&lt;!--chapter:end:Week2_RSyntaxClassesDatatypes.Rmd--&gt;
+
+# Time Series Data
+
+This week we&#39;ll look at some Time-Series data from DEOS. Delaware has the highest concentration of environmental monitoring stations in the country thanks to DEOS (Delaware Environmental Observing System) which is controlled by University of Delaware&#39;s CEMA (Center for Environmental Monitoring and Analysis). The data collected using this dense network is useful for a variety of purposes. Before we dive into the data, let&#39;s cover an important skill - the for loop.
+
+## For Loops
+
+For loops &amp; conditional statements are a key skill in programming. They allow you to process through large datasets or multiple datasets thus minimizing the amount of manual work you need to do. The basic for loop looks like this...
+
+
+```r
+# Generate sequence of numbers from 1 to 10 using the seq() function (seq for sequence)
+numbersList = seq(from=1,to=10,by=1)
+# Multiply each number in the numbersList by 8 and print the result
+for (i in numbersList){
+  temNumber = i * 8
+  print(temNumber)
+}</code></pre>
+<pre><code>## [1] 8
+## [1] 16
+## [1] 24
+## [1] 32
+## [1] 40
+## [1] 48
+## [1] 56
+## [1] 64
+## [1] 72
+## [1] 80</code></pre>
+<p>Notice the general structure of R for loops. <code>for</code> signals to R you’re beginning a for loop, which requires the general structure to look like:</p>
+<p>for (something in something inside these parentheses){
+do something within these curly brackets
+}</p>
+<p>Yes, you must have these parentheses and curly brackets present and surrounding the appropriate code. If you forget a parentheses or curly bracket you’ll have <strong>errors</strong> pop up…this happens to advanced programmers all the time, so don’t be discouraged if it takes time getting used to this.</p>
+<p>The general structure is always: for(condition){do something}. If statements are set up the same way</p>
+<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb147-1"><a href="scientific-r-scripts.html#cb147-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate sequence of numbers from 1 to 10 using the seq() function (seq for sequence)</span></span>
+<span id="cb147-2"><a href="scientific-r-scripts.html#cb147-2" aria-hidden="true" tabindex="-1"></a>numbersList <span class="ot">=</span> <span class="fu">seq</span>(<span class="at">from=</span><span class="dv">1</span>,<span class="at">to=</span><span class="dv">10</span>,<span class="at">by=</span><span class="dv">1</span>)</span>
+<span id="cb147-3"><a href="scientific-r-scripts.html#cb147-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Multiply each number in the numbersList by 8 and print the result</span></span>
+<span id="cb147-4"><a href="scientific-r-scripts.html#cb147-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> numbersList){</span>
+<span id="cb147-5"><a href="scientific-r-scripts.html#cb147-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (i<span class="sc">==</span><span class="dv">4</span>){</span>
+<span id="cb147-6"><a href="scientific-r-scripts.html#cb147-6" aria-hidden="true" tabindex="-1"></a>    temNumber <span class="ot">=</span> i <span class="sc">*</span> <span class="dv">8</span></span>
+<span id="cb147-7"><a href="scientific-r-scripts.html#cb147-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(temNumber)</span>
+<span id="cb147-8"><a href="scientific-r-scripts.html#cb147-8" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb147-9"><a href="scientific-r-scripts.html#cb147-9" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<pre><code>## [1] 32</code></pre>
+<p>This is referred to as a <em>nested loop</em>, because there is a conditional statement within another one. Key takeaway here: in programming languages, <code>=</code> is an assignment (i.e. <code>x = 4</code>), whereas <code>==</code> is an equality test (<code>i == 4</code>). To put this loop in layman’s terms: <code>for i in numbersList, if i is equal to 4, multiply i by 8 and then print temNumber</code>.</p>
+<p>We can also have nested for loops.</p>
+<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="scientific-r-scripts.html#cb149-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate sequence of numbers from 1 to 3 this time using the seq() function (seq for sequence)</span></span>
+<span id="cb149-2"><a href="scientific-r-scripts.html#cb149-2" aria-hidden="true" tabindex="-1"></a>numbersList <span class="ot">=</span> <span class="fu">seq</span>(<span class="at">from=</span><span class="dv">1</span>,<span class="at">to=</span><span class="dv">3</span>,<span class="at">by=</span><span class="dv">1</span>)</span>
+<span id="cb149-3"><a href="scientific-r-scripts.html#cb149-3" aria-hidden="true" tabindex="-1"></a>lettersList <span class="ot">=</span> <span class="fu">list</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>, <span class="st">&quot;C&quot;</span>)</span>
+<span id="cb149-4"><a href="scientific-r-scripts.html#cb149-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb149-5"><a href="scientific-r-scripts.html#cb149-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (num <span class="cf">in</span> numbersList){</span>
+<span id="cb149-6"><a href="scientific-r-scripts.html#cb149-6" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (let <span class="cf">in</span> lettersList){</span>
+<span id="cb149-7"><a href="scientific-r-scripts.html#cb149-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(<span class="fu">c</span>(num,let))</span>
+<span id="cb149-8"><a href="scientific-r-scripts.html#cb149-8" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb149-9"><a href="scientific-r-scripts.html#cb149-9" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<pre><code>## [1] &quot;1&quot; &quot;A&quot;
+## [1] &quot;1&quot; &quot;B&quot;
+## [1] &quot;1&quot; &quot;C&quot;
+## [1] &quot;2&quot; &quot;A&quot;
+## [1] &quot;2&quot; &quot;B&quot;
+## [1] &quot;2&quot; &quot;C&quot;
+## [1] &quot;3&quot; &quot;A&quot;
+## [1] &quot;3&quot; &quot;B&quot;
+## [1] &quot;3&quot; &quot;C&quot;</code></pre>
+<p>You can name the object within the list whatever you want (i, j, num, let, etc.). Also, <code>c()</code> is the concatenate function that combines values into a vector or list. The order doesn’t matter in this for loop…</p>
+<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb151-1"><a href="scientific-r-scripts.html#cb151-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate sequence of numbers from 1 to 3 this time using the seq() function (seq for sequence)</span></span>
+<span id="cb151-2"><a href="scientific-r-scripts.html#cb151-2" aria-hidden="true" tabindex="-1"></a>numbersList <span class="ot">=</span> <span class="fu">seq</span>(<span class="at">from=</span><span class="dv">1</span>,<span class="at">to=</span><span class="dv">3</span>,<span class="at">by=</span><span class="dv">1</span>)</span>
+<span id="cb151-3"><a href="scientific-r-scripts.html#cb151-3" aria-hidden="true" tabindex="-1"></a>lettersList <span class="ot">=</span> <span class="fu">list</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>, <span class="st">&quot;C&quot;</span>)</span>
+<span id="cb151-4"><a href="scientific-r-scripts.html#cb151-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb151-5"><a href="scientific-r-scripts.html#cb151-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (let <span class="cf">in</span> lettersList){</span>
+<span id="cb151-6"><a href="scientific-r-scripts.html#cb151-6" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (num <span class="cf">in</span> numbersList){</span>
+<span id="cb151-7"><a href="scientific-r-scripts.html#cb151-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(<span class="fu">c</span>(num,let))</span>
+<span id="cb151-8"><a href="scientific-r-scripts.html#cb151-8" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb151-9"><a href="scientific-r-scripts.html#cb151-9" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<pre><code>## [1] &quot;1&quot; &quot;A&quot;
+## [1] &quot;2&quot; &quot;A&quot;
+## [1] &quot;3&quot; &quot;A&quot;
+## [1] &quot;1&quot; &quot;B&quot;
+## [1] &quot;2&quot; &quot;B&quot;
+## [1] &quot;3&quot; &quot;B&quot;
+## [1] &quot;1&quot; &quot;C&quot;
+## [1] &quot;2&quot; &quot;C&quot;
+## [1] &quot;3&quot; &quot;C&quot;</code></pre>
+<p>But it does in this one…</p>
+<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="scientific-r-scripts.html#cb153-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate sequence of numbers from 1 to 10 using the seq() function (seq for sequence)</span></span>
+<span id="cb153-2"><a href="scientific-r-scripts.html#cb153-2" aria-hidden="true" tabindex="-1"></a>numbersList <span class="ot">=</span> <span class="fu">seq</span>(<span class="at">from=</span><span class="dv">1</span>,<span class="at">to=</span><span class="dv">10</span>,<span class="at">by=</span><span class="dv">1</span>)</span>
+<span id="cb153-3"><a href="scientific-r-scripts.html#cb153-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Multiply each number in the numbersList by 8 and print the result</span></span>
+<span id="cb153-4"><a href="scientific-r-scripts.html#cb153-4" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (i<span class="sc">==</span><span class="dv">4</span>){</span>
+<span id="cb153-5"><a href="scientific-r-scripts.html#cb153-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> numbersList){</span>
+<span id="cb153-6"><a href="scientific-r-scripts.html#cb153-6" aria-hidden="true" tabindex="-1"></a>    temNumber <span class="ot">=</span> i <span class="sc">*</span> <span class="dv">8</span></span>
+<span id="cb153-7"><a href="scientific-r-scripts.html#cb153-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(temNumber)</span>
+<span id="cb153-8"><a href="scientific-r-scripts.html#cb153-8" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb153-9"><a href="scientific-r-scripts.html#cb153-9" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p>Here’s one more example for multi conditional statement with an else…</p>
+<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="scientific-r-scripts.html#cb154-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate sequence of numbers from 1 to 3 this time using the seq() function (seq for sequence)</span></span>
+<span id="cb154-2"><a href="scientific-r-scripts.html#cb154-2" aria-hidden="true" tabindex="-1"></a>numbersList <span class="ot">=</span> <span class="fu">seq</span>(<span class="at">from=</span><span class="dv">1</span>,<span class="at">to=</span><span class="dv">3</span>,<span class="at">by=</span><span class="dv">1</span>)</span>
+<span id="cb154-3"><a href="scientific-r-scripts.html#cb154-3" aria-hidden="true" tabindex="-1"></a>lettersList <span class="ot">=</span> <span class="fu">list</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>, <span class="st">&quot;C&quot;</span>)</span>
+<span id="cb154-4"><a href="scientific-r-scripts.html#cb154-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb154-5"><a href="scientific-r-scripts.html#cb154-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (num <span class="cf">in</span> numbersList){</span>
+<span id="cb154-6"><a href="scientific-r-scripts.html#cb154-6" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (let <span class="cf">in</span> lettersList){</span>
+<span id="cb154-7"><a href="scientific-r-scripts.html#cb154-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (num <span class="sc">==</span> <span class="dv">3</span> <span class="sc">&amp;&amp;</span> let <span class="sc">==</span> <span class="st">&quot;B&quot;</span>){</span>
+<span id="cb154-8"><a href="scientific-r-scripts.html#cb154-8" aria-hidden="true" tabindex="-1"></a>      <span class="fu">print</span>(<span class="fu">c</span>(num,let))</span>
+<span id="cb154-9"><a href="scientific-r-scripts.html#cb154-9" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span>{</span>
+<span id="cb154-10"><a href="scientific-r-scripts.html#cb154-10" aria-hidden="true" tabindex="-1"></a>      <span class="fu">print</span>(<span class="st">&quot;Not what we want&quot;</span>)</span>
+<span id="cb154-11"><a href="scientific-r-scripts.html#cb154-11" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb154-12"><a href="scientific-r-scripts.html#cb154-12" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb154-13"><a href="scientific-r-scripts.html#cb154-13" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<pre><code>## [1] &quot;Not what we want&quot;
+## [1] &quot;Not what we want&quot;
+## [1] &quot;Not what we want&quot;
+## [1] &quot;Not what we want&quot;
+## [1] &quot;Not what we want&quot;
+## [1] &quot;Not what we want&quot;
+## [1] &quot;Not what we want&quot;
+## [1] &quot;3&quot; &quot;B&quot;
+## [1] &quot;Not what we want&quot;</code></pre>
+<p><code>&amp;&amp;</code> means “and” … <code>||</code> means “or”…these are useful in multi conditional statements. The <code>else</code> statement is an appendage of the <code>if</code> statement. It basically means if <code>num == 3</code> and <code>let == B</code> is <code>false</code>, <code>print "not what we want"</code>. Notice that the ‘else’ statement is outside of the <code>if</code> statement but immediately after it.</p>
+<p>In Class Exercise: debug this for loop</p>
+<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="scientific-r-scripts.html#cb156-1" aria-hidden="true" tabindex="-1"></a>soiltype <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="st">&quot;sand&quot;</span>, <span class="st">&quot;silt&quot;</span>, <span class="st">&quot;saline&quot;</span>, <span class="st">&quot;clay&quot;</span>, <span class="st">&quot;peat&quot;</span>)</span>
+<span id="cb156-2"><a href="scientific-r-scripts.html#cb156-2" aria-hidden="true" tabindex="-1"></a>permeability <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">0.09</span>, <span class="fl">0.05</span>, <span class="fl">0.03</span>, <span class="fl">0.01</span>, <span class="fl">0.005</span>)</span>
+<span id="cb156-3"><a href="scientific-r-scripts.html#cb156-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb156-4"><a href="scientific-r-scripts.html#cb156-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (s <span class="cf">in</span> <span class="fu">seq</span>(<span class="fu">length</span>(soiltype)){</span>
+<span id="cb156-5"><a href="scientific-r-scripts.html#cb156-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(a)</span>
+<span id="cb156-6"><a href="scientific-r-scripts.html#cb156-6" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (p <span class="cf">in</span> permeability)</span>
+<span id="cb156-7"><a href="scientific-r-scripts.html#cb156-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (p <span class="sc">==</span> <span class="fl">0.05</span> <span class="sc">|</span> p <span class="sc">==</span> <span class="fl">0.005</span>){</span>
+<span id="cb156-8"><a href="scientific-r-scripts.html#cb156-8" aria-hidden="true" tabindex="-1"></a>      <span class="fu">print</span>(permeability[s])</span>
+<span id="cb156-9"><a href="scientific-r-scripts.html#cb156-9" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb156-10"><a href="scientific-r-scripts.html#cb156-10" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb156-11"><a href="scientific-r-scripts.html#cb156-11" aria-hidden="true" tabindex="-1"></a><span class="er">}</span></span></code></pre></div>
+<p>And get this output…</p>
+<pre><code>## [1] 1
+## [1] 0.09
+## [1] 0.09
+## [1] 2
+## [1] 0.05
+## [1] 0.05
+## [1] 3
+## [1] 0.03
+## [1] 0.03
+## [1] 4
+## [1] 0.01
+## [1] 0.01
+## [1] 5
+## [1] 0.005
+## [1] 0.005</code></pre>
 </div>
+</div>
+<div id="deos-data" class="section level2" number="6.3">
+<h2><span class="header-section-number">6.3</span> DEOS Data</h2>
+<p>The dataset we’ll be using is named - <strong>DEOS.csv</strong> . It contains a variety of meteorological variables collected at 5 minute intervals. Let’s dive into the coded example.</p>
+<p><strong>Note: When we load the file, your path might look something like this:</strong></p>
+<p><code>Downloads/geog473-673/datasets/DEOS.csv</code></p>
+<p>Remember, we need to tell R <em>where</em> we stored the file we want to open. We can use <code>getwd()</code> to see where R is looking right now. From there, we can tell it to look in <code>Downloads</code>, or <code>Documents</code>, or <code>Desktop</code>, etc.</p>
+<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="scientific-r-scripts.html#cb158-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load the data using read.csv()</span></span>
+<span id="cb158-2"><a href="scientific-r-scripts.html#cb158-2" aria-hidden="true" tabindex="-1"></a>deos_data <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;../datasets/DEOS.csv&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>, <span class="at">skip=</span><span class="dv">0</span>, <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb158-3"><a href="scientific-r-scripts.html#cb158-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb158-4"><a href="scientific-r-scripts.html#cb158-4" aria-hidden="true" tabindex="-1"></a><span class="co"># view the top few rows of data using the head() function</span></span>
+<span id="cb158-5"><a href="scientific-r-scripts.html#cb158-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(deos_data)</span></code></pre></div>
+<pre><code>##    Timestamp..UTC. Air.Temperature.deg..C. Dew.Point.Temperature.deg..C.
+## 1 2014-04-04 04:05                     7.1                           4.3
+## 2 2014-04-04 04:10                     6.9                           4.3
+## 3 2014-04-04 04:15                     6.8                           4.3
+## 4 2014-04-04 04:20                     6.7                           4.4
+## 5 2014-04-04 04:25                     6.6                           4.4
+## 6 2014-04-04 04:30                     6.6                           4.4
+##   Wind.Speed.m.sec. Wind.Direction.deg.. Barometric.Pressure..
+## 1               3.7                351.7                    NA
+## 2               3.5                352.9                    NA
+## 3               3.9                357.5                    NA
+## 4               3.9                356.8                    NA
+## 5               3.3                  5.5                    NA
+## 6               2.7                 18.4                    NA
+##   Solar.Radiation.UNKNOWN. Wind.Gust.Speed..5..m.sec.
+## 1                        0                        5.1
+## 2                        0                        5.8
+## 3                        0                        6.2
+## 4                        0                        5.9
+## 5                        0                        4.9
+## 6                        0                        3.5
+##   Gage.Precipitation..5..mm.
+## 1                       0.00
+## 2                       0.00
+## 3                       0.25
+## 4                       0.00
+## 5                       0.00
+## 6                       0.00</code></pre>
+<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="scientific-r-scripts.html#cb160-1" aria-hidden="true" tabindex="-1"></a><span class="co"># view summary of the data</span></span>
+<span id="cb160-2"><a href="scientific-r-scripts.html#cb160-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(deos_data)</span></code></pre></div>
+<pre><code>##  Timestamp..UTC.    Air.Temperature.deg..C. Dew.Point.Temperature.deg..C.
+##  Length:182645      Min.   :-51.0           Min.   :-53.300              
+##  Class :character   1st Qu.:  7.6           1st Qu.:  2.200              
+##  Mode  :character   Median : 15.2           Median : 10.200              
+##                     Mean   : 14.1           Mean   :  8.505              
+##                     3rd Qu.: 21.2           3rd Qu.: 16.200              
+##                     Max.   : 37.0           Max.   : 25.500              
+##  Wind.Speed.m.sec. Wind.Direction.deg.. Barometric.Pressure..
+##  Min.   : 0.100    Min.   :  0.0        Mode:logical         
+##  1st Qu.: 1.800    1st Qu.: 99.3        NA&#39;s:182645          
+##  Median : 2.600    Median :202.2                             
+##  Mean   : 2.997    Mean   :187.0                             
+##  3rd Qu.: 3.700    3rd Qu.:258.9                             
+##  Max.   :16.700    Max.   :360.0                             
+##  Solar.Radiation.UNKNOWN. Wind.Gust.Speed..5..m.sec. Gage.Precipitation..5..mm.
+##  Min.   :   0.0           Min.   : 0.100             Min.   :0.00000           
+##  1st Qu.:   0.0           1st Qu.: 2.900             1st Qu.:0.00000           
+##  Median :   4.0           Median : 4.400             Median :0.00000           
+##  Mean   : 192.7           Mean   : 4.907             Mean   :0.01354           
+##  3rd Qu.: 313.0           3rd Qu.: 6.400             3rd Qu.:0.00000           
+##  Max.   :1335.0           Max.   :24.400             Max.   :9.65000</code></pre>
+<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="scientific-r-scripts.html#cb162-1" aria-hidden="true" tabindex="-1"></a><span class="co"># view variable names</span></span>
+<span id="cb162-2"><a href="scientific-r-scripts.html#cb162-2" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(deos_data)</span></code></pre></div>
+<pre><code>## [1] &quot;Timestamp..UTC.&quot;               &quot;Air.Temperature.deg..C.&quot;      
+## [3] &quot;Dew.Point.Temperature.deg..C.&quot; &quot;Wind.Speed.m.sec.&quot;            
+## [5] &quot;Wind.Direction.deg..&quot;          &quot;Barometric.Pressure..&quot;        
+## [7] &quot;Solar.Radiation.UNKNOWN.&quot;      &quot;Wind.Gust.Speed..5..m.sec.&quot;   
+## [9] &quot;Gage.Precipitation..5..mm.&quot;</code></pre>
+<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="scientific-r-scripts.html#cb164-1" aria-hidden="true" tabindex="-1"></a><span class="co">#the variable names look wonky because they have spaces in them - spaces in variable names is a big no-no</span></span>
+<span id="cb164-2"><a href="scientific-r-scripts.html#cb164-2" aria-hidden="true" tabindex="-1"></a><span class="co">#change the names to something more readable</span></span>
+<span id="cb164-3"><a href="scientific-r-scripts.html#cb164-3" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(deos_data) <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;datetime&quot;</span>, <span class="st">&quot;air_temperature&quot;</span>, <span class="st">&quot;dewpoint&quot;</span>, <span class="st">&quot;windspeed&quot;</span>, <span class="st">&quot;winddirection&quot;</span>, <span class="st">&quot;pressure&quot;</span>, <span class="st">&quot;solar_radiation&quot;</span>, <span class="st">&quot;wind_gust&quot;</span>, <span class="st">&quot;precipitation&quot;</span>)</span>
+<span id="cb164-4"><a href="scientific-r-scripts.html#cb164-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb164-5"><a href="scientific-r-scripts.html#cb164-5" aria-hidden="true" tabindex="-1"></a><span class="co"># print the first datetime value </span></span>
+<span id="cb164-6"><a href="scientific-r-scripts.html#cb164-6" aria-hidden="true" tabindex="-1"></a>deos_data<span class="sc">$</span>datetime[<span class="dv">1</span>]</span></code></pre></div>
+<pre><code>## [1] &quot;2014-04-04 04:05&quot;</code></pre>
+<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb166-1"><a href="scientific-r-scripts.html#cb166-1" aria-hidden="true" tabindex="-1"></a><span class="co"># view the class of the first date index</span></span>
+<span id="cb166-2"><a href="scientific-r-scripts.html#cb166-2" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(deos_data<span class="sc">$</span>datetime)</span></code></pre></div>
+<pre><code>## [1] &quot;character&quot;</code></pre>
+<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb168-1"><a href="scientific-r-scripts.html#cb168-1" aria-hidden="true" tabindex="-1"></a><span class="co"># give it a datetime class, notice the format</span></span>
+<span id="cb168-2"><a href="scientific-r-scripts.html#cb168-2" aria-hidden="true" tabindex="-1"></a>deos_data<span class="sc">$</span>datetime <span class="ot">=</span> <span class="fu">as.POSIXct</span>(deos_data<span class="sc">$</span>datetime, <span class="at">format =</span> <span class="st">&#39;%Y-%m-%d %H:%M&#39;</span>)</span>
+<span id="cb168-3"><a href="scientific-r-scripts.html#cb168-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb168-4"><a href="scientific-r-scripts.html#cb168-4" aria-hidden="true" tabindex="-1"></a><span class="co"># subset the data using the which.min() and which.max() functions to find our indices</span></span>
+<span id="cb168-5"><a href="scientific-r-scripts.html#cb168-5" aria-hidden="true" tabindex="-1"></a>low_ind <span class="ot">=</span> <span class="fu">which.min</span>(deos_data<span class="sc">$</span>datetime <span class="sc">&lt;</span> <span class="st">&quot;2014-04-04 00:00:00&quot;</span>)</span>
+<span id="cb168-6"><a href="scientific-r-scripts.html#cb168-6" aria-hidden="true" tabindex="-1"></a>upper_ind <span class="ot">=</span> <span class="fu">which.max</span>(deos_data<span class="sc">$</span>datetime <span class="sc">&gt;</span> <span class="st">&quot;2015-04-04 23:59&quot;</span>)</span>
+<span id="cb168-7"><a href="scientific-r-scripts.html#cb168-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb168-8"><a href="scientific-r-scripts.html#cb168-8" aria-hidden="true" tabindex="-1"></a><span class="co"># plot the dataset by indexing it between teh low_ind and upper_ind</span></span>
+<span id="cb168-9"><a href="scientific-r-scripts.html#cb168-9" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(deos_data<span class="sc">$</span>datetime[low_ind<span class="sc">:</span>upper_ind], deos_data<span class="sc">$</span>air_temperature[low_ind<span class="sc">:</span>upper_ind], <span class="at">type =</span> <span class="st">&quot;l&quot;</span>, <span class="at">col =</span> <span class="st">&#39;red&#39;</span>, </span>
+<span id="cb168-10"><a href="scientific-r-scripts.html#cb168-10" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="fu">paste0</span>(deos_data<span class="sc">$</span>datetime[low_ind], <span class="st">&quot; to &quot;</span>, deos_data<span class="sc">$</span>datetime[upper_ind]), <span class="at">ylab =</span> <span class="st">&quot;Celsius&quot;</span>)</span>
+<span id="cb168-11"><a href="scientific-r-scripts.html#cb168-11" aria-hidden="true" tabindex="-1"></a><span class="co"># add a title to the plot</span></span>
+<span id="cb168-12"><a href="scientific-r-scripts.html#cb168-12" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span>(<span class="st">&quot;1 Year Air Temperature at Station&quot;</span>)</span></code></pre></div>
+<p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-84-1.png" width="60%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb169-1"><a href="scientific-r-scripts.html#cb169-1" aria-hidden="true" tabindex="-1"></a><span class="co">#subset the data using the subset function  this time</span></span>
+<span id="cb169-2"><a href="scientific-r-scripts.html#cb169-2" aria-hidden="true" tabindex="-1"></a>subDeos <span class="ot">=</span> <span class="fu">subset</span>(deos_data, deos_data<span class="sc">$</span>datetime <span class="sc">&gt;=</span> <span class="st">&quot;2014-07-04 00:00:00&quot;</span> <span class="sc">&amp;</span> deos_data<span class="sc">$</span>datetime <span class="sc">&lt;=</span> <span class="st">&quot;2014-07-11 23:59:00&quot;</span>)</span>
+<span id="cb169-3"><a href="scientific-r-scripts.html#cb169-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb169-4"><a href="scientific-r-scripts.html#cb169-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Now add dewpoint to that plot</span></span>
+<span id="cb169-5"><a href="scientific-r-scripts.html#cb169-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="at">x =</span> subDeos<span class="sc">$</span>datetime, <span class="at">y =</span> subDeos<span class="sc">$</span>air_temperature, <span class="at">type =</span> <span class="st">&quot;l&quot;</span>, <span class="at">col =</span> <span class="st">&#39;red&#39;</span>, <span class="at">xlab =</span> <span class="fu">paste0</span>(subDeos<span class="sc">$</span>datetime[<span class="dv">1</span>], <span class="st">&quot; to &quot;</span>,   subDeos<span class="sc">$</span>datetime[<span class="fu">length</span>(subDeos<span class="sc">$</span>datetime)]), <span class="at">ylab =</span> <span class="st">&quot;Celsius&quot;</span>, <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">5</span>,<span class="dv">40</span>))</span>
+<span id="cb169-6"><a href="scientific-r-scripts.html#cb169-6" aria-hidden="true" tabindex="-1"></a><span class="co"># add &quot;lines&quot; to the plot, in this case we want our line to be the dewpoint</span></span>
+<span id="cb169-7"><a href="scientific-r-scripts.html#cb169-7" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(<span class="at">x =</span> subDeos<span class="sc">$</span>datetime, <span class="at">y =</span> subDeos<span class="sc">$</span>dewpoint, <span class="at">col =</span> <span class="st">&#39;yellow&#39;</span>)</span>
+<span id="cb169-8"><a href="scientific-r-scripts.html#cb169-8" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">&#39;bottomright&#39;</span>, <span class="at">legend=</span><span class="fu">c</span>(<span class="st">&#39;Air Temp&#39;</span>, <span class="st">&#39;Dew Pt&#39;</span>), <span class="at">col =</span> <span class="fu">c</span>(<span class="st">&#39;red&#39;</span>, <span class="st">&#39;yellow&#39;</span>), <span class="at">lty =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>))</span>
+<span id="cb169-9"><a href="scientific-r-scripts.html#cb169-9" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span>(<span class="st">&quot;Air Temperature &amp; Dew Point Temperature&quot;</span>)</span></code></pre></div>
+<p><img src="R_Geospatial_Sciences_files/figure-html/unnamed-chunk-84-2.png" width="60%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="assignment" class="section level2" number="6.4">
+<h2><span class="header-section-number">6.4</span> Assignment</h2>
+<ol style="list-style-type: decimal">
+<li>Subset dataset to January 2015 only</li>
+<li>Convert Wind Speed &amp; Wind Gust data from m/s to mph</li>
+<li>Plot wind speed and wind gust on same plot - wind gust as points first, then wind speed as a line second</li>
+</ol>
+<ul>
+<li><em>Hint: you’ll have to use an argument of <code>type = "p"</code> for wind gust.</em></li>
+</ul>
+<ol start="4" style="list-style-type: decimal">
+<li>Add legend</li>
+<li>Compute correlation coefficient between wind gust and wind speed using <code>cor()</code> function - add to title of plot</li>
+<li>Deliver Resulting Plot to Canvas assignment week3</li>
+</ol>
+<p>Aim for something like this (does not have to be exact)…</p>
+<p><img src="R_Geospatial_Sciences_files/figure-html/end%20of%20week%203-1.png" width="672" /></p>
+
 </div>
 </div>
             </section>
@@ -536,7 +839,7 @@ is
         </div>
       </div>
 <a href="basic-r-scripts.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="time-series-data.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="raster-visualization.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

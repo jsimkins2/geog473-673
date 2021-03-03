@@ -230,8 +230,8 @@ density=10)
 ```{r, echo=FALSE, out.width="60%", fig.align="center"}
 X=1:10
 Y=log(X)
-plot(x=X,y=Y, type = "b", pch=c(24), col = 'yellow', bg='blue', cex = 1.6, xlab = "X", ylab = "Y")
-title("X vs Y")
+plot(x=X,y=Y, type = "b", pch=c(21), col = 'yellow', bg='blue', cex = 1.6, xlab = "X", ylab = "Y")
+title("X vs Y - James Plot")
 ```
 
 Using the `TreeData.csv` from the course dataset folder, complete the following:

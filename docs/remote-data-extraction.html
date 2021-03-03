@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>15 Remote Data Extraction | R for Geospatial Sciences</title>
+  <title>14 Remote Data Extraction | R for Geospatial Sciences</title>
   <meta name="description" content="Advanced R" />
   <meta name="generator" content="bookdown 0.20.6 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="15 Remote Data Extraction | R for Geospatial Sciences" />
+  <meta property="og:title" content="14 Remote Data Extraction | R for Geospatial Sciences" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="15 Remote Data Extraction | R for Geospatial Sciences" />
+  <meta name="twitter:title" content="14 Remote Data Extraction | R for Geospatial Sciences" />
   
   <meta name="twitter:description" content="Advanced R" />
   
@@ -24,7 +24,7 @@
 <meta name="author" content="James Simkins" />
 
 
-<meta name="date" content="2021-01-28" />
+<meta name="date" content="2021-03-03" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,6 +33,7 @@
   
 <link rel="prev" href="shapefiles.html"/>
 <link rel="next" href="functions-and-code-presentation.html"/>
+<script src="libs/header-attrs-2.3.8/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -74,25 +75,26 @@
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -101,9 +103,9 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {  }
+  {   }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -152,14 +154,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">R for Geospatial Sciences</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="1" data-path="r-for-geospatial-sciences.html"><a href="r-for-geospatial-sciences.html"><i class="fa fa-check"></i><b>1</b> R for Geospatial Sciences</a><ul>
+<li class="chapter" data-level="1" data-path="r-for-geospatial-sciences.html"><a href="r-for-geospatial-sciences.html"><i class="fa fa-check"></i><b>1</b> R for Geospatial Sciences</a>
+<ul>
 <li class="chapter" data-level="1.1" data-path="r-for-geospatial-sciences.html"><a href="r-for-geospatial-sciences.html#welcome"><i class="fa fa-check"></i><b>1.1</b> Welcome</a></li>
 <li class="chapter" data-level="1.2" data-path="r-for-geospatial-sciences.html"><a href="r-for-geospatial-sciences.html#course-github"><i class="fa fa-check"></i><b>1.2</b> Course Github</a></li>
 <li class="chapter" data-level="1.3" data-path="r-for-geospatial-sciences.html"><a href="r-for-geospatial-sciences.html#syllabus"><i class="fa fa-check"></i><b>1.3</b> Syllabus</a></li>
 <li class="chapter" data-level="1.4" data-path="r-for-geospatial-sciences.html"><a href="r-for-geospatial-sciences.html#phase-1"><i class="fa fa-check"></i><b>1.4</b> Phase 1</a></li>
 <li class="chapter" data-level="1.5" data-path="r-for-geospatial-sciences.html"><a href="r-for-geospatial-sciences.html#phase-2"><i class="fa fa-check"></i><b>1.5</b> Phase 2</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html"><i class="fa fa-check"></i><b>2</b> Getting Started with R</a><ul>
+<li class="chapter" data-level="2" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html"><i class="fa fa-check"></i><b>2</b> Getting Started with R</a>
+<ul>
 <li class="chapter" data-level="2.1" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#why-is-there-such-a-buzz-around-r"><i class="fa fa-check"></i><b>2.1</b> Why is there such a buzz around R?</a></li>
 <li class="chapter" data-level="2.2" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#reasons-to-love-r"><i class="fa fa-check"></i><b>2.2</b> Reasons to love R</a></li>
 <li class="chapter" data-level="2.3" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#downloading-guide"><i class="fa fa-check"></i><b>2.3</b> Downloading Guide</a></li>
@@ -170,12 +174,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.8" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#open-rstudio"><i class="fa fa-check"></i><b>2.8</b> Open RStudio</a></li>
 <li class="chapter" data-level="2.9" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#r-studio-layout"><i class="fa fa-check"></i><b>2.9</b> R Studio Layout</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="definitions-rules.html"><a href="definitions-rules.html"><i class="fa fa-check"></i><b>3</b> Definitions &amp; Rules</a><ul>
+<li class="chapter" data-level="3" data-path="definitions-rules.html"><a href="definitions-rules.html"><i class="fa fa-check"></i><b>3</b> Definitions &amp; Rules</a>
+<ul>
 <li class="chapter" data-level="3.1" data-path="definitions-rules.html"><a href="definitions-rules.html#important-r-programming-definitions"><i class="fa fa-check"></i><b>3.1</b> Important R Programming Definitions</a></li>
 <li class="chapter" data-level="3.2" data-path="definitions-rules.html"><a href="definitions-rules.html#rules"><i class="fa fa-check"></i><b>3.2</b> Rules</a></li>
 <li class="chapter" data-level="3.3" data-path="definitions-rules.html"><a href="definitions-rules.html#general-recommendations"><i class="fa fa-check"></i><b>3.3</b> General Recommendations</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="r-coding-fundamentals.html"><a href="r-coding-fundamentals.html"><i class="fa fa-check"></i><b>4</b> R Coding Fundamentals</a><ul>
+<li class="chapter" data-level="4" data-path="r-coding-fundamentals.html"><a href="r-coding-fundamentals.html"><i class="fa fa-check"></i><b>4</b> R Coding Fundamentals</a>
+<ul>
 <li class="chapter" data-level="4.1" data-path="r-coding-fundamentals.html"><a href="r-coding-fundamentals.html#entering-input"><i class="fa fa-check"></i><b>4.1</b> Entering Input</a></li>
 <li class="chapter" data-level="4.2" data-path="r-coding-fundamentals.html"><a href="r-coding-fundamentals.html#running-code"><i class="fa fa-check"></i><b>4.2</b> Running Code</a></li>
 <li class="chapter" data-level="4.3" data-path="r-coding-fundamentals.html"><a href="r-coding-fundamentals.html#evaluation"><i class="fa fa-check"></i><b>4.3</b> Evaluation</a></li>
@@ -193,144 +199,171 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.15" data-path="r-coding-fundamentals.html"><a href="r-coding-fundamentals.html#names"><i class="fa fa-check"></i><b>4.15</b> Names</a></li>
 <li class="chapter" data-level="4.16" data-path="r-coding-fundamentals.html"><a href="r-coding-fundamentals.html#summary"><i class="fa fa-check"></i><b>4.16</b> Summary</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="basic-r-scripts.html"><a href="basic-r-scripts.html"><i class="fa fa-check"></i><b>5</b> Basic R Scripts</a><ul>
-<li class="chapter" data-level="5.1" data-path="basic-r-scripts.html"><a href="basic-r-scripts.html#global-carbon-dioxide-concentrations"><i class="fa fa-check"></i><b>5.1</b> Global Carbon-Dioxide Concentrations</a><ul>
+<li class="chapter" data-level="5" data-path="basic-r-scripts.html"><a href="basic-r-scripts.html"><i class="fa fa-check"></i><b>5</b> Basic R Scripts</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="basic-r-scripts.html"><a href="basic-r-scripts.html#global-carbon-dioxide-concentrations"><i class="fa fa-check"></i><b>5.1</b> Global Carbon-Dioxide Concentrations</a>
+<ul>
 <li class="chapter" data-level="5.1.1" data-path="basic-r-scripts.html"><a href="basic-r-scripts.html#saving-your-plot"><i class="fa fa-check"></i><b>5.1.1</b> Saving your plot</a></li>
 </ul></li>
 <li class="chapter" data-level="5.2" data-path="basic-r-scripts.html"><a href="basic-r-scripts.html#cars---motor-trends-magazine-data"><i class="fa fa-check"></i><b>5.2</b> Cars - Motor Trends Magazine Data</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="scientific-r-scripts.html"><a href="scientific-r-scripts.html"><i class="fa fa-check"></i><b>6</b> Scientific R Scripts</a><ul>
-<li class="chapter" data-level="6.1" data-path="scientific-r-scripts.html"><a href="scientific-r-scripts.html#script-breakdown"><i class="fa fa-check"></i><b>6.1</b> Script Breakdown</a><ul>
+<li class="chapter" data-level="6" data-path="scientific-r-scripts.html"><a href="scientific-r-scripts.html"><i class="fa fa-check"></i><b>6</b> Scientific R Scripts</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="scientific-r-scripts.html"><a href="scientific-r-scripts.html#script-breakdown"><i class="fa fa-check"></i><b>6.1</b> Script Breakdown</a>
+<ul>
 <li class="chapter" data-level="6.1.1" data-path="scientific-r-scripts.html"><a href="scientific-r-scripts.html#installing-packages"><i class="fa fa-check"></i><b>6.1.1</b> Installing Packages</a></li>
 <li class="chapter" data-level="6.1.2" data-path="scientific-r-scripts.html"><a href="scientific-r-scripts.html#reading-the-data"><i class="fa fa-check"></i><b>6.1.2</b> Reading the Data</a></li>
 <li class="chapter" data-level="6.1.3" data-path="scientific-r-scripts.html"><a href="scientific-r-scripts.html#basic-quality-control"><i class="fa fa-check"></i><b>6.1.3</b> Basic Quality Control</a></li>
 <li class="chapter" data-level="6.1.4" data-path="scientific-r-scripts.html"><a href="scientific-r-scripts.html#plotting-the-data"><i class="fa fa-check"></i><b>6.1.4</b> Plotting the Data</a></li>
 </ul></li>
-<li class="chapter" data-level="6.2" data-path="scientific-r-scripts.html"><a href="scientific-r-scripts.html#in-class-exercise"><i class="fa fa-check"></i><b>6.2</b> In Class Exercise</a><ul>
+<li class="chapter" data-level="6.2" data-path="scientific-r-scripts.html"><a href="scientific-r-scripts.html#in-class-exercise"><i class="fa fa-check"></i><b>6.2</b> In Class Exercise</a>
+<ul>
 <li class="chapter" data-level="6.2.1" data-path="scientific-r-scripts.html"><a href="scientific-r-scripts.html#further-explanation-of-datatypes"><i class="fa fa-check"></i><b>6.2.1</b> Further Explanation of DataTypes</a></li>
 </ul></li>
+<li class="chapter" data-level="6.3" data-path="scientific-r-scripts.html"><a href="scientific-r-scripts.html#deos-data"><i class="fa fa-check"></i><b>6.3</b> DEOS Data</a></li>
+<li class="chapter" data-level="6.4" data-path="scientific-r-scripts.html"><a href="scientific-r-scripts.html#assignment"><i class="fa fa-check"></i><b>6.4</b> Assignment</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="time-series-data.html"><a href="time-series-data.html"><i class="fa fa-check"></i><b>7</b> Time Series Data</a><ul>
-<li class="chapter" data-level="7.1" data-path="time-series-data.html"><a href="time-series-data.html#for-loops"><i class="fa fa-check"></i><b>7.1</b> For Loops</a></li>
-<li class="chapter" data-level="7.2" data-path="time-series-data.html"><a href="time-series-data.html#deos-data"><i class="fa fa-check"></i><b>7.2</b> DEOS Data</a></li>
-<li class="chapter" data-level="7.3" data-path="time-series-data.html"><a href="time-series-data.html#assignment"><i class="fa fa-check"></i><b>7.3</b> Assignment</a></li>
+<li class="chapter" data-level="7" data-path="raster-visualization.html"><a href="raster-visualization.html"><i class="fa fa-check"></i><b>7</b> Raster Visualization</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="raster-visualization.html"><a href="raster-visualization.html#paste0"><i class="fa fa-check"></i><b>7.1</b> <code>Paste0()</code></a></li>
+<li class="chapter" data-level="7.2" data-path="raster-visualization.html"><a href="raster-visualization.html#rasters"><i class="fa fa-check"></i><b>7.2</b> Rasters</a></li>
+<li class="chapter" data-level="7.3" data-path="raster-visualization.html"><a href="raster-visualization.html#assignment-1"><i class="fa fa-check"></i><b>7.3</b> Assignment</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="raster-visualization.html"><a href="raster-visualization.html"><i class="fa fa-check"></i><b>8</b> Raster Visualization</a><ul>
-<li class="chapter" data-level="8.1" data-path="raster-visualization.html"><a href="raster-visualization.html#paste0"><i class="fa fa-check"></i><b>8.1</b> <code>Paste0()</code></a></li>
-<li class="chapter" data-level="8.2" data-path="raster-visualization.html"><a href="raster-visualization.html#rasters"><i class="fa fa-check"></i><b>8.2</b> Rasters</a></li>
-<li class="chapter" data-level="8.3" data-path="raster-visualization.html"><a href="raster-visualization.html#assignment-1"><i class="fa fa-check"></i><b>8.3</b> Assignment</a></li>
+<li class="chapter" data-level="8" data-path="reprojecting-writing-rasters.html"><a href="reprojecting-writing-rasters.html"><i class="fa fa-check"></i><b>8</b> Reprojecting &amp; Writing Rasters</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="reprojecting-writing-rasters.html"><a href="reprojecting-writing-rasters.html#indexing-data"><i class="fa fa-check"></i><b>8.1</b> Indexing Data</a></li>
+<li class="chapter" data-level="8.2" data-path="reprojecting-writing-rasters.html"><a href="reprojecting-writing-rasters.html#resampling-and-reprojecting"><i class="fa fa-check"></i><b>8.2</b> Resampling and Reprojecting</a></li>
+<li class="chapter" data-level="8.3" data-path="reprojecting-writing-rasters.html"><a href="reprojecting-writing-rasters.html#pngs"><i class="fa fa-check"></i><b>8.3</b> PNGs</a></li>
+<li class="chapter" data-level="8.4" data-path="reprojecting-writing-rasters.html"><a href="reprojecting-writing-rasters.html#writing-rasters"><i class="fa fa-check"></i><b>8.4</b> Writing Rasters</a></li>
+<li class="chapter" data-level="8.5" data-path="reprojecting-writing-rasters.html"><a href="reprojecting-writing-rasters.html#assignment-2"><i class="fa fa-check"></i><b>8.5</b> Assignment</a></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="reprojecting-writing-rasters.html"><a href="reprojecting-writing-rasters.html"><i class="fa fa-check"></i><b>9</b> Reprojecting &amp; Writing Rasters</a><ul>
-<li class="chapter" data-level="9.1" data-path="reprojecting-writing-rasters.html"><a href="reprojecting-writing-rasters.html#indexing-data"><i class="fa fa-check"></i><b>9.1</b> Indexing Data</a></li>
-<li class="chapter" data-level="9.2" data-path="reprojecting-writing-rasters.html"><a href="reprojecting-writing-rasters.html#resampling-and-reprojecting"><i class="fa fa-check"></i><b>9.2</b> Resampling and Reprojecting</a></li>
-<li class="chapter" data-level="9.3" data-path="reprojecting-writing-rasters.html"><a href="reprojecting-writing-rasters.html#pngs"><i class="fa fa-check"></i><b>9.3</b> PNGs</a></li>
-<li class="chapter" data-level="9.4" data-path="reprojecting-writing-rasters.html"><a href="reprojecting-writing-rasters.html#writing-rasters"><i class="fa fa-check"></i><b>9.4</b> Writing Rasters</a></li>
-<li class="chapter" data-level="9.5" data-path="reprojecting-writing-rasters.html"><a href="reprojecting-writing-rasters.html#assignment-2"><i class="fa fa-check"></i><b>9.5</b> Assignment</a></li>
+<li class="chapter" data-level="9" data-path="plot-customization.html"><a href="plot-customization.html"><i class="fa fa-check"></i><b>9</b> Plot Customization</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="plot-customization.html"><a href="plot-customization.html#expanding-on-basic-plots-in-r"><i class="fa fa-check"></i><b>9.1</b> Expanding on Basic Plots in R</a>
+<ul>
+<li class="chapter" data-level="9.1.1" data-path="plot-customization.html"><a href="plot-customization.html#adding-to-a-plot"><i class="fa fa-check"></i><b>9.1.1</b> Adding to a Plot</a></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="plot-customization.html"><a href="plot-customization.html"><i class="fa fa-check"></i><b>10</b> Plot Customization</a><ul>
-<li class="chapter" data-level="10.1" data-path="plot-customization.html"><a href="plot-customization.html#expanding-on-basic-plots-in-r"><i class="fa fa-check"></i><b>10.1</b> Expanding on Basic Plots in R</a><ul>
-<li class="chapter" data-level="10.1.1" data-path="plot-customization.html"><a href="plot-customization.html#adding-to-a-plot"><i class="fa fa-check"></i><b>10.1.1</b> Adding to a Plot</a></li>
+<li class="chapter" data-level="9.2" data-path="plot-customization.html"><a href="plot-customization.html#barplots-boxplots-pie-charts"><i class="fa fa-check"></i><b>9.2</b> Barplots, Boxplots, Pie Charts</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="plot-customization.html"><a href="plot-customization.html#combining-plots"><i class="fa fa-check"></i><b>9.2.1</b> Combining Plots</a></li>
 </ul></li>
-<li class="chapter" data-level="10.2" data-path="plot-customization.html"><a href="plot-customization.html#barplots-boxplots-pie-charts"><i class="fa fa-check"></i><b>10.2</b> Barplots, Boxplots, Pie Charts</a><ul>
-<li class="chapter" data-level="10.2.1" data-path="plot-customization.html"><a href="plot-customization.html#combining-plots"><i class="fa fa-check"></i><b>10.2.1</b> Combining Plots</a></li>
+<li class="chapter" data-level="9.3" data-path="plot-customization.html"><a href="plot-customization.html#tree-data"><i class="fa fa-check"></i><b>9.3</b> Tree Data</a>
+<ul>
+<li class="chapter" data-level="9.3.1" data-path="plot-customization.html"><a href="plot-customization.html#loading-the-dataset"><i class="fa fa-check"></i><b>9.3.1</b> Loading the Dataset</a></li>
 </ul></li>
-<li class="chapter" data-level="10.3" data-path="plot-customization.html"><a href="plot-customization.html#tree-data"><i class="fa fa-check"></i><b>10.3</b> Tree Data</a><ul>
-<li class="chapter" data-level="10.3.1" data-path="plot-customization.html"><a href="plot-customization.html#loading-the-dataset"><i class="fa fa-check"></i><b>10.3.1</b> Loading the Dataset</a></li>
+<li class="chapter" data-level="9.4" data-path="plot-customization.html"><a href="plot-customization.html#assignment-3"><i class="fa fa-check"></i><b>9.4</b> Assignment:</a></li>
 </ul></li>
-<li class="chapter" data-level="10.4" data-path="plot-customization.html"><a href="plot-customization.html#assignment-3"><i class="fa fa-check"></i><b>10.4</b> Assignment:</a></li>
+<li class="chapter" data-level="10" data-path="basic-statistics.html"><a href="basic-statistics.html"><i class="fa fa-check"></i><b>10</b> Basic Statistics</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="basic-statistics.html"><a href="basic-statistics.html#statistical-function-dictionary"><i class="fa fa-check"></i><b>10.1</b> Statistical Function Dictionary</a></li>
+<li class="chapter" data-level="10.2" data-path="basic-statistics.html"><a href="basic-statistics.html#basic-statistics-in-r"><i class="fa fa-check"></i><b>10.2</b> Basic Statistics in R</a>
+<ul>
+<li class="chapter" data-level="10.2.1" data-path="basic-statistics.html"><a href="basic-statistics.html#load-willow-creek-data"><i class="fa fa-check"></i><b>10.2.1</b> Load Willow Creek data</a></li>
+<li class="chapter" data-level="10.2.2" data-path="basic-statistics.html"><a href="basic-statistics.html#subsetting-data"><i class="fa fa-check"></i><b>10.2.2</b> Subsetting Data</a></li>
+<li class="chapter" data-level="10.2.3" data-path="basic-statistics.html"><a href="basic-statistics.html#trends-and-distributions"><i class="fa fa-check"></i><b>10.2.3</b> Trends and Distributions</a></li>
+<li class="chapter" data-level="10.2.4" data-path="basic-statistics.html"><a href="basic-statistics.html#finding-a-best-fit-distribution"><i class="fa fa-check"></i><b>10.2.4</b> Finding a Best-Fit Distribution</a></li>
+<li class="chapter" data-level="10.2.5" data-path="basic-statistics.html"><a href="basic-statistics.html#correlation-plots"><i class="fa fa-check"></i><b>10.2.5</b> Correlation Plots</a></li>
 </ul></li>
-<li class="chapter" data-level="11" data-path="basic-statistics.html"><a href="basic-statistics.html"><i class="fa fa-check"></i><b>11</b> Basic Statistics</a><ul>
-<li class="chapter" data-level="11.1" data-path="basic-statistics.html"><a href="basic-statistics.html#statistical-function-dictionary"><i class="fa fa-check"></i><b>11.1</b> Statistical Function Dictionary</a></li>
-<li class="chapter" data-level="11.2" data-path="basic-statistics.html"><a href="basic-statistics.html#basic-statistics-in-r"><i class="fa fa-check"></i><b>11.2</b> Basic Statistics in R</a><ul>
-<li class="chapter" data-level="11.2.1" data-path="basic-statistics.html"><a href="basic-statistics.html#load-willow-creek-data"><i class="fa fa-check"></i><b>11.2.1</b> Load Willow Creek data</a></li>
-<li class="chapter" data-level="11.2.2" data-path="basic-statistics.html"><a href="basic-statistics.html#subsetting-data"><i class="fa fa-check"></i><b>11.2.2</b> Subsetting Data</a></li>
-<li class="chapter" data-level="11.2.3" data-path="basic-statistics.html"><a href="basic-statistics.html#trends-and-distributions"><i class="fa fa-check"></i><b>11.2.3</b> Trends and Distributions</a></li>
-<li class="chapter" data-level="11.2.4" data-path="basic-statistics.html"><a href="basic-statistics.html#finding-a-best-fit-distribution"><i class="fa fa-check"></i><b>11.2.4</b> Finding a Best-Fit Distribution</a></li>
-<li class="chapter" data-level="11.2.5" data-path="basic-statistics.html"><a href="basic-statistics.html#correlation-plots"><i class="fa fa-check"></i><b>11.2.5</b> Correlation Plots</a></li>
-</ul></li>
-<li class="chapter" data-level="11.3" data-path="basic-statistics.html"><a href="basic-statistics.html#assignment-4"><i class="fa fa-check"></i><b>11.3</b> Assignment</a><ul>
-<li class="chapter" data-level="11.3.1" data-path="basic-statistics.html"><a href="basic-statistics.html#extra-credit---2-points"><i class="fa fa-check"></i><b>11.3.1</b> Extra Credit - 2 points</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="12" data-path="plotting-with-ggplot2.html"><a href="plotting-with-ggplot2.html"><i class="fa fa-check"></i><b>12</b> Plotting with <code>ggplot2</code></a><ul>
-<li class="chapter" data-level="12.1" data-path="plotting-with-ggplot2.html"><a href="plotting-with-ggplot2.html#ggplot2-with-willow-creek-meteorological-data"><i class="fa fa-check"></i><b>12.1</b> ggplot2 with Willow Creek Meteorological Data</a></li>
-<li class="chapter" data-level="12.2" data-path="plotting-with-ggplot2.html"><a href="plotting-with-ggplot2.html#assignment-5"><i class="fa fa-check"></i><b>12.2</b> Assignment:</a></li>
-<li class="chapter" data-level="12.3" data-path="plotting-with-ggplot2.html"><a href="plotting-with-ggplot2.html#extra-credit---2-points-1"><i class="fa fa-check"></i><b>12.3</b> Extra Credit - 2 Points</a></li>
-</ul></li>
-<li class="chapter" data-level="13" data-path="spatial-plots-with-ggplot2.html"><a href="spatial-plots-with-ggplot2.html"><i class="fa fa-check"></i><b>13</b> Spatial Plots with <code>ggplot2</code></a><ul>
-<li class="chapter" data-level="13.1" data-path="spatial-plots-with-ggplot2.html"><a href="spatial-plots-with-ggplot2.html#simple-features"><i class="fa fa-check"></i><b>13.1</b> Simple Features</a></li>
-<li class="chapter" data-level="13.2" data-path="spatial-plots-with-ggplot2.html"><a href="spatial-plots-with-ggplot2.html#sea-surface-temperature-ggplot"><i class="fa fa-check"></i><b>13.2</b> Sea Surface Temperature ggplot</a></li>
-<li class="chapter" data-level="13.3" data-path="spatial-plots-with-ggplot2.html"><a href="spatial-plots-with-ggplot2.html#r-color-brewer-palettes"><i class="fa fa-check"></i><b>13.3</b> R Color Brewer Palettes</a><ul>
-<li class="chapter" data-level="13.3.1" data-path="spatial-plots-with-ggplot2.html"><a href="spatial-plots-with-ggplot2.html#multi-plot-ggplot"><i class="fa fa-check"></i><b>13.3.1</b> Multi Plot ggplot</a></li>
-</ul></li>
-<li class="chapter" data-level="13.4" data-path="spatial-plots-with-ggplot2.html"><a href="spatial-plots-with-ggplot2.html#assignment-6"><i class="fa fa-check"></i><b>13.4</b> Assignment</a><ul>
-<li class="chapter" data-level="13.4.1" data-path="spatial-plots-with-ggplot2.html"><a href="spatial-plots-with-ggplot2.html#extra-credit---2-points-2"><i class="fa fa-check"></i><b>13.4.1</b> Extra Credit - 2 Points</a></li>
+<li class="chapter" data-level="10.3" data-path="basic-statistics.html"><a href="basic-statistics.html#assignment-4"><i class="fa fa-check"></i><b>10.3</b> Assignment</a>
+<ul>
+<li class="chapter" data-level="10.3.1" data-path="basic-statistics.html"><a href="basic-statistics.html#extra-credit---2-points"><i class="fa fa-check"></i><b>10.3.1</b> Extra Credit - 2 points</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="14" data-path="shapefiles.html"><a href="shapefiles.html"><i class="fa fa-check"></i><b>14</b> Shapefiles</a><ul>
-<li class="chapter" data-level="14.1" data-path="shapefiles.html"><a href="shapefiles.html#reading-in-shapefiles"><i class="fa fa-check"></i><b>14.1</b> Reading in Shapefiles</a></li>
-<li class="chapter" data-level="14.2" data-path="shapefiles.html"><a href="shapefiles.html#combining-shapefiles-with-data"><i class="fa fa-check"></i><b>14.2</b> Combining Shapefiles with Data</a></li>
-<li class="chapter" data-level="14.3" data-path="shapefiles.html"><a href="shapefiles.html#visualizing-the-shapefiles-data"><i class="fa fa-check"></i><b>14.3</b> Visualizing the Shapefiles &amp; Data</a></li>
-<li class="chapter" data-level="14.4" data-path="shapefiles.html"><a href="shapefiles.html#saving-a-shapefile"><i class="fa fa-check"></i><b>14.4</b> Saving a shapefile</a></li>
-<li class="chapter" data-level="14.5" data-path="shapefiles.html"><a href="shapefiles.html#assignment-7"><i class="fa fa-check"></i><b>14.5</b> Assignment</a></li>
+<li class="chapter" data-level="11" data-path="plotting-with-ggplot2.html"><a href="plotting-with-ggplot2.html"><i class="fa fa-check"></i><b>11</b> Plotting with <code>ggplot2</code></a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="plotting-with-ggplot2.html"><a href="plotting-with-ggplot2.html#ggplot2-with-willow-creek-meteorological-data"><i class="fa fa-check"></i><b>11.1</b> ggplot2 with Willow Creek Meteorological Data</a></li>
+<li class="chapter" data-level="11.2" data-path="plotting-with-ggplot2.html"><a href="plotting-with-ggplot2.html#assignment-5"><i class="fa fa-check"></i><b>11.2</b> Assignment:</a></li>
+<li class="chapter" data-level="11.3" data-path="plotting-with-ggplot2.html"><a href="plotting-with-ggplot2.html#extra-credit---2-points-1"><i class="fa fa-check"></i><b>11.3</b> Extra Credit - 2 Points</a></li>
 </ul></li>
-<li class="chapter" data-level="15" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html"><i class="fa fa-check"></i><b>15</b> Remote Data Extraction</a><ul>
-<li class="chapter" data-level="15.1" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#thredds"><i class="fa fa-check"></i><b>15.1</b> THREDDS</a><ul>
-<li class="chapter" data-level="15.1.1" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#opening-a-channel-to-the-database"><i class="fa fa-check"></i><b>15.1.1</b> Opening a Channel to the Database</a></li>
-<li class="chapter" data-level="15.1.2" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#indexing"><i class="fa fa-check"></i><b>15.1.2</b> Indexing</a></li>
-<li class="chapter" data-level="15.1.3" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#downloading-the-selected-data"><i class="fa fa-check"></i><b>15.1.3</b> Downloading the Selected Data</a></li>
+<li class="chapter" data-level="12" data-path="spatial-plots-with-ggplot2.html"><a href="spatial-plots-with-ggplot2.html"><i class="fa fa-check"></i><b>12</b> Spatial Plots with <code>ggplot2</code></a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="spatial-plots-with-ggplot2.html"><a href="spatial-plots-with-ggplot2.html#simple-features"><i class="fa fa-check"></i><b>12.1</b> Simple Features</a></li>
+<li class="chapter" data-level="12.2" data-path="spatial-plots-with-ggplot2.html"><a href="spatial-plots-with-ggplot2.html#sea-surface-temperature-ggplot"><i class="fa fa-check"></i><b>12.2</b> Sea Surface Temperature ggplot</a></li>
+<li class="chapter" data-level="12.3" data-path="spatial-plots-with-ggplot2.html"><a href="spatial-plots-with-ggplot2.html#r-color-brewer-palettes"><i class="fa fa-check"></i><b>12.3</b> R Color Brewer Palettes</a>
+<ul>
+<li class="chapter" data-level="12.3.1" data-path="spatial-plots-with-ggplot2.html"><a href="spatial-plots-with-ggplot2.html#multi-plot-ggplot"><i class="fa fa-check"></i><b>12.3.1</b> Multi Plot ggplot</a></li>
 </ul></li>
-<li class="chapter" data-level="15.2" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#erddap"><i class="fa fa-check"></i><b>15.2</b> ERDDAP</a><ul>
-<li class="chapter" data-level="15.2.1" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#rerddap"><i class="fa fa-check"></i><b>15.2.1</b> <code>rerddap</code></a></li>
-<li class="chapter" data-level="15.2.2" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#finding-the-data-you-want"><i class="fa fa-check"></i><b>15.2.2</b> Finding the Data You Want</a></li>
-<li class="chapter" data-level="15.2.3" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#tabledap"><i class="fa fa-check"></i><b>15.2.3</b> Tabledap</a></li>
-<li class="chapter" data-level="15.2.4" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#griddap"><i class="fa fa-check"></i><b>15.2.4</b> Griddap</a></li>
-<li class="chapter" data-level="15.2.5" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#custom-erddap-url"><i class="fa fa-check"></i><b>15.2.5</b> Custom ERDDAP URL</a></li>
-</ul></li>
-<li class="chapter" data-level="15.3" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#assignment-8"><i class="fa fa-check"></i><b>15.3</b> Assignment</a><ul>
-<li class="chapter" data-level="15.3.1" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#extra-credit---2-points-3"><i class="fa fa-check"></i><b>15.3.1</b> Extra Credit - 2 Points</a></li>
+<li class="chapter" data-level="12.4" data-path="spatial-plots-with-ggplot2.html"><a href="spatial-plots-with-ggplot2.html#assignment-6"><i class="fa fa-check"></i><b>12.4</b> Assignment</a>
+<ul>
+<li class="chapter" data-level="12.4.1" data-path="spatial-plots-with-ggplot2.html"><a href="spatial-plots-with-ggplot2.html#extra-credit---2-points-2"><i class="fa fa-check"></i><b>12.4.1</b> Extra Credit - 2 Points</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="16" data-path="functions-and-code-presentation.html"><a href="functions-and-code-presentation.html"><i class="fa fa-check"></i><b>16</b> Functions and Code Presentation</a><ul>
-<li class="chapter" data-level="16.1" data-path="functions-and-code-presentation.html"><a href="functions-and-code-presentation.html#functions"><i class="fa fa-check"></i><b>16.1</b> Functions</a></li>
-<li class="chapter" data-level="16.2" data-path="functions-and-code-presentation.html"><a href="functions-and-code-presentation.html#netcdf-processing-function"><i class="fa fa-check"></i><b>16.2</b> NetCDF Processing Function</a></li>
-<li class="chapter" data-level="16.3" data-path="functions-and-code-presentation.html"><a href="functions-and-code-presentation.html#functions-in-for-loops"><i class="fa fa-check"></i><b>16.3</b> Functions in For Loops</a></li>
-<li class="chapter" data-level="16.4" data-path="functions-and-code-presentation.html"><a href="functions-and-code-presentation.html#rmarkdown"><i class="fa fa-check"></i><b>16.4</b> RMarkdown</a></li>
-<li class="chapter" data-level="16.5" data-path="functions-and-code-presentation.html"><a href="functions-and-code-presentation.html#assignment-9"><i class="fa fa-check"></i><b>16.5</b> Assignment</a></li>
+<li class="chapter" data-level="13" data-path="shapefiles.html"><a href="shapefiles.html"><i class="fa fa-check"></i><b>13</b> Shapefiles</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="shapefiles.html"><a href="shapefiles.html#reading-in-shapefiles"><i class="fa fa-check"></i><b>13.1</b> Reading in Shapefiles</a></li>
+<li class="chapter" data-level="13.2" data-path="shapefiles.html"><a href="shapefiles.html#combining-shapefiles-with-data"><i class="fa fa-check"></i><b>13.2</b> Combining Shapefiles with Data</a></li>
+<li class="chapter" data-level="13.3" data-path="shapefiles.html"><a href="shapefiles.html#visualizing-the-shapefiles-data"><i class="fa fa-check"></i><b>13.3</b> Visualizing the Shapefiles &amp; Data</a></li>
+<li class="chapter" data-level="13.4" data-path="shapefiles.html"><a href="shapefiles.html#saving-a-shapefile"><i class="fa fa-check"></i><b>13.4</b> Saving a shapefile</a></li>
+<li class="chapter" data-level="13.5" data-path="shapefiles.html"><a href="shapefiles.html#assignment-7"><i class="fa fa-check"></i><b>13.5</b> Assignment</a></li>
 </ul></li>
-<li class="chapter" data-level="17" data-path="machine-learning-with-r.html"><a href="machine-learning-with-r.html"><i class="fa fa-check"></i><b>17</b> Machine Learning with R</a><ul>
-<li class="chapter" data-level="17.1" data-path="machine-learning-with-r.html"><a href="machine-learning-with-r.html#machine-learning-terms"><i class="fa fa-check"></i><b>17.1</b> Machine Learning Terms</a></li>
-<li class="chapter" data-level="17.2" data-path="machine-learning-with-r.html"><a href="machine-learning-with-r.html#classical-machine-learning"><i class="fa fa-check"></i><b>17.2</b> Classical Machine Learning</a><ul>
-<li class="chapter" data-level="17.2.1" data-path="machine-learning-with-r.html"><a href="machine-learning-with-r.html#supervised-learning"><i class="fa fa-check"></i><b>17.2.1</b> Supervised Learning</a></li>
-<li class="chapter" data-level="17.2.2" data-path="machine-learning-with-r.html"><a href="machine-learning-with-r.html#unsupervised-learning"><i class="fa fa-check"></i><b>17.2.2</b> Unsupervised Learning</a></li>
-<li class="chapter" data-level="17.2.3" data-path="machine-learning-with-r.html"><a href="machine-learning-with-r.html#neural-networks"><i class="fa fa-check"></i><b>17.2.3</b> Neural Networks</a></li>
-<li class="chapter" data-level="17.2.4" data-path="machine-learning-with-r.html"><a href="machine-learning-with-r.html#reinforcement-learning"><i class="fa fa-check"></i><b>17.2.4</b> Reinforcement Learning</a></li>
+<li class="chapter" data-level="14" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html"><i class="fa fa-check"></i><b>14</b> Remote Data Extraction</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#thredds"><i class="fa fa-check"></i><b>14.1</b> THREDDS</a>
+<ul>
+<li class="chapter" data-level="14.1.1" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#opening-a-channel-to-the-database"><i class="fa fa-check"></i><b>14.1.1</b> Opening a Channel to the Database</a></li>
+<li class="chapter" data-level="14.1.2" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#indexing"><i class="fa fa-check"></i><b>14.1.2</b> Indexing</a></li>
+<li class="chapter" data-level="14.1.3" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#downloading-the-selected-data"><i class="fa fa-check"></i><b>14.1.3</b> Downloading the Selected Data</a></li>
+</ul></li>
+<li class="chapter" data-level="14.2" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#erddap"><i class="fa fa-check"></i><b>14.2</b> ERDDAP</a>
+<ul>
+<li class="chapter" data-level="14.2.1" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#rerddap"><i class="fa fa-check"></i><b>14.2.1</b> <code>rerddap</code></a></li>
+<li class="chapter" data-level="14.2.2" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#finding-the-data-you-want"><i class="fa fa-check"></i><b>14.2.2</b> Finding the Data You Want</a></li>
+<li class="chapter" data-level="14.2.3" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#tabledap"><i class="fa fa-check"></i><b>14.2.3</b> Tabledap</a></li>
+<li class="chapter" data-level="14.2.4" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#griddap"><i class="fa fa-check"></i><b>14.2.4</b> Griddap</a></li>
+<li class="chapter" data-level="14.2.5" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#custom-erddap-url"><i class="fa fa-check"></i><b>14.2.5</b> Custom ERDDAP URL</a></li>
+</ul></li>
+<li class="chapter" data-level="14.3" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#assignment-8"><i class="fa fa-check"></i><b>14.3</b> Assignment</a>
+<ul>
+<li class="chapter" data-level="14.3.1" data-path="remote-data-extraction.html"><a href="remote-data-extraction.html#extra-credit---2-points-3"><i class="fa fa-check"></i><b>14.3.1</b> Extra Credit - 2 Points</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="18" data-path="time-series-forecasting.html"><a href="time-series-forecasting.html"><i class="fa fa-check"></i><b>18</b> Time Series Forecasting</a><ul>
-<li class="chapter" data-level="18.1" data-path="time-series-forecasting.html"><a href="time-series-forecasting.html#load-the-packages-and-data"><i class="fa fa-check"></i><b>18.1</b> Load the Packages and Data</a></li>
-<li class="chapter" data-level="18.2" data-path="time-series-forecasting.html"><a href="time-series-forecasting.html#aggregate-data"><i class="fa fa-check"></i><b>18.2</b> Aggregate Data</a></li>
-<li class="chapter" data-level="18.3" data-path="time-series-forecasting.html"><a href="time-series-forecasting.html#prepping-the-model"><i class="fa fa-check"></i><b>18.3</b> Prepping the Model</a></li>
-<li class="chapter" data-level="18.4" data-path="time-series-forecasting.html"><a href="time-series-forecasting.html#running-the-model"><i class="fa fa-check"></i><b>18.4</b> Running the Model</a></li>
-<li class="chapter" data-level="18.5" data-path="time-series-forecasting.html"><a href="time-series-forecasting.html#validation-and-accuracy"><i class="fa fa-check"></i><b>18.5</b> Validation and Accuracy</a></li>
-<li class="chapter" data-level="18.6" data-path="time-series-forecasting.html"><a href="time-series-forecasting.html#future-forecasting"><i class="fa fa-check"></i><b>18.6</b> Future Forecasting</a></li>
-<li class="chapter" data-level="18.7" data-path="time-series-forecasting.html"><a href="time-series-forecasting.html#assignment-10"><i class="fa fa-check"></i><b>18.7</b> Assignment</a></li>
+<li class="chapter" data-level="15" data-path="functions-and-code-presentation.html"><a href="functions-and-code-presentation.html"><i class="fa fa-check"></i><b>15</b> Functions and Code Presentation</a>
+<ul>
+<li class="chapter" data-level="15.1" data-path="functions-and-code-presentation.html"><a href="functions-and-code-presentation.html#functions"><i class="fa fa-check"></i><b>15.1</b> Functions</a></li>
+<li class="chapter" data-level="15.2" data-path="functions-and-code-presentation.html"><a href="functions-and-code-presentation.html#netcdf-processing-function"><i class="fa fa-check"></i><b>15.2</b> NetCDF Processing Function</a></li>
+<li class="chapter" data-level="15.3" data-path="functions-and-code-presentation.html"><a href="functions-and-code-presentation.html#functions-in-for-loops"><i class="fa fa-check"></i><b>15.3</b> Functions in For Loops</a></li>
+<li class="chapter" data-level="15.4" data-path="functions-and-code-presentation.html"><a href="functions-and-code-presentation.html#rmarkdown"><i class="fa fa-check"></i><b>15.4</b> RMarkdown</a></li>
+<li class="chapter" data-level="15.5" data-path="functions-and-code-presentation.html"><a href="functions-and-code-presentation.html#assignment-9"><i class="fa fa-check"></i><b>15.5</b> Assignment</a></li>
 </ul></li>
-<li class="chapter" data-level="19" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html"><i class="fa fa-check"></i><b>19</b> Random Forest Modeling</a><ul>
-<li class="chapter" data-level="19.1" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#prepare-the-data"><i class="fa fa-check"></i><b>19.1</b> Prepare the Data</a></li>
-<li class="chapter" data-level="19.2" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#dimensionality-reduction"><i class="fa fa-check"></i><b>19.2</b> Dimensionality Reduction</a><ul>
-<li class="chapter" data-level="19.2.1" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#principal-component-analysis"><i class="fa fa-check"></i><b>19.2.1</b> Principal Component Analysis</a></li>
-<li class="chapter" data-level="19.2.2" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#t-sne-dimensionality-reduction"><i class="fa fa-check"></i><b>19.2.2</b> t-SNE Dimensionality Reduction</a></li>
-<li class="chapter" data-level="19.2.3" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#multidimensional-scaling"><i class="fa fa-check"></i><b>19.2.3</b> Multidimensional Scaling</a></li>
+<li class="chapter" data-level="16" data-path="machine-learning-with-r.html"><a href="machine-learning-with-r.html"><i class="fa fa-check"></i><b>16</b> Machine Learning with R</a>
+<ul>
+<li class="chapter" data-level="16.1" data-path="machine-learning-with-r.html"><a href="machine-learning-with-r.html#machine-learning-terms"><i class="fa fa-check"></i><b>16.1</b> Machine Learning Terms</a></li>
+<li class="chapter" data-level="16.2" data-path="machine-learning-with-r.html"><a href="machine-learning-with-r.html#classical-machine-learning"><i class="fa fa-check"></i><b>16.2</b> Classical Machine Learning</a>
+<ul>
+<li class="chapter" data-level="16.2.1" data-path="machine-learning-with-r.html"><a href="machine-learning-with-r.html#supervised-learning"><i class="fa fa-check"></i><b>16.2.1</b> Supervised Learning</a></li>
+<li class="chapter" data-level="16.2.2" data-path="machine-learning-with-r.html"><a href="machine-learning-with-r.html#unsupervised-learning"><i class="fa fa-check"></i><b>16.2.2</b> Unsupervised Learning</a></li>
+<li class="chapter" data-level="16.2.3" data-path="machine-learning-with-r.html"><a href="machine-learning-with-r.html#neural-networks"><i class="fa fa-check"></i><b>16.2.3</b> Neural Networks</a></li>
+<li class="chapter" data-level="16.2.4" data-path="machine-learning-with-r.html"><a href="machine-learning-with-r.html#reinforcement-learning"><i class="fa fa-check"></i><b>16.2.4</b> Reinforcement Learning</a></li>
 </ul></li>
-<li class="chapter" data-level="19.3" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#random-forests"><i class="fa fa-check"></i><b>19.3</b> Random Forests</a><ul>
-<li class="chapter" data-level="19.3.1" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#decision-trees"><i class="fa fa-check"></i><b>19.3.1</b> Decision Trees</a></li>
-<li class="chapter" data-level="19.3.2" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#data-partition"><i class="fa fa-check"></i><b>19.3.2</b> Data Partition</a></li>
-<li class="chapter" data-level="19.3.3" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#training-the-model"><i class="fa fa-check"></i><b>19.3.3</b> Training the Model</a></li>
-<li class="chapter" data-level="19.3.4" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#testing-the-model"><i class="fa fa-check"></i><b>19.3.4</b> Testing the Model</a></li>
-<li class="chapter" data-level="19.3.5" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#hyperparameter-tuning"><i class="fa fa-check"></i><b>19.3.5</b> Hyperparameter Tuning</a></li>
 </ul></li>
-<li class="chapter" data-level="19.4" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#assignment-11"><i class="fa fa-check"></i><b>19.4</b> Assignment</a></li>
+<li class="chapter" data-level="17" data-path="time-series-forecasting.html"><a href="time-series-forecasting.html"><i class="fa fa-check"></i><b>17</b> Time Series Forecasting</a>
+<ul>
+<li class="chapter" data-level="17.1" data-path="time-series-forecasting.html"><a href="time-series-forecasting.html#load-the-packages-and-data"><i class="fa fa-check"></i><b>17.1</b> Load the Packages and Data</a></li>
+<li class="chapter" data-level="17.2" data-path="time-series-forecasting.html"><a href="time-series-forecasting.html#aggregate-data"><i class="fa fa-check"></i><b>17.2</b> Aggregate Data</a></li>
+<li class="chapter" data-level="17.3" data-path="time-series-forecasting.html"><a href="time-series-forecasting.html#prepping-the-model"><i class="fa fa-check"></i><b>17.3</b> Prepping the Model</a></li>
+<li class="chapter" data-level="17.4" data-path="time-series-forecasting.html"><a href="time-series-forecasting.html#running-the-model"><i class="fa fa-check"></i><b>17.4</b> Running the Model</a></li>
+<li class="chapter" data-level="17.5" data-path="time-series-forecasting.html"><a href="time-series-forecasting.html#validation-and-accuracy"><i class="fa fa-check"></i><b>17.5</b> Validation and Accuracy</a></li>
+<li class="chapter" data-level="17.6" data-path="time-series-forecasting.html"><a href="time-series-forecasting.html#future-forecasting"><i class="fa fa-check"></i><b>17.6</b> Future Forecasting</a></li>
+<li class="chapter" data-level="17.7" data-path="time-series-forecasting.html"><a href="time-series-forecasting.html#assignment-10"><i class="fa fa-check"></i><b>17.7</b> Assignment</a></li>
+</ul></li>
+<li class="chapter" data-level="18" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html"><i class="fa fa-check"></i><b>18</b> Random Forest Modeling</a>
+<ul>
+<li class="chapter" data-level="18.1" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#prepare-the-data"><i class="fa fa-check"></i><b>18.1</b> Prepare the Data</a></li>
+<li class="chapter" data-level="18.2" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#dimensionality-reduction"><i class="fa fa-check"></i><b>18.2</b> Dimensionality Reduction</a>
+<ul>
+<li class="chapter" data-level="18.2.1" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#principal-component-analysis"><i class="fa fa-check"></i><b>18.2.1</b> Principal Component Analysis</a></li>
+<li class="chapter" data-level="18.2.2" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#t-sne-dimensionality-reduction"><i class="fa fa-check"></i><b>18.2.2</b> t-SNE Dimensionality Reduction</a></li>
+<li class="chapter" data-level="18.2.3" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#multidimensional-scaling"><i class="fa fa-check"></i><b>18.2.3</b> Multidimensional Scaling</a></li>
+</ul></li>
+<li class="chapter" data-level="18.3" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#random-forests"><i class="fa fa-check"></i><b>18.3</b> Random Forests</a>
+<ul>
+<li class="chapter" data-level="18.3.1" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#decision-trees"><i class="fa fa-check"></i><b>18.3.1</b> Decision Trees</a></li>
+<li class="chapter" data-level="18.3.2" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#data-partition"><i class="fa fa-check"></i><b>18.3.2</b> Data Partition</a></li>
+<li class="chapter" data-level="18.3.3" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#training-the-model"><i class="fa fa-check"></i><b>18.3.3</b> Training the Model</a></li>
+<li class="chapter" data-level="18.3.4" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#testing-the-model"><i class="fa fa-check"></i><b>18.3.4</b> Testing the Model</a></li>
+<li class="chapter" data-level="18.3.5" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#hyperparameter-tuning"><i class="fa fa-check"></i><b>18.3.5</b> Hyperparameter Tuning</a></li>
+</ul></li>
+<li class="chapter" data-level="18.4" data-path="random-forest-modeling.html"><a href="random-forest-modeling.html#assignment-11"><i class="fa fa-check"></i><b>18.4</b> Assignment</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/jsimkins2" target="blank">James Simkins</a></li>
@@ -352,14 +385,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="remote-data-extraction" class="section level1">
-<h1><span class="header-section-number">15</span> Remote Data Extraction</h1>
+<div id="remote-data-extraction" class="section level1" number="14">
+<h1><span class="header-section-number">14</span> Remote Data Extraction</h1>
 <p><img src="images/erddap.png" width="60%" style="display: block; margin: auto;" /></p>
 <p>Up to this point, we’ve been using locally downloaded datasets derived from the course datasets folder. We downloaded these files in bulk or individually like so…</p>
-<p><code>download.file(&quot;https://github.com/jsimkins2/geog473-673/tree/master/datasets/TreeData.csv&quot;, destfile = &quot;/Users/james/Downloads/TreeData.csv&quot; , mode='wb')</code></p>
+<p><code>download.file("https://github.com/jsimkins2/geog473-673/tree/master/datasets/TreeData.csv", destfile = "/Users/james/Downloads/TreeData.csv" , mode='wb')</code></p>
 <p>While Github is excellent for code, it’s not a cloud service for datasets. THREDDS and ERDDAP are the future of environmental data repositories.</p>
-<div id="thredds" class="section level2">
-<h2><span class="header-section-number">15.1</span> THREDDS</h2>
+<div id="thredds" class="section level2" number="14.1">
+<h2><span class="header-section-number">14.1</span> THREDDS</h2>
 <p>THREDDS (Thematic Realtime Environmental Distributed Data Services) is an efficient way to extract specific areas or time periods of a dataset. For example, if you’re studying 2000-2020 water temperatures of the Delaware Bay, you don’t necessarily want a water temperature dataset covering the Atlantic Ocean from 1960-2020. It’s a waste of time to have to download, store, and process all of that data just to sub-select the Delaware Bay from 2000-2020. THREDDS makes it possible to download your desired subset from the get-go, saving you time and hard-drive space.</p>
 <p>Here are some NASA/NOAA/UD THREDDS servers:</p>
 <ol style="list-style-type: decimal">
@@ -379,11 +412,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>OPeNDAP (Open-source Project for a Network Data Access Protocol) is a great way to subselect the data. Opendap offers html files of the data (BAD IDEA, THIS WILL CRASH YOUR BROWSER) or netCDF files of the data (great idea)</p>
 <p><img src="images/basin_opendap.png" width="60%" style="display: block; margin: auto;" /></p>
 <p>Now you can use this page to download subset datasets, or we can make this really easy and use R to accomplish that task. This is a high temporal resolution dataset, so let’s say we want Delaware Bay data from July 14 - July 16, 2019. All we need to make this happen is the url of the opendap page - <a href="http://basin.ceoe.udel.edu/thredds/dodsC/GOESJPLSST.nc.html" class="uri">http://basin.ceoe.udel.edu/thredds/dodsC/GOESJPLSST.nc.html</a> - and the <code>ncdf4</code> package.</p>
-<div id="opening-a-channel-to-the-database" class="section level3">
-<h3><span class="header-section-number">15.1.1</span> Opening a Channel to the Database</h3>
-<div class="sourceCode" id="cb430"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb430-1" data-line-number="1"><span class="kw">library</span>(ncdf4)</a>
-<a class="sourceLine" id="cb430-2" data-line-number="2">goes.nc =<span class="st"> </span><span class="kw">nc_open</span>(<span class="st">&quot;http://basin.ceoe.udel.edu/thredds/dodsC/GOESJPLSST.nc&quot;</span>)</a>
-<a class="sourceLine" id="cb430-3" data-line-number="3">goes.nc</a></code></pre></div>
+<div id="opening-a-channel-to-the-database" class="section level3" number="14.1.1">
+<h3><span class="header-section-number">14.1.1</span> Opening a Channel to the Database</h3>
+<div class="sourceCode" id="cb436"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb436-1"><a href="remote-data-extraction.html#cb436-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ncdf4)</span>
+<span id="cb436-2"><a href="remote-data-extraction.html#cb436-2" aria-hidden="true" tabindex="-1"></a>goes.nc <span class="ot">=</span> <span class="fu">nc_open</span>(<span class="st">&quot;http://basin.ceoe.udel.edu/thredds/dodsC/GOESJPLSST.nc&quot;</span>)</span>
+<span id="cb436-3"><a href="remote-data-extraction.html#cb436-3" aria-hidden="true" tabindex="-1"></a>goes.nc</span></code></pre></div>
 <pre><code>## File http://basin.ceoe.udel.edu/thredds/dodsC/GOESJPLSST.nc (NC_FORMAT_CLASSIC):
 ## 
 ##      8 variables (excluding dimension variables):
@@ -431,7 +464,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##         longitude  Size:2500
 ##             standard_name: longitude
 ##             units: degrees_east
-##         time  Size:26471
+##         time  Size:27278
 ##             standard_name: time
 ##             long_name: EPOCH Time
 ##             units: seconds since 1970-01-01T00:00:00Z
@@ -447,37 +480,37 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##         summary: NOAA/NESDIS/STAR GHRSST GOES16 SST product, fit to UDel ORB lab NW Atlantic extent, reprojected to EPSG:4326.
 ##         acknowledgement: These data were provided by Group for High Resolution Sea Surface Temperature (GHRSST) and the National Oceanic and Atmospheric Administration (NOAA)</code></pre>
 <p>Just with that one line of code, we’ve opened a connection with the GOES-R dataset on the THREDDS server. Printing the netcdf dataset provides some metadata info. Let’s use this metadata and extract the time period / spatial extent that we want.</p>
-<div class="sourceCode" id="cb432"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb432-1" data-line-number="1"><span class="co"># print out the names of the variables in our dataset</span></a>
-<a class="sourceLine" id="cb432-2" data-line-number="2"><span class="kw">names</span>(goes.nc<span class="op">$</span>var)</a></code></pre></div>
+<div class="sourceCode" id="cb438"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb438-1"><a href="remote-data-extraction.html#cb438-1" aria-hidden="true" tabindex="-1"></a><span class="co"># print out the names of the variables in our dataset</span></span>
+<span id="cb438-2"><a href="remote-data-extraction.html#cb438-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(goes.nc<span class="sc">$</span>var)</span></code></pre></div>
 <pre><code>## [1] &quot;projection&quot;              &quot;sea_surface_temperature&quot;
 ## [3] &quot;quality_level&quot;           &quot;dt_analysis&quot;            
 ## [5] &quot;satellite_zenith_angle&quot;  &quot;sses_bias&quot;              
 ## [7] &quot;sses_standard_deviation&quot; &quot;wind_speed&quot;</code></pre>
-<div class="sourceCode" id="cb434"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb434-1" data-line-number="1"><span class="co"># how is the time stored?</span></a>
-<a class="sourceLine" id="cb434-2" data-line-number="2">goes.nc<span class="op">$</span>dim<span class="op">$</span>time<span class="op">$</span>units</a></code></pre></div>
+<div class="sourceCode" id="cb440"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb440-1"><a href="remote-data-extraction.html#cb440-1" aria-hidden="true" tabindex="-1"></a><span class="co"># how is the time stored?</span></span>
+<span id="cb440-2"><a href="remote-data-extraction.html#cb440-2" aria-hidden="true" tabindex="-1"></a>goes.nc<span class="sc">$</span>dim<span class="sc">$</span>time<span class="sc">$</span>units</span></code></pre></div>
 <pre><code>## [1] &quot;seconds since 1970-01-01T00:00:00Z&quot;</code></pre>
 <p>Seconds since 1970-01-01 is referred to as <strong>EPOCH time</strong>. Basically, this datetime is considered the inception of the internet. Computers are very good at storing information in this format and this is why we use this. Let’s take out the last value -</p>
-<div class="sourceCode" id="cb436"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb436-1" data-line-number="1">lastVal =<span class="st"> </span><span class="kw">length</span>(goes.nc<span class="op">$</span>dim<span class="op">$</span>time<span class="op">$</span>vals)</a>
-<a class="sourceLine" id="cb436-2" data-line-number="2">lastVal</a></code></pre></div>
-<pre><code>## [1] 26471</code></pre>
-<div class="sourceCode" id="cb438"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb438-1" data-line-number="1">epoch_val =<span class="st"> </span>goes.nc<span class="op">$</span>dim<span class="op">$</span>time<span class="op">$</span>vals[lastVal]</a></code></pre></div>
+<div class="sourceCode" id="cb442"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb442-1"><a href="remote-data-extraction.html#cb442-1" aria-hidden="true" tabindex="-1"></a>lastVal <span class="ot">=</span> <span class="fu">length</span>(goes.nc<span class="sc">$</span>dim<span class="sc">$</span>time<span class="sc">$</span>vals)</span>
+<span id="cb442-2"><a href="remote-data-extraction.html#cb442-2" aria-hidden="true" tabindex="-1"></a>lastVal</span></code></pre></div>
+<pre><code>## [1] 27278</code></pre>
+<div class="sourceCode" id="cb444"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb444-1"><a href="remote-data-extraction.html#cb444-1" aria-hidden="true" tabindex="-1"></a>epoch_val <span class="ot">=</span> goes.nc<span class="sc">$</span>dim<span class="sc">$</span>time<span class="sc">$</span>vals[lastVal]</span></code></pre></div>
 <p>There you go, that’s an EPOCH time value. Let’s convert it to a human timestamp…</p>
-<div class="sourceCode" id="cb439"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb439-1" data-line-number="1">human_time =<span class="st"> </span><span class="kw">as.POSIXct</span>(epoch_val, <span class="dt">origin=</span><span class="st">&quot;1970-01-01&quot;</span>)</a>
-<a class="sourceLine" id="cb439-2" data-line-number="2">human_time</a></code></pre></div>
-<pre><code>## [1] &quot;2021-01-28 14:00:00 EST&quot;</code></pre>
+<div class="sourceCode" id="cb445"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb445-1"><a href="remote-data-extraction.html#cb445-1" aria-hidden="true" tabindex="-1"></a>human_time <span class="ot">=</span> <span class="fu">as.POSIXct</span>(epoch_val, <span class="at">origin=</span><span class="st">&quot;1970-01-01&quot;</span>)</span>
+<span id="cb445-2"><a href="remote-data-extraction.html#cb445-2" aria-hidden="true" tabindex="-1"></a>human_time</span></code></pre></div>
+<pre><code>## [1] &quot;2021-03-03 11:00:00 EST&quot;</code></pre>
 <p><code>as.POSIXct</code> is a datetime package in R. It is a gold standard and you’ll see it as you gain more experience in playing with datetime conversions. You can also use <code>anytime</code> package.</p>
-<div class="sourceCode" id="cb441"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb441-1" data-line-number="1"><span class="kw">library</span>(anytime)</a>
-<a class="sourceLine" id="cb441-2" data-line-number="2"><span class="kw">anytime</span>(epoch_val)</a></code></pre></div>
-<pre><code>## [1] &quot;2021-01-28 14:00:00 EST&quot;</code></pre>
+<div class="sourceCode" id="cb447"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb447-1"><a href="remote-data-extraction.html#cb447-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(anytime)</span>
+<span id="cb447-2"><a href="remote-data-extraction.html#cb447-2" aria-hidden="true" tabindex="-1"></a><span class="fu">anytime</span>(epoch_val)</span></code></pre></div>
+<pre><code>## [1] &quot;2021-03-03 11:00:00 EST&quot;</code></pre>
 <p>At this point, all we have to do is convert our human dates to EPOCH so we can extract the data. In order to do this all we need to do is convert a datetime object to a numeric. R handles it for us…</p>
-<div class="sourceCode" id="cb443"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb443-1" data-line-number="1">start_time =<span class="st"> &quot;2019-07-14&quot;</span> <span class="co"># year dash month dash day</span></a>
-<a class="sourceLine" id="cb443-2" data-line-number="2">epoch_start_time =<span class="st"> </span><span class="kw">as.numeric</span>(<span class="kw">as.POSIXct</span>(start_time, <span class="dt">format=</span><span class="st">&quot;%Y-%m-%d&quot;</span>)) <span class="co"># %Y-%m-%d is telling the computer the format of our datestring is year dash month dash day</span></a>
-<a class="sourceLine" id="cb443-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb443-4" data-line-number="4">end_time =<span class="st"> &quot;2019-07-16&quot;</span> <span class="co"># year dash month dash day</span></a>
-<a class="sourceLine" id="cb443-5" data-line-number="5">epoch_end_time =<span class="st"> </span><span class="kw">as.numeric</span>(<span class="kw">as.POSIXct</span>(end_time, <span class="dt">format=</span><span class="st">&quot;%Y-%m-%d&quot;</span>)) <span class="co"># %Y-%m-%d is telling the computer the format of our datestring is year dash month dash day</span></a></code></pre></div>
+<div class="sourceCode" id="cb449"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb449-1"><a href="remote-data-extraction.html#cb449-1" aria-hidden="true" tabindex="-1"></a>start_time <span class="ot">=</span> <span class="st">&quot;2019-07-14&quot;</span> <span class="co"># year dash month dash day</span></span>
+<span id="cb449-2"><a href="remote-data-extraction.html#cb449-2" aria-hidden="true" tabindex="-1"></a>epoch_start_time <span class="ot">=</span> <span class="fu">as.numeric</span>(<span class="fu">as.POSIXct</span>(start_time, <span class="at">format=</span><span class="st">&quot;%Y-%m-%d&quot;</span>)) <span class="co"># %Y-%m-%d is telling the computer the format of our datestring is year dash month dash day</span></span>
+<span id="cb449-3"><a href="remote-data-extraction.html#cb449-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb449-4"><a href="remote-data-extraction.html#cb449-4" aria-hidden="true" tabindex="-1"></a>end_time <span class="ot">=</span> <span class="st">&quot;2019-07-16&quot;</span> <span class="co"># year dash month dash day</span></span>
+<span id="cb449-5"><a href="remote-data-extraction.html#cb449-5" aria-hidden="true" tabindex="-1"></a>epoch_end_time <span class="ot">=</span> <span class="fu">as.numeric</span>(<span class="fu">as.POSIXct</span>(end_time, <span class="at">format=</span><span class="st">&quot;%Y-%m-%d&quot;</span>)) <span class="co"># %Y-%m-%d is telling the computer the format of our datestring is year dash month dash day</span></span></code></pre></div>
 </div>
-<div id="indexing" class="section level3">
-<h3><span class="header-section-number">15.1.2</span> Indexing</h3>
+<div id="indexing" class="section level3" number="14.1.2">
+<h3><span class="header-section-number">14.1.2</span> Indexing</h3>
 <p>We have the time values converted to the format of the dataset, but now we need to find the index - i.e. where that value lies in the dataset. We can find this using this code…</p>
 <p><code>which.min(abs(array - value))</code></p>
 <p>Which reads as -</p>
@@ -485,78 +518,78 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><code>which.min()</code> - which value is the minimum of this array</li>
 <li><code>abs()</code> - absolute value - we take the absolute value because negative numbers confuse the math</li>
 </ul>
-<div class="sourceCode" id="cb444"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb444-1" data-line-number="1">index_start_time =<span class="st"> </span><span class="kw">which.min</span>(<span class="kw">abs</span>(goes.nc<span class="op">$</span>dim<span class="op">$</span>time<span class="op">$</span>vals <span class="op">-</span><span class="st"> </span>epoch_start_time))</a>
-<a class="sourceLine" id="cb444-2" data-line-number="2">index_start_time</a></code></pre></div>
+<div class="sourceCode" id="cb450"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb450-1"><a href="remote-data-extraction.html#cb450-1" aria-hidden="true" tabindex="-1"></a>index_start_time <span class="ot">=</span> <span class="fu">which.min</span>(<span class="fu">abs</span>(goes.nc<span class="sc">$</span>dim<span class="sc">$</span>time<span class="sc">$</span>vals <span class="sc">-</span> epoch_start_time))</span>
+<span id="cb450-2"><a href="remote-data-extraction.html#cb450-2" aria-hidden="true" tabindex="-1"></a>index_start_time</span></code></pre></div>
 <pre><code>## [1] 13384</code></pre>
 <p>That’s the index! This is just a big matching game essentially.</p>
-<div class="sourceCode" id="cb446"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb446-1" data-line-number="1">goes.nc<span class="op">$</span>dim<span class="op">$</span>time<span class="op">$</span>vals[index_start_time]</a></code></pre></div>
+<div class="sourceCode" id="cb452"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb452-1"><a href="remote-data-extraction.html#cb452-1" aria-hidden="true" tabindex="-1"></a>goes.nc<span class="sc">$</span>dim<span class="sc">$</span>time<span class="sc">$</span>vals[index_start_time]</span></code></pre></div>
 <pre><code>## [1] 1563076800</code></pre>
-<div class="sourceCode" id="cb448"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb448-1" data-line-number="1">epoch_start_time</a></code></pre></div>
+<div class="sourceCode" id="cb454"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb454-1"><a href="remote-data-extraction.html#cb454-1" aria-hidden="true" tabindex="-1"></a>epoch_start_time</span></code></pre></div>
 <pre><code>## [1] 1563076800</code></pre>
 <p>Alright, we have our start time index! What about the latitudes and longitudes? We’ll need to find the index of the lat/lon grid we want. Delaware bay is approximately between -77W, -73W, 36N, and 42N.</p>
-<div class="sourceCode" id="cb450"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb450-1" data-line-number="1"><span class="co"># print out a few longitude values - notice that the entire dataset is on this grid right here. </span></a>
-<a class="sourceLine" id="cb450-2" data-line-number="2"><span class="kw">head</span>(goes.nc<span class="op">$</span>dim<span class="op">$</span>lon<span class="op">$</span>vals)</a></code></pre></div>
-<pre><code>## [1] -99.99001 -99.97000 -99.95000 -99.93000 -99.91000 -99.89000</code></pre>
-<div class="sourceCode" id="cb452"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb452-1" data-line-number="1"><span class="co"># notice how we extract those values using indexing - the 100th value </span></a>
-<a class="sourceLine" id="cb452-2" data-line-number="2">goes.nc<span class="op">$</span>dim<span class="op">$</span>lon<span class="op">$</span>vals[<span class="dv">100</span>]</a></code></pre></div>
+<div class="sourceCode" id="cb456"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb456-1"><a href="remote-data-extraction.html#cb456-1" aria-hidden="true" tabindex="-1"></a><span class="co"># print out a few longitude values - notice that the entire dataset is on this grid right here. </span></span>
+<span id="cb456-2"><a href="remote-data-extraction.html#cb456-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(goes.nc<span class="sc">$</span>dim<span class="sc">$</span>lon<span class="sc">$</span>vals)</span></code></pre></div>
+<pre><code>## [1] -99.99 -99.97 -99.95 -99.93 -99.91 -99.89</code></pre>
+<div class="sourceCode" id="cb458"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb458-1"><a href="remote-data-extraction.html#cb458-1" aria-hidden="true" tabindex="-1"></a><span class="co"># notice how we extract those values using indexing - the 100th value </span></span>
+<span id="cb458-2"><a href="remote-data-extraction.html#cb458-2" aria-hidden="true" tabindex="-1"></a>goes.nc<span class="sc">$</span>dim<span class="sc">$</span>lon<span class="sc">$</span>vals[<span class="dv">100</span>]</span></code></pre></div>
 <pre><code>## [1] -98.01</code></pre>
 <p>The 100th <code>lon</code> value is <code>-98.20815</code>. Aka, a <code>lon</code> index of 100 returns <code>-98.20815</code>.</p>
 <p>So…which value is the minimum of the absolute value of the array of values minus the specific value? Let’s plug it in…</p>
-<div class="sourceCode" id="cb454"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb454-1" data-line-number="1">west_lon =<span class="st"> </span><span class="dv">-77</span></a>
-<a class="sourceLine" id="cb454-2" data-line-number="2">index_west_lon =<span class="st"> </span><span class="kw">which.min</span>(<span class="kw">abs</span>(goes.nc<span class="op">$</span>dim<span class="op">$</span>longitude<span class="op">$</span>vals <span class="op">-</span><span class="st"> </span>west_lon))</a>
-<a class="sourceLine" id="cb454-3" data-line-number="3">index_west_lon</a></code></pre></div>
-<pre><code>## [1] 1151</code></pre>
-<div class="sourceCode" id="cb456"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb456-1" data-line-number="1">goes.nc<span class="op">$</span>dim<span class="op">$</span>longitude<span class="op">$</span>vals[index_west_lon]</a></code></pre></div>
-<pre><code>## [1] -76.99001</code></pre>
+<div class="sourceCode" id="cb460"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb460-1"><a href="remote-data-extraction.html#cb460-1" aria-hidden="true" tabindex="-1"></a>west_lon <span class="ot">=</span> <span class="sc">-</span><span class="dv">77</span></span>
+<span id="cb460-2"><a href="remote-data-extraction.html#cb460-2" aria-hidden="true" tabindex="-1"></a>index_west_lon <span class="ot">=</span> <span class="fu">which.min</span>(<span class="fu">abs</span>(goes.nc<span class="sc">$</span>dim<span class="sc">$</span>longitude<span class="sc">$</span>vals <span class="sc">-</span> west_lon))</span>
+<span id="cb460-3"><a href="remote-data-extraction.html#cb460-3" aria-hidden="true" tabindex="-1"></a>index_west_lon</span></code></pre></div>
+<pre><code>## [1] 1150</code></pre>
+<div class="sourceCode" id="cb462"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb462-1"><a href="remote-data-extraction.html#cb462-1" aria-hidden="true" tabindex="-1"></a>goes.nc<span class="sc">$</span>dim<span class="sc">$</span>longitude<span class="sc">$</span>vals[index_west_lon]</span></code></pre></div>
+<pre><code>## [1] -77.01</code></pre>
 <p>So our desired <code>west_lon</code> is <code>-77</code>, and the closest value within our longitude array is <code>-76.99001</code>. Not bad…let’s run the rest.</p>
-<div class="sourceCode" id="cb458"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb458-1" data-line-number="1">east_lon =<span class="st"> </span><span class="dv">-73</span></a>
-<a class="sourceLine" id="cb458-2" data-line-number="2">index_east_lon =<span class="st"> </span><span class="kw">which.min</span>(<span class="kw">abs</span>(goes.nc<span class="op">$</span>dim<span class="op">$</span>longitude<span class="op">$</span>vals <span class="op">-</span><span class="st"> </span>east_lon))</a>
-<a class="sourceLine" id="cb458-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb458-4" data-line-number="4">north_lat =<span class="st"> </span><span class="dv">42</span></a>
-<a class="sourceLine" id="cb458-5" data-line-number="5">index_north_lat =<span class="st"> </span><span class="kw">which.min</span>(<span class="kw">abs</span>(goes.nc<span class="op">$</span>dim<span class="op">$</span>latitude<span class="op">$</span>vals <span class="op">-</span><span class="st"> </span>north_lat))</a>
-<a class="sourceLine" id="cb458-6" data-line-number="6">south_lat =<span class="st"> </span><span class="dv">36</span></a>
-<a class="sourceLine" id="cb458-7" data-line-number="7">index_south_lat =<span class="st"> </span><span class="kw">which.min</span>(<span class="kw">abs</span>(goes.nc<span class="op">$</span>dim<span class="op">$</span>latitude<span class="op">$</span>vals <span class="op">-</span><span class="st"> </span>south_lat))</a></code></pre></div>
+<div class="sourceCode" id="cb464"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb464-1"><a href="remote-data-extraction.html#cb464-1" aria-hidden="true" tabindex="-1"></a>east_lon <span class="ot">=</span> <span class="sc">-</span><span class="dv">73</span></span>
+<span id="cb464-2"><a href="remote-data-extraction.html#cb464-2" aria-hidden="true" tabindex="-1"></a>index_east_lon <span class="ot">=</span> <span class="fu">which.min</span>(<span class="fu">abs</span>(goes.nc<span class="sc">$</span>dim<span class="sc">$</span>longitude<span class="sc">$</span>vals <span class="sc">-</span> east_lon))</span>
+<span id="cb464-3"><a href="remote-data-extraction.html#cb464-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb464-4"><a href="remote-data-extraction.html#cb464-4" aria-hidden="true" tabindex="-1"></a>north_lat <span class="ot">=</span> <span class="dv">42</span></span>
+<span id="cb464-5"><a href="remote-data-extraction.html#cb464-5" aria-hidden="true" tabindex="-1"></a>index_north_lat <span class="ot">=</span> <span class="fu">which.min</span>(<span class="fu">abs</span>(goes.nc<span class="sc">$</span>dim<span class="sc">$</span>latitude<span class="sc">$</span>vals <span class="sc">-</span> north_lat))</span>
+<span id="cb464-6"><a href="remote-data-extraction.html#cb464-6" aria-hidden="true" tabindex="-1"></a>south_lat <span class="ot">=</span> <span class="dv">36</span></span>
+<span id="cb464-7"><a href="remote-data-extraction.html#cb464-7" aria-hidden="true" tabindex="-1"></a>index_south_lat <span class="ot">=</span> <span class="fu">which.min</span>(<span class="fu">abs</span>(goes.nc<span class="sc">$</span>dim<span class="sc">$</span>latitude<span class="sc">$</span>vals <span class="sc">-</span> south_lat))</span></code></pre></div>
 <p>Everything is indexed! Now we can use these indexes to extract the exact data that we want via <code>ncvar_get</code> from the <code>ncdf4</code> package. We can enter in arguments named <code>start</code> and <code>count</code>. This tells <code>ncvar_get</code> at what space / time to <strong>start</strong> grabbing values. <code>count</code> tells <code>ncvar_get</code> how long to <code>count</code> in space / time. For example, if the resolution of our data is hourly and we start at <code>12:00:00</code> and the count is <code>4</code>, that means we grab data at <code>12:00:00 , 13:00:00 , 14:00:00 , 15:00:00 , 16:00:00</code>. The same goes for <code>lat</code> and <code>lon</code> - the count all depends on <strong>what resolution your data is in</strong>. If you have a spatial dataset at 5 degree resolution, each count will bring in another 5 degree lat/lon value.</p>
 <p>At this point, we know our <code>start</code> values. At this point, we only have end values, not count values…Let’s figure those out</p>
-<div class="sourceCode" id="cb459"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb459-1" data-line-number="1">time_count =<span class="st"> </span><span class="kw">which.min</span>(<span class="kw">abs</span>(goes.nc<span class="op">$</span>dim<span class="op">$</span>time<span class="op">$</span>vals <span class="op">-</span><span class="st"> </span>epoch_end_time)) <span class="op">-</span><span class="st"> </span><span class="kw">which.min</span>(<span class="kw">abs</span>(goes.nc<span class="op">$</span>dim<span class="op">$</span>time<span class="op">$</span>vals <span class="op">-</span><span class="st"> </span>epoch_start_time))</a>
-<a class="sourceLine" id="cb459-2" data-line-number="2">time_count</a></code></pre></div>
+<div class="sourceCode" id="cb465"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb465-1"><a href="remote-data-extraction.html#cb465-1" aria-hidden="true" tabindex="-1"></a>time_count <span class="ot">=</span> <span class="fu">which.min</span>(<span class="fu">abs</span>(goes.nc<span class="sc">$</span>dim<span class="sc">$</span>time<span class="sc">$</span>vals <span class="sc">-</span> epoch_end_time)) <span class="sc">-</span> <span class="fu">which.min</span>(<span class="fu">abs</span>(goes.nc<span class="sc">$</span>dim<span class="sc">$</span>time<span class="sc">$</span>vals <span class="sc">-</span> epoch_start_time))</span>
+<span id="cb465-2"><a href="remote-data-extraction.html#cb465-2" aria-hidden="true" tabindex="-1"></a>time_count</span></code></pre></div>
 <pre><code>## [1] 48</code></pre>
 <p>So, if we count <code>48</code> time values from the start_time of <code>2019-07-14</code>, we’ll arrive at the end_time of <code>2019-07-16</code>. Let’s do the same for our lat/lons.</p>
-<div class="sourceCode" id="cb461"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb461-1" data-line-number="1"><span class="co"># latitude counts</span></a>
-<a class="sourceLine" id="cb461-2" data-line-number="2">lat_count =<span class="st"> </span><span class="kw">abs</span>(index_north_lat <span class="op">-</span><span class="st"> </span>index_south_lat)</a>
-<a class="sourceLine" id="cb461-3" data-line-number="3">lon_count =<span class="st"> </span><span class="kw">abs</span>(index_west_lon <span class="op">-</span><span class="st"> </span>index_east_lon)</a></code></pre></div>
+<div class="sourceCode" id="cb467"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb467-1"><a href="remote-data-extraction.html#cb467-1" aria-hidden="true" tabindex="-1"></a><span class="co"># latitude counts</span></span>
+<span id="cb467-2"><a href="remote-data-extraction.html#cb467-2" aria-hidden="true" tabindex="-1"></a>lat_count <span class="ot">=</span> <span class="fu">abs</span>(index_north_lat <span class="sc">-</span> index_south_lat)</span>
+<span id="cb467-3"><a href="remote-data-extraction.html#cb467-3" aria-hidden="true" tabindex="-1"></a>lon_count <span class="ot">=</span> <span class="fu">abs</span>(index_west_lon <span class="sc">-</span> index_east_lon)</span></code></pre></div>
 <p>Why do we take the absolute value? Because sometimes data is stored backwards. We don’t care which way it’s stored, we just need a positive number to count up from the starting value. Longitude values are weird because many times they are stored as negative values if they’re west of the meridian. Latitude values are also negative if we go south of the equator.</p>
 <p>Now we have our count values, we can proceed. Remember, here is what the <code>start</code> argument is looking for…via (<code>?ncvar_get</code>)</p>
 <p><code>A vector of indices indicating where to start reading the passed values (beginning at 1). The length of this vector must equal the number of dimensions the variable has. Order is X-Y-Z-T (i.e., the time dimension is last). If not specified, reading starts at the beginning of the file (1,1,1,...).</code></p>
 <p>So x is longitude, y is latitude, and t is time. Whichever value is lower between <code>index_west_lon</code> and <code>index_east_lon</code> is our <code>start</code> value, and vice versa for latitudes.</p>
-<div class="sourceCode" id="cb462"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb462-1" data-line-number="1">index_west_lon</a></code></pre></div>
-<pre><code>## [1] 1151</code></pre>
-<div class="sourceCode" id="cb464"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb464-1" data-line-number="1">index_east_lon</a></code></pre></div>
-<pre><code>## [1] 1351</code></pre>
-<div class="sourceCode" id="cb466"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb466-1" data-line-number="1">index_south_lat</a></code></pre></div>
-<pre><code>## [1] 801</code></pre>
-<div class="sourceCode" id="cb468"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb468-1" data-line-number="1">index_north_lat</a></code></pre></div>
-<pre><code>## [1] 501</code></pre>
+<div class="sourceCode" id="cb468"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb468-1"><a href="remote-data-extraction.html#cb468-1" aria-hidden="true" tabindex="-1"></a>index_west_lon</span></code></pre></div>
+<pre><code>## [1] 1150</code></pre>
+<div class="sourceCode" id="cb470"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb470-1"><a href="remote-data-extraction.html#cb470-1" aria-hidden="true" tabindex="-1"></a>index_east_lon</span></code></pre></div>
+<pre><code>## [1] 1350</code></pre>
+<div class="sourceCode" id="cb472"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb472-1"><a href="remote-data-extraction.html#cb472-1" aria-hidden="true" tabindex="-1"></a>index_south_lat</span></code></pre></div>
+<pre><code>## [1] 800</code></pre>
+<div class="sourceCode" id="cb474"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb474-1"><a href="remote-data-extraction.html#cb474-1" aria-hidden="true" tabindex="-1"></a>index_north_lat</span></code></pre></div>
+<pre><code>## [1] 500</code></pre>
 <p><strong>Wait just a second</strong>…the southern index is <em>greater than</em> the northern index. Typically, values are stored from least to greatest. However, we’ve seen before that netCDF files can be stored upside-down before. So, instead of counting from our southern latitude to our northern latitude, <strong>we need to count from our northern latitude to our southern latitude</strong>. Here is what the <code>count</code> argument is looking for…</p>
-<p><code>A vector of integers indicating the count of values to read along each dimension (order is X-Y-Z-T). The length of this vector must equal the number of dimensions the variable has. If not specified and the variable does NOT have an unlimited dimension, the entire variable is read. As a special case, the value &quot;-1&quot; indicates that all entries along that dimension should be read.</code></p>
+<p><code>A vector of integers indicating the count of values to read along each dimension (order is X-Y-Z-T). The length of this vector must equal the number of dimensions the variable has. If not specified and the variable does NOT have an unlimited dimension, the entire variable is read. As a special case, the value "-1" indicates that all entries along that dimension should be read.</code></p>
 <p>We tell <code>ncvar_get()</code> where to start it’s longitude, latitude, time and <em>count</em> until we have our lat/lon box and time slices selected. We already have our <code>count</code> values so now we plug them in and run - note this will take a few seconds to run and even longer if you have poor internet connection. This is data being extracted through the internet in real time.</p>
 </div>
-<div id="downloading-the-selected-data" class="section level3">
-<h3><span class="header-section-number">15.1.3</span> Downloading the Selected Data</h3>
-<div class="sourceCode" id="cb470"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb470-1" data-line-number="1"><span class="co"># cool, let&#39;s grab sea_surface_temperature for Delaware Bay</span></a>
-<a class="sourceLine" id="cb470-2" data-line-number="2">sst.c &lt;-<span class="st"> </span><span class="kw">ncvar_get</span>(goes.nc, <span class="st">&quot;sea_surface_temperature&quot;</span>,<span class="dt">start =</span> <span class="kw">c</span>(index_west_lon,index_north_lat,index_start_time), </a>
-<a class="sourceLine" id="cb470-3" data-line-number="3">                   <span class="dt">count =</span> <span class="kw">c</span>(lon_count,lat_count,time_count))</a>
-<a class="sourceLine" id="cb470-4" data-line-number="4"><span class="kw">dim</span>(sst.c)</a></code></pre></div>
+<div id="downloading-the-selected-data" class="section level3" number="14.1.3">
+<h3><span class="header-section-number">14.1.3</span> Downloading the Selected Data</h3>
+<div class="sourceCode" id="cb476"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb476-1"><a href="remote-data-extraction.html#cb476-1" aria-hidden="true" tabindex="-1"></a><span class="co"># cool, let&#39;s grab sea_surface_temperature for Delaware Bay</span></span>
+<span id="cb476-2"><a href="remote-data-extraction.html#cb476-2" aria-hidden="true" tabindex="-1"></a>sst.c <span class="ot">&lt;-</span> <span class="fu">ncvar_get</span>(goes.nc, <span class="st">&quot;sea_surface_temperature&quot;</span>,<span class="at">start =</span> <span class="fu">c</span>(index_west_lon,index_north_lat,index_start_time), </span>
+<span id="cb476-3"><a href="remote-data-extraction.html#cb476-3" aria-hidden="true" tabindex="-1"></a>                   <span class="at">count =</span> <span class="fu">c</span>(lon_count,lat_count,time_count))</span>
+<span id="cb476-4"><a href="remote-data-extraction.html#cb476-4" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(sst.c)</span></code></pre></div>
 <pre><code>## [1] 200 300  48</code></pre>
 <p>And there is the data! It returns the raw data in the format we pulled it in - Lon, Lat, Time. We have a 2 dimensional array (lon x lat) with 48 time slices. Let’s convert one to raster and plot it really quickly.</p>
-<div class="sourceCode" id="cb472"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb472-1" data-line-number="1"><span class="kw">library</span>(maptools) <span class="co"># also loads sp package</span></a>
-<a class="sourceLine" id="cb472-2" data-line-number="2"><span class="kw">library</span>(ncdf4)</a>
-<a class="sourceLine" id="cb472-3" data-line-number="3"><span class="kw">library</span>(raster)</a>
-<a class="sourceLine" id="cb472-4" data-line-number="4"><span class="kw">library</span>(rasterVis)</a>
-<a class="sourceLine" id="cb472-5" data-line-number="5">arr.sst =<span class="st"> </span>sst.c[,,<span class="dv">4</span>]</a>
-<a class="sourceLine" id="cb472-6" data-line-number="6">arr.sst[arr.sst <span class="op">&lt;</span><span class="st"> </span><span class="dv">273</span>] =<span class="st"> </span><span class="ot">NA</span></a>
-<a class="sourceLine" id="cb472-7" data-line-number="7">test.sst =<span class="st"> </span><span class="kw">raster</span>(<span class="dt">x =</span> arr.sst)</a>
-<a class="sourceLine" id="cb472-8" data-line-number="8">test.sst</a></code></pre></div>
+<div class="sourceCode" id="cb478"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb478-1"><a href="remote-data-extraction.html#cb478-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(maptools) <span class="co"># also loads sp package</span></span>
+<span id="cb478-2"><a href="remote-data-extraction.html#cb478-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ncdf4)</span>
+<span id="cb478-3"><a href="remote-data-extraction.html#cb478-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(raster)</span>
+<span id="cb478-4"><a href="remote-data-extraction.html#cb478-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rasterVis)</span>
+<span id="cb478-5"><a href="remote-data-extraction.html#cb478-5" aria-hidden="true" tabindex="-1"></a>arr.sst <span class="ot">=</span> sst.c[,,<span class="dv">4</span>]</span>
+<span id="cb478-6"><a href="remote-data-extraction.html#cb478-6" aria-hidden="true" tabindex="-1"></a>arr.sst[arr.sst <span class="sc">&lt;</span> <span class="dv">273</span>] <span class="ot">=</span> <span class="cn">NA</span></span>
+<span id="cb478-7"><a href="remote-data-extraction.html#cb478-7" aria-hidden="true" tabindex="-1"></a>test.sst <span class="ot">=</span> <span class="fu">raster</span>(<span class="at">x =</span> arr.sst)</span>
+<span id="cb478-8"><a href="remote-data-extraction.html#cb478-8" aria-hidden="true" tabindex="-1"></a>test.sst</span></code></pre></div>
 <pre><code>## class      : RasterLayer 
 ## dimensions : 200, 300, 60000  (nrow, ncol, ncell)
 ## resolution : 0.003333333, 0.005  (x, y)
@@ -566,29 +599,29 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## names      : layer 
 ## values     : 294.54, 302.97  (min, max)</code></pre>
 <p>What’s missing? Well we just gave it the raw data, we still need to plug in the extents! Also, we will need to plug in the CRS - luckily we know this data is in lat/lon because of how awesome this metadata is!</p>
-<div class="sourceCode" id="cb474"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb474-1" data-line-number="1"><span class="kw">library</span>(ggplot2)</a>
-<a class="sourceLine" id="cb474-2" data-line-number="2"><span class="co"># we need to transpose this dataset just like we did in week 4 of the R intro course</span></a>
-<a class="sourceLine" id="cb474-3" data-line-number="3">test.sst =<span class="st"> </span><span class="kw">t</span>(test.sst)</a>
-<a class="sourceLine" id="cb474-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb474-5" data-line-number="5"><span class="co"># define the projection</span></a>
-<a class="sourceLine" id="cb474-6" data-line-number="6">sst.crs =<span class="st"> </span><span class="kw">ncatt_get</span>(goes.nc, <span class="st">&quot;projection&quot;</span>)</a>
-<a class="sourceLine" id="cb474-7" data-line-number="7"><span class="kw">extent</span>(test.sst) =<span class="st"> </span><span class="kw">c</span>(west_lon, east_lon, south_lat, north_lat)</a>
-<a class="sourceLine" id="cb474-8" data-line-number="8"><span class="kw">crs</span>(test.sst) =<span class="st"> </span>sst.crs<span class="op">$</span>proj4_string</a></code></pre></div>
+<div class="sourceCode" id="cb480"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb480-1"><a href="remote-data-extraction.html#cb480-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb480-2"><a href="remote-data-extraction.html#cb480-2" aria-hidden="true" tabindex="-1"></a><span class="co"># we need to transpose this dataset just like we did in week 4 of the R intro course</span></span>
+<span id="cb480-3"><a href="remote-data-extraction.html#cb480-3" aria-hidden="true" tabindex="-1"></a>test.sst <span class="ot">=</span> <span class="fu">t</span>(test.sst)</span>
+<span id="cb480-4"><a href="remote-data-extraction.html#cb480-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb480-5"><a href="remote-data-extraction.html#cb480-5" aria-hidden="true" tabindex="-1"></a><span class="co"># define the projection</span></span>
+<span id="cb480-6"><a href="remote-data-extraction.html#cb480-6" aria-hidden="true" tabindex="-1"></a>sst.crs <span class="ot">=</span> <span class="fu">ncatt_get</span>(goes.nc, <span class="st">&quot;projection&quot;</span>)</span>
+<span id="cb480-7"><a href="remote-data-extraction.html#cb480-7" aria-hidden="true" tabindex="-1"></a><span class="fu">extent</span>(test.sst) <span class="ot">=</span> <span class="fu">c</span>(west_lon, east_lon, south_lat, north_lat)</span>
+<span id="cb480-8"><a href="remote-data-extraction.html#cb480-8" aria-hidden="true" tabindex="-1"></a><span class="fu">crs</span>(test.sst) <span class="ot">=</span> sst.crs<span class="sc">$</span>proj4_string</span></code></pre></div>
 <pre><code>## Warning in showSRID(uprojargs, format = &quot;PROJ&quot;, multiline = &quot;NO&quot;): Discarded datum WGS_1984 in CRS definition,
 ##  but +towgs84= values preserved</code></pre>
-<div class="sourceCode" id="cb476"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb476-1" data-line-number="1"><span class="co"># convert raster to dataframe for ggplot</span></a>
-<a class="sourceLine" id="cb476-2" data-line-number="2">df &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(test.sst, <span class="dt">xy =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb476-3" data-line-number="3"><span class="co"># Throw together the usa spatial polygons data frame</span></a>
-<a class="sourceLine" id="cb476-4" data-line-number="4"><span class="kw">ggplot</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb476-5" data-line-number="5"><span class="st">  </span><span class="kw">geom_raster</span>(<span class="dt">data =</span> df , <span class="kw">aes</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> y, <span class="dt">fill =</span> layer)) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb476-6" data-line-number="6"><span class="st">  </span><span class="kw">borders</span>(<span class="dt">fill=</span><span class="st">&quot;white&quot;</span>, <span class="dt">xlim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">77</span>,<span class="op">-</span><span class="dv">73</span>), <span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">36</span>,<span class="dv">42</span>),<span class="dt">alpha =</span> <span class="fl">0.5</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb476-7" data-line-number="7"><span class="st">  </span><span class="kw">coord_quickmap</span>(<span class="dt">xlim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">77</span>,<span class="op">-</span><span class="dv">73</span>), <span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">36</span>,<span class="dv">42</span>),<span class="dt">expand =</span> <span class="ot">FALSE</span>)    </a></code></pre></div>
+<div class="sourceCode" id="cb482"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb482-1"><a href="remote-data-extraction.html#cb482-1" aria-hidden="true" tabindex="-1"></a><span class="co"># convert raster to dataframe for ggplot</span></span>
+<span id="cb482-2"><a href="remote-data-extraction.html#cb482-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(test.sst, <span class="at">xy =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb482-3"><a href="remote-data-extraction.html#cb482-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Throw together the usa spatial polygons data frame</span></span>
+<span id="cb482-4"><a href="remote-data-extraction.html#cb482-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb482-5"><a href="remote-data-extraction.html#cb482-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_raster</span>(<span class="at">data =</span> df , <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y, <span class="at">fill =</span> layer)) <span class="sc">+</span> </span>
+<span id="cb482-6"><a href="remote-data-extraction.html#cb482-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">borders</span>(<span class="at">fill=</span><span class="st">&quot;white&quot;</span>, <span class="at">xlim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">77</span>,<span class="sc">-</span><span class="dv">73</span>), <span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">36</span>,<span class="dv">42</span>),<span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb482-7"><a href="remote-data-extraction.html#cb482-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_quickmap</span>(<span class="at">xlim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">77</span>,<span class="sc">-</span><span class="dv">73</span>), <span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">36</span>,<span class="dv">42</span>),<span class="at">expand =</span> <span class="cn">FALSE</span>)    </span></code></pre></div>
 <p><img src="R_Geospatial_Sciences_files/figure-html/thredddddsssss%20plotttttttttt-1.png" width="60%" style="display: block; margin: auto;" /></p>
 <p>There’s the data we wanted and we didn’t have to leave R to get it. We also saved a ton of time and hard drive space.</p>
 </div>
 </div>
-<div id="erddap" class="section level2">
-<h2><span class="header-section-number">15.2</span> ERDDAP</h2>
+<div id="erddap" class="section level2" number="14.2">
+<h2><span class="header-section-number">14.2</span> ERDDAP</h2>
 <p>THREDDS is very fast and great when you’re already familiar with a dataset. ERDDAP, on the other hand, is meant for humans. ERDDAP is a data server that gives you a simple, consistent way to download subsets of gridded and tabular scientific datasets in common file formats and make graphs and maps. ERDDAP can generate maps on the fly so you can check out the data before you proceed to download. Here are some NASA / NOAA / UDEL ERDDAP pages:</p>
 <ol style="list-style-type: decimal">
 <li><a href="https://upwell.pfeg.noaa.gov/erddap/index.html" class="uri">https://upwell.pfeg.noaa.gov/erddap/index.html</a> - NOAA Global Earth Observation Over 10,000 datasets available here</li>
@@ -607,26 +640,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Click the <strong>graph</strong> button along this row.</p>
 <p><img src="images/goesSST_erddap.png" width="60%" style="display: block; margin: auto;" /></p>
 <p>You can use the <em>Data Access Form</em> at the top of the page to select data and download, <em>or</em> we can streamline this and use R to accomplish this task. In order to do this, we just need the <code>rerddap</code> package.</p>
-<div id="rerddap" class="section level3">
-<h3><span class="header-section-number">15.2.1</span> <code>rerddap</code></h3>
-<p><code>install.packages(&quot;rerddap&quot;)</code></p>
-<div class="sourceCode" id="cb477"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb477-1" data-line-number="1"><span class="kw">library</span>(<span class="st">&quot;rerddap&quot;</span>)</a></code></pre></div>
+<div id="rerddap" class="section level3" number="14.2.1">
+<h3><span class="header-section-number">14.2.1</span> <code>rerddap</code></h3>
+<p><code>install.packages("rerddap")</code></p>
+<div class="sourceCode" id="cb483"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb483-1"><a href="remote-data-extraction.html#cb483-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;rerddap&quot;</span>)</span></code></pre></div>
 <pre><code>## Registered S3 method overwritten by &#39;hoardr&#39;:
 ##   method           from
 ##   print.cache_info httr</code></pre>
-<div class="sourceCode" id="cb479"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb479-1" data-line-number="1">?rerddap</a></code></pre></div>
+<div class="sourceCode" id="cb485"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb485-1"><a href="remote-data-extraction.html#cb485-1" aria-hidden="true" tabindex="-1"></a>?rerddap</span></code></pre></div>
 <ul>
 <li>the list of servers <code>rerddap</code> knows about - <code>server()</code></li>
-<li>search an <span style="color:red">ERDDAP</span> server for terms - <code>ed_search(query, page = NULL, page_size = NULL, which = &quot;griddap&quot;, url = eurl(), ...)</code></li>
-<li>get a list of datasets on an <span style="color:red">ERDDAP</span> server - <code>ed_datasets(which = &quot;tabledap&quot;, url = eurl())</code></li>
+<li>search an <span style="color:red">ERDDAP</span> server for terms - <code>ed_search(query, page = NULL, page_size = NULL, which = "griddap", url = eurl(), ...)</code></li>
+<li>get a list of datasets on an <span style="color:red">ERDDAP</span> server - <code>ed_datasets(which = "tabledap", url = eurl())</code></li>
 <li>obtain information about a dataset - <code>info(datasetid, url = eurl(), ...)</code></li>
-<li>extract data from a griddap dataset - <code>griddap(x, ..., fields = &quot;all&quot;, stride = 1, fmt = &quot;nc&quot;, url = eurl(), store = disk(), read = TRUE, callopts = list())</code></li>
+<li>extract data from a griddap dataset - <code>griddap(x, ..., fields = "all", stride = 1, fmt = "nc", url = eurl(), store = disk(), read = TRUE, callopts = list())</code></li>
 <li>extract data from a tabledap dataset - <code>tabledap(x, ..., fields = NULL, distinct = FALSE, orderby = NULL, orderbymax = NULL, orderbymin = NULL, orderbyminmax = NULL, units = NULL, url = eurl(), store = disk(), callopts = list())</code></li>
 </ul>
 <p>Be careful when using the functions <code>ed_search()</code> and <code>ed_datasets()</code>. The default <span style="color:red">ERDDAP</span> has over 9,000 datasets, most of which are grids, so that a list of all the gridded datasets can be quite long. A seemly reasonable search:</p>
 </div>
-<div id="finding-the-data-you-want" class="section level3">
-<h3><span class="header-section-number">15.2.2</span> Finding the Data You Want</h3>
+<div id="finding-the-data-you-want" class="section level3" number="14.2.2">
+<h3><span class="header-section-number">14.2.2</span> Finding the Data You Want</h3>
 <p>The first way to find a dataset is to browse the built-in web page for a particular <span style="color:red">ERDDAP</span> server.
 A list of some of the publicly available <span style="color:red">ERDDAP</span> servers can be obtained from the <code>rerddap</code> command:</p>
 <pre><code>servers()
@@ -672,62 +705,62 @@ A list of some of the publicly available <span style="color:red">ERDDAP</span> s
 <li>Make the request for the data (<code>rerddap::griddap()</code> or <code>rerddap::tabledap()</code> ).</li>
 </ol>
 </div>
-<div id="tabledap" class="section level3">
-<h3><span class="header-section-number">15.2.3</span> Tabledap</h3>
+<div id="tabledap" class="section level3" number="14.2.3">
+<h3><span class="header-section-number">14.2.3</span> Tabledap</h3>
 <p><code>rerddap::tabledap()</code> - Useful for downloading <strong>point datasets</strong>, like buoy data or weather station. Here is an example of finding datasets that contain the word <code>buoy</code>…</p>
-<div class="sourceCode" id="cb481"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb481-1" data-line-number="1">whichBUOYS &lt;-<span class="st"> </span>rerddap<span class="op">::</span><span class="kw">ed_search</span>(<span class="dt">query =</span> <span class="st">&quot;buoy&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb487"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb487-1"><a href="remote-data-extraction.html#cb487-1" aria-hidden="true" tabindex="-1"></a>whichBUOYS <span class="ot">&lt;-</span> rerddap<span class="sc">::</span><span class="fu">ed_search</span>(<span class="at">query =</span> <span class="st">&quot;buoy&quot;</span>)</span></code></pre></div>
 <p>Although it may not show up in printed search results, within the lower portions of these results is a Dataset ID called <code>cwwcNDBCMet</code>. The <code>rerddap</code> package has referenced this <code>Dataset ID</code> to NOAA’s National Data Buoy Center (NDBC) which collects buoy data from around the world. We can browse this dataset using the <code>browse()</code> function, which takes an argument of a recognized <code>Dataset ID</code>.</p>
 <p><code>rerddap::browse('cwwcNDBCMet')</code></p>
 <p>That’s the ERDDAP site that we’re going to pull data from…</p>
-<div class="sourceCode" id="cb482"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb482-1" data-line-number="1"><span class="kw">library</span>(rerddap)</a>
-<a class="sourceLine" id="cb482-2" data-line-number="2"><span class="kw">library</span>(ggplot2)</a>
-<a class="sourceLine" id="cb482-3" data-line-number="3"><span class="kw">library</span>(mapdata)</a>
-<a class="sourceLine" id="cb482-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb482-5" data-line-number="5"><span class="co"># obtain the info of this Dataset ID</span></a>
-<a class="sourceLine" id="cb482-6" data-line-number="6"><span class="kw">info</span>(<span class="st">&#39;cwwcNDBCMet&#39;</span>)</a>
-<a class="sourceLine" id="cb482-7" data-line-number="7"></a>
-<a class="sourceLine" id="cb482-8" data-line-number="8"><span class="co"># save the info</span></a>
-<a class="sourceLine" id="cb482-9" data-line-number="9">BuoysInfo &lt;-<span class="st"> </span><span class="kw">info</span>(<span class="st">&#39;cwwcNDBCMet&#39;</span>)</a>
-<a class="sourceLine" id="cb482-10" data-line-number="10"></a>
-<a class="sourceLine" id="cb482-11" data-line-number="11"><span class="co"># use the tabledap function to grab station, latitudes, and longitudes of the buoys within our bounding box</span></a>
-<a class="sourceLine" id="cb482-12" data-line-number="12">locationBuoys &lt;-<span class="st"> </span><span class="kw">tabledap</span>(BuoysInfo, <span class="dt">distinct =</span> <span class="ot">TRUE</span>, <span class="dt">fields =</span> <span class="kw">c</span>(<span class="st">&quot;station&quot;</span>, <span class="st">&quot;longitude&quot;</span>, <span class="st">&quot;latitude&quot;</span>), <span class="st">&quot;longitude&gt;=-76&quot;</span>, <span class="st">&quot;longitude&lt;=-74&quot;</span>, <span class="st">&quot;latitude&gt;=38&quot;</span>, <span class="st">&quot;latitude&lt;=40&quot;</span>)</a>
-<a class="sourceLine" id="cb482-13" data-line-number="13"></a>
-<a class="sourceLine" id="cb482-14" data-line-number="14"><span class="co"># subset to the top 4 buoys</span></a>
-<a class="sourceLine" id="cb482-15" data-line-number="15">locationBuoys =<span class="st"> </span>locationBuoys[<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>,]</a>
-<a class="sourceLine" id="cb482-16" data-line-number="16"></a>
-<a class="sourceLine" id="cb482-17" data-line-number="17"><span class="co"># convert the lat/lons from character to numeric</span></a>
-<a class="sourceLine" id="cb482-18" data-line-number="18">locationBuoys<span class="op">$</span>latitude &lt;-<span class="st"> </span><span class="kw">as.numeric</span>(locationBuoys<span class="op">$</span>latitude)</a>
-<a class="sourceLine" id="cb482-19" data-line-number="19">locationBuoys<span class="op">$</span>longitude &lt;-<span class="st"> </span><span class="kw">as.numeric</span>(locationBuoys<span class="op">$</span>longitude)</a>
-<a class="sourceLine" id="cb482-20" data-line-number="20"></a>
-<a class="sourceLine" id="cb482-21" data-line-number="21"><span class="co"># create our limits aka the bounding geographic box</span></a>
-<a class="sourceLine" id="cb482-22" data-line-number="22">xlim &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="op">-</span><span class="dv">76</span>, <span class="dv">-74</span>)</a>
-<a class="sourceLine" id="cb482-23" data-line-number="23">ylim &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">38</span>, <span class="dv">40</span>)</a>
-<a class="sourceLine" id="cb482-24" data-line-number="24"></a>
-<a class="sourceLine" id="cb482-25" data-line-number="25"><span class="co"># save map data of the bounding box to use in ggplot2</span></a>
-<a class="sourceLine" id="cb482-26" data-line-number="26">coast &lt;-<span class="st"> </span><span class="kw">map_data</span>(<span class="st">&quot;worldHires&quot;</span>, <span class="dt">ylim =</span> ylim, <span class="dt">xlim =</span> xlim)</a>
-<a class="sourceLine" id="cb482-27" data-line-number="27"></a>
-<a class="sourceLine" id="cb482-28" data-line-number="28"><span class="co"># plot with ggplot2</span></a>
-<a class="sourceLine" id="cb482-29" data-line-number="29"><span class="kw">ggplot</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb482-30" data-line-number="30"><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">data =</span> locationBuoys, <span class="kw">aes</span>(<span class="dt">x =</span> longitude , <span class="dt">y =</span> latitude, <span class="dt">colour =</span> <span class="kw">factor</span>(station) )) <span class="op">+</span></a>
-<a class="sourceLine" id="cb482-31" data-line-number="31"><span class="st">  </span><span class="kw">geom_polygon</span>(<span class="dt">data =</span> coast, <span class="kw">aes</span>(<span class="dt">x =</span> long, <span class="dt">y =</span> lat, <span class="dt">group =</span> group), <span class="dt">fill =</span> <span class="st">&quot;grey80&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb482-32" data-line-number="32"><span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;latitude&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">xlab</span>(<span class="st">&quot;longitude&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb482-33" data-line-number="33"><span class="st">  </span><span class="kw">coord_fixed</span>(<span class="fl">1.3</span>, <span class="dt">xlim =</span> xlim, <span class="dt">ylim =</span> ylim) <span class="op">+</span></a>
-<a class="sourceLine" id="cb482-34" data-line-number="34"><span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Delaware Bay Buoys&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb488"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb488-1"><a href="remote-data-extraction.html#cb488-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rerddap)</span>
+<span id="cb488-2"><a href="remote-data-extraction.html#cb488-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb488-3"><a href="remote-data-extraction.html#cb488-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(mapdata)</span>
+<span id="cb488-4"><a href="remote-data-extraction.html#cb488-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb488-5"><a href="remote-data-extraction.html#cb488-5" aria-hidden="true" tabindex="-1"></a><span class="co"># obtain the info of this Dataset ID</span></span>
+<span id="cb488-6"><a href="remote-data-extraction.html#cb488-6" aria-hidden="true" tabindex="-1"></a><span class="fu">info</span>(<span class="st">&#39;cwwcNDBCMet&#39;</span>)</span>
+<span id="cb488-7"><a href="remote-data-extraction.html#cb488-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb488-8"><a href="remote-data-extraction.html#cb488-8" aria-hidden="true" tabindex="-1"></a><span class="co"># save the info</span></span>
+<span id="cb488-9"><a href="remote-data-extraction.html#cb488-9" aria-hidden="true" tabindex="-1"></a>BuoysInfo <span class="ot">&lt;-</span> <span class="fu">info</span>(<span class="st">&#39;cwwcNDBCMet&#39;</span>)</span>
+<span id="cb488-10"><a href="remote-data-extraction.html#cb488-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb488-11"><a href="remote-data-extraction.html#cb488-11" aria-hidden="true" tabindex="-1"></a><span class="co"># use the tabledap function to grab station, latitudes, and longitudes of the buoys within our bounding box</span></span>
+<span id="cb488-12"><a href="remote-data-extraction.html#cb488-12" aria-hidden="true" tabindex="-1"></a>locationBuoys <span class="ot">&lt;-</span> <span class="fu">tabledap</span>(BuoysInfo, <span class="at">distinct =</span> <span class="cn">TRUE</span>, <span class="at">fields =</span> <span class="fu">c</span>(<span class="st">&quot;station&quot;</span>, <span class="st">&quot;longitude&quot;</span>, <span class="st">&quot;latitude&quot;</span>), <span class="st">&quot;longitude&gt;=-76&quot;</span>, <span class="st">&quot;longitude&lt;=-74&quot;</span>, <span class="st">&quot;latitude&gt;=38&quot;</span>, <span class="st">&quot;latitude&lt;=40&quot;</span>)</span>
+<span id="cb488-13"><a href="remote-data-extraction.html#cb488-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb488-14"><a href="remote-data-extraction.html#cb488-14" aria-hidden="true" tabindex="-1"></a><span class="co"># subset to the top 4 buoys</span></span>
+<span id="cb488-15"><a href="remote-data-extraction.html#cb488-15" aria-hidden="true" tabindex="-1"></a>locationBuoys <span class="ot">=</span> locationBuoys[<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>,]</span>
+<span id="cb488-16"><a href="remote-data-extraction.html#cb488-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb488-17"><a href="remote-data-extraction.html#cb488-17" aria-hidden="true" tabindex="-1"></a><span class="co"># convert the lat/lons from character to numeric</span></span>
+<span id="cb488-18"><a href="remote-data-extraction.html#cb488-18" aria-hidden="true" tabindex="-1"></a>locationBuoys<span class="sc">$</span>latitude <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(locationBuoys<span class="sc">$</span>latitude)</span>
+<span id="cb488-19"><a href="remote-data-extraction.html#cb488-19" aria-hidden="true" tabindex="-1"></a>locationBuoys<span class="sc">$</span>longitude <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(locationBuoys<span class="sc">$</span>longitude)</span>
+<span id="cb488-20"><a href="remote-data-extraction.html#cb488-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb488-21"><a href="remote-data-extraction.html#cb488-21" aria-hidden="true" tabindex="-1"></a><span class="co"># create our limits aka the bounding geographic box</span></span>
+<span id="cb488-22"><a href="remote-data-extraction.html#cb488-22" aria-hidden="true" tabindex="-1"></a>xlim <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">76</span>, <span class="sc">-</span><span class="dv">74</span>)</span>
+<span id="cb488-23"><a href="remote-data-extraction.html#cb488-23" aria-hidden="true" tabindex="-1"></a>ylim <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">38</span>, <span class="dv">40</span>)</span>
+<span id="cb488-24"><a href="remote-data-extraction.html#cb488-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb488-25"><a href="remote-data-extraction.html#cb488-25" aria-hidden="true" tabindex="-1"></a><span class="co"># save map data of the bounding box to use in ggplot2</span></span>
+<span id="cb488-26"><a href="remote-data-extraction.html#cb488-26" aria-hidden="true" tabindex="-1"></a>coast <span class="ot">&lt;-</span> <span class="fu">map_data</span>(<span class="st">&quot;worldHires&quot;</span>, <span class="at">ylim =</span> ylim, <span class="at">xlim =</span> xlim)</span>
+<span id="cb488-27"><a href="remote-data-extraction.html#cb488-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb488-28"><a href="remote-data-extraction.html#cb488-28" aria-hidden="true" tabindex="-1"></a><span class="co"># plot with ggplot2</span></span>
+<span id="cb488-29"><a href="remote-data-extraction.html#cb488-29" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb488-30"><a href="remote-data-extraction.html#cb488-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> locationBuoys, <span class="fu">aes</span>(<span class="at">x =</span> longitude , <span class="at">y =</span> latitude, <span class="at">colour =</span> <span class="fu">factor</span>(station) )) <span class="sc">+</span></span>
+<span id="cb488-31"><a href="remote-data-extraction.html#cb488-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_polygon</span>(<span class="at">data =</span> coast, <span class="fu">aes</span>(<span class="at">x =</span> long, <span class="at">y =</span> lat, <span class="at">group =</span> group), <span class="at">fill =</span> <span class="st">&quot;grey80&quot;</span>) <span class="sc">+</span></span>
+<span id="cb488-32"><a href="remote-data-extraction.html#cb488-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">&quot;latitude&quot;</span>) <span class="sc">+</span> <span class="fu">xlab</span>(<span class="st">&quot;longitude&quot;</span>) <span class="sc">+</span></span>
+<span id="cb488-33"><a href="remote-data-extraction.html#cb488-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_fixed</span>(<span class="fl">1.3</span>, <span class="at">xlim =</span> xlim, <span class="at">ylim =</span> ylim) <span class="sc">+</span></span>
+<span id="cb488-34"><a href="remote-data-extraction.html#cb488-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Delaware Bay Buoys&quot;</span>)</span></code></pre></div>
 <p><img src="images/buoys.png" width="60%" style="display: block; margin: auto;" /></p>
 </div>
-<div id="griddap" class="section level3">
-<h3><span class="header-section-number">15.2.4</span> Griddap</h3>
+<div id="griddap" class="section level3" number="14.2.4">
+<h3><span class="header-section-number">14.2.4</span> Griddap</h3>
 <p><code>rerddap::griddap()</code> - Useful for downloading <strong>spatial datasets</strong>, like sea surface temperature for the Atlantic Ocean.</p>
-<div class="sourceCode" id="cb483"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb483-1" data-line-number="1">whichSST &lt;-<span class="st"> </span><span class="kw">ed_search</span>(<span class="dt">query =</span> <span class="st">&quot;SST&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb489"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb489-1"><a href="remote-data-extraction.html#cb489-1" aria-hidden="true" tabindex="-1"></a>whichSST <span class="ot">&lt;-</span> <span class="fu">ed_search</span>(<span class="at">query =</span> <span class="st">&quot;SST&quot;</span>)</span></code></pre></div>
 <p>returns about 1000 responses. Let’s use a more focused query search of <code>SST MUR</code> - MUR is a reanlysis sea surface temperature product that has SST data for the entire world.</p>
-<div class="sourceCode" id="cb484"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb484-1" data-line-number="1">whichSST &lt;-<span class="st"> </span><span class="kw">ed_search</span>(<span class="dt">query =</span> <span class="st">&quot;SST MUR&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb490"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb490-1"><a href="remote-data-extraction.html#cb490-1" aria-hidden="true" tabindex="-1"></a>whichSST <span class="ot">&lt;-</span> <span class="fu">ed_search</span>(<span class="at">query =</span> <span class="st">&quot;SST MUR&quot;</span>)</span></code></pre></div>
 <p>Awesome - let’s use the dataset_id of <code>jplMURSST41</code> !</p>
-<div class="sourceCode" id="cb485"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb485-1" data-line-number="1"><span class="kw">info</span>(<span class="st">&#39;jplMURSST41&#39;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb491"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb491-1"><a href="remote-data-extraction.html#cb491-1" aria-hidden="true" tabindex="-1"></a><span class="fu">info</span>(<span class="st">&#39;jplMURSST41&#39;</span>)</span></code></pre></div>
 <pre><code>## &lt;ERDDAP info&gt; jplMURSST41 
 ##  Base URL: https://upwell.pfeg.noaa.gov/erddap/ 
 ##  Dataset Type: griddap 
 ##  Dimensions (range):  
-##      time: (2002-06-01T09:00:00Z, 2021-01-27T09:00:00Z) 
+##      time: (2002-06-01T09:00:00Z, 2021-03-02T09:00:00Z) 
 ##      latitude: (-89.99, 89.99) 
 ##      longitude: (-179.99, 180.0) 
 ##  Variables:  
@@ -739,34 +772,34 @@ A list of some of the publicly available <span style="color:red">ERDDAP</span> s
 ##      sea_ice_fraction: 
 ##          Units: 1</code></pre>
 <p>Alright, let’s extract some of this data and plot it. For this, we can use ‘last’ for the latest time instead of plugging in a time string.</p>
-<div class="sourceCode" id="cb487"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb487-1" data-line-number="1"><span class="kw">require</span>(<span class="st">&quot;ggplot2&quot;</span>)</a>
-<a class="sourceLine" id="cb487-2" data-line-number="2"><span class="kw">require</span>(<span class="st">&quot;mapdata&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb493"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb493-1"><a href="remote-data-extraction.html#cb493-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(<span class="st">&quot;ggplot2&quot;</span>)</span>
+<span id="cb493-2"><a href="remote-data-extraction.html#cb493-2" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(<span class="st">&quot;mapdata&quot;</span>)</span></code></pre></div>
 <pre><code>## Loading required package: mapdata</code></pre>
-<div class="sourceCode" id="cb489"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb489-1" data-line-number="1"><span class="kw">require</span>(<span class="st">&quot;rerddap&quot;</span>)</a>
-<a class="sourceLine" id="cb489-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb489-3" data-line-number="3"><span class="co"># grab the latest MUR SST info</span></a>
-<a class="sourceLine" id="cb489-4" data-line-number="4">sstInfo &lt;-<span class="st"> </span><span class="kw">info</span>(<span class="st">&#39;jplMURSST41&#39;</span>)</a>
-<a class="sourceLine" id="cb489-5" data-line-number="5"></a>
-<a class="sourceLine" id="cb489-6" data-line-number="6"><span class="co"># get latest daily sst with griddap</span></a>
-<a class="sourceLine" id="cb489-7" data-line-number="7">murSST &lt;-<span class="st"> </span><span class="kw">griddap</span>(sstInfo, <span class="dt">latitude =</span> <span class="kw">c</span>(<span class="dv">30</span>, <span class="dv">45</span>), <span class="dt">longitude =</span> <span class="kw">c</span>(<span class="op">-</span><span class="fl">80.</span>, <span class="dv">-70</span>), <span class="dt">time =</span> <span class="kw">c</span>(<span class="st">&#39;last&#39;</span>,<span class="st">&#39;last&#39;</span>), <span class="dt">fields =</span> <span class="st">&#39;analysed_sst&#39;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb495"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb495-1"><a href="remote-data-extraction.html#cb495-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(<span class="st">&quot;rerddap&quot;</span>)</span>
+<span id="cb495-2"><a href="remote-data-extraction.html#cb495-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb495-3"><a href="remote-data-extraction.html#cb495-3" aria-hidden="true" tabindex="-1"></a><span class="co"># grab the latest MUR SST info</span></span>
+<span id="cb495-4"><a href="remote-data-extraction.html#cb495-4" aria-hidden="true" tabindex="-1"></a>sstInfo <span class="ot">&lt;-</span> <span class="fu">info</span>(<span class="st">&#39;jplMURSST41&#39;</span>)</span>
+<span id="cb495-5"><a href="remote-data-extraction.html#cb495-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb495-6"><a href="remote-data-extraction.html#cb495-6" aria-hidden="true" tabindex="-1"></a><span class="co"># get latest daily sst with griddap</span></span>
+<span id="cb495-7"><a href="remote-data-extraction.html#cb495-7" aria-hidden="true" tabindex="-1"></a>murSST <span class="ot">&lt;-</span> <span class="fu">griddap</span>(sstInfo, <span class="at">latitude =</span> <span class="fu">c</span>(<span class="dv">30</span>, <span class="dv">45</span>), <span class="at">longitude =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">80.</span>, <span class="sc">-</span><span class="dv">70</span>), <span class="at">time =</span> <span class="fu">c</span>(<span class="st">&#39;last&#39;</span>,<span class="st">&#39;last&#39;</span>), <span class="at">fields =</span> <span class="st">&#39;analysed_sst&#39;</span>)</span></code></pre></div>
 <pre><code>## info() output passed to x; setting base url to: https://upwell.pfeg.noaa.gov/erddap/</code></pre>
-<div class="sourceCode" id="cb491"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb491-1" data-line-number="1"><span class="co"># select colors from rerddap color palettes</span></a>
-<a class="sourceLine" id="cb491-2" data-line-number="2">mycolor &lt;-<span class="st"> </span>colors<span class="op">$</span>temperature</a>
-<a class="sourceLine" id="cb491-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb491-4" data-line-number="4"><span class="co"># grab boundary data from our limits</span></a>
-<a class="sourceLine" id="cb491-5" data-line-number="5">w &lt;-<span class="st"> </span><span class="kw">map_data</span>(<span class="st">&quot;worldHires&quot;</span>, <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">30</span>, <span class="dv">45</span>), <span class="dt">xlim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="fl">80.</span>, <span class="dv">-70</span>))</a>
-<a class="sourceLine" id="cb491-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb491-7" data-line-number="7"><span class="co"># plot</span></a>
-<a class="sourceLine" id="cb491-8" data-line-number="8"><span class="kw">ggplot</span>(<span class="dt">data =</span> murSST<span class="op">$</span>data, <span class="kw">aes</span>(<span class="dt">x =</span> lon, <span class="dt">y =</span> lat, <span class="dt">fill =</span> analysed_sst)) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb491-9" data-line-number="9"><span class="st">    </span><span class="kw">geom_polygon</span>(<span class="dt">data =</span> w, <span class="kw">aes</span>(<span class="dt">x =</span> long, <span class="dt">y =</span> lat, <span class="dt">group =</span> group), <span class="dt">fill =</span> <span class="st">&quot;grey80&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb491-10" data-line-number="10"><span class="st">    </span><span class="kw">geom_raster</span>(<span class="dt">interpolate =</span> <span class="ot">FALSE</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb491-11" data-line-number="11"><span class="st">    </span><span class="kw">scale_fill_gradientn</span>(<span class="dt">colours =</span> mycolor, <span class="dt">na.value =</span> <span class="ot">NA</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb491-12" data-line-number="12"><span class="st">    </span><span class="kw">theme_bw</span>() <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;latitude&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">xlab</span>(<span class="st">&quot;longitude&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb491-13" data-line-number="13"><span class="st">    </span><span class="kw">coord_fixed</span>(<span class="fl">1.3</span>, <span class="dt">xlim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">80</span>, <span class="dv">-70</span>),  <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">30</span>, <span class="dv">45</span>)) <span class="op">+</span><span class="st"> </span><span class="kw">ggtitle</span>(<span class="st">&quot;Latest MUR SST&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb497"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb497-1"><a href="remote-data-extraction.html#cb497-1" aria-hidden="true" tabindex="-1"></a><span class="co"># select colors from rerddap color palettes</span></span>
+<span id="cb497-2"><a href="remote-data-extraction.html#cb497-2" aria-hidden="true" tabindex="-1"></a>mycolor <span class="ot">&lt;-</span> colors<span class="sc">$</span>temperature</span>
+<span id="cb497-3"><a href="remote-data-extraction.html#cb497-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb497-4"><a href="remote-data-extraction.html#cb497-4" aria-hidden="true" tabindex="-1"></a><span class="co"># grab boundary data from our limits</span></span>
+<span id="cb497-5"><a href="remote-data-extraction.html#cb497-5" aria-hidden="true" tabindex="-1"></a>w <span class="ot">&lt;-</span> <span class="fu">map_data</span>(<span class="st">&quot;worldHires&quot;</span>, <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">30</span>, <span class="dv">45</span>), <span class="at">xlim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">80.</span>, <span class="sc">-</span><span class="dv">70</span>))</span>
+<span id="cb497-6"><a href="remote-data-extraction.html#cb497-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb497-7"><a href="remote-data-extraction.html#cb497-7" aria-hidden="true" tabindex="-1"></a><span class="co"># plot</span></span>
+<span id="cb497-8"><a href="remote-data-extraction.html#cb497-8" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> murSST<span class="sc">$</span>data, <span class="fu">aes</span>(<span class="at">x =</span> lon, <span class="at">y =</span> lat, <span class="at">fill =</span> analysed_sst)) <span class="sc">+</span> </span>
+<span id="cb497-9"><a href="remote-data-extraction.html#cb497-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_polygon</span>(<span class="at">data =</span> w, <span class="fu">aes</span>(<span class="at">x =</span> long, <span class="at">y =</span> lat, <span class="at">group =</span> group), <span class="at">fill =</span> <span class="st">&quot;grey80&quot;</span>) <span class="sc">+</span></span>
+<span id="cb497-10"><a href="remote-data-extraction.html#cb497-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_raster</span>(<span class="at">interpolate =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb497-11"><a href="remote-data-extraction.html#cb497-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_fill_gradientn</span>(<span class="at">colours =</span> mycolor, <span class="at">na.value =</span> <span class="cn">NA</span>) <span class="sc">+</span></span>
+<span id="cb497-12"><a href="remote-data-extraction.html#cb497-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>() <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">&quot;latitude&quot;</span>) <span class="sc">+</span> <span class="fu">xlab</span>(<span class="st">&quot;longitude&quot;</span>) <span class="sc">+</span></span>
+<span id="cb497-13"><a href="remote-data-extraction.html#cb497-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">coord_fixed</span>(<span class="fl">1.3</span>, <span class="at">xlim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">80</span>, <span class="sc">-</span><span class="dv">70</span>),  <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">30</span>, <span class="dv">45</span>)) <span class="sc">+</span> <span class="fu">ggtitle</span>(<span class="st">&quot;Latest MUR SST&quot;</span>)</span></code></pre></div>
 <p><img src="R_Geospatial_Sciences_files/figure-html/can%20we%20get%20to%20this%20oneeeeeeeeeeeeeeee-1.png" width="60%" style="display: block; margin: auto;" /></p>
 </div>
-<div id="custom-erddap-url" class="section level3">
-<h3><span class="header-section-number">15.2.5</span> Custom ERDDAP URL</h3>
+<div id="custom-erddap-url" class="section level3" number="14.2.5">
+<h3><span class="header-section-number">14.2.5</span> Custom ERDDAP URL</h3>
 <p>What if we want to use a custom URL that’s not pre-loaded into <code>rerddap</code> ? Let’s use Ireland’s Marine Institute ERDDAP. Follow these steps:</p>
 <ol style="list-style-type: decimal">
 <li>Go to <a href="http://erddap.marine.ie/erddap/" class="uri">http://erddap.marine.ie/erddap/</a> and select datasets</li>
@@ -775,51 +808,51 @@ A list of some of the publicly available <span style="color:red">ERDDAP</span> s
 <li>Select Graph under ‘Make a Graph’ Column for that Dataset ID</li>
 <li>Look at the variables - see <code>sea_surface_temperature</code></li>
 </ol>
-<div class="sourceCode" id="cb492"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb492-1" data-line-number="1"><span class="co"># define the base URL </span></a>
-<a class="sourceLine" id="cb492-2" data-line-number="2">urlBase &lt;-<span class="st"> &quot;http://erddap.marine.ie/erddap/&quot;</span></a>
-<a class="sourceLine" id="cb492-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb492-4" data-line-number="4"><span class="co"># select Dataset ID from the URL</span></a>
-<a class="sourceLine" id="cb492-5" data-line-number="5">dataInfo &lt;-<span class="st"> </span>rerddap<span class="op">::</span><span class="kw">info</span>(<span class="st">&quot;IMI_NEATL&quot;</span>, <span class="dt">url =</span> urlBase)</a>
-<a class="sourceLine" id="cb492-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb492-7" data-line-number="7"><span class="co"># define parameters</span></a>
-<a class="sourceLine" id="cb492-8" data-line-number="8">parameter &lt;-<span class="st"> &quot;sea_surface_temperature&quot;</span></a>
-<a class="sourceLine" id="cb492-9" data-line-number="9">sstTimes &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;last&quot;</span>, <span class="st">&quot;last&quot;</span>)</a>
-<a class="sourceLine" id="cb492-10" data-line-number="10">sstLats &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">48.00625</span>, <span class="fl">57.50625</span>)</a>
-<a class="sourceLine" id="cb492-11" data-line-number="11">sstLons &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="op">-</span><span class="fl">17.99375</span>, <span class="fl">-1.00625</span>)</a>
-<a class="sourceLine" id="cb492-12" data-line-number="12"></a>
-<a class="sourceLine" id="cb492-13" data-line-number="13"><span class="co"># define limits</span></a>
-<a class="sourceLine" id="cb492-14" data-line-number="14">xlim &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="op">-</span><span class="fl">17.99375</span>, <span class="fl">-1.00625</span>)</a>
-<a class="sourceLine" id="cb492-15" data-line-number="15">ylim &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">48.00625</span>, <span class="fl">57.50625</span>)</a>
-<a class="sourceLine" id="cb492-16" data-line-number="16"></a>
-<a class="sourceLine" id="cb492-17" data-line-number="17"><span class="co"># use griddap to grab this gridded dataset</span></a>
-<a class="sourceLine" id="cb492-18" data-line-number="18">NAtlsst &lt;-<span class="st"> </span><span class="kw">griddap</span>(dataInfo, <span class="dt">longitude =</span> sstLons, <span class="dt">latitude =</span> sstLats, <span class="dt">time =</span> sstTimes, <span class="dt">fields =</span> parameter, <span class="dt">url =</span> urlBase)</a></code></pre></div>
+<div class="sourceCode" id="cb498"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb498-1"><a href="remote-data-extraction.html#cb498-1" aria-hidden="true" tabindex="-1"></a><span class="co"># define the base URL </span></span>
+<span id="cb498-2"><a href="remote-data-extraction.html#cb498-2" aria-hidden="true" tabindex="-1"></a>urlBase <span class="ot">&lt;-</span> <span class="st">&quot;http://erddap.marine.ie/erddap/&quot;</span></span>
+<span id="cb498-3"><a href="remote-data-extraction.html#cb498-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb498-4"><a href="remote-data-extraction.html#cb498-4" aria-hidden="true" tabindex="-1"></a><span class="co"># select Dataset ID from the URL</span></span>
+<span id="cb498-5"><a href="remote-data-extraction.html#cb498-5" aria-hidden="true" tabindex="-1"></a>dataInfo <span class="ot">&lt;-</span> rerddap<span class="sc">::</span><span class="fu">info</span>(<span class="st">&quot;IMI_NEATL&quot;</span>, <span class="at">url =</span> urlBase)</span>
+<span id="cb498-6"><a href="remote-data-extraction.html#cb498-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb498-7"><a href="remote-data-extraction.html#cb498-7" aria-hidden="true" tabindex="-1"></a><span class="co"># define parameters</span></span>
+<span id="cb498-8"><a href="remote-data-extraction.html#cb498-8" aria-hidden="true" tabindex="-1"></a>parameter <span class="ot">&lt;-</span> <span class="st">&quot;sea_surface_temperature&quot;</span></span>
+<span id="cb498-9"><a href="remote-data-extraction.html#cb498-9" aria-hidden="true" tabindex="-1"></a>sstTimes <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;last&quot;</span>, <span class="st">&quot;last&quot;</span>)</span>
+<span id="cb498-10"><a href="remote-data-extraction.html#cb498-10" aria-hidden="true" tabindex="-1"></a>sstLats <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">48.00625</span>, <span class="fl">57.50625</span>)</span>
+<span id="cb498-11"><a href="remote-data-extraction.html#cb498-11" aria-hidden="true" tabindex="-1"></a>sstLons <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">17.99375</span>, <span class="sc">-</span><span class="fl">1.00625</span>)</span>
+<span id="cb498-12"><a href="remote-data-extraction.html#cb498-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb498-13"><a href="remote-data-extraction.html#cb498-13" aria-hidden="true" tabindex="-1"></a><span class="co"># define limits</span></span>
+<span id="cb498-14"><a href="remote-data-extraction.html#cb498-14" aria-hidden="true" tabindex="-1"></a>xlim <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">17.99375</span>, <span class="sc">-</span><span class="fl">1.00625</span>)</span>
+<span id="cb498-15"><a href="remote-data-extraction.html#cb498-15" aria-hidden="true" tabindex="-1"></a>ylim <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">48.00625</span>, <span class="fl">57.50625</span>)</span>
+<span id="cb498-16"><a href="remote-data-extraction.html#cb498-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb498-17"><a href="remote-data-extraction.html#cb498-17" aria-hidden="true" tabindex="-1"></a><span class="co"># use griddap to grab this gridded dataset</span></span>
+<span id="cb498-18"><a href="remote-data-extraction.html#cb498-18" aria-hidden="true" tabindex="-1"></a>NAtlsst <span class="ot">&lt;-</span> <span class="fu">griddap</span>(dataInfo, <span class="at">longitude =</span> sstLons, <span class="at">latitude =</span> sstLats, <span class="at">time =</span> sstTimes, <span class="at">fields =</span> parameter, <span class="at">url =</span> urlBase)</span></code></pre></div>
 <pre><code>## info() output passed to x; setting base url to: http://erddap.marine.ie/erddap/</code></pre>
-<div class="sourceCode" id="cb494"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb494-1" data-line-number="1"><span class="kw">str</span>(NAtlsst<span class="op">$</span>data)</a></code></pre></div>
+<div class="sourceCode" id="cb500"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb500-1"><a href="remote-data-extraction.html#cb500-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(NAtlsst<span class="sc">$</span>data)</span></code></pre></div>
 <pre><code>## &#39;data.frame&#39;:    1034960 obs. of  4 variables:
 ##  $ time                   : chr  &quot;2021-01-25T00:00:00Z&quot; &quot;2021-01-25T00:00:00Z&quot; &quot;2021-01-25T00:00:00Z&quot; &quot;2021-01-25T00:00:00Z&quot; ...
 ##  $ lat                    : num  48 48 48 48 48 ...
 ##  $ lon                    : num  -18 -18 -18 -18 -17.9 ...
 ##  $ sea_surface_temperature: num  11.9 11.9 11.9 11.9 12.5 ...</code></pre>
-<div class="sourceCode" id="cb496"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb496-1" data-line-number="1"><span class="co"># select the temperature colorbar from rerrdap</span></a>
-<a class="sourceLine" id="cb496-2" data-line-number="2">my.col &lt;-<span class="st"> </span>colors<span class="op">$</span>temperature </a>
-<a class="sourceLine" id="cb496-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb496-4" data-line-number="4"><span class="co"># grab map data for our domain</span></a>
-<a class="sourceLine" id="cb496-5" data-line-number="5">w &lt;-<span class="st"> </span><span class="kw">map_data</span>(<span class="st">&quot;worldHires&quot;</span>, <span class="dt">ylim =</span> ylim, <span class="dt">xlim =</span> xlim)</a>
-<a class="sourceLine" id="cb496-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb496-7" data-line-number="7"><span class="co">#  plot</span></a>
-<a class="sourceLine" id="cb496-8" data-line-number="8">myplot &lt;-<span class="st"> </span><span class="kw">ggplot</span>() <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb496-9" data-line-number="9"><span class="st">    </span><span class="kw">geom_raster</span>(<span class="dt">data =</span> NAtlsst<span class="op">$</span>data, <span class="kw">aes</span>(<span class="dt">x =</span> lon, <span class="dt">y =</span> lat, <span class="dt">fill =</span> sea_surface_temperature), <span class="dt">interpolate =</span> <span class="ot">FALSE</span>) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb496-10" data-line-number="10"><span class="st">    </span><span class="kw">geom_polygon</span>(<span class="dt">data =</span> w, <span class="kw">aes</span>(<span class="dt">x =</span> long, <span class="dt">y =</span> lat, <span class="dt">group =</span> group), <span class="dt">fill =</span> <span class="st">&quot;grey80&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb496-11" data-line-number="11"><span class="st">    </span><span class="kw">theme_bw</span>() <span class="op">+</span><span class="st"> </span><span class="kw">scale_fill_gradientn</span>(<span class="dt">colours =</span> my.col, <span class="dt">na.value =</span> <span class="ot">NA</span>, <span class="dt">limits =</span> <span class="kw">c</span>(<span class="dv">5</span>,<span class="dv">15</span>), <span class="dt">name =</span> <span class="st">&quot;Temperature&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb496-12" data-line-number="12"><span class="st">    </span><span class="kw">ylab</span>(<span class="st">&quot;latitude&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">xlab</span>(<span class="st">&quot;longitude&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb496-13" data-line-number="13"><span class="st">    </span><span class="kw">coord_fixed</span>(<span class="fl">1.3</span>, <span class="dt">xlim =</span> xlim, <span class="dt">ylim =</span> ylim, <span class="dt">expand=</span><span class="ot">FALSE</span>) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb496-14" data-line-number="14"><span class="st">    </span><span class="kw">ggtitle</span>(<span class="kw">paste</span>(<span class="st">&quot;Sea Surface Temperature : &quot;</span>, NAtlsst<span class="op">$</span>data<span class="op">$</span>time[<span class="dv">1</span>]))</a>
-<a class="sourceLine" id="cb496-15" data-line-number="15">myplot</a></code></pre></div>
+<div class="sourceCode" id="cb502"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb502-1"><a href="remote-data-extraction.html#cb502-1" aria-hidden="true" tabindex="-1"></a><span class="co"># select the temperature colorbar from rerrdap</span></span>
+<span id="cb502-2"><a href="remote-data-extraction.html#cb502-2" aria-hidden="true" tabindex="-1"></a>my.col <span class="ot">&lt;-</span> colors<span class="sc">$</span>temperature </span>
+<span id="cb502-3"><a href="remote-data-extraction.html#cb502-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb502-4"><a href="remote-data-extraction.html#cb502-4" aria-hidden="true" tabindex="-1"></a><span class="co"># grab map data for our domain</span></span>
+<span id="cb502-5"><a href="remote-data-extraction.html#cb502-5" aria-hidden="true" tabindex="-1"></a>w <span class="ot">&lt;-</span> <span class="fu">map_data</span>(<span class="st">&quot;worldHires&quot;</span>, <span class="at">ylim =</span> ylim, <span class="at">xlim =</span> xlim)</span>
+<span id="cb502-6"><a href="remote-data-extraction.html#cb502-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb502-7"><a href="remote-data-extraction.html#cb502-7" aria-hidden="true" tabindex="-1"></a><span class="co">#  plot</span></span>
+<span id="cb502-8"><a href="remote-data-extraction.html#cb502-8" aria-hidden="true" tabindex="-1"></a>myplot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb502-9"><a href="remote-data-extraction.html#cb502-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_raster</span>(<span class="at">data =</span> NAtlsst<span class="sc">$</span>data, <span class="fu">aes</span>(<span class="at">x =</span> lon, <span class="at">y =</span> lat, <span class="at">fill =</span> sea_surface_temperature), <span class="at">interpolate =</span> <span class="cn">FALSE</span>) <span class="sc">+</span> </span>
+<span id="cb502-10"><a href="remote-data-extraction.html#cb502-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_polygon</span>(<span class="at">data =</span> w, <span class="fu">aes</span>(<span class="at">x =</span> long, <span class="at">y =</span> lat, <span class="at">group =</span> group), <span class="at">fill =</span> <span class="st">&quot;grey80&quot;</span>) <span class="sc">+</span></span>
+<span id="cb502-11"><a href="remote-data-extraction.html#cb502-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>() <span class="sc">+</span> <span class="fu">scale_fill_gradientn</span>(<span class="at">colours =</span> my.col, <span class="at">na.value =</span> <span class="cn">NA</span>, <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">5</span>,<span class="dv">15</span>), <span class="at">name =</span> <span class="st">&quot;Temperature&quot;</span>) <span class="sc">+</span></span>
+<span id="cb502-12"><a href="remote-data-extraction.html#cb502-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ylab</span>(<span class="st">&quot;latitude&quot;</span>) <span class="sc">+</span> <span class="fu">xlab</span>(<span class="st">&quot;longitude&quot;</span>) <span class="sc">+</span></span>
+<span id="cb502-13"><a href="remote-data-extraction.html#cb502-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">coord_fixed</span>(<span class="fl">1.3</span>, <span class="at">xlim =</span> xlim, <span class="at">ylim =</span> ylim, <span class="at">expand=</span><span class="cn">FALSE</span>) <span class="sc">+</span> </span>
+<span id="cb502-14"><a href="remote-data-extraction.html#cb502-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggtitle</span>(<span class="fu">paste</span>(<span class="st">&quot;Sea Surface Temperature : &quot;</span>, NAtlsst<span class="sc">$</span>data<span class="sc">$</span>time[<span class="dv">1</span>]))</span>
+<span id="cb502-15"><a href="remote-data-extraction.html#cb502-15" aria-hidden="true" tabindex="-1"></a>myplot</span></code></pre></div>
 <p><img src="R_Geospatial_Sciences_files/figure-html/datttttttttttaaaaaaaaaaaaaaa-1.png" width="60%" style="display: block; margin: auto;" /></p>
 </div>
 </div>
-<div id="assignment-8" class="section level2">
-<h2><span class="header-section-number">15.3</span> Assignment</h2>
+<div id="assignment-8" class="section level2" number="14.3">
+<h2><span class="header-section-number">14.3</span> Assignment</h2>
 <p>Deliverables:
 - R Code/Script
 - Images/Plots</p>
@@ -827,8 +860,8 @@ A list of some of the publicly available <span style="color:red">ERDDAP</span> s
 <li><p>Select any dataset from any THREDDS server. Create a script that loads in desired data (specific lat/lons/time etc.) and plot it. In your script, explain why you chose that dataset, detail each step and describe what is happening. Turn in your <strong>R script and the Images/Plots you’ve made to UD Canvas</strong>.</p></li>
 <li><p>Select any dataset from any ERDDAP server. Create a script that loads in desired data (specific lat/lons/time etc.) and plot it. In your script, explain why you chose that dataset, detail each step and describe what is happening. Turn in your <strong>R script and the Images/Plots you’ve made to UD Canvas</strong>.</p></li>
 </ol>
-<div id="extra-credit---2-points-3" class="section level3">
-<h3><span class="header-section-number">15.3.1</span> Extra Credit - 2 Points</h3>
+<div id="extra-credit---2-points-3" class="section level3" number="14.3.1">
+<h3><span class="header-section-number">14.3.1</span> Extra Credit - 2 Points</h3>
 <p>Find a dataset that uses <code>TableDaps</code> instance of ERDDAP. Create a routine that downloads and extracts data using the <code>tabledap()</code> function from <code>rerddap</code></p>
 
 </div>
